@@ -3,8 +3,8 @@ function T_sat "Saturation temperature dependent on enthalpy"
   /* Saettigungstemperatur in Abhaengigkeit von der Enthalpie von -30 bis 360 kJ/kg
      Saettigungstemperatur in [K], Enthalpie in [kJ/kg]
      - aus h-x-Diagramm und Fkt., ueber Polynom 5. Ordnung gefittet */
-  input Real h;
-  output Real value;
+  input Modelica.SIunits.SpecificEnthalpy h;
+  output  Modelica.SIunits.Temp_K value;
 protected
   constant Real h_min = -30.0;
   constant Real h_max = 360.0;

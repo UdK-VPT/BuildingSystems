@@ -6,8 +6,8 @@ function enthalpy
      Enthalpie in [kJ/kg trockene Luft], Temperatur in [K], x in [kg/kg]
      x_satt in [kg/kg] fuer phi = 1.0 */
   input Modelica.SIunits.Temp_K T;
-  input Real x;
-  input Real x_sat;
+  input Modelica.SIunits.MassFraction x;
+  input Modelica.SIunits.MassFraction x_sat;
   output Modelica.SIunits.SpecificEnthalpy value;
 protected
             Real theta, y1, y2, y3, y4;
