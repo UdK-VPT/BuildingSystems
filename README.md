@@ -21,4 +21,4 @@ You may report any issues by using the [Issues](https://github.com/UdK-VPT/Build
 
 Contributions in the form of [Pull Requests](https://github.com/UdK-VPT/BuildingSystems/pulls) are always welcome.
 Prior to issuing a pull request, make sure your code follows
-the [style guide and coding conventions](https://github.com/UdK-VPT/BuildingSystems/wiki/Guidelines-for-developers-of-the-BuildingSystems-library).
+the [style guide and coding conventions](https://github.com/UdK-VPT/BuildingSystems/wiki/Guidelines).
