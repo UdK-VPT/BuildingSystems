@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.WallHygroThermal1DNodes", stopTime=864000, method="dassl", tolerance = 1e-5, resultFile="WallHygroThermal1DNodes");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","wall.construction.layer[1].T[1]","wall.construction.layer[2].T[1]","wall.construction.layer[3].T[1]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WallHygroThermal1DNodes.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"wall.construction.layer[1].w[1]","wall.construction.layer[2].w[1]","wall.construction.layer[3].w[1]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WallHygroThermal1DNodes.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

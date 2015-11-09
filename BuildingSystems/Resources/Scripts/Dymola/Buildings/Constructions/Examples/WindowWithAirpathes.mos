@@ -1,0 +1,44 @@
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.WindowWithAirpathes", stopTime=4500, method="dassl", resultFile="WindowWithAirpathes");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 400, 500},
+  y = {"ambient.TAirRef","zone.TAir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithAirpathes.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {410, 0, 400, 500},
+  y = {"window.airpathPortDown_1.m_flow", "window.airpathPortUp_1.m_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithAirpathes.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id =32,
+  position = {820, 0, 400, 500},
+  y = {"zone.Q_flow_heating"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithAirpathes.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

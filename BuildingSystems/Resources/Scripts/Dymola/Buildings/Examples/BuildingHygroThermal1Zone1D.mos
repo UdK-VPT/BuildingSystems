@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Examples.BuildingHygroThermal1Zone1D", stopTime=31536000, method="dassl", tolerance = 1e-5, resultFile="BuildingHygroThermal1Zone1D");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","building.zone1.TAir","building.zone1.TOperative"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BuildingHygroThermal1Zone1D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"ambient.xAir","building.zone1.xAir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BuildingHygroThermal1Zone1D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Examples.BuildingThermal4Zones1D", stopTime=864000, method="dassl", tolerance = 1e-5, resultFile="BuildingThermal4Zones1D");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","building.zone1.TAir","building.zone2.TAir","building.zone3.TAir","building.zone4.TAir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BuildingThermal4Zones1D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"building.zone1.Q_flow_heating","building.zone1.Q_flow_heating","building.zone3.Q_flow_heating","building.zone4.Q_flow_heating"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BuildingThermal4Zones1D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

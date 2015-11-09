@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Applications.ClimateAnalyses.FreeFloatingTemperature", stopTime=31536000, method="dassl", numberOfIntervals=8760, tolerance = 1e-5, resultFile="FreeFloatingTemperature");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 700, 500},
+  y = {"Berlin.ambient.TAirRef","AmundsenScott.ambient.TAirRef", "ElGouna.ambient.TAirRef", "Bombay.ambient.TAirRef"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "FreeFloatingTemperature.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 2,
+  position = {720, 0, 700, 500},
+  y = {"Berlin.building.zone.TAir","AmundsenScott.building.zone.TAir", "ElGouna.building.zone.TAir", "Bombay.building.zone.TAir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "FreeFloatingTemperature.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

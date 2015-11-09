@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Examples.BuildingThermal1Zone1DCylinder", stopTime=31536000, method="dassl", tolerance = 1e-5, resultFile="BuildingThermal1Zone1DCylinder");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","building.zone.TAir","building.zone.TOperative"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BuildingThermal1Zone1DCylinder.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"building.zone.Q_flow_heating","building.zone.Q_flow_cooling"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BuildingThermal1Zone1DCylinder.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

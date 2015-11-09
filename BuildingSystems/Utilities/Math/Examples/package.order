@@ -1,0 +1,17 @@
+Average
+Bicubic
+Biquadratic
+BooleanReplicator
+IntegerReplicator
+InverseXRegularized
+Polynominal
+PowerLinearized
+QuadraticLinear
+RegNonZeroPower
+SmoothBlocks
+SmoothExponential
+SmoothHeaviside
+SmoothLimit
+SmoothMin
+Splice
+VectorFunctions

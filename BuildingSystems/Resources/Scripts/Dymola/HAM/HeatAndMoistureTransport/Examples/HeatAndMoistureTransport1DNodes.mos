@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.HAM.HeatAndMoistureTransport.Examples.HeatAndMoistureTransport1DNodes", stopTime=8640000, method="dassl", numberOfIntervals=2400, tolerance = 1e-5, resultFile="HeatAndMoistureTransport1D");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 800, 400},
+  y = {"TAmb.port.T","body.T[2]","body.T[4]","body.T[6]","body.T[8]","body.T[10]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatAndMoistureTransport1D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {0, 440, 800, 400},
+  y = {"body.w[2]","body.w[4]","body.w[6]","body.w[8]","body.w[10]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatAndMoistureTransport1D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

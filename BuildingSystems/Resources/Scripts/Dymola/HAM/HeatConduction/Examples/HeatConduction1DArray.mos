@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.HAM.HeatConduction.Examples.HeatConduction1DArray", stopTime=172800, method="dassl", numberOfIntervals=240, tolerance = 1e-5, resultFile="HeatConduction1DArray");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"TAmb.port.T","body[1].T","body[500].T","body[1000].T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatConduction1DArray.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"body[1].heatPort_x1.Q_flow","body[500].heatPort_x1.Q_flow","body[1000].heatPort_x1.Q_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatConduction1DArray.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

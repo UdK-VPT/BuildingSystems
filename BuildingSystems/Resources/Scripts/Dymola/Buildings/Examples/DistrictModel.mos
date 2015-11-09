@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Examples.DistrictModel", stopTime=864000, method="dassl", tolerance = 1e-5, resultFile="DistrictModel");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","building[1].zone.TAir","building[20].zone.TAir","building[40].zone.TAir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "DistrictModel.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"building[1].zone.Q_flow_heating","building[1].zone.Q_flow_cooling","building[20].zone.Q_flow_heating","building[20].zone.Q_flow_cooling","building[40].zone.Q_flow_heating","building[40].zone.Q_flow_cooling"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "DistrictModel.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

@@ -1,0 +1,43 @@
+# ignore Dymola output, log and temporary files (in alphabetical order)
+*.bak-mo
+*.mat
+*.mof
+buildlog.txt
+dsfinal.txt
+dsin.txt
+dslog.txt
+dsmodel.c
+dsmodelext*.c
+dsmodelext*.obj
+dsres.txt
+dymosim.exe
+dymosim.exp
+dymosim.lib
+empty.txt
+request
+stat
+status
+stop
+success
+#
+# ignore some log files
+simulator.log
+unitTests.log
+printlog.txt
+fileExtensions.txt
+#
+# ignore some Microsoft files
+desktop.ini
+thumbs.db
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.xlsm
+*.ppt
+*.pptx
+#
+# ignore some LaTeX files
+*.aux
+*.log
+*.synctex.gz

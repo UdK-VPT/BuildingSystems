@@ -1,0 +1,16 @@
+simulateModel("BuildingSystems.HAM.HeatAndMoistureTransport.Functions.Examples.wDerPhi", stopTime=1.2, method="dassl", tolerance = 1e-5, resultFile="wDerPhi");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 800, 400},
+  y = {"wDerPhi"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "wDerPhi.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

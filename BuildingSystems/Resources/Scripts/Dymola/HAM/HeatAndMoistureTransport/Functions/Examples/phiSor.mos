@@ -1,0 +1,16 @@
+simulateModel("BuildingSystems.HAM.HeatAndMoistureTransport.Functions.Examples.phiSor", stopTime=200, method="dassl", tolerance = 1e-5, resultFile="phiSor");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 800, 400},
+  y = {"phiSor"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "phiSor.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

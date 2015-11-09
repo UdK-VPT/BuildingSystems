@@ -1,0 +1,58 @@
+simulateModel("BuildingSystems.Applications.HeatingSystems.SolarHeatingSystem", stopTime=31536000, method="dassl", resultFile="SolarHeatingSystem");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 250},
+  y = {"ambient.TAirRef","building.zone.TAir","building.zone.TOperative"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SolarHeatingSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {600, 0, 600, 250},
+  y = {"rad.Q_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SolarHeatingSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+    id = 3,
+    position = {0, 270, 600, 250},
+    y = {"collector.vol[10].T","storage.T[1]","storage.T[10]"},
+    autoscale = true,
+    autoerase = true,
+    autoreplot = true,
+    description = false,
+    grid = true,
+    color = true,
+    online = false,
+    filename = "SolarHeatingSystem.mat",
+    leftTitleType = 1,
+    bottomTitleType = 1);
+  createPlot(
+    id = 4,
+    position = {600, 270, 600, 250},
+    y = {"collector.radiationPort.IrrDir","collector.radiationPort.IrrDif"},
+    autoscale = true,
+    autoerase = true,
+    autoreplot = true,
+    description = false,
+    grid = true,
+    color = true,
+    online = false,
+    filename = "SolarHeatingSystem.mat",
+    leftTitleType = 1,
+    bottomTitleType = 1);

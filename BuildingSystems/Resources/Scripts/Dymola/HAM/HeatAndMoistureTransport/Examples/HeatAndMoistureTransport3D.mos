@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.HAM.HeatAndMoistureTransport.Examples.HeatAndMoistureTransport3D", stopTime=172800, method="dassl", numberOfIntervals=2400, tolerance = 1e-5, resultFile="HeatAndMoistureTransport3D");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 800, 400},
+  y = {"el21.T","el22.T","el23.T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatAndMoistureTransport3D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 2,
+  position = {0, 440, 800, 400},
+  y = {"el21.w","el22.w","el23.w"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatAndMoistureTransport3D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

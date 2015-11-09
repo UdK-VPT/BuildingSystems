@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Examples.ThermalModelHouse3Dwindow", stopTime=86400, method="cVode", tolerance = 1e-5, resultFile="ThermalModelHouse3Dwindow");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","building.zone1.TAir","building.zone2.airvolume.airzones.box[2, 2, 2].fluid.T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ThermalModelHouse3Dwindow.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {600, 0, 600, 500},
+  y = {"building.zone2.airvolume.airzones.box[2, 2, 2].velMag","building.zone2.airvolume.airzones.box[2, 2, 3].velMag"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ThermalModelHouse3Dwindow.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

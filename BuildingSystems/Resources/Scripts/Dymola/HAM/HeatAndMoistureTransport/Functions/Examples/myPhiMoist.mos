@@ -1,0 +1,16 @@
+simulateModel("BuildingSystems.HAM.HeatAndMoistureTransport.Functions.Examples.myPhiMoist", stopTime=1.2, method="dassl", tolerance = 1e-5, resultFile="myPhiMoist");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 800, 400},
+  y = {"myPhiMoist"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "myPhiMoist.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

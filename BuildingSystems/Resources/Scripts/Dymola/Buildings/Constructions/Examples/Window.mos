@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.Window", stopTime=172800, method="dassl", numberOfIntervals=240, tolerance = 1e-5, resultFile="Window");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","window.toSurfacePort_1.heatPort[1,1].T", "window.heatTransfer.T", "window.toSurfacePort_2.heatPort[1,1].T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Window.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"window.toSurfacePort_1.radiationPortIn[1,1].IDir", "window.toSurfacePort_1.radiationPortIn[1,1].IDif", "window.toSurfacePort_2.radiationPortOut[1,1].IDir", "window.toSurfacePort_2.radiationPortOut[1,1].IDif"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Window.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

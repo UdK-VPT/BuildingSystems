@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.HAM.HeatRadiation.Examples.HeatRadiationParallelSurfaces", stopTime=3600, method="dassl", numberOfIntervals=24, tolerance = 1e-5, resultFile="HeatRadiationParallelSurfaces");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"T1","T2"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatRadiationParallelSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"qdot"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatRadiationParallelSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

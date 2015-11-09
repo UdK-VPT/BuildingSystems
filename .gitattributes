@@ -1,0 +1,38 @@
+# Windows uses CRLF line endings
+# Linux, Mac OS X and Unix use LF line endings
+# In the repository, files are stored using LF line endings
+# When checking out to or committing from Windows, line endings are converted in all text files, but not in binary files
+# The following lines tell git which files to treat as text and which ones as binary.
+*.dat text
+*.dll binary
+*.exe binary
+*.gitattributes text
+*.gitignore text
+*.h text
+*.lib binary
+*.md text
+*.mo text
+*.mos text
+*.nc binary
+*.order text
+*.txt text
+
+# Custom for Visual Studio
+*.cs     diff=csharp
+*.sln    merge=union
+*.csproj merge=union
+*.vbproj merge=union
+*.fsproj merge=union
+*.dbproj merge=union
+
+# Standard to msysgit
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain

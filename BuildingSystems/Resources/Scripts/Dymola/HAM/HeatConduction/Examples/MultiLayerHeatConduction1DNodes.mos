@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.HAM.HeatConduction.Examples.MultiLayerHeatConduction1DNodes", stopTime=172800, method="dassl", numberOfIntervals=240, tolerance = 1e-5, resultFile="MultiLayerHeatConduction1DNodes");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"TAmb.port.T","body[1].layer[1].T[2]","body[1].layer[1].T[5]","body[2].layer[2].T[2]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "MultiLayerHeatConduction1DNodes.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"body[1].layer[1].heatPort_x1.Q_flow","body[1].layer[1].heatPort_x2.Q_flow","body[2].layer[2].heatPort_x1.Q_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "MultiLayerHeatConduction1DNodes.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Technologies.Chillers.Examples.CompressionChillerWithStorage", stopTime=7200, method="dassl", resultFile="CompressionChillerWithStorage");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"senTemEvaIn.T","senTemEvaOut.T","senTemConIn.T","senTemConOut.T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "CompressionChillerWithStorage.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"storage.T[1]","storage.T[2]","storage.T[3]","storage.T[4]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "CompressionChillerWithStorage.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

@@ -1,0 +1,31 @@
+simulateModel("BuildingSystems.Fluid.FixedResistances.Examples.Pipe", stopTime=200, method="dassl", resultFile="Pipe");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"pip1.vol[1].T", "pip1.vol[5].T", "pip1.vol[10].T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Pipe.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"pip1.conPipWal[1].Q_flow", "pip1.conPipWal[5].Q_flow", "pip1.conPipWal[10].Q_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Pipe.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

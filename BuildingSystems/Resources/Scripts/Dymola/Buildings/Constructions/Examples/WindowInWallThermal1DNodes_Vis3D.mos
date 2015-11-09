@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.WindowInWallThermal1DNodes_Vis3D", stopTime=864000, method="dassl", tolerance = 1e-5, resultFile="WindowInWallThermal1DNodes_Vis3D");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 670, 500},
+  y = {"ambient.TAirRef","ambient.TSky","wall.construction.heatPort_x1.T","window.heatTransfer.T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowInWallThermal1DNodes_Vis3D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {680, 0, 670, 500},
+  y = {"ambient.GDirHor","ambient.GDifHor"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowInWallThermal1DNodes_Vis3D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

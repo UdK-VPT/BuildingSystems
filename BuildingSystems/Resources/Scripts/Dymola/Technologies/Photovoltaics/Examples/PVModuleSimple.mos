@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Technologies.Photovoltaics.Examples.PVModuleSimple", stopTime=864000, method="dassl", tolerance = 1e-4, resultFile="PVModuleSimple");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"pvField.TAmb","pvField.thermalModel.TCel"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PVModuleSimple.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"pvField.PField"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PVModuleSimple.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

@@ -1,0 +1,68 @@
+within BuildingSystems.Buildings.Constructions.Examples;
+model WallHygroThermal1DNodes
+"1D thermal wall model under real weather data"
+  extends Modelica.Icons.Example;
+  BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall(
+    angleDegAzi = 0.0,
+    angleDegTil = 90.0,
+    height=1.0,
+    width=1.0,
+    nNodes={10,10,10},
+    constructionData=construction)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+  Buildings.Surfaces.SurfaceToAir surface1
+    annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
+  BuildingSystems.Buildings.Ambient ambient(
+    weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco(),
+    nSurfaces=1)
+    annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
+  BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction construction(
+  nLayers=3,
+  thickness={0.015,0.2,0.02},
+  material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Gipsputz(),
+    BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel(),
+    BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Kalkputz()})
+    annotation(Placement(transformation(extent={{-10,20},{10,40}})));
+  Surfaces.SurfaceToSolid surface2(calcHygroThermal=true)
+    annotation (Placement(transformation(extent={{2,-10},{22,10}})));
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature tempBC(T=293.15)
+    annotation (Placement(transformation(extent={{26,-10},{18,-2}})));
+  HAM.HeatAndMoistureTransport.Sources.AbsoluteMoistureFixed moistBC(
+    x_constant =0.008)
+    annotation (Placement(transformation(extent={{28,0},{16,12}})));
+equation
+  connect(surface1.toConstructionPort, wall.toSurfacePort_1) annotation (Line(
+      points={{-11.4,0},{-2,0}},
+      color={0,0,0},
+      pattern=LinePattern.Solid,
+      smooth=Smooth.None));
+  connect(ambient.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
+      points={{-32,4},{-22,4},{-22,4},{-12.6,4}},
+      color={0,0,0},
+      pattern=LinePattern.Solid,
+      smooth=Smooth.None));
+  connect(ambient.toAirPorts[1], surface1.toAirPort) annotation (Line(
+      points={{-32,-4},{-22,-4},{-22,-4},{-12.6,-4}},
+      color={0,0,0},
+      pattern=LinePattern.Solid,
+      smooth=Smooth.None));
+  connect(wall.toSurfacePort_2, surface2.toConstructionPort) annotation (Line(
+      points={{2,0},{11.4,0}},
+      color={0,0,0},
+      pattern=LinePattern.Solid,
+      smooth=Smooth.None));
+  connect(surface2.moisturePort[1, 1], moistBC.moisturePort) annotation (Line(
+      points={{12.6,4},{16,4},{16,6},{18.4,6}},
+      color={120,0,120},
+      smooth=Smooth.None));
+  connect(surface2.heatPort[1, 1], tempBC.port) annotation (Line(
+      points={{12.6,-4},{16,-4},{16,-6},{18,-6}},
+      color={191,0,0},
+      smooth=Smooth.None));
+
+  annotation(experiment(StartTime=0, StopTime=31536000),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WallHygroThermal1DNodes.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}),                                                                       graphics={Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
+    textString="1D hygro-thermal wall model under real weather data")}),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+  end WallHygroThermal1DNodes;

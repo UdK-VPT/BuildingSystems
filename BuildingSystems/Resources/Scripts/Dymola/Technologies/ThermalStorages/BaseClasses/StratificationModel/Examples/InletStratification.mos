@@ -1,0 +1,31 @@
+simulateModel("BuildingSystems.Technologies.ThermalStorages.BaseClasses.StratificationModel.Examples.InletStratification", startTime=0, stopTime=300, method="dassl", resultFile="InletStratification");
+createPlot(
+ id = 1,
+ position = {0, 0, 600, 500},
+ y = {"fixedTemperature1.y","fixedTemperature2.y","fixedTemperature3.y","partialInletStratification.senTem.T"},
+ range = {0, 500, 5.0, 75.0},
+ autoscale = true,
+ autoerase = true,
+ autoreplot = true,
+ description = false,
+ subPlot = 1,
+ grid = true,
+ color = true,
+ online = false,
+ leftTitleType = 1,
+ bottomTitleType = 1);
+createPlot(
+ id = 1,
+ position = {610, 0, 600, 500},
+ y = {"partialInletStratification.m_flow[1].y","partialInletStratification.m_flow[2].y","partialInletStratification.m_flow[3].y"},
+ range = {0, 500, 0.0, 1000.0},
+ autoscale = true,
+ autoerase = true,
+ autoreplot = true,
+ description = false,
+ subPlot = 2,
+ grid = true,
+ color = true,
+ online = false,
+ leftTitleType = 1,
+ bottomTitleType = 1);

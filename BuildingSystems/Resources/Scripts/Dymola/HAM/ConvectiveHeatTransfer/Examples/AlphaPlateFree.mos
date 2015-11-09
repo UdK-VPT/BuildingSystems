@@ -1,0 +1,16 @@
+simulateModel("BuildingSystems.HAM.ConvectiveHeatTransfer.Examples.AlphaPlateFree", stopTime=3600, method="dassl", numberOfIntervals=24, tolerance = 1e-5, resultFile="AlphaPlateFree");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"alpha0","alpha45","alpha90","alpha180"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "AlphaPlateFree.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

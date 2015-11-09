@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Technologies.SolarThermal.Examples.SingleCollectorTest", startTime=1.58976e+07, stopTime=1.62432e+07, method="dassl", resultFile="SingleCollectorTest");
+createPlot(
+ id = 1,
+ position = {0, 0, 600, 500},
+ y = {"collector.vol[1].T","collector.vol[5].T","collector.vol[10].T"},
+ range = {15552000, 16156800.0, 5.0, 75.0},
+ autoscale = true,
+ autoerase = true,
+ autoreplot = true,
+ description = false,
+ grid = true,
+ color = true,
+ online = false,
+ filename = "SingleCollectorTest.mat",
+ leftTitleType = 1,
+ bottomTitleType = 1);
+createPlot(
+ id = 2,
+ position = {610, 0, 600, 500},
+ y = {"collector.heatPortCon.Q_flow","collector.radiationPort.IDir","collector.radiationPort.IDif"},
+ range = {0, 86400.0, 0.0, 1000.0},
+ autoscale = true,
+ autoerase = true,
+ autoreplot = true,
+ description = false,
+ grid = true,
+ color = true,
+ online = false,
+ leftTitleType = 1,
+ bottomTitleType = 1);

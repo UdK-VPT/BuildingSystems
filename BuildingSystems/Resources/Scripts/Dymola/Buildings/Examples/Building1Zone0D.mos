@@ -1,0 +1,44 @@
+simulateModel("BuildingSystems.Buildings.Examples.Building1Zone0D", stopTime=864000, method="dassl", tolerance = 1e-5, resultFile="Building1Zone0D");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 300},
+  y = {"ambient1.TAirRef","building1.zone.TAir","building1.zone.TOperative"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Building1Zone0D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 2,
+  position = {0, 340, 600, 300},
+  y = {"ambient2.TAirRef","building2.zone.TAir","building2.zone.TOperative"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Building1Zone0D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 3,
+  position = {610, 0, 600, 300},
+  y = {"building1.Q_flow_heating[1]","building1.Q_flow_cooling[1]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Building1Zone0D.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
