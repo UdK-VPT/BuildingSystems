@@ -6,7 +6,7 @@ function wSor
   input BuildingSystems.Types.RelativeHumidity sorTabY[:];
   input Modelica.SIunits.MassConcentration phi;
   input Modelica.SIunits.MassConcentration wF;
-  input Real por;
+  input BuildingSystems.Types.Porosity por;
   output Modelica.SIunits.MassConcentration value;
 protected
   Modelica.SIunits.Density rhoH2O=1000.0;
