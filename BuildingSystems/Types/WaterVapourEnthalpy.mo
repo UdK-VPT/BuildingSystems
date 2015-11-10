@@ -1,2 +1,2 @@
 within BuildingSystems.Types;
-type WaterVapourEnthalpie = SpecificEnergy;
+type WaterVapourEnthalpy = SpecificEnergy;
