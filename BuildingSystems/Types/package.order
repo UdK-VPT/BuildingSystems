@@ -6,12 +6,14 @@ CoefficientOfMoistureDiffusion
 FlowCoefficient
 GasConstantWaterVapour
 MoistureTransferCoefficient
+Porosity
 RelativeHumidity
 Time_hr
 TransportCoefficientForCapillary
 ViewFactor
 VolumeHeatCapacity
 WaterVapourDiffusionResistance
+WaterVapourEnthalpie
 WaterVapourPermeability
 Azimuth
 Tilt
