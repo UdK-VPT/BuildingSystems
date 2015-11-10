@@ -4,7 +4,7 @@ block AirpathCharacteristicWindow
     "Tilt angle of the panes";
   parameter Modelica.SIunits.Length height "Height of the opening";
   parameter Modelica.SIunits.Length width "Width of the opening";
-  parameter Real aF(unit="m3/(s.m.Pa)") "Joint coefficient";
+  parameter BuildingSystems.Types.CoefficientOfAirChange aF "Joint coefficient";
   output Modelica.Blocks.Interfaces.RealOutput k "Flow coefficient";
   output Modelica.Blocks.Interfaces.RealOutput m;
   constant Modelica.SIunits.Density rhoAir = 1.2 "Mean air density";

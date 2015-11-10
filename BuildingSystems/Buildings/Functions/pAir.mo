@@ -6,11 +6,11 @@ function pAir "Height dependend static air pressure"
   input Modelica.SIunits.Height z "Height over ground";
   input Modelica.SIunits.Height zRefTAir
     "Reference height air temperature measurement";
-  input Real gamma
+  input Real gamma(unit = "K/m")
     "Temperature gradient of the planetary boundary layer in K/m";
   output Modelica.SIunits.Pressure value "Height dependend static air pressure";
 protected
-  constant Real RAir = 288.0 "Gas constant dry air in J/kg/K";
+  constant Real RAir = 288.0 "Gas constant dry air in J/(kg.K)";
 algorithm
   // Vertical air pressure profile in the polytrop atmosphere
   value := pAirRef * (TAir(TAirRef,z,zRefTAir,gamma) / TAirRef)^(Modelica.Constants.g_n / (gamma * RAir));
