@@ -64,7 +64,7 @@ protected
   constant Real R(unit="J/(kg.K)") = 461.4
     "Gas constant for water vapor";
   constant Real rH2O(unit="J/kg") = Medium.enthalpyOfVaporization(T_nominal)
-    "Enthalpie of vaporization for water";
+    "Enthalpy of vaporization for water";
 equation
   // Energy balance of the moist air inclusive the liquid water
   U = (BuildingSystems.Utilities.Psychrometrics.Constants.cpAir * m
