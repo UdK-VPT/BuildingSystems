@@ -1,10 +1,10 @@
 Absorptance
 AirchangeRate
 Angle_deg
+CoefficientOfAirChange
 CoefficientOfLiquidTransport
 CoefficientOfMoistureDiffusion
 FlowCoefficient
-GasConstantWaterVapour
 MoistureTransferCoefficient
 Porosity
 RelativeHumidity
@@ -13,7 +13,8 @@ TransportCoefficientForCapillary
 ViewFactor
 VolumeHeatCapacity
 WaterVapourDiffusionResistance
-WaterVapourEnthalpie
+WaterVapourEnthalpy
+WaterVapourGasConstant
 WaterVapourPermeability
 Azimuth
 Tilt
