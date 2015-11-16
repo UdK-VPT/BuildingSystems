@@ -522,8 +522,8 @@ model ThermalModelHouse3Dwindow
       connect(bottom1.heatSourcePorts[2,2],heatSourcesPorts[1]);
       connect(bottom2.heatSourcePorts[2,2],heatSourcesPorts[2]);
 
-      // macht 20 Flaechen (pro Zone 5 Waende + 5 Fensterseitenstuecke)
-      // 18 davon mit Ambient verknuepft
+      // that makes 20 surfaces (5 each wall + 5 sideparts of windows)
+      // 18 are connected to Ambient
 
   end Building;
 
