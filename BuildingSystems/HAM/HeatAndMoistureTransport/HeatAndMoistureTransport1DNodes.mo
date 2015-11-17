@@ -32,7 +32,7 @@ model HeatAndMoistureTransport1DNodes
     "Moisture diffusion coefficient of the numerical node";
   BuildingSystems.Types.CoefficientOfLiquidTransport CLt[nNodesX+1]
     "Liquid transport coefficient of the numerical node";
-  Real Modelica.SIunits.MassFlowRate m_flow_wdr = 0.0
+  Modelica.SIunits.MassFlowRate m_flow_wdr = 0.0
     "Wind driven rain";
   parameter Integer nNodesX = 1
     "Number of numerical nodes in the x dimension";

@@ -24,7 +24,7 @@ model Building1Zone0DDistrict
     "Roof area of the building";
   final parameter Modelica.SIunits.Area AFacade = (2*length+2*width)*heightSto*nSto-sum(AWindow)
     "Opaque facade area of the building";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer Modelica.SIunits.CoefficientHeatTransfer UFacade = 1.0
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer UFacade = 1.0
     "Mean heat loss coefficient of the opaque building facade";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer URoof = 1.0
     "Mean heat loss coefficient of the building roof";

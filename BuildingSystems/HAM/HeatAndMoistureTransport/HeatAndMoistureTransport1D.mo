@@ -36,7 +36,7 @@ model HeatAndMoistureTransport1D
     "Moisture diffusion coefficient of the hygro-thermal node";
   BuildingSystems.Types.CoefficientOfLiquidTransport CLt
     "Liquid transport coefficient of the hygro-thermal node";
-  Real Modelica.SIunits.MassFlowRate m_flow_wdr
+  Modelica.SIunits.MassFlowRate m_flow_wdr
     "Wind driven rain";
   parameter Modelica.SIunits.Temp_K T_start = 293.15
     "Start temperature of the hygro-thermal node"
