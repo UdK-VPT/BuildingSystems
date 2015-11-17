@@ -660,7 +660,7 @@ parameter Modelica.SIunits.Length width
         "Air density under nominal conditions" annotation (HideResult=true);
       constant Modelica.SIunits.Temp_K T_nominal = 293.15
         "Air temperature under nominal conditions";
-      constant BuildingSystems.Types.WaterVapourEnthalpy rH2O(unit="J/kg") = Medium.enthalpyOfVaporization(T_nominal)
+      constant BuildingSystems.Types.WaterVapourEnthalpy rH2O = Medium.enthalpyOfVaporization(T_nominal)
         "Enthalpy of vaporization for water" annotation (HideResult=true);
 
       parameter Real parVis = 1

@@ -1,2 +1,2 @@
 within BuildingSystems.Types;
-type WaterVapourEnthalpy = SpecificEnergy;
+type WaterVapourEnthalpy = Modelica.SIunits.SpecificEnergy;
