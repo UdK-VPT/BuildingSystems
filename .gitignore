@@ -1,4 +1,4 @@
-# ignore Dymola output, log and temporary files (in alphabetical order)
+# Ignore Dymola output, log and temporary files (in alphabetical order)
 *.bak-mo
 *.mat
 *.mof
@@ -20,13 +20,13 @@ status
 stop
 success
 #
-# ignore some log files
+# Ignore some log files
 simulator.log
 unitTests.log
 printlog.txt
 fileExtensions.txt
 #
-# ignore some Microsoft files
+# Ignore some Microsoft files
 desktop.ini
 thumbs.db
 *.doc
@@ -37,7 +37,10 @@ thumbs.db
 *.ppt
 *.pptx
 #
-# ignore some LaTeX files
+# Ignore some LaTeX files
 *.aux
 *.log
 *.synctex.gz
+#
+# Ignore some other files
+*.orig
