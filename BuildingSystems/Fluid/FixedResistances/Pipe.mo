@@ -18,7 +18,7 @@ model Pipe
     "Pipe diameter (without insulation)";
   parameter Modelica.SIunits.Length length
     "Length of the pipe";
-  parameter Real ReC=4000
+  parameter Modelica.SIunits.ReynoldsNumber ReC=4000
     "Reynolds number where transition to turbulent starts"
     annotation (Dialog(tab="Flow resistance"));
   parameter Boolean useMultipleHeatPorts=false

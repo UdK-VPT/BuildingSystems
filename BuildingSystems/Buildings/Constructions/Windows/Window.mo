@@ -69,7 +69,7 @@ model Window
   parameter Boolean calcAirchange = false
     "True: calculation of air exchange through the window, false: no air exchange"
     annotation(Dialog(tab = "General", group = "Air change calculation"));
-  parameter Real aF(unit="m3/(h.m.Pa)") = 1.0
+  parameter BuildingSystems.Types.CoefficientOfAirChange aF = 1.0
     "Joint coefficient"
     annotation(Dialog(tab = "General", group = "Air change calculation"));
   BuildingSystems.Buildings.Constructions.Windows.RadiationTransmission.RadiationTransmissionSimple radTra1to2(

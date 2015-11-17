@@ -61,9 +61,9 @@ protected
     "Air density under nominal conditions";
   constant Modelica.SIunits.Temp_K T_nominal = 293.15
     "Air temperature under nominal conditions";
-  constant Real R(unit="J/(kg.K)") = 461.4
+  constant BuildingSystems.Types.WaterVapourGasConstant R = 461.4
     "Gas constant for water vapor";
-  constant Real rH2O(unit="J/kg") = Medium.enthalpyOfVaporization(T_nominal)
+  constant BuildingSystems.Types.WaterVapourEnthalpy rH2O = Medium.enthalpyOfVaporization(T_nominal)
     "Enthalpy of vaporization for water";
 equation
   // Energy balance of the moist air inclusive the liquid water

@@ -8,7 +8,7 @@ function phiSor
     "Water content";
   input Modelica.SIunits.MassConcentration wF
     "Free water saturation";
-  input Real por
+  input BuildingSystems.Types.Porosity por
     "Porosity";
   output BuildingSystems.Types.RelativeHumidity value;
 protected
