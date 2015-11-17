@@ -5,7 +5,7 @@ package Airvolume3D "Package for 3D discretized air volume models"
   model zone3Dwrap "Adapter of the airvolume body to match the walls"
     extends BuildingSystems.Buildings.Airvolumes.Airvolume3D.zone3Dbuilt;
 
-    /* alte Version
+    /* old version
 
   parameter Integer nConstructions1 "Number of Constructions Surface 1" annotation (HideResult=true);
   parameter Integer nConstructions2 "Number of Constructions Surface 2" annotation (HideResult=true);
@@ -42,7 +42,7 @@ package Airvolume3D "Package for 3D discretized air volume models"
       "Grid in y and z dimension of each surface" annotation (HideResult=true);
 
     //********************************************************************/
-    /*  alte Version
+    /*  old version
   // (Index ai, Index aj, number of Constructions) to map the wall constructions
   // to the array based adapter-walls
   parameter Integer surf1ai[elemY,elemZ]
@@ -311,7 +311,7 @@ package Airvolume3D "Package for 3D discretized air volume models"
   parameter Real parameterVis = 1 "Parametrization of the dynamic viscosity";
 
   /////////////
-  /* Alte Version
+  /* old version
 parameter Integer elemX = size(dxVec,1)
     "Number of discrete volumes (x-direction)"                                   annotation (HideResult=true);
 parameter Integer elemY = size(dyVec,1)

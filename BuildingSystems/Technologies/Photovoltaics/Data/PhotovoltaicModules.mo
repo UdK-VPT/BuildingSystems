@@ -39,7 +39,7 @@ package PhotovoltaicModules
   /* Parameter SiemensSolar M75S */
   record SiemensSolarM75S = DataSetPhotovoltaicModule(
     PEl_nominal = 75.0,
-    // Mit den IU-Werten aus zwei Kennlinien (Standard)
+    // With IU-Values based on two characteristic curves (standard)
     RPar = 76.3444785373,
     RSer = 0.00787755654257,
     c1 = 0.00413324897091,
@@ -205,8 +205,8 @@ package PhotovoltaicModules
     width = 0.53,
     Ik0 = 5.0,
     Ul0 = 22.03,
-    tIk0 = 1.846,           /*ausgehend von 151.29 cm2 */
-    tUl0 = -0.0756,          /*ausgehend von 36 Zellen  */
+    tIk0 = 1.846,           /*based on 151.29 cm2 */
+    tUl0 = -0.0756,          /*based on 36 cells  */
     Eg = 1.107);
 
   /* Parameter BP275f */
@@ -224,7 +224,7 @@ package PhotovoltaicModules
     width = 0.53,
     Ik0 = 4.75,
     Ul0 = 21.4,
-    tIk0  = 1.3906,           /*ausgehend von 156.25 cm2 pro Zelle */
+    tIk0  = 1.3906,           /*based on 156.25 cm2 each cell */
     tUl0 = -0.0792,
     Eg = 1.107);
 

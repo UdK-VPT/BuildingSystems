@@ -8,7 +8,7 @@ partial model ConstructionGeneral
     "Height"
     annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Modelica.SIunits.Area A
-    "Netto area (brutto area minus enclosed surfaces)"
+    "Net area (gross area minus enclosed surfaces)"
     annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
   parameter BuildingSystems.Types.Angle_deg angleDegAzi = 0.0
     "Azimuth angle"

@@ -1,10 +1,11 @@
 within BuildingSystems.Utilities.MoistAirFunctions;
 function T_dp "Dew point temperature dependent on air pressure"
-  /* Taupunkttemperatur in Abhaengigkeit vom Dampfdruck 12.4 bis 31160 Pa
-     Gueltigkeitsbereich von - 40 bis 70 C, Taupunkttemperatur in K,
-     Dampfdruck in Pa,
-     - aus Reinmuth Lufttechnische Prozesse
-     - Logarithmisch gefittet in Abschnitten: -40 - -20C; -20 - 0C; 0 - 20C; 20 - 40 C und 40 - 70C */
+  /* Dew point temperature in dependence of steam pressure 12.4 to 31160 Pa
+     Validity range from -40 to 70 C
+	 Unit dew point temperature: K,
+     Unit steam pressure: Pa,
+     - based on "Reinmuth Lufttechnische Prozesse"
+     - logarithmic fitted in segments: -40 - -20C; -20 - 0C; 0 - 20C; 20 - 40 C and 40 - 70C */
   input Modelica.SIunits.Pressure p;
   output Modelica.SIunits.Temp_K value;
 protected
