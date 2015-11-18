@@ -7,7 +7,7 @@ block NcDataReader
   parameter Real varTimeUpperLimit[size(varNameTime,1)];
   parameter Real varTimeLowerLimit[size(varNameTime,1)];
 protected
-  parameter Real constantVariable[size(varNameConstant,1)](start={ncEasyGetAttributeDouble(fileName,"",varNameConstant[j]) for j in 1:size(varNameConstant, 1)}) = fill(0.0,size(varNameConstant,1));
+  parameter Real constantVariable[size(varNameConstant,1)] = {ncEasyGetAttributeDouble(fileName,"",varNameConstant[j]) for j in 1:size(varNameConstant, 1)};
 
 algorithm
   for i in 1:nout loop
