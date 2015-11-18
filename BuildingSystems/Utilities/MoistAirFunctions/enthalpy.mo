@@ -1,25 +1,25 @@
 within BuildingSystems.Utilities.MoistAirFunctions;
 function enthalpy
   "Specific enthalpy dependent on temperature, absolute moisture and absolute moisture at saturation"
-  /* Enthalpie der feuchten Luft h1+x bestehend aus 1 kg trock. Luft und x kg Wasserdampf
-     Nullpunkt bei 0 C > Verwendung der Temperatur in C in der Berechnung > - 273.15
-     Enthalpie in [kJ/kg trockene Luft], Temperatur in [K], x in [kg/kg]
-     x_satt in [kg/kg] fuer phi = 1.0 */
+  /* Enthalpy of moisture air h1+x consisting of 1 kg dry air and x kg water vapour. 
+     Zero position at 0 C > Usage of temperature in computations in C  > - 273.15
+     Enthalpy in [kJ/kg dry air], temperature in [K], x in [kg/kg]
+     x_satt in [kg/kg] for phi = 1.0 */
   input Modelica.SIunits.Temp_K T;
-  input Real x;
-  input Real x_sat;
+  input Modelica.SIunits.MassFraction x;
+  input Modelica.SIunits.MassFraction x_sat;
   output Modelica.SIunits.SpecificEnthalpy value;
 protected
             Real theta, y1, y2, y3, y4;
 algorithm
     theta := T - 273.15;
-    /* ungesaettigte Luft */
+    /* unsaturated air */
     y1 := 1.006 * theta + x * (2500.0 + 1.86 * theta);
-    /* Nebelgebiet */
+    /* fog region */
     y2 := 1.006 * theta + x_sat * (2500. + 1.86 * theta) + 4.187 * theta * (x - x_sat);
-    /* Eisnebelgebiet */
+    /* ice fog region */
     y3 := 1.006 * theta + x_sat * (2500. + 1.86 * theta) + (2.05 * theta - 333.5) * (x - x_sat);
-    /* Gesamtfunktion */
+    /* complete function */
   y4 := BuildingSystems.Utilities.SmoothFunctions.softswitch(
     theta,
     0.0,

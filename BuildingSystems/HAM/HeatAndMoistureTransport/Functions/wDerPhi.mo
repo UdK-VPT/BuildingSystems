@@ -7,7 +7,7 @@ function wDerPhi
   input BuildingSystems.Types.RelativeHumidity sorTabY[:];
   input Modelica.SIunits.MassConcentration wF;
   input BuildingSystems.Types.RelativeHumidity phi;
-  input Real por;
+  input BuildingSystems.Types.Porosity por;
   output Modelica.SIunits.MassConcentration value;
 protected
   Modelica.SIunits.Density rhoH2O=1000.0;

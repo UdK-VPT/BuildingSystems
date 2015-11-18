@@ -4,7 +4,7 @@ function TAir "Height dependent air temperature"
   input Modelica.SIunits.Height z "Height over ground";
   input Modelica.SIunits.Height zRefTAir
     "Reference height air temperature measurement";
-  input Real gamma
+  input Real gamma(unit = "K/m")
     "Temperature gradient of the planetary boundary layer in K/m";
   output Modelica.SIunits.Temp_K value "Height dependent air temperature";
 algorithm

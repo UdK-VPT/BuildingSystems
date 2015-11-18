@@ -4,5 +4,5 @@ partial function HeatRadiationTwoSurfaces
   input Modelica.SIunits.Temp_K T1 "Temperature of surface 1";
   input Modelica.SIunits.Temp_K T2 "Temperature of surface 2";
   output Modelica.SIunits.HeatFlux qdot
-    "Specific netto long-wave radiation flow between surface 1 and 2";
+    "Specific net long-wave radiation flow between surface 1 and 2";
 end HeatRadiationTwoSurfaces;

@@ -5,8 +5,8 @@ package Airvolume3D "Package for 3D discretized air volume models"
   model zone3Dwrap "Adapter of the airvolume body to match the walls"
     extends BuildingSystems.Buildings.Airvolumes.Airvolume3D.zone3Dbuilt;
 
-    /* alte Version
-   
+    /* old version
+
   parameter Integer nConstructions1 "Number of Constructions Surface 1" annotation (HideResult=true);
   parameter Integer nConstructions2 "Number of Constructions Surface 2" annotation (HideResult=true);
   parameter Integer nConstructions3 "Number of Constructions Surface 3" annotation (HideResult=true);
@@ -42,7 +42,7 @@ package Airvolume3D "Package for 3D discretized air volume models"
       "Grid in y and z dimension of each surface" annotation (HideResult=true);
 
     //********************************************************************/
-    /*  alte Version
+    /*  old version
   // (Index ai, Index aj, number of Constructions) to map the wall constructions
   // to the array based adapter-walls
   parameter Integer surf1ai[elemY,elemZ]
@@ -311,19 +311,19 @@ package Airvolume3D "Package for 3D discretized air volume models"
   parameter Real parameterVis = 1 "Parametrization of the dynamic viscosity";
 
   /////////////
-  /* Alte Version
-parameter Integer elemX = size(dxVec,1) 
+  /* old version
+parameter Integer elemX = size(dxVec,1)
     "Number of discrete volumes (x-direction)"                                   annotation (HideResult=true);
-parameter Integer elemY = size(dyVec,1) 
+parameter Integer elemY = size(dyVec,1)
     "Number of discrete volumes (y-direction)"                                   annotation (HideResult=true);
-parameter Integer elemZ = size(dzVec,1) 
+parameter Integer elemZ = size(dzVec,1)
     "Number of discrete volumes (z-direction)"                                   annotation (HideResult=true);
 //
-parameter Modelica.SIunits.Length dxVec[elemX] 
+parameter Modelica.SIunits.Length dxVec[elemX]
     "Size of discrete volumes (x-direction)"                                     annotation (HideResult=true);
-parameter Modelica.SIunits.Length dyVec[elemY] 
+parameter Modelica.SIunits.Length dyVec[elemY]
     "Size of discrete volumes (y-direction)"                                     annotation (HideResult=true);
-parameter Modelica.SIunits.Length dzVec[elemZ] 
+parameter Modelica.SIunits.Length dzVec[elemZ]
 "Size of discrete volumes (z-direction)"                                          annotation (HideResult=true);
 //
 // Xmax, Ymax, Zmax
@@ -331,9 +331,9 @@ parameter Modelica.SIunits.Length length
     "Overall size of the zone (x-direction)"                                      annotation (HideResult=true);
 parameter Modelica.SIunits.Length height
     "Overall size of the zone (y-direction)"                                      annotation (HideResult=true);
-parameter Modelica.SIunits.Length width 
+parameter Modelica.SIunits.Length width
     "Overall size of the zone (z-direction)"                                      annotation (HideResult=true);
-    
+
     */
 
   // Anpassung
@@ -660,7 +660,7 @@ parameter Modelica.SIunits.Length width
         "Air density under nominal conditions" annotation (HideResult=true);
       constant Modelica.SIunits.Temp_K T_nominal = 293.15
         "Air temperature under nominal conditions";
-      constant Real rH2O(unit="J/kg") = Medium.enthalpyOfVaporization(T_nominal)
+      constant BuildingSystems.Types.WaterVapourEnthalpy rH2O = Medium.enthalpyOfVaporization(T_nominal)
         "Enthalpy of vaporization for water" annotation (HideResult=true);
 
       parameter Real parVis = 1

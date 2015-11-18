@@ -17,11 +17,11 @@ record MaterialHygroThermalGeneral
     "Heat conductivity of the porous material (table)";
   parameter Modelica.SIunits.MassConcentration dwwTabX[:]
     "Water content of the porous material (table)";
-  parameter Real dwwTabY[:]
+  parameter BuildingSystems.Types.CoefficientOfLiquidTransport dwwTabY[:]
     "Liquid transport coefficient for redistribution of the porous material (table)";
   parameter Modelica.SIunits.MassConcentration dwsTabX[:]
     "Water content of the porous material (table)";
-  parameter Real dwsTabY[:]
+  parameter BuildingSystems.Types.CoefficientOfLiquidTransport dwsTabY[:]
     "Liquid transport coefficient for suction of the porous material (table)";
   parameter Modelica.SIunits.ThermalConductivity lambdaDry
     "Heat conductivity of the dry porous material";
@@ -31,7 +31,7 @@ record MaterialHygroThermalGeneral
     "Water content by 95 %";
   parameter Modelica.SIunits.MassConcentration wF
     "Free water saturation";
-  parameter Real porosity
+  parameter BuildingSystems.Types.Porosity porosity
     "Porosity of the layer [-]";
   parameter Real A
     "Water absorption coefficient[kg/m^2*s^0.5]";
