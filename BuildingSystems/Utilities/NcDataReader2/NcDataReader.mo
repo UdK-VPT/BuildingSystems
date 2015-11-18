@@ -20,4 +20,26 @@ algorithm
       varTimeUpperLimit[i],
       0.01);
   end for;
+  annotation (Documentation(info="<html>
+<p>
+The block is used to read information from <code>.nc</code> files. It calls the external C functions <code>ncEasyGet1D</code> and <code>ncEasyGetAttributeDouble</code>.
+</p>
+
+<h4>Common errors</h4>
+
+<p>
+When the following error message appears:
+</p>
+<p>
+<code>
+ERROR | -43 | netcdf  | NetCDF: Attribute not found
+</code>
+</p>
+<p>
+It may be due to the called function cannot find in the readed <code>.nc</code> file some of the variables defined in <code>varNameTime</code> or <code>varNameConstant</code>.
+</p>
+<p>
+</p>
+
+</html>"));
 end NcDataReader;
