@@ -35,24 +35,23 @@ model ThermalCollectorInSerie
   parameter Modelica.SIunits.Pressure dp_nominal
     "Pressure drop at nominal conditions total installation"
     annotation(Dialog(group = "Nominal condition"));
-  parameter BuildingSystems.Interfaces.Angle_degOutput angleDegAzi
+  BuildingSystems.Interfaces.Angle_degOutput angleDegAzi
     annotation (Dialog(group="Geometry"),Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-10,-56}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-10,-56})));
-  parameter BuildingSystems.Interfaces.Angle_degOutput angleDegTil
+  BuildingSystems.Interfaces.Angle_degOutput angleDegTil
     annotation (Dialog(group="Geometry"),Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={12,-56}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={10,-56})));
   parameter Boolean linearized=false
     "= true, use linear relation between m_flow and dp for any flow rate";
   parameter Boolean from_dp=false
     "= true, use m_flow = f(dp) else dp = f(m_flow)";
-  parameter Boolean homotopyInitialization=true
-    "= true, use homotopy method";
-  parameter Integer nEle=10
-    "Number of elements used in the discretization";
+  parameter Boolean homotopyInitialization=true "= true, use homotopy method";
+  parameter Integer nEle=10 "Number of elements used in the discretization";
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a heatPortCon
     "Heat port for convective heat transfer"
     annotation (Placement(transformation(extent={{20,70},{40,90}}), iconTransformation(extent={{20,70},{40,90}})));
   BuildingSystems.Interfaces.RadiationPort radiationPort
     annotation (Placement(transformation(extent={{-40,70},{-20,90}}),iconTransformation(extent={{-40,70},{-20,90}})));
-  replaceable BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial collectorData
+  replaceable
+    BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial           collectorData
     "Data about the thermal solar collector"
     annotation (HideResult=true, Dialog(tab = "General"), Evaluate=true, choicesAllMatching=true,Placement(transformation(extent={{60,40},{80,60}})));
 equation
