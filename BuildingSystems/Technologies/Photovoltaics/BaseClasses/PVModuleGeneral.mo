@@ -22,8 +22,7 @@ partial model PVModuleGeneral
   Modelica.Blocks.Interfaces.RealOutput GSC_constant(min = 0.0, max = 1.0) = 0.0
     "Constant shading coefficient (if use_GSC_in = true)"
     annotation(Dialog(tab = "General", group = "Orientation and shadowing"));
-  input BuildingSystems.Interfaces.RadiationPort radiationPort
-    "Radiation port"
+  BuildingSystems.Interfaces.RadiationPort radiationPort "Radiation port"
     annotation (Placement(transformation(extent={{-28,70},{-8,90}}), iconTransformation(extent={{-30,70},{-10,90}})));
   input BuildingSystems.Interfaces.Temp_KInput TAmb
     "Environment air temperature"
