@@ -19,7 +19,7 @@ A HTML copy of the license is available at
 ## Development and contribution
 You may report any issues by using the [Issues](https://github.com/UdK-VPT/BuildingSystems/issues) button.  
 If you just have a question on how to use the library, please ask that question on the BuildingSystems mailinglist:
-[https://groups.google.com/forum/#!forum/modelica-buildingsystems](https://goo.gl/nys2pS)
+[https://groups.google.com/forum/#!forum/modelica-buildingsystems](https://goo.gl/d4ERld)
 
 Contributions in the form of [Pull Requests](https://github.com/UdK-VPT/BuildingSystems/pulls) are always welcome.
 Prior to issuing a pull request, make sure your code follows
