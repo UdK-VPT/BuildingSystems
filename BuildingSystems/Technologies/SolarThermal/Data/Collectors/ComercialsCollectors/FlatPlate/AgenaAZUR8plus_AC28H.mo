@@ -1,5 +1,5 @@
 within BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate;
-model AgenaAZUR8plus_AC28H "Solar flat-plate collector Agena AZUR 8+ AC 2.8H"
+record AgenaAZUR8plus_AC28H "Solar flat-plate collector Agena AZUR 8+ AC 2.8H"
   extends
     BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial(
     final IAMC=0.94,

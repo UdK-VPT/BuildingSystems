@@ -1,5 +1,5 @@
 within BuildingSystems.Technologies.SolarThermal.Data.Collectors;
-model FlatSolarCollector2
+record FlatSolarCollector2
   "Average data of flat collector with very good efficiency"
   extends
     BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial(

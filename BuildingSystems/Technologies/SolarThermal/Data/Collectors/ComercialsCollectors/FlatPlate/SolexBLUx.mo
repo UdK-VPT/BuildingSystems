@@ -1,5 +1,5 @@
 within BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate;
-model SolexBLUx "Solar flat-plate collector Solex BLUx"
+record SolexBLUx "Solar flat-plate collector Solex BLUx"
   extends
     BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial(
     final IAMC=0.87,
