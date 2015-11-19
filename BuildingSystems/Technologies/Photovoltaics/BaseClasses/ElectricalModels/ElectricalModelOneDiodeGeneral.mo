@@ -6,15 +6,15 @@ partial model ElectricalModelOneDiodeGeneral
     "Short circuit current under standard conditions";
   parameter Modelica.SIunits.Voltage Ul0
     "Open circuit voltage under standard conditions";
-  parameter Real tIk0(final unit = "mA/C")
+  parameter Real tIk0(final unit = "mA/K")
     "Temperature coefficient for the short circuit current";
-  parameter Real tUl0(final unit = "V/C")
+  parameter Real tUl0(final unit = "V/K")
     "Temperature coefficient for the open circuit voltage";
   parameter Real factor
     "Scaling factor adaptation to the complex PV cell model";
-  parameter Real alphaIk = 0.001 * tIk0 / Ik0
+  parameter Modelica.SIunits.LinearTemperatureCoefficient alphaIk = 0.001 * tIk0 / Ik0
     "Specific temperature coefficient for the short circuit current 1/C";
-  parameter Real alphaUl = tUl0 / Ul0
+  parameter Modelica.SIunits.LinearTemperatureCoefficient alphaUl = tUl0 / Ul0
     "Specific temperature coefficient for the open circuit voltage 1/C";
   parameter Real c0 = (Ik0 / nCelPar) / 1000.0
     "Coefficient for the photo current m2/V";
