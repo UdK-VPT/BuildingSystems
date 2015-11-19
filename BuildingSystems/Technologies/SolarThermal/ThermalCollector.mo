@@ -14,8 +14,7 @@ model ThermalCollector
     each final T_start = T_start,
     each final X_start = X_start,
     each final C_start = C_start,
-    each final nPorts=2)
-    "Volume for fluid stream"
+    each final nPorts=2) "Volume for fluid stream"
     annotation (Placement(transformation(extent={{-10,0},{10,-20}})));
   extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations(
      final X_start = Medium.X_default,
@@ -27,16 +26,14 @@ model ThermalCollector
     annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
   parameter Integer nEle(min=1) = 10
     "Number of elements used in the discretization";
-  parameter Modelica.SIunits.Length width = 1.0
-    "Width of the collector"
+  parameter Modelica.SIunits.Length width = 1.0 "Width of the collector"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length height = 1.0
-    "Height of the collector"
+  parameter Modelica.SIunits.Length height = 1.0 "Height of the collector"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter BuildingSystems.Interfaces.Angle_degOutput angleDegTil
+  BuildingSystems.Interfaces.Angle_degOutput angleDegTil
     "Tilt angle of the solar collector"
     annotation (Dialog(group="Geometry"), Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-50,-90}),iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-50,-90})));
-  parameter BuildingSystems.Interfaces.Angle_degOutput angleDegAzi
+  BuildingSystems.Interfaces.Angle_degOutput angleDegAzi
     "Azimuth angle of the solar collector: South=0 deg West=90 deg East=-90 deg"
     annotation (Dialog(group="Geometry"), Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-70,-90}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-70,-90})));
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal
