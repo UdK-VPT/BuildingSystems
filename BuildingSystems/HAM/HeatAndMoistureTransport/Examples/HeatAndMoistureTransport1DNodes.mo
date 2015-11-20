@@ -69,7 +69,7 @@ equation
       {18,-10},{28,-10}},
       color={191,0,0}));
 
-  annotation(experiment(StartTime=0,StopTime=172800,NumberOfIntervals=480),
+  annotation(experiment(StartTime=0,StopTime=172800,Interval=360),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/HeatAndMoistureTransport/Examples/HeatAndMoistureTransport1DNodes.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}}),
     graphics={Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},

@@ -266,7 +266,7 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
 
-  annotation(experiment(StartTime=0,StopTime=172800,NumberOfIntervals=480),
+  annotation(experiment(StartTime=0,StopTime=172800,Interval=360),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/HeatAndMoistureTransport/Examples/HeatAndMoistureTransport3D.mos"
         "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}}), graphics={Text(extent={{-64,-2},{68,-62}}, lineColor={0,0,255},
