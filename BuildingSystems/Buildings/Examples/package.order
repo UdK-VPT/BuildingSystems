@@ -3,7 +3,6 @@ BuildingHygroThermal1Zone1D
 BuildingThermal1Zone1D
 BuildingThermal1Zone1DBox
 BuildingThermal1Zone1DCylinder
-BuildingThermal1Zone1DCylinder_Vis3D
 BuildingThermal1Zone3D
 BuildingThermal4Zones1D
 DistrictModel

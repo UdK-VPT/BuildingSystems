@@ -1,7 +1,6 @@
 GridHeatConduction3D
 HeatConduction1D
 HeatConduction1DNodes
-HeatConduction1D_Vis3D
 HeatConduction3D
 MultiLayerHeatConduction1DNodes
 OneLayerHeatConduction3D
