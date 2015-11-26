@@ -45,13 +45,15 @@ model BigCollectorInstallationWithStorage
     annotation (Placement(transformation(extent={{100,0},{80,20}})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
-    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
-    HX_top = false,
+    redeclare
+      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
+                                                                                                HeatBuoyancy,
+    HX_2 = false,
     PerfectlyIsolated = true,
-    HX_bot = false,
+    HX_1 = false,
     height = 2,
     nEle = 6,
-    V(displayUnit ="l" ),
+    V(displayUnit= "l"),
     T_start=323.15)
     annotation (Placement(transformation(extent={{12,-222},{-28,-182}})));
   BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(

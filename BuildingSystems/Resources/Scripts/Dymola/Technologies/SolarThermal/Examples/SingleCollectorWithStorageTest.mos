@@ -17,7 +17,7 @@ createPlot(
 createPlot(
  id = 1,
  position = {610, 0, 600, 500},
- y = {"collector.heatPortCon.Q_flow","collector.radiationPort.IDir","collector.radiationPort.IDif"},
+ y = {"collector.heatPortCon.Q_flow","collector.radiationPort.IrrDir","collector.radiationPort.IrrDif"},
  range = {0, 86400.0, 0.0, 1000.0},
  autoscale = true,
  autoerase = true,
@@ -32,7 +32,7 @@ createPlot(
  createPlot(
  id = 1,
  position = {610, 0, 600, 500},
- y = {"storage.vol_HXbot.heatPort.Q_flow"},
+ y = {"storage.vol_HX_1.heatPort.Q_flow"},
  range = {0, 86400.0, 0.0, 1000.0},
  autoscale = true,
  autoerase = true,
