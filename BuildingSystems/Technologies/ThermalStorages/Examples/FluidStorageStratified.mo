@@ -2,7 +2,7 @@ within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageStratified
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
-  BuildingSystems.Technologies.ThermalStorages.StratifiedStorage storage(
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
     height=2.0,
     redeclare

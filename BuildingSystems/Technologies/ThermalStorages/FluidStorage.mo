@@ -1,5 +1,5 @@
 within BuildingSystems.Technologies.ThermalStorages;
-model StratifiedStorage "Model of a thermal fluid storage"
+model FluidStorage "Model of a thermal fluid storage"
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium of the storage model";
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol[nEle - 2](
@@ -451,4 +451,4 @@ equation
 </html>"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
             100}})));
-end StratifiedStorage;
+end FluidStorage;

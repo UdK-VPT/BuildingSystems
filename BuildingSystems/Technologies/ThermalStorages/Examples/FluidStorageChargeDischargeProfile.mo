@@ -6,7 +6,7 @@ model FluidStorageChargeDischargeProfile
   replaceable package Medium =   BuildingSystems.Media.Water;
   //replaceable package Medium = Modelica.Media.Water.WaterIF97OnePhase_ph;
   //replaceable package Medium = BuildingSystems.Media.Water;
-  BuildingSystems.Technologies.ThermalStorages.StratifiedStorage storage(
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
     height=2.0,
     redeclare

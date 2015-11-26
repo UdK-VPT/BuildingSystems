@@ -3,7 +3,7 @@ model FluidStorageChargeDischargeCycle
   "Model to show use of temperature sensor (output signal T)"
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
-  BuildingSystems.Technologies.ThermalStorages.StratifiedStorage storage(
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
     height=2.0,
     redeclare
