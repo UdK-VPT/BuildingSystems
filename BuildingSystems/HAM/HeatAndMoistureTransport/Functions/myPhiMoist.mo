@@ -1,7 +1,7 @@
 within BuildingSystems.HAM.HeatAndMoistureTransport.Functions;
 
 function myPhiMoist
-  "Calculates the water vapour diffusion coefficent"
+  "Calculates the water vapour diffusion coefficient"
   input BuildingSystems.Types.RelativeHumidity myTabX[:];
   input BuildingSystems.Types.WaterVapourDiffusionResistance myTabY[:];
   input BuildingSystems.Types.WaterVapourDiffusionResistance myDry;

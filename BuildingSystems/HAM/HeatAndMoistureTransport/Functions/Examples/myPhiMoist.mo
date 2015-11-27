@@ -5,7 +5,7 @@ model myPhiMoist "Test function myPhiMoist"
   BuildingSystems.Types.RelativeHumidity phi
     "Relative Humidity of the material";
   BuildingSystems.Types.WaterVapourDiffusionResistance  myPhiMoist
-    "Water vapour diffusion coefficent";
+    "Water vapour diffusion coefficient";
 
   Modelica.Blocks.Sources.Ramp ramp(
     height=1.1,
