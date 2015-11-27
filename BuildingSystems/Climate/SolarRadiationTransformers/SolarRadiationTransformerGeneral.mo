@@ -1,14 +1,14 @@
 within BuildingSystems.Climate.SolarRadiationTransformers;
 partial model SolarRadiationTransformerGeneral
   "Solar radiation calculation on a tilted surface (general model)"
-  parameter BuildingSystems.Types.Angle_deg latitudeDeg
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg latitudeDeg
     "Latitude of the location";
-  parameter BuildingSystems.Types.Angle_deg longitudeDeg
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg
     "Longitude of the location";
-  parameter BuildingSystems.Types.Angle_deg longitudeDeg0
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg0
     "Longitude of the local time zone";
   parameter Real rhoAmb "Reflection factor of the ambience";
-  parameter BuildingSystems.Types.Angle_deg angleDegL = 0
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegL = 0
     "Grad correction winter-/summer time";
   input BuildingSystems.Interfaces.RadiantEnergyFluenceRateInput IrrDirHor
     "Solar beam radiation of horizontal surface"
@@ -29,7 +29,7 @@ partial model SolarRadiationTransformerGeneral
   input BuildingSystems.Interfaces.Angle_degInput angleDegTil
     "Tilt angle of the surface"
     annotation (Placement(transformation(extent={{-102,-46},{-62,-6}}), iconTransformation(extent={{-90,-34},{-62,-6}})));
-  BuildingSystems.Types.Angle_deg angleZen "Zenith angle";
+  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleZen "Zenith angle";
   Real cosAngleDegAzi
     "Cosinus of the azimuth angle";
   Real cosAngleDegInc

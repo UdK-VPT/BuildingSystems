@@ -9,8 +9,8 @@ record GeometryCircle
    "Diameter of the circle";
   Modelica.SIunits.Length zMean
     "Mean vertical position";
-  BuildingSystems.Types.Angle_deg angleDegAzi
+  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi
     "Azimuth angle of the rectangle";
-  BuildingSystems.Types.Angle_deg angleDegTil
+  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil
     "Tilt angle of the rectangle";
 end GeometryCircle;

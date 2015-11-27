@@ -55,7 +55,7 @@ protected
     "Internal energy of the air volume";
   constant Modelica.SIunits.Velocity vAir_constant = 0.0
     "Air velocity";
-  constant BuildingSystems.Types.Angle_deg angleDegAir_constant = 0.0
+  constant Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAir_constant = 0.0
     "Direction of the air flow";
   constant Modelica.SIunits.Density rho_nominal = 1.2
     "Air density under nominal conditions";

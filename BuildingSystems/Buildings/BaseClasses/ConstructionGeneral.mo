@@ -10,10 +10,10 @@ partial model ConstructionGeneral
   parameter Modelica.SIunits.Area A
     "Net area (gross area minus enclosed surfaces)"
     annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
-  parameter BuildingSystems.Types.Angle_deg angleDegAzi = 0.0
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi = 0.0
     "Azimuth angle"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter BuildingSystems.Types.Angle_deg angleDegTil = 90.0
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil = 90.0
     "Tilt angle"
     annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Modelica.SIunits.Length zLevel = 0.0

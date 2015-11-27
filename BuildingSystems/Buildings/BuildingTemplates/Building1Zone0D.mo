@@ -28,10 +28,10 @@ model Building1Zone0D
   parameter Modelica.SIunits.Area AWindow[nWindows] = {1.0}
     "Area of each window"
     annotation(Dialog(tab="Constructions",group="Windows"));
-  parameter BuildingSystems.Types.Angle_deg angleDegAziWindow[nWindows] = fill(0.0,nWindows)
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWindow[nWindows] = fill(0.0,nWindows)
     "Azimuth angle of each window"
     annotation(Dialog(tab="Constructions",group="Windows"));
-  parameter BuildingSystems.Types.Angle_deg angleDegTilWindow[nWindows] = fill(90.0,nWindows)
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTilWindow[nWindows] = fill(90.0,nWindows)
     "Tilt angle of each window"
     annotation(Dialog(tab="Constructions",group="Windows"));
   parameter Modelica.SIunits.Volume VAir = 1.0

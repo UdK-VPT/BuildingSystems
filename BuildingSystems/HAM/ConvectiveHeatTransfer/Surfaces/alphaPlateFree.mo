@@ -6,7 +6,7 @@ function alphaPlateFree
   input Modelica.SIunits.TemperatureDifference deltaT;
   input Modelica.SIunits.Length height;
   input Modelica.SIunits.Length width;
-  input BuildingSystems.Types.Angle_deg angle;
+  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg angle;
   output Modelica.SIunits.SurfaceCoefficientOfHeatTransfer value;
 protected
   Real DELTAT_RAD = 0.00000005 "Radius for deltaT->0 used by softpow()";

@@ -13,11 +13,11 @@ block WeatherDataNetcdf "Weather data reader with Netcdf format"
      varTimeUpperLimit = {1000.0, 1000.0, 100.0, 100.0, 360.0, 1.0, 8.0},
      varNameConstant = {"longitude", "latitude", "longitude_0"},
      fileName = weatherDataFile.fileName);
-  parameter BuildingSystems.Types.Angle_deg longitudeDeg = constantVariable[1]
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg = constantVariable[1]
     "Longitude of the local point";
-  parameter BuildingSystems.Types.Angle_deg latitudeDeg = constantVariable[2]
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg latitudeDeg = constantVariable[2]
     "Latitude of the local point";
-  parameter BuildingSystems.Types.Angle_deg longitudeDeg0 = constantVariable[3]
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg0 = constantVariable[3]
     "Longitude of the local time zone";
   replaceable parameter BuildingSystems.Climate.WeatherData.WeatherDataFile weatherDataFile
     "Selected weather data file"

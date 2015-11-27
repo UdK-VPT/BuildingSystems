@@ -9,13 +9,13 @@ partial model ModelVis3D
     annotation(Dialog(tab = "3D visualisation", group = "Position"));
   parameter Modelica.SIunits.Length zVis3D = 0.0 "z-position"
     annotation(Dialog(tab = "3D visualisation", group = "Position"));
-  parameter BuildingSystems.Types.Angle_deg xAngleVis3D=0.0
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg xAngleVis3D=0.0
     "Rotation angle x-axis"
     annotation (Dialog(tab="3D visualisation", group="Orientation"));
-  parameter BuildingSystems.Types.Angle_deg yAngleVis3D=0.0
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg yAngleVis3D=0.0
     "Rotation angle y-axis"
     annotation (Dialog(tab="3D visualisation", group="Orientation"));
-  parameter BuildingSystems.Types.Angle_deg zAngleVis3D=0.0
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg zAngleVis3D=0.0
     "Rotation angle z-axis"
     annotation (Dialog(tab="3D visualisation", group="Orientation"));
   parameter Real xScaleVis3D = 1.0 "Scale factor x-dimension"

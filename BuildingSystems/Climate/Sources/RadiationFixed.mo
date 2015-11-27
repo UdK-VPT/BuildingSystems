@@ -10,7 +10,7 @@ model RadiationFixed
     "Constant area specific direct solar radiation";
   parameter Modelica.SIunits.RadiantEnergyFluenceRate IrrDif_constant = 0.0
     "Conatant area specific diffuse solar radiation";
-  parameter BuildingSystems.Types.Angle_deg angleDegInc_constant = 0.0
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegInc_constant = 0.0
     "Constant incident angle of the direct solar radiation";
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-60,60},{60,-60}},lineColor={230,230,230},fillColor={230,230,230},fillPattern=  FillPattern.Solid),

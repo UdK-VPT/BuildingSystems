@@ -157,7 +157,7 @@ model Ambient
   parameter BuildingSystems.Buildings.Types.DataSource angleDegWindRefSou = BuildingSystems.Buildings.Types.DataSource.File
     "Data source for Angle of wind direction on reference height"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter BuildingSystems.Types.Angle_deg angleDegWindRef_constant = 0.0
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegWindRef_constant = 0.0
     "Angle of wind direction on reference height (used if angleDegWindRefSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegWindRef

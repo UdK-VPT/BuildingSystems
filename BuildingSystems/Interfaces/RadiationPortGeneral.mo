@@ -5,7 +5,7 @@ connector RadiationPortGeneral
     "Area specific direct solar radiation";
   Modelica.SIunits.RadiantEnergyFluenceRate IrrDif
     "Area specific diffuse solar radiation";
-  BuildingSystems.Types.Angle_deg angleDegInc
+  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegInc
     "Incident angle of the direct solar radiation";
     annotation(Documentation(info="<HTML>
       <p>This connector is used for the solar radiation transport between components.
