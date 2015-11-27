@@ -38,6 +38,6 @@ record MaterialHygroThermalGeneral
   parameter BuildingSystems.Types.WaterVapourDiffusionResistance myDry
     "Water vapour diffusion resistance factor of a dry building material [-]";
   parameter BuildingSystems.Types.WaterVapourDiffusionResistance myMoistF
-    "Ficticious water vapour diffusion resistance factor of a moist building material [-]";
+    "Fictitious water vapour diffusion resistance factor of a moist building material [-]";
   parameter Real moistSup "Moisture-related thermal conductivity supplement[-]";
 end MaterialHygroThermalGeneral;

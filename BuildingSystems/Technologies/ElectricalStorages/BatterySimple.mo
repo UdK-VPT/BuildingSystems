@@ -16,7 +16,7 @@ model BatterySimple
     "Charge level of the battery"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,64}), iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,54})));
   output BuildingSystems.Interfaces.PowerOutput PGrid
-    "Eletricity taken from the grid"
+    "Electricity taken from the grid"
     annotation (Placement(transformation(extent={{54,30},{74,50}}), iconTransformation(extent={{44,30},{64,50}})));
   parameter Modelica.SIunits.Energy E_nominal(displayUnit="kWh")= 7200000
     "Nominal battery capacity";

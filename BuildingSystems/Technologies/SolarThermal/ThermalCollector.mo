@@ -230,7 +230,7 @@ equation
       <p align=\"center\"><i>
       I<sub>tot</sub> = I<sub>dir</sub> *(1-GSC)*IAM+I<sub>dif</sub> </i></p>
     <p>
-    where I<sub>dir</sub> adn I<sub>dif</sub> are the total direct and diffuse irradiation on the absorption surface in W/m2 respectively.
+    where I<sub>dir</sub> and I<sub>dif</sub> are the total direct and diffuse irradiation on the absorption surface in W/m2 respectively.
     GSC is the geometrical shading coefficient for the direct irradiation and IAM the incidence angle modifier.
     </p>
       <p> Calculation of incidence angle modifier, <b> </b></p>

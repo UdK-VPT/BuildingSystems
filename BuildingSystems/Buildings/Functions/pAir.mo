@@ -1,5 +1,5 @@
 within BuildingSystems.Buildings.Functions;
-function pAir "Height dependend static air pressure"
+function pAir "Height dependent static air pressure"
   input Modelica.SIunits.Pressure pAirRef
     "Static air pressure on reference height";
   input Modelica.SIunits.Temp_K TAirRef "Air temperature on reference height";
@@ -8,7 +8,7 @@ function pAir "Height dependend static air pressure"
     "Reference height air temperature measurement";
   input Real gamma(unit = "K/m")
     "Temperature gradient of the planetary boundary layer in K/m";
-  output Modelica.SIunits.Pressure value "Height dependend static air pressure";
+  output Modelica.SIunits.Pressure value "Height dependent static air pressure";
 protected
   constant Real RAir = 288.0 "Gas constant dry air in J/(kg.K)";
 algorithm
