@@ -47,7 +47,7 @@ createPlot(
 
  createPlot(
  id = 2,
- position = {50, 50, 600, 500},
+ position = {600, 0, 600, 500},
  y = {"logicControl.u","logicControl.reference"},
  range = {0, 500, 5.0, 75.0},
  autoscale = true,
