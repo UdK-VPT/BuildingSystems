@@ -44,8 +44,10 @@ model SingleCollectorWithStorageTest
     annotation (Placement(transformation(extent={{100,0},{80,20}})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
-    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
-    HX_top = false,
+    redeclare
+      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
+                                                                                                HeatBuoyancy,
+    HX_2 = false,
     PerfectlyIsolated = true,
     nEle = 4)
     annotation (Placement(transformation(extent={{10,-130},{-30,-90}})));
@@ -100,12 +102,8 @@ equation
       points={{20,-130},{14,-130},{14,-128},{4,-128}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(storage.port_HXBot_a, exp.port_a) annotation (Line(
-      points={{-24,-121.6},{-90,-121.6},{-90,-10}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  connect(storage.port_HXBot_b, senTem1.port) annotation (Line(
-      points={{-24,-117.6},{-80,-117.6},{-80,-40},{90,-40},{90,0}},
+  connect(storage.port_HX_1_a, exp.port_a) annotation (Line(
+      points={{-24,-118},{-90,-118},{-90,-10}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(storage.port_b1, sink.ports[1]) annotation (Line(
@@ -154,9 +152,15 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
 
-  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-140},{100,80}}), graphics),
+  connect(storage.port_HX_1_b, pump.port_b) annotation (Line(
+      points={{-24,-122},{-48,-122},{-48,-34},{94,-34},{94,-10},{10,-10}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -140},{100,80}}),                                                                    graphics),
     experiment(StartTime=10368000, StopTime=10713600),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/SolarThermal/Examples/SingleCollectorWithStorageTest.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/SolarThermal/Examples/SingleCollectorWithStorageTest.mos"
+        "Simulate and plot"),
     Documentation(info="<html>
     <p> This example tests the implementation of
     <a href=\"modelica://BuildingSystems.Technologies.SolarThermal.ThermalCollector\">

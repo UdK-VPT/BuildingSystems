@@ -44,8 +44,7 @@ model SolarThermalSystem1
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5)
-    "Pipe outside of the building"
+    length=5) "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,10})));
   Fluid.FixedResistances.Pipe  pipe2(
     redeclare package Medium = Medium,
@@ -54,24 +53,24 @@ model SolarThermalSystem1
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5)
-    "Pipe outside of the building"
+    length=5) "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,10})));
   Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
-    V_start=0.01)
-    "Expansion vessel"
+    V_start=0.01) "Expansion vessel"
     annotation (Placement(transformation(extent={{-40,-56},{-32,-48}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(
     T=293.15)
     annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=-90,origin={-70,-40})));
   Technologies.ThermalStorages.FluidStorage storage(
-    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
+    redeclare
+      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
+                                                                                                HeatBuoyancy,
     redeclare package Medium = Medium,
     height=2.0,
     nEle=10,
-    HX_top=false,
-    HX_bot=true,
+    HX_2=false,
+    HX_1=true,
     V=0.4)
     annotation (Placement(transformation(extent={{12,-64},{-8,-44}})));
   Fluid.FixedResistances.Pipe  pipe3(
@@ -81,8 +80,7 @@ model SolarThermalSystem1
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5)
-    "Pipe inside of the building"
+    length=5) "Pipe inside of the building"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=90,origin={-80,-18})));
   Fluid.FixedResistances.Pipe  pipe4(
     redeclare package Medium = Medium,
@@ -91,8 +89,7 @@ model SolarThermalSystem1
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5)
-    "Pipe inside of the building"
+    length=5) "Pipe inside of the building"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=270,origin={-20,-18})));
     Modelica.Blocks.Sources.Constant  consumptionProfile(k=120/24/3600)
     "Mean hot water demand: 120 liter per day"
@@ -102,22 +99,19 @@ BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
     nPorts=1,
     m_flow = 0.0,
     use_m_flow_in = true,
-    T=288.15)
-    "Flow source"
+    T=288.15) "Flow source"
     annotation (Placement(transformation(extent={{24,-68},{14,-58}})));
   Fluid.Sources.Boundary_pT sink(
     redeclare package Medium = Medium,
     use_T_in=false,
     p(displayUnit="Pa"),
     T=293.15,
-    nPorts=1)
-    "Sink"
+    nPorts=1) "Sink"
     annotation (Placement(transformation(extent={{3,-3},{-3,3}},origin={59,-19})));
   Modelica.Blocks.Logical.Hysteresis control(
     pre_y_start=false,
     uLow=2.0,
-    uHigh=4.0)
-    "Two-point controller"
+    uHigh=4.0) "Two-point controller"
     annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={-50,-28})));
   Modelica.Blocks.Math.BooleanToReal booleanToReal(
     realTrue=0.1)
@@ -129,12 +123,10 @@ BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
   Fluid.HeatExchangers.HeaterCooler_T hea(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
-    dp_nominal=1)
-    "Ideal heater for back up energy"
+    dp_nominal=1) "Ideal heater for back up energy"
     annotation (Placement(transformation(extent={{32,-28},{52,-10}})));
-  Modelica.Blocks.Sources.Constant TSet
-    (k=273.15 + 60.0)
-    "Set temperature for hoit water production"
+  Modelica.Blocks.Sources.Constant TSet(
+     k=273.15 + 60.0) "Set temperature for hoit water production"
     annotation (Placement(transformation(extent={{18,-12},{24,-6}})));
 equation
   connect(weatherData.y[1], radiation.IrrDirHor) annotation (Line(points={{-109.2,
@@ -174,10 +166,6 @@ equation
          {191,0,0}));
   connect(pipe3.port_a, pump.port_b) annotation (Line(points={{-80,-28},{-80,-60},
           {-60,-60}}, color={0,127,255}));
-  connect(pipe4.port_b, storage.port_HXBot_a) annotation (Line(points={{-20,-28},
-          {-20,-58},{-5,-58}},  color={0,127,255}));
-  connect(storage.port_HXBot_b, pump.port_a) annotation (Line(points={{-5,-60},{
-          -20,-60},{-40,-60}},  color={0,127,255}));
   connect(exp.port_a, pump.port_a) annotation (Line(points={{-36,-56},{-36,-56},
           {-36,-60},{-40,-60}}, color={0,127,255}));
   connect(storage.port_a1, consumption.ports[1])
@@ -195,7 +183,7 @@ equation
       color={0,0,127},
       pattern=LinePattern.Dash));
   connect(add.u1, storage.T[1]) annotation (Line(
-      points={{-47.6,-7.2},{-47.6,-4},{14,-4},{14,-48.6667},{9.4,-48.6667}},
+      points={{-47.6,-7.2},{-47.6,-4},{14,-4},{14,-48.9},{9.4,-48.9}},
       color={0,0,127},
       pattern=LinePattern.Dash));
   connect(storage.port_b1, hea.port_a) annotation (Line(points={{9,-45},{8,-45},
@@ -205,9 +193,19 @@ equation
   connect(TSet.y, hea.TSet) annotation (Line(points={{24.3,-9},{26.15,-9},{26.15,
           -13.6},{30,-13.6}}, color={0,0,127}));
 
+  connect(pipe4.port_b, storage.port_HX_1_a) annotation (Line(
+      points={{-20,-28},{-20,-58},{-5,-58}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(pump.port_a, storage.port_HX_1_b) annotation (Line(
+      points={{-40,-60},{-5,-60}},
+      color={0,127,255},
+      smooth=Smooth.None));
   annotation (experiment(StartTime=0, StopTime=31536000),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem1.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-100},{100,100}}),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem1.mos"
+        "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-100},{
+            100,100}}),
     graphics={Text(extent={{-134,-72},{56,-104}},lineColor={0,0,255},
     textString="Example of a  solar thermal system with an internal heat exchanger")}));
 end SolarThermalSystem1;

@@ -103,15 +103,13 @@ model SolarHeatingSystem "Solar heating system"
     controllerType=Modelica.Blocks.Types.SimpleController.P,
     yMax=1.0,
     yMin=0.0,
-    wp=1.0)
-    "Thermostat, modelled by a limeted p-controller"
+    wp=1.0) "Thermostat, modelled by a limeted p-controller"
     annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={-26,18})));
   BuildingSystems.Fluid.Movers.FlowControlled_dp pump1(
     redeclare package Medium =Medium, m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-84,-22},{-64,-2}})));
   Modelica.Blocks.Sources.Constant dpSet(
-    k=12000.0)
-    "Set presure for the pump model"
+    k=12000.0) "Set presure for the pump model"
     annotation (Placement(transformation(extent={{-68,6},{-72,10}})));
   Modelica.Blocks.Sources.Constant TAirSet(
     k=273.15 + 20.0)
@@ -120,13 +118,15 @@ model SolarHeatingSystem "Solar heating system"
     each T=293.15)
     annotation (Placement(transformation(extent={{-72,-46},{-60,-34}})));
   Technologies.ThermalStorages.FluidStorage storage(
-    HX_top=false,
+    HX_2=false,
     AdditionalFluidPorts=true,
     nEle=10,
-    HX_bot=true,
+    HX_1=true,
     V=1.0,
     height = 2.0,
-    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
+    redeclare
+      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
+                                                                                                HeatBuoyancy,
     redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{38,-40},{58,-20}})));
   Technologies.SolarThermal.ThermalCollector collector(
@@ -135,7 +135,9 @@ model SolarHeatingSystem "Solar heating system"
     angleDegTil=30,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=10,
-    redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate.AgenaAZUR8plus_AC28H collectorData)
+    redeclare
+      BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate.AgenaAZUR8plus_AC28H
+                                                                                                          collectorData)
     annotation (Placement(transformation(extent={{92,-24},{112,-4}})));
   Fluid.Movers.FlowControlled_m_flow pump2(redeclare package Medium = Medium,
     m_flow_nominal=0.1)
@@ -147,8 +149,7 @@ model SolarHeatingSystem "Solar heating system"
     thicknessIns=0.02,
     lambdaIns=0.04,
     length=1,
-    diameter=0.02)
-    "Pipe model"
+    diameter=0.02) "Pipe model"
     annotation (Placement(transformation(extent={{62,-4},{82,-24}})));
   Fluid.FixedResistances.Pipe pip5(
     redeclare package Medium = Medium,
@@ -157,8 +158,7 @@ model SolarHeatingSystem "Solar heating system"
     thicknessIns=0.02,
     lambdaIns=0.04,
     length=1,
-    diameter=0.02)
-    "Pipe model"
+    diameter=0.02) "Pipe model"
     annotation (Placement(transformation(extent={{94,-50},{114,-70}})));
   Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky
     radiation(
@@ -272,8 +272,6 @@ equation
           -21},{36,-60},{8,-60}}, color={0,127,255}));
   connect(exp1.port_a, hea.port_a)
     annotation (Line(points={{26,-54},{26,-60},{8,-60}}, color={0,127,255}));
-  connect(storage.port_HXBot_a, pump2.port_b) annotation (Line(points={{55,
-          -35.8},{60,-35.8},{60,-60},{64,-60}}, color={0,127,255}));
   connect(pip4.port_b, collector.port_a)
     annotation (Line(points={{82,-14},{92,-14}}, color={0,127,255}));
   connect(pump2.port_a, pip5.port_a)
@@ -285,16 +283,16 @@ equation
       points={{88,17.8},{86,17.8},{86,18},{101,18},{101,-5}},
       color={0,0,0},
       pattern=LinePattern.Solid));
-  connect(ambient.IrrDirHor, radiation.IrrDirHor) annotation
-    (Line(points={{-24.2,
+  connect(ambient.IrrDirHor, radiation.IrrDirHor) annotation (
+     Line(points={{-24.2,
           55},{-32,55},{-32,72},{58,72},{58,24},{72.4,24}}, color={0,0,127}));
   connect(ambient.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{-24.2,
           53},{-36,53},{-36,76},{54,76},{54,20},{72.4,20}}, color={0,0,127}));
   connect(collector.angleDegAzi, radiation.angleDegAzi) annotation (
-      Line(points={{101,-23},{101,-24},{86,-24},{86,6},{70,6},{70,12},{72.4,12}},
+      Line(points={{95,-23},{95,-24},{86,-24},{86,6},{70,6},{70,12},{72.4,12}},
         color={0,0,127}));
   connect(collector.angleDegTil, radiation.angleDegTil) annotation (
-      Line(points={{103,-23},{103,-24},{86,-24},{86,6},{70,6},{70,16},{72.4,16}},
+      Line(points={{97,-23},{97,-24},{86,-24},{86,6},{70,6},{70,16},{72.4,16}},
         color={0,0,127}));
   connect(prescribedTemperature.port, collector.heatPortCon)
     annotation (Line(points={{98,34},{107,34},{107,-5}}, color={191,0,0}));
@@ -305,8 +303,6 @@ equation
   connect(pip4.heatPort, TAmb.port) annotation (Line(points={{72,-19},{72,-20},{
           72,-42},{48,-42},{48,-78},{-50,-78},{-50,-40},{-60,-40}}, color={191,0,
           0}));
-  connect(storage.port_HXBot_b, pip4.port_a) annotation (Line(points={{55,-33.8},
-          {60,-33.8},{60,-14},{62,-14}}, color={0,127,255}));
   connect(exp2.port_a, pump2.port_b) annotation (Line(points={{54,-58},{54,-60},{64,-60}}, color={0,127,255}));
   connect(switch1.y, pump2.m_flow_in) annotation (Line(points={{75.6,-40},{74.2,
           -40},{74.2,-48}}, color={0,0,127}));
@@ -320,12 +316,22 @@ equation
     annotation (Line(points={{102.8,-40},{105.6,-40}}, color={0,0,127}));
   connect(add.u2, storage.T[1]) annotation (Line(points={{114.8,-42.4},{122,
           -42.4},{122,-80},{38,-80},{38,-24.9},{40.6,-24.9}}, color={0,0,127}));
-  connect(collector.TSeg[10], add.u1) annotation (Line(points={{106.6,-23.9},
-          {122,-23.9},{122,-37.6},{114.8,-37.6}}, color={0,0,127}));
+  connect(collector.TSeg[10], add.u1) annotation (Line(points={{105.2,-23.9},{122,
+          -23.9},{122,-37.6},{114.8,-37.6}},      color={0,0,127}));
 
+  connect(storage.port_HX_1_b, pump2.port_b) annotation (Line(
+      points={{55,-36},{60,-36},{60,-60},{64,-60}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(storage.port_HX_1_a, pip4.port_a) annotation (Line(
+      points={{55,-34},{60,-34},{60,-14},{62,-14}},
+      color={0,127,255},
+      smooth=Smooth.None));
   annotation(experiment(StartTime=0, StopTime=31536000),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/HeatingSystems/SolarHeatingSystem.mos"  "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{140,100}}), graphics={
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/HeatingSystems/SolarHeatingSystem.mos"
+        "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+            140,100}}),                                                                  graphics={
     Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255}, textString="Solar heating system with simplified thermal building model")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
 end SolarHeatingSystem;

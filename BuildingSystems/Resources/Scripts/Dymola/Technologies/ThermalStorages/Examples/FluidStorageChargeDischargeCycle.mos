@@ -2,7 +2,7 @@ simulateModel("BuildingSystems.Technologies.ThermalStorages.Examples.FluidStorag
 createPlot(
  id = 1,
  position = {0, 0, 600, 500},
- y = {"storage.port_b1.m_flow","storage.port_HXBot_a.m_flow"},
+ y = {"storage.port_b1.m_flow","storage.port_HX_1_a.m_flow"},
  range = {0, 500, 5.0, 75.0},
  autoscale = true,
  autoerase = true,
@@ -47,14 +47,14 @@ createPlot(
 
  createPlot(
  id = 2,
- position = {50, 50, 600, 500},
- y = {"LogicControl.u","LogicControl.reference"},
+ position = {600, 0, 600, 500},
+ y = {"logicControl.u","logicControl.reference"},
  range = {0, 500, 5.0, 75.0},
  autoscale = true,
  autoerase = true,
  autoreplot = true,
  description = false,
-  subPlot = 1,
+ subPlot = 1,
  grid = true,
  color = true,
  online = false,
@@ -63,7 +63,7 @@ createPlot(
  createPlot(
  id = 2,
  position = {50, 50, 600, 500},
- y = {"LogicControl.y"},
+ y = {"logicControl.y"},
  range = {0, 500, 5.0, 75.0},
  autoscale = true,
  autoerase = true,
@@ -78,7 +78,7 @@ createPlot(
   createPlot(
  id = 2,
  position = {50, 50, 600, 500},
- y = {"storage.vol_HXbot.T"},
+ y = {"storage.vol_HX_1.T"},
  range = {0, 500, 5.0, 75.0},
  autoscale = true,
  autoerase = true,

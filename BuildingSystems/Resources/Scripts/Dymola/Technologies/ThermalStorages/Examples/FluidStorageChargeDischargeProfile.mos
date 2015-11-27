@@ -1,0 +1,12 @@
+﻿simulateModel("BuildingSystems.Technologies.ThermalStorages.Examples.FluidStorageChargeDischargeProfile(storage.nEle=5)", stopTime=11000, method="dassl", resultFile="FluidStorageChargeDischargeProfile");
+createPlot(id=0, position={176, 75, 586, 422}, grid=true);
+plotExpression(apply(FluidStorageChargeDischargeProfile[end].HRF), eraseOld=false, expressionName="HRF n=5")
+
+simulateModel("BuildingSystems.Technologies.ThermalStorages.Examples.FluidStorageChargeDischargeProfile(storage.nEle=10)", stopTime=11000, method="dassl", resultFile="FluidStorageChargeDischargeProfile");
+plotExpression(apply(FluidStorageChargeDischargeProfile[end].HRF), eraseOld=false, expressionName="HRF n=10")
+
+simulateModel("BuildingSystems.Technologies.ThermalStorages.Examples.FluidStorageChargeDischargeProfile(storage.nEle=20)", stopTime=11000, method="dassl", resultFile="FluidStorageChargeDischargeProfile");
+plotExpression(apply(FluidStorageChargeDischargeProfile[end].HRF), eraseOld=false, expressionName="HRF n=20", id=0)
+
+simulateModel("BuildingSystems.Technologies.ThermalStorages.Examples.FluidStorageChargeDischargeProfile(storage.nEle=50)", stopTime=11000, method="dassl", resultFile="FluidStorageChargeDischargeProfile");
+plotExpression(apply(FluidStorageChargeDischargeProfile[end].HRF), eraseOld=false, expressionName="HRF n=50", id=0)

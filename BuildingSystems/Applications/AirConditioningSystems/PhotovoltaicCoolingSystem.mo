@@ -73,14 +73,15 @@ model PhotovoltaicCoolingSystem
     V_start=0.01)
     annotation (Placement(transformation(extent={{-18,-40},{-10,-32}})));
   Technologies.ThermalStorages.FluidStorage storage(
-    HX_top=false,
-    HX_bot=false,
+    HX_2=false,
+    HX_1=false,
     redeclare package Medium = Medium,
-    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
+    redeclare
+      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
+                                                                                                HeatBuoyancy,
     height=0.5,
     V=1,
-    nEle=5)
-    "Cold water storage"
+    nEle=5) "Cold water storage"
     annotation (Placement(transformation(extent={{62,-40},{82,-20}})));
   Fluid.FixedResistances.Pipe pip1(
     redeclare package Medium = Medium,
@@ -237,8 +238,6 @@ equation
           {48,-40},{40,-40}}, color={0,127,255}));
   connect(pip2.port_a, pump1.port_a)
     annotation (Line(points={{30,-40},{26,-40},{22,-40}}, color={0,127,255}));
-  connect(storage.port_b2, pump2.port_a) annotation (Line(points={{79,-39},{82.5,
-          -39},{82.5,-38},{86,-38}}, color={0,127,255}));
   connect(pump2.port_b, pip4.port_a) annotation (Line(points={{102,-38},{106,-38},
           {110,-38}}, color={0,127,255}));
   connect(senTemColSurOut.port_a, coolingSurface.port_b)
@@ -249,8 +248,6 @@ equation
     annotation (Line(points={{124,0},{128,0}}, color={0,127,255}));
   connect(pip4.port_b, senTemColSurIn.port_a) annotation (Line(points={{120,-38},
           {140,-38},{140,0},{136,0}}, color={0,127,255}));
-  connect(pip3.port_b, storage.port_a2)
-    annotation (Line(points={{86,0},{79,0},{79,-21}}, color={0,127,255}));
   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts)
     annotation (Line(points={{82,44},{89,44}}, color={0,255,0}));
   connect(ambient.toAirPorts, building.toAmbientAirPorts)
@@ -291,9 +288,19 @@ equation
   connect(pvField.angleDegAzi, radiation.angleDegAzi) annotation (Line(points={{
           -50,-2},{-50,-2},{-76,-2},{-76,16},{-69.6,16}}, color={0,0,127}));
 
+  connect(storage.port_b2, pump2.port_a) annotation (Line(
+      points={{79,-39},{82.5,-39},{82.5,-38},{86,-38}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(storage.port_a2, pip3.port_b) annotation (Line(
+      points={{79,-21},{79,0},{86,0}},
+      color={0,127,255},
+      smooth=Smooth.None));
   annotation(experiment(StartTime=0, StopTime=31536000),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/AirConditioningSystems/PhotovoltaicCoolingSystem.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{160,100}}),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/AirConditioningSystems/PhotovoltaicCoolingSystem.mos"
+        "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
+            160,100}}),
     graphics={Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255},
     textString="Photovoltaic driven air-conditioning system"),
     Text(extent={{-76,-98},{114,-130}},lineColor={0,0,255},textString="Example of a simple solar thermal system")}),

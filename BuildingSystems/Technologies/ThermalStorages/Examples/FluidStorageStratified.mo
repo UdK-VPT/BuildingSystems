@@ -4,13 +4,13 @@ model FluidStorageStratified
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
-    height = 2.0,
+    height=2.0,
     redeclare
       BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
-                                                                                                HeatBuoyancy,
-    HX_top=false,
-    Ele_HX_bot = 2,
-    HX_bot=false,
+      HeatBuoyancy,
+    HX_2=false,
+    Ele_HX_1=2,
+    HX_1=false,
     AdditionalFluidPorts=true,
     nEle=nEle,
     T_start(displayUnit="degC") = 333.15)
