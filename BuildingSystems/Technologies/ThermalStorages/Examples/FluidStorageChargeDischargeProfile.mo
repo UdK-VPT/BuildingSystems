@@ -1,7 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageChargeDischargeProfile
   "Model to test the preservation of a temperature profile and show the numerical"
-  import SI = Modelica.SIunits;
   extends Modelica.Icons.Example;
   replaceable package Medium =   BuildingSystems.Media.Water;
   //replaceable package Medium = Modelica.Media.Water.WaterIF97OnePhase_ph;
@@ -55,8 +54,9 @@ model FluidStorageChargeDischargeProfile
       Medium =
         Medium, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{-12,14},{8,34}})));
-  SI.Volume V;
-  SI.Heat Q_in(start=0), Q_out(start=0) "cumulated amount of energy";
+  Modelica.SIunits.Volume V;
+  Modelica.SIunits.Heat Q_in(start=0), Q_out(start=0)
+    "cumulated amount of energy";
   Real HRF = noEvent(if Q_in>0 then Q_out/max(1,Q_in) else 0)
     "heat recovery factor";
 equation
