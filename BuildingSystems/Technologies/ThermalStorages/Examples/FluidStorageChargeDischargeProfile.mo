@@ -37,9 +37,6 @@ model FluidStorageChargeDischargeProfile
     T=298.15,
     nPorts=1) "Flow source"
     annotation (Placement(transformation(extent={{-46,14},{-26,34}})));
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature boundaryCondition_FixedT(
-    T=298.15)
-    annotation (Placement(transformation(extent={{90,32},{70,52}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=3600,
     height=70,
@@ -63,10 +60,6 @@ equation
   der(V)=senVolFlo.V_flow;
   der(Q_in) =abs(max(0,storage.port_a2.m_flow)*(inStream(storage.port_a2.h_outflow)-storage.port_b2.h_outflow));
   der(Q_out)=abs(max(0,-storage.port_a2.m_flow)*(inStream(storage.port_b2.h_outflow)-storage.port_a2.h_outflow));
-  connect(boundaryCondition_FixedT.port, storage.heatPort) annotation (Line(
-      points={{70,42},{60,42},{60,26.8}},
-      color={191,0,0},
-      smooth=Smooth.None));
   connect(source_consumption.m_flow_in, consumptionProfile.y) annotation (Line(
       points={{-46,32},{-58,32},{-58,58},{-73,58}},
       color={0,0,127},
