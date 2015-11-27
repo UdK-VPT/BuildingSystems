@@ -55,8 +55,10 @@ model FluidStorageChargeDischargeProfile
         Medium, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{-12,14},{8,34}})));
   Modelica.SIunits.Volume V;
-  Modelica.SIunits.Heat Q_in(start=0), Q_out(start=0)
-    "cumulated amount of energy";
+  Modelica.SIunits.Heat Q_in(start=0)
+    "cumulated amount of energy entering into the TES";
+  Modelica.SIunits.Heat Q_out(start=0)
+    "cumulated amount of energy leaving into the TES";
   Real HRF = noEvent(if Q_in>0 then Q_out/max(1,Q_in) else 0)
     "heat recovery factor";
 equation
