@@ -289,6 +289,7 @@ BuildingSystems\Fluid\Examples\Performance\Example8.mo
 BuildingSystems\Fluid\Examples\Performance\package.mo
 BuildingSystems\Fluid\Examples\Performance\package.order
 BuildingSystems\Fluid\Examples\ResistanceVolumeFlowReversal.mo
+BuildingSystems\Fluid\Examples\SimpleHouse.mo
 BuildingSystems\Fluid\Examples\package.mo
 BuildingSystems\Fluid\Examples\package.order
 BuildingSystems\Fluid\FixedResistances\Examples\FixedResistancesExplicit.mo
@@ -327,11 +328,6 @@ BuildingSystems\Fluid\HeatExchangers\Validation\package.mo
 BuildingSystems\Fluid\HeatExchangers\Validation\package.order
 BuildingSystems\Fluid\HeatExchangers\package.mo
 BuildingSystems\Fluid\HeatExchangers\package.order
-BuildingSystems\Fluid\Images\Components\regRoot2_a.png
-BuildingSystems\Fluid\Images\Components\regRoot2_b.png
-BuildingSystems\Fluid\Images\Components\regRoot2_c.png
-BuildingSystems\Fluid\Images\Components\regSquare2_b.png
-BuildingSystems\Fluid\Images\Components\regSquare2_c.png
 BuildingSystems\Fluid\Interfaces\ConservationEquation.mo
 BuildingSystems\Fluid\Interfaces\Examples\ConservationEquation.mo
 BuildingSystems\Fluid\Interfaces\Examples\HeaterCooler_u.mo
@@ -342,10 +338,10 @@ BuildingSystems\Fluid\Interfaces\Examples\ReverseFlowMassExchanger.mo
 BuildingSystems\Fluid\Interfaces\Examples\StaticTwoPortConservationEquation.mo
 BuildingSystems\Fluid\Interfaces\Examples\package.mo
 BuildingSystems\Fluid\Interfaces\Examples\package.order
-BuildingSystems\Fluid\Interfaces\FourPort.mo
 BuildingSystems\Fluid\Interfaces\FourPortFlowResistanceParameters.mo
 BuildingSystems\Fluid\Interfaces\FourPortHeatMassExchanger.mo
 BuildingSystems\Fluid\Interfaces\LumpedVolumeDeclarations.mo
+BuildingSystems\Fluid\Interfaces\PartialFourPort.mo
 BuildingSystems\Fluid\Interfaces\PartialFourPortInterface.mo
 BuildingSystems\Fluid\Interfaces\PartialTwoPort.mo
 BuildingSystems\Fluid\Interfaces\PartialTwoPortInterface.mo
@@ -425,6 +421,9 @@ BuildingSystems\Fluid\Movers\Data\SpeedControlled_y.mo
 BuildingSystems\Fluid\Movers\Data\package.mo
 BuildingSystems\Fluid\Movers\Data\package.order
 BuildingSystems\Fluid\Movers\Examples\ClosedLoop_y.mo
+BuildingSystems\Fluid\Movers\Examples\MoverContinuous.mo
+BuildingSystems\Fluid\Movers\Examples\MoverParameter.mo
+BuildingSystems\Fluid\Movers\Examples\MoverStages.mo
 BuildingSystems\Fluid\Movers\Examples\PumpsParallel.mo
 BuildingSystems\Fluid\Movers\Examples\PumpsSeries.mo
 BuildingSystems\Fluid\Movers\Examples\SpeedControlled_y_pumpCurves.mo
@@ -614,6 +613,7 @@ BuildingSystems\Resources\Images\Fluid\Movers\Examples\PumpValidationPower.png
 BuildingSystems\Resources\Images\Fluid\Movers\UsersGuide\2013-IBPSA-Wetter.pdf
 BuildingSystems\Resources\Images\Fluid\Movers\UsersGuide\fanSpeedFiltered.png
 BuildingSystems\Resources\Images\Fluid\Movers\UsersGuide\pumpCurve.png
+BuildingSystems\Resources\Images\Fluid\Movers\Validation\Power.png
 BuildingSystems\Resources\Images\Fluid\Sensors\onePortHex.png
 BuildingSystems\Resources\Images\Fluid\Sensors\onePortHex.tiff
 BuildingSystems\Resources\Images\Fluid\Sensors\twoPortHex.png
@@ -812,6 +812,7 @@ BuildingSystems\Resources\Scripts\Dymola\Fluid\Examples\Performance\Example6.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\Examples\Performance\Example7.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\Examples\Performance\Example8.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\Examples\ResistanceVolumeFlowReversal.mos
+BuildingSystems\Resources\Scripts\Dymola\Fluid\Examples\SimpleHouse.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\FixedResistances\Examples\FixedResistancesExplicit.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\FixedResistances\Examples\FixedResistancesParallel.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\FixedResistances\Examples\FixedResistancesSeries.mos
@@ -841,6 +842,9 @@ BuildingSystems\Resources\Scripts\Dymola\Fluid\MixingVolumes\Examples\MixingVolu
 BuildingSystems\Resources\Scripts\Dymola\Fluid\MixingVolumes\Examples\MixingVolumeSteadyStateMass.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\MixingVolumes\Examples\MixingVolumeZeroFlow.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\Movers\Examples\ClosedLoop_y.mos
+BuildingSystems\Resources\Scripts\Dymola\Fluid\Movers\Examples\MoverContinuous.mos
+BuildingSystems\Resources\Scripts\Dymola\Fluid\Movers\Examples\MoverParameter.mos
+BuildingSystems\Resources\Scripts\Dymola\Fluid\Movers\Examples\MoverStages.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\Movers\Examples\PumpsParallel.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\Movers\Examples\PumpsSeries.mos
 BuildingSystems\Resources\Scripts\Dymola\Fluid\Movers\Examples\SpeedControlled_y_pumpCurves.mos
@@ -916,6 +920,7 @@ BuildingSystems\Resources\Scripts\Dymola\Utilities\Math\Functions\Examples\Smoot
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Math\Functions\Examples\SpliceFunction.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Math\Functions\Examples\SpliceFunctionDerivativeCheck.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Math\Functions\Examples\TrapezoidalIntegration.mos
+BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Examples\Density_pTX.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Examples\DewPointTemperature.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Examples\HumidityRatioPressure.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Examples\MassFraction_pTphi.mos
@@ -932,6 +937,7 @@ BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Functions\Base
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Functions\BaseClasses\Examples\InverseDewPointTemperatureDerivativeCheck_amb.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Functions\BaseClasses\Examples\SaturationPressureDerivativeCheck.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Functions\BaseClasses\Examples\WaterVaporPressureDerivativeCheck.mos
+BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Functions\Examples\Density_pTX.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Functions\Examples\X_pSatpphi.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Functions\Examples\pW_TDewPoi.mos
 BuildingSystems\Resources\Scripts\Dymola\Utilities\Psychrometrics\Functions\Examples\pW_TDewPoi_comparison.mos
@@ -1144,5 +1150,4 @@ BuildingSystems\Utilities\Time\package.mo
 BuildingSystems\Utilities\Time\package.order
 BuildingSystems\Utilities\package.mo
 BuildingSystems\Utilities\package.order
-BuildingSystems\legal.html
 BuildingSystems\package.order

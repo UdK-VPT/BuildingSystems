@@ -22,9 +22,9 @@ protected
   constant Real k = 5.534e-6*(180/Modelica.Constants.pi)^3 "Constant factor";
   Real tmp1 "Intermediate variable";
 equation
-  tmp1 = k*zen^3;
+  tmp1 =  k*zen^3;
 
-  skyCle = smooth(1,
+  skyCle =  smooth(1,
     if (HGloHor < Modelica.Constants.small)
       then
         1

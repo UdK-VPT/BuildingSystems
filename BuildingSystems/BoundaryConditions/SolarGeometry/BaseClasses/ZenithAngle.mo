@@ -1,7 +1,6 @@
 within BuildingSystems.BoundaryConditions.SolarGeometry.BaseClasses;
 block ZenithAngle "Zenith angle"
   extends Modelica.Blocks.Icons.Block;
-public
   parameter Modelica.SIunits.Angle lat "Latitude";
   Modelica.Blocks.Interfaces.RealInput solHouAng(quantity="Angle", unit="rad")
     "Solar hour angle"
@@ -16,7 +15,7 @@ public
     displayUnit="deg") "Zenith angle"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 equation
-  zen = Modelica.Math.acos(Modelica.Math.cos(lat)*Modelica.Math.cos(decAng)*
+  zen =  Modelica.Math.acos(Modelica.Math.cos(lat)*Modelica.Math.cos(decAng)*
     Modelica.Math.cos(solHouAng) + Modelica.Math.sin(lat)*Modelica.Math.sin(
     decAng)) "(A4.8)";
   annotation (

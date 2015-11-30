@@ -80,8 +80,7 @@ protected
       annotation (Line(points={{12,0},{62,0},{62,2}}, color={0,127,255}));
     connect(conEqn.port_a, bou.ports[1]) annotation (Line(
         points={{-8,0},{-58,0}},
-        color={0,127,255},
-        smooth=Smooth.None));
+        color={0,127,255}));
     connect(Q_flow, conEqn.Q_flow) annotation (Line(points={{-110,80},{-110,80},
             {-20,80},{-10,80},{-10,8}}, color={0,0,127}));
     connect(mWat_flow, conEqn.mWat_flow) annotation (Line(points={{-108,40},{-108,

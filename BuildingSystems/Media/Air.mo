@@ -780,21 +780,21 @@ First implementation.
   // In the assignments below, we compute cv as OpenModelica
   // cannot evaluate cv=cp-R as defined in GasProperties.
   constant GasProperties dryair(
-    R = Modelica.Media.IdealGases.Common.SingleGasesData.Air.R,
-    MM = Modelica.Media.IdealGases.Common.SingleGasesData.Air.MM,
-    cp = BuildingSystems.Utilities.Psychrometrics.Constants.cpAir,
-    cv = BuildingSystems.Utilities.Psychrometrics.Constants.cpAir
+    R =    Modelica.Media.IdealGases.Common.SingleGasesData.Air.R,
+    MM =   Modelica.Media.IdealGases.Common.SingleGasesData.Air.MM,
+    cp =   BuildingSystems.Utilities.Psychrometrics.Constants.cpAir,
+    cv =   BuildingSystems.Utilities.Psychrometrics.Constants.cpAir
              -Modelica.Media.IdealGases.Common.SingleGasesData.Air.R)
     "Dry air properties";
   constant GasProperties steam(
-    R = Modelica.Media.IdealGases.Common.SingleGasesData.H2O.R,
-    MM = Modelica.Media.IdealGases.Common.SingleGasesData.H2O.MM,
-    cp = BuildingSystems.Utilities.Psychrometrics.Constants.cpSte,
-    cv = BuildingSystems.Utilities.Psychrometrics.Constants.cpSte
+    R =    Modelica.Media.IdealGases.Common.SingleGasesData.H2O.R,
+    MM =   Modelica.Media.IdealGases.Common.SingleGasesData.H2O.MM,
+    cp =   BuildingSystems.Utilities.Psychrometrics.Constants.cpSte,
+    cv =   BuildingSystems.Utilities.Psychrometrics.Constants.cpSte
              -Modelica.Media.IdealGases.Common.SingleGasesData.H2O.R)
     "Steam properties";
 
-  constant Real k_mair = steam.MM/dryair.MM "Ratio of molar weights";
+  constant Real k_mair =  steam.MM/dryair.MM "Ratio of molar weights";
 
   constant Modelica.SIunits.MolarMass[2] MMX={steam.MM,dryair.MM}
     "Molar masses of components";

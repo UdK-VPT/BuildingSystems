@@ -6,3 +6,4 @@ MarkerStyle.None, MarkerStyle.Cross});
 createPlot(id=2, position={35, 30, 535, 195},
   y={"heaHigPow.m_flow"},
 range={0.0, 1200.0, -0.2, 0.2}, grid=true, subPlot=2, leftTitleType=1, bottomTitleType=1, colors={{0,0,255}});
+

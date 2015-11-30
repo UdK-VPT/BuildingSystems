@@ -12,3 +12,4 @@ createPlot(id = 1,
  filename = "EquationOfTime.mat",
  leftTitleType = 1,
  bottomTitleType = 1);
+

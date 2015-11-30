@@ -7,23 +7,16 @@ record FlowControlled
     BuildingSystems.Fluid.Movers.BaseClasses.Characteristics.efficiencyParameters
     hydraulicEfficiency(
       V_flow={0},
-      eta={0.7}) "Hydraulic efficiency";
+      eta={0.7}) "Hydraulic efficiency (used if use_powerCharacteristic=false)";
   parameter
     BuildingSystems.Fluid.Movers.BaseClasses.Characteristics.efficiencyParameters
     motorEfficiency(
       V_flow={0},
-      eta={0.7}) "Electric motor efficiency";
-
-  // Power requires default values to avoid in Dymola the message
-  // Failed to expand the variable Power.V_flow
-  parameter BaseClasses.Characteristics.powerParameters power(V_flow={0}, P={0})
-    "Volume flow rate vs. electrical power consumption"
-    annotation (Dialog(enable=use_powerCharacteristic));
+      eta={0.7})
+    "Electric motor efficiency (used if use_powerCharacteristic=false)";
 
   parameter Boolean motorCooledByFluid=true
     "If true, then motor heat is added to fluid stream";
-  parameter Boolean use_powerCharacteristic=false
-    "Use powerCharacteristic instead of efficiencyCharacteristic";
 
   annotation(defaultComponentPrefixes = "parameter",
              defaultComponentName = "per",
@@ -69,6 +62,37 @@ BuildingSystems.Fluid.Movers.Data.Generic_Nrpm</a>
 </html>",
 revisions="<html>
 <ul>
+<li>
+November 5, 2015, by Michael Wetter:<br/>
+Removed the performance record <code>power</code> and
+<code>use_powerCharacteristic</code>
+because
+<a href=\"modelica://BuildingSystems.Fluid.Movers.FlowControlled_dp\">
+BuildingSystems.Fluid.Movers.FlowControlled_dp</a>
+and
+<a href=\"modelica://BuildingSystems.Fluid.Movers.FlowControlled_m_flow\">
+BuildingSystems.Fluid.Movers.FlowControlled_m_flow</a>
+fix the flow rate or head, which can give a flow work that is higher
+than the power consumption specified in this record.
+Hence, users should use the efficiency data for this model.
+The record has been moved to
+<a href=\"modelica://BuildingSystems.Fluid.Movers.Data.SpeedControlled_y\">
+BuildingSystems.Fluid.Movers.Data.SpeedControlled_y</a>
+as it makes sense to use it for the movers
+<a href=\"modelica://BuildingSystems.Fluid.Movers.FlowControlled_Nrpm\">
+BuildingSystems.Fluid.Movers.FlowControlled_Nrpm</a>
+and
+<a href=\"modelica://BuildingSystems.Fluid.Movers.FlowControlled_y\">
+BuildingSystems.Fluid.Movers.FlowControlled_y</a>.<br/>
+This is for
+<a href=\"modelica://https://github.com/lbl-srg/modelica-buildings/issues/457\">
+issue 457</a>.
+</li>
+<li>
+September 2, 2015, by Michael Wetter:<br/>
+Improved documentation for
+<a href=\"modelica://https://github.com/lbl-srg/modelica-buildings/issues/457\">
+issue 457</a>.
 <li>
 January 6, 2015, by Michael Wetter:<br/>
 Revised record for OpenModelica.

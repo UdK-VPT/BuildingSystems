@@ -5,3 +5,4 @@ range={0.0, 200.0, 40.0, 200.0}, grid=true, filename="Power.mat", leftTitleType=
 createPlot(id=1, position={55, 50, 900, 323},
  y={"pump_Nrpm.per.N_nominal", "pump_Nrpm.Nrpm"},
  range={0.0, 200.0, 2200.0, 3600.0}, grid=true, subPlot=2, leftTitleType=1, bottomTitleType=1, colors={{0,0,255}, {255,0,0}});
+

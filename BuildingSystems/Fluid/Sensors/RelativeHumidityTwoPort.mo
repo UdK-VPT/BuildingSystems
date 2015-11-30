@@ -16,6 +16,8 @@ model RelativeHumidityTwoPort "Ideal two port relative humidity sensor"
 protected
   Real phiMed(unit="1", min=0, start=phi_start)
     "Relative humidity to which the sensor is exposed to";
+
+protected
   Modelica.SIunits.Temperature T_a
     "Temperature of the medium flowing from port_a to port_b";
   Medium.MassFraction Xi_a[Medium.nXi]

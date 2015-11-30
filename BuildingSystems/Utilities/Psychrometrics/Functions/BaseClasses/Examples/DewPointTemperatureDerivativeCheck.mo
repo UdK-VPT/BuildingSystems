@@ -10,7 +10,7 @@ model DewPointTemperatureDerivativeCheck
 initial equation
   y=y_comp;
 equation
-  T = 273.15 + 50 + time^3 * 50;
+  T =  273.15 + 50 + time^3 * 50;
   y=BuildingSystems.Utilities.Psychrometrics.Functions.pW_TDewPoi(T=T);
   der(y)=der(y_comp);
   err = y-y_comp;
