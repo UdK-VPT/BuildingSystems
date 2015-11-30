@@ -34,10 +34,6 @@ model ZoneTemplateAirvolume3D
     "Size of FiniteVolumes in Y-direction"   annotation (Dialog(tab = "Airvolume", group = "Airvolume Discretization"));
   parameter Modelica.SIunits.Length dzVec[elemZ] = fill(height/elemZ,elemZ)
     "Size of FiniteVolumes in Z-direction"   annotation (Dialog(tab = "Airvolume", group = "Airvolume Discretization"));
-  // visualisation of the FV
-  parameter Boolean vis3d = false "visualization" annotation (choices(choice=false
-        "visualization off",                                                           choice=true
-        "visualization on"), Dialog(tab = "Airvolume", group = "Additional Parameter"));
   parameter Modelica.SIunits.Temp_K T_start = 293.15 "Start temperature";
   /********************************************************************/
   //dim = {3, 3},
@@ -84,7 +80,6 @@ model ZoneTemplateAirvolume3D
     length=length,
     height=width,
     width=height,
-    vis3d=vis3d,
     nConstructions1=nConstructions1,
     nConstructions2=nConstructions2,
     nConstructions3=nConstructions3,
