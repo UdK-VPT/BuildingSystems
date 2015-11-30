@@ -97,8 +97,7 @@ model ThermalModelHouse3D "Model of the thermal model house in 3D description."
       surf5nCon=[1,1,1,1; 1,1,1,1; 1,1,1,1; 1,1,1,1],
       surf6ai=[1,1,1,1; 2,2,2,2; 3,3,3,3; 4,4,4,4],
       surf6aj=[1,2,3,4; 1,2,3,4; 1,2,3,4; 1,2,3,4],
-      surf6nCon=[1,1,1,1; 1,1,1,1; 1,1,1,1; 1,1,1,1],
-      vis3d=false)
+      surf6nCon=[1,1,1,1; 1,1,1,1; 1,1,1,1; 1,1,1,1])
       annotation (Placement(transformation(extent={{30,-10},{50,10}})));
 
       //// WALLS ///////////////////////////////////////////////////////////

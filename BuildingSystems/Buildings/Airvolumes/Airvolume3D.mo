@@ -362,7 +362,6 @@ parameter Modelica.SIunits.Length width
   /***************************************************************************/
 
   parameter Boolean Heatinside = true "Flag for Heat sources" annotation (HideResult=true);
-  parameter Boolean vis3d = false "Flag for visualisation";
   parameter Modelica.SIunits.Temp_K T_start = 293.15 "Start temperature";
 
   // positions
@@ -404,30 +403,7 @@ parameter Modelica.SIunits.Length width
       bcWallSouth={{{(if k == 1 then true else false) for i in 1:elemX} for k in
               1:elemZ} for j in 1:elemY},
       bcWallNorth={{{(if k == elemZ then true else false) for i in 1:elemX} for k in
-              1:elemZ} for j in 1:elemY}) if not vis3d;
-
-  // FV elements 3d Vis
-    BuildingSystems.Buildings.Airvolumes.Airvolume3D.FiniteVolumes.FVelement3dThermal
-      box3d[elemY,elemZ,elemX](
-      each T_start=T_start,
-      posX={{{posXVec[i] for i in 1:elemX} for k in 1:elemZ} for j in 1:elemY},
-      posY={{{posYVec[j] for i in 1:elemX} for k in 1:elemZ} for j in 1:elemY},
-      posZ={{{posZVec[k] for i in 1:elemX} for k in 1:elemZ} for j in 1:elemY},
-      dimVec={{{{dxVec[i],dyVec[j],dzVec[k]} for i in 1:elemX} for k in 1:elemZ}
-          for j in 1:elemY},
-      each parVis=parameterVis,
-      bcWallWest={{{(if i == 1 then true else false) for i in 1:elemX} for k in
-          1:elemZ} for j in 1:elemY},
-      bcWallEast={{{(if i == elemX then true else false) for i in 1:elemX} for k in
-              1:elemZ} for j in 1:elemY},
-      bcWallFloor={{{(if j == 1 then true else false) for i in 1:elemX} for k in
-              1:elemZ} for j in 1:elemY},
-      bcWallCeiling={{{(if j == elemY then true else false) for i in 1:elemX} for k in
-              1:elemZ} for j in 1:elemY},
-      bcWallSouth={{{(if k == 1 then true else false) for i in 1:elemX} for k in
-              1:elemZ} for j in 1:elemY},
-      bcWallNorth={{{(if k == elemZ then true else false) for i in 1:elemX} for k in
-              1:elemZ} for j in 1:elemY}) if vis3d;
+              1:elemZ} for j in 1:elemY});
 
   BuildingSystems.Buildings.Airvolumes.Airvolume3D.FlowConnections.FlowConnectionX
       conx[elemY,elemZ,elemX - 1] annotation (HideResult=true);
@@ -443,124 +419,50 @@ parameter Modelica.SIunits.Length width
   BuildingSystems.Buildings.Airvolumes.Airvolume3D.FlowConnections.ZoneHeatConductionZ
       zHC_z[elemY,elemZ - 1,elemX] annotation (HideResult=true);
 
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFwest[elemY,elemZ]
-      "Interface Airvolumes - Wall"
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFwest[elemY,
+      elemZ] "Interface Airvolumes - Wall"
                                    annotation (HideResult=true);
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHwest[elemY,elemZ]
-      "Interface Airvolumes - Wall"
-                                   annotation (HideResult=true);
-
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFeast[elemY,elemZ]
-      "Interface Airvolumes - Wall"
-                                   annotation (HideResult=true);
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHeast[elemY,elemZ]
-      "Interface Airvolumes - Wall"
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHwest[elemY,
+      elemZ] "Interface Airvolumes - Wall"
                                    annotation (HideResult=true);
 
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFfloor[elemZ,elemX]
-      "Interface Airvolumes - Wall"
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFeast[elemY,
+      elemZ] "Interface Airvolumes - Wall"
                                    annotation (HideResult=true);
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHfloor[elemZ,elemX]
-      "Interface Airvolumes - Wall"
-                                   annotation (HideResult=true);
-
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFroof[elemZ,elemX]
-      "Interface Airvolumes - Wall"
-                                   annotation (HideResult=true);
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHroof[elemZ,elemX]
-      "Interface Airvolumes - Wall"
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHeast[elemY,
+      elemZ] "Interface Airvolumes - Wall"
                                    annotation (HideResult=true);
 
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFsouth[elemY,elemX]
-      "Interface Airvolumes - Wall"
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFfloor[elemZ,
+      elemX] "Interface Airvolumes - Wall"
                                    annotation (HideResult=true);
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHsouth[elemY,elemX]
-      "Interface Airvolumes - Wall"
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHfloor[elemZ,
+      elemX] "Interface Airvolumes - Wall"
                                    annotation (HideResult=true);
 
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFnorth[elemY,elemX]
-      "Interface Airvolumes - Wall"
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFroof[elemZ,
+      elemX] "Interface Airvolumes - Wall"
                                    annotation (HideResult=true);
-  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHnorth[elemY,elemX]
-      "Interface Airvolumes - Wall"
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHroof[elemZ,
+      elemX] "Interface Airvolumes - Wall"
+                                   annotation (HideResult=true);
+
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFsouth[elemY,
+      elemX] "Interface Airvolumes - Wall"
+                                   annotation (HideResult=true);
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHsouth[elemY,
+      elemX] "Interface Airvolumes - Wall"
+                                   annotation (HideResult=true);
+
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portFnorth[elemY,
+      elemX] "Interface Airvolumes - Wall"
+                                   annotation (HideResult=true);
+  BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHnorth[elemY,
+      elemX] "Interface Airvolumes - Wall"
                                    annotation (HideResult=true);
 
   /********************************************************************/
   equation
-  /********************************************************************/
-  if vis3d then
-  //
-  // inside Flow-Connections
-  for iy in 1:elemY loop
-      for iz in 1:elemZ loop
-        for ix in 1:elemX loop
-
-            //west-east
-            if ix < elemX then
-               connect(box3d[iy,iz,ix].portX2, conx[iy,iz,ix].port_a);
-               connect(conx[iy,iz,ix].port_b, box3d[iy,iz,ix+1].portX1);
-               connect(box3d[iy,iz,ix].portHeatIntern, zHC_x[iy,iz,ix].port_a);
-               connect(zHC_x[iy,iz,ix].port_b, box3d[iy,iz,ix+1].portHeatIntern);
-            end if;
-
-            //south-north
-            if iy < elemY then
-              connect(box3d[iy,iz,ix].portY2, cony[iy,iz,ix].port_a);
-              connect(cony[iy,iz,ix].port_b, box3d[iy+1,iz,ix].portY1);
-              connect(box3d[iy,iz,ix].portHeatIntern, zHC_y[iy,iz,ix].port_a);
-              connect(zHC_y[iy,iz,ix].port_b, box3d[iy+1,iz,ix].portHeatIntern);
-            end if;
-
-            //front - back
-            if iz < elemZ then
-              connect(box3d[iy,iz,ix].portZ2, conz[iy,iz,ix].port_a);
-              connect(conz[iy,iz,ix].port_b, box3d[iy,iz+1,ix].portZ1);
-              connect(box3d[iy,iz,ix].portHeatIntern, zHC_z[iy,iz,ix].port_a);
-              connect(zHC_z[iy,iz,ix].port_b, box3d[iy,iz+1,ix].portHeatIntern);
-            end if;
-
-        end for;
-      end for;
-  end for;
-
-  // Wall-Fluid-Connections
-  for iy in 1:elemY loop
-    for iz in 1:elemZ loop
-    // west
-    connect(portFwest[iy,iz], box3d[iy,iz,1].portX1);
-    connect(portHwest[iy,iz], box3d[iy,iz,1].portHeatExtern);
-    // east
-    connect(portFeast[iy,iz], box3d[iy,iz,elemX].portX2);
-    connect(portHeast[iy,iz], box3d[iy,iz,elemX].portHeatExtern);
-    //
-    end for;
-  end for;
-
-  for iz in 1:elemZ loop
-    for ix in 1:elemX loop
-    //floor
-    connect(portFfloor[iz,ix], box3d[1,iz,ix].portY1);
-    connect(portHfloor[iz,ix], box3d[1,iz,ix].portHeatExtern);
-    //roof
-    connect(portFroof[iz,ix], box3d[elemY,iz,ix].portY2);
-    connect(portHroof[iz,ix], box3d[elemY,iz,ix].portHeatExtern);
-    //
-    end for;
-  end for;
-
-  for iy in 1:elemY loop
-    for ix in 1:elemX loop
-     // south
-    connect(portFsouth[iy,ix], box3d[iy,1,ix].portZ1);
-    connect(portHsouth[iy,ix], box3d[iy,1,ix].portHeatExtern);
-    // north
-    connect(portFnorth[iy,ix], box3d[iy,elemZ,ix].portZ2);
-    connect(portHnorth[iy,ix], box3d[iy,elemZ,ix].portHeatExtern);
-    //
-    end for;
-  end for;
-  /********************************************************************/
-  else
   /********************************************************************/
   // inside Flow-Connections
   for iy in 1:elemY loop
@@ -632,7 +534,6 @@ parameter Modelica.SIunits.Length width
     end for;
   end for;
 
-  end if;
   /********************************************************************/
   end zone3Dbuilt;
 
@@ -1116,143 +1017,7 @@ parameter Modelica.SIunits.Length width
                 fillPattern=FillPattern.Solid)}));
     end FVelementThermal;
 
-    model visual3d "Visualization"
 
-      //parameter SIunits.Time updateInterval = 25.0
-      //annotation (HideResult=true);
-
-      // 1:T, 2: Ux, 3:Uy, 4:Uz, 5:Mag(U)
-      //parameter Integer var
-      //annotation (HideResult=true);
-      parameter Real r = 0.5
-      annotation (HideResult=true);
-      parameter Real g = 0.5
-      annotation (HideResult=true);
-      parameter Real b = 0.5
-      annotation (HideResult=true);
-
-      parameter Modelica.SIunits.Time updateInterval = 50
-      annotation (HideResult=true);
-
-     //parameter for scale
-      parameter Modelica.SIunits.Temp_K minTempVis3D= 293.15
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Temp_K maxTempVis3D= 293.15 + 15
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Velocity minVel= -0.15
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Velocity maxVel = 0.15
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Velocity minVelMag= 0.0
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Velocity maxVelMag= 0.025
-      annotation (HideResult=true);
-
-    end visual3d;
-
-    model FVelement3dThermal "Visualization of FVelement"
-      extends
-        BuildingSystems.Buildings.Airvolumes.Airvolume3D.FiniteVolumes.FVelementThermal;
-      extends
-        BuildingSystems.Buildings.Airvolumes.Airvolume3D.FiniteVolumes.visual3d;
-
-      Boolean initDone(start = false) "true, if initialization done"
-      annotation (HideResult=true);
-      parameter Integer var = 1
-      annotation (HideResult=true);
-      inner BuildingSystems.Utilities.Visualisation3D.Modelica3D.Update3D update3d(updateInterval=updateInterval)
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Length xVis3D = posX
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Length yVis3D = posZ
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Length zVis3D = posY
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Angle xAngleVis3D = 0.0
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Angle yAngleVis3D = 0.0
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Angle zAngleVis3D = 0.0
-      annotation (HideResult=true);
-      // normal
-      parameter Real xScaleVis3D = 0.75
-      annotation (HideResult=true);
-      parameter Real yScaleVis3D = 0.75
-      annotation (HideResult=true);
-      parameter Real zScaleVis3D = 0.75
-      annotation (HideResult=true);
-      //
-      parameter Real spaceX = 0
-      annotation (HideResult=true); //length + 1
-      parameter Modelica.SIunits.Length length = dimVec[3]
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Length width = dimVec[1]
-      annotation (HideResult=true);
-      parameter Modelica.SIunits.Length height = dimVec[2]
-      annotation (HideResult=true);
-      Real rVis3D
-      annotation (HideResult=true);
-      Real gVis3D
-      annotation (HideResult=true);
-      Real bVis3D
-      annotation (HideResult=true);
-      // finite volumes
-      BuildingSystems.Utilities.Visualisation3D.Modelica3D.Box shapeVis3D(name = "shape", width = width, length = length, height = height)
-      annotation (HideResult=true);
-      BuildingSystems.Utilities.Visualisation3D.Modelica3D.Material materialVis3D(name = "fluidMat",  r = r, g = g, b = b)
-      annotation (HideResult=true);
-
-    algorithm
-      when update3d.send then
-        if not initDone then
-          //  coordinate system
-          //Modelica3D.setObjectMaterial(shapeVis3Dtop.id,materialVis3D.id);
-          //Modelica3D.translate(shapeVis3Dtop.id,1.5*spaceX,1.5*spaceX, 2, update3d.frame);
-          //Modelica3D.rotate(shapeVis3Dtop.id, xAngleVis3D, yAngleVis3D, zAngleVis3D, update3d.frame);
-          //Modelica3D.scale(shapeVis3Dtop.id, xScaleVis3D, yScaleVis3D, zScaleVis3D, update3d.frame);
-           //
-          // normal for Boundary Conditions
-          BuildingSystems.Utilities.Visualisation3D.Modelica3D.setObjectMaterial(shapeVis3D.id,materialVis3D.id);
-          BuildingSystems.Utilities.Visualisation3D.Modelica3D.translate(shapeVis3D.id, xVis3D, yVis3D, zVis3D, update3d.frame);
-          BuildingSystems.Utilities.Visualisation3D.Modelica3D.rotate(shapeVis3D.id, xAngleVis3D, yAngleVis3D, zAngleVis3D, update3d.frame);
-          BuildingSystems.Utilities.Visualisation3D.Modelica3D.scale(shapeVis3D.id, xScaleVis3D, yScaleVis3D, zScaleVis3D, update3d.frame);
-         initDone := true;
-        end if;
-       // value
-       if (var ==1) then
-          (rVis3D,gVis3D,bVis3D) := BuildingSystems.Utilities.Visualisation3D.Modelica3D.RGB(
-                fluid.T,
-                minTempVis3D,
-                maxTempVis3D);
-       BuildingSystems.Utilities.Visualisation3D.Modelica3D.setMaterialColor(materialVis3D.id, rVis3D, gVis3D, bVis3D, update3d.frame);
-       elseif (var ==2) then
-          (rVis3D,gVis3D,bVis3D) := BuildingSystems.Utilities.Visualisation3D.Modelica3D.RGB(
-                vVec[1],
-                minVel,
-                maxVel);
-       BuildingSystems.Utilities.Visualisation3D.Modelica3D.setMaterialColor(materialVis3D.id, rVis3D, gVis3D, bVis3D, update3d.frame);
-       elseif (var ==4) then
-          (rVis3D,gVis3D,bVis3D) := BuildingSystems.Utilities.Visualisation3D.Modelica3D.RGB(
-                vVec[2],
-                minVel,
-                maxVel);
-       BuildingSystems.Utilities.Visualisation3D.Modelica3D.setMaterialColor(materialVis3D.id, rVis3D, gVis3D, bVis3D, update3d.frame);
-       elseif (var ==4) then
-          (rVis3D,gVis3D,bVis3D) := BuildingSystems.Utilities.Visualisation3D.Modelica3D.RGB(
-                vVec[3],
-                minVel,
-                maxVel);
-       BuildingSystems.Utilities.Visualisation3D.Modelica3D.setMaterialColor(materialVis3D.id, rVis3D, gVis3D, bVis3D, update3d.frame);
-       elseif (var ==5) then
-          (rVis3D,gVis3D,bVis3D) := BuildingSystems.Utilities.Visualisation3D.Modelica3D.RGB(
-                velMag,
-                minVelMag,
-                maxVelMag);
-       BuildingSystems.Utilities.Visualisation3D.Modelica3D.setMaterialColor(materialVis3D.id, rVis3D, gVis3D, bVis3D, update3d.frame);
-       end if;
-
-      end when;
-    end FVelement3dThermal;
 
     record FluidProp "Basic fluid properties"
        Modelica.SIunits.Temp_K T;
