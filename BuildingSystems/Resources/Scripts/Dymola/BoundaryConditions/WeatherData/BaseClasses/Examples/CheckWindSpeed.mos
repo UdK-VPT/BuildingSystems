@@ -13,3 +13,4 @@ createPlot(id = 1,
  filename = "CheckWindSpeed.mat",
  leftTitleType = 1,
  bottomTitleType = 1);
+

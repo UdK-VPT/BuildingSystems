@@ -3,9 +3,9 @@ package Tilt "List of possible constant values for surface tilt"
   extends Modelica.Icons.TypesPackage;
 
   constant Modelica.SIunits.Angle Ceiling = 0 "Tilt for ceiling";
-  constant Modelica.SIunits.Angle Floor = Modelica.Constants.pi
+  constant Modelica.SIunits.Angle Floor =   Modelica.Constants.pi
   "Tilt for floor";
-  constant Modelica.SIunits.Angle Wall = Modelica.Constants.pi/2
+  constant Modelica.SIunits.Angle Wall =    Modelica.Constants.pi/2
   "Tilt for wall";
 
 

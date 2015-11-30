@@ -13,7 +13,7 @@ model WaterVaporPressureDerivativeCheck
 initial equation
   y=y_comp;
 equation
-  X_w = 1.001 + 0.999/2*time^3;
+  X_w =  1.001 + 0.999/2*time^3;
   p = 101325+300*time^3;
 
   y=BuildingSystems.Utilities.Psychrometrics.Functions.pW_X(X_w=X_w, p=p);

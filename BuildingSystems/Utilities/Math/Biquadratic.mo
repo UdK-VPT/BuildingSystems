@@ -3,7 +3,7 @@ block Biquadratic "Biquadratic function"
   extends Modelica.Blocks.Interfaces.SI2SO;
   parameter Real a[6] "Coefficients";
 equation
-  y = BuildingSystems.Utilities.Math.Functions.biquadratic(a=a, x1=u1, x2=u2);
+  y =  BuildingSystems.Utilities.Math.Functions.biquadratic(a=a, x1=u1, x2=u2);
   annotation (Icon(graphics={Text(
           extent={{-88,40},{92,-32}},
           lineColor={160,160,164},
@@ -13,7 +13,7 @@ Documentation(info="<html>
 This block computes
 </p>
 <p align=\"center\" style=\"font-style:italic;\">
-  y = a<sub>1</sub> + a<sub>2</sub>  x<sub>1</sub>
+  y =   a<sub>1</sub> + a<sub>2</sub>  x<sub>1</sub>
         + a<sub>3</sub>  x<sub>1</sub><sup>2</sup>
         + a<sub>4</sub>  x<sub>2</sub> + a<sub>5</sub>  x<sub>2</sub><sup>2</sup>
         + a<sub>6</sub>  x<sub>1</sub>  x<sub>2</sub>

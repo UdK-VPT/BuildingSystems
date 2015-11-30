@@ -17,12 +17,10 @@ equation
   for i in 1:nRes.k loop
     connect(vol[i].ports[1], res[i].port_b) annotation (Line(
       points={{72,-8},{72,-10},{100,-10},{100,30},{90,30}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255}));
     connect(vol[i].ports[2], val.port_3) annotation (Line(
       points={{68,-8},{68,-10},{20,-10},{20,20}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255}));
 
   end for;
   annotation (experiment(

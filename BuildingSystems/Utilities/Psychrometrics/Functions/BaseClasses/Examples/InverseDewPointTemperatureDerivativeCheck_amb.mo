@@ -10,7 +10,7 @@ model InverseDewPointTemperatureDerivativeCheck_amb
 initial equation
   y=y_comp;
 equation
-  p_w = 611 + (7383-661)/2 + (7383-661)/2 * time^3;
+  p_w =  611 + (7383-661)/2 + (7383-661)/2 * time^3;
   y = BuildingSystems.Utilities.Psychrometrics.Functions.TDewPoi_pW_amb(p_w=p_w);
   der(y) = der(y_comp);
   err = y-y_comp;

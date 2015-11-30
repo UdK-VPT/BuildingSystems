@@ -64,49 +64,38 @@ model ResistanceVolumeFlowReversal
 equation
   connect(bou.ports[1],hea. port_a) annotation (Line(
       points={{-60,-20},{-40,-20}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255}));
   connect(pulse.y,hea. TSet) annotation (Line(
       points={{-59,50},{-50,50},{-50,-14},{-42,-14}},
-      color={0,0,127},
-      smooth=Smooth.None));
+      color={0,0,127}));
   connect(pump.m_flow_in, gain.y) annotation (Line(
       points={{29.8,-8},{29.8,50},{-19,50}},
-      color={0,0,127},
-      smooth=Smooth.None));
+      color={0,0,127}));
   connect(gain.u,pulse. y) annotation (Line(
       points={{-42,50},{-59,50}},
-      color={0,0,127},
-      smooth=Smooth.None));
+      color={0,0,127}));
   connect(hea.port_b,val. port_1) annotation (Line(
       points={{-20,-20},{-10,-20}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255}));
   connect(val.port_2, pump.port_a) annotation (Line(
       points={{10,-20},{20,-20}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255}));
   connect(const.y,val. y) annotation (Line(
       points={{-19,10},{0,10},{0,-8}},
-      color={0,0,127},
-      smooth=Smooth.None));
+      color={0,0,127}));
   connect(val.port_3,hea. port_a) annotation (Line(
       points={{0,-30},{0,-70},{-50,-70},{-50,-20},{-40,-20}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255}));
   for i in 1:nRes.k loop
     connect(pump.port_b, res[i].port_a) annotation (Line(
         points={{40,-20},{56,-20}},
-        color={0,127,255},
-        smooth=Smooth.None));
+        color={0,127,255}));
     connect(res[i].port_b, vol[i].ports[1]) annotation (Line(
       points={{76,-20},{80,-20},{80,-70},{52,-70},{52,-66}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255}));
     connect(vol[i].ports[2], val.port_3) annotation (Line(
       points={{48,-66},{48,-70},{0,-70},{0,-30}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255}));
   end for;
   annotation (experiment(
       StopTime=10000),

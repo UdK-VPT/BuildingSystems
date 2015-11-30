@@ -7,8 +7,7 @@ equation
   for i in 1:nRes.k loop
     connect(res[i].port_b, val.port_3) annotation (Line(
       points={{90,30},{100,30},{100,-10},{20,-10},{20,20}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255}));
   end for;
   annotation (experiment(
       StopTime=10000),

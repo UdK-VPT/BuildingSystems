@@ -13,7 +13,7 @@ model SaturationPressureDerivativeCheck
 initial equation
   y=y_comp;
 equation
-  T = TMin + (TMax-TMin)/2 + (TMax-TMin)/2*time^3;
+  T =  TMin + (TMax-TMin)/2 + (TMax-TMin)/2*time^3;
   y=BuildingSystems.Utilities.Psychrometrics.Functions.saturationPressure(TSat=T);
   der(y)=der(y_comp);
   err = y-y_comp;
