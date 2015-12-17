@@ -177,9 +177,9 @@ equation
 <p>by default (see example BuildingsSystems.Buildings.Examples.ThermalModelHouse3D).</p>
 <p>If the number of constructions of one surface are greater than one the corresponding Surface Placement must providing information about the spatial arrangement of each construction. Figure 3 works as </p>
 <p>the basis for this action, an example can be found under BuildingsSystems.Buildings.Examples.ThermalModelHouse3Dwindow.</p>
-<p><br><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/wallPlacementS.png\"/></p>
-<p><br><u><i>Please note that a lot of parameters (e.g. the dimension of the gridSurface1, the number of the finite volumes corresponding to this surface and the surface construction) must be consistent to each other <b>and</b> to the connected wall element.</i></u></p>
-<p><br><br>More informations about the zonal approach underneath could be found in:</p>
+<p><br/><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/wallPlacementS.png\"/></p>
+<p><br/><u><i>Please note that a lot of parameters (e.g. the dimension of the gridSurface1, the number of the finite volumes corresponding to this surface and the surface construction) must be consistent to each other <b>and</b> to the connected wall element.</i></u></p>
+<p><br/><br/>More informations about the zonal approach underneath could be found in:</p>
 <p>Mucha, K., Nytsch-Geusen, C. &amp; Streuling, C. (2014). <i>Ein simulationsbasierter Ansatz zur Analyse von Hitzestre&szlig;ereignissen in Innenr&auml;umen</i>, Proceedings of the 5th German-Austrian IBPSA Conference, 22.-24. September, Aachen Germany. </p>
 </html>"));
 end ZoneTemplateAirvolume3D;

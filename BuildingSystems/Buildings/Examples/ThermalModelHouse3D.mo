@@ -470,7 +470,7 @@ equation
 <li>(Right-) Zone 2: equidistant discretised walls, 3D equidistant discretised airvolume (4x4x4).</li>
 <li>Interconnecting wall (wall7): equidistant discretised wall (4x4)</li>
 </ul>
-<p><br><br><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/therModelhouse/modelhouseFas.JPG\" alt=\"ThermalModelhouse\"/></p>
+<p><br/><br/><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/therModelhouse/modelhouseFas.JPG\" alt=\"ThermalModelhouse\"/></p>
 <p>Further Informations about the thermal modelhouse could be found here:<a href=\"http://www.thermisches-modellhaus.de/sites/Home.html\"> www.thermisches-modellhaus.de</a></p>
 </html>"));
 end ThermalModelHouse3D;
