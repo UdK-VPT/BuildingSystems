@@ -29,7 +29,7 @@ under the &ldquo;Modelica License 2&rdquo; (if not explicitly noted otherwise).<
 <a href=\"#Frequently_Asked_Questions-outline\">Frequently Asked Questions</a><br/>
 </p>
 
-<hr>
+<hr/>
 
 <h4><a name=\"The_Modelica_License_2-outline\"></a>The Modelica License 2</h4>
 
@@ -301,7 +301,7 @@ action. This section shall survive the termination of this License.</p>
         or be responsible for such uses by You.</li>
 </ol>
 
-<hr>
+<hr/>
 
 <h4><a name=\"How_to_Apply_the_Modelica_License_2-outline\"></a>
 How to Apply the Modelica License 2</h4>
@@ -365,7 +365,7 @@ http://www.modelica.org/licenses/ModelicaLicense2.html</a>
 in directory <b>&lt;library&gt;/Resources/Documentation/ModelicaLicense2.html</b>.
 </p>
 
-<hr>
+<hr/>
 
 <h5><a name=\"Frequently_Asked_Questions-outline\"></a>
 Frequently Asked Questions</h5>
