@@ -14,7 +14,7 @@ model ParallePipes
     diameter=0.05,
     dp_nominal=10000)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  BoundaryConditions.Kusuda0D kusuda0D(
+  BoundaryConditions.GroundTemperature0D kusuda0D(
     A=8,
     z=1,
     Tmean=283.15,

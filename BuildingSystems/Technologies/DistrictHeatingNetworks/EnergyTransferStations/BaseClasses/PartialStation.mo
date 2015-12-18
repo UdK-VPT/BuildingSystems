@@ -18,6 +18,11 @@ extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface;
     redeclare package Medium2 = Medium,
     eps=eps) annotation (Placement(transformation(extent={{-40,-80},{-20,-100}})));
   parameter Real eps=0.9 "Heat exchanger effectiveness";
+  Modelica.Blocks.Interfaces.RealInput Tset "Heating set temperature"
+    annotation (Placement(transformation(
+        extent={{-20,-20},{20,20}},
+        rotation=-90,
+        origin={30,100})));
 equation
 
   connect(hex.port_b1, port_b) annotation (Line(

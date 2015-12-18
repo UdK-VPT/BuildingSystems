@@ -27,19 +27,18 @@ model Station
     addPowerToMedium=addPowerToMedium)
     annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
   Controls.Continuous.LimPID conPID(
-    yMin=m_flow_nominalDHN*0.01,
     yMax=m_flow_nominalDHN,
-    k=10,
+    yMin=m_flow_nominalDHN*0.05,
+    controllerType=Modelica.Blocks.Types.SimpleController.PI,
+    k=50,
     Ti=5)                           annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=-90,
         origin={-84,34})));
   Utilities.Tanh tanhZone(factor=factor_m_flow)
     annotation (Placement(transformation(extent={{0,60},{20,80}})));
-  Modelica.Blocks.Sources.Constant constZone(k=Tset)
-    annotation (Placement(transformation(extent={{-24,58},{-10,72}})));
   Fluid.Sensors.Temperature senTemSupply(redeclare package Medium = Medium)
-    annotation (Placement(transformation(extent={{-96,-50},{-76,-30}})));
+    annotation (Placement(transformation(extent={{-94,-54},{-74,-34}})));
   Fluid.Movers.FlowControlled_m_flow pumpHeating(redeclare package Medium =
         Medium, m_flow_nominal=m_flow_nominalHeating,
     allowFlowReversal=false,
@@ -48,7 +47,7 @@ model Station
   Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
     p_start=300000,
-    V_start=1) annotation (Placement(transformation(extent={{-50,0},{-30,20}})));
+    V_start=1) annotation (Placement(transformation(extent={{-36,6},{-16,26}})));
   parameter Modelica.SIunits.HeatFlowRate Q_nominal
     "Nominal Heat power in the Heat Transfer Station";
   parameter Modelica.SIunits.MassFlowRate m_flow_nominalDHN = 1.05*m_flow_nominalHeating
@@ -79,9 +78,6 @@ model Station
     "un- or smooth changes of the supply set temperature. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
   parameter Real factor_m_flow = 0.7
     "un- or smooth changes of mass flow rate of the heating system. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
-
-  parameter Modelica.SIunits.Temperature Tset
-    "Heating set temperature in the building";
   parameter Boolean addPowerToMedium=false
     "Set to false to avoid any power in the pump model (=heat and flow work) being added to medium (may give simpler equations)";
 equation
@@ -98,7 +94,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(pumpDHN.port_b, hex.port_a1) annotation (Line(
-      points={{-70,0},{-70,-20},{-100,-20},{-100,-96},{-40,-96}},
+      points={{-70,0},{-70,-20},{-98,-20},{-98,-96},{-40,-96}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(conPID.u_s, tanhAmbient.y) annotation (Line(
@@ -113,21 +109,9 @@ equation
       points={{-10,100},{-10,73},{0,73}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(constZone.y, tanhZone.SetValue) annotation (Line(
-      points={{-9.3,65},{0,65}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(senTemSupply.port, hex.port_b2) annotation (Line(
-      points={{-86,-50},{-86,-84},{-40,-84}},
-      color={0,127,255},
-      smooth=Smooth.None));
   connect(senTemSupply.T, conPID.u_m) annotation (Line(
-      points={{-79,-40},{-66,-40},{-66,34},{-72,34}},
+      points={{-77,-44},{-66,-44},{-66,34},{-72,34}},
       color={0,0,127},
-      smooth=Smooth.None));
-  connect(hex.port_b2, pumpHeating.port_a) annotation (Line(
-      points={{-40,-84},{-60,-84},{-60,0},{0,0}},
-      color={0,127,255},
       smooth=Smooth.None));
   connect(pumpHeating.m_flow_in, m_flow_signal.y) annotation (Line(
       points={{9.8,12},{9.8,30},{3,30}},
@@ -138,7 +122,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(externalIdealHeater.port_b, hex.port_a2) annotation (Line(
-      points={{80,0},{90,0},{90,-84},{-20,-84}},
+      points={{80,0},{92,0},{92,-84},{-20,-84}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(externalIdealHeater.Q_flowHea, HeatPort) annotation (Line(
@@ -153,8 +137,20 @@ equation
       points={{32,-40},{48,-40},{48,-7},{59,-7}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(hex.port_b2, exp.port_a) annotation (Line(
-      points={{-40,-84},{-60,-84},{-60,0},{-40,0}},
+  connect(Tset, tanhZone.SetValue) annotation (Line(
+      points={{30,100},{30,52},{-18,52},{-18,64},{-4,64},{-4,65},{0,65}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(hex.port_b2, senTemSupply.port) annotation (Line(
+      points={{-40,-84},{-84,-84},{-84,-54}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(hex.port_b2, pumpHeating.port_a) annotation (Line(
+      points={{-40,-84},{-60,-84},{-60,0},{0,0}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(exp.port_a, pumpHeating.port_a) annotation (Line(
+      points={{-26,6},{-16,6},{-16,0},{0,0}},
       color={0,127,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
