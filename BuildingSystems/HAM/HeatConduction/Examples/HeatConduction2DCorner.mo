@@ -8,8 +8,7 @@ model HeatConduction2DCorner
     lengthX=0.1,
     lengthY=0.1,
     lengthZ=1.0,
-    material=concrete);
-    BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete concrete;
+    material=BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete());
   end Concrete;
 
   model Insulation
@@ -17,8 +16,7 @@ model HeatConduction2DCorner
     lengthX=0.1,
     lengthY=0.1,
     lengthZ=1.0,
-    material=insulation);
-    BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation insulation;
+    material=BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation());
   end Insulation;
 
   Insulation ele13
