@@ -7,15 +7,15 @@ model Building1Zone0DDistrict
     final AGround = length*width,
     final AInner = 2.0 * length * width * (nSto-1) // area of interior ceilings
       + (2.0 * integer(width/4.0+0.5) * length + 2.0 * integer(length/4.0+0.5) * width) * nSto, // area of interior ceilings
-    final UAmbient = (ARoof*URoof+AFacade*UFacade)/(ARoof+AFacade),
-    UGround = 1.0,
-    UInner = 1.0,
+    final UValAmbient = (ARoof*URoof+AFacade*UFacade)/(ARoof+AFacade),
+    UValGround = 1.0,
+    UValInner = 1.0,
     final CAmbient = 1000.0*VAir,
     final CGround = 1000.0*VAir,
     final CInner = 1000.0*VAir,
     final nWindows = 4,
     AWindow = {fWin*length*heightSto*nSto,fWin*width*heightSto*nSto,fWin*length*heightSto*nSto,fWin*width*heightSto*nSto},
-    UWindow = {2.0,2.0,2.0,2.0});
+    UValWindow = {2.0,2.0,2.0,2.0});
   parameter Modelica.SIunits.Length length = 10.0
     "Length of the building";
   parameter Modelica.SIunits.Length width = 10.0

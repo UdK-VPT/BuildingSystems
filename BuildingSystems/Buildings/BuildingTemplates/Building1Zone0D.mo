@@ -45,16 +45,16 @@ model Building1Zone0D
   parameter Modelica.SIunits.HeatCapacity CGround = 1.0
     "Total heat capacity of the building groundplate"
     annotation(Dialog(tab="Constructions",group="Ground constructions"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UAmbient = 1.0
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValAmbient = 1.0
     "Mean heat loss coefficient of the building envelope"
     annotation(Dialog(tab="Constructions",group="Ambient constructions"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UGround = 1.0
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValGround = 1.0
     "Mean heat loss coefficient of the building groundplate"
     annotation(Dialog(tab="Constructions",group="Ground constructions"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UInner = 1.0
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValInner = 1.0
     "Mean heat loss coefficient of internal building construction"
     annotation(Dialog(tab="Constructions",group="Inner constructions"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UWindow[nWindows] = fill(1.0,nWindows)
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValWindow[nWindows] = fill(1.0,nWindows)
     "Heat loss coefficient of each window"
     annotation(Dialog(tab="Constructions",group="Windows"));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
@@ -77,7 +77,7 @@ model Building1Zone0D
     final constructionData.thickness={1.0},
     final constructionData.material.rho={1000.0},
     final constructionData.material.c={CAmbient/(ambientConstructions.constructionData.material[1].rho*AAmbient*ambientConstructions.constructionData.thickness[1])},
-    final constructionData.material.lambda={(1.0/(-1.0/alphaAmb-1.0/alphaIns+1.0/UAmbient)*ambientConstructions.constructionData.thickness[1])})
+    final constructionData.material.lambda={(1.0/(-1.0/alphaAmb-1.0/alphaIns+1.0/UValAmbient)*ambientConstructions.constructionData.thickness[1])})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-20})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes groundConstructions(
     final abs_2 = 0.0,
@@ -88,7 +88,7 @@ model Building1Zone0D
     final constructionData.thickness={1.0},
     final constructionData.material.rho={1000.0},
     final constructionData.material.c={CGround/(groundConstructions.constructionData.material[1].rho*AGround*groundConstructions.constructionData.thickness[1])},
-    final constructionData.material.lambda={(1.0/(-1.0/alphaIns-1.0/alphaGround+1.0/UGround)*groundConstructions.constructionData.thickness[1])})
+    final constructionData.material.lambda={(1.0/(-1.0/alphaIns-1.0/alphaGround+1.0/UValGround)*groundConstructions.constructionData.thickness[1])})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-4,-42})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes innerConstructions(
     final abs_2 = 0.0,
@@ -99,12 +99,12 @@ model Building1Zone0D
     final constructionData.thickness={1.0},
     final constructionData.material.rho={1000.0},
     final constructionData.material.c={CInner/(innerConstructions.constructionData.material[1].rho*AInner*innerConstructions.constructionData.thickness[1])},
-    final constructionData.material.lambda={(1.0/(-1.0/alphaIns-1.0/alphaIns+1.0/UInner)*innerConstructions.constructionData.thickness[1])})
+    final constructionData.material.lambda={(1.0/(-1.0/alphaIns-1.0/alphaIns+1.0/UValInner)*innerConstructions.constructionData.thickness[1])})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={40,-2})));
   BuildingSystems.Buildings.Constructions.Windows.Window window[nWindows](
     final angleDegAzi= {angleDegAziWindow[i] + angleDegAziBuilding for i in 1:nWindows},
     final angleDegTil = angleDegTilWindow,
-    UValue = UWindow,
+    UVal = UValWindow,
     each width = 1.0,
     final height={AWindow[i]/window[i].width for i in 1:nWindows})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,20})));

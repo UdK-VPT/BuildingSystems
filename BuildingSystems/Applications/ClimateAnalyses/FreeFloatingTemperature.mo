@@ -18,10 +18,10 @@ model FreeFloatingTemperature
       CAmbient=55347250.0,
       CInner=4435200.0,
       CGround=480000.0,
-      UAmbient=1.0,
-      UInner=4.0,
-      UGround=1.0,
-      UWindow={2.0},
+      UValAmbient=1.0,
+      UValInner=4.0,
+      UValGround=1.0,
+      UValWindow={2.0},
       calcIdealLoads=false)
       annotation (Placement(transformation(extent={{-10,-28},{10,-8}})));
 

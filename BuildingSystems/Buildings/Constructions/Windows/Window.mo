@@ -38,7 +38,7 @@ model Window
     geo.point.z={0.0,0.0,0.0,0.0},
     epsilon = fill(epsilon_1,nY,nZ))
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
-  parameter Real framePortion = 0.1
+  parameter Real framePortion = 0.2
     "Frame portion of the window"
     annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Modelica.SIunits.Length thicknessPane = 0.006
@@ -49,7 +49,7 @@ model Window
   parameter Modelica.SIunits.SpecificHeatCapacity cPane = 1000.0
     "Specific heat capacity of the panes"
     annotation(Dialog(tab = "General", group = "Thermal properties"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValue = 3.0
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer UVal = 3.0
     "Mean U-value of the window"
     annotation(Dialog(tab = "General", group = "Thermal properties"));
   parameter Real tauDir0 = 0.7
@@ -88,7 +88,7 @@ model Window
    annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
   BuildingSystems.HAM.HeatConduction.HeatConduction1D heatTransfer(
     material(
-      lambda = UValue*thicknessPane,
+      lambda = UVal*thicknessPane,
       rho = rhoPane,
       c = cPane),
     lengthX=thicknessPane,
