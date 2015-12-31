@@ -33,7 +33,11 @@ model SingleFamilyHouseEnEV2014
     UWindow1=1.4,
     UWindow2=1.4,
     UWindow3=1.4,
-    UWindow4=1.4)
+    UWindow4=1.4,
+    gWindow1 = 0.6, // guess value
+    gWindow2 = 0.6, // guess value
+    gWindow3 = 0.6, // guess value
+    gWindow4 = 0.6) // guess value)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,14})));

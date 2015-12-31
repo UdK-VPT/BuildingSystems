@@ -33,7 +33,11 @@ model Rowhouse1918
     UWindow1=2.6,
     UWindow2=2.6,
     UWindow3=2.6,
-    UWindow4=2.6)
+    UWindow4=2.6,
+    gWindow1 = 0.75, // guess value
+    gWindow2 = 0.75, // guess value
+    gWindow3 = 0.75, // guess value
+    gWindow4 = 0.75) // guess value)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,14})));

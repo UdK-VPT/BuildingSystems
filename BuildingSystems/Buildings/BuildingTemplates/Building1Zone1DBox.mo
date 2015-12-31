@@ -78,6 +78,9 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UWindow1 = 1.0
     "U-value of window1"
     annotation(Dialog(tab="Transparent constructions",group="Window1"));
+  parameter Real gWindow1(unit = "1") = 0.6
+      "g-value of window1"
+      annotation(Dialog(tab="Transparent constructions",group="Window1"));
   parameter Modelica.SIunits.Length widthWindow2 = 0.0
     "Width of window2"
     annotation(Dialog(tab ="Transparent constructions",group = "Window2"));
@@ -86,6 +89,9 @@ model Building1Zone1DBox
     annotation(Dialog(tab ="Transparent constructions",group = "Window2"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UWindow2 = 1.0
     "U-value of window2"
+    annotation(Dialog(tab="Transparent constructions",group="Window2"));
+  parameter Real gWindow2(unit = "1") = 0.6
+    "g-value of window2"
     annotation(Dialog(tab="Transparent constructions",group="Window2"));
   parameter Modelica.SIunits.Length widthWindow3 = 0.0
     "Width of window3"
@@ -96,6 +102,9 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UWindow3 = 1.0
     "U-value of window3"
     annotation(Dialog(tab="Transparent constructions",group="Window3"));
+  parameter Real gWindow3(unit = "1") = 0.6
+    "g-value of window3"
+    annotation(Dialog(tab="Transparent constructions",group="Window3"));
   parameter Modelica.SIunits.Length widthWindow4 = 0.0
     "Width of window4"
     annotation(Dialog(tab ="Transparent constructions",group = "Window4"));
@@ -104,6 +113,9 @@ model Building1Zone1DBox
     annotation(Dialog(tab ="Transparent constructions",group = "Window4"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UWindow4 = 1.0
     "U-value of window4"
+    annotation(Dialog(tab="Transparent constructions",group="Window4"));
+  parameter Real gWindow4(unit = "1") = 0.6
+    "g-value of window4"
     annotation(Dialog(tab="Transparent constructions",group="Window4"));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
     height = height,
@@ -128,7 +140,9 @@ model Building1Zone1DBox
     width = max(widthWindow2,1e-5),
     angleDegAzi = 180.0+angleDegAziBuilding,
     angleDegTil = 90.0,
-    UValue = UWindow2)
+    UValue = UWindow2,
+    tauDir0 = gWindow2,
+    tauDif = gWindow2)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={2,20})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
     height = width,
@@ -158,7 +172,9 @@ model Building1Zone1DBox
     width = max(widthWindow4,1e-5),
     angleDegAzi = 0.0+angleDegAziBuilding,
     angleDegTil = 90.0,
-    UValue = UWindow4)
+    UValue = UWindow4,
+    tauDir0 = gWindow4,
+    tauDif = gWindow4)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-20})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
     height = height,
@@ -174,14 +190,18 @@ model Building1Zone1DBox
     width = max(widthWindow1,1e-5),
     angleDegAzi = 90.0+angleDegAziBuilding,
     angleDegTil = 90.0,
-    UValue = UWindow1)
+    UValue = UWindow1,
+    tauDir0 = gWindow1,
+    tauDif = gWindow1)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-10})));
   BuildingSystems.Buildings.Constructions.Windows.Window window3(
     height = max(heightWindow3,1e-5),
     width = max(widthWindow3,1e-5),
     angleDegAzi = -90.0+angleDegAziBuilding,
     angleDegTil = 90.0,
-    UValue = UWindow3)
+    UValue = UWindow3,
+    tauDir0 = gWindow3,
+    tauDif = gWindow3)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={40,10})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wallsInterior(
     final constructionData=constructionWallsInterior,
