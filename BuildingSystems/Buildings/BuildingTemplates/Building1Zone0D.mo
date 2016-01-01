@@ -2,7 +2,7 @@ within BuildingSystems.Buildings.BuildingTemplates;
 model Building1Zone0D
   "Strong simplified building model with 3 thermal capacities"
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
-    final nZones = 1,
+    nZones = 1,
     final prescribedAirchange = true,
     final useAirPathes = false,
     final nAirpathes = 0,

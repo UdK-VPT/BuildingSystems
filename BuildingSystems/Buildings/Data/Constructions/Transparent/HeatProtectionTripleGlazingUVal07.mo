@@ -5,4 +5,4 @@ record HeatProtectionTripleGlazingUVal07 = BuildingSystems.Buildings.Data.Constr
   UValGla = 0.7,
   UValFra = 0.7,
   g = 0.51)
- "Heat protection triple glazing with UGlass = 0.7 W/(m2.K) and g = 0.51";
+ "Heat protection triple glazing with UValGla = 0.7 W/(m2.K) and g = 0.51";

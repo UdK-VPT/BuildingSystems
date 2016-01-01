@@ -2,7 +2,7 @@ within BuildingSystems.Buildings.BuildingTemplates;
 model Building1Zone1DBox
   "1 zone thermal building model with the shape of a box"
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
-    final nZones = 1,
+    nZones = 1,
     final prescribedAirchange = true,
     final useAirPathes = false,
     final calcHygroThermal = false,
@@ -10,7 +10,7 @@ model Building1Zone1DBox
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
     final alphaConstant = 0.0, // dummy value
     surfacesToAmbient(nSurfaces=9),
-    nSurfacesSolid=1,
+    final nSurfacesSolid=1,
     surfacesToSolids(nSurfaces=nSurfacesSolid));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWall1
     "Data of the thermal construction"
@@ -36,7 +36,7 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.Area AInteriorWalls = 1.0
     "Surface area of one side of the interior walls"
     annotation(Dialog(tab="Opaque constructions",group="Interior constructions"));
-  replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWallsInterior
+  replaceable parameter BuildingSystems.Buildings.Data.Constructions.Thermal.ConstructionStandard constructionWallsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
   parameter Boolean InteriorCeilings = true
@@ -45,7 +45,7 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.Area AInteriorCeilings = 1.0
     "Surface area of one side of the interior ceilings"
     annotation(Dialog(tab="Opaque constructions",group="Interior constructions"));
-  replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionCeilingsInterior
+  replaceable parameter BuildingSystems.Buildings.Data.Constructions.Thermal.ConstructionStandard constructionCeilingsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
@@ -71,52 +71,52 @@ model Building1Zone1DBox
     annotation(Dialog(tab="General",group="Geometry"));
   parameter Modelica.SIunits.Length widthWindow1 = 0.0
     "Width of window1"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window1"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window1 (included in constructionWall1)"));
   parameter Modelica.SIunits.Length heightWindow1 = 0.0
     "Height of window1"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window1"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window1 (included in constructionWall1)"));
   parameter Real framePortionWindow1 = 0.2
     "Frame portion of window1"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window1"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window1 (included in constructionWall1)"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow1
     "Data of the construction of window1"
-    annotation(Dialog(tab = "Transparent constructions", group = "Window1"), choicesAllMatching=true);
+    annotation(Dialog(tab = "Transparent constructions", group = "window1 (included in constructionWall1)"), choicesAllMatching=true);
   parameter Modelica.SIunits.Length widthWindow2 = 0.0
     "Width of window2"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window2"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
   parameter Modelica.SIunits.Length heightWindow2 = 0.0
     "Height of window2"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window2"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
   parameter Real framePortionWindow2 = 0.2
     "Frame portion of window2"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window2"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow2
     "Data of the construction of window2"
-    annotation(Dialog(tab = "Transparent constructions", group = "Window2"), choicesAllMatching=true);
+    annotation(Dialog(tab = "Transparent constructions", group = "window2 (included in constructionWall2)"), choicesAllMatching=true);
   parameter Modelica.SIunits.Length widthWindow3 = 0.0
     "Width of window3"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window3"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
   parameter Modelica.SIunits.Length heightWindow3 = 0.0
     "Height of window3"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window3"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
   parameter Real framePortionWindow3 = 0.2
     "Frame portion of window3"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window3"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow3
     "Data of the construction of window3"
-    annotation(Dialog(tab = "Transparent constructions", group = "Window3"), choicesAllMatching=true);
+    annotation(Dialog(tab = "Transparent constructions", group = "window3 (included in constructionWall3)"), choicesAllMatching=true);
   parameter Modelica.SIunits.Length widthWindow4 = 0.0
     "Width of window4"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window4"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window4 (included in constructionWall4)"));
   parameter Modelica.SIunits.Length heightWindow4 = 0.0
     "Height of window4"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window4"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window4 (included in constructionWall4)"));
   parameter Real framePortionWindow4 = 0.2
     "Frame portion of window4"
-    annotation(Dialog(tab ="Transparent constructions",group = "Window4"));
+    annotation(Dialog(tab ="Transparent constructions",group = "window4 (included in constructionWall4)"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow4
     "Data of the construction of window4"
-    annotation(Dialog(tab = "Transparent constructions", group = "Window4"), choicesAllMatching=true);
+    annotation(Dialog(tab = "Transparent constructions", group = "window4 (included in constructionWall4)"), choicesAllMatching=true);
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
     height = height,
     width = length,
