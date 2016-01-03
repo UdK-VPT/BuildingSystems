@@ -435,14 +435,16 @@ equation
   Documentation(info="<html>
 <p>This is a model for a thermal fluid storage </p>
 <p><b>Typical use and important parameters</b> </p>
-<p><code><span style=\"font-family: Courier New,courier;\">nEle</span></code> number of layers, enumeration starts at bottom (bottom layer is no. 1)</p>
+<p><code>nEle</code> number of layers, enumeration starts at bottom (bottom layer is no. 1)</p>
 <p><b>Options</b> </p>
 <p>The thermal fluid storage model has several fluidports. 2 at the bottom and 2 at the top. It is possible to have different configurations: </p>
 <ul>
-<li><span style=\"font-family: MS Shell Dlg 2;\">Switch on fluidports connected to each of the intermediate fluid layers.</span></li>
-<li>2 optional and freely placeable internal heat exchangers (identified as &QUOT;1&QUOT; and &QUOT;2&QUOT;). </li>
+<li>Switch on fluidports connected to each of the intermediate fluid layers.</li>
+<li>2 optional and freely placeable internal heat exchangers (identified as &quot;1&quot; and &quot;2&quot;). </li>
 <li>Specify the layer at which the HX are connected.</li>
-<li><span style=\"font-family: MS Shell Dlg 2;\">Set <code></span><span style=\"font-family: Courier New,courier;\">PerfectlyIsolated </code></span><span style=\"font-family: MS Shell Dlg 2;\">to true to s</span>witch off the heat losses to the environment, i.e. <span style=\"font-family: MS Shell Dlg 2;\">the thermal fluid storage is </span>perfectly isolated . <br>Note that if <code><span style=\"font-family: Courier New,courier;\">PerfectlyIsolated</code></span><span style=\"font-family: MS Shell Dlg 2;\"> is set to false and </span>no boundary condition is connected to the heatPort, the external heat flow rate will also be 0. However, because all layers are connected to the external heat port, a non-physical internal heat flow transfer between volumes takes place.</li>
+<li>Set <code>PerfectlyIsolated</code> to true to switch off the heat losses to the environment, i.e. the thermal fluid storage is perfectly isolated. <br/>
+Note that if <code>PerfectlyIsolated</code> is set to false and no boundary condition is connected to the heatPort, the external heat flow rate will also be 0.
+However, because all layers are connected to the external heat port, a non-physical internal heat flow transfer between volumes takes place.</li>
 </ul>
 <h4>Notes</h4>
 <p>The thermal fluid storage uses a model to increase heat exchange betweeen layers accounting for buoyancy effect, see <a href=\"modelica://BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels\">BuoyancyModels</a> </p>
