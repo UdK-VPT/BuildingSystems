@@ -1,5 +1,5 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations;
-model Station
+model Station_m_flow
   extends
     BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.BaseClasses.PartialStation(
      hex(
@@ -47,17 +47,17 @@ model Station
   Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
     p_start=300000,
-    V_start=1) annotation (Placement(transformation(extent={{-36,6},{-16,26}})));
+    V_start=1) annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   parameter Modelica.SIunits.HeatFlowRate Q_nominal
-    "Nominal Heat power in the Heat Transfer Station";
+    "Nominal Heat power in the Heat Transfer Station" annotation(Dialog(group = "Nominal condition"));
   parameter Modelica.SIunits.MassFlowRate m_flow_nominalDHN = 1.05*m_flow_nominalHeating
-    "Nominal mass flow rate";
-  parameter Modelica.SIunits.Pressure dp_nominalDHN
-    "nominal pressure drop at the Heat Exchanger DHN loop";
+    "Nominal mass flow rate" annotation(Dialog(group = "Nominal condition"));
+  parameter Modelica.SIunits.Pressure dp_nominalDHN = 40000
+    "nominal pressure drop at the Heat Exchanger DHN loop" annotation(Dialog(group = "Nominal condition"));
   parameter Modelica.SIunits.MassFlowRate m_flow_nominalHeating = Q_nominal/4182/Tdrop
-    "Nominal mass flow rate";
-  parameter Modelica.SIunits.Pressure dp_nominalHeating
-    "Nominal pressure drop at the Heat Exchanger heating installation loop";
+    "Nominal mass flow rate" annotation(Dialog(group = "Nominal condition"));
+  parameter Modelica.SIunits.Pressure dp_nominalHeating = 40000
+    "Nominal pressure drop at the Heat Exchanger heating installation loop" annotation(Dialog(group = "Nominal condition"));
   Modelica.Blocks.Sources.RealExpression m_flow_signal(y=m_flow_nominalHeating*
         tanhZone.y)
     annotation (Placement(transformation(extent={{-60,20},{0,40}})));
@@ -67,9 +67,9 @@ model Station
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
   Modelica.Blocks.Sources.RealExpression Q(y=pumpHeating.m_flow_actual*4182*
         Tdrop)
-    annotation (Placement(transformation(extent={{-52,-34},{28,-14}})));
+    annotation (Placement(transformation(extent={{-40,-40},{40,-20}})));
   Modelica.Blocks.Sources.RealExpression Tmin(y=TminDHN)
-    annotation (Placement(transformation(extent={{-52,-50},{28,-30}})));
+    annotation (Placement(transformation(extent={{-40,-60},{40,-40}})));
   parameter Modelica.SIunits.Temperature Tsupply_max
     "maximum supply temperature in building";
   parameter Modelica.SIunits.Temperature Tsupply_min
@@ -130,11 +130,11 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   connect(Q.y, externalIdealHeater.Q_in) annotation (Line(
-      points={{32,-24},{40,-24},{40,6},{59.2,6},{59.2,5}},
+      points={{44,-30},{50,-30},{50,4},{59.2,4},{59.2,5}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Tmin.y, externalIdealHeater.TDHNMin) annotation (Line(
-      points={{32,-40},{48,-40},{48,-7},{59,-7}},
+      points={{44,-50},{54,-50},{54,-7},{59,-7}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Tset, tanhZone.SetValue) annotation (Line(
@@ -150,7 +150,11 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(exp.port_a, pumpHeating.port_a) annotation (Line(
-      points={{-26,6},{-16,6},{-16,0},{0,0}},
+      points={{-30,0},{0,0}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(hex.port_b2, exp.port_a) annotation (Line(
+      points={{-40,-84},{-60,-84},{-60,0},{-30,0}},
       color={0,127,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
@@ -172,4 +176,4 @@ The building/zone tempearture input signal is used to determine the percentage o
 <p>
 </p>
 </html>"));
-end Station;
+end Station_m_flow;

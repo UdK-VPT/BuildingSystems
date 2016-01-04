@@ -1,37 +1,34 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.Examples;
-model DistrictHeatingNetwork
-  "Small example of a DHN with decentralized pumps that control mass flow rate of the DHN."
+model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
   replaceable package Medium = BuildingSystems.Media.Water;
 
-  EnergyTransferStations.Station station(
+  EnergyTransferStations.Station_dp station(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
-    dp_nominalDHN=0,
-    dp_nominalHeating=0,
     allowFlowReversal=false,
     show_T=true,
     Q_nominal(displayUnit="kW") = 1500000,
     Tsupply_max=353.15,
-    Tsupply_min=328.15)
+    Tsupply_min=328.15,
+    dpValve_nominal=140000)
     annotation (Placement(transformation(extent={{-42,42},{-62,62}})));
   Fluid.HeatExchangers.HeaterCooler_T
                                 central(
     redeclare package Medium = Medium,
-    m_flow_nominal=1,
-    dp_nominal=50)
-    annotation (Placement(transformation(extent={{54,30},{34,50}})));
+    m_flow_nominal=10,
+    dp_nominal=0)
+    annotation (Placement(transformation(extent={{46,26},{26,46}})));
 
-  EnergyTransferStations.Station station1(
+  EnergyTransferStations.Station_dp station1(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
-    dp_nominalDHN=0,
-    dp_nominalHeating=0,
     allowFlowReversal=false,
     show_T=true,
     factor_Tsupply=15,
     Q_nominal(displayUnit="kW") = 1500000,
     Tsupply_max=353.15,
-    Tsupply_min=333.15)
+    Tsupply_min=333.15,
+    dpValve_nominal=140000)
     annotation (Placement(transformation(extent={{-46,-70},{-66,-50}})));
 
   BoundaryConditions.GroundTemperature0D kusuda0D(
@@ -94,54 +91,54 @@ model DistrictHeatingNetwork
     annotation (Placement(transformation(extent={{-6,6},{6,-6}},rotation=180,origin={-10,-20})));
   Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
-    p_start=300000,
-    V_start=1) annotation (Placement(transformation(extent={{14,58},{26,70}})));
+    V_start=1,
+    p_start=300000)
+               annotation (Placement(transformation(extent={{82,14},{94,26}})));
   UndergroundPipes.ParallelPipes parallelPipes(
     redeclare package Medium = Medium,
     length=200,
-    m_flow_nominal=1,
     redeclare
       BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated
       Umodel(
       d_i=0.3,
       H_real=1,
       E=0.5),
+    m_flow_nominal=30,
     dp_nominal=50000)
     annotation (Placement(transformation(extent={{-6,20},{-26,40}})));
   UndergroundPipes.ParallelPipes parallelPipes1(
     redeclare package Medium = Medium,
-    length=200,
-    m_flow_nominal=1,
     redeclare
       BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated
       Umodel(
       d_i=0.2,
       H_real=1,
       E=0.4),
-    dp_nominal=50000)
+    m_flow_nominal=15,
+    length=400,
+    dp_nominal=100000)
     annotation (Placement(transformation(extent={{-92,20},{-112,40}})));
   UndergroundPipes.ParallelPipes parallelPipes2(
     redeclare package Medium = Medium,
     length=200,
-    m_flow_nominal=1,
     redeclare
       BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated
       Umodel(
       d_i=0.2,
       H_real=1,
       E=0.4),
+    m_flow_nominal=15,
     dp_nominal=50000)
     annotation (Placement(transformation(extent={{0,-80},{-20,-60}})));
-  EnergyTransferStations.Station station2(
+  EnergyTransferStations.Station_dp station2(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
-    dp_nominalDHN=0,
-    dp_nominalHeating=0,
     allowFlowReversal=false,
     show_T=true,
     Q_nominal(displayUnit="kW") = 1500000,
-    Tsupply_max=626.3,
-    Tsupply_min=601.3)
+    Tsupply_max(displayUnit="K") = 353.15,
+    Tsupply_min(displayUnit="K") = 328.15,
+    dpValve_nominal=120000)
     annotation (Placement(transformation(extent={{-154,32},{-174,52}})));
   Buildings.BuildingTemplates.Building1Zone0D                 building2(
     AInner=10*10,
@@ -169,13 +166,13 @@ model DistrictHeatingNetwork
   Modelica.Blocks.Sources.Constant airchange2(
     k=0.5)
     annotation (Placement(transformation(extent={{-6,6},{6,-6}},rotation=180,origin={-134,84})));
-  Modelica.Blocks.Sources.TimeTable SupplyTemperature(table=[0.0,273.15 + 85; 0.0,
-        273.15 + 85; 13140000,273.15 + 85; 13140000,273.15 + 60; 21024000,273.15
-         + 60; 21024000,273.15 + 85; 31536000,273.15 + 85])         annotation (
+  Modelica.Blocks.Sources.TimeTable SupplyTemperature(table=[0.0,273.15 + 85;
+        0.0,273.15 + 85; 13140000,273.15 + 85; 13140000,273.15 + 70; 21024000,
+        273.15 + 70; 21024000,273.15 + 85; 31536000,273.15 + 85])   annotation (
      Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=180,
-        origin={90,50})));
+        origin={90,80})));
   Modelica.Blocks.Sources.Constant TsetHeating2(k=273.15 + 20) annotation (
       Placement(transformation(
         extent={{10,10},{-10,-10}},
@@ -191,6 +188,38 @@ model DistrictHeatingNetwork
         extent={{-10,10},{10,-10}},
         rotation=180,
         origin={-10,70})));
+  Fluid.Movers.FlowControlled_dp pump(redeclare package Medium = Medium,
+      m_flow_nominal=100)
+    annotation (Placement(transformation(extent={{70,0},{50,20}})));
+  Modelica.Blocks.Sources.RealExpression dp_station2(y=station2.port_a.p -
+        station2.port_b.p) annotation (Placement(transformation(
+        extent={{-20,10},{20,-10}},
+        rotation=180,
+        origin={120,36})));
+  Controls.Continuous.LimPID dp_in(
+    controllerType=Modelica.Blocks.Types.SimpleController.PI,
+    yMax=350000,
+    k=1,
+    Ti=150,
+    yMin=230000) annotation (Placement(transformation(
+        extent={{-4,4},{4,-4}},
+        rotation=-90,
+        origin={64,36})));
+  Modelica.Blocks.Sources.RealExpression dp_min(y=150000) annotation (Placement(
+        transformation(
+        extent={{-20,10},{20,-10}},
+        rotation=180,
+        origin={120,56})));
+  Modelica.Blocks.Sources.RealExpression dp_station1(y=station1.port_a.p -
+        station1.port_b.p) annotation (Placement(transformation(
+        extent={{-20,10},{20,-10}},
+        rotation=180,
+        origin={120,16})));
+  Modelica.Blocks.Sources.RealExpression dp_station(y=station.port_a.p -
+        station.port_b.p) annotation (Placement(transformation(
+        extent={{-20,10},{20,-10}},
+        rotation=180,
+        origin={120,-4})));
 equation
   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (
       Line(
@@ -259,12 +288,8 @@ equation
       points={{-47.6,95.8},{-47.6,102},{-98,102},{-98,91},{-94.2,91}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(exp.port_a, central.port_b) annotation (Line(
-      points={{20,58},{20,40},{34,40}},
-      color={0,127,255},
-      smooth=Smooth.None));
   connect(parallelPipes.port_a1, central.port_b) annotation (Line(
-      points={{-6,36},{12,36},{12,40},{34,40}},
+      points={{-6,36},{26,36}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(parallelPipes.port_b1, station.port_a) annotation (Line(
@@ -273,10 +298,6 @@ equation
       smooth=Smooth.None));
   connect(station.port_b, parallelPipes.port_a2) annotation (Line(
       points={{-62,52},{-72,52},{-72,24},{-26,24}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  connect(parallelPipes.port_b2, central.port_a) annotation (Line(
-      points={{-6,24},{60,24},{60,40},{54,40}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(parallelPipes1.port_a1, parallelPipes.port_b1) annotation (Line(
@@ -292,15 +313,11 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(parallelPipes2.port_a1, central.port_b) annotation (Line(
-      points={{0,-64},{34,-64},{34,40}},
+      points={{0,-64},{26,-64},{26,36}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(station1.port_b, parallelPipes2.port_a2) annotation (Line(
       points={{-66,-60},{-88,-60},{-88,-76},{-20,-76}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  connect(parallelPipes2.port_b2, central.port_a) annotation (Line(
-      points={{0,-76},{68,-76},{68,40},{54,40}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(ambient2.toSurfacePorts, building2.toAmbientSurfacesPorts)
@@ -372,13 +389,41 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(central.TSet, SupplyTemperature.y) annotation (Line(
-      points={{56,46},{68,46},{68,50},{79,50}},
+      points={{48,42},{54,42},{54,80},{79,80}},
       color={0,0,127},
+      smooth=Smooth.None));
+  connect(pump.port_b, central.port_a) annotation (Line(
+      points={{50,10},{46,10},{46,36}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(parallelPipes.port_b2, pump.port_a) annotation (Line(
+      points={{-6,24},{12,24},{12,-20},{80,-20},{80,10},{70,10}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(parallelPipes2.port_b2, pump.port_a) annotation (Line(
+      points={{0,-76},{80,-76},{80,10},{70,10}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(dp_in.u_m, dp_station2.y) annotation (Line(
+      points={{68.8,36},{98,36}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(dp_in.u_s, dp_min.y) annotation (Line(
+      points={{64,40.8},{64,56},{98,56}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(pump.dp_in, dp_in.y) annotation (Line(
+      points={{60.2,22},{60.2,30},{64,30},{64,31.6}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(exp.port_a, pump.port_a) annotation (Line(
+      points={{88,14},{88,10},{70,10}},
+      color={0,127,255},
       smooth=Smooth.None));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork.mos"
         "Simulate and plot"),Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,
-            -100},{100,100}}), graphics),
-    Icon(coordinateSystem(extent={{-220,-100},{100,100}})),
+            -100},{140,100}}), graphics),
+    Icon(coordinateSystem(extent={{-220,-100},{140,100}})),
     experiment(StopTime=3.1536e+007, Interval=1800),
     __Dymola_experimentSetupOutput);
-end DistrictHeatingNetwork;
+end DistrictHeatingNetwork_dp;
