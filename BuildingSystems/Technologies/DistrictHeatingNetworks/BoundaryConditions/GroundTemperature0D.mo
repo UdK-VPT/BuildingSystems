@@ -9,22 +9,19 @@ model GroundTemperature0D
   parameter Modelica.SIunits.Time t0 "Time shift";
   parameter Modelica.SIunits.ThermalDiffusivity alpha = 8.2e-7
     "Ground thermal diffusivity";
+  parameter Integer m=3 "Number of collected heat flows";
 
-  Interfaces.HeatPorts                                port[m]
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+  BuildingSystems.Interfaces.HeatPorts port[m]    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=90,
         origin={90,0}), iconTransformation(
         extent={{-30,-10},{30,10}},
         rotation=90,
         origin={90,0})));
-  Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature
-    prescribedTemperature
-    annotation (Placement(transformation(extent={{0,-10},{20,10}})));
-  Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector(m=m)
-    annotation (Placement(transformation(extent={{-10,10},{10,-10}},
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature    prescribedTemperature annotation (Placement(transformation(extent={{0,-10},{20,10}})));
+  Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector(m=m) annotation (Placement(transformation(extent={{-10,10},{10,-10}},
         rotation=90,
         origin={50,0})));
-  parameter Integer m=3 "Number of collected heat flows";
+
 equation
   prescribedTemperature.T = Tmean + A*exp(-z*sqrt(Modelica.Constants.pi/(60*60*24*365*alpha)))*cos(2*Modelica.Constants.pi/(60*60*24*365)*(time-t0-z/2*sqrt((365*60*60*24)/Modelica.Constants.pi/alpha)));
   connect(prescribedTemperature.port, thermalCollector.port_b) annotation (Line(

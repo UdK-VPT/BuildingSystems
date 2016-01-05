@@ -3,7 +3,8 @@ model DistrictHeatingNetwork_m_flow
   "Small example of a DHN with decentralized pumps that control mass flow rate of the DHN."
   replaceable package Medium = BuildingSystems.Media.Water;
 
-  EnergyTransferStations.Station_m_flow station(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
+                                                                                             station(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
     allowFlowReversal=false,
@@ -13,14 +14,15 @@ model DistrictHeatingNetwork_m_flow
     Tsupply_max=353.15,
     Tsupply_min=328.15)
     annotation (Placement(transformation(extent={{-42,42},{-62,62}})));
-  Fluid.HeatExchangers.HeaterCooler_T
+  BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T
                                 central(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
     dp_nominal=0)
     annotation (Placement(transformation(extent={{54,30},{34,50}})));
 
-  EnergyTransferStations.Station_m_flow station1(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
+                                                                                             station1(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
     allowFlowReversal=false,
@@ -89,12 +91,13 @@ model DistrictHeatingNetwork_m_flow
   Modelica.Blocks.Sources.Constant airchange1(
     k=0.5)
     annotation (Placement(transformation(extent={{-6,6},{6,-6}},rotation=180,origin={-10,-20})));
-  Fluid.Storage.ExpansionVessel exp(
+  BuildingSystems.Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
     V_start=1,
     p_start=300000)
                annotation (Placement(transformation(extent={{54,60},{66,72}})));
-  UndergroundPipes.ParallelPipes parallelPipes(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
+                                                                                      parallelPipes(
     redeclare package Medium = Medium,
     length=200,
     redeclare
@@ -106,7 +109,8 @@ model DistrictHeatingNetwork_m_flow
     m_flow_nominal=30,
     dp_nominal=50000)
     annotation (Placement(transformation(extent={{-6,20},{-26,40}})));
-  UndergroundPipes.ParallelPipes parallelPipes1(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
+                                                                                      parallelPipes1(
     redeclare package Medium = Medium,
     redeclare
       BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated
@@ -118,7 +122,8 @@ model DistrictHeatingNetwork_m_flow
     m_flow_nominal=15,
     dp_nominal=100000)
     annotation (Placement(transformation(extent={{-92,20},{-112,40}})));
-  UndergroundPipes.ParallelPipes parallelPipes2(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
+                                                                                      parallelPipes2(
     redeclare package Medium = Medium,
     length=200,
     redeclare
@@ -130,7 +135,8 @@ model DistrictHeatingNetwork_m_flow
     m_flow_nominal=15,
     dp_nominal=50000)
     annotation (Placement(transformation(extent={{0,-80},{-20,-60}})));
-  EnergyTransferStations.Station_m_flow station2(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
+                                                                                             station2(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
     allowFlowReversal=false,

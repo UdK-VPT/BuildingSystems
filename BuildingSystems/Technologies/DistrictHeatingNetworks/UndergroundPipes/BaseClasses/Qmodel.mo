@@ -1,7 +1,7 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses;
 model Qmodel
   parameter Boolean InteractionBetweenPipes = true
-    "set false to avoid modelling interaction between pipes";
+    "Set false to avoid modelling interaction between pipes";
   Modelica.SIunits.ThermalConductivity U1
     "Thermal conductivity specific to length";
   Modelica.SIunits.ThermalConductivity U2

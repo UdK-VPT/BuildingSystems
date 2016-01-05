@@ -1,17 +1,17 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities;
 model Tanh
 parameter Real factor = 0.55
-    "un- or smooth the tanh function according to: tanh((InSignal-SetValue)/factor): tanh(1)=0.7616 tanh(2)=0.9640, tanh(3)=0.9951";
-    parameter Real Max_value = 1 "maximum value of the output signal";
-    parameter Real Min_value = 0 "minimum value of the output signal";
+    "Un- or smooth the tanh function according to: tanh((InSignal-SetValue)/factor): tanh(1)=0.7616 tanh(2)=0.9640, tanh(3)=0.9951";
+    parameter Real Max_value = 1 "Maximum value of the output signal";
+    parameter Real Min_value = 0 "Minimum value of the output signal";
 parameter Boolean PositivSloop = false;
 
   Modelica.Blocks.Interfaces.RealOutput y
     annotation (Placement(transformation(extent={{80,-22},{120,18}})));
   Modelica.Blocks.Interfaces.RealInput SetValue
-    "value at which outsignal becomes 0.5"
+    "Value at which outsignal becomes 0.5"
     annotation (Placement(transformation(extent={{-120,-70},{-80,-30}})));
-  Modelica.Blocks.Interfaces.RealInput u "inputSignal "
+  Modelica.Blocks.Interfaces.RealInput u "InputSignal "
     annotation (Placement(transformation(extent={{-120,10},{-80,50}})));
 equation
   if PositivSloop == true then

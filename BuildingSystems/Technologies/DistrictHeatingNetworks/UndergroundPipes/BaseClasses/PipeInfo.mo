@@ -8,7 +8,7 @@ model PipeInfo
     annotation(Dialog(tab="General", group="Geometry"));
   parameter Modelica.SIunits.Thickness th_ins = 0.05 "Insulation's thickness"
     annotation(Dialog(tab="General", group="Geometry"));
-  parameter Modelica.SIunits.Thickness th_c = 0.005 "cover's thickness"
+  parameter Modelica.SIunits.Thickness th_c = 0.005 "Cover's thickness"
     annotation(Dialog(tab="General", group="Geometry"));
   parameter Modelica.SIunits.ThermalConductivity lam_ins(min=1E-4) = 0.032
     "Heat conductivity of the pipe's insulation"
@@ -20,7 +20,7 @@ protected
   parameter Modelica.SIunits.Diameter d_ins = d_o + 2*th_ins
     "Insulation's thickness";
   parameter Modelica.SIunits.Diameter d_c = d_ins + 2*th_c
-    "cover's outter diameter";
+    "Cover's outter diameter";
   // add assert for lam_ins >0 and lam_c > 0
   annotation (Icon(graphics));
 end PipeInfo;

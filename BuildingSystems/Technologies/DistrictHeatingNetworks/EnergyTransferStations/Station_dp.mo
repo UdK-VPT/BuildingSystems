@@ -15,21 +15,18 @@ model Station_dp
   parameter Modelica.SIunits.TemperatureDifference Tdrop = 25
     "Desired Temperature drop in building's installation";
 
-  Utilities.Tanh tanhAmbient(Max_value=Tsupply_max, Min_value=Tsupply_min,
-    factor=factor_Tsupply)
-    annotation (Placement(transformation(extent={{-58,64},{-78,84}})));
-  Modelica.Blocks.Sources.Constant constAmbient(k=273.15)
-    annotation (Placement(transformation(extent={{-34,62},{-48,76}})));
+  BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhAmbient(Max_value=Tsupply_max, Min_value=Tsupply_min,factor=factor_Tsupply)    annotation (Placement(transformation(extent={{-58,64},{-78,84}})));
+  Modelica.Blocks.Sources.Constant constAmbient(k=273.15)    annotation (Placement(transformation(extent={{-34,62},{-48,76}})));
 
-  Fluid.Actuators.Valves.TwoWayLinear pumpDHN(
+  BuildingSystems.Fluid.Actuators.Valves.TwoWayLinear pumpDHN(
                                              redeclare package Medium = Medium,
       m_flow_nominal=m_flow_nominalDHN,
     allowFlowReversal=false,
     dpValve_nominal=dpValve_nominal,
     dpFixed_nominal=dpFixed_nominal,
     from_dp=true)
-    annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
-  Controls.Continuous.LimPID conPID(
+    annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
+  BuildingSystems.Controls.Continuous.LimPID conPID(
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     k=50,
     Ti=5,
@@ -38,16 +35,18 @@ model Station_dp
         extent={{-10,10},{10,-10}},
         rotation=-90,
         origin={-84,34})));
-  Utilities.Tanh tanhZone(factor=factor_m_flow)
+  BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhZone(factor=factor_m_flow)
     annotation (Placement(transformation(extent={{0,60},{20,80}})));
-  Fluid.Sensors.Temperature senTemSupply(redeclare package Medium = Medium)
+  BuildingSystems.Fluid.Sensors.Temperature senTemSupply(redeclare package
+      Medium =                                                                      Medium)
     annotation (Placement(transformation(extent={{-94,-54},{-74,-34}})));
-  Fluid.Movers.FlowControlled_m_flow pumpHeating(redeclare package Medium =
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumpHeating(redeclare
+      package Medium =
         Medium, m_flow_nominal=m_flow_nominalHeating,
     allowFlowReversal=false,
     addPowerToMedium=addPowerToMedium)
     annotation (Placement(transformation(extent={{0,-10},{20,10}})));
-  Fluid.Storage.ExpansionVessel exp(
+  BuildingSystems.Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
     p_start=300000,
     V_start=1) annotation (Placement(transformation(extent={{-36,6},{-16,26}})));
@@ -56,8 +55,7 @@ model Station_dp
   parameter Modelica.SIunits.MassFlowRate m_flow_nominalDHN = 1.05*m_flow_nominalHeating
     "Nominal mass flow rate" annotation(Dialog(group = "Nominal condition"));
   parameter Modelica.SIunits.Pressure dp_nominalDHN = 40000
-    "nominal pressure drop at the Heat Exchanger DHN loop";
-     annotation(Dialog(group = "Nominal condition"));
+    "Nominal pressure drop at the Heat Exchanger DHN loop";
   parameter Modelica.SIunits.MassFlowRate m_flow_nominalHeating = Q_nominal/4182/Tdrop
     "Nominal mass flow rate" annotation(Dialog(group = "Nominal condition"));
   parameter Modelica.SIunits.Pressure dp_nominalHeating = 40000
@@ -66,22 +64,17 @@ model Station_dp
         tanhZone.y)
     annotation (Placement(transformation(extent={{-60,20},{0,40}})));
   BaseClasses.ExternalIdealHeater externalIdealHeater(redeclare package Medium
-      = Medium, m_flow_nominal=m_flow_nominalHeating,
-    allowFlowReversal=false)
-    annotation (Placement(transformation(extent={{60,-10},{80,10}})));
-  Modelica.Blocks.Sources.RealExpression Q(y=pumpHeating.m_flow_actual*4182*
-        Tdrop)
-    annotation (Placement(transformation(extent={{-52,-34},{28,-14}})));
-  Modelica.Blocks.Sources.RealExpression Tmin(y=TminDHN)
-    annotation (Placement(transformation(extent={{-52,-50},{28,-30}})));
+      = Medium, m_flow_nominal=m_flow_nominalHeating,allowFlowReversal=false) annotation (Placement(transformation(extent={{60,-10},{80,10}})));
+  Modelica.Blocks.Sources.RealExpression Q(y=pumpHeating.m_flow_actual*4182*Tdrop)   annotation (Placement(transformation(extent={{-52,-34},{28,-14}})));
+  Modelica.Blocks.Sources.RealExpression Tmin(y=TminDHN)    annotation (Placement(transformation(extent={{-52,-50},{28,-30}})));
   parameter Modelica.SIunits.Temperature Tsupply_max
-    "maximum supply temperature in building";
+    "Maximum supply temperature in building";
   parameter Modelica.SIunits.Temperature Tsupply_min
-    "minimum supply temperature in building";
+    "Minimum supply temperature in building";
   parameter Real factor_Tsupply = 7
-    "un- or smooth changes of the supply set temperature. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
+    "Un- or smooth changes of the supply set temperature. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
   parameter Real factor_m_flow = 0.7
-    "un- or smooth changes of mass flow rate of the heating system. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
+    "Un- or smooth changes of mass flow rate of the heating system. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
   parameter Boolean addPowerToMedium=false
     "Set to false to avoid any power in the pump model (=heat and flow work) being added to medium (may give simpler equations)";
   parameter Modelica.SIunits.Pressure dpValve_nominal annotation(Dialog(group = "Nominal condition"));
@@ -96,11 +89,11 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(port_a, pumpDHN.port_a) annotation (Line(
-      points={{-100,0},{-90,0}},
+      points={{-100,0},{-92,0}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(pumpDHN.port_b, hex.port_a1) annotation (Line(
-      points={{-70,0},{-70,-20},{-98,-20},{-98,-96},{-40,-96}},
+      points={{-72,0},{-72,-20},{-98,-20},{-98,-96},{-40,-96}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(conPID.u_s, tanhAmbient.y) annotation (Line(
@@ -156,10 +149,11 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(conPID.y, pumpDHN.y) annotation (Line(
-      points={{-84,23},{-84,18},{-80,18},{-80,12}},
+      points={{-84,23},{-84,18},{-82,18},{-82,12}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+     annotation(Dialog(group = "Nominal condition"),
+              Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics), Icon(coordinateSystem(
           preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),
     Documentation(info="<html>

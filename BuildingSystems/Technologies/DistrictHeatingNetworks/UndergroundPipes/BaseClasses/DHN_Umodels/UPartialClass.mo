@@ -10,7 +10,7 @@ partial model UPartialClass
     "Specific heat capacity of the pipe material"
     annotation(Dialog(tab="General", group="Thermal properties"));
   extends
-    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.PipeInfo;
+    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.PipeInfo(d_i = 0.1);
   parameter Integer nPipes( min=2) "Number of pipes";
   Modelica.Blocks.Interfaces.RealOutput[nPipes] U(unit="W/(m.K)")
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));

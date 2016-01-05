@@ -11,9 +11,9 @@ model UPreinsulated "U model for Preinsulated pipes"
   parameter Modelica.SIunits.Diameter d_g = 1.313
     "Diameter of the undisturbed ground" annotation(Dialog(tab="General", group="Geometry"));
   parameter Modelica.SIunits.ThermalConductivity lam_g = 1.2
-    "heat conductivity of the undisturbed ground" annotation(Dialog(tab="General", group="Thermal properties"));
+    "Heat conductivity of the undisturbed ground" annotation(Dialog(tab="General", group="Thermal properties"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer h_gs = 14.6
-    "heat transfer coefficient at the ground surface" annotation(Dialog(tab="Assumptions"));
+    "Heat transfer coefficient at the ground surface" annotation(Dialog(tab="Assumptions"));
 protected
   parameter Modelica.SIunits.Length H = H_real+(lam_g/h_gs)
     "Equivalent deph of the pipe center";

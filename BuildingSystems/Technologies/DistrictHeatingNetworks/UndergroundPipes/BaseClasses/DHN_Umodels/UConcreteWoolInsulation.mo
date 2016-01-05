@@ -7,28 +7,28 @@ extends
     final SPip=(Modelica.Constants.pi*d_o*d_o/4) - SWat,
     final SWat=Modelica.Constants.pi*d_i*d_i/4);
 
-  parameter Modelica.SIunits.Length H_real "deph of the pipe center"
-                                                                    annotation(Dialog(tab="General", group="Laying"));
-  parameter Modelica.SIunits.Length A "width case"
+  parameter Modelica.SIunits.Length H_real "Depht of the pipe center"
+                                                                     annotation(Dialog(tab="General", group="Laying"));
+  parameter Modelica.SIunits.Length A "Width case"
                                                   annotation(Dialog(tab="General", group="Laying"));
-  parameter Modelica.SIunits.Length B "heigh case"
+  parameter Modelica.SIunits.Length B "Heigh case"
                                                   annotation(Dialog(tab="General", group="Laying"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer h_gs = 14.6
-    "heat transfer coefficient at the ground surface" annotation(Dialog(tab="Assumptions"));
+    "Heat transfer coefficient at the ground surface" annotation(Dialog(tab="Assumptions"));
 
   parameter Modelica.SIunits.Diameter d_g = 1.313
     "Diameter of the undisturbed ground" annotation(Dialog(tab="General", group="Geometry"));
   parameter Modelica.SIunits.ThermalConductivity lam_g = 1.2
-    "heat conductivity of the undisturbed ground" annotation(Dialog(tab="General", group="Thermal properties"));
+    "Heat conductivity of the undisturbed ground" annotation(Dialog(tab="General", group="Thermal properties"));
 
 protected
   parameter Modelica.SIunits.Length H = H_real+(lam_g/h_gs)
     "Equivalent deph of the pipe center";
   parameter Modelica.SIunits.ThermalResistance R_hi = 1/(Modelica.Constants.pi*d_ins*h_s);
   parameter Modelica.SIunits.ThermalResistance R_hg = 1/(2*(A+B)*h_s)
-    "thermal resistance at the concrete surface";
+    "Thermal resistance at the concrete surface";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer h_s = 7.7
-    "heat transfer coefficient of the air duct between concrete surface and ground";
+    "Heat transfer coefficient of the air duct between concrete surface and ground";
   parameter Modelica.SIunits.ThermalResistance R_g = (1/(2*Modelica.Constants.pi*lam_g))*log(4*H/d_c)
     "Ground thermal resistance";
   parameter Modelica.SIunits.ThermalResistance R_i = R_hi + (1/Modelica.Constants.pi)*(0.5/lam_ins*log(d_ins/d_o)+0.5/lam_c*log(d_c/d_ins) + 0.5/lam_g*log(d_g/d_c))

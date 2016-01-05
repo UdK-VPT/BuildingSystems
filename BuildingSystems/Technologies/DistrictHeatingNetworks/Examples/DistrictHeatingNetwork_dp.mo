@@ -2,7 +2,8 @@ within BuildingSystems.Technologies.DistrictHeatingNetworks.Examples;
 model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
   replaceable package Medium = BuildingSystems.Media.Water;
 
-  EnergyTransferStations.Station_dp station(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp
+                                                                                         station(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
     allowFlowReversal=false,
@@ -12,14 +13,15 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     Tsupply_min=328.15,
     dpValve_nominal=140000)
     annotation (Placement(transformation(extent={{-42,42},{-62,62}})));
-  Fluid.HeatExchangers.HeaterCooler_T
+  BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T
                                 central(
     redeclare package Medium = Medium,
     m_flow_nominal=10,
     dp_nominal=0)
     annotation (Placement(transformation(extent={{46,26},{26,46}})));
 
-  EnergyTransferStations.Station_dp station1(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp
+                                                                                         station1(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
     allowFlowReversal=false,
@@ -31,7 +33,8 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     dpValve_nominal=140000)
     annotation (Placement(transformation(extent={{-46,-70},{-66,-50}})));
 
-  BoundaryConditions.GroundTemperature0D kusuda0D(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.BoundaryConditions.GroundTemperature0D
+                                                                                              kusuda0D(
     A=8,
     z=1,
     t0(displayUnit="d") = 15552000,
@@ -89,12 +92,13 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
   Modelica.Blocks.Sources.Constant airchange1(
     k=0.5)
     annotation (Placement(transformation(extent={{-6,6},{6,-6}},rotation=180,origin={-10,-20})));
-  Fluid.Storage.ExpansionVessel exp(
+  BuildingSystems.Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
     V_start=1,
     p_start=300000)
                annotation (Placement(transformation(extent={{82,14},{94,26}})));
-  UndergroundPipes.ParallelPipes parallelPipes(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
+                                                                                      parallelPipes(
     redeclare package Medium = Medium,
     length=200,
     redeclare
@@ -106,7 +110,8 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     m_flow_nominal=30,
     dp_nominal=50000)
     annotation (Placement(transformation(extent={{-6,20},{-26,40}})));
-  UndergroundPipes.ParallelPipes parallelPipes1(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
+                                                                                      parallelPipes1(
     redeclare package Medium = Medium,
     redeclare
       BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated
@@ -118,7 +123,8 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     length=400,
     dp_nominal=100000)
     annotation (Placement(transformation(extent={{-92,20},{-112,40}})));
-  UndergroundPipes.ParallelPipes parallelPipes2(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
+                                                                                      parallelPipes2(
     redeclare package Medium = Medium,
     length=200,
     redeclare
@@ -130,7 +136,8 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     m_flow_nominal=15,
     dp_nominal=50000)
     annotation (Placement(transformation(extent={{0,-80},{-20,-60}})));
-  EnergyTransferStations.Station_dp station2(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp
+                                                                                         station2(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
     allowFlowReversal=false,
