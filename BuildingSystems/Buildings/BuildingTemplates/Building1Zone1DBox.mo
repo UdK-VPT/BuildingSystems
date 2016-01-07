@@ -117,104 +117,104 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow4
     "Data of the construction of window4"
     annotation(Dialog(tab = "Transparent constructions", group = "window4 (included in constructionWall4)"), choicesAllMatching=true);
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
     height = height,
     width = length,
     nInnSur = 1,
     AInnSur = {window1.A},
     constructionData = constructionWall1,
-    angleDegAzi = 90.0+angleDegAziBuilding,
+    angleDegAzi = 90.0 + angleDegAziBuilding,
     angleDegTil = 90.0)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
     height = height,
     width = width,
     nInnSur = 1,
     AInnSur = {window2.A},
     constructionData = constructionWall2,
-    angleDegAzi = 180.0+angleDegAziBuilding,
+    angleDegAzi = 180.0 + angleDegAziBuilding,
     angleDegTil = 90.0)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,20})));
-  BuildingSystems.Buildings.Constructions.Windows.Window window2(
+  replaceable BuildingSystems.Buildings.Constructions.Windows.Window window2(
     height = max(heightWindow2,1e-5),
     width = max(widthWindow2,1e-5),
     framePortion = framePortionWindow2,
-    angleDegAzi = 180.0+angleDegAziBuilding,
+    angleDegAzi = 180.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     UVal = (1.0 - framePortionWindow2) * constructionWindow2.UValGla + framePortionWindow2 * constructionWindow2.UValFra,
     tauDir0 = constructionWindow2.g,
     tauDif = constructionWindow2.g)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={2,20})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
     height = width,
     width = length,
     constructionData = constructionCeiling,
     angleDegAzi = 0.0,
     angleDegTil = 180.0)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
     height = height,
     width = length,
     nInnSur = 1,
     AInnSur = {window3.A},
     constructionData = constructionWall3,
-    angleDegAzi = -90.0+angleDegAziBuilding,
+    angleDegAzi = -90.0 + angleDegAziBuilding,
     angleDegTil = 90.0)
     annotation (Placement(transformation(extent={{30,-20},{50,0}})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
-    height = width,
-    width = length,
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
+    height = length,
+    width = width,
     constructionData = constructionBottom,
     angleDegAzi = 0.0,
     angleDegTil = 0.0)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
-  BuildingSystems.Buildings.Constructions.Windows.Window window4(
+  replaceable BuildingSystems.Buildings.Constructions.Windows.Window window4(
     height = max(heightWindow4,1e-5),
     width = max(widthWindow4,1e-5),
     framePortion = framePortionWindow4,
-    angleDegAzi = 0.0+angleDegAziBuilding,
+    angleDegAzi = 0.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     UVal = (1.0 - framePortionWindow4) * constructionWindow4.UValGla + framePortionWindow4 * constructionWindow4.UValFra,
     tauDir0 = constructionWindow4.g,
     tauDif = constructionWindow4.g)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-20})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
     height = height,
     width = width,
     nInnSur = 1,
     AInnSur = {window4.A},
     constructionData = constructionWall4,
-    angleDegAzi = 0.0+angleDegAziBuilding,
+    angleDegAzi = 0.0 + angleDegAziBuilding,
     angleDegTil = 90.0)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,-20})));
-  BuildingSystems.Buildings.Constructions.Windows.Window window1(
+  replaceable BuildingSystems.Buildings.Constructions.Windows.Window window1(
     height = max(heightWindow1,1e-5),
     width = max(widthWindow1,1e-5),
     framePortion = framePortionWindow1,
-    angleDegAzi = 90.0+angleDegAziBuilding,
+    angleDegAzi = 90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     UVal = (1.0 - framePortionWindow1) * constructionWindow1.UValGla + framePortionWindow1 * constructionWindow1.UValFra,
     tauDir0 = constructionWindow1.g,
     tauDif = constructionWindow1.g)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-10})));
-  BuildingSystems.Buildings.Constructions.Windows.Window window3(
+  replaceable BuildingSystems.Buildings.Constructions.Windows.Window window3(
     height = max(heightWindow3,1e-5),
     width = max(widthWindow3,1e-5),
     framePortion = framePortionWindow3,
-    angleDegAzi = -90.0+angleDegAziBuilding,
+    angleDegAzi = -90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     UVal = (1.0 - framePortionWindow3) * constructionWindow3.UValGla + framePortionWindow3 * constructionWindow3.UValFra,
     tauDir0 = constructionWindow3.g,
     tauDif = constructionWindow3.g)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={40,10})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wallsInterior(
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wallsInterior(
     final constructionData=constructionWallsInterior,
     final angleDegTil = 90.0,
     final width = AInteriorWalls/wallsInterior.height,
     height = 1.0,
     final angleDegAzi = 0) if InteriorWalls
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-18,-6})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceilingsInterior(
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceilingsInterior(
     final constructionData=constructionCeilingsInterior,
     final width = AInteriorCeilings/ceilingsInterior.height,
     height = 1.0,

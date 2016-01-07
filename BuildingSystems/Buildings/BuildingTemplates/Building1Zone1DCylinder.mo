@@ -41,7 +41,7 @@ model Building1Zone1DCylinder
   parameter Modelica.SIunits.Length height = 2.8
     "Height of the building (inner space)"
     annotation(Dialog(tab="Geometry",group="Building"));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall[nSeg](
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall[nSeg](
     each height = height,
     width = {sqrt((circle.point[if i < nSeg then i+1 else 1].x-circle.point[i].x)^2
       + (circle.point[if i < nSeg then i+1 else 1].y-circle.point[i].y)^2) for i in 1:nSeg},
@@ -52,14 +52,14 @@ model Building1Zone1DCylinder
       + angleDegAziBuilding for i in 1:nSeg},
     each angleDegTil = 90.0)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
     height = 1.0,
     width = Modelica.Constants.pi * (diameter/2)^2,
     constructionData = constructionCeiling,
     angleDegAzi = 0.0,
     angleDegTil = 180.0)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
     height = 1.0,
     width = Modelica.Constants.pi * (diameter/2)^2,
     constructionData = constructionBottom,
