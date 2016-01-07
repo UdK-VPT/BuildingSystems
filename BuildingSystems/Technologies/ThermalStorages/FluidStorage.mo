@@ -433,24 +433,23 @@ equation
           lineColor={0,0,255},
           textString="%name")}),
   Documentation(info="<html>
-<p>This is a model for a thermal fluid storage </p>
-<p><b>Typical use and important parameters</b> </p>
-<p><code>nEle</code> number of layers, enumeration starts at bottom (bottom layer is no. 1)</p>
-<p><b>Options</b> </p>
-<p>The thermal fluid storage model has several fluidports. 2 at the bottom and 2 at the top. It is possible to have different configurations: </p>
-<ul>
-<li>Switch on fluidports connected to each of the intermediate fluid layers.</li>
-<li>2 optional and freely placeable internal heat exchangers (identified as &quot;1&quot; and &quot;2&quot;). </li>
-<li>Specify the layer at which the HX are connected.</li>
-<li>Set <code>PerfectlyIsolated</code> to true to switch off the heat losses to the environment, i.e. the thermal fluid storage is perfectly isolated. <br/>
-Note that if <code>PerfectlyIsolated</code> is set to false and no boundary condition is connected to the heatPort, the external heat flow rate will also be 0.
-However, because all layers are connected to the external heat port, a non-physical internal heat flow transfer between volumes takes place.</li>
-</ul>
-<h4>Notes</h4>
-<p>The thermal fluid storage uses a model to increase heat exchange betweeen layers accounting for buoyancy effect, see <a href=\"modelica://BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels\">BuoyancyModels</a> </p>
-<p><b>Assumption and limitations</b> </p>
-<p>Up to date the model does not take into account the mixing caused by in and outflows and there is no model for a stratified inlet. </p>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+    <p>This is a model for a thermal fluid storage </p>
+    <p><b>Typical use and important parameters</b> </p>
+    <p><code>nEle</code> number of layers, enumeration starts at bottom (bottom layer is no. 1)</p>
+    <p><b>Options</b> </p>
+    <p>The thermal fluid storage model has several fluidports. 2 at the bottom and 2 at the top. It is possible to have different configurations: </p>
+    <ul>
+    <li>Switch on fluidports connected to each of the intermediate fluid layers.</li>
+    <li>2 optional and freely placeable internal heat exchangers (identified as &quot;1&quot; and &quot;2&quot;). </li>
+    <li>Specify the layer at which the HX are connected.</li>
+    <li>Set <code>PerfectlyIsolated</code> to true to switch off the heat losses to the environment, i.e. the thermal fluid storage is perfectly isolated. <br/>
+    Note that if <code>PerfectlyIsolated</code> is set to false and no boundary condition is connected to the heatPort, the external heat flow rate will also be 0.
+    However, because all layers are connected to the external heat port, a non-physical internal heat flow transfer between volumes takes place.</li>
+    </ul>
+    <h4>Notes</h4>
+    <p>The thermal fluid storage uses a model to increase heat exchange betweeen layers accounting for buoyancy effect, see <a href=\"modelica://BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels\">BuoyancyModels</a> </p>
+    <p><b>Assumption and limitations</b> </p>
+    <p>Up to date the model does not take into account the mixing caused by in and outflows and there is no model for a stratified inlet. </p>
+    </html>"),
+  Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
 end FluidStorage;
