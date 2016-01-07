@@ -158,16 +158,16 @@ model Building1Zone1DBox
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,-20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
-    height = width,
-    width = length,
+    height = length,
+    width = width,
     constructionData = constructionCeiling,
     angleDegAzi = 0.0,
     angleDegTil = 180.0)
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
-    height = width,
-    width = height,
+    height = length,
+    width = width,
     constructionData = constructionBottom,
     angleDegAzi = 0.0,
     angleDegTil = 0.0)
