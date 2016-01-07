@@ -125,7 +125,8 @@ model Building1Zone1DBox
     constructionData = constructionWall1,
     angleDegAzi = 90.0 + angleDegAziBuilding,
     angleDegTil = 90.0)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
+    annotation (Dialog(tab = "Opaque constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
     height = height,
     width = width,
@@ -134,24 +135,8 @@ model Building1Zone1DBox
     constructionData = constructionWall2,
     angleDegAzi = 180.0 + angleDegAziBuilding,
     angleDegTil = 90.0)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,20})));
-  replaceable BuildingSystems.Buildings.Constructions.Windows.Window window2(
-    height = max(heightWindow2,1e-5),
-    width = max(widthWindow2,1e-5),
-    framePortion = framePortionWindow2,
-    angleDegAzi = 180.0 + angleDegAziBuilding,
-    angleDegTil = 90.0,
-    UVal = (1.0 - framePortionWindow2) * constructionWindow2.UValGla + framePortionWindow2 * constructionWindow2.UValFra,
-    tauDir0 = constructionWindow2.g,
-    tauDif = constructionWindow2.g)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={2,20})));
-  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
-    height = width,
-    width = length,
-    constructionData = constructionCeiling,
-    angleDegAzi = 0.0,
-    angleDegTil = 180.0)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
+    annotation (Dialog(tab = "Opaque constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
     height = height,
     width = length,
@@ -160,24 +145,8 @@ model Building1Zone1DBox
     constructionData = constructionWall3,
     angleDegAzi = -90.0 + angleDegAziBuilding,
     angleDegTil = 90.0)
-    annotation (Placement(transformation(extent={{30,-20},{50,0}})));
-  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
-    height = length,
-    width = width,
-    constructionData = constructionBottom,
-    angleDegAzi = 0.0,
-    angleDegTil = 0.0)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
-  replaceable BuildingSystems.Buildings.Constructions.Windows.Window window4(
-    height = max(heightWindow4,1e-5),
-    width = max(widthWindow4,1e-5),
-    framePortion = framePortionWindow4,
-    angleDegAzi = 0.0 + angleDegAziBuilding,
-    angleDegTil = 90.0,
-    UVal = (1.0 - framePortionWindow4) * constructionWindow4.UValGla + framePortionWindow4 * constructionWindow4.UValFra,
-    tauDir0 = constructionWindow4.g,
-    tauDif = constructionWindow4.g)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-20})));
+    annotation (Dialog(tab = "Opaque constructions", group = "model type"),
+      Placement(transformation(extent={{30,-20},{50,0}})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
     height = height,
     width = width,
@@ -186,7 +155,40 @@ model Building1Zone1DBox
     constructionData = constructionWall4,
     angleDegAzi = 0.0 + angleDegAziBuilding,
     angleDegTil = 90.0)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,-20})));
+    annotation (Dialog(tab = "Opaque constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,-20})));
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
+    height = width,
+    width = length,
+    constructionData = constructionCeiling,
+    angleDegAzi = 0.0,
+    angleDegTil = 180.0)
+    annotation (Dialog(tab = "Opaque constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
+    height = length,
+    width = width,
+    constructionData = constructionBottom,
+    angleDegAzi = 0.0,
+    angleDegTil = 0.0)
+    annotation (Dialog(tab = "Opaque constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wallsInterior(
+    final constructionData=constructionWallsInterior,
+    final angleDegTil = 90.0,
+    final width = AInteriorWalls/wallsInterior.height,
+    height = 1.0,
+    final angleDegAzi = 0) if InteriorWalls
+    annotation (Dialog(tab = "Opaque constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},origin={-18,-6})));
+  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceilingsInterior(
+    final constructionData=constructionCeilingsInterior,
+    final width = AInteriorCeilings/ceilingsInterior.height,
+    height = 1.0,
+    final angleDegAzi = 0.0,
+    final angleDegTil = 0.0) if InteriorCeilings
+    annotation (Dialog(tab = "Opaque constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,40})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window1(
     height = max(heightWindow1,1e-5),
     width = max(widthWindow1,1e-5),
@@ -196,7 +198,19 @@ model Building1Zone1DBox
     UVal = (1.0 - framePortionWindow1) * constructionWindow1.UValGla + framePortionWindow1 * constructionWindow1.UValFra,
     tauDir0 = constructionWindow1.g,
     tauDif = constructionWindow1.g)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-10})));
+    annotation (Dialog(tab = "Transparent constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-10})));
+  replaceable BuildingSystems.Buildings.Constructions.Windows.Window window2(
+    height = max(heightWindow2,1e-5),
+    width = max(widthWindow2,1e-5),
+    framePortion = framePortionWindow2,
+    angleDegAzi = 180.0 + angleDegAziBuilding,
+    angleDegTil = 90.0,
+    UVal = (1.0 - framePortionWindow2) * constructionWindow2.UValGla + framePortionWindow2 * constructionWindow2.UValFra,
+    tauDir0 = constructionWindow2.g,
+    tauDif = constructionWindow2.g)
+    annotation (Dialog(tab = "Transparent constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={2,20})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window3(
     height = max(heightWindow3,1e-5),
     width = max(widthWindow3,1e-5),
@@ -206,21 +220,19 @@ model Building1Zone1DBox
     UVal = (1.0 - framePortionWindow3) * constructionWindow3.UValGla + framePortionWindow3 * constructionWindow3.UValFra,
     tauDir0 = constructionWindow3.g,
     tauDif = constructionWindow3.g)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={40,10})));
-  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wallsInterior(
-    final constructionData=constructionWallsInterior,
-    final angleDegTil = 90.0,
-    final width = AInteriorWalls/wallsInterior.height,
-    height = 1.0,
-    final angleDegAzi = 0) if InteriorWalls
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-18,-6})));
-  replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceilingsInterior(
-    final constructionData=constructionCeilingsInterior,
-    final width = AInteriorCeilings/ceilingsInterior.height,
-    height = 1.0,
-    final angleDegAzi = 0.0,
-    final angleDegTil = 0.0) if InteriorCeilings
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,40})));
+    annotation (Dialog(tab = "Transparent constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},origin={40,10})));
+  replaceable BuildingSystems.Buildings.Constructions.Windows.Window window4(
+    height = max(heightWindow4,1e-5),
+    width = max(widthWindow4,1e-5),
+    framePortion = framePortionWindow4,
+    angleDegAzi = 0.0 + angleDegAziBuilding,
+    angleDegTil = 90.0,
+    UVal = (1.0 - framePortionWindow4) * constructionWindow4.UValGla + framePortionWindow4 * constructionWindow4.UValFra,
+    tauDir0 = constructionWindow4.g,
+    tauDif = constructionWindow4.g)
+    annotation (Dialog(tab = "Transparent constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-20})));
 equation
   connect(zone.TAir, TAir[1]) annotation (Line(
     points={{-7,7},{-7,-30},{88,-30},{88,-70},{110,-70}},

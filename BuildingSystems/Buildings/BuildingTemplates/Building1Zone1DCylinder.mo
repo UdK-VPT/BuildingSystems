@@ -51,21 +51,24 @@ model Building1Zone1DCylinder
       * 180.0 / Modelica.Constants.pi * (if i / nSeg > 0.5 then 1.0 else -1.0)
       + angleDegAziBuilding for i in 1:nSeg},
     each angleDegTil = 90.0)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
+    annotation (Dialog(tab = "Constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
     height = 1.0,
     width = Modelica.Constants.pi * (diameter/2)^2,
     constructionData = constructionCeiling,
     angleDegAzi = 0.0,
     angleDegTil = 180.0)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
+    annotation (Dialog(tab = "Constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
     height = 1.0,
     width = Modelica.Constants.pi * (diameter/2)^2,
     constructionData = constructionBottom,
     angleDegAzi = 0.0,
     angleDegTil = 0.0)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
+    annotation (Dialog(tab = "Constructions", group = "model type"),
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
 protected
   parameter BuildingSystems.Geometries.BaseClasses.GeometryCircle circle(
     nSeg = nSeg,
