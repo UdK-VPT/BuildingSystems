@@ -9,9 +9,25 @@ model Building1Zone1DBox
     final nAirpathes = 0,
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
     final alphaConstant = 0.0, // dummy value
-    surfacesToAmbient(nSurfaces=9),
+    surfacesToAmbient(nSurfaces=9
+      - (if adiabaticWall1 then 1 else 0)
+      - (if adiabaticWall2 then 1 else 0)
+      - (if adiabaticWall3 then 1 else 0)
+      - (if adiabaticWall4 then 1 else 0)
+      - (if adiabaticCeiling then 1 else 0)),
     final nSurfacesSolid=1,
     surfacesToSolids(nSurfaces=nSurfacesSolid));
+
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticWall1 if adiabaticWall1
+    "Adiabatic boundary condition for wall1";
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticWall2 if adiabaticWall2
+    "Adiabatic boundary condition for wall2";
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticWall3 if adiabaticWall3
+    "Adiabatic boundary condition for wall3";
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticWall4 if adiabaticWall4
+    "Adiabatic boundary condition for wall4";
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticCeiling if adiabaticCeiling
+    "Adiabatic boundary condition for ceiling";
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWall1
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Exterior constructions"), choicesAllMatching=true);
@@ -48,6 +64,23 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.Thermal.ConstructionStandard constructionCeilingsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
+
+  parameter Boolean adiabaticWall1 = false
+   "True for adiabatic boundary conditions"
+   annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter Boolean adiabaticWall2 = false
+    "True for adiabatic boundary conditions"
+    annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter Boolean adiabaticWall3 = false
+    "True for adiabatic boundary conditions"
+    annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter Boolean adiabaticWall4 = false
+    "True for adiabatic boundary conditions"
+    annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter Boolean adiabaticCeiling = false
+    "True for adiabatic boundary conditions"
+    annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
     final prescribedAirchange = prescribedAirchange,
     final V = width*length*height,
@@ -326,52 +359,6 @@ equation
       points={{20,-18},{20,-16},{-6.66667,-16},{-6.66667,-11}},
       color={0,0,0},
       pattern=LinePattern.Solid));
-  connect(window1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[1])
-    annotation (Line(
-      points={{-42,-10},{-82,-10},{-82,3.55271e-015},{-89.9,3.55271e-015}},
-      color={0,0,0},
-      pattern=LinePattern.Solid));
-  connect(wall1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[2])
-    annotation (Line(
-      points={{-42,10},{-82,10},{-82,3.55271e-015},{-89.9,3.55271e-015}},
-      color={0,0,0},
-      pattern=LinePattern.Solid));
-  connect(wall4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[3])
-    annotation (Line(
-      points={{-20,-22},{-20,-34},{-82,-34},{-82,3.55271e-015},{-89.9,3.55271e-015}},
-      color={0,0,0},
-      pattern=LinePattern.Solid));
-  connect(window4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4])
-    annotation (Line(
-      points={{-4.44089e-016,-22},{-4.44089e-016,-34},{-82,-34},{-82,3.55271e-015},
-          {-89.9,3.55271e-015}},
-      color={0,0,0},
-      pattern=LinePattern.Solid));
-  connect(wall3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[5])
-    annotation (Line(
-      points={{42,-10},{44,-10},{44,-34},{-82,-34},{-82,3.55271e-015},{-89.9,3.55271e-015}},
-      color={0,0,0},
-      pattern=LinePattern.Solid));
-  connect(wall2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[6])
-    annotation (Line(
-      points={{-20,22},{-20,32},{-82,32},{-82,3.55271e-015},{-89.9,3.55271e-015}},
-      color={0,0,0},
-      pattern=LinePattern.Solid));
-  connect(window2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[7])
-    annotation (Line(
-      points={{2,22},{2,32},{-82,32},{-82,3.55271e-015},{-89.9,3.55271e-015}},
-      color={0,0,0},
-      pattern=LinePattern.Solid));
-  connect(ceiling.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[8])
-    annotation (Line(
-      points={{22,22},{22,32},{-82,32},{-82,3.55271e-015},{-89.9,3.55271e-015}},
-      color={0,0,0},
-      pattern=LinePattern.Solid));
-  connect(window3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[9])
-    annotation (Line(
-      points={{42,10},{44,10},{44,32},{-82,32},{-82,3.55271e-015},{-89.9,3.55271e-015}},
-      color={0,0,0},
-      pattern=LinePattern.Solid));
   connect(bottom.toSurfacePort_2, surfacesToSolids.toConstructionPorts[1])
     annotation (Line(
       points={{20,-22},{20,-22},{20,-70},{8.88178e-016,-70},{8.88178e-016,-90.8}},
@@ -385,5 +372,69 @@ equation
      annotation (Line(points={{2.4,11},{2.4,50},{-20,50},{-20,42}}, color={127,0,0}));
   connect(zone.toConstructionPorts2[5], ceilingsInterior.toSurfacePort_1)
      annotation (Line(points={{0.8,11},{0.8,34},{-20,34},{-20,38}}, color={127,0,0}));
-
+  connect(window1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[1])
+   annotation (Line(
+     points={{-42,-10},{-82,-10},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+     color={0,0,0},
+     pattern=LinePattern.Solid));
+  connect(window2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[2])
+    annotation (Line(
+     points={{2,22},{2,32},{-82,32},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+     color={0,0,0},
+     pattern=LinePattern.Solid));
+  connect(window3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[3])
+    annotation (Line(
+      points={{42,10},{44,10},{44,32},{-82,32},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+      color={0,0,0},
+      pattern=LinePattern.Solid));
+  connect(window4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4])
+    annotation (Line(
+      points={{-4.44089e-016,-22},{-4.44089e-016,-34},{-82,-34},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+      color={0,0,0},
+      pattern=LinePattern.Solid));
+  if not adiabaticWall1 then
+    connect(wall1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)])
+      annotation (Line(
+        points={{-42,10},{-82,10},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+        color={0,0,0},
+        pattern=LinePattern.Solid));
+  else
+    connect(wall1.toSurfacePort_2,surfaceAdiabaticWall1.toConstructionPort);
+  end if;
+  if not adiabaticWall2 then
+    connect(wall2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)+(if not adiabaticWall2 then 1 else 0)])
+      annotation (Line(
+        points={{-20,22},{-20,32},{-82,32},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+        color={0,0,0},
+        pattern=LinePattern.Solid));
+  else
+    connect(wall2.toSurfacePort_2,surfaceAdiabaticWall2.toConstructionPort);
+  end if;
+  if not adiabaticWall3 then
+    connect(wall3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)+(if not adiabaticWall2 then 1 else 0)+(if not adiabaticWall3 then 1 else 0)])
+      annotation (Line(
+        points={{42,-10},{44,-10},{44,-34},{-82,-34},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+        color={0,0,0},
+        pattern=LinePattern.Solid));
+  else
+    connect(wall3.toSurfacePort_2,surfaceAdiabaticWall3.toConstructionPort);
+  end if;
+  if not adiabaticWall4 then
+    connect(wall4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)+(if not adiabaticWall2 then 1 else 0)+(if not adiabaticWall3 then 1 else 0)+(if not adiabaticWall4 then 1 else 0)])
+      annotation (Line(
+        points={{-20,-22},{-20,-34},{-82,-34},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+        color={0,0,0},
+        pattern=LinePattern.Solid));
+  else
+    connect(wall4.toSurfacePort_2,surfaceAdiabaticWall4.toConstructionPort);
+  end if;
+  if not adiabaticCeiling then
+    connect(ceiling.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)+(if not adiabaticWall2 then 1 else 0)+(if not adiabaticWall3 then 1 else 0)+(if not adiabaticWall4 then 1 else 0)+(if not adiabaticCeiling then 1 else 0)])
+      annotation (Line(
+        points={{22,22},{22,32},{-82,32},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+        color={0,0,0},
+        pattern=LinePattern.Solid));
+  else
+    connect(ceiling.toSurfacePort_2,surfaceAdiabaticCeiling.toConstructionPort);
+  end if;
 end Building1Zone1DBox;
