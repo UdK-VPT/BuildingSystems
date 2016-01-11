@@ -96,7 +96,7 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     redeclare package Medium = Medium,
     V_start=1,
     p_start=300000)
-               annotation (Placement(transformation(extent={{82,14},{94,26}})));
+               annotation (Placement(transformation(extent={{74,20},{86,32}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
                                                                                       parallelPipes(
     redeclare package Medium = Medium,
@@ -197,7 +197,7 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
         origin={-10,70})));
   Fluid.Movers.FlowControlled_dp pump(redeclare package Medium = Medium,
       m_flow_nominal=100)
-    annotation (Placement(transformation(extent={{70,0},{50,20}})));
+    annotation (Placement(transformation(extent={{74,0},{54,20}})));
   Modelica.Blocks.Sources.RealExpression dp_station2(y=station2.port_a.p -
         station2.port_b.p) annotation (Placement(transformation(
         extent={{-20,10},{20,-10}},
@@ -400,15 +400,15 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(pump.port_b, central.port_a) annotation (Line(
-      points={{50,10},{46,10},{46,36}},
+      points={{54,10},{46,10},{46,36}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(parallelPipes.port_b2, pump.port_a) annotation (Line(
-      points={{-6,24},{12,24},{12,-20},{80,-20},{80,10},{70,10}},
+      points={{-6,24},{12,24},{12,-20},{80,-20},{80,10},{74,10}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(parallelPipes2.port_b2, pump.port_a) annotation (Line(
-      points={{0,-76},{80,-76},{80,10},{70,10}},
+      points={{0,-76},{80,-76},{80,10},{74,10}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(dp_in.u_m, dp_station2.y) annotation (Line(
@@ -420,14 +420,14 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(pump.dp_in, dp_in.y) annotation (Line(
-      points={{60.2,22},{60.2,30},{64,30},{64,31.6}},
+      points={{64.2,22},{64.2,30},{64,30},{64,31.6}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(exp.port_a, pump.port_a) annotation (Line(
-      points={{88,14},{88,10},{70,10}},
+      points={{80,20},{80,10},{74,10}},
       color={0,127,255},
       smooth=Smooth.None));
-  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork.mos"
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_dp.mos"
         "Simulate and plot"),Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,
             -100},{140,100}}), graphics),
     Icon(coordinateSystem(extent={{-220,-100},{140,100}})),

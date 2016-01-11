@@ -1,8 +1,8 @@
-simulateModel("BuildingSystems.Technologies.DistrictHeatingNetworks.Examples.DistrictHeatingNetwork", startTime=0, stopTime=3.1536e+07, method="dassl", resultFile="DHN");
+simulateModel("BuildingSystems.Technologies.DistrictHeatingNetworks.Examples.DistrictHeatingNetwork_m_flow", startTime=0, stopTime=3.1536e+07, method="dassl", resultFile="DHN_m_flow");
 createPlot(
  id = 1,
  position = {0, 0, 600, 500},
- y = {"central.TSet","station.tanhAmbient.y"},
+ y = {"central.TSet","station.senTemSupply.T"},
  range = {15552000, 16156800.0, 5.0, 75.0},
  autoscale = true,
  autoerase = true,
@@ -12,7 +12,6 @@ createPlot(
  color = true,
  online = false,
  subPlot = 1,
- filename = "DHN.mat",
  leftTitleType = 1,
  bottomTitleType = 1);
 createPlot(
@@ -30,7 +29,7 @@ createPlot(
  leftTitleType = 1,
  subPlot = 2,
  bottomTitleType = 1);
- createPlot(
+createPlot(
  id = 1,
  position = {610, 0, 600, 500},
  y = {"building.zone.TAir","building1.zone.TAir","building2.zone.TAir"},

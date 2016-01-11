@@ -377,7 +377,7 @@ equation
       points={{60,60},{60,40},{54,40}},
       color={0,127,255},
       smooth=Smooth.None));
-  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork.mos"
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_m_flow.mos"
         "Simulate and plot"),Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,
             -100},{100,100}}), graphics),
     Icon(coordinateSystem(extent={{-220,-100},{100,100}})),
