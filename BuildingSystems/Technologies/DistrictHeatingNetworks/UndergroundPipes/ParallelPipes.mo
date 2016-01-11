@@ -23,7 +23,8 @@ extends BuildingSystems.Fluid.Interfaces.PartialFourPort(final allowFlowReversal
     dp_nominal=dp_nominal,
     thicknessIns=Umodel.th_ins,
     lambdaIns=Umodel.lam_ins,
-    diameter=Umodel.d_i)
+    diameter=Umodel.d_i,
+    useExternalHeatSource=true)
     annotation (Placement(transformation(extent={{-10,50},{10,70}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pipReturn(
     redeclare package Medium = Medium,
@@ -41,7 +42,8 @@ extends BuildingSystems.Fluid.Interfaces.PartialFourPort(final allowFlowReversal
     useMultipleHeatPorts=true,
     thicknessIns=Umodel.th_ins,
     lambdaIns=Umodel.lam_ins,
-    diameter=Umodel.d_i)
+    diameter=Umodel.d_i,
+    useExternalHeatSource=true)
     annotation (Placement(transformation(extent={{10,-50},{-10,-70}})));
 
   parameter Integer nNodes=1 "Number of volume segments";
@@ -52,6 +54,7 @@ extends BuildingSystems.Fluid.Interfaces.PartialFourPort(final allowFlowReversal
     "Start value of pressure"                                                                                                     annotation(Dialog(tab = "Initialitzation"));
   parameter Modelica.Media.Interfaces.Types.Temperature T_start=Medium.T_default
     "Start value of temperature"                                                                                                     annotation(Dialog(tab = "Initialitzation"));
+
   parameter Boolean allowFlowReversal=true
     "= true to allow flow reversal, false restricts to design direction (port_a -> port_b)"
                                                                                                         annotation (Dialog(tab="Assumptions"));
