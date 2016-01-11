@@ -25,11 +25,8 @@ protected
     "Thermal resistance between pipes";
 equation
   U[1] = (R_g+R_i)/(((R_g+R_i)^2)-(R_m^2));
-  if U[1]/((R_m)/(((R_g+R_i)^2)-(R_m^2))) >= 4 then
-    U[2] = 0;
-  else
-    U[2] = (R_m)/(((R_g+R_i)^2)-(R_m^2));
-  end if;
+  U[2] = (R_m)/(((R_g+R_i)^2)-(R_m^2));
+  assert(E > d_o, " Distance between pipes E, " + String(E)  +" , must be greater than pipe's cover diameter: " + String(d_o));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics), Documentation(info="<html>
 <h4>Main equations</h4>
