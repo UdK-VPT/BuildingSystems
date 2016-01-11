@@ -21,6 +21,7 @@ protected
     "Insulation's thickness";
   parameter Modelica.SIunits.Diameter d_c = d_ins + 2*th_c
     "Cover's outter diameter";
-  // add assert for lam_ins >0 and lam_c > 0
+equation
+  assert(d_o > d_i, " Outter's pipe diameter d_o, " + String(d_o)  +" , must be greater than pipe's inner diameter: " + String(d_i));
   annotation (Icon(graphics));
 end PipeInfo;
