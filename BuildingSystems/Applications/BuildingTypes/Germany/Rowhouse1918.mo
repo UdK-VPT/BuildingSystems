@@ -30,10 +30,10 @@ model Rowhouse1918
     length=17.29,
     heightSto=2.79,
     nSto=4,
-    UWindow1=2.6,
-    UWindow2=2.6,
-    UWindow3=2.6,
-    UWindow4=2.6)
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow4)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,14})));

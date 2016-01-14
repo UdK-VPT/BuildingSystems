@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.HAM.HeatConduction.Examples.HeatConduction2DCorner", stopTime=172800, method="dassl", tolerance = 1e-5, resultFile="HeatConduction2DCorner");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ele11.T","ele12.T","ele13.T","ele14.T","ele15.T","ele16.T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatConduction2DCorner.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"ele21.T","ele22.T","ele23.T","ele24.T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatConduction2DCorner.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

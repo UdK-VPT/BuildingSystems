@@ -38,8 +38,6 @@ ERROR | -43 | netcdf  | NetCDF: Attribute not found
 <p>
 It may be due to the called function cannot find in the readed <code>.nc</code> file some of the variables defined in <code>varNameTime</code> or <code>varNameConstant</code>.
 </p>
-<p>
-</p>
 
 </html>"));
 end NcDataReader;

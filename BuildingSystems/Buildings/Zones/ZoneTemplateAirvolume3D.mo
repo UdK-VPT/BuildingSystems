@@ -158,28 +158,40 @@ equation
     for i in 1:nConstructions6 loop
       connect(surfaces6.toAirPorts[i],airvolume.toSurfacePortC[i]);
     end for;
-  /********************************************************************/
+/********************************************************************/
 
-  annotation (
-    Documentation(
-     info="<html>
-<p>This Template creates a rectangular-shaped thermal zone. The indoor room could be divided into discrete air volumes of various sizes. </p>
-<p>Inside every air volume a thermodynamic state is calculated by solving energy-, mass- and humidity balance equations and additional equations for temperature and pressure. </p>
-<p>All air volumes are connected with six neighbours (air volumes or wall elements).</p>
-<p><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/airVolumeConnectionS.png\"/></p>
-<p>To calculate the velocity distribution between two air volume elements a simplified one dimensional form of the impulse equation is solved. </p>
-<p>The resulting mass flows are distributed to the air volumes to determine a characteristic velocity.</p>
-<p>To compensate neglected modelling of turbulence and boundary layers the impulse equations are parameterized.</p>
-<p><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/boxPlacementS.png\"/></p>
-<p>Figure 2 shows the spatial arrangement of the air volume elements. When instantiating ZoneTemplateAirvolume3D several parameters need to be specified. The Tab <b>General </b>are equal to </p>
-<p>ZoneTemplateAirvolumeMixed. The Tab <b>Airvolume</b> needs information about overall size of the zone, the number of discrete air volumes in each direction and the size of them. By default the size is set </p>
-<p>to an equidistant grid. The tab <b>Surface construction</b> describes the interface to the surrounding walls. If the number of constructions of each surface are equal to one, these values are set </p>
-<p>by default (see example BuildingsSystems.Buildings.Examples.ThermalModelHouse3D).</p>
-<p>If the number of constructions of one surface are greater than one the corresponding Surface Placement must providing information about the spatial arrangement of each construction. Figure 3 works as </p>
-<p>the basis for this action, an example can be found under BuildingsSystems.Buildings.Examples.ThermalModelHouse3Dwindow.</p>
-<p><br><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/wallPlacementS.png\"/></p>
-<p><br><u><i>Please note that a lot of parameters (e.g. the dimension of the gridSurface1, the number of the finite volumes corresponding to this surface and the surface construction) must be consistent to each other <b>and</b> to the connected wall element.</i></u></p>
-<p><br><br>More informations about the zonal approach underneath could be found in:</p>
-<p>Mucha, K., Nytsch-Geusen, C. &amp; Streuling, C. (2014). <i>Ein simulationsbasierter Ansatz zur Analyse von Hitzestre&szlig;ereignissen in Innenr&auml;umen</i>, Proceedings of the 5th German-Austrian IBPSA Conference, 22.-24. September, Aachen Germany. </p>
-</html>"));
+annotation (Documentation(info="<html>
+  <p>This Template creates a rectangular-shaped thermal zone. The indoor room could be divided into discrete
+  air volumes of various sizes.</p>
+  <p>Inside every air volume a thermodynamic state is calculated by solving energy-,
+  mass- and humidity balance equations and additional equations for temperature and pressure. </p>
+  <p>All air volumes are connected with six neighbours (air volumes or wall elements).</p>
+  <p><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/airVolumeConnectionS.png\" alt=\"airvolume connections\"/></p>
+  <p>To calculate the velocity distribution between two air volume elements a simplified one dimensional
+  form of the impulse equation is solved. </p>
+  <p>The resulting mass flows are distributed to the air volumes to determine a characteristic velocity.</p>
+  <p>To compensate neglected modelling of turbulence and boundary layers the impulse equations are parameterized.</p>
+  <p><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/boxPlacementS.png\" alt=\"box placement\"/></p>
+  <p>Figure 2 shows the spatial arrangement of the air volume elements. When instantiating
+  ZoneTemplateAirvolume3D several parameters need to be specified. The Tab <b>General </b> are equal to </p>
+  <p>ZoneTemplateAirvolumeMixed. The Tab <b>Airvolume</b> needs information about overall
+  size of the zone, the number of discrete air volumes in each direction and the size of
+  them. By default the size is set </p>
+  <p>to an equidistant grid. The tab <b>Surface construction</b> describes the interface
+  to the surrounding walls. If the number of constructions of each surface are equal to one, these values are set </p>
+  <p>by default (see example BuildingsSystems.Buildings.Examples.ThermalModelHouse3D).</p>
+  <p>If the number of constructions of one surface are greater than one the corresponding
+  Surface Placement must providing information about the spatial arrangement of each construction.
+  Figure 3 works as </p>
+  <p>the basis for this action, an example can be found under
+  BuildingsSystems.Buildings.Examples.ThermalModelHouse3Dwindow.</p>
+  <p><br/><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/wallPlacementS.png\" alt=\"wall placement.png\"/></p>
+  <p><br/><u><i>Please note that a lot of parameters (e.g. the dimension of the gridSurface1,
+  the number of the finite volumes corresponding to this surface and the surface construction)
+  must be consistent to each other <b>and</b> to the connected wall element.</i></u></p>
+  <p><br/><br/>More informations about the zonal approach underneath could be found in:</p>
+  <p>Mucha, K., Nytsch-Geusen, C. &amp; Streuling, C. (2014).
+  <i>Ein simulationsbasierter Ansatz zur Analyse von Hitzestre&szlig;ereignissen in Innenr&auml;umen</i>,
+  Proceedings of the 5th German-Austrian IBPSA Conference, 22.-24. September, Aachen Germany. </p>
+  </html>"));
 end ZoneTemplateAirvolume3D;

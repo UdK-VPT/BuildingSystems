@@ -30,10 +30,10 @@ model MultistoreyBuilding1958to1968
     length=22.5,
     heightSto=2.83,
     nSto=22,
-    UWindow1=3.3,
-    UWindow2=3.3,
-    UWindow3=3.3,
-    UWindow4=3.3)
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow4)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,14})));

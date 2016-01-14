@@ -623,8 +623,8 @@ equation
     Documentation(
      info="<html>
     <p>Model of the thermal model house in a 3D description - special case ThermalModelHouse3D with window</p>
-    <p><br>(Left-) Zone 1: 3x3 discretised walls, according to the window size, 1D airvolume.</p>
-    <p><br>(Right-) Zone 2: 3x3 discretised walls/ (3x3x3) discretised airvolume, according to the window size.</p>
+    <p><br/>(Left-) Zone 1: 3x3 discretised walls, according to the window size, 1D airvolume.</p>
+    <p><br/>(Right-) Zone 2: 3x3 discretised walls/ (3x3x3) discretised airvolume, according to the window size.</p>
     <p><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/therModelhouse/modelhouseWin.JPG\" alt=\"ThermalModelhouse\"/></p>
     <p>Further Informations about the thermal modelhouse could be found here:<a href=\"http://www.thermisches-modellhaus.de/sites/Home.html\"> www.thermisches-modellhaus.de</a></p>
     </html>"));

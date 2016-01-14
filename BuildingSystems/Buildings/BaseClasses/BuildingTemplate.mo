@@ -28,7 +28,7 @@ partial model BuildingTemplate
     "Number of surfaces (with contact to solids) to the building ambient"
     annotation(Dialog(tab="General",group="Ports"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziBuilding = 0.0
-    "Azimuth angle of the building"
+    "Azimuth angle of the building: south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg"
     annotation(Dialog(tab="General",group="Orientation"));
   parameter Boolean prescribedAirchange = true
     "Switch for air change calculation"

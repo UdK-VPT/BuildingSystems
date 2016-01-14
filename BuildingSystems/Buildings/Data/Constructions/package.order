@@ -1,5 +1,7 @@
+Thermal
+HygroThermal
+Transparent
 OpaqueConstruction
 OpaqueHygroThermalConstruction
 OpaqueThermalConstruction
-HygroThermal
-Thermal
+TransparentConstruction
