@@ -2,7 +2,7 @@ within BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.Bas
 model UPreinsulated "U model for Preinsulated pipes"
   extends
     BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass(
-     nPipes=2,
+     final nPipes=2,
     final SPip=(Modelica.Constants.pi*d_o*d_o/4) - SWat,
     final SWat=Modelica.Constants.pi*d_i*d_i/4);
 

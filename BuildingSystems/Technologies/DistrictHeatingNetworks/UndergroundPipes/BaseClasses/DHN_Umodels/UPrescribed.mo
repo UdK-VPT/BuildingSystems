@@ -1,7 +1,8 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels;
 model UPrescribed
     extends
-    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass;
+    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass(
+                                                                                                    final nPipes=2);
     parameter Modelica.SIunits.ThermalConductivity U1_constant
     "Thermal conductivity specific to length";
     parameter Modelica.SIunits.ThermalConductivity U2_constant
