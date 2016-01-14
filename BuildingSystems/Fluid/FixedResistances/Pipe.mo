@@ -20,7 +20,8 @@ model Pipe "Pipe with 1D discretisation along flow direction"
   parameter Boolean useMultipleHeatPorts=false
     "= true to use one heat port for each segment of the pipe, false to use a single heat port for the entire pipe";
   parameter Boolean useExternalHeatSource=false
-    "= true to transfer the volume temperature to the outter interface (heatPort)";
+    "= true to transfer the volume temperature to the outter interface (heatPort)"
+                                                                                   annotation (Dialog(tab="Advanced"));
 
   BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM res(
     redeclare final package Medium = Medium,
