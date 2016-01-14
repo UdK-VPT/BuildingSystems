@@ -48,9 +48,9 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     CAmbient=100000,
     CInner=100000,
     CGround=100000,
-    UAmbient=0.2,
-    UInner=1.0,
-    UGround=0.2,
+    UValAmbient=0.2,
+    UValInner=1.0,
+    UValGround=0.2,
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
@@ -71,9 +71,9 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     CAmbient=100000,
     CInner=100000,
     CGround=100000,
-    UAmbient=0.2,
-    UInner=1.0,
-    UGround=0.2,
+    UValAmbient=0.2,
+    UValInner=1.0,
+    UValGround=0.2,
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
@@ -155,9 +155,9 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     CAmbient=100000,
     CInner=100000,
     CGround=100000,
-    UAmbient=0.2,
-    UInner=1.0,
-    UGround=0.2,
+    UValAmbient=0.2,
+    UValInner=1.0,
+    UValGround=0.2,
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
@@ -217,16 +217,6 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
         extent={{-20,10},{20,-10}},
         rotation=180,
         origin={120,56})));
-  Modelica.Blocks.Sources.RealExpression dp_station1(y=station1.port_a.p -
-        station1.port_b.p) annotation (Placement(transformation(
-        extent={{-20,10},{20,-10}},
-        rotation=180,
-        origin={120,16})));
-  Modelica.Blocks.Sources.RealExpression dp_station(y=station.port_a.p -
-        station.port_b.p) annotation (Placement(transformation(
-        extent={{-20,10},{20,-10}},
-        rotation=180,
-        origin={120,-4})));
 equation
   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (
       Line(
