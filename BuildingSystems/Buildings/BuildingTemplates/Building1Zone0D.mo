@@ -108,12 +108,11 @@ model Building1Zone0D
     each width = 1.0,
     final height={AWindow[i]/window[i].width for i in 1:nWindows})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,20})));
-protected
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaIns = 7.692
-    "Heat transfer coefficient (convection + radiation) inside of the building"; // after German DIN 4701 Teil2 Tabelle 16"
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaAmb = 25.0
-    "Heat transfer coefficient (convection + radiation) outside of the building"; // after german DIN 4701 Teil2 Tabelle 16"
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaGround = 100.0
+  final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaIns = 7.692
+    "Heat transfer coefficient (convection + radiation) inside of the building"; // after German DIN 4701 Teil2 tabular 16"
+  final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaAmb = 25.0
+    "Heat transfer coefficient (convection + radiation) outside of the building"; // after german DIN 4701 Teil2 tabular 16"
+  final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaGround = 100.0
     "Heat transfer coefficient (conduction) to the ground";
 equation
   connect(zone.TAir, TAir[1]) annotation (Line(
