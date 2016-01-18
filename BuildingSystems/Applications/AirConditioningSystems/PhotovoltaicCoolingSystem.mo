@@ -7,11 +7,11 @@ model PhotovoltaicCoolingSystem
     "Nominal mass flow rate";
   parameter Modelica.SIunits.MassFlowRate m_flow = 0.5
     "Mass flow rate in the cold water production and consumption loop";
-  Technologies.Photovoltaics.PVModules.PVModuleSimpleMPP pvField(
+  BuildingSystems.Technologies.Photovoltaics.PVModules.PVModuleSimpleMPP pvField(
     redeclare BuildingSystems.Technologies.Photovoltaics.Data.PhotovoltaicModules.TSM230PC05 pvModuleData,
     angleDegTil=30.0,
     angleDegAzi=0.0,
-    nModPar=20,
+    nModPar=8,
     nModSer=1)
     annotation (Placement(transformation(extent={{-54,-18},{-34,2}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
@@ -21,11 +21,11 @@ model PhotovoltaicCoolingSystem
     rhoAmb=0.2,
     angleDegL=0.0)
     annotation (Placement(transformation(extent={{-72,12},{-52,32}})));
-  Technologies.ElectricalStorages.BatterySimple battery(
-    E_nominal(displayUnit="kWh")=72000000,
+  BuildingSystems.Technologies.ElectricalStorages.BatterySimple battery(
+    E_nominal(displayUnit="kWh")=25200000,
     PLoadMax=5000)
     annotation (Placement(transformation(extent={{-38,-10},{-18,10}})));
-  Technologies.Chillers.CompressionChiller chiller(
+  BuildingSystems.Technologies.Chillers.CompressionChiller chiller(
     redeclare package Medium1 = Medium,
     redeclare package Medium2 = Medium,
     m1_flow_nominal = m_flow_nominal,
@@ -34,29 +34,29 @@ model PhotovoltaicCoolingSystem
     dp2_nominal = 1000.0,
     redeclare BuildingSystems.Technologies.Chillers.Data.CompressionChillers.StandardChiller2000W chillerData)
     annotation (Placement(transformation(extent={{24,-10},{4,10}})));
-  Fluid.Sensors.TemperatureTwoPort senTemEvaOut(
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTemEvaOut(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{32,-10},{40,-2}})));
-  Fluid.Sensors.TemperatureTwoPort senTemEvaIn(
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTemEvaIn(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-8,-10},{0,-2}})));
-  Fluid.Sources.MassFlowSource_T m_flow_con(
+  BuildingSystems.Fluid.Sources.MassFlowSource_T m_flow_con(
     redeclare package Medium = Medium,
     nPorts=1,
     m_flow=m_flow,
     use_T_in=true)
     annotation (Placement(transformation(extent={{52,2},{44,10}})));
-  Fluid.Sensors.TemperatureTwoPort  senTemConIn(
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort  senTemConIn(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{40,2},{32,10}})));
-  Fluid.Sensors.TemperatureTwoPort senTemConOut(
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTemConOut(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-8,2},{0,10}})));
-  Fluid.Sources.Boundary_pT bou_pT(
+  BuildingSystems.Fluid.Sources.Boundary_pT bou_pT(
     redeclare package Medium = Medium,
     nPorts=1,
     p=99999,
@@ -64,40 +64,38 @@ model PhotovoltaicCoolingSystem
   Modelica.Blocks.Sources.Constant partLoad(
     k=0.4)
     annotation (Placement(transformation(extent={{-2,14},{6,22}})));
-  Fluid.Movers.FlowControlled_m_flow pump1(
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump1(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{22,-48},{6,-32}})));
-  Fluid.Storage.ExpansionVessel exp1(
+  BuildingSystems.Fluid.Storage.ExpansionVessel exp1(
     redeclare package Medium = Medium,
     V_start=0.01)
     annotation (Placement(transformation(extent={{-18,-40},{-10,-32}})));
-  Technologies.ThermalStorages.FluidStorage storage(
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     HX_2=false,
     HX_1=false,
     redeclare package Medium = Medium,
-    redeclare
-      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
-                                                                                                HeatBuoyancy,
+    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     height=0.5,
     V=1,
     nEle=5) "Cold water storage"
     annotation (Placement(transformation(extent={{62,-40},{82,-20}})));
-  Fluid.FixedResistances.Pipe pip1(
+  BuildingSystems.Fluid.FixedResistances.Pipe pip1(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     thicknessIns=0.04,
     lambdaIns=0.04,
     length=1.0)
     annotation (Placement(transformation(extent={{44,-10},{54,-2}})));
-  Fluid.FixedResistances.Pipe pip2(
+  BuildingSystems.Fluid.FixedResistances.Pipe pip2(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     thicknessIns=0.04,
     lambdaIns=0.04,
     length=1.0)
     annotation (Placement(transformation(extent={{30,-44},{40,-36}})));
-  Fluid.HeatExchangers.Radiators.RadiatorEN442_2 coolingSurface(
+  BuildingSystems.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 coolingSurface(
     redeclare package Medium = Medium,
     VWat=0.05,
     mDry=0.0001,
@@ -112,33 +110,33 @@ model PhotovoltaicCoolingSystem
     Q_flow_nominal=-2000.0)
     "cooling surface"
     annotation (Placement(transformation(extent={{124,-6},{112,6}})));
-  Fluid.Movers.FlowControlled_m_flow  pump2(
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow  pump2(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{86,-46},{102,-30}})));
-  Fluid.FixedResistances.Pipe pip3(
+  BuildingSystems.Fluid.FixedResistances.Pipe pip3(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     thicknessIns=0.04,
     lambdaIns=0.04,
     length=1.0)
     annotation (Placement(transformation(extent={{96,-4},{86,4}})));
-  Fluid.FixedResistances.Pipe pip4(
+  BuildingSystems.Fluid.FixedResistances.Pipe pip4(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     thicknessIns=0.04,
     lambdaIns=0.04,
     length=1.0)
     annotation (Placement(transformation(extent={{110,-42},{120,-34}})));
-  Fluid.Sensors.TemperatureTwoPort senTemColSurOut(
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTemColSurOut(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{108,-4},{100,4}})));
-  Fluid.Sensors.TemperatureTwoPort senTemColSurIn(
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTemColSurIn(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{136,-4},{128,4}})));
-  Buildings.BuildingTemplates.Building1Zone0D building(
+  BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building(
     AAmbient=4*10*2.5+10*10,
     AInner=10*10,
     AGround=10*10,
@@ -148,9 +146,9 @@ model PhotovoltaicCoolingSystem
     CAmbient=100000,
     CInner=100000,
     CGround=100000,
-    UValAmbient=0.2,
+    UValAmbient=1.0,
     UValInner=1.0,
-    UValGround=0.2,
+    UValGround=1.0,
     calcIdealLoads=false,
     heatSources=true,
     show_TAir=true,
@@ -158,7 +156,7 @@ model PhotovoltaicCoolingSystem
     zone.radiationportionHeatSource={0.0}) // 100 percent cooling by convection
     "Building model"
     annotation (Placement(transformation(extent={{88,30},{108,50}})));
-  Buildings.Ambient ambient(
+  BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile)
     "Ambient model"
@@ -287,7 +285,6 @@ equation
           -50,0},{-76,0},{-76,20},{-69.6,20}}, color={0,0,127}));
   connect(pvField.angleDegAzi, radiation.angleDegAzi) annotation (Line(points={{
           -50,-2},{-50,-2},{-76,-2},{-76,16},{-69.6,16}}, color={0,0,127}));
-
   connect(storage.port_b2, pump2.port_a) annotation (Line(
       points={{79,-39},{82.5,-39},{82.5,-38},{86,-38}},
       color={0,127,255},
@@ -296,11 +293,10 @@ equation
       points={{79,-21},{79,0},{86,0}},
       color={0,127,255},
       smooth=Smooth.None));
+
   annotation(experiment(StartTime=0, StopTime=31536000),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/AirConditioningSystems/PhotovoltaicCoolingSystem.mos"
-        "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            160,100}}),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/AirConditioningSystems/PhotovoltaicCoolingSystem.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{160,100}}),
     graphics={Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255},
     textString="Photovoltaic driven air-conditioning system"),
     Text(extent={{-76,-98},{114,-130}},lineColor={0,0,255},textString="Example of a simple solar thermal system")}),
