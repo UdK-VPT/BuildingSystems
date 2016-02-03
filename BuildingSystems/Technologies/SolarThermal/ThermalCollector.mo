@@ -2,7 +2,6 @@ within BuildingSystems.Technologies.SolarThermal;
 model ThermalCollector
   "Model of a solar thermal collector"
   extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface(
-    showDesignFlowDirection = false,
     show_T=true);
   BuildingSystems.Fluid.MixingVolumes.MixingVolume[nEle] vol(
     redeclare each package Medium = Medium,

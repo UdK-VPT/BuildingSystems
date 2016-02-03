@@ -1,11 +1,10 @@
 within BuildingSystems.Technologies.SolarThermal;
-model ThermalCollectorInSerie
-  extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface(
-    showDesignFlowDirection = false);
-    extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations(
-     final X_start = Medium.X_default,
-     final C_start = fill(0, Medium.nC),
-     final C_nominal = fill(1E-2, Medium.nC));
+model ThermalCollectorInSeries
+  extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface;
+  extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations(
+    final X_start = Medium.X_default,
+    final C_start = fill(0, Medium.nC),
+    final C_nominal = fill(1E-2, Medium.nC));
   ThermalCollector thermalCollector[nCol](
     redeclare package Medium = Medium,
     each allowFlowReversal=allowFlowReversal,
@@ -79,7 +78,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
 
-  annotation (    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Text(
       extent={{50,64},{90,44}},
       lineColor={0,0,0},
@@ -113,4 +112,4 @@ equation
       lineColor={0,0,0},
       lineThickness=0.5,
       smooth=Smooth.None)}));
-end ThermalCollectorInSerie;
+end ThermalCollectorInSeries;

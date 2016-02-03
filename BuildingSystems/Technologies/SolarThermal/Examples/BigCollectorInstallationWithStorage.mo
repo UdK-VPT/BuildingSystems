@@ -39,15 +39,14 @@ model BigCollectorInstallationWithStorage
     Ti = 5.0,
     yMax = 4.0)
     annotation (Placement(transformation(extent={{72,40},{52,60}})));
-  Modelica.Blocks.Sources.RealExpression T_set(y=273.15 + 80)
+  Modelica.Blocks.Sources.RealExpression T_set(y=273.15 + 80.0)
     annotation (Placement(transformation(extent={{100,40},{80,60}})));
-  BuildingSystems.Fluid.Sensors.Temperature senTem1(redeclare package Medium = Medium)
+  BuildingSystems.Fluid.Sensors.Temperature senTem1(
+    redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{100,0},{80,20}})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
-    redeclare
-      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
-                                                                                                HeatBuoyancy,
+    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     HX_2 = false,
     PerfectlyIsolated = true,
     HX_1 = false,
@@ -115,7 +114,7 @@ model BigCollectorInstallationWithStorage
     annotation (Placement(transformation(extent={{2,-162},{-20,-140}})));
   Modelica.Blocks.Sources.RealExpression systemOff(y=0)
     annotation (Placement(transformation(extent={{60,-178},{20,-160}})));
-  ThermalCollectorInSerie collectorInSerie(
+  BuildingSystems.Technologies.SolarThermal.ThermalCollectorInSeries collectorInSeries(
     redeclare package Medium = Medium,
     nCol=3,
     redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.FlatSolarCollector1 collectorData(A=3.17),
@@ -133,7 +132,7 @@ model BigCollectorInstallationWithStorage
     longitudeDeg0=weatherData.longitudeDeg0,
     rhoAmb=0.2)
     annotation (Placement(transformation(extent={{-120,10},{-100,30}})));
-  ThermalCollectorInParallel collectorInParallel(
+  BuildingSystems.Technologies.SolarThermal.ThermalCollectorInParallel collectorInParallel(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
     nCol=3,
@@ -237,11 +236,11 @@ equation
       points={{-50.2,-172},{-50,-172},{-50,-150},{-21.1,-150},{-21.1,-151}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(HX.port_b1, collectorInSerie.port_a) annotation (Line(
+  connect(HX.port_b1, collectorInSeries.port_a) annotation (Line(
       points={{-94,-202},{-130,-202},{-130,-50},{-60,-50}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(collectorInSerie.port_b, pump1.port_a) annotation (Line(
+  connect(collectorInSeries.port_b, pump1.port_a) annotation (Line(
       points={{-40,-50},{24,-50},{24,-14}},
       color={0,127,255},
       smooth=Smooth.None));
@@ -249,7 +248,7 @@ equation
       points={{3,-37},{18,-37},{18,22},{-39,22},{-39,49}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(radiation1.radiationPort, collectorInSerie.radiationPort)
+  connect(radiation1.radiationPort, collectorInSeries.radiationPort)
     annotation (Line(
       points={{-102,19.8},{-102,-42},{-53,-42}},
       color={0,0,0},
@@ -328,7 +327,7 @@ equation
       points={{-25,-5},{-25,32},{-50,32},{-50,49}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(collectorInSerie.heatPortCon, prescribedTemperature1.port)
+  connect(collectorInSeries.heatPortCon, prescribedTemperature1.port)
     annotation (Line(
       points={{-47,-42},{-46,-42},{-46,-37},{-8,-37}},
       color={191,0,0},

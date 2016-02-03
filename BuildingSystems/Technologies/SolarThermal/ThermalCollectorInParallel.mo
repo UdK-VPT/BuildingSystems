@@ -1,11 +1,10 @@
 within BuildingSystems.Technologies.SolarThermal;
 model ThermalCollectorInParallel
-  extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface(
-    showDesignFlowDirection = false);
-    extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations(
-     final X_start = Medium.X_default,
-     final C_start = fill(0, Medium.nC),
-     final C_nominal = fill(1E-2, Medium.nC));
+  extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface;
+  extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations(
+    final X_start = Medium.X_default,
+    final C_start = fill(0, Medium.nC),
+    final C_nominal = fill(1E-2, Medium.nC));
   parameter Integer nCol(min = 1) = 1
     "Number of solar thermal collectors in serie";
   parameter Integer nArr(min = 1) = 1
@@ -28,11 +27,10 @@ model ThermalCollectorInParallel
     annotation (Placement(transformation(extent={{20,80},{40,100}}),iconTransformation(extent={{20,80},{40,100}})));
   BuildingSystems.Interfaces.RadiationPort radiationPort
     annotation (Placement(transformation(extent={{-40,80},{-20,100}}),iconTransformation(extent={{-40,80},{-20,100}})));
-  replaceable
-    BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial           collectorData
+  replaceable BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial collectorData
     "Data about the thermal solar collector"
     annotation (HideResult=true, Dialog(tab = "General"), Evaluate=true, choicesAllMatching=true,Placement(transformation(extent={{60,40},{80,60}})));
-  ThermalCollectorInSerie thermalCollectorInSerie[nArr](
+  BuildingSystems.Technologies.SolarThermal.ThermalCollectorInSeries thermalCollectorInSerie[nArr](
     redeclare package Medium = Medium,
     each m_flow_nominal=m_flow_nominal,
     each nCol=nCol,
@@ -50,28 +48,28 @@ model ThermalCollectorInParallel
     each dp_nominal=dp_nominal)
     annotation (Placement(transformation(extent={{-14,-10},{6,10}})));
   equation
-  for i in 1:nArr loop
-    connect(thermalCollectorInSerie[i].radiationPort, radiationPort) annotation (
-      Line(
-      points={{-7,8},{-7,90},{-30,90}},
-      color={0,0,0},
-      pattern=LinePattern.None,
-      smooth=Smooth.None));
-    connect(thermalCollectorInSerie[i].heatPortCon, heatPortCon) annotation (Line(
-      points={{-1,8},{0,8},{0,90},{30,90}},
-      color={191,0,0},
-      smooth=Smooth.None));
-    connect(thermalCollectorInSerie[i].port_b, port_b) annotation (Line(
-      points={{6,0},{100,0}},
-      color={0,127,255},
-      smooth=Smooth.None));
-    connect(thermalCollectorInSerie[i].port_a, port_a) annotation (Line(
-      points={{-14,0},{-100,0}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  end for;
+    for i in 1:nArr loop
+      connect(thermalCollectorInSerie[i].radiationPort, radiationPort) annotation (
+        Line(
+        points={{-7,8},{-7,90},{-30,90}},
+        color={0,0,0},
+        pattern=LinePattern.None,
+        smooth=Smooth.None));
+      connect(thermalCollectorInSerie[i].heatPortCon, heatPortCon) annotation (Line(
+        points={{-1,8},{0,8},{0,90},{30,90}},
+        color={191,0,0},
+        smooth=Smooth.None));
+      connect(thermalCollectorInSerie[i].port_b, port_b) annotation (Line(
+        points={{6,0},{100,0}},
+        color={0,127,255},
+        smooth=Smooth.None));
+      connect(thermalCollectorInSerie[i].port_a, port_a) annotation (Line(
+        points={{-14,0},{-100,0}},
+        color={0,127,255},
+        smooth=Smooth.None));
+    end for;
 
-  annotation (    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Text(
       extent={{46,76},{86,56}},
       lineColor={0,0,0},
