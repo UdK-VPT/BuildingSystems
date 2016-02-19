@@ -11,7 +11,8 @@ model AirpathPrescribedPressure "Air path model for a given pressure"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={40,-10}), iconTransformation(extent={{-5,-5},{5,5}},rotation=180,origin={35,-15})));
   parameter BuildingSystems.Types.FlowCoefficient kConstant= 0.5
     "Flow coefficient";
-  parameter Real mConstant(unit = "1") = 0.5 "Flow exponent";
+  parameter Real mConstant(unit = "1") = 0.5
+    "Flow exponent";
   parameter Boolean use_p_in = false
     "Get the pressure from the input connector"
     annotation(Evaluate=true, HideResult=true);
