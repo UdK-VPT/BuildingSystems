@@ -37,9 +37,7 @@ equation
   PLoadEff = 0.5 * (1.0 + Modelica.Math.tanh(100000.0*(chargeLevel-1.1*chargeLevelMin))) * BuildingSystems.Utilities.SmoothFunctions.softcut_upper(PLoad,PLoadMax,0.001);
   PGrid = PLoad - PLoadEff;
   der(E) = PChargeEff - PLoadEff - fLoss * E;
-    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-            {100,100}}),
-                     graphics={
+    annotation (defaultComponentName="battery", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
       Rectangle(extent={{-60,60},{60,-60}},
         lineColor={215,215,215},
         fillColor={215,215,215},

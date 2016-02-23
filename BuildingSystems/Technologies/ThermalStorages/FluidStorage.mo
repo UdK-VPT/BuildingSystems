@@ -355,83 +355,27 @@ equation
       points={{-22,-11},{-22,-80},{-50,-80}},
       color={191,0,0},
       smooth=Smooth.None));
-
   connect(port_a, pip.port_b) annotation (Line(
       points={{-95,0},{-68,0}},
       color={0,127,255},
       smooth=Smooth.None));
 
-  annotation (    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
-      Line(
-        points={{60,90},{60,-90}},
-        color={0,0,0},
-        smooth=Smooth.None,
-        thickness=0.5),
-      Ellipse(extent={{-60,98},{60,80}}, lineColor={0,0,0},
-        lineThickness=0.5),
-      Ellipse(extent={{-60,-82},{60,-100}},
-                                         lineColor={0,0,0},
-        lineThickness=0.5),
-      Line(
-        points={{-60,90},{-60,-90}},
-        color={0,0,0},
-        smooth=Smooth.None,
-        thickness=0.5),
-      Line(
-        points={{22,62}},
-        color={0,0,255},
-        smooth=Smooth.None),
-      Line(
-        points={{40,60}},
-        color={0,0,255},
-        smooth=Smooth.None),
-      Line(
-        points={{40,-26},{0,-26},{0,-30},{40,-30},{40,-34},{0,-34},{0,-38},{40,
-            -38},{40,-42},{0,-42},{0,-46},{39.9609,-46},{40,-50},{0,-50},{0,-54},
-            {40,-54}},
-        color={0,0,255},
-        smooth=Smooth.Bezier,
-        visible=HX_1),
-      Line(
-        points={{40,-26},{46,-26},{46,-32},{60,-32}},
-        color={0,0,255},
-        smooth=Smooth.Bezier,
-        visible=HX_1),
-      Line(
-        points={{40,60},{0,60},{0,56},{40,56},{40,52},{0,52},{0,48},{40,48},{40,
-            44},{0,44},{0,40},{38.9844,40},{40,36},{0,36},{0,32},{40,32}},
-        color={0,0,255},
-        smooth=Smooth.Bezier,
-        visible=HX_2),
-      Line(
-        points={{40,32},{46,32},{46,26},{60,26}},
-        color={0,0,255},
-        smooth=Smooth.Bezier,
-        visible=HX_2),
-      Line(
-        points={{40,60},{46,60},{46,54},{60,54}},
-        color={0,0,255},
-        smooth=Smooth.Bezier,
-        visible=HX_2),
-      Line(
-        points={{-64,60},{-62,60},{-60,60}},
-        color={0,0,255},
-        smooth=Smooth.None),
-      Text(
-        extent={{-94,80},{-74,60}},
-        lineColor={0,0,255},
-        fillColor={255,0,0},
-        fillPattern=FillPattern.Solid,
-        textString="T"),
-      Line(
-        points={{40,-54},{46,-54},{46,-60},{60,-60}},
-        color={0,0,255},
-        smooth=Smooth.Bezier,
-        visible=HX_1),
-      Text(
-          extent={{-147,-108},{153,-148}},
-          lineColor={0,0,255},
-          textString="%name")}),
+  annotation (defaultComponentName="storage",Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+    Line(points={{60,90},{60,-90}},color={0,0,0},smooth=Smooth.None,thickness=0.5),
+    Ellipse(extent={{-60,98},{60,80}}, lineColor={0,0,0},lineThickness=0.5),
+    Ellipse(extent={{-60,-82},{60,-100}},lineColor={0,0,0},lineThickness=0.5),
+    Line(points={{-60,90},{-60,-90}},color={0,0,0},smooth=Smooth.None,thickness=0.5),
+    Line(points={{22,62}},color={0,0,255},smooth=Smooth.None),
+    Line(points={{40,60}},color={0,0,255},smooth=Smooth.None),
+    Line(points={{40,-26},{0,-26},{0,-30},{40,-30},{40,-34},{0,-34},{0,-38},{40,-38},{40,-42},{0,-42},{0,-46},{39.9609,-46},{40,-50},{0,-50},{0,-54},{40,-54}},color={0,0,255},smooth=Smooth.Bezier,visible=HX_1),
+    Line(points={{40,-26},{46,-26},{46,-32},{60,-32}},color={0,0,255},smooth=Smooth.Bezier,visible=HX_1),
+    Line(points={{40,60},{0,60},{0,56},{40,56},{40,52},{0,52},{0,48},{40,48},{40,44},{0,44},{0,40},{38.9844,40},{40,36},{0,36},{0,32},{40,32}},color={0,0,255},smooth=Smooth.Bezier,visible=HX_2),
+    Line(points={{40,32},{46,32},{46,26},{60,26}},color={0,0,255},smooth=Smooth.Bezier,visible=HX_2),
+    Line(points={{40,60},{46,60},{46,54},{60,54}},color={0,0,255},smooth=Smooth.Bezier,visible=HX_2),
+    Line(points={{-64,60},{-62,60},{-60,60}},color={0,0,255},smooth=Smooth.None),
+    Text(extent={{-94,80},{-74,60}},lineColor={0,0,255},fillColor={255,0,0},fillPattern=FillPattern.Solid,textString="T"),
+    Line(points={{40,-54},{46,-54},{46,-60},{60,-60}},color={0,0,255},smooth=Smooth.Bezier,visible=HX_1),
+    Text(extent={{-147,-108},{153,-148}},lineColor={0,0,255},textString="%name")}),
   Documentation(info="<html>
     <p>This is a model for a thermal fluid storage </p>
     <p><b>Typical use and important parameters</b> </p>

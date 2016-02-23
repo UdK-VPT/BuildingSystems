@@ -59,5 +59,5 @@ equation
   connect(opticalModel.ITotRed, thermalModel.ITot)
     annotation (Line(points={{-1,0},{10,0},{20,0},{20,18},{23,18}}, color={0,0,127}));
 
-  annotation (Icon(graphics={Text(extent={{-48,60},{-16,30}},lineColor={255,255,255},fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="C")}));
+  annotation (defaultComponentName="pvmodule", Icon(graphics={Text(extent={{-48,60},{-16,30}},lineColor={255,255,255},fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="C")}));
 end PVModuleComplex;

@@ -60,7 +60,7 @@ equation
   connect(UField, gainU.u)
     annotation (Line(points={{60,60},{14,60},{14,4},{35.6,4}}, color={0,0,127}));
 
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
+  annotation (defaultComponentName="pvmodule", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Text(extent={{-48,60},{-16,30}},lineColor={255,255,255},fillColor={0,0,255}, fillPattern = FillPattern.Solid,textString="S")}),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
 end PVModuleSimple;

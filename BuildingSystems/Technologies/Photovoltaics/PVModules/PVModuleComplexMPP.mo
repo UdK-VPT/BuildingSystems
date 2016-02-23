@@ -60,5 +60,5 @@ model PVModuleComplexMPP
     connect(opticalModel.ITotRed, thermalModel.ITot)
       annotation (Line(points={{-1,0},{20,0},{20,18},{23,18}}, color={0,0,127}));
 
-  annotation (Icon(graphics={Text(extent={{-12,58},{14,34}},lineColor={255,255,255},fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="MPP")}));
+  annotation (defaultComponentName="pvmodule", Icon(graphics={Text(extent={{-12,58},{14,34}},lineColor={255,255,255},fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="MPP")}));
 end PVModuleComplexMPP;

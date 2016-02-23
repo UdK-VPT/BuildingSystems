@@ -180,7 +180,7 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
 
-  annotation ( Icon(coordinateSystem(
+  annotation (defaultComponentName="collector", Icon(coordinateSystem(
     preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Polygon(
       points={{-54,80},{96,80},{56,-80},{-94,-80},{-54,80}},

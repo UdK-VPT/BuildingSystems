@@ -308,7 +308,7 @@ equation
     connect(cloudCover, cloudCover_in);
   end if;
 
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+  annotation (defaultComponentName="ambient",Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-80,80},{80,-80}},lineColor={85,170,255},fillColor={170,213,255},fillPattern = FillPattern.Solid),
     Text(extent={{46,106},{138,78}}, lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name"),
     Ellipse(extent={{-18,58},{58,-14}},lineColor={255,255,0},fillColor={255,255,85},fillPattern = FillPattern.Solid),
