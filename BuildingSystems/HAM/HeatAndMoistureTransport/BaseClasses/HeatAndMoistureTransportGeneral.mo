@@ -1,7 +1,9 @@
 within BuildingSystems.HAM.HeatAndMoistureTransport.BaseClasses;
 partial model HeatAndMoistureTransportGeneral
   "General model for combined heat conduction and moisture transport"
-  parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialHygroThermalGeneral material;
+  replaceable parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialHygroThermalGeneral material
+    "Material of the body"
+    annotation(Dialog(tab = "General"),Evaluate=true, choicesAllMatching=true);
   Real sorTabX[nRowsSor+1]
     "Sorption isotherm of the physical layer (table)"
     annotation(HideResult=true);
