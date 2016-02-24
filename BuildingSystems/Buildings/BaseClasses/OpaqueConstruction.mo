@@ -1,4 +1,4 @@
-within BuildingSystems.Buildings.Data.Constructions;
+within BuildingSystems.Buildings.BaseClasses;
 record OpaqueConstruction
   "Template for layered constructions"
   extends Modelica.Icons.Record;
