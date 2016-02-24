@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.HAM.ConvectiveHeatTransfer.Examples.AlphaPlateFree", stopTime=3600, method="dassl", numberOfIntervals=24, tolerance = 1e-5, resultFile="AlphaPlateFree");
+simulateModel("BuildingSystems.HAM.ConvectiveHeatTransfer.Examples.AlphaPlateFree", startTime=0, stopTime=3600, method="dassl", tolerance = 1e-5, resultFile="AlphaPlateFree");
 removePlots();
 createPlot(
   id = 1,

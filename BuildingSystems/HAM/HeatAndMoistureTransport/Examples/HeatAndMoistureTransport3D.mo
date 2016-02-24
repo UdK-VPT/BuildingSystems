@@ -9,7 +9,7 @@ model HeatAndMoistureTransport3D
     lengthX=0.3,
     lengthY=0.1,
     lengthZ=1.0,
-    material = brick)
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel material)
     annotation (Placement(transformation(extent={{-30,-4},{-10,16}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.HeatAndMoistureTransport3D el22(
     T_start=293.15,
@@ -17,10 +17,8 @@ model HeatAndMoistureTransport3D
     lengthX=0.3,
     lengthY=0.1,
     lengthZ=1.0,
-    material=insulation)
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Polystyrol material)
     annotation (Placement(transformation(extent={{-10,-4},{10,16}})));
-  BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel brick;
-  BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Polystyrol insulation;
   Modelica.Blocks.Sources.Sine climate1(
     amplitude=10.0,
     freqHz=1.0/86400.0,
@@ -52,7 +50,7 @@ model HeatAndMoistureTransport3D
     lengthX=0.3,
     lengthY=0.1,
     lengthZ=1.0,
-    material=brick,
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel material,
     T_start=293.15)
     annotation (Placement(transformation(extent={{10,-4},{30,16}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.HeatAndMoistureTransport3D el11(
@@ -60,7 +58,7 @@ model HeatAndMoistureTransport3D
     lengthX=0.3,
     lengthY=1.0,
     lengthZ=1.0,
-    material=brick,
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel material,
     T_start=293.15)
     annotation (Placement(transformation(extent={{-30,16},{-10,36}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.HeatAndMoistureTransport3D el12(
@@ -68,7 +66,7 @@ model HeatAndMoistureTransport3D
     lengthX=0.3,
     lengthY=1.0,
     lengthZ=1.0,
-    material=brick,
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel material,
     T_start=293.15)
     annotation (Placement(transformation(extent={{-10,16},{10,36}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.HeatAndMoistureTransport3D el13(
@@ -76,7 +74,7 @@ model HeatAndMoistureTransport3D
     lengthX=0.3,
     lengthY=1.0,
     lengthZ=1.0,
-    material=brick,
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel material,
     T_start=293.15)
     annotation (Placement(transformation(extent={{10,16},{30,36}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.HeatAndMoistureTransport3D el31(
@@ -84,7 +82,7 @@ model HeatAndMoistureTransport3D
     lengthX=0.3,
     lengthY=1.0,
     lengthZ=1.0,
-    material=brick,
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel material,
     T_start=293.15)
     annotation (Placement(transformation(extent={{-30,-24},{-10,-4}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.HeatAndMoistureTransport3D el32(
@@ -92,7 +90,7 @@ model HeatAndMoistureTransport3D
     lengthX=0.3,
     lengthY=1.0,
     lengthZ=1.0,
-    material=brick,
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel material,
     T_start=293.15)
     annotation (Placement(transformation(extent={{-10,-24},{10,-4}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.HeatAndMoistureTransport3D el33(
@@ -100,7 +98,7 @@ model HeatAndMoistureTransport3D
     lengthX=0.3,
     lengthY=1.0,
     lengthZ=1.0,
-    material=brick,
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel material,
     T_start=293.15)
     annotation (Placement(transformation(extent={{10,-24},{30,-4}})));
 equation

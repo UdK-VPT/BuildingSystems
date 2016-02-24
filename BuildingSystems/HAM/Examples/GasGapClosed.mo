@@ -32,13 +32,12 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-    annotation(experiment(StartTime=0,StopTime=7200),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/Examples/GasGapClosed.mos"
-        "Simulate and plot"),
+  annotation(experiment(StartTime=0,StopTime=7200),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/Examples/GasGapClosed.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-40},{40,20}}), graphics={Text(extent={{-34,-8},{32,-38}},lineColor={0,0,255},
     textString="Heat transfer
       by convection and heat radiation
-      within a closed air gap.")}),
+      within a closed air gap")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
     Documentation(info="<html>
     <p> This example tests the implementation of

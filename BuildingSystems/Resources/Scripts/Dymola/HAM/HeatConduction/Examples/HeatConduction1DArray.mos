@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.HAM.HeatConduction.Examples.HeatConduction1DArray", stopTime=172800, method="dassl", numberOfIntervals=240, tolerance = 1e-5, resultFile="HeatConduction1DArray");
+simulateModel("BuildingSystems.HAM.HeatConduction.Examples.HeatConduction1DArray", stopTime=172800, method="dassl", tolerance = 1e-5, resultFile="HeatConduction1DArray");
 removePlots();
 createPlot(
   id = 1,

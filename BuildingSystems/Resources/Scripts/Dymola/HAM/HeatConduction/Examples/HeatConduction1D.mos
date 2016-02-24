@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.HAM.HeatConduction.Examples.HeatConduction1D", stopTime=172800, method="dassl", numberOfIntervals=240, tolerance = 1e-5, resultFile="HeatConduction1D");
+simulateModel("BuildingSystems.HAM.HeatConduction.Examples.HeatConduction1D", stopTime=172800, method="dassl", tolerance = 1e-5, resultFile="HeatConduction1D");
 removePlots();
 createPlot(
   id = 1,
@@ -11,7 +11,7 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "Test_HeatConduction1D.mat",
+  filename = "HeatConduction1D.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
 createPlot(

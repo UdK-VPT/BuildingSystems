@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.HAM.HeatAndMoistureTransport.Examples.HeatAndMoistureTransport3D", stopTime=172800, method="dassl", numberOfIntervals=2400, tolerance = 1e-5, resultFile="HeatAndMoistureTransport3D");
+simulateModel("BuildingSystems.HAM.HeatAndMoistureTransport.Examples.HeatAndMoistureTransport3D", stopTime=172800, method="dassl", tolerance = 1e-5, resultFile="HeatAndMoistureTransport3D");
 removePlots();
 createPlot(
   id = 1,
