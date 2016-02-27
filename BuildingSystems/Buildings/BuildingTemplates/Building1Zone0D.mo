@@ -205,4 +205,5 @@ equation
       color={127,0,0},
       smooth=Smooth.None));
 
+  annotation(defaultComponentName="building");
 end Building1Zone0D;

@@ -42,4 +42,6 @@ model Building1Zone0DDistrict
     "Ratio area to volume";
   equation
   q_flow_heating  = zone.Q_flow_heating / AFloorSpace;
+
+  annotation(defaultComponentName="building");
 end Building1Zone0DDistrict;
