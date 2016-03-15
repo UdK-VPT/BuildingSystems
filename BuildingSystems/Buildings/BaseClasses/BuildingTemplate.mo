@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.BaseClasses;
 partial model BuildingTemplate
-  "Template model for a building"
+  "General template for building models"
   final package Medium = BuildingSystems.Media.Air;
 
   parameter Integer nZones = 0
@@ -22,7 +22,7 @@ partial model BuildingTemplate
     "Convective heat transfer coefficient for simplified calculations"
     annotation(Dialog(tab="Advanced",group="Convection model on building facades"));
   parameter Integer gridSurface[surfacesToAmbient.nSurfaces,2]=fill({1,1},surfacesToAmbient.nSurfaces)
-   "Grid in y and z dimension of each surface"
+    "Grid in y and z dimension of each surface"
     annotation(Dialog(tab = "Advanced", group = "3D discretisation"), HideResult=true);
   parameter Integer nSurfacesSolid = 0
     "Number of surfaces (with contact to solids) to the building ambient"
@@ -59,57 +59,65 @@ partial model BuildingTemplate
     annotation(HideResult = true,Dialog(tab="Advanced",group="Optional"));
   input BuildingSystems.Interfaces.Temp_KInput T_setHeating[nZones] if calcIdealLoads
     "Set air temperature for heating of each thermal zone"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180, origin={100,80}), iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,80})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180, origin={180,80}), iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,80})));
   input BuildingSystems.Interfaces.Temp_KInput T_setCooling[nZones] if calcIdealLoads
     "Set air temperature for cooling of each thermal zone"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={100,60}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,60})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={180,60}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,60})));
   input BuildingSystems.Interfaces.AirchangeRateInput airchange[nZones] if prescribedAirchange
     "Air change rate of each thermal zone"
-     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={100,40}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,40})));
+     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={180,40}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,40})));
   input BuildingSystems.Interfaces.Temp_KInput TAirAmb if prescribedAirchange
     "Air temperature of the building ambient"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={50,100}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={62,98})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={50,120}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={62,98})));
   input BuildingSystems.Interfaces.Moisture_absInput xAirAmb if prescribedAirchange
     "Absolute moisture of the building ambient"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={70,100}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={84,98})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={70,120}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={84,98})));
   output BuildingSystems.Interfaces.Temp_KOutput TAir[nZones] if show_TAir
     "Air temperature of each thermal zone"
-    annotation (Placement(transformation(extent={{100,-80},{120,-60}}), iconTransformation(extent={{100,-80},{120,-60}})));
+    annotation (Placement(transformation(extent={{180,-80},{200,-60}}), iconTransformation(extent={{180,-80},{200,-60}})));
   output BuildingSystems.Interfaces.Moisture_absOutput xAir[nZones] if show_xAir
     "Air humidity  of each thermal zone" annotation (Placement(transformation(
-    extent={{100,-100},{120,-80}}), iconTransformation(extent={{100,-100},{120,-80}})));
+    extent={{180,-100},{200,-80}}), iconTransformation(extent={{180,-100},{200,-80}})));
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_cooling[nZones] if calcIdealLoads
     "Cooling power of each thermal zone"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-80,-100}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-90,-110})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-80,-122}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-90,-110})));
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_heating[nZones] if calcIdealLoads
     "Heating power of each thermal zone"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={80,-100}),  iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={90,-110})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={80,-122}),  iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={90,-110})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAmbientAirpathPorts[nAirpathes](
     redeclare each final package Medium = Medium) if useAirPathes
-    annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=90,origin={96,1}),iconTransformation(extent={{-40,-90},{40,-70}},rotation=270,origin={170,-20})));
+    annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=90,origin={180,1}),iconTransformation(extent={{-40,-90},{40,-70}},rotation=270,origin={170,-20})));
   BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toAmbientSurfacesPorts[nSurfacesAmbient](
     nY=gridSurface[:,1],
     nZ=gridSurface[:,2])
-    annotation (Placement(transformation(extent={{-8,-30},{8,30}},rotation=180,origin={-96,40}), iconTransformation(extent={{-100,0},{-80,80}})));
+    "Interfaces between outside building surfaces to surfaces of the building ambient"
+    annotation (Placement(transformation(extent={{-8,-30},{8,30}},rotation=180,origin={-180,40}),iconTransformation(extent={{-100,0},{-80,80}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAmbientAirPorts[nSurfacesAmbient](
     nY=gridSurface[:,1],
     nZ=gridSurface[:,2])
-    annotation (Placement(transformation(extent={{-8,-30},{8,30}}, rotation=180,origin={-96,-40}),iconTransformation(extent={{-100,-80},{-80,0}})));
+    "Interfaces between outside building surfaces to the air of the building ambient"
+    annotation (Placement(transformation(extent={{-8,-30},{8,30}}, rotation=180,origin={-180,-40}),iconTransformation(extent={{-100,-80},{-80,0}})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfacesToAmbient(
     gridSurface=gridSurface,
-    each surface.convectionOnSurface = convectionOnSurfaces,
-    each surface.alphaConstant= alphaConstant)
-    annotation (Placement(transformation(extent={{-31,-28},{31,28}},rotation=180,origin={-93,0})));
+    surface(each convectionOnSurface = convectionOnSurfaces,
+    each alphaConstant = alphaConstant))
+    "Model for all building surfaces to the building ambient"
+    annotation (Placement(transformation(extent={{-31,-28},{31,28}},rotation=180,origin={-177,0})));
   BuildingSystems.Interfaces.HeatPort2D toSolidHeatPorts[nSurfacesSolid]
-    annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=180,origin={-42,-96}), iconTransformation(extent={{-80,-100},{0,-80}})));
+    "Heat port to the ground under the building"
+    annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=180,origin={-42,-118}),iconTransformation(extent={{-80,-100},{0,-80}})));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources] if heatSources
-    annotation (Placement(transformation(extent={{-10,90},{10,110}}), iconTransformation(extent={{-8,92},{52,108}})));
+    "Heat port to optional internal heat sources of the building"
+    annotation (Placement(transformation(extent={{-10,110},{10,130}}),iconTransformation(extent={{-8,92},{52,108}})));
   BuildingSystems.Interfaces.MoisturePorts moisturePorts[nMoistureSources] if moistureSources
-    annotation (Placement(transformation(extent={{-60,90},{-40,110}}), iconTransformation(extent={{-68,92},{-8,106}})));
+    "Moisture port of optional internal moisture sources"
+    annotation (Placement(transformation(extent={{-60,110},{-40,130}}),iconTransformation(extent={{-68,92},{-8,106}})));
   BuildingSystems.Interfaces.MoisturePort2D toSolidMoisturePorts[nSurfacesSolid] if calcHygroThermal
-    annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=180,origin={42,-96}),iconTransformation(extent={{0,-100},{80,-80}})));
-  BuildingSystems.Buildings.Surfaces.SurfacesToSolids surfacesToSolids(calcHygroThermal=calcHygroThermal,nSurfaces=nSurfacesSolid) annotation (Placement(
-    transformation(extent={{-32,-30},{32,30}},rotation=270,origin={0,-94})));
+    "Mosture port to the ground under the building"
+    annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=180,origin={42,-118}),iconTransformation(extent={{0,-100},{80,-80}})));
+  BuildingSystems.Buildings.Surfaces.SurfacesToSolids surfacesToSolids(calcHygroThermal=calcHygroThermal,nSurfaces=nSurfacesSolid)
+    "Model for all building surfaces to the ground under the building"
+    annotation (Placement(transformation(extent={{-32,-30},{32,30}},rotation=270,origin={0,-116})));
 equation
   for i in 1:nSurfacesAmbient loop
     connect(surfacesToAmbient.toAirPorts[i],toAmbientAirPorts[i]);
@@ -122,21 +130,22 @@ equation
     end if;
   end for;
   annotation (defaultComponentName="building", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
-    Rectangle(extent={{-80,80},{80,-80}},lineColor={0,0,0},fillColor={230,230,230},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{20,62},{40,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{-40,62},{-20,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
+    Rectangle(extent={{-80,80},{80,-80}},lineColor={0,0,0},fillColor={230,230,230},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{20,62},{40,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{-40,62},{-20,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
     Rectangle(extent={{-70,62},{-50,22}},fillColor={170,213,255},fillPattern=FillPattern.Solid,pattern=LinePattern.None,lineColor={0,0,0}),
-    Rectangle(extent={{-10,62},{10,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{50,62},{70,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{-70,12},{-50,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{-40,12},{-20,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{-10,12},{10,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{20,12},{40,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{50,12},{70,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Polygon(points={{-80,80},{-60,100},{100,100},{80,80},{-80,80}},lineColor={0,0,0},smooth=Smooth.None,fillColor={255,0,0},fillPattern=FillPattern.Solid),
-    Polygon(points={{80,-80},{100,-60},{100,100},{80,80},{80,-80}},lineColor={0,0,0},smooth=Smooth.None,fillColor={215,215,215},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{-40,-38},{40,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{50,-38},{70,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Rectangle(extent={{-70,-38},{-50,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
-    Text(extent={{102,-94},{194,-122}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name")}));
+    Rectangle(extent={{-10,62},{10,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{50,62},{70,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{-70,12},{-50,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{-40,12},{-20,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{-10,12},{10,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{20,12},{40,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{50,12},{70,-28}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Polygon(points={{-80,80},{-60,100},{100,100},{80,80},{-80,80}},lineColor={0,0,0},smooth=Smooth.None,fillColor={255,0,0},fillPattern = FillPattern.Solid),
+    Polygon(points={{80,-80},{100,-60},{100,100},{80,80},{80,-80}},lineColor={0,0,0},smooth=Smooth.None,fillColor={215,215,215},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{-40,-38},{40,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{50,-38},{70,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{-70,-38},{-50,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
+    Text(extent={{102,-94},{194,-122}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name")}),
+    Diagram(coordinateSystem(extent={{-180,-120},{180,120}}, initialScale=0.1)));
 end BuildingTemplate;
