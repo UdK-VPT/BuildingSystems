@@ -194,7 +194,7 @@ equation
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
 
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+  annotation (defaultComponentName="window", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-10,80},{10,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
     Rectangle(extent={{6,80},{10,-80}},lineColor={170,255,255},fillColor={170,255,255},fillPattern = FillPattern.Solid),
     Rectangle(extent={{-10,80},{-6,-80}}, lineColor={170,255,255},fillColor={170,255,255},fillPattern = FillPattern.Solid),

@@ -229,7 +229,7 @@ equation
         points={{-50,26},{-53.4,26}},
         color={0,0,127},
         smooth=Smooth.None));
-		
+
 	//Connect Outputs with ideal heating/cooling loads
 	connect(Q_flow_heating, heatingLoad.y);
 	connect(Q_flow_cooling, coolingLoad.y);
@@ -274,4 +274,5 @@ equation
         smooth=Smooth.None));
   end if;
 
+  annotation(defaultComponentName="zone");
 end ZoneTemplateAirvolumeMixed;

@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.HAM.HeatConduction.Examples.MultiLayerHeatConduction1DNodes", stopTime=172800, method="dassl", numberOfIntervals=240, tolerance = 1e-5, resultFile="MultiLayerHeatConduction1DNodes");
+simulateModel("BuildingSystems.HAM.HeatConduction.Examples.MultiLayerHeatConduction1DNodes", stopTime=172800, method="dassl", tolerance = 1e-5, resultFile="MultiLayerHeatConduction1DNodes");
 removePlots();
 createPlot(
   id = 1,

@@ -1,8 +1,10 @@
 within BuildingSystems.HAM.Data.MaterialProperties.BaseClasses;
 record MaterialHygroThermalGeneral
   extends MaterialGeneral;
-  parameter Modelica.SIunits.Density rho "Density";
-  parameter Modelica.SIunits.SpecificHeatCapacity c "Specific heat capacity";
+  parameter Modelica.SIunits.Density rho
+    "Density";
+  parameter Modelica.SIunits.SpecificHeatCapacity c
+    "Specific heat capacity";
   parameter BuildingSystems.Types.RelativeHumidity sorTabX[:]
     "Relative humidity of the porous material(table)";
   parameter Modelica.SIunits.MassConcentration sorTabY[:]
@@ -39,5 +41,6 @@ record MaterialHygroThermalGeneral
     "Water vapour diffusion resistance factor of a dry building material [-]";
   parameter BuildingSystems.Types.WaterVapourDiffusionResistance myMoistF
     "Fictitious water vapour diffusion resistance factor of a moist building material [-]";
-  parameter Real moistSup "Moisture-related thermal conductivity supplement[-]";
+  parameter Real moistSup
+    "Moisture-related thermal conductivity supplement[-]";
 end MaterialHygroThermalGeneral;

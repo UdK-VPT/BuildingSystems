@@ -2,7 +2,6 @@ within BuildingSystems.Fluid.FixedResistances;
 model Pipe "Pipe with 1D discretisation along flow direction"
   extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations;
   extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface(
-  showDesignFlowDirection = false,
   final show_T=true);
   extends BuildingSystems.Fluid.Interfaces.TwoPortFlowResistanceParameters(
     final computeFlowResistance=(abs(dp_nominal) > Modelica.Constants.eps),

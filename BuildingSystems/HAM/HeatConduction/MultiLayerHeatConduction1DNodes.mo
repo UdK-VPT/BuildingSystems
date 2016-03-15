@@ -13,8 +13,7 @@ model MultiLayerHeatConduction1DNodes
     material[nLayers] annotation (HideResult=true);
   parameter Modelica.SIunits.Length lengthY "Length in y dimension";
   parameter Modelica.SIunits.Length lengthZ "Length in z dimension";
-  parameter Integer nLayers = 1 "Number of material layers in the x dimension"
-    annotation(Evaluate=true, Dialog(connectorSizing=true));
+  parameter Integer nLayers = 1 "Number of material layers in the x dimension";
   parameter Integer nNodes[nLayers] = {1}
     "Number of numerical nodes of layer i";
   parameter Modelica.SIunits.Length thickness[nLayers] "Thickness of layer i";

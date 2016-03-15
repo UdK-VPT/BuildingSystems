@@ -5,12 +5,12 @@ model HeatAndMoistureTransport1DNodes
 
   BuildingSystems.HAM.HeatAndMoistureTransport.HeatAndMoistureTransport1DNodes body(
     nNodesX=10,
+    T_start=293.15,
     phi_start=0.5,
     lengthX=0.3,
     lengthY=1.0,
     lengthZ=1.0,
-    material=BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton(),
-    T_start=293.15)
+    redeclare BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton material)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Sine climate1(
     amplitude=10.0,
@@ -22,13 +22,15 @@ model HeatAndMoistureTransport1DNodes
     annotation (Placement(transformation(extent={{-40,-16},{-28,-4}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature TConstant
     annotation (Placement(transformation(extent={{40,-16},{28,-4}})));
-  Modelica.Blocks.Sources.Constant const1(k=273.15 + 20.0)
+  Modelica.Blocks.Sources.Constant const1(
+    k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{58,-16},{46,-4}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.Sources.AbsoluteMoisturePrescribed absMoistBC1
     annotation (Placement(transformation(extent={{-44,0},{-24,20}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.Sources.AbsoluteMoisturePrescribed absMoistBC2
     annotation (Placement(transformation(extent={{44,0},{24,20}})));
-  Modelica.Blocks.Sources.Constant const2(k=0.008)
+  Modelica.Blocks.Sources.Constant const2(
+    k=0.008)
     annotation (Placement(transformation(extent={{58,4},{46,16}})));
   Modelica.Blocks.Sources.Sine climate2(
     freqHz=1.0/86400.0,

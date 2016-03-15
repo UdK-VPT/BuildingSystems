@@ -41,6 +41,6 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
+  annotation (defaultComponentName="wall", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Text(extent={{-16,81},{16,38}}, lineColor={120,0,120},lineThickness=0.5,fillColor={120,0,120},fillPattern=FillPattern.Solid,textString="1D")}));
 end WallHygroThermal1DNodes;

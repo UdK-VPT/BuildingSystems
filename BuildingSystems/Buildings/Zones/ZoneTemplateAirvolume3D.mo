@@ -160,7 +160,7 @@ equation
     end for;
 /********************************************************************/
 
-annotation (Documentation(info="<html>
+annotation (defaultComponentName="zone", Documentation(info="<html>
   <p>This Template creates a rectangular-shaped thermal zone. The indoor room could be divided into discrete
   air volumes of various sizes.</p>
   <p>Inside every air volume a thermodynamic state is calculated by solving energy-,

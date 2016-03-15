@@ -2,7 +2,6 @@ within BuildingSystems.Technologies.SolarThermal;
 model ThermalCollector
   "Model of a solar thermal collector"
   extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface(
-    showDesignFlowDirection = false,
     show_T=true);
   BuildingSystems.Fluid.MixingVolumes.MixingVolume[nEle] vol(
     redeclare each package Medium = Medium,
@@ -181,7 +180,7 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
 
-  annotation ( Icon(coordinateSystem(
+  annotation (defaultComponentName="collector", Icon(coordinateSystem(
     preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Polygon(
       points={{-54,80},{96,80},{56,-80},{-94,-80},{-54,80}},

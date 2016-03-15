@@ -4,11 +4,11 @@ model SolarThermalSystem2
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.01;
-  Climate.WeatherData.WeatherDataNetcdf weatherData(
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile)
+  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(redeclare
+    BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile)
     "time IrrDir IrrDif TAirAmb"
     annotation (Placement(transformation(extent={{-126,62},{-110,78}})));
-  Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
+  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
     latitudeDeg = weatherData.latitudeDeg,
     longitudeDeg = weatherData.longitudeDeg,
     longitudeDeg0 = weatherData.longitudeDeg0,
@@ -24,7 +24,7 @@ model SolarThermalSystem2
     m_flow=0.01,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-40,-70},{-60,-50}})));
-  Technologies.SolarThermal.ThermalCollector collector(
+  BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
     redeclare package Medium = Medium,
     dp_nominal=2,
     angleDegAzi=0,
@@ -37,35 +37,36 @@ model SolarThermalSystem2
     AColData=false,
     height=1)
     annotation (Placement(transformation(extent={{-60,30},{-40,50}})));
-  Fluid.FixedResistances.Pipe pipe1(
+  BuildingSystems.Fluid.FixedResistances.Pipe pipe1(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5) "Pipe outside of the building"
+    length=5)
+    "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,10})));
-  Fluid.FixedResistances.Pipe pipe2(
+  BuildingSystems.Fluid.FixedResistances.Pipe pipe2(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5) "Pipe outside of the building"
+    length=5)
+    "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,10})));
-  Fluid.Storage.ExpansionVessel exp(
+  BuildingSystems.Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
-    V_start=0.01) "Expansion vessel"
+    V_start=0.01)
+    "Expansion vessel"
     annotation (Placement(transformation(extent={{-40,-56},{-32,-48}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(
     T=293.15)
     annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=-90,origin={-70,-40})));
-  Technologies.ThermalStorages.FluidStorage storage(
-    redeclare
-      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
-                                                                                                HeatBuoyancy,
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
+    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     redeclare package Medium = Medium,
     height=2.0,
     nEle=10,
@@ -73,45 +74,51 @@ model SolarThermalSystem2
     V=0.4,
     HX_1=false)
     annotation (Placement(transformation(extent={{52,-60},{32,-40}})));
-  Fluid.FixedResistances.Pipe pipe3(
+  BuildingSystems.Fluid.FixedResistances.Pipe pipe3(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5) "Pipe inside of the building"
+    length=5)
+    "Pipe inside of the building"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=90,origin={-80,-18})));
-  Fluid.FixedResistances.Pipe pipe4(
+  BuildingSystems.Fluid.FixedResistances.Pipe pipe4(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5) "Pipe inside of the building"
+    length=5)
+    "Pipe inside of the building"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=270,origin={-20,-18})));
     Modelica.Blocks.Sources.Constant consumptionProfile(
-    k=120.0/24.0/3600.0) "Mean hot water demand: 120 liter per day"
+    k=120.0/24.0/3600.0)
+    "Mean hot water demand: 120 liter per day"
     annotation (Placement(transformation(extent={{74,-62},{68,-56}})));
-BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
+  BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
     redeclare package Medium = Medium,
     nPorts=1,
     m_flow = 0.0,
     use_m_flow_in = true,
-    T=288.15) "Flow source"
+    T=288.15)
+    "Flow source"
     annotation (Placement(transformation(extent={{64,-68},{54,-58}})));
-  Fluid.Sources.Boundary_pT sink(
+  BuildingSystems.Fluid.Sources.Boundary_pT sink(
     redeclare package Medium = Medium,
     use_T_in=false,
     p(displayUnit="Pa"),
     T=293.15,
-    nPorts=1) "Sink"
+    nPorts=1)
+    "Sink"
     annotation (Placement(transformation(extent={{3,-3},{-3,3}},origin={97,-19})));
   Modelica.Blocks.Logical.Hysteresis control(
     pre_y_start=false,
     uLow=2.0,
-    uHigh=4.0) "Two-point controller"
+    uHigh=4.0)
+    "Two-point controller"
     annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={-50,-28})));
   Modelica.Blocks.Math.BooleanToReal booleanToReal(
     realTrue=0.1)
@@ -120,23 +127,26 @@ BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
     k1=-1,
     k2=+1)
     annotation (Placement(transformation(extent={{-4,-4},{4,4}},rotation=-90,origin={-50,-12})));
-  Fluid.HeatExchangers.HeaterCooler_T hea(
+  BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T hea(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
-    dp_nominal=1) "Ideal heater for back up energy"
+    dp_nominal=1)
+    "Ideal heater for back up energy"
     annotation (Placement(transformation(extent={{68,-28},{88,-10}})));
   Modelica.Blocks.Sources.Constant TSet(
-     k=273.15 + 60.0) "Set temperature for hoit water production"
+     k=273.15 + 60.0)
+     "Set temperature for hoit water production"
     annotation (Placement(transformation(extent={{56,-16},{62,-10}})));
-  Fluid.HeatExchangers.ConstantEffectiveness hex(
+  BuildingSystems.Fluid.HeatExchangers.ConstantEffectiveness hex(
     redeclare package Medium1 = Medium,
     redeclare package Medium2 = Medium,
     m1_flow_nominal=m_flow_nominal,
     m2_flow_nominal=m_flow_nominal,
     dp1_nominal=1.0,
     dp2_nominal=1.0,
-    eps=0.9) "External heat exchanger"
-    annotation (Placement(transformation(extent={{-20,-64},{0,-44}})));
+    eps=0.9)
+    "External heat exchanger"
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=90,origin={-14,-48})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump2(
     redeclare package Medium = Medium,
     m_flow=0.01,
@@ -144,11 +154,9 @@ BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
     annotation (Placement(transformation(extent={{28,-70},{8,-50}})));
 equation
   connect(weatherData.y[1], radiation.IrrDirHor)
-    annotation (Line(points={{-109.2,69.3143},{-104,69.3143},{-104,76},{-97.6,
-          76}},                                                                    color={0,0,127}));
+    annotation (Line(points={{-109.2,69.3143},{-104,69.3143},{-104,76},{-97.6,76}},color={0,0,127}));
   connect(weatherData.y[2], radiation.IrrDifHor)
-    annotation (Line(points={{-109.2,69.5429},{-104,69.5429},{-104,72},{-97.6,
-          72}},                                                                      color={0,0,127}));
+    annotation (Line(points={{-109.2,69.5429},{-104,69.5429},{-104,72},{-97.6,72}},  color={0,0,127}));
   connect(collector.angleDegAzi, radiation.angleDegAzi)
     annotation (Line(points={{-57,31},{-57,30},{-102,30},{-102,64},{-97.6,64}},color={0,0,127}));
   connect(collector.angleDegTil, radiation.angleDegTil)
@@ -201,18 +209,18 @@ equation
     annotation (Line(points={{88,-19},{94,-19}},color={0,127,255}));
   connect(TSet.y, hea.TSet)
     annotation (Line(points={{62.3,-13},{62.15,-13},{62.15,-13.6},{66,-13.6}}, color={0,0,127}));
-  connect(hex.port_a1, pipe4.port_b)
-    annotation (Line(points={{-20,-48},{-20,-38},{-20,-28}}, color={0,127,255}));
-  connect(pump1.port_a, hex.port_b2)
-    annotation (Line(points={{-40,-60},{-30,-60},{-20,-60}}, color={0,127,255}));
   connect(pump2.port_a, storage.port_b2)
     annotation (Line(points={{28,-60},{35,-60},{35,-59}}, color={0,127,255}));
-  connect(hex.port_a2,pump2. port_b)
-    annotation (Line(points={{0,-60},{4,-60},{8,-60}}, color={0,127,255}));
-  connect(hex.port_b1, storage.port_a2)
-    annotation (Line(points={{0,-48},{0,-41},{35,-41}}, color={0,127,255}));
   connect(booleanToReal.y,pump2. m_flow_in)
     annotation (Line(points={{-50,-44.4},{-38,-44.4},{-38,-44},{-26,-44},{-26,-36},{18.2,-36},{18.2,-48}},color={0,0,127},pattern=LinePattern.Dash));
+  connect(hex.port_a1, pipe4.port_b) annotation (Line(points={{-20,-38},{-20,-33},
+          {-20,-28}}, color={0,127,255}));
+  connect(hex.port_b1, pump1.port_a) annotation (Line(points={{-20,-58},{-20,-60},
+          {-40,-60}}, color={0,127,255}));
+  connect(hex.port_a2, pump2.port_b)
+    annotation (Line(points={{-8,-58},{-8,-60},{8,-60}}, color={0,127,255}));
+  connect(hex.port_b2, storage.port_a2) annotation (Line(points={{-8,-38},{28,-38},
+          {28,-41},{35,-41}}, color={0,127,255}));
 
   annotation (experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem2.mos" "Simulate and plot"),

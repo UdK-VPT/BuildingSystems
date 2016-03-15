@@ -107,7 +107,7 @@ equation
     color={191,0,0},
     smooth=Smooth.None));
 
-   annotation (
+   annotation (defaultComponentName="chiller",
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}), graphics={
     Rectangle(
       extent={{-80,80},{80,-80}},

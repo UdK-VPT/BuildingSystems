@@ -1,5 +1,5 @@
 within BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels;
-model ElectricalModelTwoDiodesGeneral
+partial model ElectricalModelTwoDiodesGeneral
   "Detailed electrical model of a solar cell with two diodes and a parallel and serial resistance"
   extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels.ElectricalModelGeneral;
   parameter Real c1

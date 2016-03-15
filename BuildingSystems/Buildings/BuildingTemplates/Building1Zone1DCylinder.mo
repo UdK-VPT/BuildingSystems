@@ -159,4 +159,6 @@ equation
       points={{20,-22},{20,-22},{20,-70},{8.88178e-016,-70},{8.88178e-016,-90.8}},
       color={0,0,0},
       pattern=LinePattern.Solid));
+
+  annotation(defaultComponentName="building");
 end Building1Zone1DCylinder;

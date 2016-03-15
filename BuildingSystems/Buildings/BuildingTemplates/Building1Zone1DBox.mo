@@ -437,4 +437,6 @@ equation
   else
     connect(ceiling.toSurfacePort_2,surfaceAdiabaticCeiling.toConstructionPort);
   end if;
+
+  annotation(defaultComponentName="building");
 end Building1Zone1DBox;

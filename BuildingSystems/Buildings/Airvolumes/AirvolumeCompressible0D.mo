@@ -20,7 +20,8 @@ model AirvolumeCompressible0D
     annotation(Dialog(tab="General",group="Air volume geometry"));
   BuildingSystems.Types.RelativeHumidity phi
     "Relative humidity of the air";
-  Modelica.SIunits.Mass m(start = V * rho_nominal)
+  Modelica.SIunits.Mass m(
+    start = V * rho_nominal)
     "Mass of dry air";
   Modelica.SIunits.Mass mH2OAir(
     start = x_start * V * rho_nominal)

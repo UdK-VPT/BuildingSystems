@@ -121,7 +121,7 @@ equation
       connect(surfacesToSolids.moisturePorts[i],toSolidMoisturePorts[i]);
     end if;
   end for;
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
+  annotation (defaultComponentName="building", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Rectangle(extent={{-80,80},{80,-80}},lineColor={0,0,0},fillColor={230,230,230},fillPattern=FillPattern.Solid),
     Rectangle(extent={{20,62},{40,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),
     Rectangle(extent={{-40,62},{-20,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern=FillPattern.Solid),

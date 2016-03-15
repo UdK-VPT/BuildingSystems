@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.HAM.Examples.GasGapClosed", stopTime=7200, method="dassl", resultFile="GasGapClosed");
+simulateModel("BuildingSystems.HAM.Examples.GasGapClosed",  startTime=0, stopTime=7200, method="dassl", resultFile="GasGapClosed");
 removePlots();
 createPlot(
   id = 1,
