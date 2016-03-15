@@ -1,7 +1,7 @@
 within BuildingSystems.Technologies.ThermalStorages;
 model FluidStorage "Model of a thermal fluid storage"
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
-    "Medium of the storage model";
+    "Medium of the storage model" annotation (choicesAllMatching = true);
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol[nEle - 2](
     redeclare package Medium = Medium,
     each m_flow_nominal = 1.0,
