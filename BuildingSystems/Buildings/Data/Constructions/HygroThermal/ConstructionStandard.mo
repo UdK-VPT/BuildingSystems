@@ -4,4 +4,4 @@ record ConstructionStandard = BuildingSystems.Buildings.Data.Constructions.Opaqu
   thickness={0.1,0.1},
   material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton(),
             BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Mineralwolle()})
-  "Standard contruction";
+  "Standard construction";
