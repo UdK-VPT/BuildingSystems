@@ -52,7 +52,7 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.Area AInteriorWalls = 1.0
     "Surface area of one side of the interior walls"
     annotation(Dialog(tab="Opaque constructions",group="Interior constructions"));
-  replaceable parameter BuildingSystems.Buildings.Data.Constructions.Thermal.ConstructionStandard constructionWallsInterior
+  replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWallsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
   parameter Boolean InteriorCeilings = true
@@ -61,7 +61,7 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.Area AInteriorCeilings = 1.0
     "Surface area of one side of the interior ceilings"
     annotation(Dialog(tab="Opaque constructions",group="Interior constructions"));
-  replaceable parameter BuildingSystems.Buildings.Data.Constructions.Thermal.ConstructionStandard constructionCeilingsInterior
+  replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionCeilingsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
 

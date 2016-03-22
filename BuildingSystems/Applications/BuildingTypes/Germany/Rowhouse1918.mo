@@ -24,7 +24,7 @@ model Rowhouse1918
     redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallRowhouse1918 constructionWall4,
     redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.RoofRowhouse1918 constructionCeiling,
     redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.BasePlateRowhouse1918 constructionBottom,
-    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateCeilingRowhouse1918 constructionWallsInterior,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateWallRowhouse1918 constructionWallsInterior,
     redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateCeilingRowhouse1918 constructionCeilingsInterior,
     width=16.44,
     length=17.29,
