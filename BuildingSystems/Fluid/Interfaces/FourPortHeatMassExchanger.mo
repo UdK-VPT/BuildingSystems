@@ -20,10 +20,10 @@ model FourPortHeatMassExchanger
 
   // Assumptions
   parameter Modelica.Fluid.Types.Dynamics energyDynamics=Modelica.Fluid.Types.Dynamics.DynamicFreeInitial
-    "Formulation of energy balance"
+    "Type of energy balance: dynamic (3 initialization options) or steady state"
     annotation(Evaluate=true, Dialog(tab = "Dynamics", group="Equations"));
   parameter Modelica.Fluid.Types.Dynamics massDynamics=energyDynamics
-    "Formulation of mass balance"
+    "Type of mass balance: dynamic (3 initialization options) or steady state"
     annotation(Evaluate=true, Dialog(tab = "Dynamics", group="Equations"));
 
   // Initialization
@@ -37,11 +37,11 @@ model FourPortHeatMassExchanger
     "Start value of mass fractions m_i/m"
     annotation (Dialog(tab="Initialization", group = "Medium 1", enable=Medium1.nXi > 0));
   parameter Medium1.ExtraProperty C1_start[Medium1.nC](
-       quantity=Medium1.extraPropertiesNames)=fill(0, Medium1.nC)
+    final quantity=Medium1.extraPropertiesNames)=fill(0, Medium1.nC)
     "Start value of trace substances"
     annotation (Dialog(tab="Initialization", group = "Medium 1", enable=Medium1.nC > 0));
   parameter Medium1.ExtraProperty C1_nominal[Medium1.nC](
-       quantity=Medium1.extraPropertiesNames) = fill(1E-2, Medium1.nC)
+    final quantity=Medium1.extraPropertiesNames) = fill(1E-2, Medium1.nC)
     "Nominal value of trace substances. (Set to typical order of magnitude.)"
    annotation (Dialog(tab="Initialization", group = "Medium 1", enable=Medium1.nC > 0));
 
@@ -55,11 +55,11 @@ model FourPortHeatMassExchanger
     "Start value of mass fractions m_i/m"
     annotation (Dialog(tab="Initialization", group = "Medium 2", enable=Medium2.nXi > 0));
   parameter Medium2.ExtraProperty C2_start[Medium2.nC](
-       quantity=Medium2.extraPropertiesNames)=fill(0, Medium2.nC)
+    final quantity=Medium2.extraPropertiesNames)=fill(0, Medium2.nC)
     "Start value of trace substances"
     annotation (Dialog(tab="Initialization", group = "Medium 2", enable=Medium2.nC > 0));
   parameter Medium2.ExtraProperty C2_nominal[Medium2.nC](
-       quantity=Medium2.extraPropertiesNames) = fill(1E-2, Medium2.nC)
+    final quantity=Medium2.extraPropertiesNames) = fill(1E-2, Medium2.nC)
     "Nominal value of trace substances. (Set to typical order of magnitude.)"
    annotation (Dialog(tab="Initialization", group = "Medium 2", enable=Medium2.nC > 0));
 
@@ -217,8 +217,8 @@ The model can be used as-is, although there will be no heat or mass transfer
 between the two fluid streams.
 To add heat transfer, heat flow can be added to the heat port of the two volumes.
 See for example
-<a href=\"BuildingSystems.Fluid.Chillers.Carnot\">
-BuildingSystems.Fluid.Chillers.Carnot</a>.
+<a href=\"BuildingSystems.Fluid.Chillers.Carnot_y\">
+BuildingSystems.Fluid.Chillers.Carnot_y</a>.
 To add moisture input into (or moisture output from) volume <code>vol2</code>,
 the model can be replaced as shown in
 <a href=\"modelica://BuildingSystems.Fluid.HeatExchangers.BaseClasses.HexElement\">
@@ -232,6 +232,10 @@ Modelica.Fluid.HeatExchangers.BasicHX</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 26, 2016, by Michael Wetter:<br/>
+Set <code>quantity</code> attributes.
+</li>
 <li>
 November 13, 2015, by Michael Wetter:<br/>
 Changed assignments of start values in <code>extends</code> statement.
