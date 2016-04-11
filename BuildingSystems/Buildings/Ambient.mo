@@ -21,9 +21,6 @@ model Ambient
   parameter Boolean calcLwRad = true
     "True: long-wave radiation exchange on building surfaces is considered; false: no long-wave radiation exchange"
     annotation(HideResult = true,Dialog(tab = "General", group = "Surfaces"));
-  parameter Boolean calcSwRad = true
-    "True: short-wave radiation on building surfaces is considered; false: no short-wave radiation on surfaces"
-    annotation(HideResult = true,Dialog(tab = "General", group = "Surfaces"));
   parameter Integer nAirpathes = 0
     "Number of airpathes to the building"
     annotation(HideResult=true, Dialog(tab = "General", group = "Airpathes"));
@@ -196,17 +193,9 @@ model Ambient
 equation
   for i in 1:nSurfaces loop
     // Direct horizontal radiation
-    connect(weatherData.y[1], radiation[i].IrrDirHor)
-        annotation (Line(
-        points={{-19,-0.857143},{-12,-0.857143},{-12,18},{36.6,18}},
-        color={0,0,127},
-        smooth=Smooth.None));
+    IrrDirHor = radiation[i].IrrDirHor;
     // Diffuse horizontal radiation
-    connect(weatherData.y[2], radiation[i].IrrDifHor)
-      annotation (Line(
-      points={{-19,-0.571429},{28,-0.571429},{28,14},{36.6,14}},
-      color={0,0,127},
-      smooth=Smooth.None));
+    IrrDifHor = radiation[i].IrrDifHor;
     for j in 1:gridSurface[i,1] loop
       for k in 1:gridSurface[i,2] loop
         // Climate data
@@ -220,11 +209,7 @@ equation
         else
           toSurfacePorts[i].heatPortLw[j,k].Q_flow = 0.0;
         end if;
-        if calcSwRad then
-          toSurfacePorts[i].heatPortSw[j,k].Q_flow = - toSurfacePorts[i].abs[j,k] * (radiation[i].radiationPort.IrrDir + radiation[i].radiationPort.IrrDif) * toSurfacePorts[i].A[j,k];
-        else
-          toSurfacePorts[i].heatPortSw[j,k].Q_flow = 0.0;
-        end if;
+        toSurfacePorts[i].heatPortSw[j,k].Q_flow = - toSurfacePorts[i].abs[j,k] * (radiation[i].radiationPort.IrrDir + radiation[i].radiationPort.IrrDif) * toSurfacePorts[i].A[j,k];
         connect(radiation[i].radiationPort, toSurfacePorts[i].radiationPort_in[j,k]) annotation (Line(
           points={{52,11.8},{52,40},{80,40}},
           color={0,0,0},
