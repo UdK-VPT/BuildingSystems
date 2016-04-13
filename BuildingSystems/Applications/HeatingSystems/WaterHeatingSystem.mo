@@ -36,7 +36,7 @@ model WaterHeatingSystem
     V_start=0.1)
     "Expansion vessel model"
     annotation (Placement(transformation(extent={{20,-54},{32,-42}})));
-  Fluid.FixedResistances.Pipe  pip1(
+  BuildingSystems.Fluid.FixedResistances.Pipe  pip1(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
@@ -67,7 +67,7 @@ model WaterHeatingSystem
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
     "radiator model"
     annotation (Placement(transformation(extent={{-12,-22},{8,-2}})));
-  Fluid.FixedResistances.Pipe pip2(
+  BuildingSystems.Fluid.FixedResistances.Pipe pip2(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,

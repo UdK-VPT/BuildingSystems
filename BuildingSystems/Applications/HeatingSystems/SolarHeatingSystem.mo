@@ -33,7 +33,7 @@ model SolarHeatingSystem "Solar heating system"
   BuildingSystems.Fluid.Storage.ExpansionVessel exp1(
     redeclare package Medium = Medium, V_start=0.1) "Expansion vessel model"
     annotation (Placement(transformation(extent={{20,-54},{32,-42}})));
-  Fluid.FixedResistances.Pipe  pip1(
+  BuildingSystems.Fluid.FixedResistances.Pipe  pip1(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
@@ -63,7 +63,7 @@ model SolarHeatingSystem "Solar heating system"
     n=1.3,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial) "radiator model"
     annotation (Placement(transformation(extent={{-12,-22},{8,-2}})));
-  Fluid.FixedResistances.Pipe pip2(
+  BuildingSystems.Fluid.FixedResistances.Pipe pip2(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
@@ -74,7 +74,7 @@ model SolarHeatingSystem "Solar heating system"
     annotation (Placement(transformation(extent={{-16,-70},{-36,-50}})));
   Modelica.Blocks.Sources.Constant TSet(k=273.15 + 60.0)
     annotation (Placement(transformation(extent={{18,-56},{14,-52}})));
-  Fluid.FixedResistances.Pipe pip3(
+  BuildingSystems.Fluid.FixedResistances.Pipe pip3(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
@@ -117,7 +117,7 @@ model SolarHeatingSystem "Solar heating system"
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(
     each T=293.15)
     annotation (Placement(transformation(extent={{-72,-46},{-60,-34}})));
-  Technologies.ThermalStorages.FluidStorage storage(
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     HX_2=false,
     AdditionalFluidPorts=true,
     nEle=10,
@@ -129,7 +129,7 @@ model SolarHeatingSystem "Solar heating system"
                                                                                                 HeatBuoyancy,
     redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{38,-40},{58,-20}})));
-  Technologies.SolarThermal.ThermalCollector collector(
+  BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
     redeclare package Medium = Medium,
     angleDegAzi=0,
     angleDegTil=30,
@@ -139,10 +139,10 @@ model SolarHeatingSystem "Solar heating system"
       BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate.AgenaAZUR8plus_AC28H
                                                                                                           collectorData)
     annotation (Placement(transformation(extent={{92,-24},{112,-4}})));
-  Fluid.Movers.FlowControlled_m_flow pump2(redeclare package Medium = Medium,
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump2(redeclare package Medium = Medium,
     m_flow_nominal=0.1)
     annotation (Placement(transformation(extent={{84,-70},{64,-50}})));
-  Fluid.FixedResistances.Pipe  pip4(
+  BuildingSystems.Fluid.FixedResistances.Pipe  pip4(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
@@ -151,7 +151,7 @@ model SolarHeatingSystem "Solar heating system"
     length=1,
     diameter=0.02) "Pipe model"
     annotation (Placement(transformation(extent={{62,-4},{82,-24}})));
-  Fluid.FixedResistances.Pipe pip5(
+  BuildingSystems.Fluid.FixedResistances.Pipe pip5(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
@@ -160,7 +160,7 @@ model SolarHeatingSystem "Solar heating system"
     length=1,
     diameter=0.02) "Pipe model"
     annotation (Placement(transformation(extent={{94,-50},{114,-70}})));
-  Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky
+  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky
     radiation(
     rhoAmb=0.2,
     latitudeDeg=13,

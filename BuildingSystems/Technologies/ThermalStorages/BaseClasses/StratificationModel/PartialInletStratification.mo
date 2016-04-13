@@ -9,9 +9,9 @@ model PartialInletStratification
     annotation (Placement(transformation(extent={{80,-40},{100,40}}), iconTransformation(extent={{80,-40},{100,40}})));
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium constrainedby
     Modelica.Media.Interfaces.PartialMedium;
-  Fluid.Sensors.Temperature senTem(redeclare package Medium = Medium)
+  BuildingSystems.Fluid.Sensors.Temperature senTem(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{40,44},{20,64}})));
-  Fluid.Sources.MassFlowSource_T sou[nEle](
+  BuildingSystems.Fluid.Sources.MassFlowSource_T sou[nEle](
     redeclare package Medium = Medium,
     each nPorts=1,
     each m_flow=0,
@@ -19,7 +19,7 @@ model PartialInletStratification
     each use_T_in=true)
     "Flow source"
     annotation (Placement(transformation(extent={{-78,-10},{-58,10}})));
-  Fluid.Sources.FixedBoundary bou(nPorts=1, redeclare package Medium = Medium)
+  BuildingSystems.Fluid.Sources.FixedBoundary bou(nPorts=1, redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-20,-80},{0,-60}})));
   Modelica.Blocks.Sources.RealExpression m_flow[nEle](y=m_flow_eq)
     annotation (Placement(transformation(extent={{-20,20},{-40,40}})));

@@ -6,7 +6,7 @@ extends Modelica.Icons.ExamplesPackage;
     replaceable PartialInletStratification partialInletStratification(
       redeclare package Medium = Medium, nEle=3)
       annotation (Placement(transformation(extent={{32,-50},{12,-30}})));
-    Fluid.Sources.MassFlowSource_T boundary1(
+    BuildingSystems.Fluid.Sources.MassFlowSource_T boundary1(
       redeclare package Medium = Medium,
       use_m_flow_in = false,
       m_flow=1,
@@ -14,19 +14,19 @@ extends Modelica.Icons.ExamplesPackage;
       use_T_in=true,
       T=328.15)
       annotation (Placement(transformation(extent={{64,-60},{44,-40}})));
-    Fluid.Sources.FixedBoundary bou1(
+    BuildingSystems.Fluid.Sources.FixedBoundary bou1(
       redeclare package Medium = Medium, nPorts=1)
       annotation (Placement(transformation(extent={{-80,-90},{-60,-70}})));
     replaceable package Medium = BuildingSystems.Media.Water;
     Modelica.Blocks.Sources.RealExpression fixedTemperature1(y=273.15 + 50)
       annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
-    Fluid.Sources.FixedBoundary bou2(
+    BuildingSystems.Fluid.Sources.FixedBoundary bou2(
       redeclare package Medium = Medium,
       nPorts=1)
       annotation (Placement(transformation(extent={{-80,-50},{-60,-30}})));
     Modelica.Blocks.Sources.RealExpression fixedTemperature2(y=274.15 + 60)
       annotation (Placement(transformation(extent={{-80,44},{-60,64}})));
-    Fluid.Sources.FixedBoundary bou3(
+    BuildingSystems.Fluid.Sources.FixedBoundary bou3(
       redeclare package Medium = Medium, nPorts=1)
       annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
     Modelica.Blocks.Sources.RealExpression fixedTemperature3(y=274.15 + 70)
