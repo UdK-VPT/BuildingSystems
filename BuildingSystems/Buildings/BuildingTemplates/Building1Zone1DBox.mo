@@ -64,7 +64,6 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionCeilingsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
-
   parameter Boolean adiabaticWall1 = false
    "True for adiabatic boundary conditions"
    annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
@@ -80,19 +79,6 @@ model Building1Zone1DBox
   parameter Boolean adiabaticCeiling = false
     "True for adiabatic boundary conditions"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-
-  BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
-    final prescribedAirchange = prescribedAirchange,
-    final V = width*length*height,
-    final height = height,
-    final calcIdealLoads = calcIdealLoads,
-    final heatSources = heatSources,
-    final nHeatSources = nHeatSources,
-    nConstructions1 = if InteriorWalls then 4 else 2,
-    nConstructions2 = if InteriorCeilings then 5 else 3,
-    nConstructions3 = 2,
-    nConstructions4 = 3)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   parameter Modelica.SIunits.Length width = 10.0
   "Width of the building (inner space)"
    annotation(Dialog(tab="General",group="Geometry"));
@@ -150,6 +136,44 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow4
     "Data of the construction of window4"
     annotation(Dialog(tab = "Transparent constructions", group = "window4 (included in constructionWall4)"), choicesAllMatching=true);
+  parameter Modelica.SIunits.Temp_K TWall1_start = 293.15
+    "Start temperature of each layer of wall1"
+    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.SIunits.Temp_K TWall2_start = 293.15
+    "Start temperature of each layer of wall2"
+    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.SIunits.Temp_K TWall3_start = 293.15
+    "Start temperature of each layer of wall3"
+    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.SIunits.Temp_K TWall4_start = 293.15
+    "Start temperature of each layer of wall4"
+    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.SIunits.Temp_K TCeiling_start = 293.15
+    "Start temperature of each layer of ceiling"
+    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.SIunits.Temp_K TBottom_start = 293.15
+    "Start temperature of each layer of bottom"
+    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.SIunits.Temp_K TWallsInterior_start = 293.15
+    "Start temperature of each layer of interior walls"
+    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.SIunits.Temp_K TCeilingsInterior_start = 293.15
+    "Start temperature of each layer of interior ceilings"
+    annotation (Dialog(tab="Initialization"));
+
+  BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
+    final prescribedAirchange = prescribedAirchange,
+    final V = width*length*height,
+    final height = height,
+    final calcIdealLoads = calcIdealLoads,
+    final heatSources = heatSources,
+    final nHeatSources = nHeatSources,
+    nConstructions1 = if InteriorWalls then 4 else 2,
+    nConstructions2 = if InteriorCeilings then 5 else 3,
+    nConstructions3 = 2,
+    nConstructions4 = 3)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
     height = height,
     width = length,
@@ -157,7 +181,8 @@ model Building1Zone1DBox
     AInnSur = {window1.A},
     constructionData = constructionWall1,
     angleDegAzi = 90.0 + angleDegAziBuilding,
-    angleDegTil = 90.0)
+    angleDegTil = 90.0,
+    T_start = {TWall1_start for i in 1:wall1.constructionData.nLayers})
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
@@ -167,7 +192,8 @@ model Building1Zone1DBox
     AInnSur = {window2.A},
     constructionData = constructionWall2,
     angleDegAzi = 180.0 + angleDegAziBuilding,
-    angleDegTil = 90.0)
+    angleDegTil = 90.0,
+    T_start = {TWall2_start for i in 1:wall2.constructionData.nLayers})
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
@@ -177,7 +203,8 @@ model Building1Zone1DBox
     AInnSur = {window3.A},
     constructionData = constructionWall3,
     angleDegAzi = -90.0 + angleDegAziBuilding,
-    angleDegTil = 90.0)
+    angleDegTil = 90.0,
+    T_start = {TWall3_start for i in 1:wall3.constructionData.nLayers})
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{30,-20},{50,0}})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
@@ -187,7 +214,8 @@ model Building1Zone1DBox
     AInnSur = {window4.A},
     constructionData = constructionWall4,
     angleDegAzi = 0.0 + angleDegAziBuilding,
-    angleDegTil = 90.0)
+    angleDegTil = 90.0,
+    T_start = {TWall4_start for i in 1:wall4.constructionData.nLayers})
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,-20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
@@ -195,7 +223,8 @@ model Building1Zone1DBox
     width = width,
     constructionData = constructionCeiling,
     angleDegAzi = 0.0,
-    angleDegTil = 180.0)
+    angleDegTil = 180.0,
+    T_start = {TCeiling_start for i in 1:ceiling.constructionData.nLayers})
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
@@ -203,7 +232,8 @@ model Building1Zone1DBox
     width = width,
     constructionData = constructionBottom,
     angleDegAzi = 0.0,
-    angleDegTil = 0.0)
+    angleDegTil = 0.0,
+    T_start = {TBottom_start for i in 1:bottom.constructionData.nLayers})
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wallsInterior(
@@ -211,7 +241,8 @@ model Building1Zone1DBox
     final angleDegTil = 90.0,
     final width = AInteriorWalls/wallsInterior.height,
     height = 1.0,
-    final angleDegAzi = 0) if InteriorWalls
+    final angleDegAzi = 0,
+    T_start = {TWallsInterior_start for i in 1:wallsInterior.constructionData.nLayers}) if InteriorWalls
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},origin={-18,-6})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceilingsInterior(
@@ -219,7 +250,8 @@ model Building1Zone1DBox
     final width = AInteriorCeilings/ceilingsInterior.height,
     height = 1.0,
     final angleDegAzi = 0.0,
-    final angleDegTil = 0.0) if InteriorCeilings
+    final angleDegTil = 0.0,
+    T_start = {TCeilingsInterior_start for i in 1:ceilingsInterior.constructionData.nLayers}) if InteriorCeilings
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,40})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window1(
