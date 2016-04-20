@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Examples.BuildingThermalMultiZone", startTime = 1.5552e7, stopTime=1.6416e7, method="dassl", tolerance = 1e-5, resultFile="BuildingThermalMultiZone");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","building.office1.TAir","building.office2.TAir","building.office3.TAir","building.office4.TAir","building.office5.TAir","building.office6.TAir","building.office7.TAir","building.office8.TAir", "building.bullpen.TAir","building.conferenceRoom.TAir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BuildingThermalMultiZone.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"building.bullpen.Q_flow_cooling","building.conferenceRoom.Q_flow_cooling"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BuildingThermalMultiZone.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
