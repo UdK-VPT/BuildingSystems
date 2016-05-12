@@ -1,6 +1,5 @@
 within BuildingSystems.Utilities.Math.Examples;
 model SmoothHeaviside "Test model for smoothHeavisidefunction "
-  import BuildingSystems;
   extends Modelica.Icons.Example;
   Modelica.Blocks.Sources.Ramp x1(duration=1,
     height=2,

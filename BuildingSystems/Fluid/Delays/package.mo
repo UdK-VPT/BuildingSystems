@@ -12,11 +12,5 @@ The model
 BuildingSystems.Fluid.Delays.DelayFirstOrder</a>
 approximates transport delays using a first order differential equation.
 </p>
-<p>
-For a discretized model of a pipe or duct, see
-<a href=\"modelica://BuildingSystems.Fluid.FixedResistances.Pipe\">
-BuildingSystems.Fluid.FixedResistances.Pipe</a>.
-</p>
 </html>"));
-
 end Delays;
