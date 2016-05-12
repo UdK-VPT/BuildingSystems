@@ -1,9 +1,8 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.Examples;
-model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
+model DistrictHeatingNetwork_dp
+  "Small example of a DHN with a main pump"
   replaceable package Medium = BuildingSystems.Media.Water;
-
-  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp
-                                                                                         station(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp station(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
     allowFlowReversal=false,
@@ -13,15 +12,12 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     Tsupply_min=328.15,
     dpValve_nominal=140000)
     annotation (Placement(transformation(extent={{-42,42},{-62,62}})));
-  BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T
-                                central(
+  BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T central(
     redeclare package Medium = Medium,
     m_flow_nominal=10,
     dp_nominal=0)
     annotation (Placement(transformation(extent={{46,26},{26,46}})));
-
-  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp
-                                                                                         station1(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp station1(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
     allowFlowReversal=false,
@@ -32,15 +28,13 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     Tsupply_min=333.15,
     dpValve_nominal=140000)
     annotation (Placement(transformation(extent={{-46,-70},{-66,-50}})));
-
-  BuildingSystems.Technologies.DistrictHeatingNetworks.BoundaryConditions.GroundTemperature0D
-                                                                                              kusuda0D(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.BoundaryConditions.GroundTemperature0D kusuda0D(
     A=8,
     z=1,
     t0(displayUnit="d") = 15552000,
     Tmean=283.15)
     annotation (Placement(transformation(extent={{-220,-40},{-200,-20}})));
-  Buildings.BuildingTemplates.Building1Zone0D                 building(
+  BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building(
     AInner=10*10,
     AGround=10*10,
     nWindows=1,
@@ -56,14 +50,15 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     nHeatSources=1,
     show_TAir=true,
     AAmbient=2*(2*50 + 2*60)*28 + 50*60,
-    VAir=2*50*60*28) "Building model"
+    VAir=2*50*60*28)
+    "Building model"
     annotation (Placement(transformation(extent={{-66,76},{-46,96}})));
-  Buildings.Ambient                 ambient(
-    nSurfaces=building.nSurfacesAmbient, redeclare
-      BuildingSystems.Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2003
-      weatherDataFile) "Ambient model"
+  BuildingSystems.Buildings.Ambient ambient(
+    nSurfaces=building.nSurfacesAmbient,
+    redeclare BuildingSystems.Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2003 weatherDataFile)
+    "Ambient model"
     annotation (Placement(transformation(extent={{-96,76},{-76,96}})));
-  Buildings.BuildingTemplates.Building1Zone0D                 building1(
+  BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
     AInner=10*10,
     AGround=10*10,
     nWindows=1,
@@ -79,12 +74,13 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     nHeatSources=1,
     show_TAir=true,
     AAmbient=2*(2*50 + 2*60)*28 + 50*60,
-    VAir=2*50*60*28) "Building model"
+    VAir=2*50*60*28)
+    "Building model"
     annotation (Placement(transformation(extent={{-66,-32},{-46,-12}})));
-  Buildings.Ambient                 ambient1(
-                                         redeclare
-      BuildingSystems.Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2003
-      weatherDataFile, nSurfaces=building1.nSurfacesAmbient) "Ambient model"
+  BuildingSystems.Buildings.Ambient ambient1(
+    redeclare BuildingSystems.Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2003 weatherDataFile,
+    nSurfaces=building1.nSurfacesAmbient)
+    "Ambient model"
     annotation (Placement(transformation(extent={{-92,-32},{-72,-12}})));
   Modelica.Blocks.Sources.Constant airchange(
     k=0.5)
@@ -96,26 +92,20 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     redeclare package Medium = Medium,
     V_start=1,
     p_start=300000)
-               annotation (Placement(transformation(extent={{74,20},{86,32}})));
-  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
-                                                                                      parallelPipes(
+    annotation (Placement(transformation(extent={{74,20},{86,32}})));
+  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes parallelPipes(
     redeclare package Medium = Medium,
     length=200,
-    redeclare
-      BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated
-      Umodel(
+    redeclare BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated Umodel(
       d_i=0.3,
       H_real=1,
       E=0.5),
     m_flow_nominal=30,
     dp_nominal=50000)
     annotation (Placement(transformation(extent={{-6,20},{-26,40}})));
-  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
-                                                                                      parallelPipes1(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes parallelPipes1(
     redeclare package Medium = Medium,
-    redeclare
-      BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated
-      Umodel(
+    redeclare BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated Umodel(
       d_i=0.2,
       H_real=1,
       E=0.4),
@@ -123,21 +113,17 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     length=400,
     dp_nominal=100000)
     annotation (Placement(transformation(extent={{-92,20},{-112,40}})));
-  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes
-                                                                                      parallelPipes2(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes parallelPipes2(
     redeclare package Medium = Medium,
     length=200,
-    redeclare
-      BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated
-      Umodel(
+    redeclare BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated Umodel(
       d_i=0.2,
       H_real=1,
       E=0.4),
     m_flow_nominal=15,
     dp_nominal=50000)
     annotation (Placement(transformation(extent={{0,-80},{-20,-60}})));
-  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp
-                                                                                         station2(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp station2(
     redeclare package Medium = Medium,
     m_flow_nominal=50,
     allowFlowReversal=false,
@@ -147,7 +133,7 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     Tsupply_min(displayUnit="K") = 328.15,
     dpValve_nominal=120000)
     annotation (Placement(transformation(extent={{-154,32},{-174,52}})));
-  Buildings.BuildingTemplates.Building1Zone0D                 building2(
+  BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building2(
     AInner=10*10,
     AGround=10*10,
     nWindows=1,
@@ -163,60 +149,53 @@ model DistrictHeatingNetwork_dp "Small example of a DHN with a main pump"
     nHeatSources=1,
     show_TAir=true,
     AAmbient=2*(2*50 + 2*60)*28 + 50*60,
-    VAir=2*50.0*60.0*28) "Building model"
+    VAir=2*50.0*60.0*28)
+    "Building model"
     annotation (Placement(transformation(extent={{-178,68},{-158,88}})));
-  Buildings.Ambient                 ambient2(
-                                         redeclare
-      BuildingSystems.Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2003
-      weatherDataFile, nSurfaces=building2.nSurfacesAmbient) "Ambient model"
+  BuildingSystems.Buildings.Ambient ambient2(
+    redeclare BuildingSystems.Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2003 weatherDataFile,
+    nSurfaces=building2.nSurfacesAmbient)
+    "Ambient model"
     annotation (Placement(transformation(extent={{-208,68},{-188,88}})));
   Modelica.Blocks.Sources.Constant airchange2(
     k=0.5)
     annotation (Placement(transformation(extent={{-6,6},{6,-6}},rotation=180,origin={-134,84})));
-  Modelica.Blocks.Sources.TimeTable SupplyTemperature(table=[0.0,273.15 + 85;
-        0.0,273.15 + 85; 13140000,273.15 + 85; 13140000,273.15 + 70; 21024000,
-        273.15 + 70; 21024000,273.15 + 85; 31536000,273.15 + 85])   annotation (
-     Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=180,
-        origin={90,80})));
-  Modelica.Blocks.Sources.Constant TsetHeating2(k=273.15 + 20) annotation (
-      Placement(transformation(
-        extent={{10,10},{-10,-10}},
-        rotation=180,
-        origin={-210,10})));
-  Modelica.Blocks.Sources.Constant TsetHeating1(k=273.15 + 20) annotation (
-      Placement(transformation(
-        extent={{10,10},{-10,-10}},
-        rotation=180,
-        origin={-110,-70})));
-  Modelica.Blocks.Sources.Constant TsetHeating(k=273.15 + 20) annotation (
-      Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=180,
-        origin={-10,70})));
-  Fluid.Movers.FlowControlled_dp pump(redeclare package Medium = Medium,
-      m_flow_nominal=100)
+  Modelica.Blocks.Sources.TimeTable SupplyTemperature(
+    table=[
+      0.0,273.15 + 85;
+      0.0,273.15 + 85;
+      13140000,273.15 + 85;
+      13140000,273.15 + 70;
+      21024000,273.15 + 70;
+      21024000,273.15 + 85;
+      31536000,273.15 + 85])
+    annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=180,origin={90,80})));
+  Modelica.Blocks.Sources.Constant TsetHeating2(
+    k=273.15 + 20)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=180,origin={-210,10})));
+  Modelica.Blocks.Sources.Constant TsetHeating1(
+    k=273.15 + 20)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=180,origin={-110,-70})));
+  Modelica.Blocks.Sources.Constant TsetHeating(
+    k=273.15 + 20)
+    annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=180,origin={-10,70})));
+  BuildingSystems.Fluid.Movers.FlowControlled_dp pump(
+    redeclare package Medium = Medium,
+    m_flow_nominal=100)
     annotation (Placement(transformation(extent={{74,0},{54,20}})));
-  Modelica.Blocks.Sources.RealExpression dp_station2(y=station2.port_a.p -
-        station2.port_b.p) annotation (Placement(transformation(
-        extent={{-20,10},{20,-10}},
-        rotation=180,
-        origin={120,36})));
-  Controls.Continuous.LimPID dp_in(
+  Modelica.Blocks.Sources.RealExpression dp_station2(
+    y=station2.port_a.p - station2.port_b.p)
+    annotation (Placement(transformation(extent={{-20,10},{20,-10}},rotation=180,origin={120,36})));
+  BuildingSystems.Controls.Continuous.LimPID dp_in(
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
     yMax=350000,
     k=1,
     Ti=150,
-    yMin=230000) annotation (Placement(transformation(
-        extent={{-4,4},{4,-4}},
-        rotation=-90,
-        origin={64,36})));
-  Modelica.Blocks.Sources.RealExpression dp_min(y=150000) annotation (Placement(
-        transformation(
-        extent={{-20,10},{20,-10}},
-        rotation=180,
-        origin={120,56})));
+    yMin=230000)
+    annotation (Placement(transformation(extent={{-4,4},{4,-4}},rotation=-90,origin={64,36})));
+  Modelica.Blocks.Sources.RealExpression dp_min(
+    y=150000)
+    annotation (Placement(transformation(extent={{-20,10},{20,-10}},rotation=180,origin={120,56})));
 equation
   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (
       Line(
@@ -367,10 +346,8 @@ equation
       points={{-201,-30},{-124,-30},{-124,14},{6,14},{6,50},{-16,50},{-16,39.8}},
       color={191,0,0},
       smooth=Smooth.None));
-
   connect(kusuda0D.port[3], parallelPipes2.port_a) annotation (Line(
-      points={{-201,-28},{-124,-28},{-124,-86},{14,-86},{14,-42},{-10,-42},{-10,
-          -60.2}},
+      points={{-201,-28},{-124,-28},{-124,-86},{14,-86},{14,-42},{-10,-42},{-10,-60.2}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(TsetHeating2.y, station2.Tset) annotation (Line(
@@ -417,9 +394,8 @@ equation
       points={{80,20},{80,10},{74,10}},
       color={0,127,255},
       smooth=Smooth.None));
-  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_dp.mos"
-        "Simulate and plot"),Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,
-            -100},{140,100}}), graphics),
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_dp.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,-100},{140,100}}), graphics),
     Icon(coordinateSystem(extent={{-220,-100},{140,100}})),
     experiment(StopTime=3.1536e+007, Interval=1800),
     __Dymola_experimentSetupOutput);
