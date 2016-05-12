@@ -1,6 +1,7 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.Examples;
 model DistrictHeatingNetwork_dp
   "Small example of a DHN with a main pump"
+  extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp station(
     redeclare package Medium = Medium,
@@ -395,8 +396,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_dp.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,-100},{140,100}}), graphics),
-    Icon(coordinateSystem(extent={{-220,-100},{140,100}})),
-    experiment(StopTime=3.1536e+007, Interval=1800),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,-100},{140,120}}), graphics),
+    experiment(StartTime=0.0, StopTime=3.1536e+007),
     __Dymola_experimentSetupOutput);
 end DistrictHeatingNetwork_dp;

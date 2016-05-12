@@ -1,34 +1,44 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.BaseClasses;
 model ExternalIdealHeater
-
-extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface;
-  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Q_flowHea    annotation (Placement(transformation(extent={{-10,90},{10,110}})));
-  Modelica.Blocks.Interfaces.RealInput Q_in    annotation (Placement(transformation(extent={{-128,30},{-88,70}})));
-  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow(  T_ref=343.15) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=90,
-        origin={30,70})));
-  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1( T_ref=273.15) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=-90,
-        origin={30,28})));
-  Modelica.Blocks.Math.Gain gain(k=-1)    annotation (Placement(transformation(extent={{10,40},{20,50}})));
-  Modelica.Blocks.Math.Feedback feedback    annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
-  BuildingSystems.Interfaces.Temp_KInput TDHNMin    annotation (Placement(transformation(extent={{-130,-90},{-90,-50}})));
-  Modelica.Blocks.Math.Product product    annotation (Placement(transformation(extent={{-20,-60},{0,-40}})));
-  Modelica.Blocks.Math.Gain Q_flowMax(k=4182)    annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
+  extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface;
+  Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a Q_flowHea
+    annotation (Placement(transformation(extent={{-10,90},{10,110}})));
+  Modelica.Blocks.Interfaces.RealInput Q_in
+    annotation (Placement(transformation(extent={{-128,30},{-88,70}})));
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow(
+    T_ref=343.15)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={30,70})));
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow1(
+    T_ref=273.15)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={30,28})));
+  Modelica.Blocks.Math.Gain gain(
+    k=-1)
+    annotation (Placement(transformation(extent={{10,40},{20,50}})));
+  Modelica.Blocks.Math.Feedback feedback
+    annotation (Placement(transformation(extent={{-60,-60},{-40,-40}})));
+  BuildingSystems.Interfaces.Temp_KInput TDHNMin
+    annotation (Placement(transformation(extent={{-130,-90},{-90,-50}})));
+  Modelica.Blocks.Math.Product product
+    annotation (Placement(transformation(extent={{-20,-60},{0,-40}})));
+  Modelica.Blocks.Math.Gain Q_flowMax(k=4182)
+    annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol(
     m_flow_nominal=1,
     nPorts=2,
     redeclare package Medium = Medium,
-    V=1)      annotation (Placement(transformation(extent={{60,0},{80,20}})));
-
-  BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTem(m_flow_nominal=1,
-      redeclare package Medium = Medium)    annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
-  BuildingSystems.Fluid.Sensors.MassFlowRate senMasFlo(redeclare package Medium
-      = Medium)    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  Modelica.Blocks.Nonlinear.VariableLimiter variableLimiter    annotation (Placement(transformation(extent={{-30,40},{-10,60}})));
-  Modelica.Blocks.Sources.Constant const(k=0)    annotation (Placement(transformation(extent={{-50,30},{-40,40}})));
+    V=1)
+    annotation (Placement(transformation(extent={{60,0},{80,20}})));
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTem(
+    m_flow_nominal=1,
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
+  BuildingSystems.Fluid.Sensors.MassFlowRate senMasFlo(
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+  Modelica.Blocks.Nonlinear.VariableLimiter variableLimiter
+    annotation (Placement(transformation(extent={{-30,40},{-10,60}})));
+  Modelica.Blocks.Sources.Constant const(k=0)
+    annotation (Placement(transformation(extent={{-50,30},{-40,40}})));
 equation
   connect(gain.y, prescribedHeatFlow1.Q_flow)
     annotation (Line(points={{20.5,45},{30,45},{30,38}},color={0,0,127}));
@@ -66,21 +76,21 @@ equation
       points={{-108,50},{-32,50}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}), graphics={Rectangle(extent={{-100,100},{100,-100}},
-            lineColor={0,0,255})}),
-    Documentation(info="<html>
 
-<p>
-The model recieves an input signal <code>Q_in</code> which is the heat flow rate that has to be extracted from the fluid. Before the heat flow rate is extracted, the input signal passes through  a limiter block with an upper and lower limit.
-</p>
-<p>
-The upper limit ensures that the return temperature does not drops down to a value under a minimum temperature <code>TDHNMin</code> defined from outside.
-</p>
-<p>
-The lower limit is in general set to 0 in order to avoid the block to cool the fluid. 
-</p>
-</html>"));
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+    -100},{100,100}}), graphics),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+    100}}), graphics={Rectangle(extent={{-100,100},{100,-100}},
+    lineColor={0,0,255})}),
+    Documentation(info="<html>
+    <p>
+    The model recieves an input signal <code>Q_in</code> which is the heat flow rate that has to be extracted from the fluid. Before the heat flow rate is extracted, the input signal passes through  a limiter block with an upper and lower limit.
+    </p>
+    <p>
+    The upper limit ensures that the return temperature does not drops down to a value under a minimum temperature <code>TDHNMin</code> defined from outside.
+    </p>
+    <p>
+    The lower limit is in general set to 0 in order to avoid the block to cool the fluid.
+    </p>
+    </html>"));
 end ExternalIdealHeater;

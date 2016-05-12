@@ -1,5 +1,6 @@
 within BuildingSystems.Technologies.Chillers.Examples;
-model CompressionChiller "Example of a compression chiller"
+model CompressionChiller
+  "Example of a compression chiller"
   extends Modelica.Icons.Example;
   package Medium = BuildingSystems.Media.Water;
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 10.0
