@@ -1,18 +1,22 @@
 within BuildingSystems.Fluid.FixedResistances;
-model Pipe "Pipe with 1D discretisation along flow direction"
+model Pipe
+  "Pipe with 1D discretisation along flow direction"
   extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations;
   extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface(
   final show_T=true);
   extends BuildingSystems.Fluid.Interfaces.TwoPortFlowResistanceParameters(
     final computeFlowResistance=(abs(dp_nominal) > Modelica.Constants.eps),
     dp_nominal=2*dpStraightPipe_nominal);
-  parameter Integer nNodes(min=1) = 1 "Number of volume segments";
-  parameter Modelica.SIunits.Length thicknessIns "Thickness of insulation";
+  parameter Integer nNodes(min=1) = 1
+    "Number of volume segments";
+  parameter Modelica.SIunits.Length thicknessIns
+    "Thickness of insulation";
   parameter Modelica.SIunits.ThermalConductivity lambdaIns
     "Heat conductivity of insulation";
   parameter Modelica.SIunits.Length diameter = sqrt(4*m_flow_nominal/rho_default/v_nominal/Modelica.Constants.pi)
     "Pipe diameter (without insulation)";
-  parameter Modelica.SIunits.Length length "Length of the pipe";
+  parameter Modelica.SIunits.Length length
+    "Length of the pipe";
   parameter Modelica.SIunits.ReynoldsNumber ReC=4000
     "Reynolds number where transition to turbulent starts"
     annotation (Dialog(tab="Flow resistance"));
@@ -20,8 +24,7 @@ model Pipe "Pipe with 1D discretisation along flow direction"
     "= true to use one heat port for each segment of the pipe, false to use a single heat port for the entire pipe";
   parameter Boolean useExternalHeatSource=false
     "= true to transfer the volume temperature to the outter interface (heatPort)"
-                                                                                   annotation (Dialog(tab="Advanced"));
-
+    annotation (Dialog(tab="Advanced"));
   BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM res(
     redeclare final package Medium = Medium,
     final from_dp=from_dp,
@@ -33,7 +36,8 @@ model Pipe "Pipe with 1D discretisation along flow direction"
     final dp_nominal=dp_nominal,
     final allowFlowReversal=allowFlowReversal,
     final linearized=linearizeFlowResistance,
-    final ReC=ReC) "Flow resistance"
+    final ReC=ReC)
+    "Flow resistance"
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol[nNodes](
     redeclare each final package Medium = Medium,
@@ -52,8 +56,8 @@ model Pipe "Pipe with 1D discretisation along flow direction"
     each final allowFlowReversal=allowFlowReversal) "Volume for pipe fluid"
     annotation (Placement(transformation(extent={{71,-18},{91,-38}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor conPipWal[nNodes](
-      each G=2*Modelica.Constants.pi*lambdaIns*length/nNodes/Modelica.Math.log((
-        diameter/2.0 + thicknessIns)/(diameter/2.0))) if  not useExternalHeatSource
+    each G=2*Modelica.Constants.pi*lambdaIns*length/nNodes/Modelica.Math.log((
+    diameter/2.0 + thicknessIns)/(diameter/2.0))) if  not useExternalHeatSource
     "Thermal conductance through pipe wall"
     annotation (Placement(transformation(extent={{-28,-38},{-8,-18}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector colAllToOne(m=nNodes) if not useMultipleHeatPorts
@@ -65,14 +69,14 @@ model Pipe "Pipe with 1D discretisation along flow direction"
   Modelica.Fluid.Interfaces.HeatPorts_a heatPorts[nNodes] if useMultipleHeatPorts
     "Multiple heat ports that connect to outside of pipe wall (enabled if useMultipleHeatPorts=true)"
     annotation (Placement(transformation(extent={{-10,-70},{11,-50}}), iconTransformation(extent={{-30,-60},{30,-40}})));
-
 protected
   parameter Modelica.SIunits.Volume VPipe=Modelica.Constants.pi*(diameter/2.0)^2*length
     "Pipe volume";
   parameter Medium.ThermodynamicState state_default = Medium.setState_pTX(
     T=Medium.T_default,
     p=Medium.p_default,
-    X=Medium.X_default[1:Medium.nXi]) "Default state";
+    X=Medium.X_default[1:Medium.nXi])
+    "Default state";
   parameter Modelica.SIunits.Density rho_default = Medium.density(state_default);
   parameter Modelica.SIunits.DynamicViscosity mu_default = Medium.dynamicViscosity(state_default)
     "Dynamic viscosity at nominal condition";
@@ -93,11 +97,9 @@ protected
     m_flow_small=m_flow_small)
     "Pressure loss of a straight pipe at m_flow_nominal";
 public
-  Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector1[nNodes](each m=
-       1) if      useExternalHeatSource annotation (Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=-90,
-        origin={50,-50})));
+  Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector1[nNodes](
+    each m=1) if useExternalHeatSource
+    annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=-90,origin={50,-50})));
 equation
   connect(port_a, res.port_a) annotation (Line(
       points={{-100,5.55112e-16},{-72,5.55112e-16},{-72,1.16573e-15},{-58,
@@ -198,6 +200,5 @@ equation
     </li>
     </ul>
     </html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}}), graphics));
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics));
 end Pipe;
