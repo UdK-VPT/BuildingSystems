@@ -1,27 +1,27 @@
 within BuildingSystems.Fluid.FixedResistances;
-model Pipe
-  "Pipe with 1D discretisation along flow direction"
+model Pipe "Pipe with 1D discretisation along flow direction"
   extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations;
   extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface(
   final show_T=true);
   extends BuildingSystems.Fluid.Interfaces.TwoPortFlowResistanceParameters(
     final computeFlowResistance=(abs(dp_nominal) > Modelica.Constants.eps),
     dp_nominal=2*dpStraightPipe_nominal);
-  parameter Integer nNodes(min=1) = 1
-    "Number of volume segments";
-  parameter Modelica.SIunits.Length thicknessIns
-    "Thickness of insulation";
+  parameter Integer nNodes(min=1) = 1 "Number of volume segments";
+  parameter Modelica.SIunits.Length thicknessIns "Thickness of insulation";
   parameter Modelica.SIunits.ThermalConductivity lambdaIns
     "Heat conductivity of insulation";
   parameter Modelica.SIunits.Length diameter = sqrt(4*m_flow_nominal/rho_default/v_nominal/Modelica.Constants.pi)
     "Pipe diameter (without insulation)";
-  parameter Modelica.SIunits.Length length
-    "Length of the pipe";
+  parameter Modelica.SIunits.Length length "Length of the pipe";
   parameter Modelica.SIunits.ReynoldsNumber ReC=4000
     "Reynolds number where transition to turbulent starts"
     annotation (Dialog(tab="Flow resistance"));
   parameter Boolean useMultipleHeatPorts=false
     "= true to use one heat port for each segment of the pipe, false to use a single heat port for the entire pipe";
+  parameter Boolean useExternalHeatSource=false
+    "= true to transfer the volume temperature to the outter interface (heatPort)"
+                                                                                   annotation (Dialog(tab="Advanced"));
+
   BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM res(
     redeclare final package Medium = Medium,
     final from_dp=from_dp,
@@ -33,8 +33,7 @@ model Pipe
     final dp_nominal=dp_nominal,
     final allowFlowReversal=allowFlowReversal,
     final linearized=linearizeFlowResistance,
-    final ReC=ReC)
-    "Flow resistance"
+    final ReC=ReC) "Flow resistance"
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol[nNodes](
     redeclare each final package Medium = Medium,
@@ -50,12 +49,11 @@ model Pipe
     each C_start=C_start,
     each C_nominal=C_nominal,
     each final m_flow_small=m_flow_small,
-    each final allowFlowReversal=allowFlowReversal)
-    "Volume for pipe fluid"
-    annotation (Placement(transformation(extent={{-1,-18},{19,-38}})));
+    each final allowFlowReversal=allowFlowReversal) "Volume for pipe fluid"
+    annotation (Placement(transformation(extent={{71,-18},{91,-38}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor conPipWal[nNodes](
       each G=2*Modelica.Constants.pi*lambdaIns*length/nNodes/Modelica.Math.log((
-        diameter/2.0 + thicknessIns)/(diameter/2.0)))
+        diameter/2.0 + thicknessIns)/(diameter/2.0))) if  not useExternalHeatSource
     "Thermal conductance through pipe wall"
     annotation (Placement(transformation(extent={{-28,-38},{-8,-18}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector colAllToOne(m=nNodes) if not useMultipleHeatPorts
@@ -67,6 +65,7 @@ model Pipe
   Modelica.Fluid.Interfaces.HeatPorts_a heatPorts[nNodes] if useMultipleHeatPorts
     "Multiple heat ports that connect to outside of pipe wall (enabled if useMultipleHeatPorts=true)"
     annotation (Placement(transformation(extent={{-10,-70},{11,-50}}), iconTransformation(extent={{-30,-60},{30,-40}})));
+
 protected
   parameter Modelica.SIunits.Volume VPipe=Modelica.Constants.pi*(diameter/2.0)^2*length
     "Pipe volume";
@@ -93,6 +92,12 @@ protected
     roughness=roughness,
     m_flow_small=m_flow_small)
     "Pressure loss of a straight pipe at m_flow_nominal";
+public
+  Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector1[nNodes](each m=
+       1) if      useExternalHeatSource annotation (Placement(transformation(
+        extent={{-10,10},{10,-10}},
+        rotation=-90,
+        origin={50,-50})));
 equation
   connect(port_a, res.port_a) annotation (Line(
       points={{-100,5.55112e-16},{-72,5.55112e-16},{-72,1.16573e-15},{-58,
@@ -100,18 +105,18 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(res.port_b, vol[1].ports[1]) annotation (Line(
-      points={{-10,6.10623e-16},{7,6.10623e-16},{7,-18}},
+      points={{-10,6.10623e-016},{79,6.10623e-016},{79,-18}},
       color={0,127,255},
       smooth=Smooth.None));
   for i in 1:(nNodes - 1) loop
     connect(vol[i].ports[2], vol[i + 1].ports[1]);
   end for;
   connect(vol[nNodes].ports[2], port_b) annotation (Line(
-      points={{11,-18},{12,-18},{12,5.55112e-16},{100,5.55112e-16}},
+      points={{83,-18},{82,-18},{82,0},{100,0}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(conPipWal.port_b, vol.heatPort) annotation (Line(
-      points={{-8,-28},{-1,-28}},
+      points={{-8,-28},{71,-28}},
       color={191,0,0},
       smooth=Smooth.None));
   if useMultipleHeatPorts then
@@ -129,6 +134,18 @@ equation
         color={191,0,0},
         smooth=Smooth.None));
   end if;
+  connect(thermalCollector1.port_b, vol.heatPort) annotation (Line(
+      points={{60,-50},{71,-50},{71,-28}},
+      color={191,0,0},
+      smooth=Smooth.None));
+  connect(thermalCollector1[1].port_a, heatPorts) annotation (Line(
+      points={{40,-50},{0.5,-50},{0.5,-60}},
+      color={191,0,0},
+      smooth=Smooth.None));
+  connect(thermalCollector1[1].port_a, colAllToOne.port_a) annotation (Line(
+      points={{40,-50},{-50,-50},{-50,4}},
+      color={191,0,0},
+      smooth=Smooth.None));
   annotation (defaultComponentName="pip",Icon(graphics={
     Rectangle(
       extent={{-100,60},{100,-60}},
@@ -180,5 +197,7 @@ equation
     First implementation.
     </li>
     </ul>
-    </html>"));
+    </html>"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+            100}}), graphics));
 end Pipe;
