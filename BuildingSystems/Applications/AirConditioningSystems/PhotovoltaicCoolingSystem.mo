@@ -300,5 +300,21 @@ equation
     graphics={Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255},
     textString="Photovoltaic driven air-conditioning system"),
     Text(extent={{-76,-98},{114,-130}},lineColor={0,0,255},textString="Example of a simple solar thermal system")}),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates a photovoltaic driven air-conditioning system:
+The PV generator loads an electric battery. The compression chiller takes
+the electricity from the battery, produces cold water and charges it
+into a cold water storage. The cold water is used for the air-conditioning of a building.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end PhotovoltaicCoolingSystem;

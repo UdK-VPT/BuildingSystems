@@ -91,5 +91,18 @@ model FreeFloatingTemperature
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-150,-100},{150,100}}), graphics={Text(extent={{-128,-20},{120,-162}}, lineColor={0,0,255},
     textString="Free floating temperature within a building at different climate locations"), Bitmap(
     extent={{-146,94},{146,-82}}, fileName="modelica://BuildingSystems/Resources/Images/Applications/ClimateAnalyses/world.png")}),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates the Free floating temperature within a building at different worldwide distributed climate locations.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end FreeFloatingTemperature;

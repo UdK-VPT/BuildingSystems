@@ -75,5 +75,19 @@ equation
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/BuildingTypes/Germany/MultistoreyBuilding1958to1968.mos"
         "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={Text(extent={{-52,-18},{52,-86}},lineColor={0,0,255},
-    textString="Example of a typical German multistorey building from 1958 to 1968 based on IWU building typology")}),Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+    textString="Example of a typical German multistorey building from 1958 to 1968 based on IWU building typology")}),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates the energy demand of a typical German multistorey building from 1958 to 1968 based on IWU building typology.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end MultistoreyBuilding1958to1968;

@@ -209,5 +209,21 @@ equation
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/HeatingSystems/WaterHeatingSystem.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255},
-    textString="Warm water heating system with simplified thermal building model")}),Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+    textString="Warm water heating system with simplified thermal building model")}),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates a warm water heating system for a building. The system
+works with a constant supply temperature, the mass flow of the heating loop
+is controlled by a valve related to the necessary heating demand of the building. 
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end WaterHeatingSystem;

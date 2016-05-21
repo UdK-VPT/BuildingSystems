@@ -44,7 +44,8 @@ model SolarThermalSystem1
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5) "Pipe outside of the building"
+    length=5)
+    "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,10})));
   BuildingSystems.Fluid.FixedResistances.Pipe  pipe2(
     redeclare package Medium = Medium,
@@ -53,7 +54,8 @@ model SolarThermalSystem1
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5) "Pipe outside of the building"
+    length=5)
+    "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,10})));
   BuildingSystems.Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
@@ -78,7 +80,8 @@ model SolarThermalSystem1
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5) "Pipe inside of the building"
+    length=5)
+    "Pipe inside of the building"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=90,origin={-80,-18})));
   BuildingSystems.Fluid.FixedResistances.Pipe  pipe4(
     redeclare package Medium = Medium,
@@ -87,7 +90,8 @@ model SolarThermalSystem1
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=5) "Pipe inside of the building"
+    length=5)
+    "Pipe inside of the building"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=270,origin={-20,-18})));
     Modelica.Blocks.Sources.Constant  consumptionProfile(k=120/24/3600)
     "Mean hot water demand: 120 liter per day"
@@ -97,19 +101,22 @@ BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
     nPorts=1,
     m_flow = 0.0,
     use_m_flow_in = true,
-    T=288.15) "Flow source"
+    T=288.15)
+    "Flow source"
     annotation (Placement(transformation(extent={{24,-68},{14,-58}})));
   BuildingSystems.Fluid.Sources.Boundary_pT sink(
     redeclare package Medium = Medium,
     use_T_in=false,
     p(displayUnit="Pa"),
     T=293.15,
-    nPorts=1) "Sink"
+    nPorts=1)
+    "Sink"
     annotation (Placement(transformation(extent={{3,-3},{-3,3}},origin={59,-19})));
   Modelica.Blocks.Logical.Hysteresis control(
     pre_y_start=false,
     uLow=2.0,
-    uHigh=4.0) "Two-point controller"
+    uHigh=4.0)
+    "Two-point controller"
     annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={-50,-28})));
   Modelica.Blocks.Math.BooleanToReal booleanToReal(
     realTrue=0.1)
@@ -121,10 +128,12 @@ BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
   BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T hea(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
-    dp_nominal=1) "Ideal heater for back up energy"
+    dp_nominal=1)
+    "Ideal heater for back up energy"
     annotation (Placement(transformation(extent={{32,-28},{52,-10}})));
   Modelica.Blocks.Sources.Constant TSet(
-     k=273.15 + 60.0) "Set temperature for hoit water production"
+     k=273.15 + 60.0)
+     "Set temperature for hot water production"
     annotation (Placement(transformation(extent={{18,-12},{24,-6}})));
 equation
   connect(weatherData.y[1], radiation.IrrDirHor) annotation (Line(points={{-109.2,
@@ -205,5 +214,18 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-100},{
             100,100}}),
     graphics={Text(extent={{-134,-72},{56,-104}},lineColor={0,0,255},
-    textString="Example of a  solar thermal system with an internal heat exchanger")}));
+    textString="Example of a solar thermal system with an internal heat exchanger")}),
+Documentation(info="<html>
+<p>
+Example that simulates a solar thermal system with an internal heat exchanger. 
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SolarThermalSystem1;

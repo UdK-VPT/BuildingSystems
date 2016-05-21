@@ -135,7 +135,7 @@ model SolarThermalSystem2
     annotation (Placement(transformation(extent={{68,-28},{88,-10}})));
   Modelica.Blocks.Sources.Constant TSet(
      k=273.15 + 60.0)
-     "Set temperature for hoit water production"
+     "Set temperature for hot water production"
     annotation (Placement(transformation(extent={{56,-16},{62,-10}})));
   BuildingSystems.Fluid.HeatExchangers.ConstantEffectiveness hex(
     redeclare package Medium1 = Medium,
@@ -226,5 +226,18 @@ equation
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem2.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-100},{100,100}}),
     graphics={Text(extent={{-134,-72},{56,-104}},lineColor={0,0,255},
-    textString="Example of a  solar thermal system with an external heat exchanger")}));
+    textString="Example of a  solar thermal system with an external heat exchanger")}),
+Documentation(info="<html>
+<p>
+Example that simulates a solar thermal system with an external heat exchanger.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SolarThermalSystem2;
