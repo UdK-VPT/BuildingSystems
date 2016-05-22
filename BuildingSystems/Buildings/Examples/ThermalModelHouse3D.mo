@@ -462,8 +462,8 @@ equation
         "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}}), graphics={Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
     textString="Model of the thermal model house in a 3D description")}),Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
-    Documentation(
-     info="<html>
+Documentation(
+ info="<html>
 <p>Model of the thermal model house in a 3D description</p>
 <ul>
 <li>(Left-) Zone 1: equidistant discretised walls, 1D airvolume.</li>
@@ -472,5 +472,13 @@ equation
 </ul>
 <p><br/><br/><img src=\"modelica://BuildingSystems/Resources/Images/Airvolume3Ddoc/therModelhouse/modelhouseFas.JPG\" alt=\"ThermalModelhouse\"/></p>
 <p>Further Informations about the thermal modelhouse could be found here:<a href=\"http://www.thermisches-modellhaus.de/sites/Home.html\"> www.thermisches-modellhaus.de</a></p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Katharina Mucha:<br/>
+First implementation.
+</li>
+</ul>
 </html>"));
 end ThermalModelHouse3D;

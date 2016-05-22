@@ -1442,5 +1442,18 @@ equation
    Rectangle(
      extent={{40,46},{104,14}},
      lineColor={255,0,0},
-     pattern=LinePattern.Dash)}));
+     pattern=LinePattern.Dash)}),
+ Documentation(info="<html>
+ <p>
+ Example that simulates a thermal building model with 13 zones, based on 1D-discretized building elements
+ </p>
+ </html>",
+ revisions="<html>
+ <ul>
+ <li>
+ May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+ First implementation.
+ </li>
+ </ul>
+ </html>"));
 end BuildingThermalMultiZone;
