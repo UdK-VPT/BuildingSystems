@@ -21,15 +21,17 @@ model FluidStorageChargeDischargeCycle
     nPorts = 1,
     m_flow = 0,
     use_m_flow_in = true,
-    T = 353.15) "Flow source"
+    T = 353.15)
+    "Flow source"
     annotation (Placement(transformation(extent={{40,-60},{20,-40}})));
   BuildingSystems.Fluid.Sources.Boundary_pT sink_heating(
     redeclare package Medium = Medium,
     use_T_in=false,
     p(displayUnit="Pa"),
     nPorts=1,
-    T=293.15) "Sink" annotation (Placement(transformation(extent={{10,-10},{-10,
-            10}}, origin={10,-20})));
+    T=293.15)
+    "Sink"
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}}, origin={10,-20})));
   Modelica.Blocks.Sources.TimeTable consumptionProfile(
     table=[0,0.0; 25200,0.0;25200,0.5; 27000,0.3; 27000,0; 72000,0; 72000,0.5; 73800,0.5; 73800,0; 86400,0.0])
     "Mass flow rate"
@@ -39,8 +41,9 @@ model FluidStorageChargeDischargeCycle
     use_T_in=false,
     p(displayUnit="Pa"),
     nPorts=1,
-    T=293.15) "Sink" annotation (Placement(transformation(extent={{-10,-10},{10,
-            10}}, origin={-70,6})));
+    T=293.15)
+    "Sink"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}}, origin={-70,6})));
   BuildingSystems.Fluid.Sources.MassFlowSource_T source_consumption(
     redeclare package Medium = Medium,
     nPorts=1,
@@ -115,11 +118,10 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  annotation (    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorageChargeDischargeCycle.mos"
-        "Simulate and plot"),
-    Documentation(info="<html>
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorageChargeDischargeCycle.mos" "Simulate and plot"),
+    experiment(StopTime=200000),
+Documentation(info="<html>
 <p>Discharges warm storage <span style=\"font-family: MS Shell Dlg 2;\">twice </span>into sink, while refilling cold water at the bottom.</p>
 <p>Temperature drop at middle layer triggers reheating by bottom heat exchanger, repeatedly due to heat loss via surface.</p>
-</html>"),
-    experiment(StopTime=200000));
+</html>"));
 end FluidStorageChargeDischargeCycle;

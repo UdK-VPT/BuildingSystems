@@ -27,27 +27,28 @@ model FluidStorageChargeDischargeProfile
     use_T_in=false,
     p(displayUnit="Pa"),
     T=293.15,
-    nPorts=1) "Sink" annotation (Placement(transformation(extent={{-10,-10},{10,
-            10}}, origin={4,-12})));
+    nPorts=1)
+    "Sink"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}}, origin={4,-12})));
   BuildingSystems.Fluid.Sources.MassFlowSource_T source_consumption(
     redeclare package Medium = Medium,
     m_flow=0.0,
     use_m_flow_in=true,
     use_T_in=true,
     T=298.15,
-    nPorts=1) "Flow source"
+    nPorts=1)
+    "Flow source"
     annotation (Placement(transformation(extent={{-46,14},{-26,34}})));
   Modelica.Blocks.Sources.Ramp ramp(
     duration=3600,
     height=70,
     offset=20 + 273.15)
     annotation (Placement(transformation(extent={{-94,18},{-74,38}})));
-  BuildingSystems.Fluid.Sensors.Temperature senTem_bottom(redeclare package
-      Medium =
-        Medium) annotation (Placement(transformation(extent={{24,-8},{44,12}})));
-  BuildingSystems.Fluid.Sensors.VolumeFlowRate senVolFlo(redeclare package
-      Medium =
-        Medium, m_flow_nominal=1)
+  BuildingSystems.Fluid.Sensors.Temperature senTem_bottom(
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{24,-8},{44,12}})));
+  BuildingSystems.Fluid.Sensors.VolumeFlowRate senVolFlo(
+    redeclare package Medium = Medium, m_flow_nominal=1)
     annotation (Placement(transformation(extent={{-12,14},{8,34}})));
   Modelica.SIunits.Volume V;
   Modelica.SIunits.Heat Q_in(start=0)
@@ -64,7 +65,6 @@ equation
       points={{-46,32},{-58,32},{-58,58},{-73,58}},
       color={0,0,127},
       smooth=Smooth.None));
-
   connect(ramp.y, source_consumption.T_in)
     annotation (Line(points={{-73,28},{-48,28}}, color={0,0,127}));
   connect(senVolFlo.port_a, source_consumption.ports[1])
@@ -75,13 +75,11 @@ equation
     annotation (Line(points={{46,-12},{46,-12},{14,-12}}, color={0,127,255}));
   connect(storage.port_b2, senTem_bottom.port)
     annotation (Line(points={{46,-12},{34,-12},{34,-8}}, color={0,127,255}));
-  annotation (    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorageChargeDischargeProfile.mos"
-        "Simulate and plot"),
-    Documentation(info="<html>
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorageChargeDischargeProfile.mos" "Simulate and plot"),
+    experiment(StopTime=11000),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
+Documentation(info="<html>
 <p>Charges storage of 1 m&sup3; from the top with increasing temperature for 1000 s at 1 kg/s. After 1 h, discharges the for same duration at the same rate.</p>
 <p>Different storage discretizations show different results, e.g. HRF.</p>
-</html>"),
-    experiment(StopTime=11000),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+</html>"));
 end FluidStorageChargeDischargeProfile;

@@ -57,17 +57,17 @@ equation
     under real weather data")}),
     experiment(StartTime=0.0, StopTime=3.1536e+007),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/Photovoltaics/Examples/PVModuleSimpleMPP.mos" "Simulate and plot"),
-    Documentation(info="<html>
-    <p> This example tests the implementation of
-    <a href=\"modelica://BuildingSystems.Technologies.Photovoltaics.PVModuleSimpleMPP\">
-    BuildingSystems.Technologies.Photovoltaics.PVModuleSimpleMPP</a>.
-    </p>
-    </html>", revisions="<html>
-    <ul>
-    <li>
-    March 7, 2015, by Christoph Nytsch-Geusen:<br/>
-    First implementation.
-    </li>
-    </ul>
-    </html>"));
+Documentation(info="<html>
+<p> This example tests the implementation of
+<a href=\"modelica://BuildingSystems.Technologies.Photovoltaics.PVModuleSimpleMPP\">
+BuildingSystems.Technologies.Photovoltaics.PVModuleSimpleMPP</a>.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+March 7, 2015, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end PVModuleSimpleMPP;

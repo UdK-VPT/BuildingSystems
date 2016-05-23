@@ -30,17 +30,17 @@ equation
     textString="Test of the simplified battery model")}),
     experiment(StartTime=0.0, StopTime=3.1536e+007),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ElectricalStorages/Examples/BatterySimple.mos" "Simulate and plot"),
-    Documentation(info="<html>
-    <p> This example tests the implementation of
-    <a href=\"modelica://BuildingSystems.Technologies.ElectricalBatteries\">
-    BuildingSystems.Technologies.Electrical.Electrical batteris</a>.
-    </p>
-    </html>", revisions="<html>
-    <ul>
-      <li>
-    June 16, 2015, by Christoph Nytsch-Geusen:<br/>
-    First implementation.
-    </li>
-    </ul>
-    </html>"));
+Documentation(info="<html>
+<p> This example tests the implementation of
+<a href=\"modelica://BuildingSystems.Technologies.ElectricalBatteries\">
+BuildingSystems.Technologies.Electrical.Electrical batteris</a>.
+</p>
+</html>", revisions="<html>
+<ul>
+  <li>
+June 16, 2015, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end BatterySimple;

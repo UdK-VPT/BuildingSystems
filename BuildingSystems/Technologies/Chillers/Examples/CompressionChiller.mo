@@ -116,20 +116,19 @@ equation
   annotation (
   Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-60},{100,60}}),
     graphics={Text(extent={{-72,-32},{56,-74}},lineColor={0,0,255},textString="Test of the compression chiller model")}),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/Chillers/Examples/CompressionChiller.mos"
-        "Simulate and plot"),
-    Documentation(info="<html>
-    <p> This example tests the implementation of
-    <a href=\"modelica://BuildingSystems.Technologies.ElectricalBatteries\">
-    BuildingSystems.Technologies.Electrical.Electrical batteris</a>.
-    </p>
-    </html>", revisions="<html>
-    <ul>
-      <li>
-    June 20, 2015, by Christoph Nytsch-Geusen:<br/>
-    First implementation.
-    </li>
-    </ul>
-    </html>"),
-    experiment(StartTime=0.0, StopTime=7200));
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/Chillers/Examples/CompressionChiller.mos" "Simulate and plot"),
+Documentation(info="<html>
+<p> This example tests the implementation of
+<a href=\"modelica://BuildingSystems.Technologies.ElectricalBatteries\">
+BuildingSystems.Technologies.Electrical.Electrical batteris</a>.
+</p>
+</html>", revisions="<html>
+<ul>
+  <li>
+June 20, 2015, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"),
+experiment(StartTime=0.0, StopTime=7200));
 end CompressionChiller;

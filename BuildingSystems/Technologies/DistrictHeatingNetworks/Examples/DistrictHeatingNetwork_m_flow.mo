@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.Examples;
 model DistrictHeatingNetwork_m_flow
-  "Small example of a DHN with decentralized pumps that control mass flow rate of the DHN."
+  "Example of a DHN with decentralized pumps which control the mass flow rate of the DHN."
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow station(
@@ -357,6 +357,18 @@ equation
       smooth=Smooth.None));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_m_flow.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,-100},{100,120}}), graphics),
-    experiment(StartTime=0.0, StopTime=3.1536e+007),
-    __Dymola_experimentSetupOutput);
+    experiment(StartTime=0.0, StopTime=3.1536e+007),_Dymola_experimentSetupOutput,
+Documentation(info="<html>
+<p>
+Example that simulates a district heating network with decentralized pumps which control the mass flow rate of the DHN.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Carles Ribas Tugores:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end DistrictHeatingNetwork_m_flow;

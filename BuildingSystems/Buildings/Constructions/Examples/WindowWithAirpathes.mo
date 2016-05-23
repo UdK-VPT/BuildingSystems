@@ -91,6 +91,20 @@ equation
   annotation(experiment(StartTime=0, StopTime=4500.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WindowWithAirPathes.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={
-    Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},textString="Window model with two airpathes under real weather data")}),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+    Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
+    textString="Window model with two airpathes under real weather data")}),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates a window model with two airpathes under real weather data.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end WindowWithAirpathes;

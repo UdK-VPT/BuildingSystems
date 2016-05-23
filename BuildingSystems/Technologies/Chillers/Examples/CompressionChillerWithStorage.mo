@@ -141,20 +141,19 @@ equation
     graphics={Text(extent={{-62,-66},{66,-108}},lineColor={0,0,255},
     textString="Test of the compression chiller model
     which loads a cold water storage")}),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/Chillers/Examples/CompressionChillerWithStorage.mos"
-        "Simulate and plot"),
-    Documentation(info="<html>
-    <p> This example tests the implementation of
-    <a href=\"modelica://BuildingSystems.Technologies.ElectricalBatteries\">
-    BuildingSystems.Technologies.Electrical.Electrical batteris</a>.
-    </p>
-    </html>", revisions="<html>
-    <ul>
-      <li>
-    June 20, 2015, by Christoph Nytsch-Geusen:<br/>
-    First implementation.
-    </li>
-    </ul>
-    </html>"),
-    experiment(StartTime=0.0, StopTime=7200));
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/Chillers/Examples/CompressionChillerWithStorage.mos" "Simulate and plot"),
+Documentation(info="<html>
+<p> This example tests the implementation of
+<a href=\"modelica://BuildingSystems.Technologies.ElectricalBatteries\">
+BuildingSystems.Technologies.Electrical.Electrical batteris</a>.
+</p>
+</html>", revisions="<html>
+<ul>
+  <li>
+June 20, 2015, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"),
+experiment(StartTime=0.0, StopTime=7200));
 end CompressionChillerWithStorage;

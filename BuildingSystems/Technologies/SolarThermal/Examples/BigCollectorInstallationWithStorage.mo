@@ -367,16 +367,16 @@ equation
   annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-240},{160,80}}), graphics),
     experiment(StartTime=10368000, StopTime=10713600),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/SolarThermal/Examples/BigCollectorInstallationWithStorage.mos" "Simulate and plot"),
-    Documentation(info="<html>
-    <p> This example tests the implementation of
-    <a href=\"modelica://BuildingSystems.Technologies.SolarThermal.ThermalCollector\">
-    BuildingSystems.Technologies.SolarThermal.ThermalCollector</a>.
-    </p>
-    </html>", revisions="<html>
-    <ul>
-    <li>
-    April 10, 2015, by Carles Ribas Tugores:<br/>
-    </li>
-    </ul>
-    </html>"));
+Documentation(info="<html>
+<p> This example tests the implementation of
+<a href=\"modelica://BuildingSystems.Technologies.SolarThermal.ThermalCollector\">
+BuildingSystems.Technologies.SolarThermal.ThermalCollector</a>.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+April 10, 2015, by Carles Ribas Tugores:<br/>
+</li>
+</ul>
+</html>"));
 end BigCollectorInstallationWithStorage;

@@ -76,5 +76,18 @@ equation
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}}),
     graphics={Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
     textString="1D combined dynamic heat conduction and moisture transport in a body")}),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates the 1D combined dynamic heat conduction and moisture transport in a body.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end HeatAndMoistureTransport1DNodes;

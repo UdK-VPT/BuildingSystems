@@ -5,9 +5,7 @@ model FluidStorageStratified
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
     height=2.0,
-    redeclare
-      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
-      HeatBuoyancy,
+    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     HX_2=false,
     Ele_HX_1=2,
     HX_1=false,
@@ -32,8 +30,9 @@ model FluidStorageStratified
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature(
     T = 298.15)
     annotation (Placement(transformation(extent={{-40,50},{-20,70}})));
-  Modelica.Blocks.Sources.Constant
-                                m_flow2(k=1) "Mass flow rate"
+  Modelica.Blocks.Sources.Constant m_flow2(
+    k=1)
+    "Mass flow rate"
     annotation (Placement(transformation(extent={{106,-40},{86,-20}})));
   BaseClasses.StratificationModel.PartialInletStratification
     partialInletStratification(nEle=nEle, redeclare package Medium = Medium)
@@ -43,7 +42,8 @@ model FluidStorageStratified
     nPorts=1,
     use_m_flow_in=false,
     m_flow=1,
-    T=323.15) "Flow source"
+    T=323.15)
+    "Flow source"
     annotation (Placement(transformation(extent={{-100,-18},{-80,2}})));
   parameter Integer nEle=6;
 equation
@@ -55,12 +55,10 @@ equation
       points={{-20,60},{30,60},{30,10.8}},
       color={191,0,0},
       smooth=Smooth.None));
-
   connect(sou1.ports[1], partialInletStratification.port_a) annotation (Line(
       points={{-80,-8},{-72,-8},{-72,-19},{-61,-19}},
       color={0,127,255},
       smooth=Smooth.None));
-
   connect(storage.port_a2, sin2.ports[1]) annotation (Line(
       points={{44,8},{52,8},{52,2},{58,2}},
       color={0,127,255},
@@ -86,6 +84,18 @@ equation
       points={{-56,0},{-56,16},{-18,16},{-18,-4},{2,-4},{2,2},{15.2,2}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorageStratified.mos"
-        "Simulate and plot"));
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorageStratified.mos" "Simulate and plot"),
+Documentation(info="<html>
+<p>
+Example that simulates a districhr heating network with a main pump.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Carles Ribas Tugores:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end FluidStorageStratified;

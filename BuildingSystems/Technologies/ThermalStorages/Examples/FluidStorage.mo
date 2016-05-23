@@ -89,9 +89,9 @@ equation
       points={{-32,62},{0,62},{0,12.8}},
       color={191,0,0},
       smooth=Smooth.None));
-  annotation (    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorage.mos"
-        "Simulate and plot"), Documentation(info="<html>
-<p>Charging once cold through bottom inlet, twice through internal heat exchanger.</p>
-</html>"),
-    experiment(StopTime=2000));
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorage.mos" "Simulate and plot"),
+    experiment(StopTime=2000),
+    Documentation(info="<html>
+    <p>Charging once cold through bottom inlet, twice through internal heat exchanger.</p>
+    </html>"));
 end FluidStorage;

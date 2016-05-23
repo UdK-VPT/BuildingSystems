@@ -269,5 +269,20 @@ equation
         "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}}), graphics={Text(extent={{-64,-2},{68,-62}}, lineColor={0,0,255},
     textString="3D combined dynamic heat conduction and moisture transport of 9 bodies
-    (el22 is from insulation, the others from brick)")}), Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+    (el22 is from insulation, the others from brick)")}),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates the 3D combined dynamic heat conduction and moisture transport of 9 bodies
+(el22 is from insulation, the others elements from brick).
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end HeatAndMoistureTransport3D;
