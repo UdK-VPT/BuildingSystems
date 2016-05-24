@@ -5,11 +5,14 @@ model GasGapClosed
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={-20,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-20,0})));
   BuildingSystems.Interfaces.HeatPort heatPort_x2
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,0})));
-  parameter Modelica.SIunits.Length width "Width of the gap"
+  parameter Modelica.SIunits.Length width
+    "Width of the gap"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length height "Height of the gap"
+  parameter Modelica.SIunits.Length height
+    "Height of the gap"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length distance "Distance of the gap"
+  parameter Modelica.SIunits.Length distance
+    "Distance of the gap"
     annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Integer gas = 1
     "Gas within the gap: 1:air, 2:argon, 3:krypton, 4:xenon, 5:SF6"
