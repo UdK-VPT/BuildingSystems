@@ -1,22 +1,27 @@
 within BuildingSystems.HAM.HeatConduction;
 model MultiLayerHeatConduction1DNodes
   "Multi layered-body with 1D heat conduction and a potential inner discretization of each layer"
-
   BuildingSystems.HAM.HeatConduction.HeatConduction1DNodes layer[nLayers](material=material,
     each lengthY=lengthY,each lengthZ=lengthZ,lengthX=thickness,nNodesX=nNodes,T_start=T_start);
   BuildingSystems.Interfaces.HeatPort heatPort_x1
+    "Heat port in direction x1"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={-80,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-80,0})));
   BuildingSystems.Interfaces.HeatPort heatPort_x2
+    "Heat port in direction x2"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,0})));
   parameter
-    BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral
-    material[nLayers] annotation (HideResult=true);
-  parameter Modelica.SIunits.Length lengthY "Length in y dimension";
-  parameter Modelica.SIunits.Length lengthZ "Length in z dimension";
-  parameter Integer nLayers = 1 "Number of material layers in the x dimension";
+    BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral material[nLayers]
+    annotation (HideResult=true);
+  parameter Modelica.SIunits.Length lengthY = 1.0
+    "Length in y dimension";
+  parameter Modelica.SIunits.Length lengthZ = 1.0
+    "Length in z dimension";
+  parameter Integer nLayers = 1
+    "Number of material layers in the x dimension";
   parameter Integer nNodes[nLayers] = {1}
     "Number of numerical nodes of layer i";
-  parameter Modelica.SIunits.Length thickness[nLayers] "Thickness of layer i";
+  parameter Modelica.SIunits.Length thickness[nLayers] = {1.0}
+    "Thickness of layer i";
   parameter Modelica.SIunits.Temp_K T_start[nLayers]={293.15 for i in 1:nLayers}
     "Start temperature of the layer i"
     annotation (Dialog(tab="Initialization"));

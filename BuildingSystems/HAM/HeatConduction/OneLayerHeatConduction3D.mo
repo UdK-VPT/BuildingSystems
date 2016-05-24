@@ -8,28 +8,37 @@ model OneLayerHeatConduction3D "Single layer of a body with 3D heat conduction"
     each lengthX=thickness,
     each T_start=T_start);
   BuildingSystems.Interfaces.HeatPorts heatPorts_x1[nY,nZ]
+   "Discretized heat port in direction x1"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={-80,0}), iconTransformation(extent={{-20,-6},{20,6}}, rotation=270,origin={-80,0})));
   BuildingSystems.Interfaces.HeatPorts heatPorts_x2[nY,nZ]
+   "Discretized heat port in direction x2"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,0}), iconTransformation(extent={{-20,-6},{20,6}},rotation=270,origin={80,0})));
   BuildingSystems.Interfaces.HeatPorts heatPorts_y1[nZ]
+   "Discretized heat port in direction y1"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},origin={0,-82}), iconTransformation(extent={{-20,-6},{20,6}}, origin={0,-80})));
   BuildingSystems.Interfaces.HeatPorts heatPorts_y2[nZ]
+   "Discretized heat port in direction y2"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},origin={0,80}),  iconTransformation(extent={{-20,-6},{20,6}}, origin={0,80})));
   BuildingSystems.Interfaces.HeatPorts heatPorts_z1[nY]
+   "Discretized heat port in direction z1"
    annotation(Placement(transformation(extent={{-8,-8},{8,8}},origin={-48,-82}),iconTransformation(extent={{-20,-6},{20,6}}, origin={-60,-80})));
   BuildingSystems.Interfaces.HeatPorts heatPorts_z2[nY]
+    "Discretized heat port in direction z2"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},origin={64,80}), iconTransformation(extent={{-20,-6},{20,6}}, origin={60,80})));
-  parameter Integer nY "Number of cells in the y dimension";
-  parameter Integer nZ "Number of cells in the z dimension";
-  parameter
-    BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral
-    material "Material data of the body";
-  parameter Modelica.SIunits.Length lengthSegY[nY]
+  parameter Integer nY = 1
+    "Number of cells in the y dimension";
+  parameter Integer nZ = 1
+    "Number of cells in the z dimension";
+  parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral material
+    "Material data of the body";
+  parameter Modelica.SIunits.Length lengthSegY[nY] = {1.0}
     "Length of each cell in y dimension";
-  parameter Modelica.SIunits.Length lengthSegZ[nZ]
+  parameter Modelica.SIunits.Length lengthSegZ[nZ] = {1.0}
     "Length of each cell in z dimension";
-  parameter Modelica.SIunits.Length thickness "Thickness in x dimension";
-  parameter Modelica.SIunits.Temp_K T_start "Start temperature"
+  parameter Modelica.SIunits.Length thickness = 1.0
+    "Thickness in x dimension";
+  parameter Modelica.SIunits.Temp_K T_start = 293.15
+    "Start temperature"
     annotation (Dialog(tab="Initialization"));
 
 equation

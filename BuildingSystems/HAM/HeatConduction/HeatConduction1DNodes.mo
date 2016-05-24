@@ -2,15 +2,17 @@ within BuildingSystems.HAM.HeatConduction;
 model HeatConduction1DNodes
   "Model for 1D heat conduction and an optional additional discretisation"
   extends BuildingSystems.HAM.HeatConduction.BaseClasses.HeatConductionGeneral;
-
   BuildingSystems.Interfaces.HeatPort heatPort_x1
+    "Heat port in direction x1"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={-80,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-80,0})));
   BuildingSystems.Interfaces.HeatPort heatPort_x2
+    "Heat port in direction x2"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,0})));
   BuildingSystems.Interfaces.HeatPort heatPort_source[nNodesX]
     "Optional heat source at the numerical node"
     annotation(Placement(transformation(extent={{-10,-12},{10,8}}), iconTransformation(extent={{-10,-12},{10,8}})));
-  parameter Integer nNodesX = 1 "Number of numerical nodes in the x dimension";
+  parameter Integer nNodesX = 1
+    "Number of numerical nodes in the x dimension";
   parameter Modelica.SIunits.Temp_K T_start = 293.15
     "Start temperature of the thermal nodes"
     annotation (Dialog(tab="Initialization"));
