@@ -20,18 +20,21 @@ model BuildingThermal1Zone1DBox
     redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.ConstructionStandard constructionWallsInterior,
     InteriorCeilings=true,
     redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.ConstructionStandard constructionCeilingsInterior,
-    widthWindow1=1.0,
-    heightWindow1=1.0,
+    widthWindow1=0.0,
+    heightWindow1=0.0,
     widthWindow2=1.0,
     heightWindow2=1.0,
-    widthWindow3=1.0,
-    heightWindow3=1.0,
+    widthWindow3=0.0,
+    heightWindow3=0.0,
     widthWindow4=1.0,
     heightWindow4=1.0,
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal19 constructionWindow1,
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal19 constructionWindow2,
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal19 constructionWindow3,
-    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal19 constructionWindow4)
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal19 constructionWindow4,
+    BCWall1=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic,
+    BCWall3=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant,
+    TWall3_constant=293.15)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,14})));
@@ -77,6 +80,8 @@ equation
 Documentation(info="<html>
 <p>
 Example that simulates a predefined thermal building model with 1 zone, based on 1D-discretized building elements.
+The areas of window1 (included in wall1) and window3 (included in wall3) are set to zero. Further wall1 is definend
+as an adiabatic wall and the outer surface temperature of wall3 is set to 20 degree Celsius.
 </p>
 </html>",
 revisions="<html>

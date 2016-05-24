@@ -7,4 +7,10 @@ package Types
     Parameter "Use parameter",
     Input "Use input connector")
     "Enumeration to select data source";
+
+  type ThermalBoundaryCondition = enumeration(
+    Ambient "Ambient climate",
+    Adiabatic "Adiabatic boundary condition",
+    Constant "Constant temperature")
+    "Enumeration of thermal boundary conditions";
 end Types;

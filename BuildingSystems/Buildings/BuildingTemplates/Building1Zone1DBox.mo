@@ -10,27 +10,47 @@ model Building1Zone1DBox
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
     final alphaConstant = 0.0, // dummy value
     surfacesToAmbient(nSurfaces=9
-      - (if adiabaticWall1 then 1 else 0)
-      - (if adiabaticWall2 then 1 else 0)
-      - (if adiabaticWall3 then 1 else 0)
-      - (if adiabaticWall4 then 1 else 0)
-      - (if adiabaticCeiling then 1 else 0)),
+      - (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
+      - (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
+      - (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
+      - (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
+      - (if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
+      - (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then 1 else 0)
+      - (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then 1 else 0)
+      - (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then 1 else 0)
+      - (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then 1 else 0)
+      - (if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then 1 else 0)),
     final nSurfacesSolid=1,
     surfacesToSolids(nSurfaces=nSurfacesSolid),
     final show_TAir = true,
     final show_xAir = true,
     final gridSurface=fill({1,1},surfacesToAmbient.nSurfaces));
 
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticWall1 if adiabaticWall1
-    "Adiabatic boundary condition for wall1";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticWall2 if adiabaticWall2
-    "Adiabatic boundary condition for wall2";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticWall3 if adiabaticWall3
-    "Adiabatic boundary condition for wall3";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticWall4 if adiabaticWall4
-    "Adiabatic boundary condition for wall4";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surfaceAdiabaticCeiling if adiabaticCeiling
-    "Adiabatic boundary condition for ceiling";
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall1 if (BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+    or BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
+    "Surface for outer thermal boundary condition of wall1";
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall1(T=TWall1_constant) if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+    "Constant temperature on the outer surface of wall1";
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall2 if (BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+    or BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
+    "Surface for outer thermal boundary condition of wall2";
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall2(T=TWall2_constant) if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+    "Constant temperature on the outer surface of wall2";
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall3 if (BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+    or BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
+    "Surface for outer thermal boundary condition of wall3";
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall3(T=TWall3_constant) if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+    "Constant temperature on the outer surface of wall3";
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall4 if (BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+    or BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
+    "Surface for outer thermal boundary condition of wall4";
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall4(T=TWall4_constant) if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+    "Constant temperature on the outer surface of wall4";
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceCeiling if (BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+    or BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
+    "Surface for outer thermal boundary condition of ceiling";
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempCeiling(T=TCeiling_constant) if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+    "Constant temperature on the outer surface of ceiling";
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWall1
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Exterior constructions"), choicesAllMatching=true);
@@ -67,24 +87,39 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionCeilingsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
-  parameter Boolean adiabaticWall1 = false
-   "True for adiabatic boundary conditions"
-   annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Boolean adiabaticWall2 = false
-    "True for adiabatic boundary conditions"
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall1 = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    "Thermal boundary condition wall1"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Boolean adiabaticWall3 = false
-    "True for adiabatic boundary conditions"
+  parameter Modelica.SIunits.Temp_K TWall1_constant = 293.15
+    "Constant temperature on the outer surface of wall1 (used if BCWall1=Constant)"
+    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall2 = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    "Thermal boundary condition wall2"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Boolean adiabaticWall4 = false
-    "True for adiabatic boundary conditions"
+  parameter Modelica.SIunits.Temp_K TWall2_constant = 293.15
+    "Constant temperature on the outer surface of wall2 (used if BCWall2=Constant)"
+    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall3 = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    "Thermal boundary condition wall3"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Boolean adiabaticCeiling = false
-    "True for adiabatic boundary conditions"
+  parameter Modelica.SIunits.Temp_K TWall3_constant = 293.15
+    "Constant temperature on the outer surface of wall3 (used if BCWall3=Constant)"
+    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall4 = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    "Thermal boundary condition wall4"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter Modelica.SIunits.Temp_K TWall4_constant = 293.15
+    "Constant temperature on the outer surface of wall4 (used if BCWall4=Constant)"
+    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCCeiling = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    "Thermal boundary condition ceiling"
+    annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+  parameter Modelica.SIunits.Temp_K TCeiling_constant = 293.15
+    "Constant temperature on the outer surface of ceiling (used if BCCeiling=Constant)"
+    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Length width = 10.0
-  "Width of the building (inner space)"
-   annotation(Dialog(tab="General",group="Geometry"));
+    "Width of the building (inner space)"
+     annotation(Dialog(tab="General",group="Geometry"));
   parameter Modelica.SIunits.Length length = 10.0
    "Length of the building (inner space)"
     annotation(Dialog(tab="General",group="Geometry"));
@@ -191,7 +226,6 @@ model Building1Zone1DBox
     nConstructions4 = 3,
     T_start = TAir_start)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
     height = height,
     width = length,
@@ -417,41 +451,71 @@ equation
     annotation (Line(points={{-4.44089e-016,-22},{-4.44089e-016,-34},{-82,-34},
       {-82,3.55271e-015},{-89.9,3.55271e-015}},color={0,0,0},
       pattern=LinePattern.Solid));
-  if not adiabaticWall1 then
-    connect(wall1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)])
+  if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
+    connect(wall1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
+      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
       annotation (Line(points={{-42,10},{-82,10},{-82,3.55271e-015},
       {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+  elseif BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
+    connect(wall1.toSurfacePort_2,outerSurfaceWall1.toConstructionPort);
+    connect(ConstTempWall1.port,outerSurfaceWall1.heatPort[1,1]);
   else
-    connect(wall1.toSurfacePort_2,surfaceAdiabaticWall1.toConstructionPort);
+    connect(wall1.toSurfacePort_2,outerSurfaceWall1.toConstructionPort);
   end if;
-  if not adiabaticWall2 then
-    connect(wall2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)+(if not adiabaticWall2 then 1 else 0)])
+  if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
+    connect(wall2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
+     + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+     + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
       annotation (Line(points={{-20,22},{-20,32},{-82,32},{-82,3.55271e-015},
         {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+  elseif BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
+    connect(wall2.toSurfacePort_2,outerSurfaceWall2.toConstructionPort);
+    connect(ConstTempWall2.port,outerSurfaceWall2.heatPort[1,1]);
   else
-    connect(wall2.toSurfacePort_2,surfaceAdiabaticWall2.toConstructionPort);
+    connect(wall2.toSurfacePort_2,outerSurfaceWall2.toConstructionPort);
   end if;
-  if not adiabaticWall3 then
-    connect(wall3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)+(if not adiabaticWall2 then 1 else 0)+(if not adiabaticWall3 then 1 else 0)])
+  if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
+    connect(wall3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
+      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+      + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
       annotation (Line(points={{42,-10},{44,-10},{44,-34},{-82,-34},
         {-82,3.55271e-015},{-89.9,3.55271e-015}},color={0,0,0},
         pattern=LinePattern.Solid));
+  elseif BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
+    connect(wall3.toSurfacePort_2,outerSurfaceWall3.toConstructionPort);
+    connect(ConstTempWall3.port,outerSurfaceWall3.heatPort[1,1]);
   else
-    connect(wall3.toSurfacePort_2,surfaceAdiabaticWall3.toConstructionPort);
+    connect(wall3.toSurfacePort_2,outerSurfaceWall3.toConstructionPort);
   end if;
-  if not adiabaticWall4 then
-    connect(wall4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)+(if not adiabaticWall2 then 1 else 0)+(if not adiabaticWall3 then 1 else 0)+(if not adiabaticWall4 then 1 else 0)])
+  if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
+    connect(wall4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
+      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+      + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+      + (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
       annotation (Line(points={{-20,-22},{-20,-34},{-82,-34},{-82,3.55271e-015},
         {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+  elseif BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
+    connect(wall4.toSurfacePort_2,outerSurfaceWall4.toConstructionPort);
+    connect(ConstTempWall4.port,outerSurfaceWall4.heatPort[1,1]);
   else
-    connect(wall4.toSurfacePort_2,surfaceAdiabaticWall4.toConstructionPort);
+    connect(wall4.toSurfacePort_2,outerSurfaceWall4.toConstructionPort);
   end if;
-  if not adiabaticCeiling then
-    connect(ceiling.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4+(if not adiabaticWall1 then 1 else 0)+(if not adiabaticWall2 then 1 else 0)+(if not adiabaticWall3 then 1 else 0)+(if not adiabaticWall4 then 1 else 0)+(if not adiabaticCeiling then 1 else 0)])
+  if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
+    connect(ceiling.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
+      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+      + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+      + (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
+      + (if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
       annotation (Line(points={{22,22},{22,32},{-82,32},{-82,3.55271e-015},
         {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+  elseif BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
+    connect(ceiling.toSurfacePort_2,outerSurfaceCeiling.toConstructionPort);
+    connect(ConstTempCeiling.port,outerSurfaceCeiling.heatPort[1,1]);
   else
-    connect(ceiling.toSurfacePort_2,surfaceAdiabaticCeiling.toConstructionPort);
+    connect(ceiling.toSurfacePort_2,outerSurfaceCeiling.toConstructionPort);
   end if;
   annotation(defaultComponentName="building");
 end Building1Zone1DBox;
