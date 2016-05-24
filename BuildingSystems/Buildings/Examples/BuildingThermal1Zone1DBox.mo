@@ -41,12 +41,14 @@ model BuildingThermal1Zone1DBox
   Modelica.Blocks.Sources.Constant TSetCooling(k=273.15 + 24.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,6})));
   Modelica.Blocks.Sources.Constant airchange(k=0.5)
-     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,-2})));
+    annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,-2})));
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature soilTemp(T=283.15)
+    "Thermal boundary condition under the building (soil temperature)";
 equation
-   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
-    points={{-22,7.66667},{-20,7.66667},{-20,8},{-20,11.3333},{-20,7.66667},{-9,7.66667}},
-    color={0,255,0},
-    smooth=Smooth.None));
+  connect(soilTemp.port,building.toSolidHeatPorts[1].heatPort[1,1]);
+  connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
+   points={{-22,7.66667},{-20,7.66667},{-20,8},{-20,11.3333},{-20,7.66667},{-9,7.66667}},
+   color={0,255,0},smooth=Smooth.None));
   connect(ambient.toAirPorts, building.toAmbientAirPorts) annotation (Line(
     points={{-22,-0.333333},{-16,-0.333333},{-16,-0.333333},{-9,-0.333333}},
     color={85,170,255},
@@ -81,7 +83,8 @@ Documentation(info="<html>
 <p>
 Example that simulates a predefined thermal building model with 1 zone, based on 1D-discretized building elements.
 The areas of window1 (included in wall1) and window3 (included in wall3) are set to zero. Further wall1 is definend
-as an adiabatic wall and the outer surface temperature of wall3 is set to 20 degree Celsius.
+as an adiabatic wall and the outer surface temperature of wall3 is set to 20 degree Celsius. The soil
+temperature under the building is set to 10 degree Celsius.
 </p>
 </html>",
 revisions="<html>
