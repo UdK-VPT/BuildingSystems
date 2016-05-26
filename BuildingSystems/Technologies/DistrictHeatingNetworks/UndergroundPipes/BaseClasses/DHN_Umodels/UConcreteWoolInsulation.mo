@@ -1,18 +1,16 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels;
 model UConcreteWoolInsulation
-  extends BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass(
+  extends
+    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass(
     final nPipes=2,
     final th_c=(d_ins - 2.2*A*B/(A + B)/2),
     final SPip=(Modelica.Constants.pi*d_o*d_o/4) - SWat,
     final SWat=Modelica.Constants.pi*d_i*d_i/4);
-  parameter Modelica.SIunits.Length H_real
-    "Depth of the pipe center"
+  parameter Modelica.SIunits.Length H_real "Depth of the pipe center"
     annotation(Dialog(tab="General", group="Laying"));
-  parameter Modelica.SIunits.Length A
-    "Width case"
+  parameter Modelica.SIunits.Length A "Width case"
     annotation(Dialog(tab="General", group="Laying"));
-  parameter Modelica.SIunits.Length B
-    "Height case"
+  parameter Modelica.SIunits.Length B "Height case"
     annotation(Dialog(tab="General", group="Laying"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer h_gs = 14.6
     "Heat transfer coefficient at the ground surface"
@@ -53,7 +51,7 @@ equation
 
     <h4>Implementation</h4>
     <p>
-    In case U1 > 4*U2, the value of U2 is set to 0. It means the interaction between pipes is negelcted.
+    In case U1 &gt; 4*U2, the value of U2 is set to 0. It means the interaction between pipes is negelcted.
     </p>
 
     <h4>References</h4>

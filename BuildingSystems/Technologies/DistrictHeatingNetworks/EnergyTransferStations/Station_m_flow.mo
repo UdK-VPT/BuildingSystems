@@ -171,7 +171,6 @@ equation
     The building/zone tempearture input signal is used to determine the percentage of nominal mass flow rate that should be pumped by <code>pumpHeating</code>. The block <code>externalIdealHeater</code> extracts energy so that the fluid undergoes a temperature drop equal to the paremeter <code>Tdrop</code>.
     </p>
 
-    <p>
-    </p>
+
     </html>"));
 end Station_m_flow;

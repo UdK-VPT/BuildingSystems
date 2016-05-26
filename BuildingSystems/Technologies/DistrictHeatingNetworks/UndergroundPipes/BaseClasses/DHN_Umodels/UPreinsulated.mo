@@ -39,7 +39,7 @@ equation
 
 <h4>Implementation</h4>
 <p>
-In case U1 > 4*U2, the value of U2 is set to 0. It means the interaction between pipes is negelcted.
+In case U1 &gt; 4*U2, the value of U2 is set to 0. It means the interaction between pipes is negelcted.
 </p>
 
 <h4>References</h4>
