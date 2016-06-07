@@ -119,8 +119,8 @@ equation
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/Chillers/Examples/CompressionChiller.mos" "Simulate and plot"),
 Documentation(info="<html>
 <p> This example tests the implementation of
-<a href=\"modelica://BuildingSystems.Technologies.ElectricalBatteries\">
-BuildingSystems.Technologies.Electrical.Electrical batteris</a>.
+<a href=\"modelica://BuildingSystems.Technologies.Chillers.CompressionChiller\">
+BuildingSystems.Technologies.Chillers.CompressionChiller</a>.
 </p>
 </html>", revisions="<html>
 <ul>

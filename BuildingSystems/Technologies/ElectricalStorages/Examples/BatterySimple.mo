@@ -32,8 +32,8 @@ equation
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ElectricalStorages/Examples/BatterySimple.mos" "Simulate and plot"),
 Documentation(info="<html>
 <p> This example tests the implementation of
-<a href=\"modelica://BuildingSystems.Technologies.ElectricalBatteries\">
-BuildingSystems.Technologies.Electrical.Electrical batteris</a>.
+<a href=\"modelica://BuildingSystems.Technologies.Electrica.Batteries\">
+BuildingSystems.Technologies.Electrical.Batteries</a>.
 </p>
 </html>", revisions="<html>
 <ul>
