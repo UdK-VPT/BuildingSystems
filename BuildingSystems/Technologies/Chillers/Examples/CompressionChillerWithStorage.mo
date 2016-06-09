@@ -47,9 +47,7 @@ model CompressionChillerWithStorage
     height=1.5,
     HX_2=false,
     HX_1=false,
-    redeclare
-      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
-                                                                                                HeatBuoyancy,
+    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     nEle=4,
     PerfectlyIsolated=false,
     V=1.0,

@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Technologies.Cogeneration.Examples.CogenerationUnitWithStorage", stopTime=200000, method="dassl", resultFile="CogenerationUnitWithStorage");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"senTemIn.T","senTemOut.T","storage.T[1]","storage.T[4]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "CogenerationUnitWithStorage.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"CHP.P","CHP.Q_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "CogenerationUnitWithStorage.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
