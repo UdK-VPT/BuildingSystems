@@ -33,7 +33,7 @@ model CogenerationUnit
     redeclare package Medium = Medium,
     m_flow_nominal=1,
     dp_nominal=1,
-    redeclare BuildingSystems.Technologies.Cogeneration.Data.CogenerationUnits.StandardCHP cogenerationUnitData)
+    redeclare BuildingSystems.Technologies.Cogeneration.Data.GenericCHPs.StandardCHP cogenerationUnitData)
     annotation (Placement(transformation(extent={{-10,-4},{10,16}})));
   Modelica.Blocks.Sources.Constant const1(
     k=273 + 30)
@@ -74,7 +74,7 @@ BuildingSystems.Technologies.Cogeneration.CogenerationUnit</a>.
 </p>
 </html>", revisions="<html>
 <ul>
-  <li>
+<li>
 June 7, 2016, by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>

@@ -1,3 +1,4 @@
+within BuildingSystems.Technologies.Cogeneration.Examples;
 model CogenerationUnitWithStorage
   "Example of a cogeneration unit with warm water storage"
   import BuildingSystems;
@@ -38,7 +39,7 @@ model CogenerationUnitWithStorage
     annotation (Placement(transformation(extent={{-16,-50},{-4,-38}})));
   BuildingSystems.Technologies.Cogeneration.CogenerationUnit CHP(
     redeclare package Medium = Medium,
-    redeclare BuildingSystems.Technologies.Cogeneration.Data.CogenerationUnits.StandardCHP cogenerationUnitData,
+    redeclare BuildingSystems.Technologies.Cogeneration.Data.GenericCHPs.StandardCHP cogenerationUnitData,
     m_flow_nominal=0.1,
     dp_nominal=1)
     annotation (Placement(transformation(extent={{-10,-24},{10,-4}})));
@@ -97,7 +98,7 @@ BuildingSystems.Technologies.Cogeneration.CogenerationUnit</a>.
 </p>
 </html>", revisions="<html>
 <ul>
-  <li>
+<li>
 June 10, 2016, by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>

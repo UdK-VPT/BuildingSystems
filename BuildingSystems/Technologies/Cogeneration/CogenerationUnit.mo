@@ -4,14 +4,16 @@ model CogenerationUnit
   extends BuildingSystems.Fluid.Interfaces.TwoPortHeatMassExchanger(
   redeclare final BuildingSystems.Fluid.MixingVolumes.MixingVolume vol(
     final prescribedHeatFlowRate=true));
-  replaceable parameter BuildingSystems.Technologies.Cogeneration.Data.CogenerationUnits.CogenerationUnitGeneral cogenerationUnitData
+  replaceable parameter BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral cogenerationUnitData
     "Characteristic data of the Cogeneration unit"
     annotation(Dialog(tab = "General"),Evaluate=true, choicesAllMatching=true);
-  parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = cogenerationUnitData.Q_flow_nominal
+  final parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = cogenerationUnitData.Q_flow_nominal
     "Nominal heat flow rate (at full load)";
-  parameter Modelica.SIunits.HeatFlowRate P_nominal = cogenerationUnitData.P_nominal
+  final parameter Modelica.SIunits.HeatFlowRate P_nominal = cogenerationUnitData.P_nominal
     "Nominal electrical power (at full load)";
-  Modelica.Blocks.Interfaces.RealInput u(min = 0.0, max = 1.0)
+  Modelica.Blocks.Interfaces.RealInput u(
+    min = 0.0,
+    max = 1.0)
     "Control input (partial load)"
     annotation (Placement(transformation(extent={{-140,40},{-100,80}})));
   Modelica.Blocks.Interfaces.RealOutput Q_flow(unit="W")
