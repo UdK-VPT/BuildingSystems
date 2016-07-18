@@ -2,7 +2,7 @@ within BuildingSystems.Buildings.BuildingTemplates;
 model Building1Zone1DCylinder
   "1 zone thermal building model with the shape of a cylinder"
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
-    nZones = 1,
+    final nZones = 1,
     final prescribedAirchange = true,
     final useAirPathes = false,
     final calcHygroThermal = false,
