@@ -220,6 +220,7 @@ model Building1Zone1DBox
     final calcIdealLoads = calcIdealLoads,
     final heatSources = heatSources,
     final nHeatSources = nHeatSources,
+    final radiationportionHeatSource=radiationportionHeatSource,
     nConstructions1 = if InteriorWalls then 4 else 2,
     nConstructions2 = if InteriorCeilings then 5 else 3,
     nConstructions3 = 2,

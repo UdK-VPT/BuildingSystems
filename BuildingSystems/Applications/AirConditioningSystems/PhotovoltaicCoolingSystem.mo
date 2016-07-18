@@ -2,7 +2,7 @@ within BuildingSystems.Applications.AirConditioningSystems;
 model PhotovoltaicCoolingSystem
   "Photovoltaic cooling system"
   extends Modelica.Icons.Example;
-  package Medium = BuildingSystems.Media.Water;
+  package Medium = BuildingSystems.Media.Water(T_min=0.0,T_max=273.15+200.0);
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.5
     "Nominal mass flow rate";
   parameter Modelica.SIunits.MassFlowRate m_flow = 0.5
@@ -79,7 +79,8 @@ model PhotovoltaicCoolingSystem
     redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     height=0.5,
     V=1,
-    nEle=5) "Cold water storage"
+    nEle=5)
+    "Cold water storage"
     annotation (Placement(transformation(extent={{62,-40},{82,-20}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pip1(
     redeclare package Medium = Medium,
@@ -108,7 +109,7 @@ model PhotovoltaicCoolingSystem
     TAir_nominal=273.15 + 24.0,
     m_flow_nominal=m_flow_nominal,
     Q_flow_nominal=-2000.0)
-    "cooling surface"
+    "Cooling surface"
     annotation (Placement(transformation(extent={{124,-6},{112,6}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow  pump2(
     redeclare package Medium = Medium,
@@ -153,7 +154,7 @@ model PhotovoltaicCoolingSystem
     heatSources=true,
     show_TAir=true,
     nHeatSources=1,
-    zone.radiationportionHeatSource={0.0}) // 100 percent cooling by convection
+    radiationportionHeatSource={0.0}) // 100 percent cooling by convection
     "Building model"
     annotation (Placement(transformation(extent={{88,30},{108,50}})));
   BuildingSystems.Buildings.Ambient ambient(

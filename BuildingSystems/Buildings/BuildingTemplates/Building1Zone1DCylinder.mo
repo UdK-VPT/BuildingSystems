@@ -28,6 +28,7 @@ model Building1Zone1DCylinder
     final calcIdealLoads = calcIdealLoads,
     final heatSources = heatSources,
     final nHeatSources = nHeatSources,
+    final radiationportionHeatSource=radiationportionHeatSource,
     nConstructions1 = nSeg,
     nConstructions2 = 1,
     nConstructions4 = 1)

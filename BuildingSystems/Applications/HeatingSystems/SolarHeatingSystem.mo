@@ -25,6 +25,7 @@ model SolarHeatingSystem
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
+    radiationportionHeatSource={0.0},
     show_TAir=true)
     "Building model"
     annotation (Placement(transformation(extent={{4,42},{24,62}})));
@@ -338,7 +339,7 @@ equation
 Documentation(info="<html>
 <p>
 Example that simulates a solar thermal system which supplies a building with heating energy.
-A boiler add the backup energy which cannot delivered by the solar collector. 
+A boiler add the backup energy which cannot delivered by the solar collector.
 </p>
 </html>",
 revisions="<html>

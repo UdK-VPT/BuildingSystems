@@ -25,6 +25,7 @@ model WaterHeatingSystem
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
+    radiationportionHeatSource={0.0},
     show_TAir=true)
     "Building model"
     annotation (Placement(transformation(extent={{4,42},{24,62}})));
@@ -215,7 +216,7 @@ Documentation(info="<html>
 <p>
 Example that simulates a warm water heating system for a building. The system
 works with a constant supply temperature, the mass flow of the heating loop
-is controlled by a valve related to the necessary heating demand of the building. 
+is controlled by a valve related to the necessary heating demand of the building.
 </p>
 </html>",
 revisions="<html>

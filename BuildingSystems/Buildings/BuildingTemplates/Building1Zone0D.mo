@@ -59,14 +59,15 @@ model Building1Zone0D
     annotation(Dialog(tab="Constructions",group="Windows"));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
     final prescribedAirchange = prescribedAirchange,
-    V=VAir,
+    final V=VAir,
+    final calcIdealLoads=calcIdealLoads,
+    final heatSources=heatSources,
+    final nHeatSources=nHeatSources,
+    final radiationportionHeatSource=radiationportionHeatSource,
     nConstructions4=1,
     nConstructions1=1,
     nConstructions3=2,
-    nConstructions2=nWindows,
-    calcIdealLoads=calcIdealLoads,
-    heatSources=heatSources,
-    nHeatSources=nHeatSources)
+    nConstructions2=nWindows)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ambientConstructions(
     final abs_2 = 0.0,

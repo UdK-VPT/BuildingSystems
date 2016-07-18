@@ -238,7 +238,6 @@ protected
     "Overall number of surfaces of the zone";
   parameter Integer nAirpathes = if prescribedAirchange then 2 else + nAirpathes1 + nAirpathes2 + nAirpathes3 + nAirpathes4 + nAirpathes5 + nAirpathes6
     "Overall number of air pathes of the zone";
-  //parameter Real vf = 1 / nGridSurfaces;
   constant Modelica.SIunits.Density rho_nominal = 1.2
     "Air density under nominal conditions";
 equation

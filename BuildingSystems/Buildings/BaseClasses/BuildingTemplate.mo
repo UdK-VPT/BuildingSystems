@@ -48,6 +48,9 @@ partial model BuildingTemplate
   parameter Boolean heatSources = false
     "True: heat source present; false: no heat source present"
     annotation(HideResult = true,Dialog(tab="General",group="Heat and moisture sources"));
+  parameter Real radiationportionHeatSource[nHeatSources]=fill(0.5,nHeatSources)
+    "Radiation portion of each heating source"
+    annotation(Dialog(tab="General",group="Heat and moisture sources"));
   parameter Boolean moistureSources = false
     "True: moisture source present; false: no moisture source present"
     annotation(HideResult = true,Dialog(tab="General",group="Heat and moisture sources"));
