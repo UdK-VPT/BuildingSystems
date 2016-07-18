@@ -6,7 +6,7 @@ extends Modelica.Icons.Package;
     versionBuild=0,
     versionDate="2014-10-27",
     dateModified = "2014-10-27",
-    uses(Modelica(version="3.2.1")),
+    uses(Modelica(version="3.2.2")),
     preferredView="info",
     Documentation(info="<html>
   <p>
