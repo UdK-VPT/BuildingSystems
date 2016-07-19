@@ -28,7 +28,6 @@ model Building1Zone1DCylinder
     final calcIdealLoads = calcIdealLoads,
     final heatSources = heatSources,
     final nHeatSources = nHeatSources,
-    final radiationportionHeatSource=radiationportionHeatSource,
     nConstructions1 = nSeg,
     nConstructions2 = 1,
     nConstructions4 = 1)
@@ -122,10 +121,10 @@ equation
   end if;
   // Ideal load calculation
   if heatSources then
-    connect(zone.heatSourcesPorts, heatSourcesPorts) annotation (Line(
-      points={{0.7,-7.3},{0.7,46.35},{0,46.35},{0,100}},
-      color={127,0,0},
-      smooth=Smooth.None));
+    connect(conHeatSourcesPorts, zone.conHeatSourcesPorts) annotation (Line(
+       points={{-44,120},{-44,120},{-44,46},{-5.1,46},{-5.1,-7.3}}, color={127,0,0}));
+    connect(zone.radHeatSourcesPorts, radHeatSourcesPorts) annotation (Line(
+       points={{0.7,-7.3},{0.7,54.35},{0,54.35},{0,120}}, color={127,0,0}));
   end if;
   for i in 1:nSeg loop
     connect(wall[i].toSurfacePort_1, zone.toConstructionPorts1[i]) annotation (Line(

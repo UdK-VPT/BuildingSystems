@@ -222,9 +222,9 @@ partial model ZoneTemplateGeneral
     each surface.alphaConstant = alphaConstant)
     "surface models of the zone with orientation 6"
     annotation (Placement(transformation(extent={{-24,-26},{24,26}},rotation=90,origin={-40,-80})));
-  BuildingSystems.Interfaces.Temp_KOutput TSurfMean = radiationDistribution.TSurfMean
+  BuildingSystems.Interfaces.Temp_KOutput TSurfMean
     "Mean surface temperature of the zone"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-100,72}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-50,70})));
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={36,-20}),  iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-50,70})));
 protected
   parameter Integer nHeatSourcesTotal = 0
     "Overall number of internal heat sources of the thermal zone";
@@ -343,6 +343,9 @@ equation
       end for;
     end for;
   end for;
+
+  connect(radiationDistribution.TSurfMean, TSurfMean)
+    annotation (Line(points={{19.2,-20},{36,-20},{36,-20}}, color={0,0,127}));
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
   Rectangle(extent={{-80,80},{80,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern =FillPattern.Solid),

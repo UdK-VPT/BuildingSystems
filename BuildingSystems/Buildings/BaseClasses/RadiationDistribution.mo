@@ -4,7 +4,8 @@ model RadiationDistribution
   parameter Integer nSurfaces = 0
     "Number of surfaces of the thermal zone";
   parameter Integer nHeatSources = 0
-    "Number of internal heat sources of the thermal zone";
+    "Number of internal heat sources of the thermal zone"
+    annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
   parameter BuildingSystems.Types.ViewFactor F[nSurfaces,nSurfaces](
     fixed=false)
     "View factor matrix of the thermal zone"

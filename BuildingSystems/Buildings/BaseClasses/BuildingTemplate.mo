@@ -48,9 +48,6 @@ partial model BuildingTemplate
   parameter Boolean heatSources = false
     "True: heat source present; false: no heat source present"
     annotation(HideResult = true,Dialog(tab="General",group="Heat and moisture sources"));
-  parameter Real radiationportionHeatSource[nHeatSources]=fill(0.5,nHeatSources)
-    "Radiation portion of each heating source"
-    annotation(Dialog(tab="General",group="Heat and moisture sources"));
   parameter Boolean moistureSources = false
     "True: moisture source present; false: no moisture source present"
     annotation(HideResult = true,Dialog(tab="General",group="Heat and moisture sources"));
@@ -109,12 +106,15 @@ partial model BuildingTemplate
   BuildingSystems.Interfaces.HeatPort2D toSolidHeatPorts[nSurfacesSolid]
     "Heat port to the ground under the building"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=180,origin={-42,-118}),iconTransformation(extent={{-80,-100},{0,-80}})));
-  BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources] if heatSources
-    "Heat port to optional internal heat sources of the building"
-    annotation (Placement(transformation(extent={{-10,110},{10,130}}),iconTransformation(extent={{-8,92},{52,108}})));
+  BuildingSystems.Interfaces.HeatPorts conHeatSourcesPorts[nHeatSources] if heatSources
+    "Heat port to internal convective heat sources of the building" annotation
+    (Placement(transformation(extent={{-54,110},{-34,130}}), iconTransformation(extent={{-10,90},{10,110}})));
+  BuildingSystems.Interfaces.HeatPorts radHeatSourcesPorts[nHeatSources] if heatSources
+    "Heat port to internal long-wave radiation heat sources of the building"
+    annotation (Placement(transformation(extent={{-10,110},{10,130}}),iconTransformation(extent={{20,90},{40,110}})));
   BuildingSystems.Interfaces.MoisturePorts moisturePorts[nMoistureSources] if moistureSources
-    "Moisture port of optional internal moisture sources"
-    annotation (Placement(transformation(extent={{-60,110},{-40,130}}),iconTransformation(extent={{-68,92},{-8,106}})));
+    "Moisture port to internal moisture sources"
+    annotation (Placement(transformation(extent={{-98,110},{-78,130}}),iconTransformation(extent={{-40,90},{-20,110}})));
   BuildingSystems.Interfaces.MoisturePort2D toSolidMoisturePorts[nSurfacesSolid] if calcHygroThermal
     "Mosture port to the ground under the building"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=180,origin={42,-118}),iconTransformation(extent={{0,-100},{80,-80}})));
@@ -132,6 +132,7 @@ equation
       connect(surfacesToSolids.moisturePorts[i],toSolidMoisturePorts[i]);
     end if;
   end for;
+
   annotation (defaultComponentName="building", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Rectangle(extent={{-80,80},{80,-80}},lineColor={0,0,0},fillColor={230,230,230},fillPattern = FillPattern.Solid),
     Rectangle(extent={{20,62},{40,22}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),

@@ -9,9 +9,8 @@ model Building1Zone0D
     final calcHygroThermal = false,
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const,
     final alphaConstant = alphaAmb,
-    surfacesToAmbient(nSurfaces=nWindows+1),
-    //final gridSurface[surfacesToAmbient.nSurfaces,2]=fill({1,1},surfacesToAmbient.nSurfaces),
     final nSurfacesSolid=1,
+    surfacesToAmbient(nSurfaces=nWindows+1),
     surfacesToSolids(nSurfaces=nSurfacesSolid));
   parameter Integer nWindows = 1
     "Number of windows"
@@ -63,7 +62,6 @@ model Building1Zone0D
     final calcIdealLoads=calcIdealLoads,
     final heatSources=heatSources,
     final nHeatSources=nHeatSources,
-    final radiationportionHeatSource=radiationportionHeatSource,
     nConstructions4=1,
     nConstructions1=1,
     nConstructions3=2,
@@ -201,10 +199,10 @@ equation
       smooth=Smooth.None));
 
   // Ideal heat load calculation - depends on boolean heatSources
-    connect(zone.heatSourcesPorts, heatSourcesPorts) annotation (Line(
-      points={{0.7,-7.3},{0.7,46.35},{0,46.35},{0,100}},
-      color={127,0,0},
-      smooth=Smooth.None));
+    connect(conHeatSourcesPorts, zone.conHeatSourcesPorts) annotation (Line(
+       points={{-44,120},{-44,120},{-44,46},{-5.1,46},{-5.1,-7.3}}, color={127,0,0}));
+    connect(zone.radHeatSourcesPorts, radHeatSourcesPorts) annotation (Line(
+       points={{0.7,-7.3},{0.7,54.35},{0,54.35},{0,120}}, color={127,0,0}));
 
   annotation(defaultComponentName="building");
 end Building1Zone0D;

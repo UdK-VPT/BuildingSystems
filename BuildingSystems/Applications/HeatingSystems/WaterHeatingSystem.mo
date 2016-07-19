@@ -25,7 +25,6 @@ model WaterHeatingSystem
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
-    radiationportionHeatSource={0.0},
     show_TAir=true)
     "Building model"
     annotation (Placement(transformation(extent={{4,42},{24,62}})));
@@ -60,7 +59,7 @@ model WaterHeatingSystem
     VWat=0.005,
     mDry=0.0001,
     nEle=5,
-    fraRad=0,
+    fraRad=0.5,
     T_a_nominal=273.15 + 90.0,
     T_b_nominal=273.15 + 70,
     TAir_nominal=273.15 + 20.0,
@@ -192,7 +191,7 @@ equation
       points={{26,-54},{26,-60},{38,-60},{38,-12},{32,-12}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(rad.heatPortCon, building.heatSourcesPorts[1]) annotation (Line(
+  connect(rad.heatPortCon, building.conHeatSourcesPorts[1]) annotation (Line(
       points={{-4,-4.8},{-4,68},{16.2,68},{16.2,62}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -206,6 +205,8 @@ equation
           {22,-40},{22,-17}}, color={191,0,0}));
   connect(TAmb.port, pip2.heatPort) annotation (Line(points={{-60,-40},{-60,-40},
           {-26,-40},{-26,-55}}, color={191,0,0}));
+  connect(rad.heatPortRad, building.radHeatSourcesPorts[1]) annotation (Line(
+     points={{0,-4.8},{0,-4.8},{0,68},{17,68},{17,62}}, color={191,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/HeatingSystems/WaterHeatingSystem.mos" "Simulate and plot"),
