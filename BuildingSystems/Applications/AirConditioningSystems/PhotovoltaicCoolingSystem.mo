@@ -293,7 +293,7 @@ equation
       points={{79,-21},{79,0},{86,0}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(coolingSurface.heatPortRad, building.conHeatSourcesPorts[1])
+  connect(coolingSurface.heatPortRad, building.radHeatSourcesPorts[1])
     annotation (Line(points={{116.8,4.32},{116.8,24},{128,24},{128,68},{98,68},{
           98,50}}, color={191,0,0}));
 
