@@ -69,8 +69,7 @@ model BuildingThermalMultiZone
       nConstructions3=1,
       nConstructions4=2,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{-150,50},{-130,70}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed office2(
       V=bottom2.width*bottom2.height*heightRooms,
@@ -80,8 +79,7 @@ model BuildingThermalMultiZone
       nConstructions3=1,
       nConstructions4=2,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{-110,50},{-90,70}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed office3(
       V=bottom3.width*bottom3.height*heightRooms,
@@ -91,8 +89,7 @@ model BuildingThermalMultiZone
       nConstructions3=1,
       nConstructions4=2,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{-70,50},{-50,70}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed office4(
       V=bottom4.width*bottom4.height*heightRooms,
@@ -102,8 +99,7 @@ model BuildingThermalMultiZone
       nConstructions3=1,
       nConstructions4=2,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{-30,50},{-10,70}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed office5(
       V=bottom5.width*bottom5.height*heightRooms,
@@ -113,8 +109,7 @@ model BuildingThermalMultiZone
       nConstructions3=1,
       nConstructions4=2,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{10,50},{30,70}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed office6(
       V=bottom6.width*bottom6.height*heightRooms,
@@ -124,8 +119,7 @@ model BuildingThermalMultiZone
       nConstructions3=1,
       nConstructions4=2,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{50,50},{70,70}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed office7(
       V=bottom7.width*bottom7.height*heightRooms,
@@ -135,8 +129,7 @@ model BuildingThermalMultiZone
       nConstructions3=1,
       nConstructions4=2,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{90,50},{110,70}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed office8(
       V=bottom8.width*bottom8.height*heightRooms,
@@ -146,8 +139,7 @@ model BuildingThermalMultiZone
       nConstructions3=1,
       nConstructions4=2,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{130,50},{150,70}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
       redeclare ConstructionFacade constructionData,
@@ -292,8 +284,7 @@ model BuildingThermalMultiZone
       nConstructions2=8,
       nConstructions4=4,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{-10,10},{10,30}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed restroom1(
       V=bottom10.width*bottom10.height*heightRooms,
@@ -303,8 +294,7 @@ model BuildingThermalMultiZone
       nConstructions4=2,
       nConstructions1=1,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{90,-30},{110,-10}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed restroom2(
       V=bottom11.width*bottom11.height*heightRooms,
@@ -314,8 +304,7 @@ model BuildingThermalMultiZone
       nConstructions2=1,
       nConstructions4=2,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{130,-30},{150,-10}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed bullpen(
       V=bottom9.width*bottom9.height*heightRooms,
@@ -325,8 +314,7 @@ model BuildingThermalMultiZone
       nConstructions1=2,
       nConstructions4=3,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{-70,-30},{-50,-10}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed conferenceRoom(
       V=bottom12.width*bottom12.height*heightRooms,
@@ -336,8 +324,7 @@ model BuildingThermalMultiZone
       nConstructions3=1,
       nConstructions1=1,
       heatSources=true,
-      nHeatSources=1,
-      radiationportionHeatSource={0.5})
+      nHeatSources=1)
       annotation (Placement(transformation(extent={{110,-70},{130,-50}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall18(
       redeclare ConstructionInnerWall constructionData,
@@ -1134,53 +1121,100 @@ model BuildingThermalMultiZone
         points={{143,-13},{143,-60},{144,-60},{144,-106},{80,-106},{80,-128.429}},color={0,0,127},pattern=LinePattern.Dash));
     connect(conferenceRoom.Q_flow_heating, Q_flow_heating[13]) annotation (Line(
         points={{123,-53},{123,-80},{124,-80},{124,-106},{80,-106},{80,-129.857}},color={0,0,127},pattern=LinePattern.Dash));
-    connect(office1.heatSourcesPorts[1], heatSourcesPorts[1]) annotation (Line(
+    connect(office1.radHeatSourcesPorts[1], radHeatSourcesPorts[1]) annotation (Line(
       points={{-139.3,52.7},{-126,52.7},{-126,102},{0,102},{0,120}},
       color={127,0,0},
       pattern=LinePattern.Dash));
-    connect(office2.heatSourcesPorts[1], heatSourcesPorts[2]) annotation (Line(
+    connect(office2.radHeatSourcesPorts[1], radHeatSourcesPorts[2]) annotation (Line(
         points={{-99.3,52.7},{-86,52.7},{-86,102},{0,102},{0,120}},
         color={127,0,0},
         pattern=LinePattern.Dash));
-    connect(office3.heatSourcesPorts[1], heatSourcesPorts[3]) annotation (Line(
+    connect(office3.radHeatSourcesPorts[1], radHeatSourcesPorts[3]) annotation (Line(
         points={{-59.3,52.7},{-46,52.7},{-46,102},{0,102},{0,120}},
         color={127,0,0},
         pattern=LinePattern.Dash));
-    connect(office4.heatSourcesPorts[1], heatSourcesPorts[4]) annotation (Line(
+    connect(office4.radHeatSourcesPorts[1], radHeatSourcesPorts[4]) annotation (Line(
         points={{-19.3,52.7},{-6,52.7},{-6,102},{0,102},{0,120}},
         color={127,0,0},
         pattern=LinePattern.Dash));
-    connect(office5.heatSourcesPorts[1], heatSourcesPorts[5]) annotation (Line(
+    connect(office5.radHeatSourcesPorts[1], radHeatSourcesPorts[5]) annotation (Line(
         points={{20.7,52.7},{34,52.7},{34,102},{0,102},{0,120}},
         color={127,0,0},
         pattern=LinePattern.Dash));
-    connect(office6.heatSourcesPorts[1], heatSourcesPorts[6]) annotation (Line(
+    connect(office6.radHeatSourcesPorts[1], radHeatSourcesPorts[6]) annotation (Line(
         points={{60.7,52.7},{74,52.7},{74,102},{0,102},{0,120}},
         color={127,0,0},
         pattern=LinePattern.Dash));
-    connect(office7.heatSourcesPorts[1], heatSourcesPorts[7]) annotation (Line(
+    connect(office7.radHeatSourcesPorts[1], radHeatSourcesPorts[7]) annotation (Line(
         points={{100.7,52.7},{114,52.7},{114,102},{0,102},{0,120}},
         color={127,0,0},
         pattern=LinePattern.Dash));
-    connect(office8.heatSourcesPorts[1], heatSourcesPorts[8]) annotation (Line(
+    connect(office8.radHeatSourcesPorts[1], radHeatSourcesPorts[8]) annotation (Line(
         points={{140.7,52.7},{156,52.7},{156,102},{0,102},{0,120}},
         color={127,0,0},
         pattern=LinePattern.Dash));
-    connect(bullpen.heatSourcesPorts[1], heatSourcesPorts[9]) annotation (Line(
+    connect(bullpen.radHeatSourcesPorts[1], radHeatSourcesPorts[9]) annotation (Line(
         points={{-59.3,-27.3},{-46,-27.3},{-46,102},{0,102},{0,120}},
         color={127,0,0},
         pattern=LinePattern.Dash));
-    connect(corridor.heatSourcesPorts[1], heatSourcesPorts[10]) annotation (Line(
+    connect(corridor.radHeatSourcesPorts[1], radHeatSourcesPorts[10]) annotation (Line(
         points={{0.7,12.7},{34,12.7},{34,102},{0,102},{0,120}},
         color={127,0,0},
         pattern=LinePattern.Dash));
-    connect(restroom1.heatSourcesPorts[1], heatSourcesPorts[11]) annotation (Line(
+    connect(restroom1.radHeatSourcesPorts[1], radHeatSourcesPorts[11]) annotation (Line(
         points={{100.7,-27.3},{114,-27.3},{114,14},{44,14},{44,78},{38,78},{38,102},{0,102},{0,120}},
         color={127,0,0},pattern=LinePattern.Dash));
-    connect(restroom2.heatSourcesPorts[1], heatSourcesPorts[12]) annotation (Line(
+    connect(restroom2.radHeatSourcesPorts[1], radHeatSourcesPorts[12]) annotation (Line(
         points={{140.7,-27.3},{154,-27.3},{154,14},{44,14},{44,78},{38,78},{38,102},{0,102},{0,120}},
         color={127,0,0},pattern=LinePattern.Dash));
-    connect(conferenceRoom.heatSourcesPorts[1], heatSourcesPorts[13]);
+    connect(conferenceRoom.radHeatSourcesPorts[1], radHeatSourcesPorts[13]);
+    connect(office1.conHeatSourcesPorts[1], conHeatSourcesPorts[1]) annotation (Line(
+      points={{-139.3,52.7},{-126,52.7},{-126,102},{0,102},{0,120}},
+      color={127,0,0},
+      pattern=LinePattern.Dash));
+    connect(office2.conHeatSourcesPorts[1], conHeatSourcesPorts[2]) annotation (Line(
+        points={{-99.3,52.7},{-86,52.7},{-86,102},{0,102},{0,120}},
+        color={127,0,0},
+        pattern=LinePattern.Dash));
+    connect(office3.conHeatSourcesPorts[1], conHeatSourcesPorts[3]) annotation (Line(
+        points={{-59.3,52.7},{-46,52.7},{-46,102},{0,102},{0,120}},
+        color={127,0,0},
+        pattern=LinePattern.Dash));
+    connect(office4.conHeatSourcesPorts[1], conHeatSourcesPorts[4]) annotation (Line(
+        points={{-19.3,52.7},{-6,52.7},{-6,102},{0,102},{0,120}},
+        color={127,0,0},
+        pattern=LinePattern.Dash));
+    connect(office5.conHeatSourcesPorts[1], conHeatSourcesPorts[5]) annotation (Line(
+        points={{20.7,52.7},{34,52.7},{34,102},{0,102},{0,120}},
+        color={127,0,0},
+        pattern=LinePattern.Dash));
+    connect(office6.conHeatSourcesPorts[1], conHeatSourcesPorts[6]) annotation (Line(
+        points={{60.7,52.7},{74,52.7},{74,102},{0,102},{0,120}},
+        color={127,0,0},
+        pattern=LinePattern.Dash));
+    connect(office7.conHeatSourcesPorts[1], conHeatSourcesPorts[7]) annotation (Line(
+        points={{100.7,52.7},{114,52.7},{114,102},{0,102},{0,120}},
+        color={127,0,0},
+        pattern=LinePattern.Dash));
+    connect(office8.conHeatSourcesPorts[1], conHeatSourcesPorts[8]) annotation (Line(
+        points={{140.7,52.7},{156,52.7},{156,102},{0,102},{0,120}},
+        color={127,0,0},
+        pattern=LinePattern.Dash));
+    connect(bullpen.conHeatSourcesPorts[1], conHeatSourcesPorts[9]) annotation (Line(
+        points={{-59.3,-27.3},{-46,-27.3},{-46,102},{0,102},{0,120}},
+        color={127,0,0},
+        pattern=LinePattern.Dash));
+    connect(corridor.conHeatSourcesPorts[1], conHeatSourcesPorts[10]) annotation (Line(
+        points={{0.7,12.7},{34,12.7},{34,102},{0,102},{0,120}},
+        color={127,0,0},
+        pattern=LinePattern.Dash));
+    connect(restroom1.conHeatSourcesPorts[1], conHeatSourcesPorts[11]) annotation (Line(
+        points={{100.7,-27.3},{114,-27.3},{114,14},{44,14},{44,78},{38,78},{38,102},{0,102},{0,120}},
+        color={127,0,0},pattern=LinePattern.Dash));
+    connect(restroom2.conHeatSourcesPorts[1], conHeatSourcesPorts[12]) annotation (Line(
+        points={{140.7,-27.3},{154,-27.3},{154,14},{44,14},{44,78},{38,78},{38,102},{0,102},{0,120}},
+        color={127,0,0},pattern=LinePattern.Dash));
+    connect(conferenceRoom.conHeatSourcesPorts[1], conHeatSourcesPorts[13]);
   end Building;
 
   Building building(
@@ -1298,6 +1332,8 @@ model BuildingThermalMultiZone
     annotation (Placement(transformation(extent={{102,-30},{98,-26}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heatFlow[13]
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={26,18})));
+  BuildingSystems.Buildings.BaseClasses.RelationRadiationConvection relationRadiationConvection[13](each radiationportion = 0.5)
+    annotation (Placement(transformation(extent={{-3,3},{3,-3}},rotation=-90,origin={21,15})));
 equation
   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts)
     annotation (Line(points={{-12,4},{11,4}},color={0,255,0},smooth=Smooth.None));
@@ -1401,8 +1437,6 @@ equation
     annotation (Line(points={{28,18},{89.8,18}},color={0,0,127}));
   connect(heatFlow[8].Q_flow, heatsourcesOffice8.y)
     annotation (Line(points={{28,18},{46,18},{62,18},{97.8,18}},color={0,0,127}));
-  connect(building.heatSourcesPorts[1:13], heatFlow.port)
-    annotation (Line(points={{24.9692,10},{22,10},{22,18},{24,18}}, color={127,0,0}));
   connect(heatsourcesBullpen.y, heatFlow[9].Q_flow)
     annotation (Line(points={{65.8,-10},{62,-10},{34,-10},{34,18},{28,18}},color={0,0,127}));
   connect(heatsourcesCorridor.y, heatFlow[10].Q_flow)
@@ -1413,6 +1447,12 @@ equation
     annotation (Line(points={{95.8,-21},{76,-21},{76,2},{34,2},{34,18},{28,18}}, color={0,0,127}));
   connect(heatsourcesConferenceRoom.y, heatFlow[13].Q_flow)
     annotation (Line(points={{97.8,-28},{97.8,-28},{76,-28},{76,2},{34,2},{34,18},{28,18}}, color={0,0,127}));
+  connect(relationRadiationConvection.heatPortCv, building.conHeatSourcesPorts[1:13])
+    annotation (Line(points={{21.6,15.2},{21.6,12},{20,12},{20,10}},color={191,0,0}));
+  connect(relationRadiationConvection.heatPortLw, building.radHeatSourcesPorts[1:13])
+    annotation (Line(points={{22.4,15.2},{22.4,12},{23,12},{23,10}},color={191,0,0}));
+  connect(relationRadiationConvection.heatPort, heatFlow.port)
+    annotation (Line(points={{22,16.6},{22,18},{24,18}}, color={191,0,0}));
 
   annotation(experiment(StopTime=86400, __Dymola_Algorithm="Dassl"),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/BuildingThermalMultiZone.mos" "Simulate and plot"),

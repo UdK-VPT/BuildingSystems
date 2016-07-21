@@ -519,8 +519,8 @@ model ThermalModelHouse3Dwindow
 
       // + Bottom To Ground (2)
 
-      connect(bottom1.heatSourcePorts[2,2],heatSourcesPorts[1]);
-      connect(bottom2.heatSourcePorts[2,2],heatSourcesPorts[2]);
+      connect(bottom1.heatSourcePorts[2,2],conHeatSourcesPorts[1]);
+      connect(bottom2.heatSourcePorts[2,2],conHeatSourcesPorts[2]);
 
       // that makes 20 surfaces (5 each wall + 5 sideparts of windows)
       // 18 are connected to Ambient
@@ -606,14 +606,10 @@ equation
         points={{27.8,30},{25,30},{25,26}},
         color={0,0,127},
         smooth=Smooth.None));
-    connect(heatingZone1.port, building.heatSourcesPorts[1]) annotation (Line(
-        points={{17,16},{20.7,16},{20.7,10}},
-        color={191,0,0},
-        smooth=Smooth.None));
-    connect(heatingZone2.port, building.heatSourcesPorts[2]) annotation (Line(
-        points={{25,16},{22,16},{22,10},{23.7,10}},
-        color={191,0,0},
-        smooth=Smooth.None));
+    connect(heatingZone1.port, building.conHeatSourcesPorts[1]) annotation (Line(
+            points={{17,16},{18,16},{18,12},{20,12},{20,9.5}}, color={191,0,0}));
+    connect(heatingZone2.port, building.conHeatSourcesPorts[2]) annotation (Line(
+            points={{25,16},{26,16},{26,12},{20,12},{20,10.5}}, color={191,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=86400),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/ThermalModelHouse3Dwindow.mos"

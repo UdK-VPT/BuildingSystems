@@ -364,8 +364,8 @@ model ThermalModelHouse3D "Model of the thermal model house in 3D description."
           smooth=Smooth.None));
 
       // + Bottom To Ground (2)
-      connect(bottom1.heatSourcePorts[2,2],heatSourcesPorts[1]);
-      connect(bottom2.heatSourcePorts[2,2],heatSourcesPorts[2]);
+      connect(bottom1.heatSourcePorts[2,2],conHeatSourcesPorts[1]);
+      connect(bottom2.heatSourcePorts[2,2],conHeatSourcesPorts[2]);
 
   end Building;
 
@@ -448,14 +448,10 @@ equation
         points={{27.8,30},{25,30},{25,26}},
         color={0,0,127},
         smooth=Smooth.None));
-    connect(heatingZone1.port, building.heatSourcesPorts[1]) annotation (Line(
-        points={{17,16},{20.7,16},{20.7,10}},
-        color={191,0,0},
-        smooth=Smooth.None));
-    connect(heatingZone2.port, building.heatSourcesPorts[2]) annotation (Line(
-        points={{25,16},{22,16},{22,10},{23.7,10}},
-        color={191,0,0},
-        smooth=Smooth.None));
+    connect(heatingZone1.port, building.conHeatSourcesPorts[1]) annotation (Line(
+            points={{17,16},{18,16},{18,12},{20,12},{20,9.5}}, color={191,0,0}));
+    connect(heatingZone2.port, building.conHeatSourcesPorts[2]) annotation (Line(
+            points={{25,16},{26,16},{26,12},{20,12},{20,10.5}}, color={191,0,0}));
 
   annotation(experiment(StopTime=86400, __Dymola_Algorithm="Cvode"),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/ThermalModelHouse3D.mos"

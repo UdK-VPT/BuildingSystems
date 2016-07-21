@@ -85,24 +85,24 @@ model FreeFloatingTemperature
   Location Bombay(
     ambient(weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_India_Bombay()))
     annotation (Placement(transformation(extent={{53,20},{63,30}})));
-  annotation(experiment(StartTime=0, StopTime=31536000,Interval=3600),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/ClimateAnalyses/FreeFloatingTemperature.mos"
-        "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-150,-100},{150,100}}), graphics={Text(extent={{-128,-20},{120,-162}}, lineColor={0,0,255},
-    textString="Free floating temperature within a building at different climate locations"), Bitmap(
-    extent={{-146,94},{146,-82}}, fileName="modelica://BuildingSystems/Resources/Images/Applications/ClimateAnalyses/world.png")}),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
-Documentation(info="<html>
-<p>
-Example that simulates the Free floating temperature within a building at different worldwide distributed climate locations.
-</p>
-</html>",
-revisions="<html>
-<ul>
-<li>
-May 21, 2016, by Christoph Nytsch-Geusen:<br/>
-First implementation.
-</li>
-</ul>
-</html>"));
+
+    annotation(experiment(StartTime=0, StopTime=31536000,Interval=3600),
+      __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/ClimateAnalyses/FreeFloatingTemperature.mos" "Simulate and plot"),
+      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-150,-100},{150,100}}), graphics={Text(extent={{-128,-20},{120,-162}}, lineColor={0,0,255},
+      textString="Free floating temperature within a building at different climate locations"), Bitmap(
+      extent={{146,88},{-146,-88}}, fileName="modelica://BuildingSystems/Resources/Images/Applications/ClimateAnalyses/world.png",origin={0,6},rotation=180)}),
+      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+  Documentation(info="<html>
+  <p>
+  Example that simulates the Free floating temperature within a building at different worldwide distributed climate locations.
+  </p>
+  </html>",
+  revisions="<html>
+  <ul>
+  <li>
+  May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+  First implementation.
+  </li>
+  </ul>
+  </html>"));
 end FreeFloatingTemperature;

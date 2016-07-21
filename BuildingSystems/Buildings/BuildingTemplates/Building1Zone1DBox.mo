@@ -220,7 +220,6 @@ model Building1Zone1DBox
     final calcIdealLoads = calcIdealLoads,
     final heatSources = heatSources,
     final nHeatSources = nHeatSources,
-    final radiationportionHeatSource=radiationportionHeatSource,
     nConstructions1 = if InteriorWalls then 4 else 2,
     nConstructions2 = if InteriorCeilings then 5 else 3,
     nConstructions3 = 2,
@@ -390,9 +389,10 @@ equation
   end if;
   // Ideal load calculation
   if heatSources then
-    connect(zone.heatSourcesPorts, heatSourcesPorts)
-      annotation (Line(points={{0.7,-7.3},{0.7,46.35},{0,46.35},{0,100}},
-        color={127,0,0},smooth=Smooth.None));
+    connect(conHeatSourcesPorts, zone.conHeatSourcesPorts) annotation (Line(
+       points={{-44,120},{-44,120},{-44,46},{-5.1,46},{-5.1,-7.3}}, color={127,0,0}));
+    connect(zone.radHeatSourcesPorts, radHeatSourcesPorts) annotation (Line(
+       points={{0.7,-7.3},{0.7,54.35},{0,54.35},{0,120}}, color={127,0,0}));
   end if;
   connect(wall1.toSurfacePort_1, zone.toConstructionPorts1[1])
     annotation (Line(points={{-38,10},{-26,10},{-26,2},{-11,2}},

@@ -101,7 +101,7 @@ model PhotovoltaicCoolingSystem
     VWat=0.05,
     mDry=0.0001,
     nEle=5,
-    fraRad=0,
+    fraRad=0.5,
     n=1.3,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     T_a_nominal=273.15 + 15.0,
@@ -153,8 +153,7 @@ model PhotovoltaicCoolingSystem
     calcIdealLoads=false,
     heatSources=true,
     show_TAir=true,
-    nHeatSources=1,
-    radiationportionHeatSource={0.0}) // 100 percent cooling by convection
+    nHeatSources=1)
     "Building model"
     annotation (Placement(transformation(extent={{88,30},{108,50}})));
   BuildingSystems.Buildings.Ambient ambient(
@@ -265,7 +264,7 @@ equation
     annotation (Line(points={{65.8,47},{-42,47},{-42,0}}, color={0,0,127}));
   connect(ambient.TAirRef, m_flow_con.T_in) annotation (Line(points={{65.8,47},{
           58,47},{58,7.6},{52.8,7.6}}, color={0,0,127}));
-  connect(coolingSurface.heatPortCon, building.heatSourcesPorts[1]) annotation (
+  connect(coolingSurface.heatPortCon, building.conHeatSourcesPorts[1]) annotation (
      Line(points={{119.2,4.32},{119.2,22},{130,22},{130,66},{100.2,66},{100.2,50}},
         color={191,0,0}));
   connect(building.TAir[1], control_temp_buildin.u) annotation (Line(points={{109,
@@ -294,6 +293,9 @@ equation
       points={{79,-21},{79,0},{86,0}},
       color={0,127,255},
       smooth=Smooth.None));
+  connect(coolingSurface.heatPortRad, building.radHeatSourcesPorts[1])
+    annotation (Line(points={{116.8,4.32},{116.8,24},{128,24},{128,68},{98,68},{
+          98,50}}, color={191,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/AirConditioningSystems/PhotovoltaicCoolingSystem.mos" "Simulate and plot"),

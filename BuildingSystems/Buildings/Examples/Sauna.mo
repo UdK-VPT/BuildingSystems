@@ -29,7 +29,6 @@ model Sauna
       height=2.4,
       heatSources=true,
       nHeatSources=nHeatSources,
-      radiationportionHeatSource={0.5},
       nAirpathes1=2,
       heightAirpath={1.5,0.5},
       moistureSources=true,
@@ -177,19 +176,19 @@ model Sauna
        smooth=Smooth.None));
     connect(wall2.toSurfacePort_1, sauna.toConstructionPorts2[1]) annotation (
         Line(
-        points={{20,20},{20,14},{24,14},{24,9}},
+        points={{20,20},{20,14},{26,14},{26,11}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(ceiling1.toSurfacePort_1, sauna.toConstructionPorts2[2]) annotation (
         Line(
-        points={{32,32},{32,14},{24,14},{24,13}},
+        points={{32,32},{32,14},{22,14},{22,11}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(wall6.toSurfacePort_1, anteroom.toConstructionPorts2[1]) annotation (
         Line(
-        points={{-34,46},{-34,18},{-30,18},{-30,9}},
+        points={{-34,46},{-34,18},{-28,18},{-28,11}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
@@ -201,19 +200,19 @@ model Sauna
         smooth=Smooth.None));
     connect(wall8.toSurfacePort_1, anteroom.toConstructionPorts4[1]) annotation (
         Line(
-        points={{-32,-46},{-32,-16},{-38,-16},{-38,-13}},
+        points={{-32,-46},{-32,-16},{-36,-16},{-36,-11}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(floor2.toSurfacePort_1, anteroom.toConstructionPorts4[2]) annotation (
         Line(
-        points={{-14,-60},{-14,-16},{-38,-16},{-38,-9}},
+        points={{-14,-60},{-14,-16},{-40,-16},{-40,-11}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(ceiling2.toSurfacePort_1, anteroom.toConstructionPorts2[2])
       annotation (Line(
-        points={{-14,58},{-14,18},{-30,18},{-30,13}},
+        points={{-14,58},{-14,18},{-32,18},{-32,11}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
@@ -231,64 +230,60 @@ model Sauna
         smooth=Smooth.None));
     connect(surfacesToAmbient.toConstructionPorts[1], wall7.toSurfacePort_2)
       annotation (Line(
-        points={{-89.9,0},{-70,0}},
+        points={{-173.9,0},{-70,0}},
         color={127,0,0},
         smooth=Smooth.None));
     connect(surfacesToAmbient.toConstructionPorts[2], wall6.toSurfacePort_2)
       annotation (Line(
-        points={{-89.9,3.55271e-015},{-84,3.55271e-015},{-84,72},{-34,72},{-34,50}},
+        points={{-173.9,3.55271e-015},{-84,3.55271e-015},{-84,72},{-34,72},{-34,50}},
         color={127,0,0},
         smooth=Smooth.None));
     connect(wall5.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[3])
       annotation (Line(
-        points={{0,36},{0,72},{-84,72},{-84,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{0,36},{0,72},{-84,72},{-84,3.55271e-015},{-173.9,3.55271e-015}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(wall8.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4])
       annotation (Line(
-        points={{-32,-50},{-32,-72},{-84,-72},{-84,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{-32,-50},{-32,-72},{-84,-72},{-84,3.55271e-015},{-173.9,3.55271e-015}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(floor2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[5])
       annotation (Line(
-        points={{-14,-64},{-14,-72},{-84,-72},{-84,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{-14,-64},{-14,-72},{-84,-72},{-84,3.55271e-015},{-173.9,3.55271e-015}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(wall9.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[6])
       annotation (Line(
-        points={{0,-36},{0,-72},{-84,-72},{-84,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{0,-36},{0,-72},{-84,-72},{-84,3.55271e-015},{-173.9,3.55271e-015}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(wall3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[7])
       annotation (Line(
-        points={{44,0},{46,0},{46,-72},{-84,-72},{-84,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{44,0},{46,0},{46,-72},{-84,-72},{-84,3.55271e-015},{-173.9,3.55271e-015}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(ceiling1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[8])
       annotation (Line(
-        points={{32,36},{32,72},{-84,72},{-84,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{32,36},{32,72},{-84,72},{-84,3.55271e-015},{-173.9,3.55271e-015}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(surfacesToAmbient.toConstructionPorts[9],  ceiling2.toSurfacePort_2)
       annotation (Line(
-        points={{-89.9,3.55271e-015},{-84,3.55271e-015},{-84,72},{-14,72},{-14,62}},
+        points={{-173.9,3.55271e-015},{-84,3.55271e-015},{-84,72},{-14,72},{-14,62}},
         color={127,0,0},
         smooth=Smooth.None));
     connect(wall2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[10])
       annotation (Line(
-        points={{20,24},{20,72},{-84,72},{-84,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{20,24},{20,72},{-84,72},{-84,3.55271e-015},{-173.9,3.55271e-015}},
         color={0,0,0},
         pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(heatSourcesPorts, sauna.heatSourcesPorts) annotation (Line(
-        points={{0,100},{-2,100},{-2,80},{62,80},{62,-7.3},{20.7,-7.3}},
-        color={127,0,0},
         smooth=Smooth.None));
     connect(anteroom.airpathPorts3[2], airpathUp.airpathPort_1) annotation (Line(
         points={{-23,2},{-10,2},{-10,12}},
@@ -299,12 +294,12 @@ model Sauna
         color={0,0,255},
         smooth=Smooth.None));
     connect(airpathUp.airpathPort_2, sauna.airpathPorts1[2]) annotation (Line(
-        points={{-2,12},{6,12},{6,-6},{9,-6}},
+        points={{-2,12},{6,12},{6,-2},{9,-2}},
         color={0,0,255},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(airpathDown.airpathPort_2, sauna.airpathPorts1[1]) annotation (Line(
-        points={{2,4},{4,4},{4,-2},{9,-2}},
+        points={{2,4},{4,4},{4,-6},{9,-6}},
         color={0,0,255},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
@@ -325,7 +320,7 @@ model Sauna
         color={0,0,127},
         smooth=Smooth.None));
     connect(moisturePorts, sauna.moistureSourcesPorts) annotation (Line(
-        points={{-50,100},{-50,78},{64,78},{64,-4},{14.9,-4},{14.9,-7.3}},
+        points={{-88,120},{-88,96},{62,96},{62,-4},{26.5,-4},{26.5,-7.3}},
         color={0,0,255},
         smooth=Smooth.None));
     connect(anteroom.toConstructionPorts3[3], wall1.toSurfacePort_2) annotation (
@@ -341,79 +336,92 @@ model Sauna
         smooth=Smooth.None));
     connect(wall4.toSurfacePort_1, sauna.toConstructionPorts4[1]) annotation (
         Line(
-        points={{20,-20},{20,-16},{16,-16},{16,-13}},
+        points={{20,-20},{20,-16},{18,-16},{18,-11}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(floor1.toSurfacePort_1, sauna.toConstructionPorts4[2]) annotation (
         Line(
-        points={{32,-30},{32,-16},{16,-16},{16,-9}},
+        points={{32,-30},{32,-16},{14,-16},{14,-11}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(wall4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[11])
       annotation (Line(
-        points={{20,-24},{20,-72},{-84,-72},{-84,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{20,-24},{20,-72},{-84,-72},{-84,3.55271e-015},{-173.9,3.55271e-015}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     connect(floor1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[12])
       annotation (Line(
-        points={{32,-34},{32,-72},{-84,-72},{-84,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{32,-34},{32,-72},{-84,-72},{-84,3.55271e-015},{-173.9,3.55271e-015}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
-      Rectangle(extent={{2,18},{38,-18}},fillColor={213,255,170},fillPattern=FillPattern.Solid,pattern=LinePattern.Solid,lineColor={0,0,0}),
-      Rectangle(extent={{-64,44},{-6,-44}},fillColor={213,255,170},fillPattern=FillPattern.Solid,pattern=LinePattern.Solid,lineColor={0,0,0})}));
+    connect(conHeatSourcesPorts, sauna.conHeatSourcesPorts) annotation (Line(
+          points={{-44,120},{-44,100},{80,100},{80,0},{14.9,0},{14.9,-7.3}},
+          color={127,0,0}));
+    connect(radHeatSourcesPorts, sauna.radHeatSourcesPorts) annotation (Line(
+          points={{0,120},{0,100},{80,100},{80,0},{20.7,0},{20.7,-7.3}}, color={127,0,0}));
+    annotation (Diagram(coordinateSystem(preserveAspectRatio=false), graphics={
+    Rectangle(extent={{2,18},{38,-18}},fillColor={213,255,170},fillPattern=FillPattern.Solid,pattern=LinePattern.Solid,lineColor={0,0,0}),
+    Rectangle(extent={{-64,44},{-6,-44}},fillColor={213,255,170},fillPattern=FillPattern.Solid,pattern=LinePattern.Solid,lineColor={0,0,0})}));
   end Building;
 
   BuildingSystems.Buildings.Ambient ambient(
-    nSurfaces=building.nSurfacesAmbient,
-    weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
-    annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-  Building building(
-    calcIdealLoads=false,
-    heatSources=true,
-    nHeatSources=1,
-    moistureSources=true,
-    nMoistureSources=1,
-    prescribedAirchange=false)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  Modelica.Blocks.Sources.Constant saunaOven(k=12000.0)
-    annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={12,26})));
-  Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heatingSauna
-    annotation (Placement(transformation(extent={{-5,-5},{5,5}},rotation=270,origin={3,19})));
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowPrescribed waterSauna
-    annotation (Placement(transformation(extent={{-12,22},{-4,30}})));
-  Modelica.Blocks.Sources.TimeTable waterTable(
-    table=[0.0,0.0; 360.0,0.0; 360.0,0.03; 400.0, 0.03; 400.0,0.0012;1000.0,0.0024])
-    annotation (Placement(transformation(extent={{-16,24},{-12,28}})));
+   nSurfaces=building.nSurfacesAmbient,
+   weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
+   annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+ Building building(
+   calcIdealLoads=false,
+   heatSources=true,
+   nHeatSources=1,
+   moistureSources=true,
+   nMoistureSources=1,
+   prescribedAirchange=false)
+   annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+ Modelica.Blocks.Sources.Constant saunaOven(k=12000.0)
+   annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={12,26})));
+ Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heatingSauna
+   annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=270,origin={2,22})));
+ BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowPrescribed waterSauna
+   annotation (Placement(transformation(extent={{-12,22},{-4,30}})));
+ Modelica.Blocks.Sources.TimeTable waterTable(
+   table=[0.0,0.0; 360.0,0.0; 360.0,0.03; 400.0, 0.03; 400.0,0.0012;1000.0,0.0024])
+   annotation (Placement(transformation(extent={{-16,24},{-12,28}})));
+ BaseClasses.RelationRadiationConvection relationRadiationConvection(
+     radiationportion=0.5) annotation (Placement(transformation(
+       extent={{-4,4},{4,-4}},
+       rotation=-90,
+       origin={2,16})));
 equation
-   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
-    points={{-22,4},{-9,4}},
-    color={0,255,0},
-    smooth=Smooth.None));
-  connect(ambient.toAirPorts, building.toAmbientAirPorts) annotation (Line(
-    points={{-22,-4},{-9,-4}},
-    color={85,170,255},
-    smooth=Smooth.None));
-  connect(heatingSauna.port, building.heatSourcesPorts[1]) annotation (Line(
-      points={{3,14},{2.2,14},{2.2,10}},
-      color={191,0,0},
-      smooth=Smooth.None));
-  connect(saunaOven.y,heatingSauna. Q_flow) annotation (Line(
-      points={{9.8,26},{3,26},{3,24}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(waterSauna.moisturePort, building.moisturePorts[1]) annotation (Line(
-      points={{-5.6,26},{-3.8,26},{-3.8,9.9}},
-      color={120,0,120},
-      smooth=Smooth.None));
-  connect(waterTable.y, waterSauna.m_flow) annotation (Line(
-      points={{-11.8,26},{-10.24,26}},
-      color={0,0,127},
-      smooth=Smooth.None));
+  connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
+   points={{-22,4},{-9,4}},
+   color={0,255,0},
+   smooth=Smooth.None));
+ connect(ambient.toAirPorts, building.toAmbientAirPorts) annotation (Line(
+   points={{-22,-4},{-9,-4}},
+   color={85,170,255},
+   smooth=Smooth.None));
+ connect(saunaOven.y,heatingSauna. Q_flow) annotation (Line(
+     points={{9.8,26},{2,26},{2,24}},
+     color={0,0,127},
+     smooth=Smooth.None));
+ connect(waterSauna.moisturePort, building.moisturePorts[1]) annotation (Line(
+     points={{-5.6,26},{-3,26},{-3,10}},
+     color={120,0,120},
+     smooth=Smooth.None));
+ connect(waterTable.y, waterSauna.m_flow) annotation (Line(
+     points={{-11.8,26},{-10.24,26}},
+     color={0,0,127},
+     smooth=Smooth.None));
+ connect(relationRadiationConvection.heatPort, heatingSauna.port)
+   annotation (Line(points={{2,17.2},{2,18.6},{2,20}}, color={191,0,0}));
+ connect(relationRadiationConvection.heatPortCv, building.conHeatSourcesPorts[1])
+   annotation (Line(points={{1.2,14.4},{1.2,12.2},{0,12.2},{0,10}}, color={191,
+         0,0}));
+ connect(relationRadiationConvection.heatPortLw, building.radHeatSourcesPorts[1])
+   annotation (Line(points={{2.8,14.4},{2.8,12.2},{3,12.2},{3,10}}, color={191,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=1000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/Sauna.mos" "Simulate and plot"),
