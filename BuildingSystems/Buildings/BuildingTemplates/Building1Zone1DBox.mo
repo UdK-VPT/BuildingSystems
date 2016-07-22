@@ -213,6 +213,31 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.Temp_K TAir_start = 293.15
     "Start temperature of indoor air temperature"
     annotation (Dialog(tab="Initialization"));
+
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall1 = BuildingSystems.Buildings.Types.NumericalResolution.Low
+    "Numerical resolution wall1"
+    annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall2 = BuildingSystems.Buildings.Types.NumericalResolution.Low
+    "Numerical resolution wall2"
+    annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall3 = BuildingSystems.Buildings.Types.NumericalResolution.Low
+    "Numerical resolution wall3"
+    annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall4 = BuildingSystems.Buildings.Types.NumericalResolution.Low
+    "Numerical resolution wall4"
+    annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeiling = BuildingSystems.Buildings.Types.NumericalResolution.Low
+    "Numerical resolution ceiling"
+    annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResBottom = BuildingSystems.Buildings.Types.NumericalResolution.Low
+    "Numerical resolution bottom"
+    annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeilingsInterior = BuildingSystems.Buildings.Types.NumericalResolution.Low
+    "Numerical resolution interior ceilings"
+    annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWallsInterior = BuildingSystems.Buildings.Types.NumericalResolution.Low
+    "Numerical resolution interior walls"
+    annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
     final prescribedAirchange = prescribedAirchange,
     final V = width*length*height,
@@ -232,6 +257,9 @@ model Building1Zone1DBox
     nInnSur = 1,
     AInnSur = {window1.A},
     constructionData = constructionWall1,
+    nNodes = if numResWall1 == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWall1.nLayers) else
+      if numResWall1 == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWall1.nLayers) else
+      fill(4,constructionWall1.nLayers),
     angleDegAzi = 90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall1_start for i in 1:wall1.constructionData.nLayers})
@@ -243,6 +271,9 @@ model Building1Zone1DBox
     nInnSur = 1,
     AInnSur = {window2.A},
     constructionData = constructionWall2,
+    nNodes = if numResWall2 == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWall2.nLayers) else
+      if numResWall2 == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWall2.nLayers) else
+      fill(4,constructionWall2.nLayers),
     angleDegAzi = 180.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall2_start for i in 1:wall2.constructionData.nLayers})
@@ -254,6 +285,9 @@ model Building1Zone1DBox
     nInnSur = 1,
     AInnSur = {window3.A},
     constructionData = constructionWall3,
+    nNodes = if numResWall3 == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWall3.nLayers) else
+      if numResWall3 == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWall3.nLayers) else
+      fill(4,constructionWall3.nLayers),
     angleDegAzi = -90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall3_start for i in 1:wall3.constructionData.nLayers})
@@ -265,6 +299,9 @@ model Building1Zone1DBox
     nInnSur = 1,
     AInnSur = {window4.A},
     constructionData = constructionWall4,
+    nNodes = if numResWall4 == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWall4.nLayers) else
+      if numResWall4 == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWall4.nLayers) else
+      fill(4,constructionWall4.nLayers),
     angleDegAzi = 0.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall4_start for i in 1:wall4.constructionData.nLayers})
@@ -274,6 +311,9 @@ model Building1Zone1DBox
     height = length,
     width = width,
     constructionData = constructionCeiling,
+    nNodes = if numResCeiling == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionCeiling.nLayers) else
+      if numResCeiling == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionCeiling.nLayers) else
+      fill(4,constructionCeiling.nLayers),
     angleDegAzi = 0.0,
     angleDegTil = 180.0,
     T_start = {TCeiling_start for i in 1:ceiling.constructionData.nLayers})
@@ -283,6 +323,9 @@ model Building1Zone1DBox
     height = length,
     width = width,
     constructionData = constructionBottom,
+    nNodes = if numResBottom == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionBottom.nLayers) else
+      if numResBottom == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionBottom.nLayers) else
+      fill(4,constructionBottom.nLayers),
     angleDegAzi = 0.0,
     angleDegTil = 0.0,
     T_start = {TBottom_start for i in 1:bottom.constructionData.nLayers})
@@ -290,6 +333,9 @@ model Building1Zone1DBox
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wallsInterior(
     final constructionData=constructionWallsInterior,
+    nNodes = if numResWallsInterior == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWallsInterior.nLayers) else
+      if numResWallsInterior == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWallsInterior.nLayers) else
+      fill(4,constructionWallsInterior.nLayers),
     final angleDegTil = 90.0,
     final width = AInteriorWalls/wallsInterior.height,
     height = 1.0,
@@ -299,6 +345,9 @@ model Building1Zone1DBox
       Placement(transformation(extent={{-10,-10},{10,10}},origin={-18,-6})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceilingsInterior(
     final constructionData=constructionCeilingsInterior,
+    nNodes = if numResCeilingsInterior == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionCeilingsInterior.nLayers) else
+      if numResCeilingsInterior == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionCeilingsInterior.nLayers) else
+      fill(4,constructionCeilingsInterior.nLayers),
     final width = AInteriorCeilings/ceilingsInterior.height,
     height = 1.0,
     final angleDegAzi = 0.0,
