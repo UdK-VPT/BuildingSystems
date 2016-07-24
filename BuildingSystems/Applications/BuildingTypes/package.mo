@@ -1,5 +1,5 @@
 within BuildingSystems.Applications;
 package BuildingTypes
-  "Examples of international buildings"
+  "Examples of international building types"
   extends Modelica.Icons.ExamplesPackage;
 end BuildingTypes;

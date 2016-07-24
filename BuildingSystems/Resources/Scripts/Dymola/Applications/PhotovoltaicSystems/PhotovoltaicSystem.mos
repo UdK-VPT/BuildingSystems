@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Applications.PhotovoltaicSystems.PhotovoltaicSystem", startTime=15721200, stopTime=18399600, method="dassl", resultFile="PhotovoltaicSystem");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"pvField.PField","load.y"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PhotovoltaicSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"battery.chargeLevel"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PhotovoltaicSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
