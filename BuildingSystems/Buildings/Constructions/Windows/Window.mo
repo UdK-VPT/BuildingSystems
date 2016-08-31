@@ -63,15 +63,24 @@ model Window
   parameter Real fShadow = 0.0
     "Shadowing coefficient"
     annotation(Dialog(tab = "General", group = "Optical properties"));
-  parameter Modelica.SIunits.Temp_K T_start=293.15
-    "Start temperature of the window"
-    annotation (Dialog(tab="Initialization"));
   parameter Boolean calcAirchange = false
     "True: calculation of air exchange through the window, false: no air exchange"
     annotation(Dialog(tab = "General", group = "Air change calculation"));
   parameter BuildingSystems.Types.CoefficientOfAirChange aF = 1.0
     "Joint coefficient"
     annotation(Dialog(tab = "General", group = "Air change calculation"));
+  parameter Boolean show_TSur = false
+    "Show surface temperatures on both sides"
+    annotation(Dialog(tab = "Advanced", group = "Surface variables"));
+  BuildingSystems.Interfaces.Temp_KOutput TSur_1 = toSurfacePort_1.heatPort[1,1].T if show_TSur
+    "Temperature on surface side 1"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-46,10}),iconTransformation(extent={{-10,10},{-30,30}})));
+  BuildingSystems.Interfaces.Temp_KOutput TSur_2 = toSurfacePort_2.heatPort[1,1].T if show_TSur
+    "Temperature on surface side 2"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={46,10}),iconTransformation(extent={{10,10},{30,30}})));
+  parameter Modelica.SIunits.Temp_K T_start=293.15
+    "Start temperature of the window"
+    annotation (Dialog(tab="Initialization"));
   BuildingSystems.Buildings.Constructions.Windows.RadiationTransmission.RadiationTransmissionSimple radTra1to2(
     tauDir0=tauDir0,
     b0=b0,
