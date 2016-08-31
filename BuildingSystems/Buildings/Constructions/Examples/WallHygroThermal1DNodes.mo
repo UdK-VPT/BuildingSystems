@@ -10,7 +10,7 @@ model WallHygroThermal1DNodes
     nNodes={10,10,10},
     constructionData=construction)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  Buildings.Surfaces.SurfaceToAir surface1
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
     annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
   BuildingSystems.Buildings.Ambient ambient(
     weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco(),
@@ -23,11 +23,11 @@ model WallHygroThermal1DNodes
     BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel(),
     BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Kalkputz()})
     annotation(Placement(transformation(extent={{-10,20},{10,40}})));
-  Surfaces.SurfaceToSolid surface2(calcHygroThermal=true)
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surface2(calcHygroThermal=true)
     annotation (Placement(transformation(extent={{2,-10},{22,10}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature tempBC(T=293.15)
     annotation (Placement(transformation(extent={{26,-10},{18,-2}})));
-  HAM.HeatAndMoistureTransport.Sources.AbsoluteMoistureFixed moistBC(
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.AbsoluteMoistureFixed moistBC(
     x_constant =0.008)
     annotation (Placement(transformation(extent={{28,0},{16,12}})));
 equation

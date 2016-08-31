@@ -10,9 +10,9 @@ model WallThermal1DNodes
     nNodes={2,2},
     constructionData=construction)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  Buildings.Surfaces.SurfaceToAir surface2
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface2
     annotation (Placement(transformation(extent={{2,-10},{22,10}})));
-  Buildings.Surfaces.SurfaceToAir surface1
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
     annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=2,
