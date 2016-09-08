@@ -42,56 +42,10 @@ package Airvolume3D "Package for 3D discretized air volume models"
       "Grid in y and z dimension of each surface" annotation (HideResult=true);
 
     //********************************************************************/
-    /*  old version
-  // (Index ai, Index aj, number of Constructions) to map the wall constructions
-  // to the array based adapter-walls
-  parameter Integer surf1ai[elemY,elemZ]
-    "Description of the Surface"   annotation (HideResult=true);
-  parameter Integer surf1aj[elemY,elemZ]
-    "Description of the Surface"   annotation (HideResult=true);
-  parameter Integer surf1nCon[elemY,elemZ]
-    "Description of the Surface"   annotation (HideResult=true);
-
-  parameter Integer surf2ai[elemY,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf2aj[elemY,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf2nCon[elemY,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-
-  parameter Integer surf3ai[elemY,elemZ]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf3aj[elemY,elemZ]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf3nCon[elemY,elemZ]
-    "Description of the Surface"  annotation (HideResult=true);
-
-  parameter Integer surf4ai[elemY,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf4aj[elemY,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf4nCon[elemY,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-
-  parameter Integer surf5ai[elemZ,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf5aj[elemZ,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf5nCon[elemZ,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-
-  parameter Integer surf6ai[elemZ,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf6aj[elemZ,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-  parameter Integer surf6nCon[elemZ,elemX]
-    "Description of the Surface"  annotation (HideResult=true);
-  */
-
-  // Anpassungsversuch
 
     // (Index ai, Index aj, number of Constructions) to map the wall constructions
     // to the array based adapter-walls
+
     parameter Integer surf1ai[elemY,elemZ] = {{k for j in 1:elemY} for k in 1:elemZ}
       "Description of the Surface"   annotation (HideResult=true);
     parameter Integer surf1aj[elemY,elemZ] = {{j for j in 1:elemY} for k in 1:elemZ}
@@ -308,39 +262,11 @@ package Airvolume3D "Package for 3D discretized air volume models"
   */
   //
   //rectangular or square rooms (please)
-  parameter Real parameterVis = 1 "Parametrization of the dynamic viscosity";
 
-  /////////////
-  /* old version
-parameter Integer elemX = size(dxVec,1)
-    "Number of discrete volumes (x-direction)"                                   annotation (HideResult=true);
-parameter Integer elemY = size(dyVec,1)
-    "Number of discrete volumes (y-direction)"                                   annotation (HideResult=true);
-parameter Integer elemZ = size(dzVec,1)
-    "Number of discrete volumes (z-direction)"                                   annotation (HideResult=true);
-//
-parameter Modelica.SIunits.Length dxVec[elemX]
-    "Size of discrete volumes (x-direction)"                                     annotation (HideResult=true);
-parameter Modelica.SIunits.Length dyVec[elemY]
-    "Size of discrete volumes (y-direction)"                                     annotation (HideResult=true);
-parameter Modelica.SIunits.Length dzVec[elemZ]
-"Size of discrete volumes (z-direction)"                                          annotation (HideResult=true);
-//
-// Xmax, Ymax, Zmax
-parameter Modelica.SIunits.Length length
-    "Overall size of the zone (x-direction)"                                      annotation (HideResult=true);
-parameter Modelica.SIunits.Length height
-    "Overall size of the zone (y-direction)"                                      annotation (HideResult=true);
-parameter Modelica.SIunits.Length width
-    "Overall size of the zone (z-direction)"                                      annotation (HideResult=true);
 
-    */
-
-  // Anpassung
-
-  parameter Integer elemX = 3 "Number of discrete volumes (x-direction)"           annotation (HideResult=true);
-  parameter Integer elemY = 3 "Number of discrete volumes (y-direction)"           annotation (HideResult=true);
-  parameter Integer elemZ = 3 "Number of discrete volumes (z-direction)"           annotation (HideResult=true);
+  parameter Integer elemX = 1;//3 "Number of discrete volumes (x-direction)"           annotation (HideResult=true);
+  parameter Integer elemY = 1;//3 "Number of discrete volumes (y-direction)"           annotation (HideResult=true);
+  parameter Integer elemZ = 1;//3 "Number of discrete volumes (z-direction)"           annotation (HideResult=true);
   //
   parameter Modelica.SIunits.Length dxVec[elemX] = fill(length/elemX, elemX)
       "Size of discrete volumes (x-direction)"                                     annotation (HideResult=true);
@@ -391,7 +317,6 @@ parameter Modelica.SIunits.Length width
       posZ={{{posZVec[k] for i in 1:elemX} for k in 1:elemZ} for j in 1:elemY},
       dimVec={{{{dxVec[i],dyVec[j],dzVec[k]} for i in 1:elemX} for k in 1:elemZ}
           for j in 1:elemY},
-      each parVis=parameterVis,
       bcWallWest={{{(if i == 1 then true else false) for i in 1:elemX} for k in
           1:elemZ} for j in 1:elemY},
       bcWallEast={{{(if i == elemX then true else false) for i in 1:elemX} for k in
@@ -564,7 +489,7 @@ parameter Modelica.SIunits.Length width
       constant BuildingSystems.Types.WaterVapourEnthalpy rH2O = Medium.enthalpyOfVaporization(T_nominal)
         "Enthalpy of vaporization for water" annotation (HideResult=true);
 
-      parameter Real parVis = 1
+      parameter Real parVis = BuildingSystems.Buildings.Airvolumes.Airvolume3D.Parameter.f_pv
         "(parVis * nu) to parameterize the dynamic viscosity"  annotation (HideResult=true);
 
       parameter Modelica.SIunits.Density rho_start = 1.2;
@@ -708,8 +633,7 @@ parameter Modelica.SIunits.Length width
         elseif noEvent(portX1.m_flowAir == 0.0 and portX2.m_flowAir > 0.0) then
           vVec[1] := - portX2.m_flowAir/(inStream(portX2.rho)*dz*dy);
         elseif noEvent(portX1.m_flowAir == 0.0 and portX2.m_flowAir <= 0.0) then
-          //vVec[1] := 0.0;//(- portX2.m_flowAir/(inStream(portX2.rho)*dz*dy));
-         vVec[1] := min(1,(log(1 + dimVec[1]))) * (- portX2.m_flowAir/(inStream(portX2.rho)*dz*dy));
+         vVec[1] := min(0.05,(log(1 + dimVec[1]))) * (- portX2.m_flowAir/(inStream(portX2.rho)*dz*dy));
       else
         vVec[1] := 0;
         end if;
@@ -720,12 +644,28 @@ parameter Modelica.SIunits.Length width
         elseif noEvent(portX2.m_flowAir == 0.0 and portX1.m_flowAir > 0.0) then
           vVec[1] := portX1.m_flowAir/(inStream(portX1.rho)*dz*dy);
         elseif noEvent(portX2.m_flowAir == 0.0 and portX1.m_flowAir <= 0.0) then
-          //vVec[1] := 0.0;//portX1.m_flowAir/(inStream(portX1.rho)*dz*dy);
-           vVec[1] := min(1,(log(1 + dimVec[1]))) * portX1.m_flowAir/(inStream(portX1.rho)*dz*dy);
-      else
+           vVec[1] := min(0.05,(log(1 + dimVec[1]))) * portX1.m_flowAir/(inStream(portX1.rho)*dz*dy);
+        else
         vVec[1] := 0;
         end if;
 
+      // one-element-gap:
+      elseif (bcWallEast and  bcWallWest) then
+        if noEvent(portX1.m_flowAir > 0) and noEvent(portX2.m_flowAir < 0) then
+          vVec[1] := portX1.m_flowAir/(inStream(portX1.rho)*dz*dy);
+        elseif noEvent(portX1.m_flowAir > 0) and noEvent(portX2.m_flowAir == 0) then
+          vVec[1] := min(0.05,(log(1 + dimVec[1]))) * portX1.m_flowAir/(inStream(portX1.rho)*dz*dy);
+        elseif noEvent(portX1.m_flowAir < 0) and noEvent(portX2.m_flowAir > 0) then
+          vVec[1] := - portX2.m_flowAir/(inStream(portX2.rho)*dz*dy);
+        elseif noEvent(portX1.m_flowAir == 0) and noEvent(portX2.m_flowAir > 0) then
+          vVec[1] := - min(0.05,(log(1 + dimVec[1]))) * portX2.m_flowAir/(inStream(portX2.rho)*dz*dy);
+        elseif noEvent(portX1.m_flowAir > 0) and noEvent(portX2.m_flowAir > 0) then
+          vVec[1] := (portX1.m_flowAir/(inStream(portX1.rho)*dz*dy) - portX2.m_flowAir/(inStream(portX2.rho)*dz*dy));
+        else
+          vVec[1] := 0;
+        end if;
+
+      // end-else
       else
         vVec[1] := 0;
       end if;
@@ -738,7 +678,8 @@ parameter Modelica.SIunits.Length width
       elseif noEvent(portY1.m_flowAir <= 0) and noEvent(portY2.m_flowAir > 0) then
         vVec[2]:= - portY2.m_flowAir/(inStream(portY2.rho)*dz*dx);
       elseif noEvent(portY1.m_flowAir > 0) and noEvent(portY2.m_flowAir > 0) then
-        vVec[2] := portY1.m_flowAir/(inStream(portY1.rho)*dz*dx) - portY2.m_flowAir/(inStream(portY2.rho)*dz*dx);
+        vVec[2] := portY1.m_flowAir/(inStream(portY1.rho)*dz*dx) - portY2.m_flowAir/(inStream(
+          portY2.rho)*dz*dx);
       else
        vVec[2] := 0;
       end if;
@@ -749,8 +690,7 @@ parameter Modelica.SIunits.Length width
           elseif noEvent(portY1.m_flowAir == 0.0 and portY2.m_flowAir > 0.0) then
             vVec[2] := - portY2.m_flowAir/(inStream(portY2.rho)*dz*dx);
           elseif noEvent(portY1.m_flowAir == 0.0 and portY2.m_flowAir <= 0.0) then
-            //vVec[2] := 0.0;//(- portY2.m_flowAir/(inStream(portY2.rho)*dz*dx));
-            vVec[2] := min(1,(log(1 + dimVec[2]))) * (- portY2.m_flowAir/(inStream(portY2.rho)*dz*dx));
+            vVec[2] := min(0.05,(log(1 + dimVec[2]))) * (- portY2.m_flowAir/(inStream(portY2.rho)*dz*dx));
           else
            vVec[2] := 0;
           end if;
@@ -761,12 +701,29 @@ parameter Modelica.SIunits.Length width
           elseif noEvent(portY2.m_flowAir == 0.0 and portY1.m_flowAir > 0.0) then
             vVec[2] := portY1.m_flowAir/(inStream(portY1.rho)*dz*dx);
           elseif noEvent(portY2.m_flowAir == 0.0 and portY1.m_flowAir <= 0.0) then
-            //vVec[2] := 0.0;//(portY1.m_flowAir/(inStream(portY1.rho)*dz*dx));
-           vVec[2] :=  min(1,(log(1 + dimVec[2]))) * (portY1.m_flowAir/(inStream(portY1.rho)*dz*dx));
+           vVec[2] :=  min(0.05,(log(1 + dimVec[2]))) * (portY1.m_flowAir/(inStream(portY1.rho)*dz*dx));
            else
            vVec[2] := 0;
           end if;
 
+       // one-element-gap:
+      elseif (bcWallCeiling and bcWallFloor) then
+        if noEvent(portY1.m_flowAir > 0) and noEvent(portY2.m_flowAir < 0) then
+          vVec[2] := portY1.m_flowAir/(inStream(portY1.rho)*dz*dx);
+        elseif noEvent(portY1.m_flowAir > 0) and noEvent(portY2.m_flowAir == 0) then
+          vVec[2] := min(0.05,(log(1 + dimVec[2]))) * portY1.m_flowAir/(inStream(portY1.rho)*dz*dx);
+        elseif noEvent(portY1.m_flowAir < 0) and noEvent(portY2.m_flowAir > 0) then
+          vVec[2]:= - portY2.m_flowAir/(inStream(portY2.rho)*dz*dx);
+        elseif noEvent(portY1.m_flowAir == 0) and noEvent(portY2.m_flowAir > 0) then
+          vVec[2]:= - min(0.05,(log(1 + dimVec[2]))) * portY2.m_flowAir/(inStream(portY2.rho)*dz*dx);
+        elseif noEvent(portY1.m_flowAir > 0) and noEvent(portY2.m_flowAir > 0) then
+          vVec[2] := portY1.m_flowAir/(inStream(portY1.rho)*dz*dx) - portY2.m_flowAir/(inStream(
+          portY2.rho)*dz*dx);
+        else
+         vVec[2] := 0;
+        end if;
+
+      // end-else
        else
           vVec[2] := 0;
       end if;
@@ -774,7 +731,6 @@ parameter Modelica.SIunits.Length width
       //////////////////////////////////////////////////////
       // Vz
       if (not bcWallNorth and not bcWallSouth) then
-
          if noEvent(portZ1.m_flowAir > 0) and noEvent(portZ2.m_flowAir <= 0) then
            vVec[3] := portZ1.m_flowAir/(inStream(portZ1.rho)*dy*dx);
          elseif noEvent(portZ1.m_flowAir <= 0) and noEvent(portZ2.m_flowAir > 0) then
@@ -791,8 +747,7 @@ parameter Modelica.SIunits.Length width
           elseif noEvent(portZ1.m_flowAir == 0.0 and portZ2.m_flowAir > 0.0) then
             vVec[3] := - portZ2.m_flowAir/(inStream(portZ2.rho)*dy*dx);
           elseif noEvent(portZ1.m_flowAir == 0.0 and portZ2.m_flowAir <= 0.0) then
-            //vVec[3] := 0.0;//(- portZ2.m_flowAir/(inStream(portZ2.rho)*dy*dx));
-            vVec[3] := min(1,(log(1 + dimVec[3]))) * (- portZ2.m_flowAir/(inStream(portZ2.rho)*dy*dx));
+            vVec[3] := min(0.05,(log(1 + dimVec[3]))) * (- portZ2.m_flowAir/(inStream(portZ2.rho)*dy*dx));
          else
           vVec[3] := 0;
           end if;
@@ -803,12 +758,28 @@ parameter Modelica.SIunits.Length width
           elseif noEvent(portZ2.m_flowAir == 0.0 and portZ1.m_flowAir > 0.0) then
             vVec[3] := portZ1.m_flowAir/(inStream(portZ1.rho)*dy*dx);
           elseif noEvent(portZ2.m_flowAir == 0.0 and portZ1.m_flowAir <= 0.0) then
-            //vVec[3] := 0.0;//(portZ1.m_flowAir/(inStream(portZ1.rho)*dy*dx));
-            vVec[3] := min(1,(log(1 + dimVec[3]))) * (portZ1.m_flowAir/(inStream(portZ1.rho)*dy*dx));
+            vVec[3] := min(0.05,(log(1 + dimVec[3]))) * (portZ1.m_flowAir/(inStream(portZ1.rho)*dy*dx));
          else
           vVec[3] := 0;
           end if;
 
+       // one-element-gap:
+         elseif (bcWallNorth and bcWallSouth) then
+           if noEvent(portZ1.m_flowAir > 0) and noEvent(portZ2.m_flowAir < 0) then
+               vVec[3] := portZ1.m_flowAir/(inStream(portZ1.rho)*dy*dx);
+           elseif noEvent(portZ1.m_flowAir > 0) and noEvent(portZ2.m_flowAir == 0) then
+               vVec[3] := min(0.05,(log(1 + dimVec[3]))) * portZ1.m_flowAir/(inStream(portZ1.rho)*dy*dx);
+           elseif noEvent(portZ1.m_flowAir < 0) and noEvent(portZ2.m_flowAir > 0) then
+              vVec[3] := - portZ2.m_flowAir/(inStream(portZ2.rho)*dy*dx);
+           elseif noEvent(portZ1.m_flowAir == 0) and noEvent(portZ2.m_flowAir > 0) then
+              vVec[3] := - min(0.05,(log(1 + dimVec[3]))) * portZ2.m_flowAir/(inStream(portZ2.rho)*dy*dx);
+           elseif noEvent(portZ1.m_flowAir > 0) and noEvent(portZ2.m_flowAir > 0) then
+              vVec[3]:= portZ1.m_flowAir/(inStream(portZ1.rho)*dy*dx) - portZ2.m_flowAir/(inStream(portZ2.rho)*dy*dx);
+           else
+              vVec[3] := 0;
+           end if;
+
+      // end-else
       else
           vVec[3] := 0;
       end if;
@@ -940,7 +911,7 @@ parameter Modelica.SIunits.Length width
       extends
         BuildingSystems.Buildings.Airvolumes.Airvolume3D.FiniteVolumes.FVelementGeneral;
 
-    /////////////     CONSTANT     ///////////////////////
+      /////////////     CONSTANT     ///////////////////////
 
       ///////////////     PARAMETER     /////////////////////
       /////////////////    SOURCES    ///////////////////////
@@ -1051,11 +1022,11 @@ parameter Modelica.SIunits.Length width
       annotation (HideResult=true);
       parameter Boolean bcWallCeiling = false
       annotation (HideResult=true);
-      // Variante of the Impulse Equation
+      // 1-5 variant of the Impulse Equation
       parameter Integer VarImEq = 5
       annotation (HideResult=true);
-      parameter Real LayFac = 3.25;
-      parameter Real LoFac = 0.01;
+      parameter Real LayFac = BuildingSystems.Buildings.Airvolumes.Airvolume3D.Parameter.f_lay;
+      parameter Real LoFac = BuildingSystems.Buildings.Airvolumes.Airvolume3D.Parameter.f_loss;
       Modelica.SIunits.Length distance=sqrt((port_b.posVec[1] - port_a.posVec[1])^2 + (port_b.posVec[2] - port_a.posVec[2])^2 +(port_b.posVec[3] - port_a.posVec[3])^2)
       annotation (HideResult=true);
 
@@ -1067,9 +1038,6 @@ parameter Modelica.SIunits.Length width
       Modelica.SIunits.Pressure dp=port_b.p - port_a.p;
 
     equation
-      //fluid.h = 0.5*(inStream(port_a.h) + inStream(port_b.h));
-      //p = 0.5*(port_a.p + port_b.p);
-
       // 'flowConnection' - bridging, FV1-FV2
       // streams
       port_a.rho = inStream(port_b.rho);
@@ -1097,7 +1065,7 @@ parameter Modelica.SIunits.Length width
        parameter Real LayFacBCs = 0.0008*((if bcWallFloor or bcWallCeiling then LayFac else 0)+(if bcWallNorth or bcWallSouth then LayFac else 0));
 
     equation
-      // Velocity ​​values: Pressure forces + Impulse forces + Viscose forces
+      // Pressure forces + Impulse forces + Viscose forces
       // Type momentum equation
       if VarImEq == 0 then
        deltaX * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp  - (port_b.vVec[1]^2 - port_a.vVec[1]^2);
@@ -1124,8 +1092,6 @@ parameter Modelica.SIunits.Length width
       port_a.visgr2 = (port_b.vVec[3] - port_a.vVec[3])/(port_b.posVec[1] - port_a.posVec[1]); //dwdx
       port_b.visgr2 = (port_b.vVec[3] - port_a.vVec[3])/(port_b.posVec[1] - port_a.posVec[1]); //dwdx
 
-    //initial equation
-       //deltax * der(V) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp;
 
         annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
                   -100},{100,100}}), graphics={Ellipse(
@@ -1165,7 +1131,7 @@ parameter Modelica.SIunits.Length width
         BuildingSystems.Buildings.Airvolumes.Airvolume3D.FlowConnections.FlowConnection;
 
       parameter Boolean gravity = true;
-      Modelica.Blocks.Sources.Ramp rampe(duration = 60, height = 25);
+      Modelica.Blocks.Sources.Ramp rampe(duration = 60, height = 1);
       // distance between two zones
       // flowConnection "from center of FV1 to center of FV2"
       Modelica.SIunits.Length deltaY=abs(port_a.posVec[2] - port_b.posVec[2])
@@ -1180,7 +1146,7 @@ parameter Modelica.SIunits.Length width
       parameter Real LayFacBCs = 0.0008*((if bcWallEast or bcWallWest then LayFac else 0)+(if bcWallNorth or bcWallSouth then LayFac else 0));
 
     equation
-      // Velocity ​​values: Pressure forces + Impulse forces + Viscose forces
+      // Pressure forces + Impulse forces + Viscose forces
       // Type momentum equation
       // Problem Fg: (if time < 1 then time else 1)* Modelica.Constants.g_n*dyGravity
       // Problem Fg: homotopy(actual=  Modelica.Constants.g_n*dyGravity, simplified=  0)
@@ -1211,8 +1177,7 @@ parameter Modelica.SIunits.Length width
       port_a.visgr2 = (port_b.vVec[3] - port_a.vVec[3])/(port_b.posVec[2] - port_a.posVec[2]); //dwdy
       port_b.visgr2 = (port_b.vVec[3] - port_a.vVec[3])/(port_b.posVec[2] - port_a.posVec[2]); //dwdy
 
-    //initial equation
-      //deltay * der(V) = - 1.0/(0.5*(port_a.rho + port_b.rho))*dp - Modelica.Constants.g_n*deltay;
+
 
         annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
                   -100},{100,100}}),
@@ -1267,7 +1232,7 @@ parameter Modelica.SIunits.Length width
       parameter Real LayFacBCs = 0.0008*((if bcWallEast or bcWallWest then LayFac else 0) + (if bcWallCeiling or bcWallFloor then LayFac else 0));
 
     equation
-      // Velocity ��values: Pressure forces + Impulse forces + Viscose forces
+      // Pressure forces + Impulse forces + Viscose forces
       // Type momentum equation
 
        if VarImEq == 0 then
@@ -1295,8 +1260,6 @@ parameter Modelica.SIunits.Length width
       port_a.visgr2 = (port_b.vVec[2] - port_a.vVec[2])/(port_b.posVec[3] - port_a.posVec[3]); //dvdz
       port_b.visgr2 = (port_b.vVec[2] - port_a.vVec[2])/(port_b.posVec[3] - port_a.posVec[3]); //dvdz
 
-    //initial equation
-      //deltaz * der(V) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp;
 
         annotation (Icon(graphics={Ellipse(
                 extent={{34,34},{-34,-34}},
@@ -1585,4 +1548,16 @@ parameter Modelica.SIunits.Length width
       Real HumRel;
     end AssessmentPort;
   end Connections;
+
+  package Parameter "to calibrate the zonal model "
+
+
+    final constant Real f_lay = 4.00;
+    final constant Real f_loss = 0.016;
+    final constant Real f_pv = 125;
+
+
+
+
+  end Parameter;
 end Airvolume3D;

@@ -158,7 +158,9 @@ equation
     for i in 1:nConstructions6 loop
       connect(surfaces6.toAirPorts[i],airvolume.toSurfacePortC[i]);
     end for;
-/********************************************************************/
+    /********************************************************************/
+
+
 
 annotation (defaultComponentName="zone", Documentation(info="<html>
   <p>This Template creates a rectangular-shaped thermal zone. The indoor room could be divided into discrete
