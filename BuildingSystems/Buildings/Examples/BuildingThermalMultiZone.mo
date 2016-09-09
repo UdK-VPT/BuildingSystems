@@ -422,14 +422,18 @@ model BuildingThermalMultiZone
       angleDegAzi = 0.0,
       angleDegTil = 90.0,
       height=heightRooms,
-      width=bottom12.width)
+      width=bottom12.width,
+      nInnSur=1,
+      AInnSur={window11.A})
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={120,-80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall32(
       redeclare ConstructionFacade constructionData,
       angleDegAzi = 0.0,
       angleDegTil = 90.0,
       height=heightRooms,
-      width=bottom9.width)
+      width=bottom9.width,
+      nInnSur=1,
+      AInnSur={window10.A})
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-60,-80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall33(
       redeclare ConstructionInnerWall constructionData,
@@ -464,7 +468,9 @@ model BuildingThermalMultiZone
       angleDegAzi = 90.0,
       angleDegTil = 90.0,
       height=heightRooms,
-      width=bottom9.height)
+      width=bottom9.height,
+      nInnSur=1,
+      AInnSur={window9.A})
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-160,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall38(
       redeclare ConstructionFacade constructionData,
