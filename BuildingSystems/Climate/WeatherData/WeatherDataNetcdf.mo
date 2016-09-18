@@ -23,7 +23,7 @@ block WeatherDataNetcdf "Weather data reader with Netcdf format"
     "Selected weather data file"
     annotation (Dialog(tab="General"),Evaluate=true,choicesAllMatching=true);
 
-    annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+    annotation (defaultComponentName="weaDat",Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
       Rectangle(extent={{-100,100},{100,-100}},lineColor={170,213,255},fillColor={170,213,255},fillPattern=FillPattern.Solid),
       Ellipse(extent={{-90,-2},{-8,-46}},  lineColor={0,128,255},fillColor={0,128,255},fillPattern=  FillPattern.Solid),
       Ellipse(extent={{-58,22},{20,-32}},  lineColor={0,128,255},fillColor={0,128,255},fillPattern=  FillPattern.Solid),
