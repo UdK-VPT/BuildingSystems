@@ -1,7 +1,8 @@
 within BuildingSystems.Climate.WeatherData;
 block WeatherDataNetcdf "Weather data reader with Netcdf format"
   extends BuildingSystems.Utilities.NcDataReader2.NcDataReader(
-  varNameTime = {
+  final nout = size(varNameTime,1),
+  final varNameTime = {
     "beam_radiation",
     "diffuse_radiation",
     "air_temperature",
@@ -9,13 +10,13 @@ block WeatherDataNetcdf "Weather data reader with Netcdf format"
     "wind_direction",
     "relative_humidity",
     "cloud_cover"},
-     varTimeLowerLimit = {0.0, 0.0,-100, 0.0, 0.0, 0.0, 0.0},
-     varTimeUpperLimit = {1000.0, 1000.0, 100.0, 100.0, 360.0, 1.0, 8.0},
-     varNameConstant = {"longitude", "latitude", "longitude_0"},
-     fileName = weatherDataFile.fileName,
-     y(quantity={"EnergyFluenceRate","EnergyFluenceRate","ThermodynamicTemperature","Velocity","Angle_deg","RelativeHumidity","CloudCover"},
-       unit={"W/m2","W/m2","K","m/s","deg","1","1"},
-       displayUnit={"W/m2","W/m2","degC","m/s","deg","1","1"}));
+  final varTimeLowerLimit = {0.0, 0.0,-100, 0.0, 0.0, 0.0, 0.0},
+  final varTimeUpperLimit = {1000.0, 1000.0, 100.0, 100.0, 360.0, 1.0, 8.0},
+  final varNameConstant = {"longitude", "latitude", "longitude_0"},
+  final fileName = weatherDataFile.fileName,
+  y(final quantity={"EnergyFluenceRate","EnergyFluenceRate","ThermodynamicTemperature","Velocity","Angle_deg","RelativeHumidity","CloudCover"},
+    final unit={"W/m2","W/m2","K","m/s","deg","1","1"},
+    final displayUnit={"W/m2","W/m2","degC","m/s","deg","1","1"}));
   output BuildingSystems.Interfaces.Angle_degOutput latitudeDeg = constantVariable[2]
     "Longitude of the local point"
     annotation (Placement(transformation(extent={{100,80},{120,100}}), iconTransformation(extent={{100,80},{120,100}})));

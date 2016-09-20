@@ -1,6 +1,6 @@
 within BuildingSystems.Utilities.NcDataReader2;
 block NcDataReader
-  extends Modelica.Blocks.Interfaces.MO(nout = size(varNameTime, 1));
+  extends Modelica.Blocks.Interfaces.MO(nout = size(varNameTime,1));
   parameter String varNameTime[:];
   parameter String varNameConstant[:];
   parameter String fileName;
