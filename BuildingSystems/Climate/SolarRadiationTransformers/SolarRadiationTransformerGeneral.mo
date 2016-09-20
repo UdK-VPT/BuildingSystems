@@ -1,13 +1,17 @@
 within BuildingSystems.Climate.SolarRadiationTransformers;
 partial model SolarRadiationTransformerGeneral
   "Solar radiation calculation on a tilted surface (general model)"
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg latitudeDeg
-    "Latitude of the location";
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg
-    "Longitude of the location";
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg0
-    "Longitude of the local time zone";
-  parameter Real rhoAmb "Reflection factor of the ambience";
+  input BuildingSystems.Interfaces.Angle_degInput latitudeDeg
+    "Latitude of the location"
+    annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=270,origin={-10,88}),iconTransformation(extent={{-14,-14},{14,14}},rotation=270,origin={-38,76})));
+  input BuildingSystems.Interfaces.Angle_degInput longitudeDeg
+    "Longitude of the location"
+    annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=270,origin={-50,88}),iconTransformation(extent={{-14,-14},{14,14}},rotation=270,origin={0,76})));
+  input BuildingSystems.Interfaces.Angle_degInput longitudeDeg0
+    "Longitude of the local time zone"
+    annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=270,origin={30,88}),iconTransformation(extent={{-14,-14},{14,14}},rotation=270,origin={40,76})));
+  parameter Real rhoAmb
+    "Reflection factor of the ambience";
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegL = 0
     "Grad correction winter-/summer time";
   input BuildingSystems.Interfaces.RadiantEnergyFluenceRateInput IrrDirHor
@@ -56,10 +60,9 @@ partial model SolarRadiationTransformerGeneral
     "Helping variable";
   Real Z
     "Shift factor";
-protected
-  parameter Real sinAngleLat = sin(latitudeDeg * Modelica.Constants.pi / 180.0)
+  Real sinAngleLat = sin(latitudeDeg * Modelica.Constants.pi / 180.0)
     "Sinus of the latitude";
-  parameter Real cosAngleLat = cos(latitudeDeg * Modelica.Constants.pi / 180.0)
+  Real cosAngleLat = cos(latitudeDeg * Modelica.Constants.pi / 180.0)
     "Cosinus of the latitude";
 equation
   dayOfYear = time / (3600.0 * 24.0) + 0.5;
@@ -75,7 +78,7 @@ equation
   angleHr = 15.0 * (timeSun - 12.0) * Modelica.Constants.pi / 180.0;
 
   cosAngleZen = BuildingSystems.Utilities.SmoothFunctions.softcut(cosAngleLat * cos(angleDec) * cos(angleHr)
-                     + sinAngleLat * sin(angleDec),0.00001,1.0,0.0001);
+    + sinAngleLat * sin(angleDec),0.00001,1.0,0.0001);
 
   angleZen = acos(cosAngleZen) * 180.0 / Modelica.Constants.pi;
 

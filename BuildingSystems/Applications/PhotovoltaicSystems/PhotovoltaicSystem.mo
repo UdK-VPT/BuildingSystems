@@ -13,9 +13,6 @@ model PhotovoltaicSystem
     redeclare Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
     annotation(Placement(transformation(extent={{-94,54},{-82,66}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
-    latitudeDeg = weatherData.latitudeDeg,
-    longitudeDeg = weatherData.longitudeDeg,
-    longitudeDeg0 = weatherData.longitudeDeg0,
     rhoAmb = 0.2,
     angleDegL = 0.0)
     annotation (Placement(transformation(extent={{-74,68},{-62,80}})));
@@ -78,6 +75,15 @@ equation
           -12,80},{-8.8,80}}, color={0,0,127}));
   connect(load.y, Eload.u) annotation (Line(points={{13.4,52},{10,52},{10,80},{13.2,
           80}}, color={0,0,127}));
+  connect(weatherData.latitudeDeg, radiation.latitudeDeg) annotation (Line(
+          points={{-81.4,65.4},{-80,65.4},{-80,82},{-70.28,82},{-70.28,78.56}},
+          color={0,0,127}));
+  connect(weatherData.longitudeDeg, radiation.longitudeDeg) annotation (Line(
+          points={{-81.4,64.2},{-80,64.2},{-80,82},{-68,82},{-68,78.56}}, color={0,
+            0,127}));
+  connect(weatherData.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
+          points={{-81.4,63},{-80,63},{-80,82},{-65.6,82},{-65.6,78.56}}, color={0,
+            0,127}));
 
   annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,0},{60,100}},initialScale=0.1),                                                                     graphics={Text(
     extent={{-86,44},{20,-2}},lineColor={0,0,255},

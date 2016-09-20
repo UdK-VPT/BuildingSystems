@@ -12,13 +12,19 @@ block WeatherDataNetcdf "Weather data reader with Netcdf format"
      varTimeLowerLimit = {0.0, 0.0,-100, 0.0, 0.0, 0.0, 0.0},
      varTimeUpperLimit = {1000.0, 1000.0, 100.0, 100.0, 360.0, 1.0, 8.0},
      varNameConstant = {"longitude", "latitude", "longitude_0"},
-     fileName = weatherDataFile.fileName);
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg = constantVariable[1]
-    "Longitude of the local point";
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg latitudeDeg = constantVariable[2]
-    "Latitude of the local point";
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg0 = constantVariable[3]
-    "Longitude of the local time zone";
+     fileName = weatherDataFile.fileName,
+     y(quantity={"EnergyFluenceRate","EnergyFluenceRate","ThermodynamicTemperature","Velocity","Angle_deg","RelativeHumidity","CloudCover"},
+       unit={"W/m2","W/m2","K","m/s","deg","1","1"},
+       displayUnit={"W/m2","W/m2","degC","m/s","deg","1","1"}));
+  output BuildingSystems.Interfaces.Angle_degOutput latitudeDeg = constantVariable[2]
+    "Longitude of the local point"
+    annotation (Placement(transformation(extent={{100,80},{120,100}}), iconTransformation(extent={{100,80},{120,100}})));
+  output BuildingSystems.Interfaces.Angle_degOutput longitudeDeg = constantVariable[1]
+    "Latitude of the local point"
+    annotation (Placement(transformation(extent={{100,70},{120,90}}), iconTransformation(extent={{100,60},{120,80}})));
+  output BuildingSystems.Interfaces.Angle_degOutput longitudeDeg0 = constantVariable[3]
+    "Longitude of the local time zone"
+    annotation (Placement(transformation(extent={{100,60},{120,80}}), iconTransformation(extent={{100,40},{120,60}})));
   replaceable parameter BuildingSystems.Climate.WeatherData.WeatherDataFile weatherDataFile
     "Selected weather data file"
     annotation (Dialog(tab="General"),Evaluate=true,choicesAllMatching=true);

@@ -9,9 +9,6 @@ model SolarThermalSystem1
     "time IrrDir IrrDif TAirAmb"
     annotation (Placement(transformation(extent={{-126,62},{-110,78}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
-    latitudeDeg = weatherData.latitudeDeg,
-    longitudeDeg = weatherData.longitudeDeg,
-    longitudeDeg0 = weatherData.longitudeDeg0,
     rhoAmb=0.2,
     angleDegL=0.0)
     annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
@@ -199,7 +196,6 @@ equation
     annotation (Line(points={{52,-19},{52,-19},{56,-19}}, color={0,127,255}));
   connect(TSet.y, hea.TSet) annotation (Line(points={{24.3,-9},{26.15,-9},{26.15,
           -13.6},{30,-13.6}}, color={0,0,127}));
-
   connect(pipe4.port_b, storage.port_HX_1_a) annotation (Line(
       points={{-20,-28},{-20,-58},{-5,-58}},
       color={0,127,255},
@@ -208,6 +204,15 @@ equation
       points={{-40,-60},{-5,-60}},
       color={0,127,255},
       smooth=Smooth.None));
+  connect(weatherData.latitudeDeg, radiation.latitudeDeg) annotation (Line(
+          points={{-109.2,77.2},{-106,77.2},{-106,80},{-93.8,80},{-93.8,77.6}},
+          color={0,0,127}));
+  connect(weatherData.longitudeDeg, radiation.longitudeDeg) annotation (Line(
+        points={{-109.2,75.6},{-106,75.6},{-106,80},{-90,80},{-90,77.6}}, color
+        ={0,0,127}));
+  connect(weatherData.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
+        points={{-109.2,74},{-106,74},{-106,80},{-86,80},{-86,77.6}}, color={0,0,127}));
+
   annotation (experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem1.mos"
         "Simulate and plot"),
@@ -217,7 +222,7 @@ equation
     textString="Example of a solar thermal system with an internal heat exchanger")}),
 Documentation(info="<html>
 <p>
-Example that simulates a solar thermal system with an internal heat exchanger. 
+Example that simulates a solar thermal system with an internal heat exchanger.
 </p>
 </html>",
 revisions="<html>

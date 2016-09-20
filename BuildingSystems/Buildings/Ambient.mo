@@ -183,15 +183,16 @@ model Ambient
     annotation (Placement(transformation(extent={{-86,-64},{-66,-44}}),iconTransformation(extent={{-72,-60},{-92,-40}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation[nSurfaces](
     each rhoAmb=rhoAmb,
-    each longitudeDeg0=weatherData.longitudeDeg0,
-    each latitudeDeg=weatherData.latitudeDeg,
-    each longitudeDeg=weatherData.longitudeDeg,
     angleDegAzi =toSurfacePorts.angleDegAzi,
     angleDegTil =toSurfacePorts.angleDegTil)
     "Radiation on tilted surfaces"
     annotation(Placement(transformation(extent={{34,2},{54,22}})));
 equation
   for i in 1:nSurfaces loop
+    // position of the location
+    connect(weatherData.longitudeDeg0, radiation[i].longitudeDeg0);
+    connect(weatherData.latitudeDeg, radiation[i].latitudeDeg);
+    connect(weatherData.longitudeDeg, radiation[i].longitudeDeg);
     // Direct horizontal radiation
     IrrDirHor = radiation[i].IrrDirHor;
     // Diffuse horizontal radiation
