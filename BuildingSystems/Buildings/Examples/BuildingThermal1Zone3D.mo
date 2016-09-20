@@ -305,7 +305,8 @@ model BuildingThermal1Zone3D
   end Building;
 
   BuildingSystems.Buildings.Ambient ambient(
-    nSurfaces=building.nSurfacesAmbient,weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco(),
+    nSurfaces=building.nSurfacesAmbient,
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile,
     gridSurface=building.gridSurface)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Building building(nZones=1)

@@ -370,7 +370,7 @@ model Sauna
 
   BuildingSystems.Buildings.Ambient ambient(
    nSurfaces=building.nSurfacesAmbient,
-   weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
+   redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
    annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
  Building building(
    calcIdealLoads=false,

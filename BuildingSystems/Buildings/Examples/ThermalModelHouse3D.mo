@@ -420,7 +420,7 @@ model ThermalModelHouse3D "Model of the thermal model house in 3D description."
     BuildingSystems.Buildings.Ambient ambient(
       nSurfaces=building.nSurfacesAmbient,
       gridSurface=building.gridSurface,
-      weatherDataFile= BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco())
+      redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
       annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
     Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow heatingZone1
       annotation (Placement(transformation(extent={{-5,-5},{5,5}},rotation=270,origin={17,21})));

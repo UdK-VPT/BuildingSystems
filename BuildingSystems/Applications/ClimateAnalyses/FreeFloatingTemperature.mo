@@ -65,25 +65,25 @@ model FreeFloatingTemperature
   //  ambient(weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_SouthPole_AmundsenScott()))
   //  annotation (Placement(transformation(extent={{-5,-84},{5,-74}})));
   Location SanFrancisco(
-    ambient(weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco()))
+    ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile))
     annotation (Placement(transformation(extent={{-91,44},{-81,54}})));
-  Location ElGouna(ambient(
-    weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna()))
+  Location ElGouna(
+    ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile))
     annotation (Placement(transformation(extent={{19,30},{29,40}})));
   Location Berlin(
-    ambient(weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin()))
+    ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile))
     annotation (Placement(transformation(extent={{3,52},{13,62}})));
   Location NewYork(
-    ambient(weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_NewYork()))
+    ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_NewYork weatherDataFile))
     annotation (Placement(transformation(extent={{-61,38},{-51,48}})));
-  Location Tokyo(ambient(
-    weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Japan_Tokyo()))
+  Location Tokyo(
+    ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Japan_Tokyo  weatherDataFile))
     annotation (Placement(transformation(extent={{95,42},{105,52}})));
   Location Moscow(
-    ambient(weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Russia_Moscow()))
+    ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Russia_Moscow weatherDataFile))
     annotation (Placement(transformation(extent={{15,56},{25,66}})));
   Location Bombay(
-    ambient(weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_India_Bombay()))
+    ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_India_Bombay weatherDataFile))
     annotation (Placement(transformation(extent={{53,20},{63,30}})));
 
     annotation(experiment(StartTime=0, StopTime=31536000,Interval=3600),

@@ -168,7 +168,8 @@ model BuildingThermal1Zone1D
   end Building;
 
   BuildingSystems.Buildings.Ambient ambient(
-    nSurfaces=building.nSurfacesAmbient,weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
+    nSurfaces=building.nSurfacesAmbient,
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Building building(nZones=1)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));

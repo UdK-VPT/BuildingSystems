@@ -15,7 +15,7 @@ model WindowWithAirpathes
     nAirpathes=2,
     heightAirpath={0.5,1.5},
     gridSurface={{1,1}},
-    weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco())
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Zones.ZoneTemplateAirvolumeMixed zone(
     nConstructions1=1,

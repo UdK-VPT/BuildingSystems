@@ -27,7 +27,7 @@ model DistrictModel
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={24,4})));
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=nBuildings*building[1].nSurfacesAmbient,
-    weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
 equation
    for i in 1:nBuildings loop

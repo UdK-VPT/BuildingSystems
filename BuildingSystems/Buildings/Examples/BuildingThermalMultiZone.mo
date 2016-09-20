@@ -1229,7 +1229,7 @@ model BuildingThermalMultiZone
 
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    weatherDataFile = BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
 
   Modelica.Blocks.Sources.Constant TSetHeatingOffice1(k=273.15 + 20.0)

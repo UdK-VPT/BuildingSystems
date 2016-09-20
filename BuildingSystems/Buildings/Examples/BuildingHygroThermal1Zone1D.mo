@@ -13,7 +13,7 @@ model BuildingHygroThermal1Zone1D
       nLayers=2,
       thickness={0.1,0.1},
       material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton(),
-    BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton()})
+        BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton()})
       annotation(Placement(transformation(extent={{-34,40},{-14,60}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone1(
       V = 4.0*4.0*2.5,
@@ -166,7 +166,8 @@ model BuildingHygroThermal1Zone1D
   end Building;
 
   BuildingSystems.Buildings.Ambient ambient(
-    nSurfaces=building.nSurfacesAmbient,weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco())
+    nSurfaces=building.nSurfacesAmbient,
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Building building(nZones=1)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));

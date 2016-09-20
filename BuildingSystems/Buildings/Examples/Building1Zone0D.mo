@@ -5,7 +5,7 @@ model Building1Zone0D
   // building1 with ideal load calculation
   BuildingSystems.Buildings.Ambient ambient1(
     nSurfaces=building1.nSurfacesAmbient,
-    weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
       annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
     AAmbient=1000,

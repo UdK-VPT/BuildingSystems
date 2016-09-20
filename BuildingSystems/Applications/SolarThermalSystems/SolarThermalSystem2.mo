@@ -4,8 +4,8 @@ model SolarThermalSystem2
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.01;
-  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(redeclare
-    BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile)
+  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile)
     "time IrrDir IrrDif TAirAmb"
     annotation (Placement(transformation(extent={{-126,62},{-110,78}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
