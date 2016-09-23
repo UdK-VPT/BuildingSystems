@@ -9,10 +9,7 @@ model SingleCollectorTest
     "time Gdot_beam Gdot_diffuse T_air_env"
     annotation (Placement(transformation(extent={{-112,60},{-94,76}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
-    rhoAmb=0.2,
-    latitudeDeg=weatherData.latitudeDeg,
-    longitudeDeg=weatherData.longitudeDeg,
-    longitudeDeg0=weatherData.longitudeDeg0)
+    rhoAmb=0.2)
     annotation (Placement(transformation(extent={{-70,46},{-50,66}})));
   Modelica.Blocks.Math.UnitConversions.From_degC from_degC
     annotation (Placement(transformation(extent={{-14,34},{-22,42}})));
@@ -84,6 +81,12 @@ equation
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
 
+  connect(radiation.latitudeDeg, weatherData.latitudeDeg) annotation (Line(
+        points={{-63.8,63.6},{-63.8,75.2},{-93.1,75.2}}, color={0,0,127}));
+  connect(weatherData.longitudeDeg, radiation.longitudeDeg) annotation (Line(
+        points={{-93.1,73.6},{-60,73.6},{-60,63.6}}, color={0,0,127}));
+  connect(weatherData.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
+        points={{-93.1,72},{-72,72},{-56,72},{-56,63.6}}, color={0,0,127}));
   annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{0,80}}), graphics={
     Text(extent={{-94,-26},{-4,-46}},lineColor={0,0,255},textString="Solar thermal collector under real weather data")}),
     experiment(StartTime=10368000, StopTime=10713600),

@@ -9,9 +9,6 @@ model BigCollectorInstallationWithStorage
     "time Gdot_beam Gdot_diffuse T_air_env"
     annotation (Placement(transformation(extent={{26,64},{8,80}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation2(
-    latitudeDeg=weatherData.latitudeDeg,
-    longitudeDeg=weatherData.longitudeDeg,
-    longitudeDeg0=weatherData.longitudeDeg0,
     rhoAmb=0.2)
     annotation (Placement(transformation(extent={{-112,52},{-92,72}})));
   Modelica.Blocks.Math.UnitConversions.From_degC from_degC
@@ -127,9 +124,6 @@ model BigCollectorInstallationWithStorage
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature1
     annotation (Placement(transformation(extent={{2,-42},{-8,-32}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation1(
-    latitudeDeg=weatherData.latitudeDeg,
-    longitudeDeg=weatherData.longitudeDeg,
-    longitudeDeg0=weatherData.longitudeDeg0,
     rhoAmb=0.2)
     annotation (Placement(transformation(extent={{-120,10},{-100,30}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollectorInParallel collectorInParallel(
@@ -364,7 +358,21 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-240},{160,80}}), graphics),
+  connect(radiation2.latitudeDeg, weatherData.latitudeDeg) annotation (Line(
+        points={{-105.8,69.6},{-105.8,79.2},{7.1,79.2}}, color={0,0,127}));
+  connect(weatherData.longitudeDeg, radiation2.longitudeDeg) annotation (Line(
+        points={{7.1,77.6},{-102,77.6},{-102,69.6}}, color={0,0,127}));
+  connect(radiation2.longitudeDeg0, weatherData.longitudeDeg0) annotation (Line(
+        points={{-98,69.6},{-98,74},{7.1,74},{7.1,76}}, color={0,0,127}));
+  connect(radiation1.latitudeDeg, weatherData.latitudeDeg) annotation (Line(
+        points={{-113.8,27.6},{-113.8,79.2},{7.1,79.2}}, color={0,0,127}));
+  connect(radiation1.longitudeDeg, weatherData.longitudeDeg) annotation (Line(
+        points={{-110,27.6},{-110,27.6},{-110,86},{-8,86},{-8,77.6},{7.1,77.6}},
+        color={0,0,127}));
+  connect(weatherData.longitudeDeg0, radiation1.longitudeDeg0) annotation (Line(
+        points={{7.1,76},{-24,76},{-24,78},{-86,78},{-86,36},{-86,32},{-106,32},
+          {-106,27.6}}, color={0,0,127}));
+  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-240},{160,80}})),
     experiment(StartTime=10368000, StopTime=10713600),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/SolarThermal/Examples/BigCollectorInstallationWithStorage.mos" "Simulate and plot"),
 Documentation(info="<html>

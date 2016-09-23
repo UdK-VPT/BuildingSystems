@@ -9,9 +9,6 @@ model SingleCollectorWithStorageTest
     "time Gdot_beam Gdot_diffuse T_air_env"
     annotation (Placement(transformation(extent={{22,72},{4,88}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
-    latitudeDeg=weatherData.latitudeDeg,
-    longitudeDeg=weatherData.longitudeDeg,
-    longitudeDeg0=weatherData.longitudeDeg0,
     rhoAmb=0.2)
     annotation (Placement(transformation(extent={{-56,42},{-36,62}})));
   Modelica.Blocks.Math.UnitConversions.From_degC from_degC
@@ -156,7 +153,14 @@ equation
       points={{-24,-122},{-48,-122},{-48,-34},{94,-34},{94,-10},{10,-10}},
       color={0,127,255},
       smooth=Smooth.None));
-  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-140},{100,80}}),graphics),
+  connect(weatherData.latitudeDeg, radiation.latitudeDeg) annotation (Line(
+        points={{3.1,87.2},{-49.8,87.2},{-49.8,59.6}}, color={0,0,127}));
+  connect(radiation.longitudeDeg, weatherData.longitudeDeg) annotation (Line(
+        points={{-46,59.6},{-46,59.6},{-46,84},{-46,85.6},{3.1,85.6}}, color={0,
+          0,127}));
+  connect(weatherData.longitudeDeg0, radiation.longitudeDeg0)
+    annotation (Line(points={{3.1,84},{-42,84},{-42,59.6}}, color={0,0,127}));
+  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-140},{100,80}})),
     experiment(StartTime=10368000, StopTime=10713600),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/SolarThermal/Examples/SingleCollectorWithStorageTest.mos" "Simulate and plot"),
 Documentation(info="<html>
