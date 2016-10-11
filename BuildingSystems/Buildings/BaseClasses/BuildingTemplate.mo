@@ -26,7 +26,7 @@ partial model BuildingTemplate
     annotation(Dialog(tab = "Advanced", group = "3D discretisation"), HideResult=true);
   parameter Integer nSurfacesSolid = 0
     "Number of surfaces (with contact to solids) to the building ambient"
-    annotation(Dialog(tab="General",group="Ports"));
+    annotation(Dialog(tab="General",group="Solid building ambient"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziBuilding = 0.0
     "Azimuth angle of the building: south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg"
     annotation(Dialog(tab="General",group="Orientation"));
@@ -57,6 +57,12 @@ partial model BuildingTemplate
   parameter Boolean show_xAir = false
     "Show air humidity of each building zone as an output (vector)"
     annotation(HideResult = true,Dialog(tab="Advanced",group="Optional"));
+  parameter Boolean show_TSur = false
+    "Show suface temperatures of each building element as an output (vector)"
+    annotation(HideResult = true,Dialog(tab="Advanced",group="Optional"));
+  parameter Integer nSurfaces = 0
+    "if show_TSur = true: Overall number of building surfaces"
+    annotation(Dialog(tab = "Advanced", group = "Optional"), HideResult=true);
   input BuildingSystems.Interfaces.Temp_KInput T_setHeating[nZones] if calcIdealLoads
     "Set air temperature for heating of each thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180, origin={180,80}), iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,80})));
@@ -78,6 +84,9 @@ partial model BuildingTemplate
   output BuildingSystems.Interfaces.Moisture_absOutput xAir[nZones] if show_xAir
     "Air humidity  of each thermal zone" annotation (Placement(transformation(
     extent={{180,-100},{200,-80}}), iconTransformation(extent={{180,-100},{200,-80}})));
+  output BuildingSystems.Interfaces.Temp_KOutput TSur[nSurfaces] if show_TSur
+    "Surface temperatures of the individual building elements"
+    annotation (Placement(transformation(extent={{180,-60},{200,-40}}),iconTransformation(extent={{180,-60},{200,-40}})));
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_cooling[nZones] if calcIdealLoads
     "Cooling power of each thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-80,-122}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-90,-110})));
