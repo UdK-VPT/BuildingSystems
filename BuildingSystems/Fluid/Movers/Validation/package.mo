@@ -1,4 +1,3 @@
-
 within BuildingSystems.Fluid.Movers;
 package Validation "Collection of validation models"
   extends Modelica.Icons.ExamplesPackage;
