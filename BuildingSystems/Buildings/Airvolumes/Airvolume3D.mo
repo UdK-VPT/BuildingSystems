@@ -1,4 +1,4 @@
-within BuildingSystems.Buildings.Airvolumes;
+﻿within BuildingSystems.Buildings.Airvolumes;
 package Airvolume3D "Package for 3D discretized air volume models"
   extends Modelica.Icons.Package;
 
@@ -465,7 +465,7 @@ package Airvolume3D "Package for 3D discretized air volume models"
   package FiniteVolumes "Finite Volumes"
     extends Modelica.Icons.Package;
 
-    model FVelementGeneral "A thermal finite volume element"
+    model FVelementGeneral "Finite volume element"
       extends BuildingSystems.Buildings.BaseClasses.AirvolumeGeneral(
       redeclare package Medium = BuildingSystems.Media.Air);
 
@@ -520,24 +520,24 @@ package Airvolume3D "Package for 3D discretized air volume models"
 
       parameter Boolean enabled = false annotation (HideResult=true);
 
-      parameter Modelica.SIunits.Mass mAir_start = dx*dy*dz * rho_nominal
+      final parameter Modelica.SIunits.Mass mAir_start = dx*dy*dz * rho_nominal
         "Start value Mass of dry air of the air volume";
-      parameter Modelica.SIunits.Mass mH2OAir_start = x_start * dx*dy*dz * rho_nominal
+      final parameter Modelica.SIunits.Mass mH2OAir_start = x_start * dx*dy*dz * rho_nominal
         "Start value Mass of water vapor";
-      parameter Modelica.SIunits.InternalEnergy U_start = (rho_nominal*(dx*dy*dz)*cAir+rho_nominal*(dx*dy*dz)*x_start*cH20)*T_start+rH2O*rho_nominal*(dx*dy*dz)*x_start
+      final parameter Modelica.SIunits.InternalEnergy U_start = (rho_nominal*(dx*dy*dz)*cAir+rho_nominal*(dx*dy*dz)*x_start*cH20)*T_start+rH2O*rho_nominal*(dx*dy*dz)*x_start
         "Start value Internal energy of the air volume";
       //////////////////////////////////////////////////////
     //////////////////  INTERN  //////////////////////////
 
-      parameter Modelica.SIunits.Length[3] posVec={posX,posY,posZ}
+      final parameter Modelica.SIunits.Length[3] posVec={posX,posY,posZ}
       annotation (HideResult=true);
       // Scaling factor for finite element size
       // 1x1x1-Box - finite volume element
-      parameter Modelica.SIunits.Length dx=dimVec[1]
+      final parameter Modelica.SIunits.Length dx=dimVec[1]
       annotation (HideResult=true);
-      parameter Modelica.SIunits.Length dy=dimVec[2]
+      final parameter Modelica.SIunits.Length dy=dimVec[2]
       annotation (HideResult=true);
-      parameter Modelica.SIunits.Length dz=dimVec[3]
+      final parameter Modelica.SIunits.Length dz=dimVec[3]
       annotation (HideResult=true);
 
     ///////////////////////////////////////////////////////
@@ -1022,13 +1022,8 @@ package Airvolume3D "Package for 3D discretized air volume models"
       annotation (HideResult=true);
       parameter Boolean bcWallCeiling = false
       annotation (HideResult=true);
-      // 1-5 variant of the Impulse Equation
-      parameter Integer VarImEq = 5
-      annotation (HideResult=true);
       parameter Real LayFac = BuildingSystems.Buildings.Airvolumes.Airvolume3D.Parameter.f_lay;
       parameter Real LoFac = BuildingSystems.Buildings.Airvolumes.Airvolume3D.Parameter.f_loss;
-      Modelica.SIunits.Length distance=sqrt((port_b.posVec[1] - port_a.posVec[1])^2 + (port_b.posVec[2] - port_a.posVec[2])^2 +(port_b.posVec[3] - port_a.posVec[3])^2)
-      annotation (HideResult=true);
 
       // ports
       BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid port_a;
@@ -1062,26 +1057,13 @@ package Airvolume3D "Package for 3D discretized air volume models"
       annotation (HideResult=true);
 
        parameter Real LayFacBC = (if bcWallFloor or bcWallCeiling then LayFac else 1)*(if bcWallNorth or bcWallSouth then LayFac else 1);
-       parameter Real LayFacBCs = 0.0008*((if bcWallFloor or bcWallCeiling then LayFac else 0)+(if bcWallNorth or bcWallSouth then LayFac else 0));
 
     equation
-      // Pressure forces + Impulse forces + Viscose forces
-      // Type momentum equation
-      if VarImEq == 0 then
-       deltaX * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp  - (port_b.vVec[1]^2 - port_a.vVec[1]^2);
-      elseif  VarImEq == 1 then
-       deltaX * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp  - (port_b.vVec[1]^2 - port_a.vVec[1]^2) - LoFac*sign(v)*v^2;
-      elseif VarImEq == 2 then
-       deltaX * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp  - (port_b.vVec[1]^2 - port_a.vVec[1]^2) - LoFac*sign(v)*v^2 * LayFacBC;
-      elseif VarImEq == 3 then
-       deltaX * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp  - (port_b.vVec[1]^2 - port_a.vVec[1]^2) - 0.5*(port_a.ForceVF + port_b.ForceVF);
-      elseif VarImEq == 4 then
-       deltaX * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp  - (port_b.vVec[1]^2 - port_a.vVec[1]^2) - 0.5*(port_a.ForceVF + port_b.ForceVF) - sign(v)*v^2 * LayFacBCs;
-      elseif VarImEq == 5 then
+      // Velocity ​​values: Pressure forces + Impulse forces + Viscose forces
+      // Type momentum equation, without parameterization
+      // deltax * der(v) = (-1/(0.5*(Port1.rho + Port2.rho)))*dp  - (Port2.vVec[1]^2 - Port1.vVec[1]^2) - 0.5*(Port1.ForceVF + Port2.ForceVF);
+      // with parameterization:
        deltaX * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp  - (port_b.vVec[1]^2 - port_a.vVec[1]^2) - 0.5*(port_a.ForceVF + port_b.ForceVF) *0.5 - 0.5 * LoFac*sign(v)*v^2 * LayFacBC;
-      else
-       deltaX * der(v) = 0;
-      end if;
 
       port_a.m_flowAir = (0.5*(port_a.rho + port_b.rho))*(dy*dz)*v;
       port_a.m_flowAir + port_b.m_flowAir = 0;
@@ -1143,30 +1125,16 @@ package Airvolume3D "Package for 3D discretized air volume models"
       annotation (HideResult=true);
 
       parameter Real LayFacBC = (if bcWallEast or bcWallWest then LayFac else 1)*(if bcWallNorth or bcWallSouth then LayFac else 1);
-      parameter Real LayFacBCs = 0.0008*((if bcWallEast or bcWallWest then LayFac else 0)+(if bcWallNorth or bcWallSouth then LayFac else 0));
 
     equation
-      // Pressure forces + Impulse forces + Viscose forces
-      // Type momentum equation
+     // Velocity ​​values: Pressure forces + Impulse forces + Viscose forces
+      // Type momentum equation, without parameterization
       // Problem Fg: (if time < 1 then time else 1)* Modelica.Constants.g_n*dyGravity
       // Problem Fg: homotopy(actual=  Modelica.Constants.g_n*dyGravity, simplified=  0)
       // Problem Fg: Modelica.Constants.g_n*deltay * tanh(time)
-
-      if VarImEq == 0 then
-       deltaY * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (if gravity then (Modelica.Constants.g_n*deltaY * tanh(rampe.y)) else 0) - (port_b.vVec[2]^2 - port_a.vVec[2]^2);
-      elseif  VarImEq == 1 then
-       deltaY * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (if gravity then (Modelica.Constants.g_n*deltaY * tanh(rampe.y)) else 0) - (port_b.vVec[2]^2 - port_a.vVec[2]^2) - LoFac*sign(v)*v^2;
-      elseif VarImEq == 2 then
-       deltaY * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (if gravity then (Modelica.Constants.g_n*deltaY * tanh(rampe.y)) else 0) - (port_b.vVec[2]^2 - port_a.vVec[2]^2) - LoFac*sign(v)*v^2*LayFacBC;
-      elseif VarImEq == 3 then
-       deltaY * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (if gravity then (Modelica.Constants.g_n*deltaY * tanh(rampe.y)) else 0) - (port_b.vVec[2]^2 - port_a.vVec[2]^2) - 0.5*(port_a.ForceVF + port_b.ForceVF);
-      elseif VarImEq == 4 then
-       deltaY * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (if gravity then (Modelica.Constants.g_n*deltaY * tanh(rampe.y)) else 0) - (port_b.vVec[2]^2 - port_a.vVec[2]^2) - 0.5*(port_a.ForceVF + port_b.ForceVF) - sign(v)*v^2 * LayFacBCs;
-      elseif VarImEq == 5 then
+      // deltay * der(v) = (-1/(0.5*(Port1.rho + Port2.rho)))*dp - (if gravity then (Modelica.Constants.g_n*deltaY * tanh(rampe.y)) else 0) - (Port2.vVec[2]^2 - Port1.vVec[2]^2) - 0.5*(Port1.ForceVF + Port2.ForceVF);
+      // with parameterization
        deltaY * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (if gravity then (Modelica.Constants.g_n*deltaY * tanh(rampe.y)) else 0) - (port_b.vVec[2]^2 - port_a.vVec[2]^2) - 0.5*(port_a.ForceVF + port_b.ForceVF) *0.5 - 0.5 * LoFac*sign(v)*v^2*LayFacBC;
-      else
-       deltaY * der(v) = 0;
-      end if;
 
       port_a.m_flowAir = (0.5*(port_a.rho + port_b.rho))*(dx*dz)*v;
       port_a.m_flowAir + port_b.m_flowAir = 0;
@@ -1229,27 +1197,13 @@ package Airvolume3D "Package for 3D discretized air volume models"
       annotation (HideResult=true);
 
       parameter Real LayFacBC = (if bcWallEast or bcWallWest then LayFac else 1)*(if bcWallCeiling or bcWallFloor then LayFac else 1);
-      parameter Real LayFacBCs = 0.0008*((if bcWallEast or bcWallWest then LayFac else 0) + (if bcWallCeiling or bcWallFloor then LayFac else 0));
 
     equation
-      // Pressure forces + Impulse forces + Viscose forces
-      // Type momentum equation
-
-       if VarImEq == 0 then
-       deltaZ * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (port_b.vVec[3]^2 - port_a.vVec[3]^2);
-      elseif  VarImEq == 1 then
-       deltaZ * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (port_b.vVec[3]^2 - port_a.vVec[3]^2)- LoFac*sign(v)*v^2;
-      elseif VarImEq == 2 then
-       deltaZ * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (port_b.vVec[3]^2 - port_a.vVec[3]^2)- LoFac*sign(v)*v^2*LayFacBC;
-      elseif VarImEq == 3 then
-       deltaZ * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (port_b.vVec[3]^2 - port_a.vVec[3]^2)- 0.5*(port_a.ForceVF + port_b.ForceVF);
-      elseif VarImEq == 4 then
-       deltaZ * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (port_b.vVec[3]^2 - port_a.vVec[3]^2)- 0.5*(port_a.ForceVF + port_b.ForceVF) - sign(v)*v^2 * LayFacBCs;
-      elseif VarImEq == 5 then
+     // Velocity ​​values: Pressure forces + Impulse forces + Viscose forces (todo)
+      // Type momentum equation, without parameterization
+      // deltaz * der(v) = (-1/(0.5*(Port1.rho + Port2.rho)))*dP - (Port2.vVec[3]^2 - Port1.vVec[3]^2)- 0.5*(Port1.ForceVF + Port2.ForceVF);
+      // with parameterization:
        deltaZ * der(v) = (-1/(0.5*(port_a.rho + port_b.rho)))*dp - (port_b.vVec[3]^2 - port_a.vVec[3]^2)- 0.5*(port_a.ForceVF + port_b.ForceVF) *0.5 - 0.5 * LoFac*sign(v)*v^2*LayFacBC;
-      else
-       deltaZ * der(v) = 0;
-      end if;
 
       port_a.m_flowAir = (0.5*(port_a.rho + port_b.rho))*(dy*dx)*v;
       port_a.m_flowAir + port_b.m_flowAir = 0;
@@ -1306,10 +1260,7 @@ package Airvolume3D "Package for 3D discretized air volume models"
       // Qdot = lambda*A/l*(T2-T1)
       //
       port_b.Qdot = 0.0262 *((0.5 *(port_a.dimVec[2] + port_b.dimVec[2])) * (0.5 *(port_a.dimVec[3] + port_b.dimVec[3])))/(abs(port_b.posVec[1] - port_a.posVec[1]))*(port_b.T - port_a.T);
-      //
-      //Qdot = lambda*(T2-T1)
-      //port_b.Qdot = 0.0262 *(port_b.T - port_a.T);
-      //port_b.Qdot = 0.0*(port_b.T - port_a.T);
+
       port_a.Qdot + port_b.Qdot = 0;
 
     end ZoneHeatConductionX;
@@ -1327,10 +1278,7 @@ package Airvolume3D "Package for 3D discretized air volume models"
       // Qdot = lambda*A/l*(T2-T1)
       //
       port_b.Qdot = 0.0262 *((0.5 *(port_a.dimVec[1] + port_b.dimVec[1])) * (0.5 *(port_a.dimVec[3] + port_b.dimVec[3])))/(abs(port_b.posVec[2] - port_a.posVec[2]))*(port_b.T - port_a.T);
-      //
-      //Qdot = lambda*(T2-T1)
-      //port_b.Qdot = 0.0262 *(port_b.T - port_a.T);
-      //port_b.Qdot = 0.0*(port_b.T - port_a.T);
+
       port_a.Qdot + port_b.Qdot = 0;
 
     end ZoneHeatConductionY;
@@ -1348,10 +1296,7 @@ package Airvolume3D "Package for 3D discretized air volume models"
       // Qdot = lambda*A/l*(T2-T1)
       //
       port_b.Qdot = 0.0262 *((0.5 *(port_a.dimVec[1] + port_b.dimVec[1])) * (0.5 *(port_a.dimVec[2] + port_b.dimVec[2])))/(abs(port_b.posVec[3] - port_a.posVec[3]))*(port_b.T - port_a.T);
-      //
-      //Qdot = lambda*(T2-T1)
-      //port_b.Qdot = 0.0262 *(port_b.T - port_a.T);
-      //port_b.Qdot = 0.0*(port_b.T - port_a.T);
+
       port_a.Qdot + port_b.Qdot = 0;
 
     end ZoneHeatConductionZ;
@@ -1374,15 +1319,15 @@ package Airvolume3D "Package for 3D discretized air volume models"
       BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidFluid portF;
                         // port to Fluid
       BuildingSystems.Buildings.Airvolumes.Airvolume3D.Connections.FluidHeat portHeat;
-                           // port to Fluid
+                         // port to Fluid
 
-      parameter Modelica.SIunits.SpecificHeatCapacity cp = 1005.00
+      constant Modelica.SIunits.SpecificHeatCapacity cp = 1005.00
       annotation (HideResult=true);
-      parameter Modelica.SIunits.MolarMass n = 0.0289644
+      constant Modelica.SIunits.MolarMass n = 0.0289644
       annotation (HideResult=true);
-      parameter Modelica.SIunits.ThermalConductivity lambdaAir=0.0242
+      constant Modelica.SIunits.ThermalConductivity lambdaAir=0.0242
       annotation (HideResult=true);
-      parameter Modelica.SIunits.Length cL = (dimVec[1] + dimVec[2] + dimVec[3])/3
+      parameter Modelica.SIunits.Length cL = 0.5
       annotation (HideResult=true);
       parameter Modelica.SIunits.CoefficientOfHeatTransfer alpha_i = 7.6;
       parameter Modelica.SIunits.CoefficientOfHeatTransfer alpha_a = 13.5;
@@ -1551,13 +1496,29 @@ package Airvolume3D "Package for 3D discretized air volume models"
 
   package Parameter "to calibrate the zonal model "
 
-
+    // this parameter set:
     final constant Real f_lay = 4.00;
     final constant Real f_loss = 0.016;
     final constant Real f_pv = 125;
+    final constant Real f_alp = 2.9;
 
+    // is the result of the optimization process using Aachen model room AMoR and GenOpt, described in
+    //
+    // Mucha K., Nytsch-Geusen, C., Wölki D., and van Treeck C. (2015): A Zonal Room Model In Combined Simulation With A
+    // Physiological Human Response Model To Quantify Indoor Heat stress Risks. Proceedings of the 14th International
+    // Conference of the International Building Performance Simulation Association, 7-9 December, Hyderabad, India.
+    //
+    // and - more detailed - in the dissertation
+    //
+    // Mucha, K. (submitted 10/2016): Ein Simulationsansatz zur Bewertung von Hitzestressrisiken in Innenräumen.
+    // Weiterentwicklung eines zonalen Modells in Modelica. Dissertation an der Universität der Künste Berlin,
+    // Fakultät Gestaltung, Berlin.
 
-
+    // To use the zonal model without calibration the paramater set would be
+    // final constant Real f_lay = 1;
+    // final constant Real f_loss = 0;
+    // final constant Real f_pv = 2;
+    // final constant Real f_alp = 1;
 
   end Parameter;
 end Airvolume3D;
