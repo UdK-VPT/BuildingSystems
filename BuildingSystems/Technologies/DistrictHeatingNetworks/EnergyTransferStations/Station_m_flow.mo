@@ -81,6 +81,11 @@ model Station_m_flow
     "Un- or smooth changes of mass flow rate of the heating system. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
   parameter Boolean addPowerToMedium=false
     "Set to false to avoid any power in the pump model (=heat and flow work) being added to medium (may give simpler equations)";
+  Buildings.BaseClasses.RelationRadiationConvection
+    relationRadiationConvection(radiationportion=0.5)
+    annotation (Placement(transformation(extent={{-10,10},{10,-10}},
+        rotation=90,
+        origin={72,66})));
 equation
   connect(tanhAmbient.u, ambientTAirRef) annotation (Line(
       points={{-58,77},{-50,77},{-50,100}},
@@ -126,10 +131,6 @@ equation
       points={{80,0},{92,0},{92,-84},{-20,-84}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(externalIdealHeater.Q_flowHea, HeatPort) annotation (Line(
-      points={{70,10},{70,90}},
-      color={191,0,0},
-      smooth=Smooth.None));
   connect(Q.y, externalIdealHeater.Q_in) annotation (Line(
       points={{44,-30},{50,-30},{50,4},{59.2,4},{59.2,5}},
       color={0,0,127},
@@ -155,8 +156,16 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
 
+  connect(externalIdealHeater.Q_flowHea, relationRadiationConvection.heatPort)
+    annotation (Line(points={{70,10},{72,10},{72,50},{72,56},{72,63}}, color={
+          191,0,0}));
+  connect(relationRadiationConvection.heatPortCv, Conheat) annotation (Line(
+        points={{74,70},{80,70},{80,86},{80,88},{90,88},{90,90}}, color={191,0,
+          0}));
+  connect(relationRadiationConvection.heatPortLw, Radheat) annotation (Line(
+        points={{70,70},{74,70},{74,84},{74,90},{60,90}}, color={191,0,0}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}}), graphics), Icon(coordinateSystem(
+    -100},{100,100}})),           Icon(coordinateSystem(
     preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),
     Documentation(info="<html>
     <p>

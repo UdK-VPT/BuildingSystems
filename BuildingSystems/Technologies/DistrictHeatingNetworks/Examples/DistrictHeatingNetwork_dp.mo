@@ -208,7 +208,7 @@ equation
       color={85,170,255},
       smooth=Smooth.None));
   connect(building.TAir[1], station.zoneTAir) annotation (Line(
-      points={{-45,79},{-34,79},{-34,72},{-51,72},{-51,62}},
+      points={{-37,79},{-34,79},{-34,72},{-51,72},{-51,62}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient.TAirRef, station.ambientTAirRef) annotation (Line(
@@ -220,7 +220,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(station1.zoneTAir, building1.TAir[1]) annotation (Line(
-      points={{-55,-50},{-56,-50},{-56,-42},{-36,-42},{-36,-29},{-45,-29}},
+      points={{-55,-50},{-56,-50},{-56,-42},{-36,-42},{-36,-29},{-37,-29}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient1.toSurfacePorts, building1.toAmbientSurfacesPorts)
@@ -231,14 +231,6 @@ equation
   connect(ambient1.toAirPorts, building1.toAmbientAirPorts) annotation (Line(
       points={{-74,-26},{-65,-26}},
       color={85,170,255},
-      smooth=Smooth.None));
-  connect(station.HeatPort, building.heatSourcesPorts[1]) annotation (Line(
-      points={{-59,61},{-59,74},{-36,74},{-36,106},{-53.8,106},{-53.8,96}},
-      color={191,0,0},
-      smooth=Smooth.None));
-  connect(station1.HeatPort, building1.heatSourcesPorts[1]) annotation (Line(
-      points={{-63,-51},{-63,-38},{-22,-38},{-22,-8},{-56,-8},{-56,-12},{-53.8,-12}},
-      color={191,0,0},
       smooth=Smooth.None));
 
   connect(building.airchange[1], airchange.y) annotation (Line(
@@ -307,16 +299,12 @@ equation
       color={85,170,255},
       smooth=Smooth.None));
   connect(building2.TAir[1], station2.zoneTAir) annotation (Line(
-      points={{-157,71},{-146,71},{-146,62},{-163,62},{-163,52}},
+      points={{-149,71},{-146,71},{-146,62},{-163,62},{-163,52}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient2.TAirRef, station2.ambientTAirRef) annotation (Line(
       points={{-206.2,85},{-212,85},{-212,58},{-159,58},{-159,52}},
       color={0,0,127},
-      smooth=Smooth.None));
-  connect(station2.HeatPort, building2.heatSourcesPorts[1]) annotation (Line(
-      points={{-171,51},{-171,66},{-144,66},{-144,98},{-165.8,98},{-165.8,88}},
-      color={191,0,0},
       smooth=Smooth.None));
 
   connect(building2.airchange[1], airchange2.y) annotation (Line(
@@ -340,7 +328,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(kusuda0D.port[1], parallelPipes1.port_a) annotation (Line(
-      points={{-201,-32},{-124,-32},{-124,50},{-102,50},{-102,39.8}},
+      points={{-201,-30},{-124,-30},{-124,50},{-102,50},{-102,39.8}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(kusuda0D.port[2], parallelPipes.port_a) annotation (Line(
@@ -348,7 +336,8 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   connect(kusuda0D.port[3], parallelPipes2.port_a) annotation (Line(
-      points={{-201,-28},{-124,-28},{-124,-86},{14,-86},{14,-42},{-10,-42},{-10,-60.2}},
+      points={{-201,-30},{-124,-30},{-124,-86},{14,-86},{14,-42},{-10,-42},{-10,
+          -60.2}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(TsetHeating2.y, station2.Tset) annotation (Line(
@@ -395,8 +384,24 @@ equation
       points={{80,20},{80,10},{74,10}},
       color={0,127,255},
       smooth=Smooth.None));
+  connect(station1.Radheat, building1.radHeatSourcesPorts[1]) annotation (Line(
+        points={{-62,-51},{-62,-38},{-30,-38},{-30,-10},{-53,-10},{-53,-12}},
+        color={191,0,0}));
+  connect(station1.Conheat, building1.conHeatSourcesPorts[1]) annotation (Line(
+        points={{-65,-51},{-65,-8},{-56,-8},{-56,-12}}, color={191,0,0}));
+  connect(station2.Radheat, building2.radHeatSourcesPorts[1]) annotation (Line(
+        points={{-170,51},{-170,51},{-170,64},{-152,64},{-152,96},{-152,98},{
+          -165,98},{-165,88}}, color={191,0,0}));
+  connect(building2.conHeatSourcesPorts[1], station2.Conheat) annotation (Line(
+        points={{-168,88},{-168,98},{-180,98},{-180,51},{-173,51}}, color={127,
+          0,0}));
+  connect(station.Conheat, building.conHeatSourcesPorts[1]) annotation (Line(
+        points={{-61,61},{-70,61},{-70,108},{-56,108},{-56,96}}, color={191,0,0}));
+  connect(station.Radheat, building.radHeatSourcesPorts[1]) annotation (Line(
+        points={{-58,61},{-58,72},{-44,72},{-44,106},{-53,106},{-53,96}}, color
+        ={191,0,0}));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_dp.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,-100},{140,120}}), graphics),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,-100},{140,120}})),
     experiment(StartTime=0.0, StopTime=3.1536e+007), __Dymola_experimentSetupOutput,
 Documentation(info="<html>
 <p>
