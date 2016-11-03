@@ -21,7 +21,7 @@ model ExternalIdealHeater
   Modelica.Blocks.Math.Product product
     annotation (Placement(transformation(extent={{-20,-60},{0,-40}})));
   Modelica.Blocks.Math.Gain Q_flowMax(k=4182)
-    annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
+    annotation (Placement(transformation(extent={{60,-54},{80,-34}})));
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol(
     m_flow_nominal=1,
     nPorts=2,
@@ -39,13 +39,13 @@ model ExternalIdealHeater
     annotation (Placement(transformation(extent={{-30,40},{-10,60}})));
   Modelica.Blocks.Sources.Constant const(k=0)
     annotation (Placement(transformation(extent={{-50,30},{-40,40}})));
+  Modelica.Blocks.Math.Max max
+    annotation (Placement(transformation(extent={{20,-54},{40,-34}})));
 equation
   connect(gain.y, prescribedHeatFlow1.Q_flow)
     annotation (Line(points={{20.5,45},{30,45},{30,38}},color={0,0,127}));
   connect(feedback.y, product.u2) annotation (Line(points={{-41,-50},{-32,-50},
           {-32,-56},{-22,-56}}, color={0,0,127}));
-  connect(product.y, Q_flowMax.u)
-    annotation (Line(points={{1,-50},{18,-50}}, color={0,0,127}));
   connect(TDHNMin, feedback.u2) annotation (Line(points={{-110,-70},{-82,-70},{
           -50,-70},{-50,-58}}, color={0,0,127}));
   connect(prescribedHeatFlow1.port, vol.heatPort)
@@ -66,19 +66,25 @@ equation
     annotation (Line(points={{-9,50},{0,50},{0,45},{9,45}}, color={0,0,127}));
   connect(variableLimiter.y, prescribedHeatFlow.Q_flow) annotation (Line(points=
          {{-9,50},{-2,50},{0,50},{0,54},{30,54},{30,60}}, color={0,0,127}));
-  connect(Q_flowMax.y, variableLimiter.limit1) annotation (Line(points={{41,-50},
-          {88,-50},{88,84},{-40,84},{-40,58},{-32,58}}, color={0,0,127}));
+  connect(Q_flowMax.y, variableLimiter.limit1) annotation (Line(points={{81,-44},
+          {88,-44},{88,84},{-40,84},{-40,58},{-32,58}}, color={0,0,127}));
   connect(variableLimiter.limit2, const.y) annotation (Line(points={{-32,42},{
           -36,42},{-36,35},{-39.5,35}}, color={0,0,127}));
-  connect(senMasFlo.m_flow, product.u1) annotation (Line(points={{0,11},{0,20},
-          {-30,20},{-30,-44},{-22,-44}}, color={0,0,127}));
+  connect(senMasFlo.m_flow, product.u1) annotation (Line(points={{0,11},{0,22},
+          {-28,22},{-28,-44},{-22,-44}}, color={0,0,127}));
   connect(Q_in, variableLimiter.u) annotation (Line(
       points={{-108,50},{-32,50}},
       color={0,0,127},
       smooth=Smooth.None));
 
+  connect(max.u2, product.y)
+    annotation (Line(points={{18,-50},{10,-50},{1,-50}}, color={0,0,127}));
+  connect(const.y, max.u1)
+    annotation (Line(points={{-39.5,35},{18,35},{18,-38}}, color={0,0,127}));
+  connect(max.y, Q_flowMax.u)
+    annotation (Line(points={{41,-44},{48,-44},{58,-44}}, color={0,0,127}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}}), graphics),
+    -100},{100,100}})),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
     100}}), graphics={Rectangle(extent={{-100,100},{100,-100}},
     lineColor={0,0,255})}),
