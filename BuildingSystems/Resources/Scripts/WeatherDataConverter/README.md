@@ -2,17 +2,17 @@
 
 In order to generate weather data files that are compatible with the `WeatherDataNetcdf` and `Ambient` components of the BuildingSystems library, you can use the MeteonormFile.py Python 2.7 script.
 
-Requirements:
+### Requirements:
 - Python 2.7
 - pupynere (Python module)
 
-Usage:
+### Usage:
 - Bring your weather data into the same format as shown in `ExampleWeather.dat`
 - The required data is given in the table below
 - Execute from command line `python MeteonormFile.py ExampleWeather.dat`
 - The resulting .nc-file can now be used with the ncReader/the Ambient component of BuildingSystems library
 
-Required data
+### Required data:
 
 | Variable          | Abbreviation | Unit  |
 |-------------------|--------------|-------|
