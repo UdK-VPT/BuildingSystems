@@ -300,5 +300,8 @@ equation
     Ellipse(extent={{-18,58},{58,-14}},lineColor={255,255,0},fillColor={255,255,85},fillPattern = FillPattern.Solid),
     Ellipse(extent={{-72,-36},{-16,-64}},lineColor={0,128,255},fillColor={0,128,255},fillPattern = FillPattern.Solid),
     Ellipse(extent={{-44,-30},{8,-62}},lineColor={0,128,255},fillColor={0,128,255},fillPattern = FillPattern.Solid),
-    Ellipse(extent={{-56,-14},{-10,-46}},lineColor={0,128,255},fillColor={0,128,255},fillPattern = FillPattern.Solid)}));
+    Ellipse(extent={{-56,-14},{-10,-46}},lineColor={0,128,255},fillColor={0,128,255},fillPattern = FillPattern.Solid)}),
+    Documentation(info="<html>
+    <p>For a guide on how to generate weather data files that are compatible with this component and a corresponding Python script please refer to \\BuildingSystems\\Resources\\Scripts\\WeatherDataConverter\\README.md</p>
+    </html>"));
 end Ambient;
