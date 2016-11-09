@@ -36,5 +36,8 @@ block WeatherDataNetcdf "Weather data reader with Netcdf format"
       Ellipse(extent={{-58,22},{20,-32}},  lineColor={0,128,255},fillColor={0,128,255},fillPattern=  FillPattern.Solid),
       Ellipse(extent={{-36,-16},{38,-64}},lineColor={0,128,255},fillColor={0,128,255},fillPattern=  FillPattern.Solid),
       Ellipse(extent={{6,90},{90,8}},    lineColor={255,255,0},fillColor={255,255,85},fillPattern=  FillPattern.Solid),
-      Text(extent={{-44,-48},{44,-118}},lineColor={0,0,0},fillColor={255,255,255},fillPattern=FillPattern.Solid,textString="NetCDF")}));
+      Text(extent={{-44,-48},{44,-118}},lineColor={0,0,0},fillColor={255,255,255},fillPattern=FillPattern.Solid,textString="NetCDF")}),
+      Documentation(info="<html>
+      <p>For a guide on how to generate weather data files that are compatible with this component and a corresponding Python script please refer to \\BuildingSystems\\Resources\\Scripts\\WeatherDataConverter\\README.md</p>
+      </html>"));
 end WeatherDataNetcdf;
