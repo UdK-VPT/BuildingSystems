@@ -46,14 +46,14 @@ depth = %z m"),     Rectangle(extent={{-100,100},{100,-100}}, lineColor={127,0,
               0})}),
     Documentation(info="<html>
 <p>
-The model bases on the kusuda equations, which describes the temperature on the ground as a function of the depth <code>z</code> and time.
+The model bases on the Kusuda equations, which describes the temperature on the ground as a function of the depth <code>z</code> and time.
 </p>
 <p>
 To determine the temperature it is necessary to have information about the weather: mean annual temperature (<code>Tmean</code>) and annual temperature amplitude (<code>A</code>) as well as information about the ground thermal diffusivity <code>alpha</code>. Furthermore the equation is tunned with a time shift parameter <code>t0</code> which correponds to the day at which the ambient temperature has its lower value.
 </p>
 <h4>References</h4>
 <p>
-Earth temperature and thermal diffusivity at selected stations in the united states, Kusuda, T. & Achenbach P. R., 1965
+Earth temperature and thermal diffusivity at selected stations in the United States; Kusuda, T. and Achenbach P. R., 1965
 </p>
 </html>"));
 end GroundTemperature0D;
