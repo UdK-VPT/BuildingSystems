@@ -82,51 +82,43 @@ cuboid shaped body width the edge length <code>dx</code>, <code>dy</code> and <c
 c &rho; dx dy dz dT &frasl; dt = Q&#775;<sub>x1</sub> + Q&#775;<sub>x2</sub> + Q&#775;<sub>y1</sub> + Q&#775;<sub>y2</sub> + Q&#775;<sub>z1</sub> + Q&#775;<sub>z2</sub> + Q&#775;<sub>heatsource</sub>,
 </p><p>
 with the heat flow rates to the borders <code>x1/y2</code>, <code>y1/y2</code> and <code>z1/z2</code>
-</p><p>
+</p>
 <p align=\"center\" style=\"font-style:italic;\">
 Q&#775;<sub>x1/x2</sub>; = k<sub>x</sub> (T<sub>x1/x2</sub> - T).
 </p>
-</p><p>
-</p><p>
 <p align=\"center\" style=\"font-style:italic;\">
 Q&#775;<sub>y1/y2</sub>; = k<sub>y</sub> (T<sub>y1/y2</sub> - T).
 </p>
-</p><p>
-</p><p>
 <p align=\"center\" style=\"font-style:italic;\">
 Q&#775;<sub>z1/z2</sub>; = k<sub>z</sub> (T<sub>z1/z2</sub> - T).
 </p>
-</p><p>
 <p>
 Here k<sub>x</sub>, k<sub>Y</sub> and k<sub>z</sub> are the thermal conductances in the x-, y- and z-dimension
 </p>
-</p><p>
 <p align=\"center\" style=\"font-style:italic;\">
 k<sub>x</sub> = 2 &lambda; &frasl; dx dy dz.
 </p>
-</p><p>
 <p align=\"center\" style=\"font-style:italic;\">
 k<sub>y</sub> = 2 &lambda; &frasl; dy dx dz.
 </p>
-</p><p>
 <p align=\"center\" style=\"font-style:italic;\">
 k<sub>z</sub> = 2 &lambda; &frasl; dz dy dx.
 </p>
-</p><p>
-
+<p>
 c is the specific heat capacity, &rho; the density, &lambda; the heat conductivity,
 Q&#775;<sub>heatsource</sub> an optional heat source within the body.
 T<sub>x1/x2</sub>, T<sub>y1/y2</sub> and T<sub>z1/z2</sub> are the temperatures on
 the borders <code>x1/x2</code>, <code>y1/y2</code> and <code>z1/z2</code>
 with the areas <code>dy dz</code>, <code>dx dz</code> and <code>dy dx</code>.
-</p><p>
+</p>
 <h4>Notes</h4>
 <p>
 For problems with 1 dimensional heat conduction,
 the simplified model <a href=\"modelica://BuildingSystems.HAM.HeatConduction.HeatConduction1D\">
 BuildingSystems.HAM.HeatConduction.HeatConduction1D</a>
 can be used and combined with other models from the
-<code>BuildingSystems</code> library.</p>
+<code>BuildingSystems</code> library.
+</p>
 </html>", revisions="<html>
 <ul>
 <li>
