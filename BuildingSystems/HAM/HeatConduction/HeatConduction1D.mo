@@ -42,31 +42,30 @@ cuboid shaped body width the edge length <code>dx</code>, <code>dy</code> and <c
 c &rho; dx dy dz dT &frasl; dt = Q&#775;<sub>x1</sub> + Q&#775;<sub>x2</sub> + Q&#775;<sub>heatsource</sub>,
 </p><p>
 with the heat flow rates to the borders <code>x1</code> and <code>x2</code>
-</p><p>
+</p>
 <p align=\"center\" style=\"font-style:italic;\">
 Q&#775;<sub>x1/x2</sub>; = k<sub>x</sub> (T<sub>x1/x2</sub> - T).
 </p>
-</p><p>
 <p>
 Here k<sub>x</sub> is the thermal conductance in the x dimension
 </p>
-</p><p>
 <p align=\"center\" style=\"font-style:italic;\">
 k<sub>x</sub> = 2 &lambda; &frasl; dx dy dz.
 </p>
-</p><p>
+<p>
 c the specific heat capacity, &rho; the density, &lambda; the heat conductivity,
 Q&#775;<sub>heatsource</sub> an optional heat source within the body.
 T<sub>x1/x2</sub> are the temperatures on the borders <code>x1/x2</code>
 with the area <code>dy dz</code>.
-</p><p>
+</p>
 <h4>Notes</h4>
 <p>
 For problems with 3 dimensional heat conduction,
 the extended model <a href=\"modelica://BuildingSystems.HAM.HeatConduction.HeatConduction3D\">
 BuildingSystems.HAM.HeatConduction.HeatConduction3D</a>
 can be used and combined with other models from the
-<code>BuildingSystems</code> library.</p>
+<code>BuildingSystems</code> library.
+</p>
 </html>", revisions="<html>
 <ul>
 <li>
