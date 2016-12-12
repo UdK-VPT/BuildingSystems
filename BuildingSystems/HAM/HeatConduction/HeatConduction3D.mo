@@ -35,13 +35,13 @@ model HeatConduction3D "Model for 3D heat conduction"
   parameter Modelica.SIunits.Volume VRed = 0.0
     "Reduction volume for the thermal heat capacity caused by inner hollow spaces"
     annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
-  parameter Real geoFacX(unit = "-", min = 0.0, max = 1.0) = 1.0
+  parameter Real geoFacX(unit = "1", min = 0.0, max = 1.0) = 1.0
     "Geometry factor for heat conduction caused by inner hollow spaces in x dimension"
     annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
-  parameter Real geoFacY(unit = "-", min = 0.0, max = 1.0) = 1.0
+  parameter Real geoFacY(unit = "1", min = 0.0, max = 1.0) = 1.0
     "Geometry factor for heat conduction caused by inner hollow spaces in y dimension"
     annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
-  parameter Real geoFacZ(unit = "-", min = 0.0, max = 1.0) = 1.0
+  parameter Real geoFacZ(unit = "1", min = 0.0, max = 1.0) = 1.0
     "Geometry factor for heat conduction caused by inner spaces in z dimension"
    annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
   parameter Modelica.SIunits.Temp_K T_start = 293.15
