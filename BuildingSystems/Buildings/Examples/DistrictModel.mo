@@ -6,15 +6,15 @@ model DistrictModel
   parameter Integer nBuildings = 40;
   parameter Integer nSurfacesProBuilding = building[1].nSurfacesAmbient;
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building[nBuildings](
-    each AAmbient=1000,
-    each AInner=500,
-    each AGround=200,
+    each AAmb=1000,
+    each AInn=500,
+    each AGro=200,
     each nWindows=1,
-    each AWindow={100},
+    each AWin={100},
     each VAir=2000,
-    each CAmbient=100000,
-    each CInner=100000,
-    each CGround=100000,
+    each CAmb=100000,
+    each CInn=100000,
+    each CGro=100000,
     angleDegAziBuilding = {10*i for i in 1:nBuildings})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   //Modelica.Blocks.Sources.Constant TSetCooling(k=1000.0) // -> Free floting temperature

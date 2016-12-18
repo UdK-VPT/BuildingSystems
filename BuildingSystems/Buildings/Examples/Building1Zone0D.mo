@@ -8,15 +8,15 @@ model Building1Zone0D
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
       annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
-    AAmbient=1000,
-    AInner=500,
-    AGround=200,
+    AAmb=1000,
+    AInn=500,
+    AGro=200,
     nWindows=1,
-    AWindow={100},
+    AWin={100},
     VAir=2000,
-    CAmbient=100000,
-    CInner=100000,
-    CGround=100000)
+    CAmb=100000,
+    CInn=100000,
+    CGro=100000)
     annotation (Placement(transformation(extent={{-10,20},{10,40}})));
   Modelica.Blocks.Sources.Constant TSetCooling(
     k=273.15 + 24.0)
@@ -33,15 +33,15 @@ model Building1Zone0D
     weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
     annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building2(
-    AAmbient=1000,
-    AInner=500,
-    AGround=200,
+    AAmb=1000,
+    AInn=500,
+    AGro=200,
     nWindows=1,
-    AWindow={100},
+    AWin={100},
     VAir=2000,
-    CAmbient=100000,
-    CInner=100000,
-    CGround=100000,
+    CAmb=100000,
+    CInn=100000,
+    CGro=100000,
     calcIdealLoads=false)
     annotation (Placement(transformation(extent={{-10,-28},{10,-8}})));
   Modelica.Blocks.Sources.Constant airchange2(

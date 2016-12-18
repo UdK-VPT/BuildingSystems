@@ -35,21 +35,21 @@ model DistrictHeatingNetwork_m_flow
     Tmean=283.15)
     annotation (Placement(transformation(extent={{-220,-40},{-200,-20}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building(
-    AInner=10*10,
-    AGround=10*10,
+    AInn=10*10,
+    AGro=10*10,
     nWindows=1,
-    AWindow={2*3},
-    CAmbient=100000,
-    CInner=100000,
-    CGround=100000,
-    UValAmbient=0.2,
-    UValInner=1.0,
-    UValGround=0.2,
+    AWin={2*3},
+    CAmb=100000,
+    CInn=100000,
+    CGro=100000,
+    UValAmb=0.2,
+    UValInn=1.0,
+    UValGro=0.2,
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
     show_TAir=true,
-    AAmbient=2*(2*50 + 2*60)*28 + 50*60,
+    AAmb=2*(2*50 + 2*60)*28 + 50*60,
     VAir=2*50*60*28) "Building model"
     annotation (Placement(transformation(extent={{-66,76},{-46,96}})));
   BuildingSystems.Buildings.Ambient ambient(
@@ -58,21 +58,21 @@ model DistrictHeatingNetwork_m_flow
     "Ambient model"
     annotation (Placement(transformation(extent={{-96,76},{-76,96}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
-    AInner=10*10,
-    AGround=10*10,
+    AInn=10*10,
+    AGro=10*10,
     nWindows=1,
-    AWindow={2*3},
-    CAmbient=100000,
-    CInner=100000,
-    CGround=100000,
-    UValAmbient=0.2,
-    UValInner=1.0,
-    UValGround=0.2,
+    AWin={2*3},
+    CAmb=100000,
+    CInn=100000,
+    CGro=100000,
+    UValAmb=0.2,
+    UValInn=1.0,
+    UValGro=0.2,
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
     show_TAir=true,
-    AAmbient=2*(2*50 + 2*60)*28 + 50*60,
+    AAmb=2*(2*50 + 2*60)*28 + 50*60,
     VAir=2*50*60*28) "Building model"
     annotation (Placement(transformation(extent={{-66,-32},{-46,-12}})));
   BuildingSystems.Buildings.Ambient ambient1(redeclare
@@ -131,21 +131,21 @@ model DistrictHeatingNetwork_m_flow
     Tsupply_min(displayUnit="K") = 328.15)
     annotation (Placement(transformation(extent={{-154,32},{-174,52}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building2(
-    AInner=10*10,
-    AGround=10*10,
+    AInn=10*10,
+    AGro=10*10,
     nWindows=1,
-    AWindow={2*3},
-    CAmbient=100000,
-    CInner=100000,
-    CGround=100000,
-    UValAmbient=0.2,
-    UValInner=1.0,
-    UValGround=0.2,
+    AWin={2*3},
+    CAmb=100000,
+    CInn=100000,
+    CGro=100000,
+    UValAmb=0.2,
+    UValInn=1.0,
+    UValGro=0.2,
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
     show_TAir=true,
-    AAmbient=2*(2*50 + 2*60)*28 + 50*60,
+    AAmb=2*(2*50 + 2*60)*28 + 50*60,
     VAir=2*50.0*60.0*28)
     "Building model"
     annotation (Placement(transformation(extent={{-178,68},{-158,88}})));

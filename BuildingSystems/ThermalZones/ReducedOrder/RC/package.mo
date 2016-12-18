@@ -80,7 +80,7 @@ package RC
   shifted reaction of the room temperature to environmental impacts
   (Lauster, Bruentjen <i>et al.</i>, 2014).
   However, the user is free to choose whether keeping windows seperately
-  (<code>AWin</code>) or merging them (<code>AExt=AExterior+AWindows, AWin=0</code>).
+  (<code>AWin</code>) or merging them (<code>AExt=AExterior+AWins, AWin=0</code>).
    The window areas can be defined seperately for solar
   radiation (vector <code>ATransparent</code>) and heat transfer
   (vector <code>AWin</code>). For cases where the windows are kept seperately,
