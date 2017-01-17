@@ -46,3 +46,4 @@ thumbs.db
 #
 # Ignore some other files
 *.orig
+*.sdf
