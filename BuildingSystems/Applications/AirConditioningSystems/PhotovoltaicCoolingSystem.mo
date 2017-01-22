@@ -2,7 +2,7 @@ within BuildingSystems.Applications.AirConditioningSystems;
 model PhotovoltaicCoolingSystem
   "Photovoltaic cooling system"
   extends Modelica.Icons.Example;
-  package Medium = BuildingSystems.Media.Water(T_min=0.0,T_max=273.15+200.0);
+  package Medium = BuildingSystems.Media.Water;
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.5
     "Nominal mass flow rate";
   parameter Modelica.SIunits.MassFlowRate m_flow = 0.5
@@ -66,7 +66,8 @@ model PhotovoltaicCoolingSystem
     annotation (Placement(transformation(extent={{-2,14},{6,22}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump1(
     redeclare package Medium = Medium,
-    m_flow_nominal=m_flow_nominal)
+    m_flow_nominal=m_flow_nominal,
+    nominalValuesDefineDefaultPressureCurve=true)
     annotation (Placement(transformation(extent={{22,-48},{6,-32}})));
   BuildingSystems.Fluid.Storage.ExpansionVessel exp1(
     redeclare package Medium = Medium,
@@ -77,9 +78,9 @@ model PhotovoltaicCoolingSystem
     HX_1=false,
     redeclare package Medium = Medium,
     redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
-    height=0.5,
     V=1,
-    nEle=5)
+    nEle=5,
+    height=2)
     "Cold water storage"
     annotation (Placement(transformation(extent={{62,-40},{82,-20}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pip1(
@@ -104,16 +105,17 @@ model PhotovoltaicCoolingSystem
     fraRad=0.5,
     n=1.3,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    T_a_nominal=273.15 + 15.0,
-    T_b_nominal=273.15 + 20.0,
-    TAir_nominal=273.15 + 24.0,
     m_flow_nominal=m_flow_nominal,
-    Q_flow_nominal=-2000.0)
-    "Cooling surface"
+    Q_flow_nominal=6000.0,
+    T_a_nominal=273.15 + 35.0,
+    T_b_nominal=273.15 + 28.0,
+    TAir_nominal=273.15 + 20.0)
+    "cooling surface"
     annotation (Placement(transformation(extent={{124,-6},{112,6}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow  pump2(
     redeclare package Medium = Medium,
-    m_flow_nominal=m_flow_nominal)
+    m_flow_nominal=m_flow_nominal,
+    nominalValuesDefineDefaultPressureCurve=true)
     annotation (Placement(transformation(extent={{86,-46},{102,-30}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pip3(
     redeclare package Medium = Medium,
@@ -137,23 +139,41 @@ model PhotovoltaicCoolingSystem
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{136,-4},{128,4}})));
-  BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building(
-    AAmb=4*10*2.5+10*10,
-    AInn=10*10,
-    AGro=10*10,
-    nWindows=1,
-    AWin={2*3},
-    VAir=10*10*2.5,
-    CAmb=100000,
-    CInn=100000,
-    CGro=100000,
-    UValAmb=1.0,
-    UValInn=1.0,
-    UValGro=1.0,
+  BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DDistrict building(
     calcIdealLoads=false,
     heatSources=true,
-    show_TAir=true,
-    nHeatSources=1)
+    nHeatSources=1,
+    angleDegAziBuilding=0.0,
+    width=10,
+    length=6,
+    heightSto=2.8,
+    nSto=2,
+    ARoom=4.0*4.0,
+    widthWindow1=4.0,
+    heightWindow1=2*1.2,
+    widthWindow2=4.0,
+    heightWindow2=2*1.2,
+    widthWindow3=4.0,
+    heightWindow3=2*1.2,
+    widthWindow4=4.0,
+    heightWindow4=2*1.2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallMultistorey1958to1968 constructionWall1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallMultistorey1958to1968 constructionWall2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallMultistorey1958to1968 constructionWall3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallMultistorey1958to1968 constructionWall4,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.BasePlateMultistorey1958to1968 constructionBottom,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateWallMultistorey1958to1968 constructionWallsInterior,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateCeilingMultistorey1958to1968 constructionCeilingsInterior,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow4,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.RoofRowhouse1918 constructionCeiling,
+    BCWall1=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCWall2=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCWall3=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCWall4=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCCeiling=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient)
     "Building model"
     annotation (Placement(transformation(extent={{88,30},{108,50}})));
   BuildingSystems.Buildings.Ambient ambient(
@@ -174,18 +194,28 @@ model PhotovoltaicCoolingSystem
     uLow=273.15 + 24.0,
     uHigh=273.15 + 26.0)
     annotation (Placement(transformation(extent={{104,12},{96,20}})));
-  Modelica.Blocks.Math.BooleanToReal booleanToReal(realTrue=m_flow)
+  Modelica.Blocks.Math.BooleanToReal booleanToReal(
+    realTrue=m_flow)
     annotation (Placement(transformation(extent={{88,12},{80,20}})));
-  Modelica.Blocks.Math.BooleanToReal booleanToReal1(realTrue=m_flow)
+  Modelica.Blocks.Math.BooleanToReal booleanToReal1(
+    realTrue=m_flow)
     annotation (Placement(transformation(extent={{24,-22},{16,-14}})));
+  Modelica.SIunits.Energy EGrid(
+    start=0.0)
+    "Integrates the electricity taken from the grid";
+  Modelica.SIunits.Energy EPVField(
+    start=0.0)
+    "Integrates the electricity generated by the PV field";
 equation
+  der(EGrid) = battery.PGrid;
+  der(EPVField) = pvField.PField;
   connect(radiation.radiationPort,pvField. radiationPort)
     annotation (Line(
       points={{-54,21.8},{-46,21.8},{-46,0}},
       color={255,255,0},
       smooth=Smooth.None));
   connect(pvField.PField, battery.PCharge) annotation (Line(
-      points={{-39,0},{-33,0}},
+      points={{-38,0},{-33,0}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(chiller.P, battery.PLoad) annotation (Line(
@@ -238,12 +268,8 @@ equation
     annotation (Line(points={{30,-40},{26,-40},{22,-40}}, color={0,127,255}));
   connect(pump2.port_b, pip4.port_a) annotation (Line(points={{102,-38},{106,-38},
           {110,-38}}, color={0,127,255}));
-  connect(senTemColSurOut.port_a, coolingSurface.port_b)
-    annotation (Line(points={{108,0},{110,0},{112,0}}, color={0,127,255}));
   connect(pip3.port_a, senTemColSurOut.port_b)
     annotation (Line(points={{96,0},{98,0},{100,0}}, color={0,127,255}));
-  connect(coolingSurface.port_a, senTemColSurIn.port_b)
-    annotation (Line(points={{124,0},{128,0}}, color={0,127,255}));
   connect(pip4.port_b, senTemColSurIn.port_a) annotation (Line(points={{120,-38},
           {140,-38},{140,0},{136,0}}, color={0,127,255}));
   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts)
@@ -264,11 +290,8 @@ equation
     annotation (Line(points={{65.8,47},{-42,47},{-42,0}}, color={0,0,127}));
   connect(ambient.TAirRef, m_flow_con.T_in) annotation (Line(points={{65.8,47},{
           58,47},{58,7.6},{52.8,7.6}}, color={0,0,127}));
-  connect(coolingSurface.heatPortCon, building.conHeatSourcesPorts[1]) annotation (
-     Line(points={{119.2,4.32},{119.2,22},{130,22},{130,66},{100.2,66},{100.2,50}},
-        color={191,0,0}));
-  connect(building.TAir[1], control_temp_buildin.u) annotation (Line(points={{109,
-          33},{142,33},{142,16},{104.8,16}}, color={0,0,127}));
+  connect(building.TAir[1], control_temp_buildin.u) annotation (Line(points={{117,33},
+          {142,33},{142,16},{104.8,16}},     color={0,0,127}));
   connect(control.y, chiller.on) annotation (Line(points={{31.6,28},{24,28},{18,
           28},{18,7.6}}, color={255,0,255}));
   connect(control_temp_buildin.y, booleanToReal.u)
@@ -293,9 +316,15 @@ equation
       points={{79,-21},{79,0},{86,0}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(coolingSurface.heatPortRad, building.radHeatSourcesPorts[1])
-    annotation (Line(points={{116.8,4.32},{116.8,24},{128,24},{128,68},{98,68},{
-          98,50}}, color={191,0,0}));
+  connect(coolingSurface.heatPortCon, building.conHeatSourcesPorts[1])
+    annotation (Line(points={{119.2,4.32},{119.2,8},{146,8},{146,64},{98,64},{98,
+          50}}, color={191,0,0}));
+  connect(building.radHeatSourcesPorts[1], coolingSurface.heatPortRad)
+    annotation (Line(points={{101,50},{102,50},{102,62},{144,62},{144,10},{116.8,
+          10},{116.8,4.32}}, color={127,0,0}));
+  connect(senTemColSurOut.port_a, coolingSurface.port_b)
+    annotation (Line(points={{108,0},{110,0},{112,0}}, color={0,127,255}));
+  connect(coolingSurface.port_a, senTemColSurIn.port_b)
 
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/AirConditioningSystems/PhotovoltaicCoolingSystem.mos" "Simulate and plot"),
