@@ -55,7 +55,7 @@ model ThermalCollector
   replaceable BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial collectorData
     "Data about the thermal solar collector"
     annotation(HideResult=true, Dialog(tab = "General"), Evaluate=true, choicesAllMatching=true);
-  BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM res(
+  BuildingSystems.Fluid.FixedResistances.PressureDrop res(
     m_flow_nominal=m_flow_nominal,
     redeclare package Medium = Medium,
     dp_nominal=dp_nominal,

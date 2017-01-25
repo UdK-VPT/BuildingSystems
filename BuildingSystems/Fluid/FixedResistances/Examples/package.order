@@ -1,4 +1,4 @@
-FixedResistancesExplicit
-FixedResistancesParallel
-FixedResistancesSeries
+FlowJunction
+HydraulicDiameter
 Pipe
+PressureDrop

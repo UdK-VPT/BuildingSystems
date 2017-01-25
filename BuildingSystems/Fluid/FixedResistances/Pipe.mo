@@ -25,15 +25,14 @@ model Pipe
   parameter Boolean useExternalHeatSource=false
     "= true to transfer the volume temperature to the outter interface (heatPort)"
     annotation (Dialog(tab="Advanced"));
-  BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM res(
+  BuildingSystems.Fluid.FixedResistances.HydraulicDiameter res(
     redeclare final package Medium = Medium,
     final from_dp=from_dp,
-    use_dh=true,
     dh=diameter,
     dp(nominal=length*10),
+    final length=length,
     final show_T=show_T,
     final m_flow_nominal=m_flow_nominal,
-    final dp_nominal=dp_nominal,
     final allowFlowReversal=allowFlowReversal,
     final linearized=linearizeFlowResistance,
     final ReC=ReC)

@@ -323,8 +323,8 @@ parameters in various model to help the user understand how they are used.
       to define a point on the flow rate versus pressure drop curve. For other
       mass flow rates, the pressure drop is typically adjusted using similarity laws.
       See
-      <a href=\"modelica://BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM\">
-      BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM</a>.
+      <a href=\"modelica://BuildingSystems.Fluid.FixedResistances.PressureDrop\">
+      BuildingSystems.Fluid.FixedResistances.PressureDrop</a>.
   </td>
 </tr>
 <tr>
@@ -394,10 +394,6 @@ This allows models to be fully compatible with
 Modelica.Fluid</a>, and it allows the implementation of
 component models that reuse base classes for heat transfer, mass transfer and
 flow resistance.
-The class inheritance is as follows:
-</p>
-<p align=\"center\">
-<img alt=\"image\" src=\"modelica://BuildingSystems/Resources/Images/Fluid/UsersGuide/a60.png\"/>
 </p>
 
 </html>"));
