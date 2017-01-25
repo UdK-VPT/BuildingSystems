@@ -7,7 +7,6 @@ FlowCoefficient
 MoistureTransferCoefficient
 Porosity
 RelativeHumidity
-Reset
 Time_hr
 TransportCoefficientForCapillary
 ViewFactor
@@ -18,3 +17,4 @@ WaterVapourGasConstant
 WaterVapourPermeability
 Azimuth
 Tilt
+Reset
