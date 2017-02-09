@@ -17,9 +17,7 @@ model RadiationDistribution
      annotation(HideResult = true);
   Modelica.SIunits.Area ATotal
     "Total surface area of the thermal zone";
-  BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacePorts[nSurfaces](
-    each nY=1,
-    each nZ=1)
+  BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacePorts[nSurfaces]
     annotation (Placement(transformation(extent={{-90,-42},{-70,38}})));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={0,58}), iconTransformation(extent={{-40,68},{40,88}})));
@@ -34,30 +32,30 @@ initial equation
   if not geometricViewFactors then
     for i in 1:nSurfaces loop
       for j in 1:nSurfaces loop
-        F[i,j] = toSurfacePorts[j].A[1,1]/sum(toSurfacePorts[k].A[1,1] for k in 1:nSurfaces);
+        F[i,j] = toSurfacePorts[j].A/sum(toSurfacePorts[k].A for k in 1:nSurfaces);
       end for;
     end for;
   else
     F=ViewFac;
   end if;
 equation
-  ATotal = sum(toSurfacePorts[:].A[1,1]);
+  ATotal = sum(toSurfacePorts[:].A);
   // Total short-wave radiation gains of the zone
-  Q_flow_Sw = sum({toSurfacePorts[i].radiationPort_out[1,1].IrrDir*toSurfacePorts[i].A[1,1] + toSurfacePorts[i].radiationPort_out[1,1].IrrDif*toSurfacePorts[i].A[1,1] for i in 1:nSurfaces});
+  Q_flow_Sw = sum({toSurfacePorts[i].radiationPort_out.IrrDir*toSurfacePorts[i].A + toSurfacePorts[i].radiationPort_out.IrrDif*toSurfacePorts[i].A for i in 1:nSurfaces});
   for i in 1:nSurfaces loop
     // Radiosity of each surface
-    J[i] = toSurfacePorts[i].epsilon[1,1]*Modelica.Constants.sigma*toSurfacePorts[i].heatPortLw[1,1].T^4 + (1.0-toSurfacePorts[i].epsilon[1,1])*sum({F[i,j]*J[j] for j in 1:nSurfaces});
+    J[i] = toSurfacePorts[i].epsilon*Modelica.Constants.sigma*toSurfacePorts[i].heatPortLw.T^4 + (1.0-toSurfacePorts[i].epsilon)*sum({F[i,j]*J[j] for j in 1:nSurfaces});
     // Netto heat flux rate of each surface
-    toSurfacePorts[i].heatPortLw[1,1].Q_flow = toSurfacePorts[i].A[1,1]*toSurfacePorts[i].epsilon[1,1]/(1.0-toSurfacePorts[i].epsilon[1,1])*(Modelica.Constants.sigma*toSurfacePorts[i].heatPortLw[1,1].T^4-J[i])
-      - toSurfacePorts[i].A[1,1]/ATotal * sum(heatSourcesPorts.Q_flow);
+    toSurfacePorts[i].heatPortLw.Q_flow = toSurfacePorts[i].A*toSurfacePorts[i].epsilon/(1.0-toSurfacePorts[i].epsilon)*(Modelica.Constants.sigma*toSurfacePorts[i].heatPortLw.T^4-J[i])
+      - toSurfacePorts[i].A/ATotal * sum(heatSourcesPorts.Q_flow);
     // Area weighted short-wave radiation distribution on each surface
-    toSurfacePorts[i].heatPortSw[1,1].Q_flow = - toSurfacePorts[i].abs[1,1] * toSurfacePorts[i].A[1,1] / ATotal * Q_flow_Sw;
-    toSurfacePorts[i].radiationPort_in[1,1].IrrDir= 0.0;
-    toSurfacePorts[i].radiationPort_in[1,1].IrrDif = - Q_flow_Sw / ATotal;
-    toSurfacePorts[i].radiationPort_in[1,1].angleDegInc = 50.0;
+    toSurfacePorts[i].heatPortSw.Q_flow = - toSurfacePorts[i].abs * toSurfacePorts[i].A / ATotal * Q_flow_Sw;
+    toSurfacePorts[i].radiationPort_in.IrrDir= 0.0;
+    toSurfacePorts[i].radiationPort_in.IrrDif = - Q_flow_Sw / ATotal;
+    toSurfacePorts[i].radiationPort_in.angleDegInc = 50.0;
   end for;
   // Mean surface temperature
-  TSurfMean = sum({toSurfacePorts[i].heatPortLw[1,1].T * toSurfacePorts[i].A[1,1] for i in 1:nSurfaces}) / ATotal;
+  TSurfMean = sum({toSurfacePorts[i].heatPortLw.T * toSurfacePorts[i].A for i in 1:nSurfaces}) / ATotal;
   for i in 1:nHeatSources loop
     heatSourcesPorts[i].T = TSurfMean;
   end for;

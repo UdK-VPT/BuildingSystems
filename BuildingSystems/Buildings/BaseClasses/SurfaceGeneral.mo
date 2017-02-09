@@ -1,23 +1,13 @@
 within BuildingSystems.Buildings.BaseClasses;
 partial model SurfaceGeneral
   "Generic surface model"
-  parameter Integer nY = 1
-    "Number of surface elements in the y dimension";
-  parameter Integer nZ = 1
-    "Number of surface elements in the z dimension";
-  Buildings.Interfaces.SurfaceToConstructionPort toConstructionPort(
-    nY=nY,
-    nZ=nZ)
+  Buildings.Interfaces.SurfaceToConstructionPort toConstructionPort
     "Port to the construction"
     annotation (Placement(transformation(extent={{-16,-10},{4,10}}), iconTransformation(extent={{-16,-10},{4,10}})));
-  Modelica.SIunits.Area A[nY,nZ]
+  Modelica.SIunits.Area A
     "Surface area";
 equation
-  for j in 1:nY loop
-    for k in 1:nZ loop
-      toConstructionPort.A[j,k] = A[j,k];
-    end for;
-  end for;
+  toConstructionPort.A = A;
 
   annotation (defaultComponentName = "surface",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),

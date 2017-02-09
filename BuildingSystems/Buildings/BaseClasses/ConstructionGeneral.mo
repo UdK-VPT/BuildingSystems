@@ -19,12 +19,6 @@ partial model ConstructionGeneral
   parameter Modelica.SIunits.Length zLevel = 0.0
     "Vertical position"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Integer nY = 1
-    "Number of cells in the y dimension"
-    annotation(Dialog(tab = "Advanced", group = "3D discretisation"), HideResult=true);
-  parameter Integer nZ = 1
-    "Number of cells in the z dimension"
-    annotation(Dialog(tab = "Advanced", group = "3D discretisation"), HideResult=true);
   parameter BuildingSystems.Types.Absorptance abs_1 = 0.5
     "Short-wave absorptance side 1"
     annotation(Dialog(tab = "General", group = "Surfaces"));

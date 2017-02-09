@@ -14,7 +14,7 @@ block WeatherDataNetcdf "Weather data reader with Netcdf format"
   final varTimeUpperLimit = {1000.0, 1000.0, 100.0, 100.0, 360.0, 1.0, 8.0},
   final varNameConstant = {"longitude", "latitude", "longitude_0"},
   final fileName = weatherDataFile.fileName,
-  y(final quantity={"EnergyFluenceRate","EnergyFluenceRate","ThermodynamicTemperature","Velocity","Angle_deg","RelativeHumidity","CloudCover"},
+  y(final quantity={"RadiantEnergyFluenceRate","RadiantEnergyFluenceRate","ThermodynamicTemperature","Velocity","Angle_deg","RelativeHumidity","CloudCover"},
     final unit={"W/m2","W/m2","K","m/s","deg","1","1"},
     final displayUnit={"W/m2","W/m2","degC","m/s","deg","1","1"}));
   output BuildingSystems.Interfaces.Angle_degOutput latitudeDeg = constantVariable[2]

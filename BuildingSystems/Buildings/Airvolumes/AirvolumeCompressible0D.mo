@@ -85,14 +85,10 @@ equation
 
   // Boundary conditions for all surfaces of the air volume
   for i in 1:nSurfaces loop
-    for j in 1:gridSurface[i,1] loop
-      for k in 1:gridSurface[i,2] loop
-        toSurfacePorts[i].heatPort[j,k].T = T;
-        toSurfacePorts[i].moisturePort[j,k].x = x;
-        toSurfacePorts[i].angleDegAir[j,k] = angleDegAir_constant;
-        toSurfacePorts[i].vAir[j,k] = vAir_constant;
-      end for;
-    end for;
+    toSurfacePorts[i].heatPort.T = T;
+    toSurfacePorts[i].moisturePort.x = x;
+    toSurfacePorts[i].angleDegAir = angleDegAir_constant;
+    toSurfacePorts[i].vAir = vAir_constant;
   end for;
 
   // Ideal gas law

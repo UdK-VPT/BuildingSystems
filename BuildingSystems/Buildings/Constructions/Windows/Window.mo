@@ -3,16 +3,12 @@ model Window
   "Simplified model of a window"
   extends BuildingSystems.Buildings.BaseClasses.ConstructionGeneral(
     A = height * width,
-    final nY = 1,
-    final nZ = 1,
     final abs_1 = 0.0,
     final abs_2 = 0.0);
   final package Medium = BuildingSystems.Media.Air;
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
-    A=fill(A,1,1),
-    nY=nY,
-    nZ=nZ,
-    abs = fill(abs_2,1,1),
+    A=A,
+    abs = abs_2,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
     geo.width=width,
@@ -21,13 +17,11 @@ model Window
     geo.point.x={0.0,width,width,0.0},
     geo.point.y={0.0,0.0,height,height},
     geo.point.z={0.0,0.0,0.0,0.0},
-    epsilon = fill(epsilon_2,nY,nZ))
+    epsilon = epsilon_2)
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
-    A=fill(A,1,1),
-    nY=nY,
-    nZ=nZ,
-    abs = fill(abs_1,1,1),
+    A=A,
+    abs = abs_1,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
     geo.width=width,
@@ -36,7 +30,7 @@ model Window
     geo.point.x={0.0,width,width,0.0},
     geo.point.y={0.0,0.0,height,height},
     geo.point.z={0.0,0.0,0.0,0.0},
-    epsilon = fill(epsilon_1,nY,nZ))
+    epsilon = epsilon_1)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
   parameter Real framePortion = 0.2
     "Frame portion of the window"
@@ -72,10 +66,10 @@ model Window
   parameter Boolean show_TSur = false
     "Show surface temperatures on both sides"
     annotation(Dialog(tab = "Advanced", group = "Surface variables"));
-  BuildingSystems.Interfaces.Temp_KOutput TSur_1 = toSurfacePort_1.heatPort[1,1].T if show_TSur
+  BuildingSystems.Interfaces.Temp_KOutput TSur_1 = toSurfacePort_1.heatPort.T if show_TSur
     "Temperature on surface side 1"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-46,10}),iconTransformation(extent={{-10,10},{-30,30}})));
-  BuildingSystems.Interfaces.Temp_KOutput TSur_2 = toSurfacePort_2.heatPort[1,1].T if show_TSur
+  BuildingSystems.Interfaces.Temp_KOutput TSur_2 = toSurfacePort_2.heatPort.T if show_TSur
     "Temperature on surface side 2"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={46,10}),iconTransformation(extent={{10,10},{30,30}})));
   parameter Modelica.SIunits.Temp_K T_start=293.15
@@ -132,46 +126,46 @@ model Window
     "Characteristic of the window airpathes";
 equation
   // Solar Transmittance
-  connect(radTra1to2.radiationPort_in, toSurfacePort_1.radiationPort_in[1,1])
+  connect(radTra1to2.radiationPort_in, toSurfacePort_1.radiationPort_in)
     annotation (Line(
       points={{-1,40},{-18,40},{-18,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(radTra1to2.radiationPort_out, toSurfacePort_2.radiationPort_out[1,1])
+  connect(radTra1to2.radiationPort_out, toSurfacePort_2.radiationPort_out)
     annotation (Line(
       points={{1,40},{18,40},{18,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(radTra2to1.radiationPort_in, toSurfacePort_2.radiationPort_in[1,1])
+  connect(radTra2to1.radiationPort_in, toSurfacePort_2.radiationPort_in)
     annotation (Line(
       points={{-1,-40},{18,-40},{18,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(radTra2to1.radiationPort_out, toSurfacePort_1.radiationPort_out[1,1])
+  connect(radTra2to1.radiationPort_out, toSurfacePort_1.radiationPort_out)
     annotation (Line(
       points={{1,-40},{-18,-40},{-18,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   // Heat transfer
-  connect(heatTransfer.heatPort_x2, toSurfacePort_2.heatPort[1,1]) annotation (Line(
+  connect(heatTransfer.heatPort_x2, toSurfacePort_2.heatPort) annotation (Line(
       points={{8,0},{18,0}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(heatTransfer.heatPort_x1, toSurfacePort_1.heatPort[1,1]) annotation (Line(
+  connect(heatTransfer.heatPort_x1, toSurfacePort_1.heatPort) annotation (Line(
       points={{-8,0},{-18,0}},
       color={191,0,0},
       smooth=Smooth.None));
   // Moisture transport
-  connect(moistBcPort1.moisturePort, toSurfacePort_1.moisturePort[1,1]) annotation (
+  connect(moistBcPort1.moisturePort, toSurfacePort_1.moisturePort) annotation (
       Line(
       points={{-35.2,0},{-18,0}},
       color={120,0,120},
       smooth=Smooth.None));
-  connect(moistBcPort2.moisturePort, toSurfacePort_2.moisturePort[1,1]) annotation (
+  connect(moistBcPort2.moisturePort, toSurfacePort_2.moisturePort) annotation (
       Line(
       points={{35.2,0},{18,0}},
       color={120,0,120},

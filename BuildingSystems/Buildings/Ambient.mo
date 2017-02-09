@@ -15,9 +15,6 @@ model Ambient
   parameter Integer nSurfaces(min=1)
     "Number of building surfaces"
     annotation(HideResult=true, Dialog(tab = "General", group = "Surfaces"));
-  parameter Integer gridSurface[nSurfaces,2]=fill({1,1},nSurfaces)
-    "Grid in y and z dimension of each surface"
-    annotation(Dialog(tab = "Advanced", group = "3D discretisation"));
   parameter Boolean calcLwRad = true
     "True: long-wave radiation exchange on building surfaces is considered; false: no long-wave radiation exchange"
     annotation(HideResult = true,Dialog(tab = "General", group = "Surfaces"));
@@ -56,14 +53,10 @@ model Ambient
     annotation(Placement(transformation(extent={{-40,-10},{-20,10}})));
   Modelica.Blocks.Math.UnitConversions.From_degC from_degC
     annotation(Placement(transformation(extent={{-2,-38},{14,-22}})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAirPorts[nSurfaces](
-    nY = gridSurface[:,1],
-    nZ= gridSurface[:,2])
+  BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAirPorts[nSurfaces]
     "Climate boundary conditions for the building surfaces dependent on the ambient air"
     annotation (Placement(transformation(extent={{70,-80},{90,0}}), iconTransformation(extent={{70,-80},{90,0}})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacePorts[nSurfaces](
-    nY = gridSurface[:,1],
-    nZ= gridSurface[:,2])
+  BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacePorts[nSurfaces]
     "Climate boundary conditions for the building surfaces dependent on ambient surfaces"
     annotation (Placement(transformation(extent={{70,0},{90,80}}), iconTransformation(extent={{70,0},{90,80}})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAirpathPorts[nAirpathes](
@@ -197,27 +190,23 @@ equation
     IrrDirHor = radiation[i].IrrDirHor;
     // Diffuse horizontal radiation
     IrrDifHor = radiation[i].IrrDifHor;
-    for j in 1:gridSurface[i,1] loop
-      for k in 1:gridSurface[i,2] loop
-        // Climate data
-        toAirPorts[i].heatPort[j,k].T = BuildingSystems.Buildings.Functions.TAir(TAirRef,toSurfacePorts[i].zMean,zRefTAir,gamma);
-        toAirPorts[i].moisturePort[j,k].x = xAir;
-        toAirPorts[i].vAir[j,k] = BuildingSystems.Buildings.Functions.vWind(vWindRef,toSurfacePorts[i].zMean,zRefvWind,P);
-        toAirPorts[i].angleDegAir[j,k] = 0.0;
-        // Further ambient parameters
-        if calcLwRad then
-          toSurfacePorts[i].heatPortLw[j,k].Q_flow = Modelica.Constants.sigma * toSurfacePorts[i].epsilon[j,k] * (toSurfacePorts[i].heatPortLw[j,k].T^4 - TSky^4) * toSurfacePorts[i].A[j,k];
-        else
-          toSurfacePorts[i].heatPortLw[j,k].Q_flow = 0.0;
-        end if;
-        toSurfacePorts[i].heatPortSw[j,k].Q_flow = - toSurfacePorts[i].abs[j,k] * (radiation[i].radiationPort.IrrDir + radiation[i].radiationPort.IrrDif) * toSurfacePorts[i].A[j,k];
-        connect(radiation[i].radiationPort, toSurfacePorts[i].radiationPort_in[j,k]) annotation (Line(
-          points={{52,11.8},{52,40},{80,40}},
-          color={0,0,0},
-          pattern=LinePattern.Solid,
-          smooth=Smooth.None));
-      end for;
-    end for;
+    // Climate data
+    toAirPorts[i].heatPort.T = BuildingSystems.Buildings.Functions.TAir(TAirRef,toSurfacePorts[i].zMean,zRefTAir,gamma);
+    toAirPorts[i].moisturePort.x = xAir;
+    toAirPorts[i].vAir = BuildingSystems.Buildings.Functions.vWind(vWindRef,toSurfacePorts[i].zMean,zRefvWind,P);
+    toAirPorts[i].angleDegAir = 0.0;
+    // Further ambient parameters
+    if calcLwRad then
+      toSurfacePorts[i].heatPortLw.Q_flow = Modelica.Constants.sigma * toSurfacePorts[i].epsilon * (toSurfacePorts[i].heatPortLw.T^4 - TSky^4) * toSurfacePorts[i].A;
+    else
+      toSurfacePorts[i].heatPortLw.Q_flow = 0.0;
+    end if;
+    toSurfacePorts[i].heatPortSw.Q_flow = - toSurfacePorts[i].abs * (radiation[i].radiationPort.IrrDir + radiation[i].radiationPort.IrrDif) * toSurfacePorts[i].A;
+    connect(radiation[i].radiationPort, toSurfacePorts[i].radiationPort_in) annotation (Line(
+      points={{52,11.8},{52,40},{80,40}},
+      color={0,0,0},
+      pattern=LinePattern.Solid,
+      smooth=Smooth.None));
   end for;
   // Air path calculation
   for i in 1:nAirpathes loop

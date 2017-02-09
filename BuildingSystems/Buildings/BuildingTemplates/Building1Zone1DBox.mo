@@ -23,8 +23,7 @@ model Building1Zone1DBox
     final nSurfacesSolid=1,
     surfacesToSolids(nSurfaces=nSurfacesSolid),
     final show_TAir = true,
-    final show_xAir = true,
-    final gridSurface=fill({1,1},surfacesToAmbient.nSurfaces));
+    final show_xAir = true);
 
   BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall1 if (BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
@@ -508,7 +507,7 @@ equation
       {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
   elseif BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(wall1.toSurfacePort_2,outerSurfaceWall1.toConstructionPort);
-    connect(ConstTempWall1.port,outerSurfaceWall1.heatPort[1,1]);
+    connect(ConstTempWall1.port,outerSurfaceWall1.heatPort);
   else
     connect(wall1.toSurfacePort_2,outerSurfaceWall1.toConstructionPort);
   end if;
@@ -520,7 +519,7 @@ equation
         {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
   elseif BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(wall2.toSurfacePort_2,outerSurfaceWall2.toConstructionPort);
-    connect(ConstTempWall2.port,outerSurfaceWall2.heatPort[1,1]);
+    connect(ConstTempWall2.port,outerSurfaceWall2.heatPort);
   else
     connect(wall2.toSurfacePort_2,outerSurfaceWall2.toConstructionPort);
   end if;
@@ -534,7 +533,7 @@ equation
         pattern=LinePattern.Solid));
   elseif BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(wall3.toSurfacePort_2,outerSurfaceWall3.toConstructionPort);
-    connect(ConstTempWall3.port,outerSurfaceWall3.heatPort[1,1]);
+    connect(ConstTempWall3.port,outerSurfaceWall3.heatPort);
   else
     connect(wall3.toSurfacePort_2,outerSurfaceWall3.toConstructionPort);
   end if;
@@ -548,7 +547,7 @@ equation
         {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
   elseif BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(wall4.toSurfacePort_2,outerSurfaceWall4.toConstructionPort);
-    connect(ConstTempWall4.port,outerSurfaceWall4.heatPort[1,1]);
+    connect(ConstTempWall4.port,outerSurfaceWall4.heatPort);
   else
     connect(wall4.toSurfacePort_2,outerSurfaceWall4.toConstructionPort);
   end if;
@@ -563,7 +562,7 @@ equation
         {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
   elseif BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(ceiling.toSurfacePort_2,outerSurfaceCeiling.toConstructionPort);
-    connect(ConstTempCeiling.port,outerSurfaceCeiling.heatPort[1,1]);
+    connect(ConstTempCeiling.port,outerSurfaceCeiling.heatPort);
   else
     connect(ceiling.toSurfacePort_2,outerSurfaceCeiling.toConstructionPort);
   end if;

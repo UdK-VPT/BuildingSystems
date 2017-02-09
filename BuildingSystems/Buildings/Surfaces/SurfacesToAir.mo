@@ -3,26 +3,16 @@ model SurfacesToAir
   "Set of surfaces between a set of constructions and the air"
   parameter Integer nSurfaces=0 "Number of surfaces"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
-  parameter Integer gridSurface[nSurfaces,2]=fill({1,1},nSurfaces)
-    "Grid in y and z dimension of each surface";
-  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface[nSurfaces](
-    nY=gridSurface[:, 1],
-    nZ=gridSurface[:, 2])
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface[nSurfaces]
     "Set of surfaces"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts[nSurfaces](
-    nY = gridSurface[:,1],
-    nZ= gridSurface[:,2])
+  BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts[nSurfaces]
     "Set of ports to the constructions"
     annotation (Placement(transformation(extent={{-20,-40},{0,40}}), iconTransformation(extent={{-20,-40},{0,40}})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacesPorts[nSurfaces](
-    nY = gridSurface[:,1],
-    nZ= gridSurface[:,2])
+  BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacesPorts[nSurfaces]
     "Set of ports to other surfaces"
     annotation (Placement(transformation(extent={{0,0},{20,80}}), iconTransformation(extent={{0,0},{20,80}})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAirPorts[nSurfaces](
-    nY = gridSurface[:,1],
-    nZ= gridSurface[:,2])
+  BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAirPorts[nSurfaces]
     "Set of ports to the air"
     annotation (Placement(transformation(extent={{0,-80},{20,0}}), iconTransformation(extent={{0,-80},{20,0}})));
 equation
