@@ -2,7 +2,6 @@ within BuildingSystems.Buildings.Constructions.Examples;
 model WallThermal1DNodes
   "1D thermal wall model under real weather data"
   extends Modelica.Icons.Example;
-
   record Construction
     extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction (
       nLayers=2,
@@ -10,7 +9,6 @@ model WallThermal1DNodes
       material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),
                 BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation()});
   end Construction;
-
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall(
     angleDegAzi = 0.0,
     angleDegTil = 90.0,

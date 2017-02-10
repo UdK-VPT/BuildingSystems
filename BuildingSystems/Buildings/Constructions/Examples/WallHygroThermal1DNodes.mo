@@ -2,13 +2,21 @@ within BuildingSystems.Buildings.Constructions.Examples;
 model WallHygroThermal1DNodes
 "1D thermal wall model under real weather data"
   extends Modelica.Icons.Example;
+  record Construction
+    extends BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
+      nLayers=3,
+      thickness={0.015,0.2,0.02},
+      material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Gipsputz(),
+        BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel(),
+        BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Kalkputz()});
+  end Construction;
   BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall(
     angleDegAzi = 0.0,
     angleDegTil = 90.0,
     height=1.0,
     width=1.0,
     nNodes={10,10,10},
-    redeclare construction constructionData)
+    redeclare Construction constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
     annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
@@ -16,13 +24,6 @@ model WallHygroThermal1DNodes
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile,
     nSurfaces=1)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
-  BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction construction(
-  nLayers=3,
-  thickness={0.015,0.2,0.02},
-  material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Gipsputz(),
-    BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Vollziegel(),
-    BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Kalkputz()})
-    annotation(Placement(transformation(extent={{-10,20},{10,40}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToSolid surface2(calcHygroThermal=true)
     annotation (Placement(transformation(extent={{2,-10},{22,10}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature tempBC(T=293.15)
