@@ -10,20 +10,19 @@ partial model PVModuleGeneral
   parameter Integer nModSer = 1
     "Number of serial connected modules within one common orientation"
     annotation(Dialog(tab = "General"));
-  parameter BuildingSystems.Interfaces.Angle_degOutput angleDegTil
+  BuildingSystems.Interfaces.Angle_degOutput angleDegTil
     "Tilt angle of the PV module"
     annotation (Dialog(tab = "General", group = "Orientation and shadowing"), Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-60,80}), iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={-60,80})));
-  parameter BuildingSystems.Interfaces.Angle_degOutput angleDegAzi
+  BuildingSystems.Interfaces.Angle_degOutput angleDegAzi
     "Azimuth angle of the PV module: South=0 deg West=90 deg East=-90 deg"
     annotation (Dialog(tab = "General", group = "Orientation and shadowing"), Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-60,60}),  iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={-60,60})));
   parameter Boolean use_GSC_in = false
     "= true, use input for geometric shading coefficient GSC"
     annotation(Dialog(tab = "General", group = "Orientation and shadowing"));
-  parameter Modelica.Blocks.Interfaces.RealOutput GSC_constant(min = 0.0, max = 1.0) = 0.0
+  Modelica.Blocks.Interfaces.RealOutput GSC_constant(min = 0.0, max = 1.0) = 0.0
     "Constant shading coefficient (if use_GSC_in = true)"
     annotation(Dialog(tab = "General", group = "Orientation and shadowing"));
-  input BuildingSystems.Interfaces.RadiationPort radiationPort
-    "Radiation port"
+  BuildingSystems.Interfaces.RadiationPort radiationPort "Radiation port"
     annotation (Placement(transformation(extent={{-28,70},{-8,90}}), iconTransformation(extent={{-30,70},{-10,90}})));
   input BuildingSystems.Interfaces.Temp_KInput TAmb
     "Environment air temperature"
