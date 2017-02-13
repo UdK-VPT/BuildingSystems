@@ -10,9 +10,6 @@ partial model AirvolumeGeneral
   parameter Integer nSurfaces(min=1) = 1
     "Number of surfaces, which enclose the air volume"
     annotation(Dialog(tab="General"));
-  parameter Integer gridSurface[nSurfaces,2]=fill({1,1},nSurfaces)
-    "Grid in y and z dimension of each surface"
-    annotation(Dialog(tab = "Advanced", group = "3D discretisation"), HideResult=true);
   parameter Modelica.SIunits.Temp_K T_start = 293.15
     "Start air temperature"
     annotation (Dialog(tab="Initialization"));
@@ -22,9 +19,7 @@ partial model AirvolumeGeneral
   parameter Modelica.SIunits.Mass mH2OLiq_start = 0.0
    "Start liquid water mass"
     annotation (Dialog(tab="Initialization"));
-  BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toSurfacePorts[nSurfaces](
-    nY = gridSurface[:,1],
-    nZ= gridSurface[:,2])
+  BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toSurfacePorts[nSurfaces]
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=90,origin={0,80})));
   output BuildingSystems.Interfaces.Temp_KOutput T
     "Air temperature"

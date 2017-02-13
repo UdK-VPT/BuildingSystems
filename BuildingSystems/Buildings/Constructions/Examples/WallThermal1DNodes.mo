@@ -2,13 +2,20 @@ within BuildingSystems.Buildings.Constructions.Examples;
 model WallThermal1DNodes
   "1D thermal wall model under real weather data"
   extends Modelica.Icons.Example;
+  record Construction
+    extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction (
+      nLayers=2,
+      thickness={0.1,0.1},
+      material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),
+                BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation()});
+  end Construction;
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall(
     angleDegAzi = 0.0,
     angleDegTil = 90.0,
     height=1.0,
     width=1.0,
     nNodes={2,2},
-    constructionData=construction)
+    redeclare Construction constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface2
     annotation (Placement(transformation(extent={{2,-10},{22,10}})));
@@ -18,13 +25,6 @@ model WallThermal1DNodes
     nSurfaces=2,
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
-  BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction construction(
-  nLayers=2,
-  thickness={0.1,0.1},
-  material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),
-    BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation()})
-  annotation(Placement(transformation(extent={{-10,20},{10,40}})));
-
 equation
   connect(surface1.toConstructionPort, wall.toSurfacePort_1) annotation (Line(
       points={{-11,0},{-8,0}},

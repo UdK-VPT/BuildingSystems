@@ -46,7 +46,7 @@ model BuildingThermal1Zone1DBox
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature soilTemp(T=283.15)
     "Thermal boundary condition under the building (soil temperature)";
 equation
-  connect(soilTemp.port,building.toSolidHeatPorts[1].heatPort[1,1]);
+  connect(soilTemp.port,building.toSolidHeatPorts[1]);
   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
    points={{-22,7.66667},{-20,7.66667},{-20,8},{-20,11.3333},{-20,7.66667},{-9,7.66667}},
    color={0,255,0},smooth=Smooth.None));

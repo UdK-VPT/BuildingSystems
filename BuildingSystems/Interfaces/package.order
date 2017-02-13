@@ -7,14 +7,12 @@ FlowPorts
 HeatFlowRateInput
 HeatFlowRateOutput
 HeatPort
-HeatPort2D
 HeatPorts
 LengthInput
 LengthOutput
 MassFlowRateInput
 MassFlowRateOutput
 MoisturePort
-MoisturePort2D
 MoisturePortGeneral
 MoisturePorts
 Moisture_absInput

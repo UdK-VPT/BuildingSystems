@@ -3,10 +3,7 @@ BuildingHygroThermal1Zone1D
 BuildingThermal1Zone1D
 BuildingThermal1Zone1DBox
 BuildingThermal1Zone1DCylinder
-BuildingThermal1Zone3D
 BuildingThermal4Zones1D
 BuildingThermalMultiZone
 DistrictModel
 Sauna
-ThermalModelHouse3D
-ThermalModelHouse3Dwindow

@@ -45,7 +45,6 @@ model ZoneTemplateAirvolumeMixed
     annotation (Dialog(tab="Initialization"));
   BuildingSystems.Buildings.Airvolumes.AirvolumeCompressible0D airvolume(
     nSurfaces=nSurfaces,
-    gridSurface=gridSurfaceZone,
     V=V,
     height=height,
     heightAirpath = heightAirpath,
