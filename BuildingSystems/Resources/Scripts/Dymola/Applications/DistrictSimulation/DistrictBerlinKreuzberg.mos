@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Applications.DistrictSimulation.DistrictBerlinKreuzberg", stopTime=864000, method="dassl", tolerance = 1e-5, resultFile="DistrictBerlinKreuzberg");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 700, 500},
+  y = {"ambient.TAirRef","building122.zone.TAir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "DistrictBerlinKreuzberg.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {720, 0, 700, 500},
+  y = {"Q_flow_heating","Q_flow_cooling"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "DistrictBerlinKreuzberg.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

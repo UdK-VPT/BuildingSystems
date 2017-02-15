@@ -86,7 +86,7 @@ model FreeFloatingTemperature
     ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_India_Bombay weatherDataFile))
     annotation (Placement(transformation(extent={{53,20},{63,30}})));
 
-    annotation(experiment(StartTime=0, StopTime=31536000,Interval=3600),
+    annotation(experiment(StartTime=0, StopTime=31536000),
       __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/ClimateAnalyses/FreeFloatingTemperature.mos" "Simulate and plot"),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-150,-100},{150,100}}), graphics={Text(extent={{-128,-20},{120,-162}}, lineColor={0,0,255},
       textString="Free floating temperature within a building at different climate locations"), Bitmap(
