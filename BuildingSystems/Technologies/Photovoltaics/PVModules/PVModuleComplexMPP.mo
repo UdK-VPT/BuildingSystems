@@ -1,7 +1,7 @@
 within BuildingSystems.Technologies.Photovoltaics.PVModules;
 model PVModuleComplexMPP
   "Two diodes photovoltaic module model MPP controlled"
-  extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.PVModuleGeneral;
+  extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.PVModuleGeneral(angleDegTil = 30,angleDegAzi=0.0);
   BuildingSystems.Technologies.Photovoltaics.BaseClasses.OpticalModels.OpticalModelSimple opticalModel
     "Optical model of the photovoltaic generator"
     annotation (Placement(transformation(extent={{-18,-10},{2,10}})));
