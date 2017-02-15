@@ -54,8 +54,7 @@ package ThermalModelHouse
       height=0.5,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      nInnSur=1,
-      AInnSur={window2.A})
+      AInnSur=window2.A)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={28,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall6(
       redeclare Construction1THM constructionData,
@@ -63,8 +62,7 @@ package ThermalModelHouse
       height=0.5,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      nInnSur=1,
-      AInnSur={window1.A})
+      AInnSur=window1.A)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-52,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall7(
       redeclare Construction2THM constructionData,

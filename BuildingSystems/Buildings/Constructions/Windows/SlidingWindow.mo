@@ -1,14 +1,12 @@
 within BuildingSystems.Buildings.Constructions.Windows;
-model Window
-  "Simplified model of a window"
+model SlidingWindow
+  "Model of a sliding window"
+  extends BuildingSystems.Airflow.Multizone.BaseClasses.TwoWayFlowElement;
   extends BuildingSystems.Buildings.BaseClasses.ConstructionGeneral(
     final abs_1 = 0.0,
-    final abs_2 = 0.0,
-    width = 1.0,
-    height = 1.0);
-  final package Medium = BuildingSystems.Media.Air;
+    final abs_2 = 0.0);
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
-    A=A,
+    A=AFix+AOpe,
     abs = abs_2,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
@@ -21,7 +19,7 @@ model Window
     epsilon = epsilon_2)
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
-    A=A,
+    A=AFix+AOpe,
     abs = abs_1,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
@@ -33,9 +31,18 @@ model Window
     geo.point.z={0.0,0.0,0.0,0.0},
     epsilon = epsilon_1)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
-  parameter Modelica.SIunits.Area A = height * width
-    "Area"
+  parameter Modelica.SIunits.Area AFix = height * (width - widthOpen)
+    "Fixe area of the sliding window"
     annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
+  parameter Modelica.SIunits.Area AOpe = height * widthOpen
+    "Openable area of the sliding window"
+    annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
+  parameter Modelica.SIunits.Length widthOpen = 0.5
+    "Max. width of the open part (full opened postion)"
+    annotation(Dialog(tab = "General", group = "Geometry"));
+  parameter Real pos(min = 0.0, max = 1.0)
+    "Position of the openable part of the window (1.0 = 100 % open, 0.0 = 100 % closed)"
+    annotation(Dialog(tab = "General", group = "Control"));
   parameter Real framePortion = 0.2
     "Frame portion of the window"
     annotation(Dialog(tab = "General", group = "Geometry"));
@@ -63,12 +70,6 @@ model Window
   parameter Real fShadow = 0.0
     "Shadowing coefficient"
     annotation(Dialog(tab = "General", group = "Optical properties"));
-  parameter Boolean calcAirchange = false
-    "True: calculation of air exchange through the window, false: no air exchange"
-    annotation(Dialog(tab = "General", group = "Air change calculation"));
-  parameter BuildingSystems.Types.CoefficientOfAirChange aF = 1.0
-    "Joint coefficient"
-    annotation(Dialog(tab = "General", group = "Air change calculation"));
   parameter Boolean show_TSur = false
     "Show surface temperatures on both sides"
     annotation(Dialog(tab = "Advanced", group = "Surface variables"));
@@ -87,7 +88,7 @@ model Window
     tauDif=tauDif,
     fShadow=fShadow,
     framePortion=framePortion,
-    final areaRatioUnglazed = 0.0)
+    areaRatioUnglazed = widthOpen/width*pos)
     annotation (Placement(transformation(extent={{-10,30},{10,50}})));
   BuildingSystems.Buildings.Constructions.Windows.RadiationTransmission.RadiationTransmissionSimple radTra2to1(
     tauDir0=tauDir0,
@@ -95,7 +96,7 @@ model Window
     tauDif=tauDif,
     fShadow=fShadow,
     framePortion=framePortion,
-    final areaRatioUnglazed = 0.0)
+    areaRatioUnglazed = widthOpen/width*pos)
    annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
   BuildingSystems.HAM.HeatConduction.HeatConduction1D heatTransfer(
     material(
@@ -113,25 +114,6 @@ model Window
   BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowFixed moistBcPort2(
     m_flow_constant=0.0)
     annotation (Placement(transformation(extent={{48,-8},{32,8}})));
-  BuildingSystems.Buildings.Airpathes.AirpathVariable airpathDown if calcAirchange
-    annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
-  BuildingSystems.Buildings.Airpathes.AirpathVariable airpathUp if calcAirchange
-    annotation (Placement(transformation(extent={{-10,10},{10,30}})));
-  Modelica.Fluid.Interfaces.FluidPort_a airpathPortUp_1(redeclare final package Medium=Medium) if calcAirchange
-    annotation (Placement(transformation(extent={{-28,10},{-8,30}}), iconTransformation(extent={{-8,-8},{8,8}},rotation=90,origin={-18,40})));
-  Modelica.Fluid.Interfaces.FluidPort_b airpathPortUp_2(redeclare final package Medium=Medium) if calcAirchange
-    annotation (Placement(transformation(extent={{8,10},{28,30}}), iconTransformation(extent={{-8,-8},{8,8}},rotation=90,origin={18,40})));
-  Modelica.Fluid.Interfaces.FluidPort_a airpathPortDown_1(redeclare final package Medium=Medium) if calcAirchange
-    annotation (Placement(transformation(extent={{-28,-30},{-8,-10}}), iconTransformation(extent={{-26,-48},{-10,-32}})));
-  Modelica.Fluid.Interfaces.FluidPort_b airpathPortDown_2(redeclare final package Medium=Medium) if calcAirchange
-    annotation (Placement(transformation(extent={{8,-30},{28,-10}}), iconTransformation(extent={{10,-48},{26,-32}})));
-  BuildingSystems.Interfaces.Angle_degInput angleDegPanes if calcAirchange
-    annotation (Placement(transformation(extent={{-12,-12},{12,12}},rotation=270,origin={0,62}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={0,78})));
-  BuildingSystems.Buildings.Data.AirpathCharacteristics.AirpathCharacteristicWindow airpathChar(
-    width = width,
-    height = 0.5 * height,
-    aF = aF/3600.0) if calcAirchange
-    "Characteristic of the window airpathes";
 equation
   // Solar Transmittance
   connect(radTra1to2.radiationPort_in, toSurfacePort_1.radiationPort_in)
@@ -178,39 +160,16 @@ equation
       points={{35.2,0},{18,0}},
       color={120,0,120},
       smooth=Smooth.None));
-  // Airpath calculation
-  connect(airpathChar.angleDegPanes,angleDegPanes);
-  connect(airpathUp.kVar,airpathChar.k);
-  connect(airpathUp.mVar,airpathChar.m);
-  connect(airpathDown.kVar,airpathChar.k);
-  connect(airpathDown.mVar,airpathChar.m);
-  connect(airpathUp.airpathPort_1, airpathPortUp_1) annotation (Line(
-      points={{-4,20},{-18,20}},
-      color={0,0,255},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(airpathUp.airpathPort_2, airpathPortUp_2) annotation (Line(
-      points={{4,20},{18,20}},
-      color={0,0,255},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(airpathDown.airpathPort_1, airpathPortDown_1) annotation (Line(
-      points={{-4,-20},{-18,-20}},
-      color={0,0,255},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(airpathDown.airpathPort_2, airpathPortDown_2) annotation (Line(
-      points={{4,-20},{18,-20}},
-      color={0,0,255},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
 
-  annotation (defaultComponentName="window", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+  annotation (defaultComponentName="slidingWindow", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-10,80},{10,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
-    Rectangle(extent={{6,80},{10,-80}},lineColor={170,255,255},fillColor={170,255,255},fillPattern = FillPattern.Solid),
-    Rectangle(extent={{-10,80},{-6,-80}}, lineColor={170,255,255},fillColor={170,255,255},fillPattern = FillPattern.Solid),
+    Rectangle(extent={{6,60},{10,-4}}, lineColor={170,255,255},fillColor={170,255,255},fillPattern = FillPattern.Solid),
     Rectangle(extent={{-20,80},{20,60}},lineColor={175,175,175},fillColor={175,175,175},fillPattern = FillPattern.Solid),
     Rectangle(extent={{-20,-60},{20,-80}},lineColor={175,175,175},fillColor={175,175,175},fillPattern = FillPattern.Solid),
     Line(points={{-10,60},{-10,-60}},color={0,0,255},smooth=Smooth.None,thickness=0.5),
-    Text(extent={{-44,-76},{48,-104}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name")}));
-end Window;
+    Text(extent={{-44,-76},{48,-104}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name"),
+    Rectangle(extent={{-9,20},{-5,-40}},lineColor={170,255,255},fillColor={170,255,255},fillPattern = FillPattern.Solid),
+    Line(points={{0,20},{0,-40}}, color={0,0,0}),
+    Polygon(points={{-2,16},{0,20},{2,16},{-2,16}},lineColor={0,0,0},fillColor={0,0,0},fillPattern=FillPattern.Solid),
+    Polygon(points={{-2,-2},{0,2},{2,-2},{-2,-2}},lineColor={0,0,0},fillColor={0,0,0},fillPattern=FillPattern.Solid,origin={0,-38},rotation=180)}));
+end SlidingWindow;

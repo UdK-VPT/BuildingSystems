@@ -253,8 +253,7 @@ model Building1Zone1DBox
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
     height = height,
     width = length,
-    nInnSur = 1,
-    AInnSur = {window1.A},
+    AInnSur = window1.A,
     constructionData = constructionWall1,
     nNodes = if numResWall1 == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWall1.nLayers) else
       if numResWall1 == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWall1.nLayers) else
@@ -267,8 +266,7 @@ model Building1Zone1DBox
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
     height = height,
     width = width,
-    nInnSur = 1,
-    AInnSur = {window2.A},
+    AInnSur = window2.A,
     constructionData = constructionWall2,
     nNodes = if numResWall2 == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWall2.nLayers) else
       if numResWall2 == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWall2.nLayers) else
@@ -281,8 +279,7 @@ model Building1Zone1DBox
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
     height = height,
     width = length,
-    nInnSur = 1,
-    AInnSur = {window3.A},
+    AInnSur = window3.A,
     constructionData = constructionWall3,
     nNodes = if numResWall3 == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWall3.nLayers) else
       if numResWall3 == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWall3.nLayers) else
@@ -295,8 +292,7 @@ model Building1Zone1DBox
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
     height = height,
     width = width,
-    nInnSur = 1,
-    AInnSur = {window4.A},
+    AInnSur = window4.A,
     constructionData = constructionWall4,
     nNodes = if numResWall4 == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWall4.nLayers) else
       if numResWall4 == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWall4.nLayers) else

@@ -9,7 +9,8 @@ package RadiationTransmission
       annotation (Placement(transformation(extent={{0,-10},{20,10}}), iconTransformation(extent={{0,-10},{20,10}})));
     parameter Real tauDir0 = 0.7
       "Transmittance of direct radiation for perpendicular irradiation";
-    parameter Real b0 = 0.7;
+    parameter Real b0 = 0.7
+      "Coefficient for radiation transmision curve";
     parameter Real tauDif = 0.7
       "Transmittance of diffuse radiation";
     parameter Real fShadow = 0.0
@@ -18,10 +19,12 @@ package RadiationTransmission
       "Frame portion of the window";
     Real tauBeam
       "Transmittance of direct radiation";
+    Modelica.Blocks.Interfaces.RealInput areaRatioUnglazed
+      "Unglazed area of the transparent surface";
   equation
     tauBeam = tauDir0 * BuildingSystems.Utilities.SmoothFunctions.softcut_lower((1.0 - b0 * (1.0 / BuildingSystems.Utilities.SmoothFunctions.softcut_lower(Modelica.Math.cos(Modelica.Constants.pi / 180.0 * radiationPort_in.angleDegInc),0.0,0.001) - 1.0)),0.0,0.001);
-    radiationPort_out.IrrDir = radiationPort_in.IrrDir * tauBeam * (1.0 - fShadow) * (1.0-framePortion);
-    radiationPort_out.IrrDif = radiationPort_in.IrrDif * tauDif * (1.0-framePortion);
+    radiationPort_out.IrrDir = radiationPort_in.IrrDir * (1.0 - fShadow) * (1.0 - framePortion) * (tauBeam* (1.0- areaRatioUnglazed) + areaRatioUnglazed);
+    radiationPort_out.IrrDif = radiationPort_in.IrrDif * (1.0 - framePortion) * (tauDif * (1.0 - areaRatioUnglazed) + areaRatioUnglazed);
     radiationPort_out.angleDegInc = radiationPort_in.angleDegInc;
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={

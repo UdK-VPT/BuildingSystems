@@ -3,8 +3,7 @@ partial model WallGeneral
   "General wall model"
   extends BuildingSystems.Buildings.BaseClasses.ConstructionGeneral(
   width = 1.0,
-  height = 1.0,
-  A = height * width - sum(AInnSur));
+  height = 1.0);
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
     A=A,
     abs = abs_2,
@@ -41,11 +40,11 @@ partial model WallGeneral
     IrrDif_constant = 0.0,
     angleDegInc_constant = 0.0)
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,16})));
-  parameter Integer nInnSur = 0
-    "Number of enclosed surfaces"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Area AInnSur[nInnSur] = fill(0.0,nInnSur)
-    "Area of each enclosed surface"
+  parameter Modelica.SIunits.Area A = height * width - AInnSur
+    "Net area (gross area minus enclosed surfaces)"
+    annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
+  parameter Modelica.SIunits.Area AInnSur = 0.0
+    "Area of all enclosed surfaces"
     annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Boolean heatSource = false
     "True: heat source present in specified layer; false: no heat source present in specified layer"
