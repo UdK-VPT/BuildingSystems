@@ -2905,7 +2905,7 @@ equation
     Text(extent={{-86,-276},{368,-324}},lineColor={28,108,200},textString="City district model with 144 building models")}),
 Documentation(info="<html>
 <p>
-Example that simulates heating and cooling demand of a city diustrict in Berlin-Kreuzberg (Germany).
+Example that simulates heating and cooling demand of a city district in Berlin-Kreuzberg (Germany).
 </p>
 </html>",
 revisions="<html>
