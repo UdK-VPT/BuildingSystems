@@ -1,6 +1,2 @@
 ExampleNcDataReader
 NcDataReader
-ncEasyGet1D
-ncEasyGetAttributeDouble
-ncEasyGetAttributeLong
-ncEasyGetAttributeString

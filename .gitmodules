@@ -1,0 +1,3 @@
+[submodule "netCDF-DataReader"]
+	path = netCDF-DataReader
+	url = https://github.com/tbeu/netCDF-DataReader

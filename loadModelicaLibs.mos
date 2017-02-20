@@ -1,0 +1,4 @@
+Advanced.AutoFormatting:=false;
+OutputCPUtime:=true;
+openModel("./netCDF-DataReader/NcDataReader2/package.mo");
+openModel("../../BuildingSystems/package.mo");
