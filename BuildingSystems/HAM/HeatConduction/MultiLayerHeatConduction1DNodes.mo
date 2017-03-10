@@ -9,8 +9,8 @@ model MultiLayerHeatConduction1DNodes
   BuildingSystems.Interfaces.HeatPort heatPort_x2
     "Heat port in direction x2"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,0})));
-  parameter
-    BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral material[nLayers]
+  parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral material[nLayers]
+    "Thermal properties for each material layer"
     annotation (HideResult=true);
   parameter Modelica.SIunits.Length lengthY = 1.0
     "Length in y dimension";
@@ -33,12 +33,26 @@ equation
   end for;
   connect(heatPort_x2,layer[nLayers].heatPort_x2);
 
-  annotation(defaultComponentName = "multiLayerHeatConduction1DNodes",Icon(graphics={
+  annotation(defaultComponentName = "layeredEle",Icon(graphics={
     Rectangle(extent={{-80,80},{-40,-80}},lineColor={255,170,85},fillColor={255,170,85},fillPattern=FillPattern.Solid),
     Rectangle(extent={{0,80},{40,-80}},lineColor={255,170,85},fillColor={255,170,85},fillPattern=FillPattern.Solid),
     Rectangle(extent={{-40,80},{0,-80}},lineColor={255,85,85},fillColor={255,0,0},fillPattern=FillPattern.Solid),
     Rectangle(extent={{40,80},{80,-80}},lineColor={255,85,85},fillColor={255,0,0},fillPattern=FillPattern.Solid),
     Text(extent={{-14,71},{54,5}},lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="D"),
     Text(extent={{-52,71},{16,5}},lineColor={255,128,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="1"),
-    Text(extent={{-46,-78},{46,-106}},lineColor={0,0,255},fillColor={230,230,230},fillPattern=  FillPattern.Solid,textString="%name")}));
+    Text(extent={{-46,-78},{46,-106}},lineColor={0,0,255},fillColor={230,230,230},fillPattern=  FillPattern.Solid,textString="%name")}),
+Documentation(info="<html>
+<p>
+This model describes the one-dimensional heat conduction of a
+body in x-direction with <code>nLayers</code> of an individual <code>material</code>. Each
+layer can have a different <code>thickness</code> and an edge length <code>dy</code> and <code>dz</code>.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2016 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end MultiLayerHeatConduction1DNodes;

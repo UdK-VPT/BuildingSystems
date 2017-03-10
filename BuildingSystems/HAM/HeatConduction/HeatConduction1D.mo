@@ -28,7 +28,7 @@ equation
   heatPort_source.T = T;
   C * der(T) = heatPort_x1.Q_flow + heatPort_x2.Q_flow + heatPort_source.Q_flow;
 
-  annotation(defaultComponentName = "heatConduction1D",Icon(graphics={
+  annotation(defaultComponentName = "solidEle",Icon(graphics={
     Text(extent={{-14,71},{54,5}},lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},
     fillPattern=FillPattern.Solid,textString="D"),
     Text(extent={{-52,71},{16,5}},lineColor={255,128,0},lineThickness=0.5,

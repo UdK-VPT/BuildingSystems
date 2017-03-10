@@ -358,7 +358,9 @@ equation
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates the 2D dynamic heat conduction of a corner problem.
+Example that simulates the 2D dynamic heat conduction of a corner problem within a room.
+Bodies from two materials (concrete and insulation) are configured in a way that
+the concrete layer is in contact to the room and the insulation layer to the ambient.
 </p>
 </html>",
 revisions="<html>

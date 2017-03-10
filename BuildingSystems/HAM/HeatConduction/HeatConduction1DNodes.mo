@@ -1,6 +1,6 @@
 within BuildingSystems.HAM.HeatConduction;
 model HeatConduction1DNodes
-  "Model for 1D heat conduction and an optional additional discretisation"
+  "Model for 1D heat conduction and an optional additional discretization"
   extends BuildingSystems.HAM.HeatConduction.BaseClasses.HeatConductionGeneral;
   BuildingSystems.Interfaces.HeatPort heatPort_x1
     "Heat port in direction x1"
@@ -16,13 +16,18 @@ model HeatConduction1DNodes
   parameter Modelica.SIunits.Temp_K T_start = 293.15
     "Start temperature of the thermal nodes"
     annotation (Dialog(tab="Initialization"));
-  Modelica.SIunits.Temp_K T[nNodesX](each start = T_start)
+  Modelica.SIunits.Temp_K T[nNodesX](
+    each start = T_start)
     "Temperature of the numerical node";
 protected
-  parameter Modelica.SIunits.Length dx[nNodesX](each fixed = false);
-  parameter Modelica.SIunits.ThermalConductance CTh[nNodesX+1](each fixed=false)
+  parameter Modelica.SIunits.Length dx[nNodesX](
+    each fixed = false)
+    "Thickness of the discretized numerical layer";
+  parameter Modelica.SIunits.ThermalConductance CTh[nNodesX+1](
+    each fixed=false)
     "Thermal conductance of the numerical node";
-  parameter Modelica.SIunits.HeatCapacity C[nNodesX](each fixed = false)
+  parameter Modelica.SIunits.HeatCapacity C[nNodesX](
+    each fixed = false)
     "Heat capacity of the numerical node";
 
 initial algorithm
@@ -62,12 +67,26 @@ equation
     C[1] * der(T[1]) = heatPort_x1.Q_flow + heatPort_x2.Q_flow + heatPort_source[1].Q_flow;
   end if;
 
-  annotation(defaultComponentName = "heatConduction1DNodes",Icon(graphics={
+  annotation(defaultComponentName = "solidEle",Icon(graphics={
     Text(extent={{-14,71},{54,5}},lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="D"),
     Text(extent={{-52,71},{16,5}},lineColor={255,128,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="1"),
     Line(points={{-40,80},{-40,-80}},color={135,135,135},smooth=Smooth.None,thickness=1),
     Line(points={{40,80},{40,-80}},color={135,135,135},smooth=Smooth.None,thickness=1),
     Line(points={{0,80},{0,-80}},color={135,135,135},smooth=Smooth.None,thickness=1),
     Line(points={{-80,80},{-80,-80}},color={135,135,135},smooth=Smooth.None,thickness=1),
-    Line(points={{80,80},{80,-80}},color={135,135,135},smooth=Smooth.None,thickness=1)}));
+    Line(points={{80,80},{80,-80}},color={135,135,135},smooth=Smooth.None,thickness=1)}),
+Documentation(info="<html>
+<p>
+This is a model which describes the one-dimensional heat conduction in x-direction within a
+cuboid shaped body width the edge length <code>dx</code>, <code>dy</code> and <code>dz</code>.
+Hereby the body can be discretized in x-direction into <code>nNodesX</code> numerical nodes.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2016 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end HeatConduction1DNodes;

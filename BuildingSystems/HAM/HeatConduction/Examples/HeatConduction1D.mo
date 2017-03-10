@@ -1,5 +1,6 @@
 within BuildingSystems.HAM.HeatConduction.Examples;
-model HeatConduction1D "1D dynamic heat conduction of 5 bodies"
+model HeatConduction1D
+  "1D dynamic heat conduction of 5 bodies"
   extends Modelica.Icons.Example;
 
   BuildingSystems.HAM.HeatConduction.HeatConduction1D body1(
