@@ -1,9 +1,9 @@
-simulateModel("BuildingSystems.HAM.ConvectiveHeatTransfer.Examples.AlphaPlateFree", startTime=0, stopTime=3600, method="dassl", resultFile="AlphaPlateFree");
+simulateModel("BuildingSystems.HAM.ConvectiveHeatTransfer.Examples.AlphaGap", startTime=0, stopTime=3600, method="dassl", resultFile="AlphaGap");
 removePlots();
 createPlot(
   id = 1,
   position = {0, 0, 600, 500},
-  y = {"alpha0","alpha45","alpha90","alpha180"},
+  y = {"alphaAir","alphaArgon","alphaKrypton","alphaXenon"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,
@@ -11,6 +11,6 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "AlphaPlateFree.mat",
+  filename = "AlphaGap.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
