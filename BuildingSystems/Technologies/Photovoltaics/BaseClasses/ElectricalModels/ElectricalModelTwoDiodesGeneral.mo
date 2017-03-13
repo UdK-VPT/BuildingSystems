@@ -2,18 +2,18 @@ within BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels;
 partial model ElectricalModelTwoDiodesGeneral
   "Detailed electrical model of a solar cell with two diodes and a parallel and serial resistance"
   extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels.ElectricalModelGeneral;
-  parameter Real c1
-    "1st coefficient IPho in m2/V";
-  parameter Real c2
-    "2nd coefficient IPho in m2/kV.K";
+  parameter Real c1(unit = "m2/V")
+    "1st coefficient IPho";
+  parameter Real c2(unit = "m2/kV.K")
+    "2nd coefficient IPho";
   parameter Real cs1
     "1st coefficient ISat1";
   parameter Real cs2
     "2nd coefficient ISat2";
-  parameter Real RPar
-    "Parallel resistance V/A";
-  parameter Real RSer
-    "Serial resistance V/A";
+  parameter Real RPar(unit = "V/A")
+    "Parallel resistance";
+  parameter Real RSer(unit = "V/A")
+    "Serial resistance";
   Modelica.SIunits.ElectricCurrent IPho
     "Photo current";
   Modelica.SIunits.ElectricCurrent ISat1
