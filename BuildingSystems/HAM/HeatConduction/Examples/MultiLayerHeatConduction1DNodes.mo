@@ -10,9 +10,9 @@ model MultiLayerHeatConduction1DNodes
       nLayers=2,
       nNodes={5,5},
       thickness={0.1,0.1},
-      material={insulation,concrete});
-    parameter BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete concrete;
-    parameter BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation insulation;
+      material={
+        BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),
+        BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation()});
   end Body2Layers;
 
   parameter Integer nBodies = 2;
