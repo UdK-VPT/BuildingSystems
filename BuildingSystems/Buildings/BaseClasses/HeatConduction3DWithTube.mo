@@ -99,5 +99,5 @@ equation
     Text(extent={{-32,70},{12,30}}, lineColor={255,128,0},lineThickness=0.5,fillColor={255,128,0},fillPattern = FillPattern.Solid,textString = "3"),
     Text(extent={{-10,71},{34,28}}, lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern = FillPattern.Solid,textString= "D"),
     Rectangle(extent={{-46,16},{44,-16}},lineColor={0,0,0},fillPattern=FillPattern.HorizontalCylinder,fillColor={192,192,192}),
-    Rectangle(extent={{-46,12},{44,-12}},lineColor={0,0,0},fillPattern=FillPattern.HorizontalCylinder,fillColor={217,236,256})}));
+    Rectangle(extent={{-46,12},{44,-12}},lineColor={0,0,0},fillPattern=FillPattern.HorizontalCylinder,fillColor={217,236,255})}));
 end HeatConduction3DWithTube;
