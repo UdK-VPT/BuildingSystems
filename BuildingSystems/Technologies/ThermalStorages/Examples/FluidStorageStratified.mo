@@ -5,7 +5,6 @@ model FluidStorageStratified
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
     height=2.0,
-    redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     HX_2=false,
     Ele_HX_1=2,
     HX_1=false,

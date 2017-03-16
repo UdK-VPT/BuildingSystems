@@ -6,9 +6,6 @@ model FluidStorage
     redeclare package Medium = Medium,
     height=2.0,
     T_start(displayUnit="degC") = 313.15,
-    redeclare
-      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
-      HeatBuoyancy,
     HX_1=true,
     Ele_HX_1=2,
     nEle=6,
