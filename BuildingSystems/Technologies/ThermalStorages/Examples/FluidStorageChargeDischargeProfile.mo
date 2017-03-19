@@ -6,9 +6,6 @@ model FluidStorageChargeDischargeProfile
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
     height=2.0,
-    redeclare
-      BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1
-      HeatBuoyancy,
     HX_2=false,
     Ele_HX_1=3,
     UA_HX_1=500.0,

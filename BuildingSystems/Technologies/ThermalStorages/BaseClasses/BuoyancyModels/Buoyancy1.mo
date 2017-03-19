@@ -1,5 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels;
 model Buoyancy1
+  "Semilinear buoyancy model with fixed (from literature) coefficients"
 protected
   extends BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.PartialBuoyancy;
   parameter Modelica.SIunits.ThermalConductance G = if nEle <10 then 0.8*nEle+16 else 26-0.2571*nEle
@@ -8,7 +9,7 @@ protected
     "Exponent for nEle";
 initial equation
   assert( nEle >= 4 and nEle <= 40,
-  "The number of nodes used nEle is out of the validated range (between 4 and 40), see Info section of the selected buoyancy model.",level=  AssertionLevel.warning);
+  "The number of nodes used nEle is out of the validated range (between 4 and 40), see Info section of the selected buoyancy model.",level = AssertionLevel.warning);
 equation
   for i in 1:nEle-1 loop
     Q_flow[i] = G * dT[i] * nEle^exp_nEle;

@@ -41,8 +41,9 @@ model FluidStorage "Model of a thermal fluid storage"
     each G = ASec * Medium.thermalConductivity(sta_default) / heightLayer)
     "Normal heat transfer due to conductivity"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},origin={-20,-60})));
-  replaceable BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.PartialBuoyancy HeatBuoyancy(
-    nEle=nEle) constrainedby BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.PartialBuoyancy(nEle=nEle)
+  replaceable BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy(
+    nEle=nEle) constrainedby
+    BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.PartialBuoyancy(                         nEle=nEle)
     "Accounting for buoyancy effect"
     annotation (choicesAllMatching=true, Placement(transformation(extent={{-10,-10},{10,10}},origin={-22,-2})),Dialog(tab="Advanced",group="Buoyancy"));
   Modelica.Fluid.Interfaces.FluidPorts_a port_a[nEle - 2](
