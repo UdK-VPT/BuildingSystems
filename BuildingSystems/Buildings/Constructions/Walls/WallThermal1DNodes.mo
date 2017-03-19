@@ -2,7 +2,8 @@ within BuildingSystems.Buildings.Constructions.Walls;
 model WallThermal1DNodes
   "Thermal wall model with 1D discritisation of the single layers"
   extends BuildingSystems.Buildings.BaseClasses.WallThermalGeneral;
-  BuildingSystems.Interfaces.HeatPort heatSourcePort = construction.layer[layerWithHeatSource].heatPort_source[nodeWithHeatSource] if heatSource
+  BuildingSystems.Interfaces.HeatPort heatSourcePort =
+    construction.layer[layerWithHeatSource].heatPort_source[nodeWithHeatSource] if heatSource
     annotation (Placement(transformation(extent={{10,-48},{30,-28}}), iconTransformation(extent={{10,-48},{30,-28}})));
   BuildingSystems.HAM.HeatConduction.MultiLayerHeatConduction1DNodes construction(
     lengthY=width,
@@ -50,5 +51,17 @@ equation
       smooth=Smooth.None));
 
   annotation (defaultComponentName="wall", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
-    Text(extent={{-16,81},{16,38}}, lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="1D")}));
+    Text(extent={{-16,81},{16,38}}, lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="1D")}),
+Documentation(info="<html>
+<p>
+This is a thermal wall model with 1D discritisation of the single layers.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end WallThermal1DNodes;

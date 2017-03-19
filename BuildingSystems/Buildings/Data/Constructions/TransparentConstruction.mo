@@ -12,4 +12,17 @@ record TransparentConstruction
     "U-value of the frame";
   parameter Real g(unit = "1")
     "g-value of of the transparent construction";
+  annotation (
+Documentation(info="<html>
+<p>
+This is model description a transparent building construction.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end TransparentConstruction;

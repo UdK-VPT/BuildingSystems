@@ -16,6 +16,7 @@ partial model WallGeneral
     geo.point.y={0.0,0.0,height,height},
     geo.point.z={0.0,0.0,0.0,0.0},
     epsilon = epsilon_2)
+    "Interface to surface on side 2"
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
     A=A,
@@ -29,16 +30,19 @@ partial model WallGeneral
     geo.point.y={0.0,0.0,height,height},
     geo.point.z={0.0,0.0,0.0,0.0},
     epsilon = epsilon_1)
+    "Interface to surface on side 1"
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
   BuildingSystems.Climate.Sources.RadiationFixed radBcPort1(
     IrrDir_constant = 0.0,
     IrrDif_constant = 0.0,
     angleDegInc_constant = 0.0)
+    "Interface to short-wave radiation on side 1"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={-20,16})));
   BuildingSystems.Climate.Sources.RadiationFixed radBcPort2(
     IrrDir_constant = 0.0,
     IrrDif_constant = 0.0,
     angleDegInc_constant = 0.0)
+    "Interface to short-wave radiation on side 2"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,16})));
   parameter Modelica.SIunits.Area A = height * width - AInnSur
     "Net area (gross area minus enclosed surfaces)"
@@ -67,5 +71,17 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Rectangle(extent={{-20,80},{20,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
     Line(points={{-20,80},{-20,-80}},color={0,0,255},smooth=Smooth.None,thickness=0.5),
-    Text(extent={{8,-76},{100,-104}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString= "%name")}));
+    Text(extent={{8,-76},{100,-104}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString= "%name")}),
+Documentation(info="<html>
+<p>
+This is partial model description of a wall.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end WallGeneral;

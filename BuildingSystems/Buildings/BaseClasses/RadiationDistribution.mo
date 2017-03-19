@@ -18,8 +18,10 @@ model RadiationDistribution
   Modelica.SIunits.Area ATotal
     "Total surface area of the thermal zone";
   BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacePorts[nSurfaces]
+    "Interface to the surfaces of the thermal zone"
     annotation (Placement(transformation(extent={{-90,-42},{-70,38}})));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
+    "Interface to the internal heat sources of the thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={0,58}), iconTransformation(extent={{-40,68},{40,88}})));
   Modelica.SIunits.HeatFlowRate Q_flow_Sw
     "Total short radiation gains of the thermal zone";
@@ -59,6 +61,19 @@ equation
   for i in 1:nHeatSources loop
     heatSourcesPorts[i].T = TSurfMean;
   end for;
+
   annotation (Icon(graphics={Rectangle(extent={{-80,80},{80,-80}},lineColor={255,170,85}, fillColor={255,255,0},fillPattern=FillPattern.Sphere),
-    Text(extent={{8,-76},{100,-104}},lineColor={0,0,255},fillColor={85,170,255},fillPattern = FillPattern.Solid,textString="%name")}));
+    Text(extent={{8,-76},{100,-104}},lineColor={0,0,255},fillColor={85,170,255},fillPattern = FillPattern.Solid,textString="%name")}),
+Documentation(info="<html>
+<p>
+This model describes the short-wave and long-wave radiation distribution within a thermal zone.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end RadiationDistribution;

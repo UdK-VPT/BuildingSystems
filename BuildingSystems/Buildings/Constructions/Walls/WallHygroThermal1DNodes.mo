@@ -2,7 +2,8 @@ within BuildingSystems.Buildings.Constructions.Walls;
 model WallHygroThermal1DNodes
   "Hygro-thermal wall model with 1D discritisation of the single layers"
   extends BuildingSystems.Buildings.BaseClasses.WallHygroThermalGeneral;
-  BuildingSystems.Interfaces.HeatPort heatSourcePort = construction.layer[layerWithHeatSource].heatPort_source[nodeWithHeatSource]if heatSource
+  BuildingSystems.Interfaces.HeatPort heatSourcePort =
+    construction.layer[layerWithHeatSource].heatPort_source[nodeWithHeatSource] if heatSource
     annotation (Placement(transformation(extent={{10,-48},{30,-28}}), iconTransformation(extent={{10,-48},{30,-28}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.MultiLayerHeatAndMoistureTransfer1DNodes construction(
     lengthY = width,
@@ -57,6 +58,19 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
+
   annotation (defaultComponentName="wall", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
-    Text(extent={{-16,81},{16,38}}, lineColor={120,0,120},lineThickness=0.5,fillColor={120,0,120},fillPattern=FillPattern.Solid,textString="1D")}));
+    Text(extent={{-16,81},{16,38}}, lineColor={120,0,120},lineThickness=0.5,fillColor={120,0,120},fillPattern=FillPattern.Solid,textString="1D")}),
+Documentation(info="<html>
+<p>
+This is a hygro-thermal wall model with 1D discritisation of the single layers.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end WallHygroThermal1DNodes;

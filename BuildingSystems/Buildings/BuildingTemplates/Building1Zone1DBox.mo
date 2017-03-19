@@ -25,30 +25,40 @@ model Building1Zone1DBox
     final show_TAir = true,
     final show_xAir = true);
 
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall1 if (BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall1
+    if (BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall1";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall1(T=TWall1_constant) if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall1(T=TWall1_constant)
+    if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall1";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall2 if (BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall2
+    if (BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall2";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall2(T=TWall2_constant) if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall2(T=TWall2_constant)
+    if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall2";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall3 if (BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall3
+    if (BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall3";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall3(T=TWall3_constant) if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall3(T=TWall3_constant)
+    if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall3";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall4 if (BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall4
+    if (BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall4";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall4(T=TWall4_constant) if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall4(T=TWall4_constant)
+    if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall4";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceCeiling if (BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceCeiling
+    if (BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of ceiling";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempCeiling(T=TCeiling_constant) if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempCeiling(T=TCeiling_constant)
+    if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of ceiling";
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWall1
     "Data of the thermal construction"
@@ -86,31 +96,36 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionCeilingsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall1 = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall1 =
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition wall1"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall1_constant = 293.15
     "Constant temperature on the outer surface of wall1 (used if BCWall1=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall2 = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall2 =
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition wall2"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall2_constant = 293.15
     "Constant temperature on the outer surface of wall2 (used if BCWall2=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall3 = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall3 =
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition wall3"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall3_constant = 293.15
     "Constant temperature on the outer surface of wall3 (used if BCWall3=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall4 = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall4 =
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition wall4"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall4_constant = 293.15
     "Constant temperature on the outer surface of wall4 (used if BCWall4=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCCeiling = BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCCeiling =
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition ceiling"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TCeiling_constant = 293.15
@@ -212,29 +227,36 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.Temp_K TAir_start = 293.15
     "Start temperature of indoor air temperature"
     annotation (Dialog(tab="Initialization"));
-
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall1 = BuildingSystems.Buildings.Types.NumericalResolution.Low
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall1 =
+    BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall1"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall2 = BuildingSystems.Buildings.Types.NumericalResolution.Low
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall2 =
+    BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall2"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall3 = BuildingSystems.Buildings.Types.NumericalResolution.Low
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall3 =
+    BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall3"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall4 = BuildingSystems.Buildings.Types.NumericalResolution.Low
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall4 =
+    BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall4"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeiling = BuildingSystems.Buildings.Types.NumericalResolution.Low
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeiling =
+    BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution ceiling"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResBottom = BuildingSystems.Buildings.Types.NumericalResolution.Low
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResBottom =
+    BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution bottom"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeilingsInterior = BuildingSystems.Buildings.Types.NumericalResolution.Low
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeilingsInterior =
+    BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution interior ceilings"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWallsInterior = BuildingSystems.Buildings.Types.NumericalResolution.Low
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWallsInterior =
+    BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution interior walls"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
@@ -249,6 +271,7 @@ model Building1Zone1DBox
     nConstructions3 = 2,
     nConstructions4 = 3,
     T_start = TAir_start)
+    "Thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
     height = height,
@@ -261,6 +284,7 @@ model Building1Zone1DBox
     angleDegAzi = 90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall1_start for i in 1:wall1.constructionData.nLayers})
+    "Wall 1"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
@@ -274,6 +298,7 @@ model Building1Zone1DBox
     angleDegAzi = 180.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall2_start for i in 1:wall2.constructionData.nLayers})
+    "Wall 2"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
@@ -287,6 +312,7 @@ model Building1Zone1DBox
     angleDegAzi = -90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall3_start for i in 1:wall3.constructionData.nLayers})
+    "Wall 3"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{30,-20},{50,0}})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
@@ -300,6 +326,7 @@ model Building1Zone1DBox
     angleDegAzi = 0.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall4_start for i in 1:wall4.constructionData.nLayers})
+    "Wall 4"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,-20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
@@ -312,6 +339,7 @@ model Building1Zone1DBox
     angleDegAzi = 0.0,
     angleDegTil = 180.0,
     T_start = {TCeiling_start for i in 1:ceiling.constructionData.nLayers})
+    "Ceiling"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
@@ -324,6 +352,7 @@ model Building1Zone1DBox
     angleDegAzi = 0.0,
     angleDegTil = 0.0,
     T_start = {TBottom_start for i in 1:bottom.constructionData.nLayers})
+    "Bottom"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wallsInterior(
@@ -336,6 +365,7 @@ model Building1Zone1DBox
     height = 1.0,
     final angleDegAzi = 0,
     T_start = {TWallsInterior_start for i in 1:wallsInterior.constructionData.nLayers}) if InteriorWalls
+    "Optional interior walls"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},origin={-18,-6})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceilingsInterior(
@@ -348,6 +378,7 @@ model Building1Zone1DBox
     final angleDegAzi = 0.0,
     final angleDegTil = 0.0,
     T_start = {TCeilingsInterior_start for i in 1:ceilingsInterior.constructionData.nLayers}) if InteriorCeilings
+    "Optional interior ceilings"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,40})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window1(
@@ -360,6 +391,7 @@ model Building1Zone1DBox
     tauDir0 = constructionWindow1.g,
     tauDif = constructionWindow1.g,
     T_start = TWindow1_start)
+    "Window 1"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-10})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window2(
@@ -372,6 +404,7 @@ model Building1Zone1DBox
     tauDir0 = constructionWindow2.g,
     tauDif = constructionWindow2.g,
     T_start = TWindow2_start)
+    "Window 2"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={2,20})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window3(
@@ -384,6 +417,7 @@ model Building1Zone1DBox
     tauDir0 = constructionWindow3.g,
     tauDif = constructionWindow3.g,
     T_start = TWindow3_start)
+    "Window 3"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},origin={40,10})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window4(
@@ -396,6 +430,7 @@ model Building1Zone1DBox
     tauDir0 = constructionWindow4.g,
     tauDif = constructionWindow4.g,
     T_start = TWindow4_start)
+    "Window 4"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-20})));
 equation
@@ -403,7 +438,6 @@ equation
     annotation (Line(points={{-7,7},{-7,-30},{88,-30},{88,-70},{110,-70}},color={0,0,127},smooth=Smooth.None));
   connect(zone.xAir, xAir[1])
     annotation (Line(points={{-1,7},{-1,-90},{0,-90},{190,-90}}, color={0,0,127}));
-  // Building construction
   // Ideal heat load calculation
   if calcIdealLoads then
     connect(zone.T_setCooling, T_setCooling[1])
@@ -438,6 +472,7 @@ equation
     connect(zone.radHeatSourcesPorts, radHeatSourcesPorts) annotation (Line(
        points={{0.7,-7.3},{0.7,54.35},{0,54.35},{0,120}}, color={127,0,0}));
   end if;
+  // Building construction
   connect(wall1.toSurfacePort_1, zone.toConstructionPorts1[1])
     annotation (Line(points={{-38,10},{-26,10},{-26,2},{-11,2}},
       color={0,0,0},pattern=LinePattern.Solid));
@@ -562,5 +597,18 @@ equation
   else
     connect(ceiling.toSurfacePort_2,outerSurfaceCeiling.toConstructionPort);
   end if;
-  annotation(defaultComponentName="building");
+
+  annotation(defaultComponentName="building",
+Documentation(info="<html>
+<p>
+This is a 1 zone thermal building model with the shape of a box.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end Building1Zone1DBox;

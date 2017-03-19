@@ -14,5 +14,17 @@ model Building1Zone1DDistrict
   parameter Modelica.SIunits.Area ARoom = 4.0 * 4.0
     "Mean floor area of a room";
 
-  annotation(defaultComponentName="building");
+  annotation(defaultComponentName="building",
+Documentation(info="<html>
+<p>
+This is a 1 simplified 1D building model for district simulation.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end Building1Zone1DDistrict;

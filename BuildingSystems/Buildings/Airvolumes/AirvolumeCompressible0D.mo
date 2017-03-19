@@ -40,13 +40,16 @@ model AirvolumeCompressible0D
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpathes](
     redeclare each final package Medium=Medium)
     "Flow ports of the air pathes"
-    annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={0,-80},rotation=180), iconTransformation(extent={{-40,-90},{40,-70}})));
+    annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={0,-80},rotation=180),
+      iconTransformation(extent={{-40,-90},{40,-70}})));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
     "Heat ports of the convective heat sources"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,40}), iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-80,40})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,40}),
+      iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-80,40})));
   BuildingSystems.Interfaces.MoisturePorts moistureSourcesPorts[nMoistureSources]
     "Moisture ports of the moisture sources"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-80,-40}), iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-80,-40})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-80,-40}),
+      iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-80,-40})));
 protected
   Modelica.SIunits.InternalEnergy U(
     start=((rho_nominal * V * BuildingSystems.Utilities.Psychrometrics.Constants.cpAir
@@ -130,5 +133,17 @@ equation
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100}, {100,100}}), graphics={
     Text(extent={{-18,71},{50,5}},lineColor={255,128,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="D"),
-    Text(extent={{-52,71},{16,5}},lineColor={255,128,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="0")}));
+    Text(extent={{-52,71},{16,5}},lineColor={255,128,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="0")}),
+Documentation(info="<html>
+<p>
+This is a model of a compressible ideal-mixed air volume for moist air.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end AirvolumeCompressible0D;

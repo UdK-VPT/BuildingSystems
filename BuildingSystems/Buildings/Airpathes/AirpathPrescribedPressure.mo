@@ -1,5 +1,6 @@
 within BuildingSystems.Buildings.Airpathes;
-model AirpathPrescribedPressure "Air path model for a given pressure"
+model AirpathPrescribedPressure
+  "Air path model for a given pressure"
   Modelica.Fluid.Interfaces.FluidPort_a airpathPort_1(
     redeclare final package Medium=BuildingSystems.Media.Air)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}}), iconTransformation(extent={{-50,-10},{-30,10}})));
@@ -62,8 +63,20 @@ equation
   airpathPort_1.m_flow = Modelica.Math.tanh(factor * (airpathPort_1.p - p_internal)) * rho_nominal * kConstant
     * BuildingSystems.Utilities.SmoothFunctions.safepow(BuildingSystems.Utilities.SmoothFunctions.softfabs(airpathPort_1.p - p_internal,0.05),mConstant);
 
-annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
      Rectangle(extent={{-10,40},{10,-40}},lineColor={230,230,230},fillColor={230,230,230},fillPattern=  FillPattern.Solid,origin={0,1.77636e-015},rotation=90),
      Text(extent={{-44,-10},{48,-38}},lineColor={0,0,255},fillColor={230,230,230},fillPattern=  FillPattern.Solid,textString= "%name"),
-     Rectangle(extent={{-20,9},{20,-9}},  lineColor={230,230,230},fillColor={230,230,230},fillPattern=  FillPattern.Solid,origin={31,0}, rotation=90)}));
+     Rectangle(extent={{-20,9},{20,-9}},  lineColor={230,230,230},fillColor={230,230,230},fillPattern=  FillPattern.Solid,origin={31,0}, rotation=90)}),
+Documentation(info="<html>
+<p>
+This is a model of an air path for a given pressure.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end AirpathPrescribedPressure;

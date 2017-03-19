@@ -4,9 +4,11 @@ partial model AirpathGeneral
   final package Medium = BuildingSystems.Media.Air;
   Modelica.Fluid.Interfaces.FluidPort_a airpathPort_1(
     redeclare final package Medium=Medium)
+    "Air path port side 1"
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}}), iconTransformation(extent={{-50,-10},{-30,10}})));
   Modelica.Fluid.Interfaces.FluidPort_b airpathPort_2(
     redeclare final package Medium=Medium)
+    "Air path port side 2"
     annotation (Placement(transformation(extent={{30,-10},{50,10}}), iconTransformation(extent={{30,-10},{50,10}})));
   BuildingSystems.Types.FlowCoefficient k = 0.5
     "Flow coefficient";
@@ -37,5 +39,17 @@ equation
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-10,40},{10,-40}},lineColor={230,230,230},fillColor={230,230,230},fillPattern=FillPattern.Solid,origin={0,1.77636e-015},rotation=90),
-    Text(extent={{-44,-10},{48,-38}},lineColor={0,0,255},fillColor={230,230,230},fillPattern =FillPattern.Solid,textString="%name")}));
+    Text(extent={{-44,-10},{48,-38}},lineColor={0,0,255},fillColor={230,230,230},fillPattern =FillPattern.Solid,textString="%name")}),
+Documentation(info="<html>
+<p>
+This is partial model description of an air path.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end AirpathGeneral;

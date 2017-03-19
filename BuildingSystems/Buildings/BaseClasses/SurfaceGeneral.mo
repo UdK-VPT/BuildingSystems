@@ -12,5 +12,17 @@ equation
   annotation (defaultComponentName = "surface",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
     graphics={Rectangle(extent={{-6,80},{6,-80}},
-    lineColor={230,230,230},fillColor={230,230,230},fillPattern=FillPattern.Solid)}));
+    lineColor={230,230,230},fillColor={230,230,230},fillPattern=FillPattern.Solid)}),
+Documentation(info="<html>
+<p>
+This is partial model description of a surface.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SurfaceGeneral;

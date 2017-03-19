@@ -92,6 +92,7 @@ partial model BuildingTemplate
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={80,-122}),  iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={90,-110})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAmbientAirpathPorts[nAirpathes](
     redeclare each final package Medium = Medium) if useAirPathes
+    "Interfaces for air pathes to the building ambient"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=90,origin={180,1}),iconTransformation(extent={{-40,-90},{40,-70}},rotation=270,origin={170,-20})));
   BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toAmbientSurfacesPorts[nSurfacesAmbient]
     "Interfaces between outside building surfaces to surfaces of the building ambient"
@@ -152,5 +153,17 @@ equation
     Rectangle(extent={{50,-38},{70,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
     Rectangle(extent={{-70,-38},{-50,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
     Text(extent={{102,-94},{194,-122}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name")}),
-    Diagram(coordinateSystem(extent={{-180,-120},{180,120}}, initialScale=0.1)));
+    Diagram(coordinateSystem(extent={{-180,-120},{180,120}}, initialScale=0.1)),
+Documentation(info="<html>
+<p>
+This is partial model description of a building template.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end BuildingTemplate;

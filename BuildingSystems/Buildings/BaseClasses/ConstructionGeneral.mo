@@ -28,4 +28,18 @@ partial model ConstructionGeneral
   parameter Modelica.SIunits.Emissivity epsilon_2 = 0.9
     "Long-wave emittance side 2"
     annotation(Dialog(tab = "General", group = "Surfaces"));
+
+  annotation (
+Documentation(info="<html>
+<p>
+This is partial model description of a building construction.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end ConstructionGeneral;

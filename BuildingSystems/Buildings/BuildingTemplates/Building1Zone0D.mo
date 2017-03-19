@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.BuildingTemplates;
 model Building1Zone0D
-  "Strong simplified building model with 3 thermal capacities"
+  "Low order building model with 3 thermal capacities"
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
     final nZones = 1,
     final prescribedAirchange = true,
@@ -204,5 +204,17 @@ equation
     connect(zone.radHeatSourcesPorts, radHeatSourcesPorts) annotation (Line(
        points={{0.7,-7.3},{0.7,54.35},{0,54.35},{0,120}}, color={127,0,0}));
 
-  annotation(defaultComponentName="building");
+  annotation(defaultComponentName="building",
+Documentation(info="<html>
+<p>
+This is a low order building model with 3 thermal capacities.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end Building1Zone0D;

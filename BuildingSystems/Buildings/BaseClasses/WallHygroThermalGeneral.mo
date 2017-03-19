@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.BaseClasses;
 partial model WallHygroThermalGeneral
-  "General hygrot-hermal wall model"
+  "General hygro-hermal wall model"
   extends BuildingSystems.Buildings.BaseClasses.WallGeneral;
   parameter Modelica.SIunits.Temp_K T_start[constructionData.nLayers]={293.15 for i in 1:constructionData.nLayers}
     "Start temperature of each layer"
@@ -18,4 +18,18 @@ partial model WallHygroThermalGeneral
   final parameter Modelica.SIunits.CoefficientOfHeatTransfer UVal =
     1.0/(1.0/alphaIns+sum(constructionData.thickness[i]/constructionData.material[i].lambdaDry for i in 1:constructionData.nLayers)+1.0/alphaAmb)
     "U-value of the wall construction under standard conditions";
+
+  annotation (
+Documentation(info="<html>
+<p>
+This is partial model description of a hygro-thermal wall.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end WallHygroThermalGeneral;

@@ -1,7 +1,6 @@
 within BuildingSystems.Buildings.BaseClasses;
 partial model ZoneTemplateGeneral
-  "Common template model for a thermal zone"
-
+  "Template model of a thermal zone"
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium in the air model of the zone"
     annotation (choicesAllMatching = true);
@@ -204,5 +203,17 @@ equation
   Rectangle(extent={{100,100},{80,-100}},lineColor={255,170,85},fillColor={255,170,85},fillPattern = FillPattern.Solid),
   Rectangle(extent={{-80,100},{-100,-100}},lineColor={255,170,85},fillColor={255,170,85},fillPattern = FillPattern.Solid),
   Rectangle(extent={{-80,100},{80,80}}, lineColor={255,170,85},fillColor={255,170,85},fillPattern = FillPattern.Solid),
-  Rectangle(extent={{-80,-80},{80,-100}},lineColor={255,170,85},fillColor={255,170,85},fillPattern = FillPattern.Solid)}));
+  Rectangle(extent={{-80,-80},{80,-100}},lineColor={255,170,85},fillColor={255,170,85},fillPattern = FillPattern.Solid)}),
+Documentation(info="<html>
+<p>
+This is a template model of a thermal zone.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end ZoneTemplateGeneral;

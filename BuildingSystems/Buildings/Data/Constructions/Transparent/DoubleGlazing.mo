@@ -5,4 +5,18 @@ record DoubleGlazing = BuildingSystems.Buildings.Data.Constructions.TransparentC
   UValGla = 3.0,
   UValFra = 2.8,
   g = 0.8)
- "Double glazing with UValGla = 3.0 W/(m2.K) and g = 0.8";
+ "Double glazing with UValGla = 3.0 W/(m2.K) and g = 0.8"
+
+ annotation (
+Documentation(info="<html>
+<p>
+Parameter set for a generic window with double glazing.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));

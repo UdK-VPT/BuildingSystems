@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.BuildingTemplates;
 model Building1Zone0DDistrict
-  "Simplified low-order building for district simulation"
+  "Low-order building model for district simulation"
   extends BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D(
     final VAir = 0.8*length*width*heightSto*nSto,
     final AAmb = ARoo+AFac,
@@ -43,5 +43,17 @@ model Building1Zone0DDistrict
   equation
   q_flow_heating  = zone.Q_flow_heating / AFloorSpace;
 
-  annotation(defaultComponentName="building");
+  annotation(defaultComponentName="building",
+Documentation(info="<html>
+<p>
+This is a low-order building model for district simulation.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end Building1Zone0DDistrict;

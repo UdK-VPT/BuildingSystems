@@ -31,6 +31,7 @@ model Building1Zone1DCylinder
     nConstructions1 = nSeg,
     nConstructions2 = 1,
     nConstructions4 = 1)
+    "Thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   parameter Integer nSeg(min=3) = 3
     "Number of wall segments of the cylinder"
@@ -51,6 +52,7 @@ model Building1Zone1DCylinder
       * 180.0 / Modelica.Constants.pi * (if i / nSeg > 0.5 then 1.0 else -1.0)
       + angleDegAziBuilding for i in 1:nSeg},
     each angleDegTil = 90.0)
+    "Wall segments of tzhe cylinder"
     annotation (Dialog(tab = "Constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
@@ -59,6 +61,7 @@ model Building1Zone1DCylinder
     constructionData = constructionCeiling,
     angleDegAzi = 0.0,
     angleDegTil = 180.0)
+    "Ceiling"
     annotation (Dialog(tab = "Constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
@@ -67,6 +70,7 @@ model Building1Zone1DCylinder
     constructionData = constructionBottom,
     angleDegAzi = 0.0,
     angleDegTil = 0.0)
+    "Bottom"
     annotation (Dialog(tab = "Constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
 protected
@@ -84,7 +88,6 @@ equation
     points={{-7,7},{-7,-30},{88,-30},{88,-70},{110,-70}},
     color={0,0,127},
     smooth=Smooth.None));
-  // Building construction
   // Ideal heat load calculation
   if calcIdealLoads then
     connect(zone.T_setCooling, T_setCooling[1]) annotation (Line(
@@ -126,6 +129,7 @@ equation
     connect(zone.radHeatSourcesPorts, radHeatSourcesPorts) annotation (Line(
        points={{0.7,-7.3},{0.7,54.35},{0,54.35},{0,120}}, color={127,0,0}));
   end if;
+  // Building construction
   for i in 1:nSeg loop
     connect(wall[i].toSurfacePort_1, zone.toConstructionPorts1[i]) annotation (Line(
         points={{-38,10},{-26,10},{-26,2},{-11,2}},
@@ -160,5 +164,17 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid));
 
-  annotation(defaultComponentName="building");
+  annotation(defaultComponentName="building",
+Documentation(info="<html>
+<p>
+This is a 1 zone thermal building model with the shape of a cylinder.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end Building1Zone1DCylinder;
