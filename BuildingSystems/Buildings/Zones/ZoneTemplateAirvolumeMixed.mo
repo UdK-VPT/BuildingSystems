@@ -33,10 +33,12 @@ model ZoneTemplateAirvolumeMixed
     annotation(Dialog(tab="General",group="Ideal heating and cooling"));
   input BuildingSystems.Interfaces.Temp_KInput T_setHeating if calcIdealLoads
     "Set air temperature for heating of the zone"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-100,4}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={10,70})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-100,4}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={10,70})));
   input BuildingSystems.Interfaces.Temp_KInput T_setCooling if calcIdealLoads
     "Set air temperature for cooling of the zone"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-100,-10}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={50,70})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-100,-10}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={50,70})));
   parameter Modelica.SIunits.Temp_K T_start = 293.15
     "Start air temperature of the zone"
     annotation (Dialog(tab="Initialization"));
@@ -53,6 +55,7 @@ model ZoneTemplateAirvolumeMixed
     nHeatSources=nHeatSourcesTotal,
     nMoistureSources=nMoistureSources,
     nAirpathes=nAirpathes)
+    "Air volume model"
     annotation (Placement(transformation(extent={{-24,64},{24,16}})));
   BuildingSystems.Buildings.BaseClasses.RelationRadiationConvection relRadConHeating(
     radiationportion=radiationportionIdealHeating) if calcIdealLoads
@@ -277,5 +280,17 @@ equation
   connect(airvolume.x, xAir)
     annotation (Line(points={{19.2,44.8},{24.6,44.8},{24.6,46},{34,46}}, color={0,0,127}));
 
-  annotation(defaultComponentName="zone");
+  annotation(defaultComponentName="zone",
+Documentation(info="<html>
+<p>
+This is a template model for a thermal zone with fully mixed air volume.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end ZoneTemplateAirvolumeMixed;

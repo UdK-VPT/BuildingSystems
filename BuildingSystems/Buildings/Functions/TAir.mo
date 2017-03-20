@@ -1,7 +1,10 @@
 within BuildingSystems.Buildings.Functions;
-function TAir "Height dependent air temperature"
-  input Modelica.SIunits.Temp_K TAirRef "Air temperature on reference height";
-  input Modelica.SIunits.Height z "Height over ground";
+function TAir
+  "Height dependent air temperature"
+  input Modelica.SIunits.Temp_K TAirRef
+    "Air temperature on reference height";
+  input Modelica.SIunits.Height z
+    "Height over ground";
   input Modelica.SIunits.Height zRefTAir
     "Reference height air temperature measurement";
   input Real gamma(unit = "K/m")
