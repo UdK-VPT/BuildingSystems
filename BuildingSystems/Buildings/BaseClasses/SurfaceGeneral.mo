@@ -4,10 +4,10 @@ partial model SurfaceGeneral
   Buildings.Interfaces.SurfaceToConstructionPort toConstructionPort
     "Port to the construction"
     annotation (Placement(transformation(extent={{-16,-10},{4,10}}), iconTransformation(extent={{-16,-10},{4,10}})));
-  Modelica.SIunits.Area A
+  Modelica.SIunits.Area ASur
     "Surface area";
 equation
-  toConstructionPort.A = A;
+  toConstructionPort.A = ASur;
 
   annotation (defaultComponentName = "surface",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),

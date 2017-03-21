@@ -42,7 +42,7 @@ model BuildingHygroThermal1Zone1D
       width=4.0,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      AInnSur=window2.A,
+      AInnSur=window2.ASur,
       constructionData=construction1)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-12,20})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall4(
@@ -50,7 +50,7 @@ model BuildingHygroThermal1Zone1D
       width=4.0,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      AInnSur=window4.A,
+      AInnSur=window4.ASur,
       constructionData=construction1)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-12,-20})));
     BuildingSystems.Buildings.Constructions.Windows.Window window2(

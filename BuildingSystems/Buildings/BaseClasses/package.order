@@ -5,6 +5,7 @@ ConstructionGeneral
 HeatConduction3DWithTube
 OpaqueConstruction
 OpeningDiscretized
+OpeningDiscretizedOperable
 RadiationDistribution
 RelationRadiationConvection
 SurfaceGeneral

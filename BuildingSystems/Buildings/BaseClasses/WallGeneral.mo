@@ -5,7 +5,7 @@ partial model WallGeneral
   width = 1.0,
   height = 1.0);
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
-    A=A,
+    A=ASur,
     abs = abs_2,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
@@ -19,7 +19,7 @@ partial model WallGeneral
     "Interface to surface on side 2"
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
-    A=A,
+    A=ASur,
     abs = abs_1,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
@@ -44,8 +44,8 @@ partial model WallGeneral
     angleDegInc_constant = 0.0)
     "Interface to short-wave radiation on side 2"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,16})));
-  parameter Modelica.SIunits.Area A = height * width - AInnSur
-    "Net area (gross area minus enclosed surfaces)"
+  parameter Modelica.SIunits.Area ASur = height * width - AInnSur
+    "Net surface area (gross area minus enclosed surfaces)"
     annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
   parameter Modelica.SIunits.Area AInnSur = 0.0
     "Area of all enclosed surfaces"

@@ -47,14 +47,14 @@ equation
     alpha = alphaConstant;
   end if;
   beta = alpha * 1.0e-9;
-  toAirPort.heatPort.Q_flow = alpha * (toAirPort.heatPort.T - T) * A;
+  toAirPort.heatPort.Q_flow = alpha * (toAirPort.heatPort.T - T) * ASur;
   toAirPort.moisturePort.m_flow = - toConstructionPort.moisturePort.m_flow;
-  toAirPort.moisturePort.m_flow = beta * (toAirPort.moisturePort.x - x) * BuildingSystems.Utilities.MoistAirFunctions.p(x,100000.0) * A;
+  toAirPort.moisturePort.m_flow = beta * (toAirPort.moisturePort.x - x) * BuildingSystems.Utilities.MoistAirFunctions.p(x,100000.0) * ASur;
   toSurfacesPort.heatPortSw.T = T;
   toSurfacesPort.heatPortLw.T = T;
   toConstructionPort.heatPort.T = T;
   toConstructionPort.moisturePort.x = x;
-  toSurfacesPort.A = A;
+  toSurfacesPort.A = ASur;
   connect(toConstructionPort.radiationPort_out,toSurfacesPort.radiationPort_out);
   connect(toConstructionPort.radiationPort_in,toSurfacesPort.radiationPort_in);
 end SurfaceToAir;

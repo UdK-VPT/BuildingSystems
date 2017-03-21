@@ -24,7 +24,7 @@ model SingleZoneHygroThermal1D
     width=3.0,
     angleDegAzi=180.0,
     angleDegTil=90.0,
-    AInnSur=window2.A,
+    AInnSur=window2.ASur,
     constructionData=construction1,
     nNodes={4,4})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-18,18})));
@@ -41,7 +41,7 @@ model SingleZoneHygroThermal1D
     width=3.0,
     angleDegAzi=0.0,
     angleDegTil=90.0,
-    AInnSur=window4.A,
+    AInnSur=window4.ASur,
     constructionData=construction1,
     nNodes={4,4})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-18,-20})));

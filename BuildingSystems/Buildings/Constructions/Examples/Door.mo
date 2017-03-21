@@ -1,12 +1,23 @@
 within BuildingSystems.Buildings.Constructions.Examples;
-model SlidingWindow
-  "Sliding Window model with airpathes under real weather data"
+model Door
+  "Door model with airpathes under real weather data"
   extends Modelica.Icons.Example;
-  BuildingSystems.Buildings.Constructions.Windows.SlidingWindow window(
+
+  record ConstructionDoor
+    "Bottom construction"
+    extends
+      BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
+      nLayers=1,
+      thickness={0.030},
+      material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Wood()});
+  end ConstructionDoor;
+
+  BuildingSystems.Buildings.Constructions.Doors.Door door(
+    redeclare ConstructionDoor constructionData,
+    angleDegAzi = 0.0,
+    angleDegTil = 90.0,
     height=2.0,
-    width=2.0,
-    widthOpen = 1.0,
-    UVal=0.5,
+    width=1.0,
     LClo=0.01)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
@@ -40,7 +51,7 @@ model SlidingWindow
     period=3600)
     annotation (Placement(transformation(extent={{-10,-22},{-2,-14}})));
 equation
-  connect(surface1.toConstructionPort, window.toSurfacePort_1) annotation (Line(
+  connect(surface1.toConstructionPort, door.toSurfacePort_1) annotation (Line(
       points={{-15.4,0},{-2,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
@@ -55,7 +66,7 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(window.toSurfacePort_2, zone.toConstructionPorts1[1]) annotation (Line(
+  connect(door.toSurfacePort_2, zone.toConstructionPorts1[1]) annotation (Line(
       points={{2,0},{4,0},{4,4},{15,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
@@ -68,25 +79,25 @@ equation
       points={{30.2,0},{31,0},{31,7}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ambient.toAirpathPorts[1], window.port_a1) annotation (Line(points={{-38,
+  connect(ambient.toAirpathPorts[1], door.port_a1) annotation (Line(points={{-38,
           9},{-38,12},{-10,12},{-10,6}}, color={0,127,255}));
-  connect(ambient.toAirpathPorts[2], window.port_b2) annotation (Line(points={{-42,
+  connect(ambient.toAirpathPorts[2], door.port_b2) annotation (Line(points={{-42,
           9},{-42,12},{-52,12},{-52,-12},{-10,-12},{-10,-6}}, color={0,127,255}));
-  connect(window.port_b1, zone.airpathPorts1[1]) annotation (Line(points={{10,6},
+  connect(door.port_b1, zone.airpathPorts1[1]) annotation (Line(points={{10,6},
           {12,6},{12,-6},{15,-6}}, color={0,127,255}));
-  connect(window.port_a2, zone.airpathPorts1[2])
+  connect(door.port_a2, zone.airpathPorts1[2])
     annotation (Line(points={{10,-6},{15,-6},{15,-2}}, color={0,127,255}));
-  connect(control.y, window.y)
+  connect(control.y, door.y)
     annotation (Line(points={{-1.6,-18},{0,-18},{0,-9}}, color={0,0,127}));
 
   annotation(experiment(StartTime=0, StopTime=86400.0),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/SlidingWindow.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/Door.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={
-    Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},textString="Sliding window model with two airpathes under real weather data")}),
+    Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},textString="Door model with two airpathes under real weather data")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates a sliding window model with airpathes under real weather data.
+Example that simulates a door model with airpathes under real weather data.
 </p>
 </html>",
 revisions="<html>
@@ -97,4 +108,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end SlidingWindow;
+end Door;

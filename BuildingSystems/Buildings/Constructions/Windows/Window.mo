@@ -8,7 +8,7 @@ model Window
     height = 1.0);
   final package Medium = BuildingSystems.Media.Air;
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
-    A=A,
+    A=ASur,
     abs = abs_2,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
@@ -21,7 +21,7 @@ model Window
     epsilon = epsilon_2)
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
-    A=A,
+    A=ASur,
     abs = abs_1,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
@@ -33,8 +33,8 @@ model Window
     geo.point.z={0.0,0.0,0.0,0.0},
     epsilon = epsilon_1)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
-  parameter Modelica.SIunits.Area A = height * width
-    "Area"
+  parameter Modelica.SIunits.Area ASur = height * width
+    "Surface area"
     annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
   parameter Real framePortion = 0.2
     "Frame portion of the window"
