@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Constructions.Examples.WindowWithAirpathes", stopTime=4500, method="dassl", resultFile="WindowWithAirpathes");
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.SlidingWindow", stopTime=86400, method="dassl", resultFile="SlidingWindow");
 removePlots();
 createPlot(
   id = 1,
@@ -11,13 +11,13 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "WindowWithAirpathes.mat",
+  filename = "SlidingWindow.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
 createPlot(
   id = 2,
   position = {410, 0, 400, 500},
-  y = {"window.airpathPortDown_1.m_flow", "window.airpathPortUp_1.m_flow"},
+  y = {"window.port_a1.m_flow", "window.port_b1.m_flow"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,
@@ -25,7 +25,7 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "WindowWithAirpathes.mat",
+  filename = "SlidingWindow.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
   createPlot(
@@ -39,6 +39,6 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "WindowWithAirpathes.mat",
+  filename = "SlidingWindow.mat",
   leftTitleType = 1,
   bottomTitleType = 1);

@@ -1,7 +1,10 @@
 within BuildingSystems.Buildings.Constructions.Windows;
 model SlidingWindow
   "Model of a sliding window"
-  extends BuildingSystems.Airflow.Multizone.BaseClasses.TwoWayFlowElement;
+  extends BuildingSystems.Buildings.BaseClasses.OpeningDiscretized(
+    wOpe = widthOpen,
+    hOpe = height,
+    redeclare package Medium = BuildingSystems.Media.Air);
   extends BuildingSystems.Buildings.BaseClasses.ConstructionGeneral(
     final abs_1 = 0.0,
     final abs_2 = 0.0);
@@ -30,7 +33,8 @@ model SlidingWindow
     geo.point.y={0.0,0.0,height,height},
     geo.point.z={0.0,0.0,0.0,0.0},
     epsilon = epsilon_1)
-    annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
+    annotation (Placement(transformation(extent={{-30,-10},{-10,10}}),
+      iconTransformation(extent={{-30,-10},{-10,10}})));
   parameter Modelica.SIunits.Area AFix = height * (width - widthOpen)
     "Fixe area of the sliding window"
     annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
@@ -40,9 +44,10 @@ model SlidingWindow
   parameter Modelica.SIunits.Length widthOpen = 0.5
     "Max. width of the open part (full opened postion)"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Real pos(min = 0.0, max = 1.0)
+  Modelica.Blocks.Interfaces.RealInput y(min=0, max=1, unit="1")
     "Position of the openable part of the window (1.0 = 100 % open, 0.0 = 100 % closed)"
-    annotation(Dialog(tab = "General", group = "Control"));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90, origin={0,-90}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=90, origin={0,-90})));
   parameter Real framePortion = 0.2
     "Frame portion of the window"
     annotation(Dialog(tab = "General", group = "Geometry"));
@@ -88,7 +93,7 @@ model SlidingWindow
     tauDif=tauDif,
     fShadow=fShadow,
     framePortion=framePortion,
-    areaRatioUnglazed = widthOpen/width*pos)
+    areaRatioUnglazed = widthOpen/width*y)
     annotation (Placement(transformation(extent={{-10,30},{10,50}})));
   BuildingSystems.Buildings.Constructions.Windows.RadiationTransmission.RadiationTransmissionSimple radTra2to1(
     tauDir0=tauDir0,
@@ -96,7 +101,7 @@ model SlidingWindow
     tauDif=tauDif,
     fShadow=fShadow,
     framePortion=framePortion,
-    areaRatioUnglazed = widthOpen/width*pos)
+    areaRatioUnglazed = widthOpen/width*y)
    annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
   BuildingSystems.HAM.HeatConduction.HeatConduction1D heatTransfer(
     material(
@@ -114,7 +119,49 @@ model SlidingWindow
   BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowFixed moistBcPort2(
     m_flow_constant=0.0)
     annotation (Placement(transformation(extent={{48,-8},{32,8}})));
+  parameter Modelica.SIunits.PressureDifference dpCloRat(min=0,displayUnit="Pa") = 4
+    "|Closed aperture rating conditions|Pressure drop at rating condition";
+  parameter Real CDCloRat(min=0, max=1)=1
+    "|Closed aperture rating conditions|Discharge coefficient";
+  parameter Modelica.SIunits.Area LClo(min=0)
+    "|Closed aperture|Effective leakage area";
+  parameter Real CDOpe=0.65
+    "|Open aperture|Discharge coefficient";
+  parameter Real CDClo=0.65
+    "|Closed aperture|Discharge coefficient";
+  parameter Real mOpe = 0.5
+    "|Open aperture|Flow exponent for door";
+  parameter Real mClo= 0.65
+    "|Closed aperture|Flow exponent for crack";
+protected
+  parameter Modelica.SIunits.Area AClo(fixed=false)
+    "Closed aperture area";
+  Real kOpe
+    "Open aperture flow coefficient, k = V_flow/ dp^m";
+  Real kClo
+    "Closed aperture flow coefficient, k = V_flow/ dp^m";
+  Real fraOpe
+    "Fraction of aperture that is open";
+initial equation
+  AClo=CDClo/CDCloRat * LClo * dpCloRat^(0.5-mClo);
 equation
+  fraOpe =y;
+  kClo = CDClo * AClo/nCom * sqrt(2/rho_default);
+  kOpe = CDOpe * AOpe/nCom * sqrt(2/rho_default);
+  // flow exponent
+  m  = fraOpe*mOpe + (1-fraOpe)*mClo;
+  // opening area
+  A = fraOpe*AOpe + (1-fraOpe)*AClo;
+  // friction coefficient for power law
+  kVal = fraOpe*kOpe + (1-fraOpe)*kClo;
+  // orifice equation
+  for i in 1:nCom loop
+    dV_flow[i] = BuildingSystems.Airflow.Multizone.BaseClasses.powerLaw(
+      k=kVal,
+      dp=dpAB[i],
+      m=m,
+      dp_turbulent=dp_turbulent);
+  end for;
   // Solar Transmittance
   connect(radTra1to2.radiationPort_in, toSurfacePort_1.radiationPort_in)
     annotation (Line(
@@ -167,7 +214,6 @@ equation
     Rectangle(extent={{-20,80},{20,60}},lineColor={175,175,175},fillColor={175,175,175},fillPattern = FillPattern.Solid),
     Rectangle(extent={{-20,-60},{20,-80}},lineColor={175,175,175},fillColor={175,175,175},fillPattern = FillPattern.Solid),
     Line(points={{-10,60},{-10,-60}},color={0,0,255},smooth=Smooth.None,thickness=0.5),
-    Text(extent={{-44,-76},{48,-104}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name"),
     Rectangle(extent={{-9,20},{-5,-40}},lineColor={170,255,255},fillColor={170,255,255},fillPattern = FillPattern.Solid),
     Line(points={{0,20},{0,-40}}, color={0,0,0}),
     Polygon(points={{-2,16},{0,20},{2,16},{-2,16}},lineColor={0,0,0},fillColor={0,0,0},fillPattern=FillPattern.Solid),

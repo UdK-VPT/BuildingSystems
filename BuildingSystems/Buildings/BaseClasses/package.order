@@ -3,6 +3,8 @@ AirvolumeGeneral
 BuildingTemplate
 ConstructionGeneral
 HeatConduction3DWithTube
+OpaqueConstruction
+OpeningDiscretized
 RadiationDistribution
 RelationRadiationConvection
 SurfaceGeneral
@@ -10,4 +12,3 @@ WallGeneral
 WallHygroThermalGeneral
 WallThermalGeneral
 ZoneTemplateGeneral
-OpaqueConstruction
