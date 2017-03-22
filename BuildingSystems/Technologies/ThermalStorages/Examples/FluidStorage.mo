@@ -1,5 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorage
+  "Example which demonstrates the external in internal charging processes of a thermal storage"
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
@@ -17,35 +18,39 @@ model FluidStorage
     nPorts=1,
     m_flow=0,
     use_m_flow_in=true,
-    T=343.15) "Flow source"
+    T=343.15)
+    "Flow source"
     annotation (Placement(transformation(extent={{48,-48},{28,-28}})));
   BuildingSystems.Fluid.Sources.Boundary_pT sink2(
     redeclare package Medium = Medium,
     use_T_in=false,
     p(displayUnit="Pa"),
     nPorts=1,
-    T=293.15) "Sink" annotation (Placement(transformation(extent={{10,-10},{-10,
-            10}}, origin={38,2})));
+    T=293.15)
+    "Sink"
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}}, origin={38,2})));
   Modelica.Blocks.Sources.Pulse m_flow1(
     startTime=500.0,
     offset=0.0,
     amplitude=0.2,
     period=400.0,
-    nperiod=1) "Mass flow rate"
+    nperiod=1)
+    "Mass flow rate"
     annotation (Placement(transformation(extent={{-72,-58},{-52,-38}})));
   BuildingSystems.Fluid.Sources.Boundary_pT sink1(
     redeclare package Medium = Medium,
     use_T_in=false,
     p(displayUnit="Pa"),
     nPorts=1,
-    T=293.15) "Sink" annotation (Placement(transformation(extent={{-10,-10},{10,
-            10}}, origin={-60,10})));
+    T=293.15)
+    "Sink" annotation (Placement(transformation(extent={{-10,-10},{10,10}}, origin={-60,10})));
   BuildingSystems.Fluid.Sources.MassFlowSource_T source1(
     redeclare package Medium = Medium,
     nPorts=1,
     m_flow=0.0,
     use_m_flow_in=true,
-    T=298.15) "Flow source"
+    T=298.15)
+    "Flow source"
     annotation (Placement(transformation(extent={{-42,-48},{-22,-28}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature(
     T = 298.15)
@@ -55,7 +60,8 @@ model FluidStorage
     amplitude = 0.2,
     nperiod = 2,
     period = 500.0,
-    startTime = 1200.0) "Mass flow rate"
+    startTime = 1200.0)
+    "Mass flow rate"
     annotation (Placement(transformation(extent={{76,-40},{56,-20}})));
 equation
   connect(source1.ports[1], storage.port_a1) annotation (Line(

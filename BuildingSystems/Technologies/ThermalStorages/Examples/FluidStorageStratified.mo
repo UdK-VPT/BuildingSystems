@@ -86,7 +86,7 @@ equation
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorageStratified.mos" "Simulate and plot"),
 Documentation(info="<html>
 <p>
-Example that simulates a districhr heating network with a main pump.
+Example that simulates a stratified charging process of a thermal storage.
 </p>
 </html>",
 revisions="<html>

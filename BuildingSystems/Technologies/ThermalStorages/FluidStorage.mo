@@ -1,24 +1,29 @@
 within BuildingSystems.Technologies.ThermalStorages;
-model FluidStorage "Model of a thermal fluid storage"
+model FluidStorage
+  "Model of a thermal fluid storage"
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
-    "Medium of the storage model" annotation (choicesAllMatching = true);
-  BuildingSystems.Fluid.MixingVolumes.MixingVolume vol[nEle - 2](
+    "Medium of the storage model"
+    annotation (choicesAllMatching = true);
+  BuildingSystems.Fluid.MixingVolumes.MixingVolume vol[nEle-2](
     redeclare package Medium = Medium,
     each m_flow_nominal = 1.0,
     each V = V / nEle,
     each nPorts = 3,
     each T_start = T_start)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={32,-10})));
-  parameter Modelica.SIunits.Length height = 1.0 "Height of tank"
+  parameter Modelica.SIunits.Length height = 1.0
+    "Height of the storage"
     annotation(Dialog(group="Geometry"));
-  parameter Modelica.SIunits.Volume V = 1.0 "Fluid volume in tank"
+  parameter Modelica.SIunits.Volume V = 1.0
+    "Fluid volume of the storage"
     annotation(Dialog(group="Geometry"));
-  parameter Integer nEle(min=3) = 3 "Number of fluid layers";
+  parameter Integer nEle(min=3) = 3
+    "Number of fluid layers";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer alpha_out = 800.0
-    "Coefficient of heat transfer outside the tank"
+    "Coefficient of heat transfer outside of the storage"
     annotation(Dialog(group="Thermal properties"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer alpha_in = 3000.0
-    "Coefficient of heat transfer inside the tank"
+    "Coefficient of heat transfer inside the storage"
     annotation(Dialog(group="Thermal properties"));
   parameter Modelica.SIunits.ThermalConductivity lambda_ins = 0.05
     "Thermal heat conductivity of insulation material"
@@ -26,7 +31,8 @@ model FluidStorage "Model of a thermal fluid storage"
   parameter Modelica.SIunits.Thickness thickness_ins = 0.005
     "Insulation thickness"
     annotation(Dialog(group="Geometry"));
-  parameter Modelica.SIunits.Thickness thickness_wall = 1 "Wall thickness"
+  parameter Modelica.SIunits.Thickness thickness_wall = 1
+    "Wall thickness"
     annotation(Dialog(group="Geometry"));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor HeatThroughTop(
     G = UA_top)
@@ -37,22 +43,26 @@ model FluidStorage "Model of a thermal fluid storage"
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor HeatThroughBottom(
     G = UA_bot)
     annotation (Placement(transformation(extent={{-34,40},{-54,60}})));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor HeatBetweenLayers[nEle - 1](
-    each G = ASec * Medium.thermalConductivity(sta_default) / heightLayer)
+  Modelica.Thermal.HeatTransfer.Components.ThermalConductor HeatBetweenLayers[nEle-1](
+    each G = ASec * Medium.thermalConductivity(sta_default)/heightLayer)
     "Normal heat transfer due to conductivity"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},origin={-20,-60})));
   replaceable BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy(
     nEle=nEle) constrainedby
-    BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.PartialBuoyancy(                         nEle=nEle)
+    BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.PartialBuoyancy(
+    nEle=nEle)
     "Accounting for buoyancy effect"
-    annotation (choicesAllMatching=true, Placement(transformation(extent={{-10,-10},{10,10}},origin={-22,-2})),Dialog(tab="Advanced",group="Buoyancy"));
+    annotation (choicesAllMatching=true, Placement(transformation(extent={{-10,-10},{10,10}},origin={-22,-2})),
+      Dialog(tab="Advanced",group="Buoyancy"));
   Modelica.Fluid.Interfaces.FluidPorts_a port_a[nEle - 2](
     redeclare package Medium = Medium) if AdditionalFluidPorts
     "Ports to the intermediate layers"
-    annotation (Placement(transformation(extent={{-104,-36},{-86,36}}),iconTransformation(extent={{-80,-38},{-60,38}})));
+    annotation (Placement(transformation(extent={{-104,-36},{-86,36}}),
+      iconTransformation(extent={{-80,-38},{-60,38}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a  heatPort if not PerfectlyIsolated
-    "thermal boundary condition to environment"
-    annotation (Placement(transformation(extent={{-10,94},{10,114}}),iconTransformation(extent={{-10,94},{10,114}})));
+    "Thermal boundary condition to environment"
+    annotation (Placement(transformation(extent={{-10,94},{10,114}}),
+      iconTransformation(extent={{-10,94},{10,114}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector(
     m = 2 + nEle) if not PerfectlyIsolated
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=90,origin={-62,70})));
@@ -73,7 +83,7 @@ model FluidStorage "Model of a thermal fluid storage"
     + log(diameter_ext / diameter_int) / (2 * lambda_ins) + 1/(alpha_in * diameter_int))
     "Thermal conductance walls"
     annotation(Dialog(group="Thermal properties"));
-  parameter Modelica.SIunits.ThermalConductance UA_top=
+  parameter Modelica.SIunits.ThermalConductance UA_top =
     1.0 / (thickness_ins / (lambda_ins * ASec) + 1.0 / (alpha_in * ASec) + 1.0 / (alpha_out * ASec))
     "Thermal conductance top"
     annotation(Dialog(group="Thermal properties"));
@@ -82,13 +92,13 @@ model FluidStorage "Model of a thermal fluid storage"
     annotation(Dialog(group="Thermal properties"));
 protected
   parameter Modelica.SIunits.Diameter diameter_int = sqrt(ASec * 4 / Modelica.Constants.pi)
-    "Inner diameter of tank"
+    "Inner diameter of the storage"
     annotation(Dialog(group="Geometry"));
   parameter Modelica.SIunits.Diameter diameter_ext = diameter_int + 2 * (thickness_wall + thickness_ins)
-    "Exterior diameter of tank"
+    "Exterior diameter of the storage"
     annotation(Dialog(group="Geometry"));
   parameter Modelica.SIunits.Area ASec = V / height
-    "Tank's inner cross-section area";
+    "Inner cross-section area of the storage";
   parameter Modelica.SIunits.Length heightLayer = height / nEle
     "Height of tank layer";
   parameter Medium.ThermodynamicState sta_default = Medium.setState_pTX(
@@ -99,11 +109,11 @@ protected
 public
   Modelica.Fluid.Interfaces.FluidPort_a port_HX_1_a(
     redeclare package Medium = Medium) if HX_1
-    "Port a to the HX at the bottom of the tank"
+    "Port a to the HX at the bottom of the storage"
     annotation (Placement(transformation(extent={{60,-50},{80,-30}}), iconTransformation(extent={{60,-50},{80,-30}})));
   Modelica.Fluid.Interfaces.FluidPort_b port_HX_1_b(
     redeclare package Medium = Medium) if HX_1
-    "Port b to the HX at the bottom of the tank"
+    "Port b to the HX at the bottom of the storage"
     annotation (Placement(transformation(extent={{60,-70},{80,-50}}), iconTransformation(extent={{60,-70},{80,-50}})));
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol_HX_1(
     nPorts = 2,
@@ -117,11 +127,11 @@ public
     annotation (Placement(transformation(extent={{10,10},{-10,-10}},origin={34,-54})));
   Modelica.Fluid.Interfaces.FluidPort_a port_HX_2_a(
     redeclare package Medium = Medium) if  HX_2
-    "Port a to the HX at the top of the tank"
+    "Port a to the HX at the top of the storage"
     annotation (Placement(transformation(extent={{80,40},{60,60}}), iconTransformation(extent={{80,40},{60,60}})));
   Modelica.Fluid.Interfaces.FluidPort_b port_HX_2_b(
     redeclare package Medium = Medium) if HX_2
-    "Port b to the HX at the top of the tank"
+    "Port b to the HX at the top of the storage"
     annotation (Placement(transformation(extent={{80,20},{60,40}}), iconTransformation(extent={{80,20},{60,40}})));
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol_HX_2(
     nPorts = 2,
@@ -136,7 +146,8 @@ public
   parameter Modelica.SIunits.ThermalConductance UA_HX_2 = 100.0
     "Constant thermal conductance of material"
     annotation(Dialog(enable=HX_2,group="HX definition"));
-  parameter Integer Ele_HX_2 = 2 "Layer at which HX_2 is connected"
+  parameter Integer Ele_HX_2 = 2
+    "Layer at which HX_2 is connected"
     annotation(Dialog(enable = HX_2,group="HX definition"));
   parameter Modelica.SIunits.ThermalConductance UA_HX_1 = 100.0
     "Constant thermal conductance of material"
@@ -146,19 +157,19 @@ public
     annotation(Dialog(enable = HX_1,group="HX definition"));
   Modelica.Fluid.Interfaces.FluidPort_b port_b1(
     redeclare package Medium = Medium)
-    "Port to the top of the tank n=nEle"
+    "Port to the top of the storage n=nEle"
     annotation (Placement(transformation(extent={{-100,-100},{-80,-80}}), iconTransformation(extent={{-80,80},{-60,100}})));
   Modelica.Fluid.Interfaces.FluidPort_b port_b2(
     redeclare package Medium = Medium)
-    "Port to the bottom of the tank n=1"
+    "Port to the bottom of the storage n=1"
     annotation (Placement(transformation(extent={{-100,80},{-80,100}}), iconTransformation(extent={{60,-100},{80,-80}})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a1(
     redeclare package Medium = Medium)
-    "Port to the bottom of the tank n=1"
+    "Port to the bottom of the storage n=1"
     annotation (Placement(transformation(extent={{-100,-80},{-80,-60}}), iconTransformation(extent={{-80,-100},{-60,-80}})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a2(
     redeclare package Medium = Medium)
-    "Port to the top of the tank n=nEle"
+    "Port to the top of the storage n=nEle"
     annotation (Placement(transformation(extent={{-100,60}, {-80,80}}), iconTransformation(extent={{60,80},{80,100}})));
   parameter Modelica.Media.Interfaces.Types.Temperature T_start=Medium.T_default
     "Initial storage temperature"
@@ -184,7 +195,7 @@ public
     each T_start = T_start,
     nPorts = 3)
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},origin={-12,40})));
-  Fluid.FixedResistances.LosslessPipe pip[nEle - 2](
+  Fluid.FixedResistances.LosslessPipe pip[nEle-2](
     redeclare package Medium = Medium,
     each m_flow_nominal = 1.0)
     annotation (Placement(transformation(extent={{-48,-10},{-68,10}})));
@@ -209,7 +220,6 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   end for;
-
   // Heat loss through walls: connection to volumes
   connect(HeatThroughTop.port_b, vol_top.heatPort) annotation (Line(
       points={{-22,84},{18,84},{18,40},{-2,40}},
@@ -233,7 +243,6 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
   end for;
-
    // Connect vol.T to output signals
   for i in 1:nEle-2 loop
     T[i+1] = vol[i].T;
@@ -244,8 +253,9 @@ equation
 
   // Connection fluid ports between layers:
   for i in 1:nEle-3 loop
-   connect(vol[i].ports[2], vol[i+1].ports[1]);
+    connect(vol[i].ports[2], vol[i+1].ports[1]);
   end for;
+
   //connect fluidports of vol_top and to vol
   connect(vol_bot.ports[1], vol[1].ports[1]) annotation (Line(
       points={{-57.3333,-90},{18,-90},{18,-28},{29.3333,-28},{29.3333,-20}},
@@ -272,8 +282,8 @@ equation
   connect(port_b2, vol_bot.ports[3]) annotation (Line(
       points={{-90,90},{-86,90},{-86,-88},{-76,-88},{-76,-98},{-56,-98},{-56,
           -90},{-62.6667,-90}},
-      color={0,127,255},
-      smooth=Smooth.None));
+      color={0,127,255},smooth=Smooth.None));
+
   //connection vol to mid interfaces
   for i in 1:nEle-2 loop
    connect(vol[i].ports[3], pip[i].port_a) annotation (Line(
@@ -382,24 +392,31 @@ equation
     Text(extent={{-94,80},{-74,60}},lineColor={0,0,255},fillColor={255,0,0},fillPattern=FillPattern.Solid,textString="T"),
     Line(points={{40,-54},{46,-54},{46,-60},{60,-60}},color={0,0,255},smooth=Smooth.Bezier,visible=HX_1),
     Text(extent={{-147,-108},{153,-148}},lineColor={0,0,255},textString="%name")}),
-    Documentation(info="<html>
-      <p>This is a model for a thermal fluid storage </p>
-      <p><b>Typical use and important parameters</b> </p>
-      <p><code>nEle</code> number of layers, enumeration starts at bottom (bottom layer is no. 1)</p>
-      <p><b>Options</b> </p>
-      <p>The thermal fluid storage model has several fluidports. 2 at the bottom and 2 at the top. It is possible to have different configurations: </p>
-      <ul>
-      <li>Switch on fluidports connected to each of the intermediate fluid layers.</li>
-      <li>2 optional and freely placeable internal heat exchangers (identified as &quot;1&quot; and &quot;2&quot;). </li>
-      <li>Specify the layer at which the HX are connected.</li>
-      <li>Set <code>PerfectlyIsolated</code> to true to switch off the heat losses to the environment, i.e. the thermal fluid storage is perfectly isolated. <br/>
-      Note that if <code>PerfectlyIsolated</code> is set to false and no boundary condition is connected to the heatPort, the external heat flow rate will also be 0.
-      However, because all layers are connected to the external heat port, a non-physical internal heat flow transfer between volumes takes place.</li>
-      </ul>
-      <h4>Notes</h4>
-      <p>The thermal fluid storage uses a model to increase heat exchange betweeen layers accounting for buoyancy effect, see <a href=\"modelica://BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels\">BuoyancyModels</a> </p>
-      <p><b>Assumption and limitations</b> </p>
-      <p>Up to date the model does not take into account the mixing caused by in and outflows and there is no model for a stratified inlet. </p>
-      </html>"),
+Documentation(info="<html>
+<p>This is a model for a thermal fluid storage </p>
+<p><b>Typical use and important parameters</b> </p>
+<p><code>nEle</code> number of layers, enumeration starts at bottom (bottom layer is no. 1)</p>
+<p><b>Options</b> </p>
+<p>The thermal fluid storage model has several fluidports. 2 at the bottom and 2 at the top. It is possible to have different configurations: </p>
+<ul>
+<li>Switch on fluidports connected to each of the intermediate fluid layers.</li>
+<li>2 optional and freely placeable internal heat exchangers (identified as &quot;1&quot; and &quot;2&quot;). </li>
+<li>Specify the layer at which the HX are connected.</li>
+<li>Set <code>PerfectlyIsolated</code> to true to switch off the heat losses to the environment, i.e. the thermal fluid storage is perfectly isolated. <br/>
+Note that if <code>PerfectlyIsolated</code> is set to false and no boundary condition is connected to the heatPort, the external heat flow rate will also be 0.
+However, because all layers are connected to the external heat port, a non-physical internal heat flow transfer between volumes takes place.</li>
+</ul>
+<h4>Notes</h4>
+<p>The thermal fluid storage uses a model to increase heat exchange betweeen layers accounting for buoyancy effect, see <a href=\"modelica://BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels\">BuoyancyModels</a> </p>
+<p><b>Assumption and limitations</b> </p>
+<p>Up to date the model does not take into account the mixing caused by in and outflows and there is no model for a stratified inlet. </p>
+</html>",revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Carles Ribas Tugores:<br/>
+First implementation.
+</li>
+</ul>
+</html>"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
 end FluidStorage;

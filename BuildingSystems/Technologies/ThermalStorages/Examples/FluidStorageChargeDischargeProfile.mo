@@ -1,6 +1,5 @@
 within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageChargeDischargeProfile
-  "Model to test the preservation of a temperature profile and show the numerical"
   extends Modelica.Icons.Example;
   replaceable package Medium =   BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(

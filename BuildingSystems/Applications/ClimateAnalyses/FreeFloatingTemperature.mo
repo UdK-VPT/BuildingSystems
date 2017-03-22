@@ -61,9 +61,9 @@ model FreeFloatingTemperature
       Text(extent={{-42,-16},{42,-38}},lineColor={0,0,255},fillColor={230,230,230},fillPattern=  FillPattern.Solid,textString= "%name")}));
   end Location;
 
-  //Location AmundsenScott(
-  //  ambient(weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_SouthPole_AmundsenScott()))
-  //  annotation (Placement(transformation(extent={{-5,-84},{5,-74}})));
+  Location AmundsenScott(
+    ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_SouthPole_AmundsenScott weatherDataFile))
+    annotation (Placement(transformation(extent={{-5,-84},{5,-74}})));
   Location SanFrancisco(
     ambient(redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile))
     annotation (Placement(transformation(extent={{-91,44},{-81,54}})));
