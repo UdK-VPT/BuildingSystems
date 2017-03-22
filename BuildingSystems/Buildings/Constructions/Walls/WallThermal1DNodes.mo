@@ -51,7 +51,8 @@ equation
       smooth=Smooth.None));
 
   annotation (defaultComponentName="wall", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
-    Text(extent={{-16,81},{16,38}}, lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="1D")}),
+    Text(extent={{-16,81},{16,38}}, lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern = FillPattern.Solid,textString = "1D"),
+    Text(extent={{-66,146},{66,106}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name")}),
 Documentation(info="<html>
 <p>
 This is a thermal wall model with 1D discritisation of the single layers.
