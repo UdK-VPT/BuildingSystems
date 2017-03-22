@@ -17,4 +17,18 @@ connector SurfaceToConstructionPortGeneral
     "Long-wave emittance of the surface";
   BuildingSystems.Types.Absorptance abs
     "Short-wave absorptance of the surface";
+
+  annotation(
+Documentation(info="<html>
+<p>
+General connector model for heat and moisture transport between a surface and the adjacent construction.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SurfaceToConstructionPortGeneral;

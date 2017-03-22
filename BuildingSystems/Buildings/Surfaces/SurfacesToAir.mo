@@ -32,6 +32,19 @@ equation
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
   end for;
+
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
-    Rectangle(extent={{-6,80},{6,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid)}));
+    Rectangle(extent={{-6,80},{6,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid)}),
+Documentation(info="<html>
+<p>
+This is model describes a set of surfaces between a set of constructions and the air.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SurfacesToAir;

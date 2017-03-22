@@ -7,7 +7,7 @@ record OpaqueHygroThermalConstruction
   annotation (
 Documentation(info="<html>
 <p>
-This is partial model description a layerd opaque hygro-thermal building construction.
+This template model holds the parameters of a layerd opaque hygro-thermal building construction.
 </p>
 </html>", revisions="<html>
 <ul>

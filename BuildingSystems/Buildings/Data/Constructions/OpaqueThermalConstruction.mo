@@ -7,7 +7,7 @@ record OpaqueThermalConstruction
   annotation (
 Documentation(info="<html>
 <p>
-This is model description a layerd opaque thermal building construction.
+This template model holds the parameters of a layerd opaque thermal building construction.
 </p>
 </html>", revisions="<html>
 <ul>

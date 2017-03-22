@@ -9,4 +9,18 @@ connector SurfaceToAirPortGeneral
     "Air velocity";
   Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAir
     "Direction of air motion (0 to 360 deg)";
+
+  annotation(
+Documentation(info="<html>
+<p>
+General connector model for heat and moisture transport between a surface and the adjacent air.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SurfaceToAirPortGeneral;

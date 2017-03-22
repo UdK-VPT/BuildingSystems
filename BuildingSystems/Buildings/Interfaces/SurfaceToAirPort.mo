@@ -6,5 +6,17 @@ connector SurfaceToAirPort
   Text(extent={{-110,110},{110,50}},lineColor={0,0,255},textString="%name",fillPattern = FillPattern.Solid,fillColor={255,185,0}),
   Polygon(points={{0,50},{50,0},{0,-50},{-50,0},{0,50}},smooth=Smooth.None,fillColor={85,170,255},fillPattern = FillPattern.Solid, pattern=LinePattern.None,lineColor={0,0,0})}),
   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
-  Polygon(points={{0,100},{100,0},{0,-100},{-100,0},{0,100}},smooth=Smooth.None, pattern=LinePattern.None,lineColor={0,0,0},fillPattern = FillPattern.Solid,fillColor={85,170,255})}));
+  Polygon(points={{0,100},{100,0},{0,-100},{-100,0},{0,100}},smooth=Smooth.None, pattern=LinePattern.None,lineColor={0,0,0},fillPattern = FillPattern.Solid,fillColor={85,170,255})}),
+Documentation(info="<html>
+<p>
+Connector model for heat and moisture transport between a surface and the adjacent air.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SurfaceToAirPort;

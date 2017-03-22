@@ -6,5 +6,17 @@ connector SurfaceToConstructionPort
   Text(extent={{-110,110},{110,50}},lineColor={0,0,255},textString="%name",fillPattern = FillPattern.Solid,fillColor={255,185,0}),
   Polygon(points={{0,50},{50,0},{0,-50},{-50,0},{0,50}},smooth=Smooth.None,fillColor={127,0,0},fillPattern = FillPattern.Solid, pattern=LinePattern.None,lineColor={0,0,0})}),
   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
-  Polygon(points={{0,100},{100,0},{0,-100},{-100,0},{0,100}},smooth=Smooth.None, pattern=LinePattern.None,lineColor={0,0,0},fillPattern = FillPattern.Solid,fillColor={127,0,0})}));
+  Polygon(points={{0,100},{100,0},{0,-100},{-100,0},{0,100}},smooth=Smooth.None, pattern=LinePattern.None,lineColor={0,0,0},fillPattern = FillPattern.Solid,fillColor={127,0,0})}),
+Documentation(info="<html>
+<p>
+Connector model heat and moisture transport between a surface and the adjacent construction.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SurfaceToConstructionPort;
