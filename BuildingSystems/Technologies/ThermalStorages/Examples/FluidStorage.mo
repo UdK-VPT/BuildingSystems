@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorage
-  "Example which demonstrates the external in internal charging processes of a thermal storage"
+  "Example that demonstrates the external in internal charging processes of a thermal storage"
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(

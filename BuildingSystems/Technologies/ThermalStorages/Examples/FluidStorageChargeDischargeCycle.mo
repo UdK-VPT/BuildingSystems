@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageChargeDischargeCycle
-  "Model to show use of temperature sensor (output signal T)"
+  "Example the demonstrates the controlled charging and discharing process of a thermal storage"
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
@@ -12,7 +12,8 @@ model FluidStorageChargeDischargeCycle
     T_start(displayUnit="degC") = 353.15,
     UA_HX_1=500.0,
     AdditionalFluidPorts=false,
-    nEle=6) annotation (Placement(transformation(extent={{-50,-46},{-10,-6}})));
+    nEle=6)
+    annotation (Placement(transformation(extent={{-50,-46},{-10,-6}})));
   BuildingSystems.Fluid.Sources.MassFlowSource_T heatSource(
     redeclare package Medium = Medium,
     nPorts = 1,

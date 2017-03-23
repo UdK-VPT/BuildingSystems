@@ -1,5 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageStratified
+  "Example that simulates a temperature dependent stratified charging process of a thermal storage"
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
@@ -83,10 +84,11 @@ equation
       points={{-56,0},{-56,16},{-18,16},{-18,-4},{2,-4},{2,2},{15.2,2}},
       color={0,0,127},
       smooth=Smooth.None));
+
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorageStratified.mos" "Simulate and plot"),
 Documentation(info="<html>
 <p>
-Example that simulates a stratified charging process of a thermal storage.
+Example that simulates a temperature dependent stratified charging process of a thermal storage.
 </p>
 </html>",
 revisions="<html>
