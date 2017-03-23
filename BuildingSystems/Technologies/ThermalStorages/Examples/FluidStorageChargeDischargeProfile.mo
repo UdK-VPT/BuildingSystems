@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageChargeDischargeProfile
-  "Example which demonstrates the charging / discharging process with different number of layers in the thermal storage"
+  "Example that demonstrates the charging / discharging process with different number of layers in the thermal storage"
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(

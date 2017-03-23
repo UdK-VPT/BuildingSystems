@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageChargeDischargeCycle
-  "Example the demonstrates the controlled charging and discharing process of a thermal storage"
+  "Example that demonstrates the controlled charging and discharing process of a thermal storage"
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(

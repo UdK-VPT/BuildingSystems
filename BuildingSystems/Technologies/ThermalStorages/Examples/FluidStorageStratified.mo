@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageStratified
-  "Example that simulates a temperature dependent stratified charging process of a thermal storage"
+  "Example that demonstrates a temperature dependent stratified charging process of a thermal storage"
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
