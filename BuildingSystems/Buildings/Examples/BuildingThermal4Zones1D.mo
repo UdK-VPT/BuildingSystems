@@ -10,16 +10,20 @@ model BuildingThermal4Zones1D
     convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
     useAirPathes = false);
 
-    BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction construction1(
+    record Construction1
+      extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
       nLayers=2,
       thickness={0.2,0.1},
       material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),
-        BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation()})
-      annotation(Placement(transformation(extent={{-80,80},{-60,100}})));
-    BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction construction2(
-      nLayers=1,thickness={0.1},
-      material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete()})
-      annotation(Placement(transformation(extent={{-58,80},{-38,100}})));
+          BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation()});
+    end Construction1;
+
+    record Construction2
+      extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
+      nLayers=1,
+      thickness={0.1},
+      material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete()});
+    end Construction2;
 
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone1(
       V=3.0*3.0*3.0,
@@ -74,69 +78,69 @@ model BuildingThermal4Zones1D
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free)
       annotation (Placement(transformation(extent={{30,-30},{50,-10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=3.0,
       width=3.0,
       angleDegAzi=90.0,
       angleDegTil=90.0)
       annotation (Placement(transformation(extent={{-50,30},{-70,50}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=3.0,
       width=3.0,
       AInnSur=window2.ASur,
       angleDegAzi=90.0,angleDegTil=90.0)
       annotation (Placement(transformation(extent={{-50,-30},{-70,-10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
-      constructionData=construction2,
+      redeclare Construction2 constructionData,
       height=3.0,
       width=3.0)
       annotation (Placement(transformation(extent={{-10,30},{10,50}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
-      constructionData=construction2,
+      redeclare Construction2 constructionData,
       height=3.0,
       width=3.0)
       annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall5(
-      constructionData=construction1,
+      redeclare Construction2 constructionData,
       height=3.0,
       width=3.0,
       angleDegAzi=-90.0,
       angleDegTil=90.0)
       annotation (Placement(transformation(extent={{50,30},{70,50}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall6(
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=3.0,
       width=3.0,
       angleDegAzi=-90.0,
       angleDegTil=90.0)
       annotation (Placement(transformation(extent={{50,-30},{70,-10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall7(
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=3.0,
       width=3.0,
       AInnSur=window3.ASur,
       angleDegAzi=180.0,angleDegTil=90.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-52,60})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall8(
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=3.0,
       width=3.0,
       AInnSur=window4.ASur,
       angleDegAzi=180.0,angleDegTil=90.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={28,60})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall9(
-      constructionData=construction2,
+      redeclare Construction2 constructionData,
       height=3.0,
       width=3.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-40,10})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall10(
-      constructionData=construction2,
+      redeclare Construction2 constructionData,
       height=3.0,
       width=3.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={40,12})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall11(
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=3.0,
       width=3.0,
       AInnSur=window1.ASur,
@@ -144,7 +148,7 @@ model BuildingThermal4Zones1D
       angleDegTil=90.0)
       annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=90,origin={-52,-42})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall12(
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=3.0,
       width=3.0,
       angleDegAzi=0.0,

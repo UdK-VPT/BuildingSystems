@@ -293,7 +293,10 @@ equation
 Documentation(info="<html>
 <p>
 This is a model which calculates the outside climate boundary conditions of one ore more buildings.
-For a guide on how to generate weather data files that are compatible with this component and a corresponding Python script please refer to \\BuildingSystems\\Resources\\Scripts\\WeatherDataConverter\\README.md
+</p>
+<p>
+Under <a href=\"https://github.com/UdK-VPT/BuildingSystems/tree/master/BuildingSystems/Resources/Scripts/WeatherDataConverter\">BuildingSystems.Resources.Scripts.WeatherDataConverter</a>
+you will find a short guide, which describes a Python based generation of NetCDF files, which can be read by this component.
 </p>
 </html>", revisions="<html>
 <ul>

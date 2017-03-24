@@ -9,18 +9,22 @@ model Sauna
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
       useAirPathes = false);
 
-    BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction  construction1(
+    record Construction1
+      extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
       nLayers=1,
       thickness={0.2},
-      material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete()})
-      annotation(Placement(transformation(extent={{-96,74},{-76,94}})));
-    BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction  construction2(
+      material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete()});
+    end Construction1;
+
+    record Construction2
+      extends BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
       nLayers=3,
       thickness={0.1,0.4,0.1},
       material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Holz(),
       BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Mineralwolle(),
-      BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Holz()})
-      annotation(Placement(transformation(extent={{-74,74},{-54,94}})));
+      BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Holz()});
+    end Construction2;
+
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed sauna(
       nConstructions3=1,
       calcIdealLoads=false,
@@ -46,7 +50,7 @@ model Sauna
       width=2.0,
       height=2.4,
       nNodes={32,32,32},
-      constructionData=construction2)
+      redeclare Construction2 constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-2,-10})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall3(
       angleDegAzi=-90.0,
@@ -54,7 +58,7 @@ model Sauna
       width=2,
       height=2.4,
       nNodes={32,32,32},
-      constructionData=construction2)
+      redeclare Construction2 constructionData)
       annotation (Placement(transformation(extent={{32,-10},{52,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes  wall2(
       angleDegAzi=180.0,
@@ -62,7 +66,7 @@ model Sauna
       width=3.0,
       height=2.4,
       nNodes={32,32,32},
-      constructionData=construction2)
+      redeclare Construction2 constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={20,22})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall4(
       angleDegAzi=0.0,
@@ -70,7 +74,7 @@ model Sauna
       width=3,
       height=2.4,
       nNodes={32,32,32},
-      constructionData=construction2)
+      redeclare Construction2 constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-22})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes floor1(
       angleDegAzi=0.0,
@@ -78,7 +82,7 @@ model Sauna
       height=2.0,
       angleDegTil=0.0,
       nNodes={32,32,32},
-      constructionData=construction2)
+      redeclare Construction2 constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={32,-32})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes ceiling1(
       width=2.0,
@@ -86,7 +90,7 @@ model Sauna
       angleDegAzi=0.0,
       angleDegTil=180.0,
       nNodes={32,32,32},
-      constructionData=construction2)
+      redeclare Construction2 constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={32,34})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed anteroom(
       nConstructions1=1,
@@ -105,7 +109,7 @@ model Sauna
       annotation (Placement(transformation(extent={{-44,-10},{-24,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall5(
       angleDegTil=90.0,
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       width=2.0,
       height=2.4,
       angleDegAzi=-90.0,
@@ -113,7 +117,7 @@ model Sauna
       annotation (Placement(transformation(extent={{-12,26},{8,46}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall6(
       angleDegTil=90.0,
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=2.4,
       nNodes={4},
       width=5.0,
@@ -121,7 +125,7 @@ model Sauna
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-34,48})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall7(
       angleDegTil=90.0,
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=2.4,
       nNodes={4},
       width=6.0,
@@ -129,7 +133,7 @@ model Sauna
      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-68,0})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall8(
       angleDegTil=90.0,
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=2.4,
       nNodes={4},
       width=5.0,
@@ -137,14 +141,14 @@ model Sauna
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-32,-48})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall9(
       angleDegTil=90.0,
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=2.4,
       nNodes={4},
       width=2.0,
       angleDegAzi=-90.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={-2,-36})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling2(
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       nNodes={4},
       width=5.0,
       angleDegAzi=180.0,
@@ -152,7 +156,7 @@ model Sauna
       angleDegTil=0.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-14,60})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor2(
-      constructionData=construction1,
+      redeclare Construction1 constructionData,
       height=2.4,
       nNodes={4},
       width=5.0,
