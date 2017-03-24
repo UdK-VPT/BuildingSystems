@@ -33,12 +33,13 @@ partial model SolarRadiationTransformerGeneral
   input BuildingSystems.Interfaces.Angle_degInput angleDegTil
     "Tilt angle of the surface"
     annotation (Placement(transformation(extent={{-102,-46},{-62,-6}}), iconTransformation(extent={{-90,-34},{-62,-6}})));
-  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleZen "Zenith angle";
-  Real cosAngleDegAzi
+  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegZen
+    "Zenith angle";
+  Real cosAngleAzi
     "Cosinus of the azimuth angle";
-  Real cosAngleDegInc
+  Real cosAngleInc
     "Cosinus of the incidence angle";
-  Real cosAngleDegTil
+  Real cosAngleTil
     "Cosinus of the tilt angle";
   Real cosAngleZen
     "Cosinus of the zenith angle";
@@ -48,9 +49,9 @@ partial model SolarRadiationTransformerGeneral
     "Hour angle of the sun";
   Real R
     "R-factor for solar beam radiation";
-  Real sinangleDegAzi
+  Real sinAngleAzi
     "Sinus of the azimuth angle";
-  Real sinangleDegTil
+  Real sinAngleTil
     "Sinus of the tilt angle";
   BuildingSystems.Types.Time_hr timeSun
     "Solar time";
@@ -80,23 +81,23 @@ equation
   cosAngleZen = BuildingSystems.Utilities.SmoothFunctions.softcut(cosAngleLat * cos(angleDec) * cos(angleHr)
     + sinAngleLat * sin(angleDec),0.00001,1.0,0.0001);
 
-  angleZen = acos(cosAngleZen) * 180.0 / Modelica.Constants.pi;
+  angleDegZen = acos(cosAngleZen) * 180.0 / Modelica.Constants.pi;
 
-  cosAngleDegInc = BuildingSystems.Utilities.SmoothFunctions.softcut(sin(angleDec) * sinAngleLat * cosAngleDegTil
-    - sin(angleDec) * cosAngleLat * sinangleDegTil * cosAngleDegAzi
-    + cos(angleDec) * cosAngleLat * cosAngleDegTil * cos(angleHr)
-    + cos(angleDec) * sinAngleLat * sinangleDegTil * cosAngleDegAzi * cos(angleHr)
-    + cos(angleDec) * sinangleDegTil * sinangleDegAzi * sin(angleHr),0.0,1.0,0.0001);
+  cosAngleInc = BuildingSystems.Utilities.SmoothFunctions.softcut(sin(angleDec) * sinAngleLat * cosAngleTil
+    - sin(angleDec) * cosAngleLat * sinAngleTil * cosAngleAzi
+    + cos(angleDec) * cosAngleLat * cosAngleTil * cos(angleHr)
+    + cos(angleDec) * sinAngleLat * sinAngleTil * cosAngleAzi * cos(angleHr)
+    + cos(angleDec) * sinAngleTil * sinAngleAzi * sin(angleHr),0.0,1.0,0.0001);
 
-  radiationPort.angleDegInc = acos(cosAngleDegInc) * 180.0 / Modelica.Constants.pi;
+  radiationPort.angleDegInc = acos(cosAngleInc) * 180.0 / Modelica.Constants.pi;
 
-  sinangleDegAzi = sin(angleDegAzi * Modelica.Constants.pi / 180.0);
+  sinAngleAzi = sin(angleDegAzi * Modelica.Constants.pi / 180.0);
 
-  cosAngleDegAzi = cos(angleDegAzi * Modelica.Constants.pi / 180.0);
+  cosAngleAzi = cos(angleDegAzi * Modelica.Constants.pi / 180.0);
 
-  sinangleDegTil = sin(angleDegTil * Modelica.Constants.pi / 180.0);
+  sinAngleTil = sin(angleDegTil * Modelica.Constants.pi / 180.0);
 
-  cosAngleDegTil = cos(angleDegTil * Modelica.Constants.pi / 180.0);
+  cosAngleTil = cos(angleDegTil * Modelica.Constants.pi / 180.0);
 
   IrrTotHor = IrrDirHor + IrrDifHor;
 
@@ -110,5 +111,17 @@ equation
     Line(points={{32,8},{52,-12}}, color={255,128,0},thickness=1,smooth=Smooth.None),
     Line(points={{-8,-32},{12,-52}},color={255,128,0},thickness=1,smooth=Smooth.None),
     Line(points={{2,-22},{22,-42}},color={255,128,0},thickness=1,smooth=Smooth.None),
-    Text(extent={{-32,-78},{36,-104}}, lineColor={0,0,255},textString="%name")}));
+    Text(extent={{-32,-78},{36,-104}}, lineColor={0,0,255},textString="%name")}),
+Documentation(info="<html>
+<p>
+This model calculates the solar radiation on a tilted surface (general model).
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SolarRadiationTransformerGeneral;
