@@ -1,6 +1,7 @@
 within BuildingSystems.Climate.SolarRadiationTransformers;
 partial model SolarRadiationTransformerGeneral
   "Solar radiation calculation on a tilted surface (general model)"
+
   input BuildingSystems.Interfaces.Angle_degInput latitudeDeg
     "Latitude of the location"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=270,origin={-10,88}),iconTransformation(extent={{-14,-14},{14,14}},rotation=270,origin={-38,76})));
@@ -47,8 +48,8 @@ partial model SolarRadiationTransformerGeneral
     "Declination angle of the sun";
   Modelica.SIunits.Angle angleHr
     "Hour angle of the sun";
-  Real R
-    "R-factor for solar beam radiation";
+  Modelica.SIunits.RadiantEnergyFluenceRate IrrDirNor
+    "Direct normal solar irradiance";
   Real sinAngleAzi
     "Sinus of the azimuth angle";
   Real sinAngleTil
@@ -102,9 +103,16 @@ equation
   IrrTotHor = IrrDirHor + IrrDifHor;
 
   IrrTotTil = radiationPort.IrrDif + radiationPort.IrrDir;
+
+  // softcut for the limit of the solar constant = 1367  W/m^2. Value recommended by the world Radiometric Center
+  IrrDirNor = BuildingSystems.Utilities.SmoothFunctions.softcut_upper(IrrDirHor/cosAngleZen,1367,0.001);
+
+  radiationPort.IrrDir = cosAngleInc * IrrDirNor;
+
   annotation (Icon(graphics={
     Rectangle(extent={{-80,80},{80,-80}}, lineColor={170,213,255},fillPattern = FillPattern.Solid,fillColor={170,213,255}),
-    Ellipse(extent={{-60,62},{20,-18}},lineColor={255,128,0},fillColor={255,128,0},fillPattern = FillPattern.Solid),
+    Ellipse(extent={{-60,62},{20,-18}},lineColor={255,128,0},fillColor={255,128,0},
+            fillPattern =                                                                        FillPattern.Solid),
     Line(points={{72,-8},{8,-72}},color={0,0,0},smooth=Smooth.None,thickness=2),
     Line(points={{12,-12},{32,-32}},color={255,128,0},thickness=1,smooth=Smooth.None),
     Line(points={{22,-2},{42,-22}}, color={255,128,0},thickness=1,smooth=Smooth.None),
@@ -114,7 +122,21 @@ equation
     Text(extent={{-32,-78},{36,-104}}, lineColor={0,0,255},textString="%name")}),
 Documentation(info="<html>
 <p>
-This model calculates the solar radiation on a tilted surface (general model).
+This model calculates the direct solar radiation on a tilted surface (general model).
+</p>
+<p>
+The direct solar radiation forms an angle with the vector normal to the earth <code>Zen</code>.
+The same direct solar radiation forms an angle with the normal vector of a tilted surface <code>Inc</code>.
+</p>
+<p>
+Based on trigonometric relations, the model calculates the direct normal irradiation. 
+<code>IrrDirNor = IrrDirHor/cosAngleZen</code>, Which maximum value is limited for numerical reasons to the solar constant <code>1367</code> W/m2. 
+</p>
+<p>
+the amount of direct solar radiation incident on a tilted surface is equal to 
+<code>
+IrrTotTil = IrrDirNor * cosAngleInc
+</code>
 </p>
 </html>", revisions="<html>
 <ul>
