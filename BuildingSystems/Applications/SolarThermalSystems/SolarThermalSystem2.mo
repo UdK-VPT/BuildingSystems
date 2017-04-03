@@ -1,6 +1,6 @@
 within BuildingSystems.Applications.SolarThermalSystems;
 model SolarThermalSystem2
-  "Example of a  solar thermal system with an external heat exchanger"
+  "Example of a solar thermal system with an external heat exchanger"
   extends Modelica.Icons.Example;
   replaceable package Medium = BuildingSystems.Media.Water;
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.01;
@@ -9,9 +9,6 @@ model SolarThermalSystem2
     "time IrrDir IrrDif TAirAmb"
     annotation (Placement(transformation(extent={{-126,62},{-110,78}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
-    latitudeDeg = weatherData.latitudeDeg,
-    longitudeDeg = weatherData.longitudeDeg,
-    longitudeDeg0 = weatherData.longitudeDeg0,
     rhoAmb=0.2,
     angleDegL=0.0)
     annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
@@ -221,6 +218,14 @@ equation
     annotation (Line(points={{-8,-58},{-8,-60},{8,-60}}, color={0,127,255}));
   connect(hex.port_b2, storage.port_a2) annotation (Line(points={{-8,-38},{28,-38},
           {28,-41},{35,-41}}, color={0,127,255}));
+  connect(weatherData.latitudeDeg, radiation.latitudeDeg) annotation (Line(
+          points={{-109.2,77.2},{-106,77.2},{-106,80},{-93.8,80},{-93.8,77.6}},
+          color={0,0,127}));
+  connect(weatherData.longitudeDeg, radiation.longitudeDeg) annotation (Line(
+        points={{-109.2,75.6},{-106,75.6},{-106,80},{-90,80},{-90,77.6}}, color
+        ={0,0,127}));
+  connect(weatherData.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
+        points={{-109.2,74},{-106,74},{-106,80},{-86,80},{-86,77.6}}, color={0,0,127}));
 
   annotation (experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem2.mos" "Simulate and plot"),

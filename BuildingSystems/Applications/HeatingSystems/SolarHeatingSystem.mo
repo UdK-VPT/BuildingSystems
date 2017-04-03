@@ -53,7 +53,9 @@ model SolarHeatingSystem
     annotation (Placement(transformation(extent={{8,-70},{-12,-50}})));
   BuildingSystems.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad(
     redeclare package Medium = Medium,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
+    dp_nominal=10.0,
     Q_flow_nominal=4000.0,
     VWat=0.005,
     mDry=0.0001,
@@ -62,9 +64,8 @@ model SolarHeatingSystem
     T_a_nominal=273.15 + 90.0,
     T_b_nominal=273.15 + 70,
     TAir_nominal=273.15 + 20.0,
-    n=1.3,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "radiator model"
+    n=1.3)
+    "Radiator model"
     annotation (Placement(transformation(extent={{-12,-22},{8,-2}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pip2(
     redeclare package Medium = Medium,
@@ -72,7 +73,7 @@ model SolarHeatingSystem
     nNodes=2,
     thicknessIns=0.02,
     lambdaIns=0.04,
-    length=1)
+    length=1.0)
     "Pipe model"
     annotation (Placement(transformation(extent={{-16,-70},{-36,-50}})));
   Modelica.Blocks.Sources.Constant TSet(k=273.15 + 60.0)
@@ -84,7 +85,7 @@ model SolarHeatingSystem
     thicknessIns=0.02,
     lambdaIns=0.04,
     diameter=0.02,
-    length=1)
+    length=1.0)
     "Pipe model"
     annotation (Placement(transformation(extent={{-60,-2},{-40,-22}})));
   BuildingSystems.Fluid.Actuators.Valves.Data.Generic datVal(
@@ -114,14 +115,15 @@ model SolarHeatingSystem
     redeclare package Medium =Medium, m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-84,-22},{-64,-2}})));
   Modelica.Blocks.Sources.Constant dpSet(
-    k=12000.0)
-    "Set presure for the pump model"
+    k=2000.0)
+    "Set pressure for the pump model"
     annotation (Placement(transformation(extent={{-68,6},{-72,10}})));
   Modelica.Blocks.Sources.Constant TAirSet(
     k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{-20,24},{-24,28}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(
     each T=293.15)
+    "Ambient temperature"
     annotation (Placement(transformation(extent={{-72,-46},{-60,-34}})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     HX_2=false,
@@ -132,6 +134,7 @@ model SolarHeatingSystem
     height = 2.0,
     redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     redeclare package Medium = Medium)
+    "Solar storage"
     annotation (Placement(transformation(extent={{38,-40},{58,-20}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
     redeclare package Medium = Medium,
@@ -140,6 +143,7 @@ model SolarHeatingSystem
     m_flow_nominal=m_flow_nominal,
     dp_nominal=10,
     redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate.AgenaAZUR8plus_AC28H collectorData)
+    "Solar thermal collector"
     annotation (Placement(transformation(extent={{92,-24},{112,-4}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump2(redeclare package Medium = Medium,
     m_flow_nominal=0.1)
@@ -164,12 +168,9 @@ model SolarHeatingSystem
     diameter=0.02)
     "Pipe model"
     annotation (Placement(transformation(extent={{94,-50},{114,-70}})));
-  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky
-    radiation(
-    rhoAmb=0.2,
-    latitudeDeg=13,
-    longitudeDeg=53,
-    longitudeDeg0=53)
+  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
+    rhoAmb=0.2)
+    "Solar radiation transformer"
     annotation (Placement(transformation(extent={{70,8},{90,28}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature
     prescribedTemperature
@@ -332,6 +333,12 @@ equation
       smooth=Smooth.None));
   connect(rad.heatPortRad, building.radHeatSourcesPorts[1]) annotation (Line(
       points={{0,-4.8},{0,-4.8},{0,68},{17,68},{17,62}}, color={191,0,0}));
+  connect(ambient.latitudeDeg, radiation.latitudeDeg) annotation (Line(points={{
+          -23,61},{-23,84},{76.2,84},{76.2,25.6}}, color={0,0,127}));
+  connect(ambient.longitudeDeg, radiation.longitudeDeg) annotation (Line(points
+        ={{-21,61},{-21,84},{80,84},{80,25.6}}, color={0,0,127}));
+  connect(ambient.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
+        points={{-19,61},{-19,84},{84,84},{84,25.6}}, color={0,0,127}));
 
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/HeatingSystems/SolarHeatingSystem.mos" "Simulate and plot"),

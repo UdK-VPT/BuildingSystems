@@ -30,6 +30,7 @@ model WaterHeatingSystem
     annotation (Placement(transformation(extent={{4,42},{24,62}})));
   Modelica.Blocks.Sources.Constant airchange(
     k=0.5)
+    "Mean air change rate of the building"
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={38,56})));
   BuildingSystems.Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
@@ -54,18 +55,19 @@ model WaterHeatingSystem
     annotation (Placement(transformation(extent={{8,-70},{-12,-50}})));
   BuildingSystems.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad(
     redeclare package Medium = Medium,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
-    Q_flow_nominal=2000.0,
+    dp_nominal=10.0,
+    Q_flow_nominal=4000.0,
     VWat=0.005,
     mDry=0.0001,
     nEle=5,
     fraRad=0.5,
     T_a_nominal=273.15 + 90.0,
-    T_b_nominal=273.15 + 70,
+    T_b_nominal=273.15 + 70.0,
     TAir_nominal=273.15 + 20.0,
-    n=1.3,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial)
-    "radiator model"
+    n=1.3)
+    "Radiator model"
     annotation (Placement(transformation(extent={{-12,-22},{8,-2}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pip2(
     redeclare package Medium = Medium,
@@ -115,12 +117,16 @@ model WaterHeatingSystem
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-84,-22},{-64,-2}})));
-  Modelica.Blocks.Sources.Constant dpSet(k=12000.0)
-    "Set presure for the pump model"
+  Modelica.Blocks.Sources.Constant dpSet(
+    k=2000.0)
+    "Set pressure for the pump model"
     annotation (Placement(transformation(extent={{-68,6},{-72,10}})));
-  Modelica.Blocks.Sources.Constant TAirSet(k=273.15 + 22.0)
+  Modelica.Blocks.Sources.Constant TAirSet(
+    k=273.15 + 22.0)
+    "Heating set temperature"
     annotation (Placement(transformation(extent={{-20,24},{-24,28}})));
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(each T=293.15)
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(
+    each T=293.15)
     annotation (Placement(transformation(extent={{-72,-46},{-60,-34}})));
 equation
    connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(

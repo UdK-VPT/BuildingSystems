@@ -214,10 +214,8 @@ equation
         points={{-109.2,74},{-106,74},{-106,80},{-86,80},{-86,77.6}}, color={0,0,127}));
 
   annotation (experiment(StartTime=0, StopTime=31536000),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem1.mos"
-        "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-100},{
-            100,100}}),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem1.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-100},{100,100}}),
     graphics={Text(extent={{-134,-72},{56,-104}},lineColor={0,0,255},
     textString="Example of a solar thermal system with an internal heat exchanger")}),
 Documentation(info="<html>
