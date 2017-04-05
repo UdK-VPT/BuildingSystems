@@ -6,8 +6,8 @@ model PVModuleSimpleMPP
     nModPar = 3,
     nModSer = 10,
     redeclare BuildingSystems.Technologies.Photovoltaics.Data.PhotovoltaicModules.TSM230PC05 pvModuleData,
-    angleDegTil=30.0,
-    angleDegAzi=0.0)
+    angleDegTil_constant=30.0,
+    angleDegAzi_constant=0.0)
     annotation (Placement(transformation(extent={{-56,34},{-36,54}})));
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)

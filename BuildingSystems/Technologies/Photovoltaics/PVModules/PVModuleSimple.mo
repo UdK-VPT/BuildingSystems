@@ -1,7 +1,9 @@
 within BuildingSystems.Technologies.Photovoltaics.PVModules;
 model PVModuleSimple
   "Simplified one diode photovoltaic module model"
-  extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.PVModuleGeneral(angleDegTil = 30,angleDegAzi=0.0);
+  extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.PVModuleGeneral(
+    angleDegTil_constant = 30.0,
+    angleDegAzi_constant = 0.0);
   parameter Real factor = 0.851
     "Scaling factor adaptation to the complex PV cell model"
     annotation(Dialog(tab="Advanced"));
