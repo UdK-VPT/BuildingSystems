@@ -4,11 +4,11 @@ partial model ElectricalModelTwoDiodesGeneral
   extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels.ElectricalModelGeneral;
   parameter Real c1(unit = "m2/V")
     "1st coefficient IPho";
-  parameter Real c2(unit = "m2/kV.K")
+  parameter Real c2(unit = "m2/(kV.K)")
     "2nd coefficient IPho";
-  parameter Real cs1
+  parameter Real cs1(unit = "A/K3")
     "1st coefficient ISat1";
-  parameter Real cs2
+  parameter Real cs2(unit = "A/(K5)")
     "2nd coefficient ISat2";
   parameter Real RPar(unit = "V/A")
     "Parallel resistance";

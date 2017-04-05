@@ -12,7 +12,7 @@ partial model HeatConductionGeneral
     annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Modelica.SIunits.Length lengthZ = 1.0
     "Length in z dimension"
-  annotation(Dialog(tab = "General", group = "Geometry"));
+    annotation(Dialog(tab = "General", group = "Geometry"));
 
   annotation (Icon(graphics={Rectangle(extent={{-80,80},{80,-80}},lineColor={230,230,230},
     fillColor={230,230,230},fillPattern=FillPattern.Solid),

@@ -2,16 +2,16 @@ within BuildingSystems.Technologies.Photovoltaics.Data;
 package PhotovoltaicModules
   "Data base with photovoltaic module types"
   record DataSetPhotovoltaicModule
-    parameter Real c1
-      "1st coefficient Iph in m2/V";
-    parameter Real c2
-      "2nd coefficient Iph im2/kV.K";
-    parameter Real cs1
-      "1st coefficient Is1 in A/K3";
-    parameter Real cs2
-      "2nd coefficient Is2 in A.K-5/2";
-    parameter Real Eg
-      "Band gap in eV";
+    parameter Real c1(unit = "m2/V")
+      "1st coefficient IPho";
+    parameter Real c2(unit = "m2/(kV.K)")
+      "2nd coefficient IPho";
+    parameter Real cs1(unit = "A/K3")
+      "1st coefficient ISat1";
+    parameter Real cs2(unit = "A/(K5)")
+      "2nd coefficient ISat2";
+    parameter Real Eg(unit = "eV")
+      "Band gap";
     parameter Modelica.SIunits.Length height
       "PV module height";
     parameter Modelica.SIunits.ElectricCurrent Ik0
@@ -78,7 +78,7 @@ package PhotovoltaicModules
 
   /* Parameter SNI SR90 6V*/
   record SiemensSolarSR906V = DataSetPhotovoltaicModule(
-    PEl_nominal  = 90.0,
+    PEl_nominal = 90.0,
     RPar = 12.529373276,
     RSer = 0.0102582274069,
     c1 = 0.00646373172774,
@@ -173,7 +173,7 @@ package PhotovoltaicModules
 
   /* Parameter ASE-300-DG-FT, 315 Wpeak  */
   record ASE300DGFT315Wp = DataSetPhotovoltaicModule(
-    PEl_nominal  = 315.0,
+    PEl_nominal = 315.0,
     RPar = 40.0379433895,
     RSer = 0.00741247450671,
     c1 = 0.0025324851485,

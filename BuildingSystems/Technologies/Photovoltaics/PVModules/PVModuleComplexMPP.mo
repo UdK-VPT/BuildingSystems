@@ -17,12 +17,11 @@ model PVModuleComplexMPP
     RSer= pvModuleData.RSer)
     "Electrical model of the photovoltaic generator"
     annotation (Placement(transformation(extent={{42,-6},{62,14}})));
-  BuildingSystems.Technologies.Photovoltaics.BaseClasses.ThermalModels.ThermalModelComplex thermalModel(
-    width=pvModuleData.width,
-    height=pvModuleData.height)
+  BuildingSystems.Technologies.Photovoltaics.BaseClasses.ThermalModels.ThermalModelSimple thermalModel(
+    f = 0.043)
     "Thermal model of the photovoltaic generator"
     annotation (Placement(transformation(extent={{20,10},{40,30}})));
-  Modelica.Blocks.Math.Gain gainP(k=nModSer * nModPar)
+  Modelica.Blocks.Math.Gain gainP(k=nModSer*nModPar)
     annotation (Placement(transformation(extent={{60,6},{64,10}})));
   Modelica.Blocks.Math.Gain gainI(k=nModPar)
     annotation (Placement(transformation(extent={{72,-2},{76,2}})));
