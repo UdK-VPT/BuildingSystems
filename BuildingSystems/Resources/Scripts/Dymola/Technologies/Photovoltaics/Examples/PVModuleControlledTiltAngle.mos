@@ -28,3 +28,17 @@ createPlot(
   filename = "PVModuleControlledTiltAngle.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
+createPlot(
+  id = 3,
+  position = {0, 570, 600, 500},
+  y = {"pvField.angleDegTil_in"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PVModuleControlledTiltAngle.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
