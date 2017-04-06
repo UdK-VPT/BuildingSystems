@@ -9,15 +9,12 @@ model PhotovoltaicCoolingSystem
     "Mass flow rate in the cold water production and consumption loop";
   BuildingSystems.Technologies.Photovoltaics.PVModules.PVModuleSimpleMPP pvField(
     redeclare BuildingSystems.Technologies.Photovoltaics.Data.PhotovoltaicModules.TSM230PC05 pvModuleData,
-    angleDegTil=30.0,
-    angleDegAzi=0.0,
+    angleDegTil_constant=30.0,
+    angleDegAzi_constant=0.0,
     nModPar=8,
     nModSer=1)
     annotation (Placement(transformation(extent={{-54,-18},{-34,2}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
-    latitudeDeg = ambient.weatherData.latitudeDeg,
-    longitudeDeg = ambient.weatherData.longitudeDeg,
-    longitudeDeg0 = ambient.weatherData.longitudeDeg0,
     rhoAmb=0.2,
     angleDegL=0.0)
     annotation (Placement(transformation(extent={{-72,12},{-52,32}})));
@@ -325,6 +322,13 @@ equation
   connect(senTemColSurOut.port_a, coolingSurface.port_b)
     annotation (Line(points={{108,0},{110,0},{112,0}}, color={0,127,255}));
   connect(coolingSurface.port_a, senTemColSurIn.port_b)
+    annotation (Line(points={{124,0},{126,0},{128,0}}, color={0,127,255}));
+  connect(ambient.latitudeDeg, radiation.latitudeDeg) annotation (Line(points={{
+          67,49},{67,64},{-65.8,64},{-65.8,29.6}}, color={0,0,127}));
+  connect(ambient.longitudeDeg, radiation.longitudeDeg) annotation (Line(points
+        ={{69,49},{69,64},{-62,64},{-62,29.6}}, color={0,0,127}));
+  connect(ambient.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
+        points={{71,49},{71,64},{-58,64},{-58,29.6}}, color={0,0,127}));
 
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/AirConditioningSystems/PhotovoltaicCoolingSystem.mos" "Simulate and plot"),

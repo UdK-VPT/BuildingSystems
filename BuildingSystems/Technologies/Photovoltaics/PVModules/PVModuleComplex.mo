@@ -1,7 +1,9 @@
 within BuildingSystems.Technologies.Photovoltaics.PVModules;
 model PVModuleComplex
   "Two diodes photovoltaic module model MPP"
-  extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.PVModuleGeneral(angleDegTil = 30,angleDegAzi=0.0);
+  extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.PVModuleGeneral(
+    angleDegTil_constant = 30,
+    angleDegAzi_constant = 0.0);
   BuildingSystems.Technologies.Photovoltaics.BaseClasses.OpticalModels.OpticalModelSimple opticalModel
     "Optical model of the photovoltaic generator"
     annotation (Placement(transformation(extent={{-18,-10},{2,10}})));
@@ -17,9 +19,8 @@ model PVModuleComplex
     RSer= pvModuleData.RSer)
     "Electrical model of the photovoltaic generator"
     annotation (Placement(transformation(extent={{42,-6},{62,14}})));
-  BuildingSystems.Technologies.Photovoltaics.BaseClasses.ThermalModels.ThermalModelComplex thermalModel(
-    width=pvModuleData.width,
-    height=pvModuleData.height)
+  BuildingSystems.Technologies.Photovoltaics.BaseClasses.ThermalModels.ThermalModelSimple thermalModel(
+    f = 0.043)
     "Thermal model of the photovoltaic generator"
     annotation (Placement(transformation(extent={{20,10},{40,30}})));
   Modelica.Blocks.Math.Gain gainP(k=nModSer*nModPar)

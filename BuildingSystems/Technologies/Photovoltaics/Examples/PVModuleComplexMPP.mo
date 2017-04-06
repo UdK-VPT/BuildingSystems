@@ -1,11 +1,11 @@
 within BuildingSystems.Technologies.Photovoltaics.Examples;
-model PVModuleSimpleMPP
-  "Example of a MPP controlled PV generator based on a simplified PV module model"
+model PVModuleComplexMPP
+  "Example of a MPP controlled PV generator based on a detailed PV module model"
   extends Modelica.Icons.Example;
-  BuildingSystems.Technologies.Photovoltaics.PVModules.PVModuleSimpleMPP pvField(
+  BuildingSystems.Technologies.Photovoltaics.PVModules.PVModuleComplexMPP pvField(
     nModPar = 3,
     nModSer = 10,
-    redeclare BuildingSystems.Technologies.Photovoltaics.Data.PhotovoltaicModules.TSM230PC05 pvModuleData,
+    redeclare BuildingSystems.Technologies.Photovoltaics.Data.PhotovoltaicModules.ASE300DGFT315Wp pvModuleData,
     angleDegTil_constant=30.0,
     angleDegAzi_constant=0.0)
     annotation (Placement(transformation(extent={{-56,34},{-36,54}})));
@@ -53,14 +53,14 @@ equation
     textString="PV generator with 3 parallel and
     10 serial connected
     and MPP controlled PV modules
-    (1 diode model)
+    (2 diodes model)
     under real weather data")}),
     experiment(StartTime=0.0, StopTime=3.1536e+007),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/Photovoltaics/Examples/PVModuleSimpleMPP.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/Photovoltaics/Examples/PVModuleComplexMPP.mos" "Simulate and plot"),
 Documentation(info="<html>
 <p> This example tests the implementation of
-<a href=\"modelica://BuildingSystems.Technologies.Photovoltaics.PVModuleSimpleMPP\">
-BuildingSystems.Technologies.Photovoltaics.PVModuleSimpleMPP</a>.
+<a href=\"modelica://BuildingSystems.Technologies.Photovoltaics.PVModuleComplexMPP\">
+BuildingSystems.Technologies.Photovoltaics.PVModuleComplexMPP</a>.
 </p>
 </html>", revisions="<html>
 <ul>
@@ -70,4 +70,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end PVModuleSimpleMPP;
+end PVModuleComplexMPP;

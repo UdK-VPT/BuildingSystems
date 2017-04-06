@@ -19,10 +19,10 @@ block WeatherDataNetcdf
     final unit={"W/m2","W/m2","K","m/s","deg","1","1"},
     final displayUnit={"W/m2","W/m2","degC","m/s","deg","1","1"}));
   output BuildingSystems.Interfaces.Angle_degOutput latitudeDeg = constantVariable[2]
-    "Longitude of the local point"
+    "Latitude"
     annotation (Placement(transformation(extent={{100,80},{120,100}}), iconTransformation(extent={{100,80},{120,100}})));
   output BuildingSystems.Interfaces.Angle_degOutput longitudeDeg = constantVariable[1]
-    "Latitude of the local point"
+    "Longitude"
     annotation (Placement(transformation(extent={{100,70},{120,90}}), iconTransformation(extent={{100,60},{120,80}})));
   output BuildingSystems.Interfaces.Angle_degOutput longitudeDeg0 = constantVariable[3]
     "Longitude of the local time zone"
