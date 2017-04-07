@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels;
 partial model ElectricalModelOneDiodeGeneral
-  "Simplified electrical model of a solar cell with one diode"
+  "Basic electrical one diode model of a PV module"
   extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels.ElectricalModelGeneral;
   parameter Modelica.SIunits.ElectricCurrent Ik0
     "Short circuit current under standard conditions";
@@ -33,4 +33,18 @@ equation
   Ul = Ul0 * (1.0 + alphaUl * (T - 298.15));
 
   ISat1 = (Ik0/ nCelPar * (1.0 + alphaIk * (T - 298.15))) / (Modelica.Math.exp(Ul / (nCelSer * Ut)) - 1.0)/NANO;
+
+  annotation (
+Documentation(info="<html>
+<p>
+This is a basic electrical one diode model of a PV module.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+March 1, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end ElectricalModelOneDiodeGeneral;

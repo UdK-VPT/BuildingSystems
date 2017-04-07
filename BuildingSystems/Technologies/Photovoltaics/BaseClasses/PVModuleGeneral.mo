@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.Photovoltaics.BaseClasses;
 partial model PVModuleGeneral
-  "Abstract photovoltaic module model"
+  "Basic photovoltaic module model"
   replaceable parameter BuildingSystems.Technologies.Photovoltaics.Data.PhotovoltaicModules.DataSetPhotovoltaicModule pvModuleData
     "Characteristic data of the PV module"
     annotation(Dialog(tab = "General", group = "Module characteristic"),Evaluate=true, choicesAllMatching=true);
@@ -56,9 +56,11 @@ partial model PVModuleGeneral
   final Modelica.SIunits.Area AField = pvModuleData.height * pvModuleData.width * nModSer * nModPar
     "Area of the PV field";
   input Interfaces.Angle_degInput angleDegTil_in if use_AngleDegTil_in
+    "Controlled tilt angle of the PV module"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-12,84}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-20,80})));
   input Interfaces.Angle_degInput angleDegAzi_in if use_AngleDegAzi_in
+    "Controlled azimuth angle of the PV module"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-30,84}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-40,80})));
   protected
@@ -106,5 +108,17 @@ equation
     Rectangle(extent={{18,60},{46,32}},lineColor={0,0,255},fillColor={0,0,255},fillPattern = FillPattern.Solid),
     Rectangle(extent={{-46,60},{-18,32}},lineColor={0,0,255},fillColor={0,0,255},fillPattern = FillPattern.Solid),
     Rectangle(extent={{-14,-36},{14,-64}},lineColor={0,0,255},fillColor={0,0,255},fillPattern = FillPattern.Solid),
-    Rectangle(extent={{18,-36},{46,-64}},lineColor={0,0,255},fillColor={0,0,255},fillPattern = FillPattern.Solid)}));
+    Rectangle(extent={{18,-36},{46,-64}},lineColor={0,0,255},fillColor={0,0,255},fillPattern = FillPattern.Solid)}),
+Documentation(info="<html>
+<p>
+Basic photovoltaic module model which defines the common variables and equations.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+March 1, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end PVModuleGeneral;

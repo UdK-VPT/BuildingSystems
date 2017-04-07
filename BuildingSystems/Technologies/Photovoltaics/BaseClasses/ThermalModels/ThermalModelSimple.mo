@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.Photovoltaics.BaseClasses.ThermalModels;
 model ThermalModelSimple
-  "Simplified thermal model, based on a empirical equation for the cell temperature"
+  "Simplified thermal model based on a empirical equation for the cell temperature"
   parameter Real f(unit="K.m2/W")
     "Empirical temperature factor";
   BuildingSystems.Interfaces.Temp_KInput TAmb
@@ -15,5 +15,17 @@ model ThermalModelSimple
 equation
   TCel = TAmb + f * ITot;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
-    Rectangle(extent={{-60,60},{60,-60}}, lineColor={0,0,255})}));
+    Rectangle(extent={{-60,60},{60,-60}}, lineColor={0,0,255})}),
+Documentation(info="<html>
+<p>
+Simplified thermal model that calculates the cell temperature based on a empirical equation.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+March 1, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end ThermalModelSimple;

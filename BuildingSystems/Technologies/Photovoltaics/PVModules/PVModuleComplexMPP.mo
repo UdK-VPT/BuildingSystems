@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.Photovoltaics.PVModules;
 model PVModuleComplexMPP
-  "Two diodes photovoltaic module model MPP controlled"
+  "MPP controlled two diodes photovoltaic module model"
   extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.PVModuleGeneral(
     angleDegTil_constant = 30.0,
     angleDegAzi_constant = 0.0);
@@ -61,5 +61,18 @@ model PVModuleComplexMPP
     connect(opticalModel.ITotRed, thermalModel.ITot)
       annotation (Line(points={{-1,0},{20,0},{20,18},{23,18}}, color={0,0,127}));
 
-  annotation (defaultComponentName="pvmodule", Icon(graphics={Text(extent={{-12,58},{14,34}},lineColor={255,255,255},fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="MPP")}));
+  annotation (defaultComponentName="pvmodule", Icon(graphics={Text(extent={{-12,58},{14,34}},
+    lineColor={255,255,255},fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="MPP")}),
+Documentation(info="<html>
+<p>
+This is a MPP controlled two diodes model of a PV module.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+March 1, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end PVModuleComplexMPP;

@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.Photovoltaics.PVModules;
 model PVModuleSimple
-  "Simplified one diode photovoltaic module model"
+  "One diode photovoltaic module model"
   extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.PVModuleGeneral(
     angleDegTil_constant = 30.0,
     angleDegAzi_constant = 0.0);
@@ -64,5 +64,17 @@ equation
 
   annotation (defaultComponentName="pvmodule", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Text(extent={{-48,60},{-16,30}},lineColor={255,255,255},fillColor={0,0,255}, fillPattern = FillPattern.Solid,textString="S")}),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
+Documentation(info="<html>
+<p>
+This is a one diode model of a PV module.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+March 1, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end PVModuleSimple;

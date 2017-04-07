@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.Photovoltaics.PVModules;
 model PVModuleComplex
-  "Two diodes photovoltaic module model MPP"
+  "Two diodes photovoltaic module model"
   extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.PVModuleGeneral(
     angleDegTil_constant = 30,
     angleDegAzi_constant = 0.0);
@@ -60,5 +60,19 @@ equation
   connect(opticalModel.ITotRed, thermalModel.ITot)
     annotation (Line(points={{-1,0},{10,0},{20,0},{20,18},{23,18}}, color={0,0,127}));
 
-  annotation (defaultComponentName="pvmodule", Icon(graphics={Text(extent={{-48,60},{-16,30}},lineColor={255,255,255},fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="C")}));
+  annotation (defaultComponentName="pvmodule",
+    Icon(graphics={Text(extent={{-48,60},{-16,30}},lineColor={255,255,255},
+    fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="C")}),
+Documentation(info="<html>
+<p>
+This is a two diodes model of a PV module.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+March 1, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end PVModuleComplex;

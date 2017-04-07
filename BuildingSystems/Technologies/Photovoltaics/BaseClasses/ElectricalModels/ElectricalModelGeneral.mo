@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels;
 partial model ElectricalModelGeneral
-  "Basic PV electrical model"
+  "Basic electrical model of a PV module"
   parameter Integer nCelPar
     "Number of parallel connected cells within the PV module";
   parameter Integer nCelSer
@@ -28,9 +28,23 @@ protected
     "Boltzmann constant";
 equation
   Ut = k * T / e;
+  
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-60,60},{60,-60}}, lineColor={28,108,200}),
     Line(points={{0,40},{-20,0},{20,12},{0,-40}},color={28,108,200},thickness=0.5),
-    Polygon(points={{0,-40},{0,-20},{14,-26},{0,-40}},lineColor={28,108,200},lineThickness=0.5,fillColor={0,0,255},fillPattern=FillPattern.Solid)}));
+    Polygon(points={{0,-40},{0,-20},{14,-26},{0,-40}},lineColor={28,108,200},
+    lineThickness=0.5,fillColor={0,0,255},fillPattern=FillPattern.Solid)}),
+Documentation(info="<html>
+<p>
+This is a basic electrical model of a PV module.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+March 1, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end ElectricalModelGeneral;
