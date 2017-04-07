@@ -10,7 +10,7 @@ model BuildingThermal1Zone1D
     convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
     useAirPathes = false);
     record Construction
-      extends BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
+      extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
       nLayers=2,
       thickness={0.2,0.1},
       material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),

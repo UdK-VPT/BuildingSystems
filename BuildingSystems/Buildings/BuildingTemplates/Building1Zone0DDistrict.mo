@@ -36,13 +36,9 @@ model Building1Zone0DDistrict
     "Floor space area of the building";
   parameter Real fWin = 0.3
     "Window percentage of the facades";
-  Real q_flow_heating
-    "Floor space specific heating power";
   final parameter Real AV = (AAmb+length*width+sum(AWin))/(length*width*heightSto*nSto)
     "Ratio area to volume";
-  equation
-  q_flow_heating  = zone.Q_flow_heating / AFloorSpace;
-
+    
   annotation(defaultComponentName="building",
 Documentation(info="<html>
 <p>
