@@ -5,7 +5,7 @@ model WaterTemperatureEnthalpyInversion
   extends BuildingSystems.Media.Examples.BaseClasses.TestTemperatureEnthalpyInversion(
     redeclare package Medium = BuildingSystems.Media.Water);
   annotation (
-experiment(StopTime=1.0),
+experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Media/Examples/WaterTemperatureEnthalpyInversion.mos"
         "Simulate and plot"),
     Documentation(info="<html>

@@ -3,7 +3,6 @@ AirvolumeGeneral
 BuildingTemplate
 ConstructionGeneral
 HeatConduction3DWithTube
-OpaqueConstruction
 OpeningDiscretized
 OpeningDiscretizedOperable
 RadiationDistribution
@@ -13,3 +12,4 @@ WallGeneral
 WallHygroThermalGeneral
 WallThermalGeneral
 ZoneTemplateGeneral
+OpaqueConstruction
