@@ -3,10 +3,10 @@ package BuildingSystems
   "Library for building energy and plant simulation"
   extends Modelica.Icons.Package;
   annotation (
-    version="0.1",
+    version="2.0.0-beta",
     versionBuild=0,
-    versionDate="2014-10-27",
-    dateModified = "2016-07-18",
+    versionDate="2017-04-10",
+    dateModified = "2017-04-10",
     uses(Modelica(version="3.2.2")),
     preferredView="info",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
