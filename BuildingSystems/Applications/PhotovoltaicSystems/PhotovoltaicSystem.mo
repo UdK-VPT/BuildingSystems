@@ -4,8 +4,8 @@ model PhotovoltaicSystem
   extends Modelica.Icons.Example;
   BuildingSystems.Technologies.Photovoltaics.PVModules.PVModuleSimpleMPP pvField(
     redeclare BuildingSystems.Technologies.Photovoltaics.Data.PhotovoltaicModules.TSM230PC05 pvModuleData,
-    angleDegTil=30.0,
-    angleDegAzi=0.0,
+    angleDegTil_constant=30.0,
+    angleDegAzi_constant=0.0,
     nModPar=2,
     nModSer=5)
     annotation (Placement(transformation(extent={{-56,34},{-36,54}})));
