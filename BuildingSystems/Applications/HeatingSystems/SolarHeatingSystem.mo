@@ -95,7 +95,6 @@ model SolarHeatingSystem
     annotation (Placement(transformation(extent={{-80,22},{-60,42}})));
   BuildingSystems.Fluid.Actuators.Valves.TwoWayTable val(
     redeclare package Medium = Medium,
-    filteredOpening=false,
     from_dp=true,
     flowCharacteristics=datVal,
     CvData=BuildingSystems.Fluid.Types.CvTypes.Kv,
