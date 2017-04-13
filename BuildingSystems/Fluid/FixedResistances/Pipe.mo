@@ -97,8 +97,11 @@ protected
     "Pressure loss of a straight pipe at m_flow_nominal";
 public
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector1[nNodes](
-    each m=1) if useExternalHeatSource
-    annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=-90,origin={50,-50})));
+      each m=1) if
+                 useExternalHeatSource annotation (Placement(transformation(
+        extent={{-10,10},{10,-10}},
+        rotation=-90,
+        origin={50,-50})));
 equation
   connect(port_a, res.port_a) annotation (Line(
       points={{-100,5.55112e-16},{-72,5.55112e-16},{-72,1.16573e-15},{-58,
@@ -135,18 +138,14 @@ equation
         color={191,0,0},
         smooth=Smooth.None));
   end if;
+
+
   connect(thermalCollector1.port_b, vol.heatPort) annotation (Line(
       points={{60,-50},{71,-50},{71,-28}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(thermalCollector1[1].port_a, heatPorts) annotation (Line(
-      points={{40,-50},{0.5,-50},{0.5,-60}},
-      color={191,0,0},
-      smooth=Smooth.None));
-  connect(thermalCollector1[1].port_a, colAllToOne.port_a) annotation (Line(
-      points={{40,-50},{-50,-50},{-50,4}},
-      color={191,0,0},
-      smooth=Smooth.None));
+  connect(thermalCollector1.port_a[1], heatPorts) annotation (Line(      points={{40,-50},{0.5,-50},{0.5,-60}},      color={191,0,0},      smooth=Smooth.None));
+  connect(thermalCollector1.port_a[1], colAllToOne.port_a) annotation (Line(      points={{40,-50},{-50,-50},{-50,4}},      color={191,0,0},        smooth=Smooth.None));
   annotation (defaultComponentName="pip",Icon(graphics={
     Rectangle(
       extent={{-100,60},{100,-60}},
@@ -199,5 +198,5 @@ equation
     </li>
     </ul>
     </html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics));
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
 end Pipe;
