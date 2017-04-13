@@ -5,7 +5,7 @@ model UPrescribed
                                                                                                     final nPipes=2);
     parameter Modelica.SIunits.ThermalConductivity U1_constant
     "Thermal conductivity specific to length";
-    parameter Modelica.SIunits.ThermalConductivity U2_constant
+    parameter Modelica.SIunits.ThermalConductivity U2_constant = U1_constant
     "Thermal conductivity specific to length";
 
 equation
