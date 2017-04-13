@@ -3,7 +3,8 @@ model ParallelPipes
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium in the component";
   extends BuildingSystems.Fluid.Interfaces.PartialFourPort(final allowFlowReversal1 = allowFlowReversal,final allowFlowReversal2 = allowFlowReversal,redeclare
-    package Medium1 =Medium, redeclare package Medium2 =  Medium);
+      package
+            Medium1 =Medium, redeclare package Medium2 =  Medium);
   BuildingSystems.Fluid.FixedResistances.Pipe pipSupply(
     redeclare package Medium = Medium,
     p_start=p_start,
@@ -17,7 +18,6 @@ model ParallelPipes
     length=length,
     ReC=ReC,
     useMultipleHeatPorts=true,
-    dp_nominal=dp_nominal,
     thicknessIns=Umodel.th_ins,
     lambdaIns=Umodel.lam_ins,
     diameter=Umodel.d_i,
@@ -30,7 +30,6 @@ model ParallelPipes
     allowFlowReversal=allowFlowReversal,
     m_flow_nominal=m_flow_nominal,
     from_dp=from_dp,
-    dp_nominal=dp_nominal,
     linearizeFlowResistance=linearizeFlowResistance,
     deltaM=deltaM,
     nNodes=nNodes,
@@ -42,9 +41,9 @@ model ParallelPipes
     diameter=Umodel.d_i,
     useExternalHeatSource=true)
     annotation (Placement(transformation(extent={{10,-50},{-10,-70}})));
-  parameter Integer nNodes=1
+  parameter Integer nNodes = integer(ceil(length/10))
     "Number of volume segments";
-  parameter Modelica.SIunits.Length length
+  parameter Modelica.SIunits.Length length( min=Modelica.Constants.eps)
     "Length of the pipe";
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal
     "Nominal mass flow rate"
@@ -68,8 +67,6 @@ model ParallelPipes
     annotation (Dialog(tab="Flow resistance"));
   parameter Modelica.SIunits.ReynoldsNumber ReC=4000
     "Reynolds number where transition to turbulent starts"                                                                                                     annotation (Dialog(tab="Flow resistance"));
-  parameter Modelica.SIunits.Pressure dp_nominal
-    "Nominal pressure drop" annotation(Dialog(group = "Nominal condition"));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a
     annotation (Placement(transformation(extent={{-10,88},{10,108}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.Qmodel qmodel(
@@ -79,7 +76,7 @@ model ParallelPipes
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   replaceable
     BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass Umodel constrainedby
-      BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass
+    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass
     "Heat transfer coefficient model"
     annotation (choicesAllMatching=true, Placement(transformation(extent={{62,-10},{42,10}})));
   parameter Boolean InteractionBetweenPipes=true
@@ -119,7 +116,7 @@ equation
       smooth=Smooth.None));
 
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}}), graphics), Icon(coordinateSystem(
+    -100},{100,100}})),           Icon(coordinateSystem(
     preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-100,88},{100,28}}, lineColor={0,0,255}),
     Rectangle(extent={{-100,-28},{100,-88}}, lineColor={0,0,255})}),
