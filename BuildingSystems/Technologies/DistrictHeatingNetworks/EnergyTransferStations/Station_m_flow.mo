@@ -71,9 +71,9 @@ model Station_m_flow
   Modelica.Blocks.Sources.RealExpression Tmin(
     y=TminDHN)
     annotation (Placement(transformation(extent={{-40,-60},{40,-40}})));
-  parameter Modelica.SIunits.Temperature Tsupply_max
+  parameter Modelica.SIunits.Temperature Tsupply_max = 273.15 +90
     "Maximum supply temperature in building";
-  parameter Modelica.SIunits.Temperature Tsupply_min
+  parameter Modelica.SIunits.Temperature Tsupply_min = 273.15+70
     "Minimum supply temperature in building";
   parameter Real factor_Tsupply = 7
     "Un- or smooth changes of the supply set temperature. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
@@ -86,6 +86,11 @@ model Station_m_flow
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},
         rotation=90,
         origin={72,66})));
+  Fluid.MixingVolumes.MixingVolume vol(
+    nPorts=2,
+    redeclare package Medium = Medium,
+    m_flow_nominal=m_flow_nominalHeating,
+    V=2) annotation (Placement(transformation(extent={{66,-62},{86,-82}})));
 equation
   connect(tanhAmbient.u, ambientTAirRef) annotation (Line(
       points={{-58,77},{-50,77},{-50,100}},
@@ -127,10 +132,6 @@ equation
       points={{20,0},{60,0}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(externalIdealHeater.port_b, hex.port_a2) annotation (Line(
-      points={{80,0},{92,0},{92,-84},{-20,-84}},
-      color={0,127,255},
-      smooth=Smooth.None));
   connect(Q.y, externalIdealHeater.Q_in) annotation (Line(
       points={{44,-30},{50,-30},{50,4},{59.2,4},{59.2,5}},
       color={0,0,127},
@@ -164,6 +165,10 @@ equation
           0}));
   connect(relationRadiationConvection.heatPortLw, Radheat) annotation (Line(
         points={{70,70},{74,70},{74,84},{74,90},{60,90}}, color={191,0,0}));
+  connect(hex.port_a2, vol.ports[1]) annotation (Line(points={{-20,-84},{-6,-84},
+          {28,-84},{28,-62},{74,-62}}, color={0,127,255}));
+  connect(vol.ports[2], externalIdealHeater.port_b) annotation (Line(points={{
+          78,-62},{88,-62},{88,0},{80,0}}, color={0,127,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
     -100},{100,100}})),           Icon(coordinateSystem(
     preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),
