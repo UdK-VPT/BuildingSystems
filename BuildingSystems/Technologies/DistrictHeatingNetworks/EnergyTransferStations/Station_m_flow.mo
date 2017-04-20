@@ -12,6 +12,7 @@ model Station_m_flow
     "Minimum return temperature in building's installation";
   parameter Modelica.SIunits.TemperatureDifference Tdrop = 25
     "Desired Temperature drop in building's installation";
+  parameter Real eps_inst = 1 "Factor accountig per inneficiency of installation. Increase heat to be delivered";
   BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhAmbient(
     Max_value=Tsupply_max,
     Min_value=Tsupply_min,
@@ -47,7 +48,7 @@ model Station_m_flow
     redeclare package Medium = Medium,
     p_start=300000,
     V_start=1)
-    annotation (Placement(transformation(extent={{-38,2},{-18,22}})));
+    annotation (Placement(transformation(extent={{-40,2},{-20,22}})));
   parameter Modelica.SIunits.HeatFlowRate Q_nominal
     "Nominal Heat power in the Heat Transfer Station"                                                    annotation(Dialog(group = "Nominal condition"));
   parameter Modelica.SIunits.MassFlowRate m_flow_nominalDHN = 1.05*m_flow_nominalHeating
@@ -63,10 +64,11 @@ model Station_m_flow
     annotation (Placement(transformation(extent={{-60,20},{0,40}})));
   BaseClasses.ExternalIdealHeater externalIdealHeater(
     redeclare package Medium = Medium, m_flow_nominal=m_flow_nominalHeating,
-    allowFlowReversal=false)
+    allowFlowReversal=false,
+    eps_inst=eps_inst)
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
-  Modelica.Blocks.Sources.RealExpression Q(
-    y=pumpHeating.m_flow_actual*4182*Tdrop)
+  Modelica.Blocks.Sources.RealExpression Q(y=pumpHeating.m_flow_actual*4182*min(
+         Tdrop, max(0, externalIdealHeater.senTem.T - TminDHN)))
     annotation (Placement(transformation(extent={{-40,-40},{40,-20}})));
   Modelica.Blocks.Sources.RealExpression Tmin(
     y=TminDHN)
@@ -153,7 +155,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(hex.port_b2, exp.port_a) annotation (Line(
-      points={{-40,-84},{-60,-84},{-60,2},{-28,2}},
+      points={{-40,-84},{-60,-84},{-60,2},{-30,2}},
       color={0,127,255},
       smooth=Smooth.None));
 
