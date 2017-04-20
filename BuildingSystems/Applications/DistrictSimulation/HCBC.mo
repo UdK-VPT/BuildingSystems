@@ -2,6 +2,7 @@ within BuildingSystems.Applications.DistrictSimulation;
 model HCBC
   "Model including buildings of the university campus Berlin-Charlottenburg (HCBC) without DHN"
   extends Modelica.Icons.Example;
+  Modelica.SIunits.Heat Q_district "Heating load of all buildings";
   model Building "Building model with four capacities used in conjunction with parameter maps for campus simulations"
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
     nSurfacesSolid=1,
@@ -1631,6 +1632,9 @@ model HCBC
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding47(T=283.15)
     annotation (Placement(transformation(extent={{80,18},{88,26}})));
 equation
+
+  der(Q_district) = Q_flowHea;
+
   Q_flowHea = building1.Q_flow_heating[1] + building2.Q_flow_heating[1] + building3.Q_flow_heating[1] + building5.Q_flow_heating[1] + building6.Q_flow_heating[1] + building7.Q_flow_heating[1] + building8.Q_flow_heating[1] + building9.Q_flow_heating[1] + building10.Q_flow_heating[1] + building11.Q_flow_heating[1] + building12.Q_flow_heating[1] + building13.Q_flow_heating[1] +
               building14.Q_flow_heating[1] + building16.Q_flow_heating[1] + building17.Q_flow_heating[1] + building21.Q_flow_heating[1] + building23.Q_flow_heating[1] + building25.Q_flow_heating[1] + building27.Q_flow_heating[1] + building29.Q_flow_heating[1] + building30.Q_flow_heating[1] + building33.Q_flow_heating[1] + building34.Q_flow_heating[1] + building35.Q_flow_heating[1] + building39.Q_flow_heating[1] +
               building40.Q_flow_heating[1] + building43.Q_flow_heating[1] + building44.Q_flow_heating[1] + building45.Q_flow_heating[1] + building46.Q_flow_heating[1] + building47.Q_flow_heating[1] + building48.Q_flow_heating[1] + building50.Q_flow_heating[1] + building51.Q_flow_heating[1] + building52.Q_flow_heating[1] +
@@ -2132,15 +2136,15 @@ equation
   connect(groundBuilding21.port, building21.toSolidHeatPorts[1])
     annotation (Line(points={{-132,182},{-132,186},{-136,186},{-136,189}},
                                                        color={191,0,0}));
-  annotation (Diagram(coordinateSystem(extent={{-400,-400},{400,400}},
-          preserveAspectRatio=false)),                                     Icon(
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/DistrictSimulation/HCBC.mos" "Simulate and plot"),Diagram(coordinateSystem(extent={{-400,-400},{400,400}},
+          preserveAspectRatio=false), graphics={Bitmap(extent={{-398,-402},{396,
+              400}}, fileName="modelica://BuildingSystems/Resources/Images/Applications/DistrictSimulation/HCBCBackground.png")}),
+                                                                           Icon(
         coordinateSystem(extent={{-100,-100},{100,100}})),
     experiment(
-      StartTime=2.88576e+007,
-      StopTime=6.3072e+007,
-      Interval=3600,
-      Tolerance=1e-005,
-      __Dymola_Algorithm="Dassl"),
+      StopTime=7.776e+006,
+      Interval=1800,
+      Tolerance=1e-005),
     __Dymola_experimentSetupOutput(events=false),
     Documentation(info="<html>
 Simplified modeling of the buildings of the university campus Berlin-Charlottenburg (HCBC).

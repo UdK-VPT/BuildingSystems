@@ -1,6 +1,10 @@
 within BuildingSystems.Applications.DistrictSimulation;
 model HCBC_DHN
   "Model of the university campus Berlin-Charlottenburg (HCBC) with DHN."
+
+  Modelica.SIunits.Heat Q_buildings "Heat extracted from the DHN and delivered to the buildings";
+  Modelica.SIunits.Heat Q_buildings_effective "Effective heat that warm up the building (Q_buildings*efficiency)";
+
   extends BuildingSystems.Applications.DistrictSimulation.HCBC(
                                                                                    building1(heatSources=true, nHeatSources=1),
    building2(heatSources=true, nHeatSources=1),
@@ -97,8 +101,7 @@ model HCBC_DHN
          st50(m_flow_nominal=st50.m_flow_nominalHeating,Q_nominal=parameterMap50.Q_flowHea),
          st30(m_flow_nominal=st30.m_flow_nominalHeating,Q_nominal=parameterMap30.Q_flowHea),
          st46(m_flow_nominal=st46.m_flow_nominalHeating,Q_nominal=parameterMap46.Q_flowHea),
-         st6(m_flow_nominal=st6.m_flow_nominalHeating,Q_nominal=parameterMap6.Q_flowHea,
-      show_T=true),
+         st6(m_flow_nominal=st6.m_flow_nominalHeating,Q_nominal=parameterMap6.Q_flowHea),
          st2(m_flow_nominal=st2.m_flow_nominalHeating,Q_nominal=parameterMap2.Q_flowHea),
          st3(m_flow_nominal=st3.m_flow_nominalHeating,Q_nominal=parameterMap3.Q_flowHea),
          st9(m_flow_nominal=st9.m_flow_nominalHeating,Q_nominal=parameterMap9.Q_flowHea),
@@ -141,6 +144,83 @@ model HCBC_DHN
     p=400000)
     annotation (Placement(transformation(extent={{200,-82},{220,-62}})));
 equation
+
+  Q_buildings =
+     st1.externalIdealHeater.gain1.u
+   + st2.externalIdealHeater.gain1.u
+   + st3.externalIdealHeater.gain1.u
+   + st5.externalIdealHeater.gain1.u
+   + st6.externalIdealHeater.gain1.u
+   + st7.externalIdealHeater.gain1.u
+   + st8.externalIdealHeater.gain1.u
+   + st9.externalIdealHeater.gain1.u
+   + st10.externalIdealHeater.gain1.u
+   + st11.externalIdealHeater.gain1.u
+   + st12.externalIdealHeater.gain1.u
+   + st13.externalIdealHeater.gain1.u
+   + st14.externalIdealHeater.gain1.u
+   + st16.externalIdealHeater.gain1.u
+   + st17.externalIdealHeater.gain1.u
+   + st21.externalIdealHeater.gain1.u
+   + st23.externalIdealHeater.gain1.u
+   + st25.externalIdealHeater.gain1.u
+   + st27.externalIdealHeater.gain1.u
+   + st29.externalIdealHeater.gain1.u
+   + st30.externalIdealHeater.gain1.u
+   + st33.externalIdealHeater.gain1.u
+   + st34.externalIdealHeater.gain1.u
+   + st35.externalIdealHeater.gain1.u
+   + st39.externalIdealHeater.gain1.u
+   + st40.externalIdealHeater.gain1.u
+   + st43.externalIdealHeater.gain1.u
+   + st44.externalIdealHeater.gain1.u
+   + st45.externalIdealHeater.gain1.u
+   + st46.externalIdealHeater.gain1.u
+   + st47.externalIdealHeater.gain1.u
+   + st48.externalIdealHeater.gain1.u
+   + st50.externalIdealHeater.gain1.u
+   + st51.externalIdealHeater.gain1.u
+   + st53.externalIdealHeater.gain1.u
+   + st54.externalIdealHeater.gain1.u
+   + st55.externalIdealHeater.gain1.u;
+  Q_buildings_effective =
+       st1.externalIdealHeater.gain1.y
+   + st2.externalIdealHeater.gain1.y
+   + st3.externalIdealHeater.gain1.y
+   + st5.externalIdealHeater.gain1.y
+   + st6.externalIdealHeater.gain1.y
+   + st7.externalIdealHeater.gain1.y
+   + st8.externalIdealHeater.gain1.y
+   + st9.externalIdealHeater.gain1.y
+   + st10.externalIdealHeater.gain1.y
+   + st11.externalIdealHeater.gain1.y
+   + st12.externalIdealHeater.gain1.y
+   + st13.externalIdealHeater.gain1.y
+   + st14.externalIdealHeater.gain1.y
+   + st16.externalIdealHeater.gain1.y
+   + st17.externalIdealHeater.gain1.y
+   + st21.externalIdealHeater.gain1.y
+   + st23.externalIdealHeater.gain1.y
+   + st25.externalIdealHeater.gain1.y
+   + st27.externalIdealHeater.gain1.y
+   + st29.externalIdealHeater.gain1.y
+   + st30.externalIdealHeater.gain1.y
+   + st33.externalIdealHeater.gain1.y
+   + st34.externalIdealHeater.gain1.y
+   + st35.externalIdealHeater.gain1.y
+   + st39.externalIdealHeater.gain1.y
+   + st40.externalIdealHeater.gain1.y
+   + st43.externalIdealHeater.gain1.y
+   + st44.externalIdealHeater.gain1.y
+   + st45.externalIdealHeater.gain1.y
+   + st46.externalIdealHeater.gain1.y
+   + st47.externalIdealHeater.gain1.y
+   + st48.externalIdealHeater.gain1.y
+   + st50.externalIdealHeater.gain1.y
+   + st51.externalIdealHeater.gain1.y
+   + st53.externalIdealHeater.gain1.y
+   + st54.externalIdealHeater.gain1.y
+   + st55.externalIdealHeater.gain1.y;
 
   st43.Tset = building43.parameterMap.TSetHea;
   connect(st43.zoneTAir, building43.zone.TAir);
@@ -385,7 +465,7 @@ connect(st48.Conheat, building48.conHeatSourcesPorts[1]);
           -100},{212,-116},{212,-118},{216.461,-118},{216.461,-133.934}},
                                                                     color={0,127,
           255}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/DistrictSimulation/HCBC_DHN.mos" "Simulate and plot"),Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)),
     Documentation(info="<html>
 <p>
@@ -393,9 +473,8 @@ Simplified modeling of the buildings of the university campus Berlin-Charlottenb
 </p>
 </html>"),
     experiment(
-      StartTime=2.88576e+007,
-      StopTime=6.3072e+007,
-      Interval=3600,
+      StopTime=7.776e+006,
+      Interval=1800,
       Tolerance=1e-005,
       __Dymola_Algorithm="Dassl"));
 end HCBC_DHN;
