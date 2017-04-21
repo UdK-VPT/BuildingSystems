@@ -1,4 +1,4 @@
-within BuildingSystems.Technologies.DistrictHeatingNetworks.Examples;
+within BuildingSystems.Technologies.DistrictHeatingNetworks.BaseClasses;
 partial model DHN_Detailed "partial model of a DHN"
  package Medium = BuildingSystems.Media.Water;
   //
@@ -9,8 +9,6 @@ partial model DHN_Detailed "partial model of a DHN"
   Modelica.SIunits.Heat Q_DHN_II "Energy loss in DHN part II";
   Modelica.SIunits.Heat Q_DHN_III "Energy loss in DHN part III";
   Modelica.SIunits.Heat Q_DHN "Total energy loss in DHN";
-
-
 
 //Boundary:
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollectorDHN(m=71)
@@ -1749,7 +1747,6 @@ equation
   connect(p68.port_a2, p64.port_b2) annotation (Line(points={{-15,95},{-15,102},
           {-40,102},{-40,106},{-48,106}}, color={0,127,255}));
 
-
 // (no annotations) Connections Boundary conditions to pipes:
   connect(p8.port_a, thermalCollectorDHN.port_a[1]);
   connect(p9.port_a, thermalCollectorDHN.port_a[2]);
@@ -1823,7 +1820,6 @@ equation
   connect(p63.port_a, thermalCollectorDHN.port_a[71]);
   connect(thermalCollectorDHN.port_b, groundTemperature0D.port[1])
     annotation (Line(points={{322,256},{361,256}}, color={191,0,0}));
-
 
   connect(st35.port_b, p40.port_a1)
     annotation (Line(points={{-292,5},{-292,2},{-280,2}}, color={0,127,255}));
