@@ -16,7 +16,8 @@ model DistrictHeatingNetwork_dp
   BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T central(
     redeclare package Medium = Medium,
     m_flow_nominal=10,
-    dp_nominal=0)
+    dp_nominal=0,
+    from_dp=true)
     annotation (Placement(transformation(extent={{46,26},{26,46}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp station1(
     redeclare package Medium = Medium,
@@ -101,7 +102,8 @@ model DistrictHeatingNetwork_dp
       d_i=0.3,
       H_real=1,
       E=0.5),
-    m_flow_nominal=30)
+    m_flow_nominal=30,
+    from_dp=true)
     annotation (Placement(transformation(extent={{-6,20},{-26,40}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes parallelPipes1(
     redeclare package Medium = Medium,
@@ -110,7 +112,8 @@ model DistrictHeatingNetwork_dp
       H_real=1,
       E=0.4),
     m_flow_nominal=15,
-    length=400)
+    length=400,
+    from_dp=true)
     annotation (Placement(transformation(extent={{-92,20},{-112,40}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes parallelPipes2(
     redeclare package Medium = Medium,
@@ -119,7 +122,8 @@ model DistrictHeatingNetwork_dp
       d_i=0.2,
       H_real=1,
       E=0.4),
-    m_flow_nominal=15)
+    m_flow_nominal=15,
+    from_dp=true)
     annotation (Placement(transformation(extent={{0,-80},{-20,-60}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp station2(
     redeclare package Medium = Medium,

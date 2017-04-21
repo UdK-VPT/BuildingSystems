@@ -8,7 +8,8 @@ model Station_dp
       dp2_nominal=dp_nominalHeating,
       allowFlowReversal1=false,
       allowFlowReversal2=false,
-      show_T=show_T));
+      show_T=show_T,
+      from_dp1=from_dp));
   parameter Modelica.SIunits.Temperature TminDHN = 273.15 + 30
     "Minimum return temperature in building's installation";
   parameter Modelica.SIunits.TemperatureDifference Tdrop = 25
@@ -27,7 +28,7 @@ model Station_dp
     allowFlowReversal=false,
     dpValve_nominal=dpValve_nominal,
     dpFixed_nominal=dpFixed_nominal,
-    from_dp=true)
+    from_dp=from_dp)
     annotation (Placement(transformation(extent={{-92,-10},{-72,10}})));
   BuildingSystems.Controls.Continuous.LimPID conPID(
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
@@ -99,6 +100,8 @@ model Station_dp
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},
         rotation=90,
         origin={70,70})));
+  parameter Boolean from_dp=true
+    "= true, use m_flow = f(dp) else dp = f(m_flow)" annotation(Evaluate=true, Dialog(tab="Advanced"));
 equation
   connect(tanhAmbient.u, ambientTAirRef) annotation (Line(
       points={{-58,77},{-50,77},{-50,100}},

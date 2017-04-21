@@ -2,8 +2,8 @@ within BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyProductionUnit
 partial model PartialCentral
   extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface;
   BuildingSystems.Fluid.HeatExchangers.ConstantEffectiveness hex(
-    redeclare package Medium1 = Medium,
-    redeclare package Medium2 = Medium,
+    redeclare replaceable package Medium1 = Medium,
+    redeclare replaceable package Medium2 = Medium,
     m1_flow_nominal=mProduction_flow_nominal,
     m2_flow_nominal=mDHN_flow_nominal,
     dp1_nominal=dpProduction_nominal,
