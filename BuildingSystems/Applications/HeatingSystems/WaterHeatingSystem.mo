@@ -3,29 +3,47 @@ model WaterHeatingSystem
   "Water heating system"
   extends Modelica.Icons.Example;
   package Medium = BuildingSystems.Media.Water;
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.05;
+  parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.1;
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
     "Ambient model"
     annotation (Placement(transformation(extent={{-26,42},{-6,62}})));
-  BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building(
-    AAmb=4*10*2.5+10*10,
-    AInn=10*10,
-    AGro=10*10,
-    nWindows=1,
-    AWin={2*3},
-    VAir=10*10*2.5,
-    CAmb=100000,
-    CInn=100000,
-    CGro=100000,
-    UValAmb=0.2,
-    UValInn=1.0,
-    UValGro=0.2,
+  BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DDistrict building(
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
-    show_TAir=true)
+    angleDegAziBuilding=0.0,
+    width=10,
+    length=6,
+    heightSto=2.8,
+    nSto=2,
+    ARoom=4.0*4.0,
+    widthWindow1=4.0,
+    heightWindow1=2*1.2,
+    widthWindow2=4.0,
+    heightWindow2=2*1.2,
+    widthWindow3=4.0,
+    heightWindow3=2*1.2,
+    widthWindow4=4.0,
+    heightWindow4=2*1.2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallMultistorey1958to1968 constructionWall1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallMultistorey1958to1968 constructionWall2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallMultistorey1958to1968 constructionWall3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallMultistorey1958to1968 constructionWall4,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.BasePlateMultistorey1958to1968 constructionBottom,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateWallMultistorey1958to1968 constructionWallsInterior,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateCeilingMultistorey1958to1968 constructionCeilingsInterior,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow4,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.RoofRowhouse1918 constructionCeiling,
+    BCWall1=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCWall2=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCWall3=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCWall4=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCCeiling=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient)
     "Building model"
     annotation (Placement(transformation(extent={{4,42},{24,62}})));
   Modelica.Blocks.Sources.Constant airchange(
@@ -58,7 +76,7 @@ model WaterHeatingSystem
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=10.0,
-    Q_flow_nominal=4000.0,
+    Q_flow_nominal=8000.0,
     VWat=0.005,
     mDry=0.0001,
     nEle=5,
@@ -105,7 +123,7 @@ model WaterHeatingSystem
     "Valve model with opening characteristics based on a table"
     annotation (Placement(transformation(extent={{-36,-22},{-16,-2}})));
   Modelica.Blocks.Continuous.LimPID thermostat(
-    k=0.5,
+    k=0.8,
     controllerType=Modelica.Blocks.Types.SimpleController.P,
     yMax=1.0,
     yMin=0.0,
@@ -117,11 +135,11 @@ model WaterHeatingSystem
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-84,-22},{-64,-2}})));
   Modelica.Blocks.Sources.Constant dpSet(
-    k=2000.0)
+    k=4000.0)
     "Set pressure for the pump model"
     annotation (Placement(transformation(extent={{-68,6},{-72,10}})));
   Modelica.Blocks.Sources.Constant TAirSet(
-    k=273.15 + 22.0)
+    k=273.15 + 20.0)
     "Heating set temperature"
     annotation (Placement(transformation(extent={{-20,24},{-24,28}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(
@@ -222,7 +240,8 @@ Documentation(info="<html>
 <p>
 Example that simulates a warm water heating system for a building. The system
 works with a constant supply temperature, the mass flow of the heating loop
-is controlled by a valve related to the necessary heating demand of the building.
+is controlled by a valve related to the necessary heating demand of the building
+for a set temperature of 20 degree Celsius.
 </p>
 </html>",
 revisions="<html>

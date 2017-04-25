@@ -2,30 +2,50 @@ within BuildingSystems.Applications.HeatingSystems;
 model SolarHeatingSystem
   "Solar heating system"
   extends Modelica.Icons.Example;
-  package Medium = BuildingSystems.Media.Water;
+  package Medium = BuildingSystems.Media.Water(
+    T_min = 273.15 - 10.0,
+    T_max = 273.15 + 200.0);
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.1;
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
     "Ambient model"
     annotation (Placement(transformation(extent={{-26,42},{-6,62}})));
-  BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building(
-    AAmb=2*(2*10+2*6.0)*2.8+10.0*6.0,
-    AInn=10*10,
-    AGro=10*10,
-    nWindows=1,
-    AWin={2*3},
-    VAir=2*10.0*6.0*2.8,
-    CAmb=100000,
-    CInn=100000,
-    CGro=100000,
-    UValAmb=0.2,
-    UValInn=1.0,
-    UValGro=0.2,
+  BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DDistrict building(
     calcIdealLoads=false,
     heatSources=true,
     nHeatSources=1,
-    show_TAir=true)
+    angleDegAziBuilding=0.0,
+    width=10,
+    length=6,
+    heightSto=2.8,
+    nSto=2,
+    ARoom=4.0*4.0,
+    widthWindow1=4.0,
+    heightWindow1=2*1.2,
+    widthWindow2=4.0,
+    heightWindow2=2*1.2,
+    widthWindow3=4.0,
+    heightWindow3=2*1.2,
+    widthWindow4=4.0,
+    heightWindow4=2*1.2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallSingle2014 constructionWall1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallSingle2014 constructionWall2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallSingle2014 constructionWall3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.OuterWallSingle2014 constructionWall4,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.RoofSingle2014 constructionCeiling,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.BasePlateSingle2014 constructionBottom,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateWallSingle2014 constructionWallsInterior,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.IntermediateCeilingSingle2014 constructionCeilingsInterior,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow1,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow2,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow3,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow4,
+    BCWall1=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCWall2=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCWall3=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCWall4=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
+    BCCeiling=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient)
     "Building model"
     annotation (Placement(transformation(extent={{4,42},{24,62}})));
   Modelica.Blocks.Sources.Constant airchange(
@@ -56,7 +76,7 @@ model SolarHeatingSystem
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=10.0,
-    Q_flow_nominal=4000.0,
+    Q_flow_nominal=8000.0,
     VWat=0.005,
     mDry=0.0001,
     nEle=5,
@@ -103,7 +123,7 @@ model SolarHeatingSystem
     "Valve model with opening characteristics based on a table"
     annotation (Placement(transformation(extent={{-36,-22},{-16,-2}})));
   Modelica.Blocks.Continuous.LimPID thermostat(
-    k=0.5,
+    k=0.8,
     controllerType=Modelica.Blocks.Types.SimpleController.P,
     yMax=1.0,
     yMin=0.0,
@@ -114,7 +134,7 @@ model SolarHeatingSystem
     redeclare package Medium =Medium, m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-84,-22},{-64,-2}})));
   Modelica.Blocks.Sources.Constant dpSet(
-    k=2000.0)
+    k=4000.0)
     "Set pressure for the pump model"
     annotation (Placement(transformation(extent={{-68,6},{-72,10}})));
   Modelica.Blocks.Sources.Constant TAirSet(
@@ -129,7 +149,7 @@ model SolarHeatingSystem
     AdditionalFluidPorts=true,
     nEle=10,
     HX_1=true,
-    V=1.0,
+    V=5.0,
     height = 2.0,
     redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     redeclare package Medium = Medium)
@@ -141,7 +161,10 @@ model SolarHeatingSystem
     angleDegTil=30,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=10,
-    redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate.AgenaAZUR8plus_AC28H collectorData)
+    redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate.AgenaAZUR8plus_AC28H collectorData,
+    width=10,
+    height=2,
+    AColData=false)
     "Solar thermal collector"
     annotation (Placement(transformation(extent={{92,-24},{112,-4}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump2(redeclare package Medium = Medium,
@@ -346,8 +369,9 @@ equation
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates a solar thermal system which supplies a building with heating energy.
-A boiler add the backup energy which cannot delivered by the solar collector.
+Example that simulates a solar thermal system which supplies a building (EnEV2014 standard)
+with heating energy. A boiler add the backup energy which cannot delivered by a
+solar thermal system with a collector area of 20 m2 and a solar storage with 5 m3.
 </p>
 </html>",
 revisions="<html>
