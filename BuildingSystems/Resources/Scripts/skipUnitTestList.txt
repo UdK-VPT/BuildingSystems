@@ -1,3 +1,5 @@
-BuildingSystems\Resources\Scripts\Dymola\Technologies\ThermalStorages\Examples\FluidStorageChargeDischargeProfile.mos
+BuildingSystems\Resources\Scripts\Dymola\Applications\ClimateAnalyses\FreeFloatingTemperature
+BuildingSystems\Resources\Scripts\Dymola\Applications\DistrictSimulation\DistrictBerlinKreuzberg.mos
+BuildingSystems\Resources\Scripts\Dymola\Applications\AirConditioningSystems\PhotovoltaicCoolingSystem.mos
 BuildingSystems\Resources\Scripts\Dymola\HAM\HeatAndMoistureTransport\Examples\HeatAndMoistureTransport3D.mos
-Resources\Scripts\Dymola\Applications\DistrictSimulation\DistrictBerlinKreuzberg.mos
+BuildingSystems\Resources\Scripts\Dymola\Technologies\ThermalStorages\Examples\FluidStorageChargeDischargeProfile.mos
