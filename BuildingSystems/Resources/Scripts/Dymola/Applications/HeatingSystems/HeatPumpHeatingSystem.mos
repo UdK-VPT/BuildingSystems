@@ -1,0 +1,44 @@
+simulateModel("BuildingSystems.Applications.HeatingSystems.HeatPumpHeatingSystem", stopTime=864000, method="dassl", resultFile="HeatPumpHeatingSystem");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","building.zone.TAir","building.zone.TOperative"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatPumpHeatingSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {600, 0, 600, 500},
+  y = {"rad.Q_flow", "heaPum.QCon_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatPumpHeatingSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 3,
+  position = {1200, 0, 600, 500},
+  y = {"heaPum.COP"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatPumpHeatingSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
