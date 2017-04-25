@@ -1,3 +1,4 @@
+# skip all tests that take too long, break BuildingsPy or create too large mat files
 BuildingSystems\Resources\Scripts\Dymola\Applications\ClimateAnalyses\FreeFloatingTemperature
 BuildingSystems\Resources\Scripts\Dymola\Applications\DistrictSimulation\DistrictBerlinKreuzberg.mos
 BuildingSystems\Resources\Scripts\Dymola\Applications\AirConditioningSystems\PhotovoltaicCoolingSystem.mos
