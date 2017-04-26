@@ -156,7 +156,7 @@ model HeatPumpHeatingSystem
   Fluid.Sources.MassFlowSource_T m_flow_eva(
     redeclare package Medium = Medium2,
     nPorts=1,
-    m_flow=0.1,
+    m_flow=0.5,
     use_T_in=true)
     annotation (Placement(transformation(extent={{24,-76},{16,-68}})));
   Fluid.Sources.Boundary_pT bou_pT(
