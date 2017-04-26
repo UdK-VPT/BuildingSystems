@@ -1,8 +1,9 @@
 within BuildingSystems.Applications.HeatingSystems;
-model WaterHeatingSystem
+model HeatPumpHeatingSystem
   "Water heating system"
   extends Modelica.Icons.Example;
-  package Medium = BuildingSystems.Media.Water;
+  package Medium1 = BuildingSystems.Media.Water;
+  package Medium2 = BuildingSystems.Media.Air;
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.1;
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
@@ -51,12 +52,12 @@ model WaterHeatingSystem
     "Mean air change rate of the building"
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={38,56})));
   BuildingSystems.Fluid.Storage.ExpansionVessel exp(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     V_start=0.1)
     "Expansion vessel model"
-    annotation (Placement(transformation(extent={{20,-54},{32,-42}})));
+    annotation (Placement(transformation(extent={{24,-54},{36,-42}})));
   BuildingSystems.Fluid.FixedResistances.Pipe  pip1(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -65,14 +66,21 @@ model WaterHeatingSystem
     diameter=0.02)
     "Pipe model"
     annotation (Placement(transformation(extent={{12,-2},{32,-22}})));
-  BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T hea(
-    redeclare package Medium = Medium,
-    m_flow_nominal=m_flow_nominal,
-    dp_nominal=10.0)
-    "Boiler model"
-    annotation (Placement(transformation(extent={{8,-70},{-12,-50}})));
+  Fluid.HeatPumps.Carnot_TCon heaPum(
+    redeclare package Medium1 = Medium1,
+    redeclare package Medium2 = Medium2,
+    QCon_flow_nominal=5000,
+    use_eta_Carnot_nominal=false,
+    COP_nominal=3.0,
+    dp1_nominal=10,
+    dp2_nominal=10,
+    TCon_nominal=308.15,
+    TEva_nominal=275.15,
+    QCon_flow_max=5000)
+    "Heat pump model"
+    annotation (Placement(transformation(extent={{12,-76},{-8,-56}})));
   BuildingSystems.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=10.0,
@@ -81,14 +89,14 @@ model WaterHeatingSystem
     mDry=0.0001,
     nEle=5,
     fraRad=0.5,
-    T_a_nominal=273.15 + 90.0,
-    T_b_nominal=273.15 + 70.0,
     TAir_nominal=273.15 + 20.0,
-    n=1.3)
+    n=1.3,
+    T_a_nominal=273.15 + 60.0,
+    T_b_nominal=273.15 + 40.0)
     "Radiator model"
     annotation (Placement(transformation(extent={{-12,-22},{8,-2}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pip2(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -96,10 +104,10 @@ model WaterHeatingSystem
     length=1)
     "Pipe model"
     annotation (Placement(transformation(extent={{-16,-70},{-36,-50}})));
-  Modelica.Blocks.Sources.Constant TSet(k=273.15 + 60.0)
-    annotation (Placement(transformation(extent={{18,-56},{14,-52}})));
+  Modelica.Blocks.Sources.Constant TSet(k=273.15 + 35.0)
+    annotation (Placement(transformation(extent={{22,-56},{18,-52}})));
   Fluid.FixedResistances.Pipe pip3(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -114,7 +122,7 @@ model WaterHeatingSystem
     "Valve characteristics"
     annotation (Placement(transformation(extent={{-80,22},{-60,42}})));
   BuildingSystems.Fluid.Actuators.Valves.TwoWayTable val(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     from_dp=true,
     flowCharacteristics=datVal,
     CvData=BuildingSystems.Fluid.Types.CvTypes.Kv,
@@ -131,7 +139,7 @@ model WaterHeatingSystem
     "Thermostat, modelled by a limeted p-controller"
     annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={-26,18})));
   BuildingSystems.Fluid.Movers.FlowControlled_dp pump(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-84,-22},{-64,-2}})));
   Modelica.Blocks.Sources.Constant dpSet(
@@ -145,6 +153,18 @@ model WaterHeatingSystem
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(
     each T=293.15)
     annotation (Placement(transformation(extent={{-72,-46},{-60,-34}})));
+  Fluid.Sources.MassFlowSource_T m_flow_eva(
+    redeclare package Medium = Medium2,
+    nPorts=1,
+    m_flow=0.1,
+    use_T_in=true)
+    annotation (Placement(transformation(extent={{24,-76},{16,-68}})));
+  Fluid.Sources.Boundary_pT bou_pT(
+    redeclare package Medium = Medium2,
+    nPorts=1,
+    p=99999,
+    T=293.15)
+    annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=180,origin={-16,-72})));
 equation
    connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
     points={{-8,56},{5,56}},
@@ -155,11 +175,11 @@ equation
     color={85,170,255},
     smooth=Smooth.None));
   connect(ambient.TAirRef, building.TAirAmb) annotation (Line(
-      points={{-24.2,59},{-26,59},{-26,64},{20.2,64},{20.2,61.8}},
+      points={{-25,59},{-26,59},{-26,64},{20.2,64},{20.2,61.8}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient.xAir, building.xAirAmb) annotation (Line(
-      points={{-24.2,57},{-28,57},{-28,66},{22.4,66},{22.4,61.8}},
+      points={{-25,57},{-28,57},{-28,66},{22.4,66},{22.4,61.8}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(building.airchange[1], airchange.y) annotation (Line(
@@ -170,12 +190,8 @@ equation
       points={{8,-12},{12,-12}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(pip2.port_a,hea. port_b) annotation (Line(
-      points={{-16,-60},{-12,-60}},
-      color={0,127,255},
-      smooth=Smooth.None));
-  connect(hea.TSet,TSet. y) annotation (Line(
-      points={{10,-54},{13.8,-54}},
+  connect(heaPum.TSet, TSet.y) annotation (Line(
+      points={{14,-57},{14,-56},{18,-56},{18,-54},{17.8,-54}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(pip3.port_b,val. port_a) annotation (Line(
@@ -206,20 +222,16 @@ equation
       points={{-24.2,26},{-26,26},{-26,22.8}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(hea.port_a,pip1. port_b) annotation (Line(
-      points={{8,-60},{38,-60},{38,-12},{32,-12}},
-      color={0,127,255},
-      smooth=Smooth.None));
   connect(exp.port_a,pip1. port_b) annotation (Line(
-      points={{26,-54},{26,-60},{38,-60},{38,-12},{32,-12}},
+      points={{30,-54},{30,-60},{38,-60},{38,-12},{32,-12}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(rad.heatPortCon, building.conHeatSourcesPorts[1]) annotation (Line(
-      points={{-4,-4.8},{-4,68},{16.2,68},{16.2,62}},
+      points={{-4,-4.8},{-4,68},{14,68},{14,62}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(building.TAir[1], thermostat.u_m) annotation (Line(
-      points={{25,45},{40,45},{40,18},{-21.2,18}},
+      points={{33,45},{40,45},{40,18},{-21.2,18}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TAmb.port, pip3.heatPort)
@@ -231,15 +243,27 @@ equation
   connect(rad.heatPortRad, building.radHeatSourcesPorts[1]) annotation (Line(
      points={{0,-4.8},{0,-4.8},{0,68},{17,68},{17,62}}, color={191,0,0}));
 
+  connect(pip2.port_a, heaPum.port_b1) annotation (Line(points={{-16,-60},{-12,-60},
+          {-8,-60}}, color={0,127,255}));
+  connect(heaPum.port_a1, pip1.port_b) annotation (Line(points={{12,-60},{38,-60},
+          {38,-12},{32,-12}}, color={0,127,255}));
+  connect(heaPum.port_b2, m_flow_eva.ports[1])
+    annotation (Line(points={{12,-72},{14,-72},{16,-72}}, color={0,127,255}));
+  connect(bou_pT.ports[1], heaPum.port_a2) annotation (Line(points={{-12,-72},{-10,
+          -72},{-8,-72}}, color={0,127,255}));
+  connect(ambient.TAirRef, m_flow_eva.T_in) annotation (Line(points={{-25,59},{-32,
+          59},{-32,70},{56,70},{56,-70.4},{24.8,-70.4}}, color={0,0,127}));
+
   annotation(experiment(StartTime=0, StopTime=31536000),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/HeatingSystems/WaterHeatingSystem.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255},
-    textString="Warm water heating system with a boiler")}),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/HeatingSystems/HeatPumpHeatingSystem.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+      graphics={Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255},
+      textString="Warm water heating system with an air/water heat pump")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
 Example that simulates a warm water heating system for a building. The system
-works with a constant supply temperature from a boiler of 35 degree Celsius,
+works with a constant supply temperature from an air/water heat pump of 35 degree Celsius,
 the mass flow of the heating loop is controlled by a valve related
 to the necessary heating demand of the building
 for a set temperature of 20 degree Celsius.
@@ -248,9 +272,9 @@ for a set temperature of 20 degree Celsius.
 revisions="<html>
 <ul>
 <li>
-May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+April 25, 2017, by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>
 </ul>
 </html>"));
-end WaterHeatingSystem;
+end HeatPumpHeatingSystem;

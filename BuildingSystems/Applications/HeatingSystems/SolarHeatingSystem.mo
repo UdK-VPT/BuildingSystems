@@ -365,7 +365,7 @@ equation
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/HeatingSystems/SolarHeatingSystem.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{140,100}}),                                                                  graphics={
-    Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255}, textString="Solar heating system with simplified thermal building model")}),
+    Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255}, textString="Solar heating system with a boiler as a back up energy source")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
