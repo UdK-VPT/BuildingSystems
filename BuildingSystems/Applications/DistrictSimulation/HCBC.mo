@@ -2,12 +2,14 @@ within BuildingSystems.Applications.DistrictSimulation;
 model HCBC
   "Model including buildings of the university campus Berlin-Charlottenburg (HCBC) without DHN"
   extends Modelica.Icons.Example;
-  Modelica.SIunits.Heat Q_district "Heating load of all buildings";
-  model Building "Building model with four capacities used in conjunction with parameter maps for campus simulations"
+  Modelica.SIunits.Heat Q_district(displayUnit="kWh")
+    "Heating load of all buildings";
+  model Building
+    "Building model with four capacities used in conjunction with parameter maps for campus simulations"
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
     nSurfacesSolid=1,
     surfacesToAmbient(nSurfaces=5),
-      nZones=1);
+    nZones=1);
 
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
     nConstructions1=8,
@@ -15,18 +17,18 @@ model HCBC
     height=parameterMap.heightZon,
     Q_flow_heatingMax=parameterMap.Q_flowHea,
     Q_flow_coolingMax=parameterMap.Q_flowCoo,
-      nHeatSources=nHeatSources,
-      heatSources=heatSources)
+    nHeatSources=nHeatSources,
+    heatSources=heatSources)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes
-    outerCapacity(constructionData=outerConstruction,
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes outerCapacity(
+    constructionData=outerConstruction,
     abs_2=0.75,
     width=parameterMap.widthOutCap,
     height=parameterMap.heightOutCap,
     abs_1=0.0)
     annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes
-    innerCapacity(constructionData=innerConstruction,
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes innerCapacity(
+    constructionData=innerConstruction,
     abs_2=0.75,
     abs_1=0.75,
     width=parameterMap.widthInnCap,
@@ -61,17 +63,18 @@ model HCBC
     nLayers=1,
     thickness={parameterMap.thickness},
     material={
-        BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral(
-        lambda=parameterMap.lambdaOut,
-        c=parameterMap.cOut,
-        rho=parameterMap.rhoOut)})
+      BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral(
+      lambda=parameterMap.lambdaOut,
+      c=parameterMap.cOut,
+      rho=parameterMap.rhoOut)})
     annotation (Placement(transformation(extent={{-78,40},{-58,60}})));
   BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction
-    innerConstruction(thickness={parameterMap.thickness}, material={
-        BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral(
-        lambda=parameterMap.lambdaInn,
-        c=parameterMap.cInn,
-        rho=parameterMap.rhoInn)})
+    innerConstruction(thickness={parameterMap.thickness},
+    material={
+      BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral(
+      lambda=parameterMap.lambdaInn,
+      c=parameterMap.cInn,
+      rho=parameterMap.rhoInn)})
     annotation (Placement(transformation(extent={{-52,40},{-32,60}})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes baseCapacity(
     constructionData=baseConstruction,
@@ -79,40 +82,31 @@ model HCBC
     abs_2=0.75,
     width=parameterMap.widthBasCap,
     height=parameterMap.lengthBasCap)
-                                    annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=90,
-        origin={70,-50})));
-  BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction baseConstruction(thickness=
-       {parameterMap.thickness}, material={
-        BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral(
-        lambda=parameterMap.lambdaBas,
-        c=parameterMap.cBas,
-        rho=parameterMap.rhoBas)})
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={70,-50})));
+  BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction baseConstruction(
+    thickness={parameterMap.thickness},
+    material={
+      BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral(
+      lambda=parameterMap.lambdaBas,
+      c=parameterMap.cBas,
+      rho=parameterMap.rhoBas)})
     annotation (Placement(transformation(extent={{-26,40},{-6,60}})));
-  replaceable parameter
-    ParameterMap parameterMap
+  replaceable parameter ParameterMap parameterMap
     annotation (choicesAllMatching=true, Placement(transformation(extent={{20,40},{40,60}})));
   equation
 
   connect(surfacesToAmbient.toConstructionPorts[1], outerCapacity.toSurfacePort_1)
-    annotation (Line(points={{-173.9,0},{-40,0},{-40,30},{-32,30}},color={127,0,
-          0}));
+    annotation (Line(points={{-173.9,0},{-40,0},{-40,30},{-32,30}},color={127,0,0}));
   connect(surfacesToAmbient.toConstructionPorts[2], leftWindow.toSurfacePort_1)
-    annotation (Line(points={{-173.9,0},{-40,0},{-40,-50},{-32,-50}},  color={127,
-          0,0}));
+    annotation (Line(points={{-173.9,0},{-40,0},{-40,-50},{-32,-50}},  color={127,0,0}));
   connect(surfacesToAmbient.toConstructionPorts[3], rightWindow.toSurfacePort_1)
-    annotation (Line(points={{-173.9,0},{-173.9,0},{-40,0},{-40,-64},{-18,-64},{
-          -18,-50},{-12,-50}},
-                             color={127,0,0}));
+    annotation (Line(points={{-173.9,0},{-173.9,0},{-40,0},{-40,-64},{-18,-64},{-18,-50},{-12,-50}},color={127,0,0}));
   connect(surfacesToAmbient.toConstructionPorts[4], frontWindow.toSurfacePort_1)
     annotation (Line(points={{-173.9,0},{-173.9,0},{-40,0},{-40,-64},{2,-64},{2,
-          -50},{8,-50}},
-                      color={127,0,0}));
+          -50},{8,-50}},color={127,0,0}));
   connect(surfacesToAmbient.toConstructionPorts[5], backWindow.toSurfacePort_1)
     annotation (Line(points={{-173.9,0},{-173.9,0},{-40,0},{-40,-64},{22,-64},{22,
-          -50},{28,-50}},
-                       color={127,0,0}));
+          -50},{28,-50}},color={127,0,0}));
   connect(zone.toConstructionPorts1[1], outerCapacity.toSurfacePort_2)
     annotation (Line(points={{-11,0.5},{-16,0.5},{-20,0.5},{-20,30},{-28,30}},
                      color={127,0,0}));
@@ -149,11 +143,9 @@ model HCBC
   connect(xAirAmb, zone.xAirAmb)
     annotation (Line(points={{70,120},{70,3},{11,3}}, color={0,0,127}));
   connect(T_setHeating[1], zone.T_setHeating) annotation (Line(points={{180,80},
-            {180,80},{82,80},{82,20},{1,20},{1,7}},
-                                                 color={0,0,127}));
+            {180,80},{82,80},{82,20},{1,20},{1,7}},color={0,0,127}));
   connect(T_setCooling[1], zone.T_setCooling) annotation (Line(points={{180,60},
-            {180,60},{82,60},{82,18},{5,18},{5,7}},
-                                                 color={0,0,127}));
+            {180,60},{82,60},{82,18},{5,18},{5,7}},color={0,0,127}));
   connect(zone.Q_flow_cooling, Q_flow_cooling[1]) annotation (Line(points={{7,7},{7,
             -22},{-80,-22},{-80,-122}},  color={0,0,127}));
     connect(zone.Q_flow_heating, Q_flow_heating[1]) annotation (Line(points={{3,
@@ -166,69 +158,122 @@ model HCBC
             -100},{100,100}})));
   end Building;
 
-  record ParameterMap "Parameter map for building information from ATES database"
-  extends Modelica.Icons.Record;
-
-  // General information
-  parameter Integer id = 0 annotation (Dialog(group = "General information"));
-  parameter String name = "" annotation (Dialog(group = "General information"));
-  // Geometry related input parameters
-  parameter Modelica.SIunits.Length thickness = 1 annotation (Dialog(group = "Geometry related input"));
-  parameter Integer nFloors = 1 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Length heightBui = 1 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Volume VBui = 1 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Area ABuiGro = 1 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Area AWal1 = 1 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Area AWal2 = 1 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Area AWal3 = 1 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Area AWal4 = 1 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin1 = 0 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin2 = 0 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin3 = 0 annotation (Dialog(group = "Geometry related input"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin4 = 0 annotation (Dialog(group = "Geometry related input"));
-  // Heat flow rate heating/cooling
-  parameter Modelica.SIunits.HeatFlowRate Q_flowHea = 100000 annotation (Dialog(group = "Heat flow rate heating/cooling"));
-  parameter Modelica.SIunits.HeatFlowRate Q_flowCoo = -100000 annotation (Dialog(group = "Heat flow rate heating/cooling"));
-  // Optimization input parameters
-  parameter Modelica.SIunits.Temp_K TSetHea = 273.15+20 annotation (Dialog(group = "Optimization parameters"));
-  parameter Modelica.SIunits.Temp_K TSetCoo = 273.15+24 annotation (Dialog(group = "Optimization parameters"));
-  parameter BuildingSystems.Types.AirchangeRate airchange = 0.5 annotation (Dialog(group = "Optimization parameters"));
-  parameter BuildingSystems.Types.VolumeHeatCapacity VHCOut = 1000000 annotation (Dialog(group = "Optimization parameters"));
-  parameter BuildingSystems.Types.VolumeHeatCapacity VHCInn = 1000000 annotation (Dialog(group = "Optimization parameters"));
-  parameter BuildingSystems.Types.VolumeHeatCapacity VHCBas = 1000000 annotation (Dialog(group = "Optimization parameters"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer envelopeU = 1.2 annotation (Dialog(group = "Optimization parameters"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer innerU = 1.2 annotation (Dialog(group = "Optimization parameters"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer baseU = 1.2 annotation (Dialog(group = "Optimization parameters"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer windowU = 3.0 annotation (Dialog(group = "Optimization parameters"));
-  parameter Real ratio = 0.3 annotation (Dialog(group = "Optimization parameters"));
-  // Derived from previous parameters
-  parameter Modelica.SIunits.SpecificHeatCapacity cOut = sqrt(VHCOut) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Density rhoOut = sqrt(VHCOut) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.SpecificHeatCapacity cInn = sqrt(VHCInn) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Density rhoInn = sqrt(VHCInn) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.SpecificHeatCapacity cBas = sqrt(VHCBas) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Density rhoBas = sqrt(VHCBas) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.ThermalConductivity lambdaOut = envelopeU * thickness annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.ThermalConductivity lambdaInn = innerU * thickness annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.ThermalConductivity lambdaBas = baseU * thickness annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length heightWin1 = sqrt(ratio) * heightBui annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length widthWin1 = sqrt(ratio) * AWal1 / heightBui annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length heightWin2 = sqrt(ratio) * heightBui annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length widthWin2 = sqrt(ratio) * AWal2 / heightBui annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length heightWin3 = sqrt(ratio) * heightBui annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length widthWin3 = sqrt(ratio) * AWal3 / heightBui annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length heightWin4 = sqrt(ratio) * heightBui annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length widthWin4 = sqrt(ratio) * AWal4 / heightBui annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Area AHul = ratio * (AWal1 + AWal2 + AWal3 + AWal4) + ABuiGro annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length heightOutCap = sqrt(AHul) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length widthOutCap = sqrt(AHul) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length heightInnCap = lengthBasCap * sqrt(nFloors) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length widthInnCap = widthBasCap * sqrt(nFloors) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length lengthBasCap = sqrt(ABuiGro) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length widthBasCap = sqrt(ABuiGro) annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Volume VZon = VBui annotation (Dialog(group = "Derived model parametrization"));
-  parameter Modelica.SIunits.Length heightZon = heightBui annotation (Dialog(group = "Derived model parametrization"));
-
+  record ParameterMap
+    "Parameter map for building information from ATES database"
+    extends Modelica.Icons.Record;
+    // General information
+    parameter Integer id = 0
+      annotation (Dialog(group = "General information"));
+    parameter String name = ""
+      annotation (Dialog(group = "General information"));
+    // Geometry related input parameters
+    parameter Modelica.SIunits.Length thickness = 1
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Integer nFloors = 1
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Length heightBui = 1
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Volume VBui = 1
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Area ABuiGro = 1
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Area AWal1 = 1
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Area AWal2 = 1
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Area AWal3 = 1
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Area AWal4 = 1
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin1 = 0
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin2 = 0
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin3 = 0
+      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin4 = 0
+      annotation (Dialog(group = "Geometry related input"));
+    // Heat flow rate heating/cooling
+    parameter Modelica.SIunits.HeatFlowRate Q_flowHea = 100000
+      annotation (Dialog(group = "Heat flow rate heating/cooling"));
+    parameter Modelica.SIunits.HeatFlowRate Q_flowCoo = -100000
+      annotation (Dialog(group = "Heat flow rate heating/cooling"));
+    // Optimization input parameters
+    parameter Modelica.SIunits.Temp_K TSetHea = 273.15+20
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter Modelica.SIunits.Temp_K TSetCoo = 273.15+24
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter BuildingSystems.Types.AirchangeRate airchange = 0.5
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter BuildingSystems.Types.VolumeHeatCapacity VHCOut = 1000000
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter BuildingSystems.Types.VolumeHeatCapacity VHCInn = 1000000
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter BuildingSystems.Types.VolumeHeatCapacity VHCBas = 1000000
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter Modelica.SIunits.CoefficientOfHeatTransfer envelopeU = 1.2
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter Modelica.SIunits.CoefficientOfHeatTransfer innerU = 1.2
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter Modelica.SIunits.CoefficientOfHeatTransfer baseU = 1.2
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter Modelica.SIunits.CoefficientOfHeatTransfer windowU = 3.0
+      annotation (Dialog(group = "Optimization parameters"));
+    parameter Real ratio = 0.3
+      annotation (Dialog(group = "Optimization parameters"));
+    // Derived from previous parameters
+    parameter Modelica.SIunits.SpecificHeatCapacity cOut = sqrt(VHCOut)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Density rhoOut = sqrt(VHCOut)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.SpecificHeatCapacity cInn = sqrt(VHCInn)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Density rhoInn = sqrt(VHCInn)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.SpecificHeatCapacity cBas = sqrt(VHCBas)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Density rhoBas = sqrt(VHCBas)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.ThermalConductivity lambdaOut = envelopeU * thickness
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.ThermalConductivity lambdaInn = innerU * thickness
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.ThermalConductivity lambdaBas = baseU * thickness
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length heightWin1 = sqrt(ratio) * heightBui
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length widthWin1 = sqrt(ratio) * AWal1 / heightBui
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length heightWin2 = sqrt(ratio) * heightBui
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length widthWin2 = sqrt(ratio) * AWal2 / heightBui
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length heightWin3 = sqrt(ratio) * heightBui
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length widthWin3 = sqrt(ratio) * AWal3 / heightBui
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length heightWin4 = sqrt(ratio) * heightBui
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length widthWin4 = sqrt(ratio) * AWal4 / heightBui
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Area AHul = ratio * (AWal1 + AWal2 + AWal3 + AWal4) + ABuiGro
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length heightOutCap = sqrt(AHul)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length widthOutCap = sqrt(AHul)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length heightInnCap = lengthBasCap * sqrt(nFloors)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length widthInnCap = widthBasCap * sqrt(nFloors)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length lengthBasCap = sqrt(ABuiGro)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length widthBasCap = sqrt(ABuiGro)
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Volume VZon = VBui
+      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.SIunits.Length heightZon = heightBui
+      annotation (Dialog(group = "Derived model parametrization"));
   end ParameterMap;
 
   ParameterMap parameterMap1(
@@ -1247,9 +1292,8 @@ model HCBC
     ratio = 0.05);
 
   BuildingSystems.Buildings.Ambient ambient(
-                       nSurfaces=190, redeclare
-      BuildingSystems.Climate.WeatherDataTRYGermany.WeatherDataFile_Germany_PotsdamTRYnormal
-      weatherDataFile)
+    nSurfaces=190,
+    redeclare BuildingSystems.Climate.WeatherDataTRYGermany.WeatherDataFile_Germany_PotsdamTRYnormal weatherDataFile)
     annotation (Placement(transformation(extent={{162,194},{262,294}})));
   Building building1(nZones=1, parameterMap = parameterMap1)
     annotation (Placement(transformation(extent={{-182,30},{-162,50}})));
@@ -1327,233 +1371,347 @@ model HCBC
     annotation (Placement(transformation(extent={{82,-174},{102,-154}})));
   Building building55(nZones=1, parameterMap = parameterMap55)
     annotation (Placement(transformation(extent={{-286,84},{-266,104}})));
-  Modelica.Blocks.Sources.Constant set_airchange(k=building43.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange(
+    k=building43.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-200,292},{-208,300}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling(k=building43.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling(
+    k=building43.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-200,304},{-208,312}})));
-  Modelica.Blocks.Sources.Constant t_set_heating(k=building43.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating(
+    k=building43.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-200,316},{-208,324}})));
-  Modelica.Blocks.Sources.Constant set_airchange1(k=building33.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange1(
+    k=building33.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-46,208},{-54,216}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling1(k=building33.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling1(
+    k=building33.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-46,220},{-54,228}})));
-  Modelica.Blocks.Sources.Constant t_set_heating1(k=building33.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating1(
+    k=building33.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-46,232},{-54,240}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling2(k=building21.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling2(
+    k=building21.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-102,200},{-110,208}})));
-  Modelica.Blocks.Sources.Constant t_set_heating2(k=building21.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating2(
+    k=building21.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-102,212},{-110,220}})));
-  Modelica.Blocks.Sources.Constant set_airchange2(k=building21.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange2(
+    k=building21.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-102,188},{-110,196}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling3(k=building16.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling3(
+    k=building16.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-24,190},{-32,198}})));
-  Modelica.Blocks.Sources.Constant t_set_heating3(k=building16.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating3(
+    k=building16.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-24,202},{-32,210}})));
-  Modelica.Blocks.Sources.Constant set_airchange3(k=building16.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange3
+    (k=building16.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-24,178},{-32,186}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling4(k=building11.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling4(
+    k=building11.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{16,140},{8,148}})));
-  Modelica.Blocks.Sources.Constant t_set_heating4(k=building11.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating4(
+    k=building11.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{16,152},{8,160}})));
-  Modelica.Blocks.Sources.Constant set_airchange4(k=building11.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange4(
+    k=building11.parameterMap.airchange)
     annotation (Placement(transformation(extent={{16,128},{8,136}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling5(k=building12.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling5(
+    k=building12.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-144,134},{-152,142}})));
-  Modelica.Blocks.Sources.Constant t_set_heating5(k=building12.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating5(
+    k=building12.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-144,146},{-152,154}})));
-  Modelica.Blocks.Sources.Constant set_airchange5(k=building12.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange5(
+    k=building12.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-144,122},{-152,130}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling6(k=building55.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling6(
+    k=building55.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-246,96},{-254,104}})));
-  Modelica.Blocks.Sources.Constant t_set_heating6(k=building55.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating6(
+    k=building55.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-246,108},{-254,116}})));
-  Modelica.Blocks.Sources.Constant set_airchange6(k=building55.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange6(
+    k=building55.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-246,84},{-254,92}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling7(k=building35.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling7(
+    k=building35.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-306,-24},{-314,-16}})));
-  Modelica.Blocks.Sources.Constant t_set_heating7(k=building35.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating7(
+    k=building35.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-306,-12},{-314,-4}})));
-  Modelica.Blocks.Sources.Constant set_airchange7(k=building35.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange7(
+    k=building35.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-306,-36},{-314,-28}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling8(k=building27.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling8(
+    k=building27.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{86,70},{78,78}})));
-  Modelica.Blocks.Sources.Constant t_set_heating8(k=building27.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating8(
+    k=building27.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{86,82},{78,90}})));
-  Modelica.Blocks.Sources.Constant set_airchange8(k=building27.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange8(
+    k=building27.parameterMap.airchange)
     annotation (Placement(transformation(extent={{86,58},{78,66}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling9(k=building47.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling9(
+    k=building47.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{118,40},{110,48}})));
-  Modelica.Blocks.Sources.Constant t_set_heating9(k=building47.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating9(
+    k=building47.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{118,52},{110,60}})));
-  Modelica.Blocks.Sources.Constant set_airchange9(k=building47.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange9(
+    k=building47.parameterMap.airchange)
     annotation (Placement(transformation(extent={{118,28},{110,36}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling10(k=building34.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling10(
+    k=building34.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{58,32},{50,40}})));
-  Modelica.Blocks.Sources.Constant t_set_heating10(k=building34.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating10(
+    k=building34.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{58,44},{50,52}})));
-  Modelica.Blocks.Sources.Constant set_airchange10(k=building34.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange10(
+    k=building34.parameterMap.airchange)
     annotation (Placement(transformation(extent={{58,20},{50,28}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling11(k=building10.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling11(
+    k=building10.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{24,70},{16,78}})));
-  Modelica.Blocks.Sources.Constant t_set_heating11(k=building10.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating11(
+    k=building10.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{24,82},{16,90}})));
-  Modelica.Blocks.Sources.Constant set_airchange11(k=building10.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange11(
+    k=building10.parameterMap.airchange)
     annotation (Placement(transformation(extent={{24,58},{16,66}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling12(k=building14.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling12(
+    k=building14.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-32,86},{-40,94}})));
-  Modelica.Blocks.Sources.Constant t_set_heating12(k=building14.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating12(
+    k=building14.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-32,98},{-40,106}})));
-  Modelica.Blocks.Sources.Constant set_airchange12(k=building14.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange12(
+    k=building14.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-32,74},{-40,82}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling13(k=building17.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling13(
+    k=building17.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-126,90},{-134,98}})));
-  Modelica.Blocks.Sources.Constant t_set_heating13(k=building17.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating13(
+    k=building17.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-126,102},{-134,110}})));
-  Modelica.Blocks.Sources.Constant set_airchange13(k=building17.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange13(
+    k=building17.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-126,78},{-134,86}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling14(k=building39.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling14(
+    k=building39.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{328,-68},{320,-60}})));
-  Modelica.Blocks.Sources.Constant t_set_heating14(k=building39.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating14(
+    k=building39.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{328,-56},{320,-48}})));
-  Modelica.Blocks.Sources.Constant set_airchange14(k=building39.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange14(
+    k=building39.parameterMap.airchange)
     annotation (Placement(transformation(extent={{328,-80},{320,-72}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling15(k=building51.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling15(
+    k=building51.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{276,-128},{268,-120}})));
-  Modelica.Blocks.Sources.Constant t_set_heating15(k=building51.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating15(
+    k=building51.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{276,-116},{268,-108}})));
-  Modelica.Blocks.Sources.Constant set_airchange15(k=building51.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange15(
+    k=building51.parameterMap.airchange)
     annotation (Placement(transformation(extent={{276,-140},{268,-132}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling16(k=building23.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling16(
+    k=building23.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{320,-140},{312,-132}})));
-  Modelica.Blocks.Sources.Constant t_set_heating16(k=building23.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating16(
+    k=building23.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{320,-128},{312,-120}})));
-  Modelica.Blocks.Sources.Constant set_airchange16(k=building23.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange16(
+    k=building23.parameterMap.airchange)
     annotation (Placement(transformation(extent={{320,-152},{312,-144}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling17(k=building8.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling17(
+    k=building8.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-26,132},{-34,140}})));
-  Modelica.Blocks.Sources.Constant t_set_heating17(k=building8.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating17(
+    k=building8.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-26,144},{-34,152}})));
-  Modelica.Blocks.Sources.Constant set_airchange17(k=building8.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange17(
+    k=building8.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-26,120},{-34,128}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling18(k=building5.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling18(
+    k=building5.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-70,106},{-78,114}})));
-  Modelica.Blocks.Sources.Constant t_set_heating18(k=building5.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating18(
+    k=building5.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-70,118},{-78,126}})));
-  Modelica.Blocks.Sources.Constant set_airchange18(k=building5.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange18(
+    k=building5.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-70,94},{-78,102}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling19(k=building25.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling19(
+    k=building25.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-22,46},{-30,54}})));
-  Modelica.Blocks.Sources.Constant t_set_heating19(k=building25.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating19(
+    k=building25.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-22,58},{-30,66}})));
-  Modelica.Blocks.Sources.Constant set_airchange19(k=building25.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange19(
+    k=building25.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-22,34},{-30,42}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling20(k=building40.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling20(
+    k=building40.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-90,28},{-98,36}})));
-  Modelica.Blocks.Sources.Constant t_set_heating20(k=building40.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating20(
+    k=building40.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-90,40},{-98,48}})));
-  Modelica.Blocks.Sources.Constant set_airchange20(k=building40.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange20(
+    k=building40.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-90,16},{-98,24}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling21(k=building1.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling21(
+    k=building1.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-142,42},{-150,50}})));
-  Modelica.Blocks.Sources.Constant t_set_heating21(k=building1.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating21(
+    k=building1.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-142,54},{-150,62}})));
-  Modelica.Blocks.Sources.Constant set_airchange21(k=building1.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange21(
+    k=building1.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-142,30},{-150,38}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling22(k=building9.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling22(
+    k=building9.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-98,-84},{-106,-76}})));
-  Modelica.Blocks.Sources.Constant t_set_heating22(k=building9.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating22(
+    k=building9.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-98,-72},{-106,-64}})));
-  Modelica.Blocks.Sources.Constant set_airchange22(k=building9.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange22(
+    k=building9.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-98,-96},{-106,-88}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling23(k=building13.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling23(
+    k=building13.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{26,-92},{18,-84}})));
-  Modelica.Blocks.Sources.Constant t_set_heating23(k=building13.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating23(
+    k=building13.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{26,-80},{18,-72}})));
-  Modelica.Blocks.Sources.Constant set_airchange23(k=building13.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange23(
+    k=building13.parameterMap.airchange)
     annotation (Placement(transformation(extent={{26,-104},{18,-96}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling24(k=building6.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling24(
+    k=building6.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-160,-110},{-168,-102}})));
-  Modelica.Blocks.Sources.Constant t_set_heating24(k=building6.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating24(
+    k=building6.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-160,-98},{-168,-90}})));
-  Modelica.Blocks.Sources.Constant set_airchange24(k=building6.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange24(
+    k=building6.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-160,-122},{-168,-114}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling25(k=building46.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling25(
+    k=building46.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-156,-148},{-164,-140}})));
-  Modelica.Blocks.Sources.Constant t_set_heating25(k=building46.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating25(
+    k=building46.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-156,-136},{-164,-128}})));
-  Modelica.Blocks.Sources.Constant set_airchange25(k=building46.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange25(
+    k=building46.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-156,-160},{-164,-152}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling26(k=building3.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling26(
+    k=building3.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-102,-130},{-110,-122}})));
-  Modelica.Blocks.Sources.Constant t_set_heating26(k=building3.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating26(
+    k=building3.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-102,-118},{-110,-110}})));
-  Modelica.Blocks.Sources.Constant set_airchange26(k=building3.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange26(
+    k=building3.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-102,-142},{-110,-134}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling27(k=building50.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling27(
+    k=building50.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-76,-160},{-84,-152}})));
-  Modelica.Blocks.Sources.Constant t_set_heating27(k=building50.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating27(
+    k=building50.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-76,-148},{-84,-140}})));
-  Modelica.Blocks.Sources.Constant set_airchange27(k=building50.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange27(
+    k=building50.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-76,-172},{-84,-164}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling28(k=building2.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling28(
+    k=building2.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-118,-168},{-126,-160}})));
-  Modelica.Blocks.Sources.Constant t_set_heating28(k=building2.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating28(
+    k=building2.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-118,-156},{-126,-148}})));
-  Modelica.Blocks.Sources.Constant set_airchange28(k=building2.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange28(
+    k=building2.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-118,-180},{-126,-172}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling29(k=building30.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling29(
+    k=building30.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-80,-204},{-88,-196}})));
-  Modelica.Blocks.Sources.Constant t_set_heating29(k=building30.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating29(
+    k=building30.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-80,-192},{-88,-184}})));
-  Modelica.Blocks.Sources.Constant set_airchange29(k=building30.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange29(
+    k=building30.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-80,-216},{-88,-208}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling30(k=building7.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling30(
+    k=building7.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{144,-74},{136,-66}})));
-  Modelica.Blocks.Sources.Constant t_set_heating30(k=building7.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating30(
+    k=building7.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{144,-62},{136,-54}})));
-  Modelica.Blocks.Sources.Constant set_airchange30(k=building7.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange30(
+    k=building7.parameterMap.airchange)
     annotation (Placement(transformation(extent={{144,-86},{136,-78}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling31(k=building29.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling31(
+    k=building29.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{138,-122},{130,-114}})));
-  Modelica.Blocks.Sources.Constant t_set_heating31(k=building29.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating31(
+    k=building29.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{138,-110},{130,-102}})));
-  Modelica.Blocks.Sources.Constant set_airchange31(k=building29.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange31(
+    k=building29.parameterMap.airchange)
     annotation (Placement(transformation(extent={{138,-134},{130,-126}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling32(k=building52.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling32(
+    k=building52.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{168,-148},{160,-140}})));
-  Modelica.Blocks.Sources.Constant t_set_heating32(k=building52.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating32(
+    k=building52.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{168,-136},{160,-128}})));
-  Modelica.Blocks.Sources.Constant set_airchange32(k=building52.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange32(
+    k=building52.parameterMap.airchange)
     annotation (Placement(transformation(extent={{168,-160},{160,-152}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling33(k=building54.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling33(
+    k=building54.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{122,-162},{114,-154}})));
-  Modelica.Blocks.Sources.Constant t_set_heating33(k=building54.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating33(
+    k=building54.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{122,-150},{114,-142}})));
-  Modelica.Blocks.Sources.Constant set_airchange33(k=building54.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange33(
+    k=building54.parameterMap.airchange)
     annotation (Placement(transformation(extent={{122,-174},{114,-166}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling34(k=building53.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling34(
+    k=building53.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{98,-198},{90,-190}})));
-  Modelica.Blocks.Sources.Constant t_set_heating34(k=building53.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating34(
+    k=building53.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{98,-186},{90,-178}})));
-  Modelica.Blocks.Sources.Constant set_airchange34(k=building53.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange34(
+    k=building53.parameterMap.airchange)
     annotation (Placement(transformation(extent={{98,-210},{90,-202}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling35(k=building48.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling35(
+    k=building48.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{198,-218},{190,-210}})));
-  Modelica.Blocks.Sources.Constant t_set_heating35(k=building48.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating35(
+    k=building48.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{198,-206},{190,-198}})));
-  Modelica.Blocks.Sources.Constant set_airchange35(k=building48.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange35(
+    k=building48.parameterMap.airchange)
     annotation (Placement(transformation(extent={{198,-230},{190,-222}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling36(k=building45.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling36(
+    k=building45.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{28,-298},{20,-290}})));
-  Modelica.Blocks.Sources.Constant t_set_heating36(k=building45.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating36(
+    k=building45.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{28,-286},{20,-278}})));
-  Modelica.Blocks.Sources.Constant set_airchange36(k=building45.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange36(
+    k=building45.parameterMap.airchange)
     annotation (Placement(transformation(extent={{28,-310},{20,-302}})));
-  Modelica.Blocks.Sources.Constant t_set_cooling37(k=building44.parameterMap.TSetCoo)
+  Modelica.Blocks.Sources.Constant t_set_cooling37(
+    k=building44.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{94,-302},{86,-294}})));
-  Modelica.Blocks.Sources.Constant t_set_heating37(k=building44.parameterMap.TSetHea)
+  Modelica.Blocks.Sources.Constant t_set_heating37(
+    k=building44.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{94,-290},{86,-282}})));
-  Modelica.Blocks.Sources.Constant set_airchange37(k=building44.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange37(
+    k=building44.parameterMap.airchange)
     annotation (Placement(transformation(extent={{94,-314},{86,-306}})));
   Modelica.SIunits.HeatFlowRate Q_flowHea;
   Modelica.SIunits.HeatFlowRate Q_flowCoo;
@@ -2136,17 +2294,25 @@ equation
   connect(groundBuilding21.port, building21.toSolidHeatPorts[1])
     annotation (Line(points={{-132,182},{-132,186},{-136,186},{-136,189}},
                                                        color={191,0,0}));
-  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/DistrictSimulation/HCBC.mos" "Simulate and plot"),Diagram(coordinateSystem(extent={{-400,-400},{400,400}},
-          preserveAspectRatio=false), graphics={Bitmap(extent={{-398,-402},{396,
-              400}}, fileName="modelica://BuildingSystems/Resources/Images/Applications/DistrictSimulation/HCBCBackground.png")}),
-                                                                           Icon(
-        coordinateSystem(extent={{-100,-100},{100,100}})),
-    experiment(
-      StopTime=7.776e+006,
-      Interval=1800,
-      Tolerance=1e-005),
+
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/DistrictSimulation/HCBC.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(extent={{-400,-400},{400,400}},preserveAspectRatio=false),
+    graphics={Bitmap(extent={{-398,-402},{396,400}},
+    fileName="modelica://BuildingSystems/Resources/Images/Applications/DistrictSimulation/HCBCBackground.png")}),
+    Icon(coordinateSystem(extent={{-100,-100},{100,100}})),
+    experiment(StopTime=864000),
     __Dymola_experimentSetupOutput(events=false),
-    Documentation(info="<html>
-Simplified modeling of the buildings of the university campus Berlin-Charlottenburg (HCBC).
+Documentation(info="<html>
+<p>
+Example that simulates heating and cooling demand of university campus in Berlin-Charlottenburg (Germany).
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+April 27, 2017, by Alexander Inderfurth:<br/>
+First implementation.
+</li>
+</ul>
 </html>"));
 end HCBC;

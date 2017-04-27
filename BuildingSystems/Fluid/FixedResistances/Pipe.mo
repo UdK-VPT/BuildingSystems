@@ -97,11 +97,8 @@ protected
     "Pressure loss of a straight pipe at m_flow_nominal";
 public
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector1[nNodes](
-      each m=1) if
-                 useExternalHeatSource annotation (Placement(transformation(
-        extent={{-10,10},{10,-10}},
-        rotation=-90,
-        origin={50,-50})));
+    each m=1) if useExternalHeatSource
+    annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=-90,origin={50,-50})));
 equation
   connect(port_a, res.port_a) annotation (Line(
       points={{-100,5.55112e-16},{-72,5.55112e-16},{-72,1.16573e-15},{-58,
@@ -139,13 +136,15 @@ equation
         smooth=Smooth.None));
   end if;
 
-
   connect(thermalCollector1.port_b, vol.heatPort) annotation (Line(
       points={{60,-50},{71,-50},{71,-28}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(thermalCollector1.port_a[1], heatPorts) annotation (Line(      points={{40,-50},{0.5,-50},{0.5,-60}},      color={191,0,0},      smooth=Smooth.None));
-  connect(thermalCollector1.port_a[1], colAllToOne.port_a) annotation (Line(      points={{40,-50},{-50,-50},{-50,4}},      color={191,0,0},        smooth=Smooth.None));
+  connect(thermalCollector1.port_a[1], heatPorts)
+    annotation (Line(points={{40,-50},{0.5,-50},{0.5,-60}},color={191,0,0},smooth=Smooth.None));
+  connect(thermalCollector1.port_a[1], colAllToOne.port_a)
+    annotation (Line(points={{40,-50},{-50,-50},{-50,4}},color={191,0,0},smooth=Smooth.None));
+
   annotation (defaultComponentName="pip",Icon(graphics={
     Rectangle(
       extent={{-100,60},{100,-60}},
@@ -161,42 +160,42 @@ equation
       extent={{-42,12},{40,-12}},
       lineColor={0,0,0},
       textString="%nNodes")}),
-    Documentation(info="<html>
-    <p>
-    Model of a straight pipe with flow resistance and optional heat storage.
-    This model can be used for modeling the heat exchange between the pipe and environment.
-    The model consists of a flow resistance
-    <a href=\"modelica://BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM\">
-    BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM</a>
-    and <code>nNodes</code> mixing volumes
-    <a href=\"modelica://BuildingSystems.Fluid.MixingVolumes.MixingVolume\">
-    BuildingSystems.Fluid.MixingVolumes.MixingVolume</a>.
-    </p>
-    </html>", revisions="<html>
-    <ul>
-    <li>
-    June 1, 2015, by Christoph Nytsch-Geusen:<br/>
-    Adaptation from the Builings to the BuildingSystms library.
-    </li>
-    <li>
-    October 8, 2013, by Michael Wetter:<br/>
-    Removed parameter <code>show_V_flow</code>.
-    </li>
-    <li>
-    September 13, 2013 by Michael Wetter:<br/>
-    Replaced <code>nominal</code> with <code>default</code> values
-    as they are computed using the default Medium values.
-    </li>
-    <li>
-    February 15, 2012 by Michael Wetter:<br/>
-    Changed base class from which the model extends.
-    Propagated parameters of volume to the top if this model.
-    </li>
-    <li>
-    February 12, 2012 by Wangda Zuo:<br/>
-    First implementation.
-    </li>
-    </ul>
-    </html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
+Documentation(info="<html>
+<p>
+Model of a straight pipe with flow resistance and optional heat storage.
+This model can be used for modeling the heat exchange between the pipe and environment.
+The model consists of a flow resistance
+<a href=\"modelica://BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM\">
+BuildingSystems.Fluid.FixedResistances.FixedResistanceDpM</a>
+and <code>nNodes</code> mixing volumes
+<a href=\"modelica://BuildingSystems.Fluid.MixingVolumes.MixingVolume\">
+BuildingSystems.Fluid.MixingVolumes.MixingVolume</a>.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+June 1, 2015, by Christoph Nytsch-Geusen:<br/>
+Adaptation from the Builings to the BuildingSystms library.
+</li>
+<li>
+October 8, 2013, by Michael Wetter:<br/>
+Removed parameter <code>show_V_flow</code>.
+</li>
+<li>
+September 13, 2013 by Michael Wetter:<br/>
+Replaced <code>nominal</code> with <code>default</code> values
+as they are computed using the default Medium values.
+</li>
+<li>
+February 15, 2012 by Michael Wetter:<br/>
+Changed base class from which the model extends.
+Propagated parameters of volume to the top if this model.
+</li>
+<li>
+February 12, 2012 by Wangda Zuo:<br/>
+First implementation.
+</li>
+</ul>
+</html>"),
+Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
 end Pipe;

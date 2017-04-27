@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Applications.DistrictSimulation.HCBC", stopTime=7776000, startTime=0, method="dassl", tolerance = 1e-5, resultFile="HCBC");
+simulateModel("BuildingSystems.Applications.DistrictSimulation.HCBC", startTime=0, stopTime=864000, method="dassl", resultFile="HCBC");
 createPlot(
   id = 1,
   position = {0, 0, 700, 500},

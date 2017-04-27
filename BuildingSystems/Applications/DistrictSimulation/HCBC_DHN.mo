@@ -1,132 +1,127 @@
 within BuildingSystems.Applications.DistrictSimulation;
 model HCBC_DHN
   "Model of the university campus Berlin-Charlottenburg (HCBC) with DHN."
-
-  Modelica.SIunits.Heat Q_buildings "Heat extracted from the DHN and delivered to the buildings";
-  Modelica.SIunits.Heat Q_buildings_effective "Effective heat that warm up the building (Q_buildings*efficiency)";
-
   extends BuildingSystems.Applications.DistrictSimulation.HCBC(
-                                                                                   building1(heatSources=true, nHeatSources=1),
-   building2(heatSources=true, nHeatSources=1),
-   building3(heatSources=true, nHeatSources=1),
-   building5(heatSources=true, nHeatSources=1),
-   building6(heatSources=true, nHeatSources=1),
-   building7(heatSources=true, nHeatSources=1),
-   building8(heatSources=true, nHeatSources=1),
-   building9(heatSources=true, nHeatSources=1),
-   building10(heatSources=true, nHeatSources=1),
-   building11(heatSources=true, nHeatSources=1),
-   building12(heatSources=true, nHeatSources=1),
-   building13(heatSources=true, nHeatSources=1),
-   building14(heatSources=true, nHeatSources=1),
-   building16(heatSources=true, nHeatSources=1),
-   building17(heatSources=true, nHeatSources=1),
-   building21(heatSources=true, nHeatSources=1),
-   building23(heatSources=true, nHeatSources=1),
-   building25(heatSources=true, nHeatSources=1),
-   building27(heatSources=true, nHeatSources=1),
-   building29(heatSources=true, nHeatSources=1),
-   building30(heatSources=true, nHeatSources=1),
-   building33(heatSources=true, nHeatSources=1),
-   building34(heatSources=true, nHeatSources=1),
-   building35(heatSources=true, nHeatSources=1),
-   building39(heatSources=true, nHeatSources=1),
-   building40(heatSources=true, nHeatSources=1),
-   building43(heatSources=true, nHeatSources=1),
-   building44(heatSources=true, nHeatSources=1),
-   building45(heatSources=true, nHeatSources=1),
-   building46(heatSources=true, nHeatSources=1),
-   building47(heatSources=true, nHeatSources=1),
-   building48(heatSources=true, nHeatSources=1),
-   building50(heatSources=true, nHeatSources=1),
-   building51(heatSources=true, nHeatSources=1),
-   building52(heatSources=true, nHeatSources=1),
-   building53(heatSources=true, nHeatSources=1),
-   building54(heatSources=true, nHeatSources=1),
-   building55(heatSources=true, nHeatSources=1),
-   t_set_heating(k=273.15 - 20),
-   t_set_heating1(k=273.15 - 20),
-   t_set_heating2(k=273.15 - 20),
-   t_set_heating3(k=273.15 - 20),
-   t_set_heating4(k=273.15 - 20),
-   t_set_heating5(k=273.15 - 20),
-   t_set_heating6(k=273.15 - 20),
-   t_set_heating7(k=273.15 - 20),
-   t_set_heating8(k=273.15 - 20),
-   t_set_heating9(k=273.15 - 20),
-   t_set_heating10(k=273.15 - 20),
-   t_set_heating11(k=273.15 - 20),
-   t_set_heating12(k=273.15 - 20),
-   t_set_heating13(k=273.15 - 20),
-   t_set_heating14(k=273.15 - 20),
-   t_set_heating15(k=273.15 - 20),
-   t_set_heating16(k=273.15 - 20),
-   t_set_heating17(k=273.15 - 20),
-   t_set_heating18(k=273.15 - 20),
-   t_set_heating19(k=273.15 - 20),
-   t_set_heating20(k=273.15 - 20),
-   t_set_heating21(k=273.15 - 20),
-   t_set_heating22(k=273.15 - 20),
-   t_set_heating23(k=273.15 - 20),
-   t_set_heating24(k=273.15 - 20),
-   t_set_heating25(k=273.15 - 20),
-   t_set_heating26(k=273.15 - 20),
-   t_set_heating27(k=273.15 - 20),
-   t_set_heating28(k=273.15 - 20),
-   t_set_heating29(k=273.15 - 20),
-   t_set_heating30(k=273.15 - 20),
-   t_set_heating31(k=273.15 - 20),
-   t_set_heating32(k=273.15 - 20),
-   t_set_heating33(k=273.15 - 20),
-   t_set_heating34(k=273.15 - 20),
-   t_set_heating35(k=273.15 - 20),
-   t_set_heating36(k=273.15 - 20),
-   t_set_heating37(k=273.15 - 20));
-
-  extends
-    BuildingSystems.Technologies.DistrictHeatingNetworks.BaseClasses.DHN_Detailed(
-         st13(m_flow_nominal=st13.m_flow_nominalHeating, Q_nominal=
-          parameterMap34.Q_flowHea),
-         st7(m_flow_nominal=st7.m_flow_nominalHeating,Q_nominal=parameterMap7.Q_flowHea),
-         st29(m_flow_nominal=st29.m_flow_nominalHeating,Q_nominal=parameterMap29.Q_flowHea),
-         st52(m_flow_nominal=st52.m_flow_nominalHeating,Q_nominal=parameterMap52.Q_flowHea),
-         st39(m_flow_nominal=st39.m_flow_nominalHeating,Q_nominal=parameterMap39.Q_flowHea),
-         st51(m_flow_nominal=st51.m_flow_nominalHeating,Q_nominal=parameterMap51.Q_flowHea),
-         st48(m_flow_nominal=st48.m_flow_nominalHeating,Q_nominal=parameterMap48.Q_flowHea),
-         st23(m_flow_nominal=st23.m_flow_nominalHeating,Q_nominal=parameterMap23.Q_flowHea),
-         st45(m_flow_nominal=st45.m_flow_nominalHeating,Q_nominal=parameterMap45.Q_flowHea),
-         st44(m_flow_nominal=st44.m_flow_nominalHeating,Q_nominal=parameterMap44.Q_flowHea),
-         st54(m_flow_nominal=st54.m_flow_nominalHeating,Q_nominal=parameterMap54.Q_flowHea),
-         st53(m_flow_nominal=st53.m_flow_nominalHeating,Q_nominal=parameterMap53.Q_flowHea),
-         st50(m_flow_nominal=st50.m_flow_nominalHeating,Q_nominal=parameterMap50.Q_flowHea),
-         st30(m_flow_nominal=st30.m_flow_nominalHeating,Q_nominal=parameterMap30.Q_flowHea),
-         st46(m_flow_nominal=st46.m_flow_nominalHeating,Q_nominal=parameterMap46.Q_flowHea),
-         st6(m_flow_nominal=st6.m_flow_nominalHeating,Q_nominal=parameterMap6.Q_flowHea),
-         st2(m_flow_nominal=st2.m_flow_nominalHeating,Q_nominal=parameterMap2.Q_flowHea),
-         st3(m_flow_nominal=st3.m_flow_nominalHeating,Q_nominal=parameterMap3.Q_flowHea),
-         st9(m_flow_nominal=st9.m_flow_nominalHeating,Q_nominal=parameterMap9.Q_flowHea),
-         st55(m_flow_nominal=st55.m_flow_nominalHeating,Q_nominal=parameterMap55.Q_flowHea),
-         st35(m_flow_nominal=st35.m_flow_nominalHeating,Q_nominal=parameterMap35.Q_flowHea),
-         st1(m_flow_nominal=st1.m_flow_nominalHeating,Q_nominal=parameterMap1.Q_flowHea),
-         st40(m_flow_nominal=st40.m_flow_nominalHeating,Q_nominal=parameterMap40.Q_flowHea),
-         st43(m_flow_nominal=st43.m_flow_nominalHeating,Q_nominal=parameterMap43.Q_flowHea),
-         st47(m_flow_nominal=st47.m_flow_nominalHeating,Q_nominal=parameterMap47.Q_flowHea),
-         st27(m_flow_nominal=st27.m_flow_nominalHeating,Q_nominal=parameterMap27.Q_flowHea),
-         st10(m_flow_nominal=st10.m_flow_nominalHeating,Q_nominal=parameterMap10.Q_flowHea),
-         st34(m_flow_nominal=st34.m_flow_nominalHeating,Q_nominal=parameterMap34.Q_flowHea),
-         st25(m_flow_nominal=st25.m_flow_nominalHeating,Q_nominal=parameterMap25.Q_flowHea),
-         st11(m_flow_nominal=st11.m_flow_nominalHeating,Q_nominal=parameterMap11.Q_flowHea),
-         st33(m_flow_nominal=st33.m_flow_nominalHeating,Q_nominal=parameterMap33.Q_flowHea),
-         st21(m_flow_nominal=st21.m_flow_nominalHeating,Q_nominal=parameterMap21.Q_flowHea),
-         st16(m_flow_nominal=st16.m_flow_nominalHeating,Q_nominal=parameterMap16.Q_flowHea),
-         st12(m_flow_nominal=st12.m_flow_nominalHeating,Q_nominal=parameterMap12.Q_flowHea),
-         st17(m_flow_nominal=st17.m_flow_nominalHeating,Q_nominal=parameterMap17.Q_flowHea),
-         st5(m_flow_nominal=st5.m_flow_nominalHeating,Q_nominal=parameterMap5.Q_flowHea),
-         st14(m_flow_nominal=st14.m_flow_nominalHeating,Q_nominal=parameterMap14.Q_flowHea),
-         st8(m_flow_nominal=st8.m_flow_nominalHeating,Q_nominal=parameterMap8.Q_flowHea));
-
-  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyProductionUnits.Central
-    central(
+    building1(heatSources=true, nHeatSources=1),
+    building2(heatSources=true, nHeatSources=1),
+    building3(heatSources=true, nHeatSources=1),
+    building5(heatSources=true, nHeatSources=1),
+    building6(heatSources=true, nHeatSources=1),
+    building7(heatSources=true, nHeatSources=1),
+    building8(heatSources=true, nHeatSources=1),
+    building9(heatSources=true, nHeatSources=1),
+    building10(heatSources=true, nHeatSources=1),
+    building11(heatSources=true, nHeatSources=1),
+    building12(heatSources=true, nHeatSources=1),
+    building13(heatSources=true, nHeatSources=1),
+    building14(heatSources=true, nHeatSources=1),
+    building16(heatSources=true, nHeatSources=1),
+    building17(heatSources=true, nHeatSources=1),
+    building21(heatSources=true, nHeatSources=1),
+    building23(heatSources=true, nHeatSources=1),
+    building25(heatSources=true, nHeatSources=1),
+    building27(heatSources=true, nHeatSources=1),
+    building29(heatSources=true, nHeatSources=1),
+    building30(heatSources=true, nHeatSources=1),
+    building33(heatSources=true, nHeatSources=1),
+    building34(heatSources=true, nHeatSources=1),
+    building35(heatSources=true, nHeatSources=1),
+    building39(heatSources=true, nHeatSources=1),
+    building40(heatSources=true, nHeatSources=1),
+    building43(heatSources=true, nHeatSources=1),
+    building44(heatSources=true, nHeatSources=1),
+    building45(heatSources=true, nHeatSources=1),
+    building46(heatSources=true, nHeatSources=1),
+    building47(heatSources=true, nHeatSources=1),
+    building48(heatSources=true, nHeatSources=1),
+    building50(heatSources=true, nHeatSources=1),
+    building51(heatSources=true, nHeatSources=1),
+    building52(heatSources=true, nHeatSources=1),
+    building53(heatSources=true, nHeatSources=1),
+    building54(heatSources=true, nHeatSources=1),
+    building55(heatSources=true, nHeatSources=1),
+    t_set_heating(k=273.15 - 20),
+    t_set_heating1(k=273.15 - 20),
+    t_set_heating2(k=273.15 - 20),
+    t_set_heating3(k=273.15 - 20),
+    t_set_heating4(k=273.15 - 20),
+    t_set_heating5(k=273.15 - 20),
+    t_set_heating6(k=273.15 - 20),
+    t_set_heating7(k=273.15 - 20),
+    t_set_heating8(k=273.15 - 20),
+    t_set_heating9(k=273.15 - 20),
+    t_set_heating10(k=273.15 - 20),
+    t_set_heating11(k=273.15 - 20),
+    t_set_heating12(k=273.15 - 20),
+    t_set_heating13(k=273.15 - 20),
+    t_set_heating14(k=273.15 - 20),
+    t_set_heating15(k=273.15 - 20),
+    t_set_heating16(k=273.15 - 20),
+    t_set_heating17(k=273.15 - 20),
+    t_set_heating18(k=273.15 - 20),
+    t_set_heating19(k=273.15 - 20),
+    t_set_heating20(k=273.15 - 20),
+    t_set_heating21(k=273.15 - 20),
+    t_set_heating22(k=273.15 - 20),
+    t_set_heating23(k=273.15 - 20),
+    t_set_heating24(k=273.15 - 20),
+    t_set_heating25(k=273.15 - 20),
+    t_set_heating26(k=273.15 - 20),
+    t_set_heating27(k=273.15 - 20),
+    t_set_heating28(k=273.15 - 20),
+    t_set_heating29(k=273.15 - 20),
+    t_set_heating30(k=273.15 - 20),
+    t_set_heating31(k=273.15 - 20),
+    t_set_heating32(k=273.15 - 20),
+    t_set_heating33(k=273.15 - 20),
+    t_set_heating34(k=273.15 - 20),
+    t_set_heating35(k=273.15 - 20),
+    t_set_heating36(k=273.15 - 20),
+    t_set_heating37(k=273.15 - 20));
+  extends BuildingSystems.Technologies.DistrictHeatingNetworks.BaseClasses.DHN_Detailed(
+    st13(m_flow_nominal=st13.m_flow_nominalHeating, Q_nominal=parameterMap34.Q_flowHea),
+    st7(m_flow_nominal=st7.m_flow_nominalHeating,Q_nominal=parameterMap7.Q_flowHea),
+    st29(m_flow_nominal=st29.m_flow_nominalHeating,Q_nominal=parameterMap29.Q_flowHea),
+    st52(m_flow_nominal=st52.m_flow_nominalHeating,Q_nominal=parameterMap52.Q_flowHea),
+    st39(m_flow_nominal=st39.m_flow_nominalHeating,Q_nominal=parameterMap39.Q_flowHea),
+    st51(m_flow_nominal=st51.m_flow_nominalHeating,Q_nominal=parameterMap51.Q_flowHea),
+    st48(m_flow_nominal=st48.m_flow_nominalHeating,Q_nominal=parameterMap48.Q_flowHea),
+    st23(m_flow_nominal=st23.m_flow_nominalHeating,Q_nominal=parameterMap23.Q_flowHea),
+    st45(m_flow_nominal=st45.m_flow_nominalHeating,Q_nominal=parameterMap45.Q_flowHea),
+    st44(m_flow_nominal=st44.m_flow_nominalHeating,Q_nominal=parameterMap44.Q_flowHea),
+    st54(m_flow_nominal=st54.m_flow_nominalHeating,Q_nominal=parameterMap54.Q_flowHea),
+    st53(m_flow_nominal=st53.m_flow_nominalHeating,Q_nominal=parameterMap53.Q_flowHea),
+    st50(m_flow_nominal=st50.m_flow_nominalHeating,Q_nominal=parameterMap50.Q_flowHea),
+    st30(m_flow_nominal=st30.m_flow_nominalHeating,Q_nominal=parameterMap30.Q_flowHea),
+    st46(m_flow_nominal=st46.m_flow_nominalHeating,Q_nominal=parameterMap46.Q_flowHea),
+    st6(m_flow_nominal=st6.m_flow_nominalHeating,Q_nominal=parameterMap6.Q_flowHea),
+    st2(m_flow_nominal=st2.m_flow_nominalHeating,Q_nominal=parameterMap2.Q_flowHea),
+    st3(m_flow_nominal=st3.m_flow_nominalHeating,Q_nominal=parameterMap3.Q_flowHea),
+    st9(m_flow_nominal=st9.m_flow_nominalHeating,Q_nominal=parameterMap9.Q_flowHea),
+    st55(m_flow_nominal=st55.m_flow_nominalHeating,Q_nominal=parameterMap55.Q_flowHea),
+    st35(m_flow_nominal=st35.m_flow_nominalHeating,Q_nominal=parameterMap35.Q_flowHea),
+    st1(m_flow_nominal=st1.m_flow_nominalHeating,Q_nominal=parameterMap1.Q_flowHea),
+    st40(m_flow_nominal=st40.m_flow_nominalHeating,Q_nominal=parameterMap40.Q_flowHea),
+    st43(m_flow_nominal=st43.m_flow_nominalHeating,Q_nominal=parameterMap43.Q_flowHea),
+    st47(m_flow_nominal=st47.m_flow_nominalHeating,Q_nominal=parameterMap47.Q_flowHea),
+    st27(m_flow_nominal=st27.m_flow_nominalHeating,Q_nominal=parameterMap27.Q_flowHea),
+    st10(m_flow_nominal=st10.m_flow_nominalHeating,Q_nominal=parameterMap10.Q_flowHea),
+    st34(m_flow_nominal=st34.m_flow_nominalHeating,Q_nominal=parameterMap34.Q_flowHea),
+    st25(m_flow_nominal=st25.m_flow_nominalHeating,Q_nominal=parameterMap25.Q_flowHea),
+    st11(m_flow_nominal=st11.m_flow_nominalHeating,Q_nominal=parameterMap11.Q_flowHea),
+    st33(m_flow_nominal=st33.m_flow_nominalHeating,Q_nominal=parameterMap33.Q_flowHea),
+    st21(m_flow_nominal=st21.m_flow_nominalHeating,Q_nominal=parameterMap21.Q_flowHea),
+    st16(m_flow_nominal=st16.m_flow_nominalHeating,Q_nominal=parameterMap16.Q_flowHea),
+    st12(m_flow_nominal=st12.m_flow_nominalHeating,Q_nominal=parameterMap12.Q_flowHea),
+    st17(m_flow_nominal=st17.m_flow_nominalHeating,Q_nominal=parameterMap17.Q_flowHea),
+    st5(m_flow_nominal=st5.m_flow_nominalHeating,Q_nominal=parameterMap5.Q_flowHea),
+    st14(m_flow_nominal=st14.m_flow_nominalHeating,Q_nominal=parameterMap14.Q_flowHea),
+    st8(m_flow_nominal=st8.m_flow_nominalHeating,Q_nominal=parameterMap8.Q_flowHea));
+  Modelica.SIunits.Heat Q_buildings(displayUnit="kWh")
+    "Heat extracted from the DHN and delivered to the buildings";
+  Modelica.SIunits.Heat Q_buildings_effective(displayUnit="kWh")
+    "Effective heat that warm up the building (Q_buildings*efficiency)";
+  BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyProductionUnits.Central central(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
     mProduction_flow_nominal=1000,
@@ -144,7 +139,6 @@ model HCBC_DHN
     p=400000)
     annotation (Placement(transformation(extent={{200,-82},{220,-62}})));
 equation
-
   Q_buildings =
      st1.externalIdealHeater.gain1.u
    + st2.externalIdealHeater.gain1.u
@@ -184,7 +178,7 @@ equation
    + st54.externalIdealHeater.gain1.u
    + st55.externalIdealHeater.gain1.u;
   Q_buildings_effective =
-       st1.externalIdealHeater.gain1.y
+     st1.externalIdealHeater.gain1.y
    + st2.externalIdealHeater.gain1.y
    + st3.externalIdealHeater.gain1.y
    + st5.externalIdealHeater.gain1.y
@@ -336,17 +330,17 @@ equation
   connect(st10.Radheat, building10.radHeatSourcesPorts[1]);
   connect(st10.Conheat, building10.conHeatSourcesPorts[1]);
 
-st44.Tset = building44.parameterMap.TSetHea;
-connect(st44.zoneTAir,building44.zone.TAir);
-connect(st44.ambientTAirRef, ambient.TAirRef);
-connect(st44.Radheat, building44.radHeatSourcesPorts[1]);
-connect(st44.Conheat, building44.conHeatSourcesPorts[1]);
+  st44.Tset = building44.parameterMap.TSetHea;
+  connect(st44.zoneTAir,building44.zone.TAir);
+  connect(st44.ambientTAirRef, ambient.TAirRef);
+  connect(st44.Radheat, building44.radHeatSourcesPorts[1]);
+  connect(st44.Conheat, building44.conHeatSourcesPorts[1]);
 
-st45.Tset = building45.parameterMap.TSetHea;
-connect(st45.zoneTAir,building45.zone.TAir);
-connect(st45.ambientTAirRef, ambient.TAirRef);
-connect(st45.Radheat, building45.radHeatSourcesPorts[1]);
-connect(st45.Conheat, building45.conHeatSourcesPorts[1]);
+  st45.Tset = building45.parameterMap.TSetHea;
+  connect(st45.zoneTAir,building45.zone.TAir);
+  connect(st45.ambientTAirRef, ambient.TAirRef);
+  connect(st45.Radheat, building45.radHeatSourcesPorts[1]);
+  connect(st45.Conheat, building45.conHeatSourcesPorts[1]);
 
   st46.Tset = building46.parameterMap.TSetHea;
   connect(st46.zoneTAir, building46.zone.TAir);
@@ -402,11 +396,11 @@ connect(st45.Conheat, building45.conHeatSourcesPorts[1]);
   connect(st9.Radheat, building9.radHeatSourcesPorts[1]);
   connect(st9.Conheat, building9.conHeatSourcesPorts[1]);
 
-st48.Tset = building48.parameterMap.TSetHea;
-connect(st48.zoneTAir, building48.zone.TAir);
-connect(st48.ambientTAirRef, ambient.TAirRef);
-connect(st48.Radheat, building48.radHeatSourcesPorts[1]);
-connect(st48.Conheat, building48.conHeatSourcesPorts[1]);
+  st48.Tset = building48.parameterMap.TSetHea;
+  connect(st48.zoneTAir, building48.zone.TAir);
+  connect(st48.ambientTAirRef, ambient.TAirRef);
+  connect(st48.Radheat, building48.radHeatSourcesPorts[1]);
+  connect(st48.Conheat, building48.conHeatSourcesPorts[1]);
 
   st23.Tset = building23.parameterMap.TSetHea;
   connect(st23.zoneTAir, building23.zone.TAir);
@@ -461,20 +455,25 @@ connect(st48.Conheat, building48.conHeatSourcesPorts[1]);
   connect(p8.port_a2, central.port_b) annotation (Line(points={{203.461,
           -109.666},{210,-109.666},{210,-100}},
                                       color={0,127,255}));
-  connect(central.port_b, p1.port_a2) annotation (Line(points={{210,-100},{212,
-          -100},{212,-116},{212,-118},{216.461,-118},{216.461,-133.934}},
-                                                                    color={0,127,
-          255}));
-  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/DistrictSimulation/HCBC_DHN.mos" "Simulate and plot"),Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)),
-    Documentation(info="<html>
+  connect(central.port_b, p1.port_a2)
+    annotation (Line(points={{210,-100},{212,-100},{212,-116},{212,-118},
+      {216.461,-118},{216.461,-133.934}},color={0,127,255}));
+
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/DistrictSimulation/HCBC_DHN.mos" "Simulate and plot"),
+    experiment(StopTime=86400,__Dymola_Algorithm="Dassl"),
+    Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(coordinateSystem(preserveAspectRatio=false)),
+Documentation(info="<html>
 <p>
-Simplified modeling of the buildings of the university campus Berlin-Charlottenburg (HCBC) interconnected with a district heating network supplied with an ideal source.
+Example that simulates heating and cooling demand of university campus in Berlin-Charlottenburg (Germany)
+interconnected with a district heating network supplied with an ideal source.
 </p>
-</html>"),
-    experiment(
-      StopTime=7.776e+006,
-      Interval=1800,
-      Tolerance=1e-005,
-      __Dymola_Algorithm="Dassl"));
+</html>",
+revisions="<html>
+<ul>
+<li>
+April 27, 2017, by Carles Ribas Tugores:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end HCBC_DHN;

@@ -6,11 +6,14 @@ model UConcreteWoolInsulation
     final th_c=(d_ins - 2.2*A*B/(A + B)/2),
     final SPip=(Modelica.Constants.pi*d_o*d_o/4) - SWat,
     final SWat=Modelica.Constants.pi*d_i*d_i/4);
-  parameter Modelica.SIunits.Length H_real "Depth of the pipe center"
+  parameter Modelica.SIunits.Length H_real
+    "Depth of the pipe center"
     annotation(Dialog(tab="General", group="Laying"));
-  parameter Modelica.SIunits.Length A "Width case"
+  parameter Modelica.SIunits.Length A
+    "Width case"
     annotation(Dialog(tab="General", group="Laying"));
-  parameter Modelica.SIunits.Length B "Height case"
+  parameter Modelica.SIunits.Length B
+    "Height case"
     annotation(Dialog(tab="General", group="Laying"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer h_gs = 14.6
     "Heat transfer coefficient at the ground surface"

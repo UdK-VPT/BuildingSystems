@@ -2,9 +2,11 @@ within BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes;
 model ParallelPipes
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium in the component";
-  extends BuildingSystems.Fluid.Interfaces.PartialFourPort(final allowFlowReversal1 = allowFlowReversal,final allowFlowReversal2 = allowFlowReversal,redeclare
-      package
-            Medium1 =Medium, redeclare package Medium2 =  Medium);
+  extends BuildingSystems.Fluid.Interfaces.PartialFourPort(
+    final allowFlowReversal1 = allowFlowReversal,
+    final allowFlowReversal2 = allowFlowReversal,
+    redeclare package Medium1 = Medium,
+    redeclare package Medium2 =  Medium);
   BuildingSystems.Fluid.FixedResistances.Pipe pipSupply(
     redeclare package Medium = Medium,
     p_start=p_start,
@@ -75,8 +77,8 @@ model ParallelPipes
     InteractionBetweenPipes=InteractionBetweenPipes)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   replaceable
-    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass Umodel constrainedby
-    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass
+    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass Umodel
+      constrainedby BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass
     "Heat transfer coefficient model"
     annotation (choicesAllMatching=true, Placement(transformation(extent={{62,-10},{42,10}})));
   parameter Boolean InteractionBetweenPipes=true
