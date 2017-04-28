@@ -10,7 +10,6 @@ model ParallelPipes
   BuildingSystems.Fluid.FixedResistances.Pipe pipSupply(
     redeclare package Medium = Medium,
     p_start=p_start,
-    T_start=T_start,
     allowFlowReversal=allowFlowReversal,
     m_flow_nominal=m_flow_nominal,
     from_dp=from_dp,
@@ -23,12 +22,12 @@ model ParallelPipes
     thicknessIns=Umodel.th_ins,
     lambdaIns=Umodel.lam_ins,
     diameter=Umodel.d_i,
-    useExternalHeatSource=true)
+    useExternalHeatSource=true,
+    T_start=T_start_supply)
     annotation (Placement(transformation(extent={{-10,50},{10,70}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pipReturn(
     redeclare package Medium = Medium,
     p_start=p_start,
-    T_start=T_start,
     allowFlowReversal=allowFlowReversal,
     m_flow_nominal=m_flow_nominal,
     from_dp=from_dp,
@@ -41,9 +40,10 @@ model ParallelPipes
     thicknessIns=Umodel.th_ins,
     lambdaIns=Umodel.lam_ins,
     diameter=Umodel.d_i,
-    useExternalHeatSource=true)
+    useExternalHeatSource=true,
+    T_start=T_start_return)
     annotation (Placement(transformation(extent={{10,-50},{-10,-70}})));
-  parameter Integer nNodes = integer(ceil(length/10))
+  parameter Integer nNodes = integer(ceil(length/100))
     "Number of volume segments";
   parameter Modelica.SIunits.Length length( min=Modelica.Constants.eps)
     "Length of the pipe";
@@ -53,7 +53,10 @@ model ParallelPipes
   parameter Modelica.Media.Interfaces.Types.AbsolutePressure p_start=Medium.p_default
     "Start value of pressure"
     annotation(Dialog(tab = "Initialitzation"));
-  parameter Modelica.Media.Interfaces.Types.Temperature T_start=Medium.T_default
+  parameter Modelica.Media.Interfaces.Types.Temperature T_start_supply = 273.15+90
+    "Start value of temperature"
+    annotation(Dialog(tab = "Initialitzation"));
+  parameter Modelica.Media.Interfaces.Types.Temperature T_start_return = 273.15+50
     "Start value of temperature"
     annotation(Dialog(tab = "Initialitzation"));
   parameter Boolean allowFlowReversal=true

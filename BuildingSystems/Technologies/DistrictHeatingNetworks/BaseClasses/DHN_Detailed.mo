@@ -25,8 +25,7 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.324,
     U1_constant =      0.523),
     length=60.7,
-    m_flow_nominal=181.5,
-    T_start=T_start)                             annotation (Placement(
+    m_flow_nominal=181.5)         annotation (Placement(
         transformation(
         extent={{-1.33013,7.69615},{1.33013,-7.69615}},
         rotation=-30,
@@ -39,8 +38,7 @@ partial model DHN_Detailed "partial model of a DHN"
     d_i =      0.15,
     U1_constant =      0.432,
     d_o =      0.168),
-    m_flow_nominal=35.7,
-    T_start=T_start)                                 annotation (Placement(
+    m_flow_nominal=35.7)              annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=90,
@@ -52,8 +50,7 @@ partial model DHN_Detailed "partial model of a DHN"
     d_i =      0.15,
     U1_constant =      0.432,
     d_o =      0.168),
-    m_flow_nominal=32.24,
-    T_start=T_start)                                  annotation (Placement(
+    m_flow_nominal=32.24)              annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=180,
@@ -65,8 +62,7 @@ partial model DHN_Detailed "partial model of a DHN"
     d_i =      0.15,
     U1_constant =      0.432,
     d_o =      0.168),
-    m_flow_nominal=17.7,
-    T_start=T_start)                                annotation (Placement(
+    m_flow_nominal=17.7)             annotation (Placement(
         transformation(
         extent={{4,4},{-4,-4}},
         rotation=180,
@@ -78,8 +74,7 @@ partial model DHN_Detailed "partial model of a DHN"
     d_i =      0.08,
     U1_constant =      0.298,
     d_o =      0.089),
-    m_flow_nominal=3.44,
-    T_start=T_start)                               annotation (Placement(
+    m_flow_nominal=3.44)            annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=270,
@@ -91,8 +86,7 @@ partial model DHN_Detailed "partial model of a DHN"
     d_i =      0.04,
     d_o =      0.048,
     U1_constant =      0.216),
-    m_flow_nominal=1.22,
-    T_start=T_start)                               annotation (Placement(
+    m_flow_nominal=1.22)            annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=180,
@@ -104,8 +98,7 @@ partial model DHN_Detailed "partial model of a DHN"
     d_i =      0.125,
     U1_constant =      0.365,
     d_o =      0.14),
-    m_flow_nominal=13.3,
-    T_start=T_start)                                  annotation (Placement(
+    m_flow_nominal=13.3)               annotation (Placement(
         transformation(
         extent={{4,4},{-4,-4}},
         rotation=180,
@@ -117,8 +110,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.3,
     U1_constant =      0.5233,
-    d_o =      0.324),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.324))                annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=270,
@@ -131,8 +123,8 @@ partial model DHN_Detailed "partial model of a DHN"
     d_i =      0.1,
     U1_constant =      0.31,
     d_o =      0.114),
-    m_flow_nominal=15.74,
-    T_start=T_start)  annotation (Placement(transformation(
+    m_flow_nominal=15.74)
+       annotation (Placement(transformation(
         extent={{-7.33013,-2.69615},{7.33013,2.69615}},
         rotation=150,
         origin={222,-139})));
@@ -144,8 +136,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.05,
     U1_constant =      0.242,
-    d_o =      0.06),
-    T_start=T_start)      annotation (Placement(transformation(
+    d_o =      0.06))
+           annotation (Placement(transformation(
         extent={{-6,5},{6,-5}},
         rotation=180,
         origin={268,-153})));
@@ -157,8 +149,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.08,
     d_o =      0.089,
-    U1_constant =      0.298),
-    T_start=T_start)              annotation (Placement(transformation(
+    U1_constant =      0.298))
+                   annotation (Placement(transformation(
         extent={{-6,5},{6,-5}},
         rotation=270,
         origin={336,-103})));
@@ -170,8 +162,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.114))
+          annotation (Placement(transformation(
         extent={{-6,5},{6,-5}},
         rotation=90,
         origin={250,-163})));
@@ -183,8 +175,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.08,
     U1_constant =      0.298,
-    d_o =      0.089),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.089))
+          annotation (Placement(transformation(
         extent={{-6,5},{6,-5}},
         rotation=90,
         origin={252,-183})));
@@ -196,8 +188,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.08,
     U1_constant =      0.298,
-    d_o =      0.089),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.089))
+          annotation (Placement(transformation(
         extent={{-6,5},{6,-5}},
         rotation=90,
         origin={200,-237})));
@@ -209,8 +201,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.08,
     U1_constant =      0.298,
-    d_o =      0.089),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.089))
+          annotation (Placement(transformation(
         extent={{6,5},{-6,-5}},
         rotation=180,
         origin={232,-195})));
@@ -222,8 +214,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.114))
+          annotation (Placement(transformation(
         extent={{6,-5},{-6,5}},
         rotation=270,
         origin={74,-257})));
@@ -235,8 +227,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.114))
+          annotation (Placement(transformation(
         extent={{6,-5},{-6,5}},
         rotation=270,
         origin={62,-277})));
@@ -248,8 +240,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.125,
     U1_constant =      0.365,
-    d_o =      0.14),
-    T_start=T_start)      annotation (Placement(transformation(
+    d_o =      0.14))
+           annotation (Placement(transformation(
         extent={{-6,5},{6,-5}},
         rotation=0,
         origin={14,-257})));
@@ -273,8 +265,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.3,
     U1_constant =      0.523,
-    d_o =      0.324),
-    T_start=T_start)      annotation (Placement(transformation(
+    d_o =      0.324))
+           annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
         origin={10,-203})));
@@ -286,8 +278,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.04,
     U1_constant =      0.216,
-    d_o =      0.048),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.048))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=270,
         origin={50,-199})));
@@ -299,8 +291,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.08,
     U1_constant =      0.298,
-    d_o =      0.089),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.089))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=270,
         origin={34,-189})));
@@ -312,8 +304,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.114))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
         origin={-54,-175})));
@@ -325,8 +317,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.3,
     U1_constant =      0.5233,
-    d_o =      0.324),
-    T_start=T_start)      annotation (Placement(transformation(
+    d_o =      0.324))
+           annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
         origin={-78,-129})));
@@ -338,8 +330,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.2,
     U1_constant =      0.477,
-    d_o =      0.22),
-    T_start=T_start)       annotation (Placement(transformation(
+    d_o =      0.22))
+            annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=270,
         origin={-94,-99})));
@@ -351,8 +343,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.3,
     U1_constant =      0.523,
-    d_o =      0.324),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.324))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=270,
         origin={-82,-33})));
@@ -364,8 +356,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.114))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
         origin={-160,-11})));
@@ -377,8 +369,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.065,
     U1_constant =      0.288,
-    d_o =      0.076),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.076))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
         origin={-210,-1})));
@@ -389,8 +381,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.065,
     U1_constant =      0.288,
-    d_o =      0.076),
-    T_start=T_start)                                  annotation (Placement(
+    d_o =      0.076))                 annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
@@ -402,8 +393,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.05,
     U1_constant =      0.242,
-    d_o =      0.06),
-    T_start=T_start)                                  annotation (Placement(
+    d_o =      0.06))                  annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
         rotation=-90,
@@ -416,8 +406,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.114))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=-90,
         origin={-196,33})));
@@ -429,8 +419,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.2,
     U1_constant =      0.477,
-    d_o =      0.22),
-    T_start=T_start)       annotation (Placement(transformation(
+    d_o =      0.22))
+            annotation (Placement(transformation(
         extent={{6,5},{-6,-5}},
         rotation=180,
         origin={-104,-129})));
@@ -442,8 +432,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.125,
     U1_constant =      0.365,
-    d_o =      0.14),
-    T_start=T_start)      annotation (Placement(transformation(
+    d_o =      0.14))
+           annotation (Placement(transformation(
         extent={{6,5},{-6,-5}},
         rotation=180,
         origin={-156,-109})));
@@ -455,8 +445,8 @@ partial model DHN_Detailed "partial model of a DHN"
     d_i =      0.02,
     U1_constant =      0.179,
     d_o =      0.027),
-    m_flow_nominal=0.34,
-    T_start=T_start)  annotation (Placement(transformation(
+    m_flow_nominal=0.34)
+       annotation (Placement(transformation(
         extent={{6,5},{-6,-5}},
         rotation=270,
         origin={-152,-135})));
@@ -468,8 +458,7 @@ partial model DHN_Detailed "partial model of a DHN"
     U1_constant =      0.298,
     d_o =      0.089),
     length=16.76,
-    m_flow_nominal=11.04,
-    T_start=T_start)
+    m_flow_nominal=11.04)
   annotation (Placement(transformation(
         extent={{6,5},{-6,-5}},
         rotation=180,
@@ -482,8 +471,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.2,
     U1_constant =      0.477,
-    d_o =      0.22),
-    T_start=T_start)       annotation (Placement(transformation(
+    d_o =      0.22))
+            annotation (Placement(transformation(
         extent={{6,5},{-6,-5}},
         rotation=180,
         origin={-122,-133})));
@@ -495,8 +484,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.15,
     U1_constant =      0.432,
-    d_o =      0.168),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.168))
+          annotation (Placement(transformation(
         extent={{6,5},{-6,-5}},
         rotation=270,
         origin={-142,-173})));
@@ -508,8 +497,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.15,
     U1_constant =      0.431,
-    d_o =      0.168),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.168))
+          annotation (Placement(transformation(
         extent={{-6,5},{6,-5}},
         rotation=180,
         origin={-130,-193})));
@@ -520,8 +509,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.08,
     U1_constant =      0.298,
-    d_o =      0.089),
-    T_start=T_start)                                  annotation (Placement(
+    d_o =      0.089))                 annotation (Placement(
         transformation(
         extent={{-6,5},{6,-5}},
         rotation=-30,
@@ -533,8 +521,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.08,
     U1_constant =      0.298,
-    d_o =      0.089),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.089))                annotation (Placement(
         transformation(
         extent={{-1.33013,7.69615},{1.33013,-7.69615}},
         rotation=-30,
@@ -547,8 +534,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.2,
     U1_constant =      0.477,
-    d_o =      0.22),
-    T_start=T_start)
+    d_o =      0.22))
               annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=-90,
@@ -561,8 +547,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.065,
     U1_constant =      0.288,
-    d_o =      0.076),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.076))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
         origin={-182,77})));
@@ -574,8 +560,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.2,
     U1_constant =      0.477,
-    d_o =      0.22),
-    T_start=T_start)       annotation (Placement(transformation(
+    d_o =      0.22))
+            annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=-90,
         origin={-116,75})));
@@ -586,8 +572,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.08,
     U1_constant =      0.298,
-    d_o =      0.089),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.089))                annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
         rotation=-90,
@@ -599,8 +584,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.05,
     U1_constant =      0.242,
-    d_o =      0.06),
-    T_start=T_start)                                  annotation (Placement(
+    d_o =      0.06))                  annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
@@ -612,8 +596,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.125,
     U1_constant =      0.365,
-    d_o =      0.14),
-    T_start=T_start)                                      annotation (Placement(
+    d_o =      0.14))                      annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
@@ -626,8 +609,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.15,
     U1_constant =      0.431,
-    d_o =      0.168),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.168))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=-90,
         origin={-122,119})));
@@ -638,8 +621,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.15,
     U1_constant =      0.431,
-    d_o =      0.168),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.168))                annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=0,
@@ -652,8 +634,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.04,
     U1_constant =      0.216,
-    d_o =      0.048),
-    T_start=T_start)  annotation (Placement(transformation(
+    d_o =      0.048))
+       annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=-90,
         origin={-92,139})));
@@ -664,8 +646,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.15,
     U1_constant =      0.432,
-    d_o =      0.168),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.168))                annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=0,
@@ -677,8 +658,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.114))                annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
         rotation=-90,
@@ -691,8 +671,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.114))
+          annotation (Placement(transformation(
         extent={{6,-5},{-6,5}},
         rotation=0,
         origin={-140,177})));
@@ -703,8 +683,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.065,
     U1_constant =      0.288,
-    d_o =      0.076),
-    T_start=T_start)                                  annotation (Placement(
+    d_o =      0.076))                 annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
         rotation=0,
@@ -716,8 +695,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.065,
     U1_constant =      0.288,
-    d_o =      0.076),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.076))                annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
         rotation=0,
@@ -729,8 +707,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.02,
     U1_constant =      0.179,
-    d_o =      0.027),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.027))                annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
         rotation=0,
@@ -743,8 +720,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.05,
     U1_constant =      0.242,
-    d_o =      0.06),
-    T_start=T_start)      annotation (Placement(transformation(
+    d_o =      0.06))
+           annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
         origin={-126,215})));
@@ -756,8 +733,8 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.04,
     U1_constant =      0.216,
-    d_o =      0.048),
-    T_start=T_start)     annotation (Placement(transformation(
+    d_o =      0.048))
+          annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
         rotation=-90,
         origin={-102,195})));
@@ -768,8 +745,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.15,
     U1_constant =      0.431,
-    d_o =      0.168),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.168))                annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=0,
@@ -781,8 +757,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.114))                annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
         rotation=0,
@@ -794,8 +769,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.125,
     U1_constant =      0.364,
-    d_o =      0.14),
-    T_start=T_start)                                  annotation (Placement(
+    d_o =      0.14))                  annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=-90,
@@ -807,8 +781,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.114))                annotation (Placement(
         transformation(
         extent={{-6,5},{6,-5}},
         rotation=-90,
@@ -820,8 +793,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.05,
     U1_constant =      0.242,
-    d_o =      0.06),
-    T_start=T_start)                                  annotation (Placement(
+    d_o =      0.06))                  annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=180,
@@ -833,8 +805,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.125,
     U1_constant =      0.364,
-    d_o =      0.14),
-    T_start=T_start)                                  annotation (Placement(
+    d_o =      0.14))                  annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
         rotation=0,
@@ -846,8 +817,7 @@ partial model DHN_Detailed "partial model of a DHN"
     U1_constant =      0.288,
     d_o =      0.076),
     length=37,
-    m_flow_nominal=3,
-    T_start=T_start)                                  annotation (Placement(
+    m_flow_nominal=3)                  annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
         rotation=0,
@@ -859,8 +829,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.032,
     U1_constant =      0.188,
-    d_o =      0.0424),
-    T_start=T_start)                                annotation (Placement(
+    d_o =      0.0424))              annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
         rotation=0,
@@ -872,8 +841,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.05,
     U1_constant =      0.242,
-    d_o =      0.06),
-    T_start=T_start)                                   annotation (Placement(
+    d_o =      0.06))                   annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
         rotation=-90,
@@ -885,8 +853,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.1,
     U1_constant =      0.31,
-    d_o =      0.114),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.114))                annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
         rotation=0,
@@ -898,8 +865,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.065,
     U1_constant =      0.288,
-    d_o =      0.076),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.076))                annotation (Placement(
         transformation(
         extent={{-6,5},{6,-5}},
         rotation=-90,
@@ -911,8 +877,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.08,
     U1_constant =      0.298,
-    d_o =      0.089),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.089))                annotation (Placement(
         transformation(
         extent={{-6,5},{6,-5}},
         rotation=-90,
@@ -924,8 +889,7 @@ partial model DHN_Detailed "partial model of a DHN"
     redeclare UndergroundPipes.BaseClasses.DHN_Umodels.UPrescribed Umodel(
     d_i =      0.065,
     U1_constant =      0.288,
-    d_o =      0.076),
-    T_start=T_start)                                 annotation (Placement(
+    d_o =      0.076))                annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
         rotation=-90,
