@@ -81,7 +81,7 @@ model ParallelPipes
       constrainedby BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass
     "Heat transfer coefficient model"
     annotation (choicesAllMatching=true, Placement(transformation(extent={{62,-10},{42,10}})));
-  parameter Boolean InteractionBetweenPipes=true
+  parameter Boolean InteractionBetweenPipes=false
     "= false to neglect interaction between pipes";
 equation
   connect(port_b2, pipReturn.port_b) annotation (Line(
