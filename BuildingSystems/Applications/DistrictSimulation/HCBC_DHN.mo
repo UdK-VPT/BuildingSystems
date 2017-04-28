@@ -139,7 +139,7 @@ model HCBC_DHN
     p=400000)
     annotation (Placement(transformation(extent={{200,-82},{220,-62}})));
 equation
-  Q_buildings =
+  der(Q_buildings) =
      st1.externalIdealHeater.gain1.u
    + st2.externalIdealHeater.gain1.u
    + st3.externalIdealHeater.gain1.u
@@ -177,7 +177,7 @@ equation
    + st53.externalIdealHeater.gain1.u
    + st54.externalIdealHeater.gain1.u
    + st55.externalIdealHeater.gain1.u;
-  Q_buildings_effective =
+  der(Q_buildings_effective) =
      st1.externalIdealHeater.gain1.y
    + st2.externalIdealHeater.gain1.y
    + st3.externalIdealHeater.gain1.y
