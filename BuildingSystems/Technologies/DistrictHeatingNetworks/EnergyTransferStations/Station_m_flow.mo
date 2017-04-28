@@ -5,8 +5,6 @@ model Station_m_flow
       dp1_nominal=dp_nominalDHN,
       m2_flow_nominal=m_flow_nominalHeating,
       dp2_nominal=dp_nominalHeating,
-      allowFlowReversal1=false,
-      allowFlowReversal2=false,
       show_T=show_T));
   parameter Modelica.SIunits.Temperature TminDHN = 273.15 + 30
     "Minimum return temperature in building's installation";
@@ -28,10 +26,9 @@ model Station_m_flow
     annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
   BuildingSystems.Controls.Continuous.LimPID conPID(
     yMax=m_flow_nominalDHN,
-    yMin=m_flow_nominalDHN*0.05,
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
-    k=50,
-    Ti=5)
+    k=1,
+    Ti=100,
+    yMin=m_flow_nominalDHN*0.01)
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=-90,origin={-84,34})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhZone(factor=factor_m_flow)
     annotation (Placement(transformation(extent={{0,60},{20,80}})));
@@ -79,7 +76,7 @@ model Station_m_flow
     "Minimum supply temperature in building";
   parameter Real factor_Tsupply = 7
     "Un- or smooth changes of the supply set temperature. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
-  parameter Real factor_m_flow = 0.7
+  parameter Real factor_m_flow = 0.05
     "Un- or smooth changes of mass flow rate of the heating system. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
   parameter Boolean addPowerToMedium=false
     "Set to false to avoid any power in the pump model (=heat and flow work) being added to medium (may give simpler equations)";
