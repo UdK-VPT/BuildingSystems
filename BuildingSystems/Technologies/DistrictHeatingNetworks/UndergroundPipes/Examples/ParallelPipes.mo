@@ -10,8 +10,7 @@ model ParallelPipes
       H_real=1,
       E=0.08,
       d_g=2.5),
-    nNodes=5,
-    T_start=338.15)
+    nNodes=5)
     annotation (Placement(transformation(extent={{-10,-12},{10,8}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.BoundaryConditions.GroundTemperature0D kusuda0D(
     A=8,
