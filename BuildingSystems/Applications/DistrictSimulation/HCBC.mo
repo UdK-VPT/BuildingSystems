@@ -2304,7 +2304,7 @@ equation
     __Dymola_experimentSetupOutput(events=false),
 Documentation(info="<html>
 <p>
-Example that simulates heating and cooling demand of university campus in Berlin-Charlottenburg (Germany).
+Example that simulates heating and cooling demand of the university campus in Berlin-Charlottenburg (Germany).
 </p>
 </html>",
 revisions="<html>

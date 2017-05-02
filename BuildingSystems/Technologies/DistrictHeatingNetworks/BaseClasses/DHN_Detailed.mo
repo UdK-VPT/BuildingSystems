@@ -2,7 +2,7 @@ within BuildingSystems.Technologies.DistrictHeatingNetworks.BaseClasses;
 partial model DHN_Detailed "partial model of a DHN"
  package Medium = BuildingSystems.Media.Water;
   //
- parameter Modelica.Media.Interfaces.Types.Temperature T_start = 273.15 + 90 "Initial conditions of the suooky side";
+ parameter Modelica.Media.Interfaces.Types.Temperature T_start = 273.15 + 90.0 "Initial conditions of the supply side";
 
   // Different Variables uses to facilitate results check
   Modelica.SIunits.Heat Q_DHN_I "Energy loss in DHN part I";

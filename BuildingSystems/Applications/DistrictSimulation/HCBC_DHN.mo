@@ -464,7 +464,7 @@ equation
     Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(coordinateSystem(preserveAspectRatio=false)),
 Documentation(info="<html>
 <p>
-Example that simulates heating and cooling demand of university campus in Berlin-Charlottenburg (Germany)
+Example that simulates heating and cooling demand of the university campus in Berlin-Charlottenburg (Germany)
 interconnected with a district heating network supplied with an ideal source.
 </p>
 </html>",
