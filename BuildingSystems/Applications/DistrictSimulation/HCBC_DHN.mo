@@ -78,7 +78,7 @@ model HCBC_DHN
     t_set_heating35(k=273.15 - 20),
     t_set_heating36(k=273.15 - 20),
     t_set_heating37(k=273.15 - 20));
-  extends BuildingSystems.Technologies.DistrictHeatingNetworks.BaseClasses.DHN_Detailed(
+  extends BuildingSystems.Applications.DistrictSimulation.BaseClasses.DHN_Detailed(
     st13(m_flow_nominal=st13.m_flow_nominalHeating, Q_nominal=parameterMap34.Q_flowHea),
     st7(m_flow_nominal=st7.m_flow_nominalHeating,Q_nominal=parameterMap7.Q_flowHea),
     st29(m_flow_nominal=st29.m_flow_nominalHeating,Q_nominal=parameterMap29.Q_flowHea),
