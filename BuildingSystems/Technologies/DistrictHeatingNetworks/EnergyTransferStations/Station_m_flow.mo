@@ -5,13 +5,12 @@ model Station_m_flow
       dp1_nominal=dp_nominalDHN,
       m2_flow_nominal=m_flow_nominalHeating,
       dp2_nominal=dp_nominalHeating,
-      allowFlowReversal1=false,
-      allowFlowReversal2=false,
       show_T=show_T));
   parameter Modelica.SIunits.Temperature TminDHN = 273.15 + 30
     "Minimum return temperature in building's installation";
   parameter Modelica.SIunits.TemperatureDifference Tdrop = 25
     "Desired Temperature drop in building's installation";
+  parameter Real eps_inst = 1 "Factor accountig per inneficiency of installation. Increase heat to be delivered";
   BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhAmbient(
     Max_value=Tsupply_max,
     Min_value=Tsupply_min,
@@ -27,10 +26,9 @@ model Station_m_flow
     annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
   BuildingSystems.Controls.Continuous.LimPID conPID(
     yMax=m_flow_nominalDHN,
-    yMin=m_flow_nominalDHN*0.05,
-    controllerType=Modelica.Blocks.Types.SimpleController.PI,
-    k=50,
-    Ti=5)
+    k=1,
+    Ti=100,
+    yMin=m_flow_nominalDHN*0.01)
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=-90,origin={-84,34})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhZone(factor=factor_m_flow)
     annotation (Placement(transformation(extent={{0,60},{20,80}})));
@@ -47,7 +45,7 @@ model Station_m_flow
     redeclare package Medium = Medium,
     p_start=300000,
     V_start=1)
-    annotation (Placement(transformation(extent={{-38,2},{-18,22}})));
+    annotation (Placement(transformation(extent={{-40,2},{-20,22}})));
   parameter Modelica.SIunits.HeatFlowRate Q_nominal
     "Nominal Heat power in the Heat Transfer Station"                                                    annotation(Dialog(group = "Nominal condition"));
   parameter Modelica.SIunits.MassFlowRate m_flow_nominalDHN = 1.05*m_flow_nominalHeating
@@ -63,21 +61,22 @@ model Station_m_flow
     annotation (Placement(transformation(extent={{-60,20},{0,40}})));
   BaseClasses.ExternalIdealHeater externalIdealHeater(
     redeclare package Medium = Medium, m_flow_nominal=m_flow_nominalHeating,
-    allowFlowReversal=false)
+    allowFlowReversal=false,
+    eps_inst=eps_inst)
     annotation (Placement(transformation(extent={{60,-10},{80,10}})));
-  Modelica.Blocks.Sources.RealExpression Q(
-    y=pumpHeating.m_flow_actual*4182*Tdrop)
+  Modelica.Blocks.Sources.RealExpression Q(y=pumpHeating.m_flow_actual*4182*min(
+         Tdrop, max(0, externalIdealHeater.senTem.T - TminDHN)))
     annotation (Placement(transformation(extent={{-40,-40},{40,-20}})));
   Modelica.Blocks.Sources.RealExpression Tmin(
     y=TminDHN)
     annotation (Placement(transformation(extent={{-40,-60},{40,-40}})));
-  parameter Modelica.SIunits.Temperature Tsupply_max
+  parameter Modelica.SIunits.Temperature Tsupply_max = 273.15 +90
     "Maximum supply temperature in building";
-  parameter Modelica.SIunits.Temperature Tsupply_min
+  parameter Modelica.SIunits.Temperature Tsupply_min = 273.15+70
     "Minimum supply temperature in building";
   parameter Real factor_Tsupply = 7
     "Un- or smooth changes of the supply set temperature. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
-  parameter Real factor_m_flow = 0.7
+  parameter Real factor_m_flow = 0.05
     "Un- or smooth changes of mass flow rate of the heating system. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
   parameter Boolean addPowerToMedium=false
     "Set to false to avoid any power in the pump model (=heat and flow work) being added to medium (may give simpler equations)";
@@ -86,6 +85,11 @@ model Station_m_flow
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},
         rotation=90,
         origin={72,66})));
+  Fluid.MixingVolumes.MixingVolume vol(
+    nPorts=2,
+    redeclare package Medium = Medium,
+    m_flow_nominal=m_flow_nominalHeating,
+    V=2) annotation (Placement(transformation(extent={{66,-62},{86,-82}})));
 equation
   connect(tanhAmbient.u, ambientTAirRef) annotation (Line(
       points={{-58,77},{-50,77},{-50,100}},
@@ -127,10 +131,6 @@ equation
       points={{20,0},{60,0}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(externalIdealHeater.port_b, hex.port_a2) annotation (Line(
-      points={{80,0},{92,0},{92,-84},{-20,-84}},
-      color={0,127,255},
-      smooth=Smooth.None));
   connect(Q.y, externalIdealHeater.Q_in) annotation (Line(
       points={{44,-30},{50,-30},{50,4},{59.2,4},{59.2,5}},
       color={0,0,127},
@@ -152,7 +152,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(hex.port_b2, exp.port_a) annotation (Line(
-      points={{-40,-84},{-60,-84},{-60,2},{-28,2}},
+      points={{-40,-84},{-60,-84},{-60,2},{-30,2}},
       color={0,127,255},
       smooth=Smooth.None));
 
@@ -164,6 +164,10 @@ equation
           0}));
   connect(relationRadiationConvection.heatPortLw, Radheat) annotation (Line(
         points={{70,70},{74,70},{74,84},{74,90},{60,90}}, color={191,0,0}));
+  connect(hex.port_a2, vol.ports[1]) annotation (Line(points={{-20,-84},{-6,-84},
+          {28,-84},{28,-62},{74,-62}}, color={0,127,255}));
+  connect(vol.ports[2], externalIdealHeater.port_b) annotation (Line(points={{
+          78,-62},{88,-62},{88,0},{80,0}}, color={0,127,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
     -100},{100,100}})),           Icon(coordinateSystem(
     preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),

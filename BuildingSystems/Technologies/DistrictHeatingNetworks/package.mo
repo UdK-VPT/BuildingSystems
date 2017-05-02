@@ -1,6 +1,7 @@
 within BuildingSystems.Technologies;
 package DistrictHeatingNetworks
   extends Modelica.Icons.Package;
+
   annotation (Icon(coordinateSystem(preserveAspectRatio=true,
     extent={{-100.0,-100.0},{100.0,100.0}}), graphics={
     Rectangle(

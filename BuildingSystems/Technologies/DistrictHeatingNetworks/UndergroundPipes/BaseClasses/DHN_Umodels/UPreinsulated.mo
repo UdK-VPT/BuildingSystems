@@ -1,13 +1,14 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels;
-model UPreinsulated "U model for Preinsulated pipes"
-  extends
-    BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass(
-     final nPipes=2,
+model UPreinsulated
+  "U model for Preinsulated pipes"
+  extends BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPartialClass(
+    final nPipes=2,
     final SPip=(Modelica.Constants.pi*d_o*d_o/4) - SWat,
     final SWat=Modelica.Constants.pi*d_i*d_i/4);
-
-  parameter Modelica.SIunits.Length H_real "Deph of the pipe center" annotation(Dialog(tab="General", group="Laying"));
-  parameter Modelica.SIunits.Length E "Distance between pipes' centers" annotation(Dialog(tab="General", group="Laying"));
+  parameter Modelica.SIunits.Length H_real
+    "Depth of the pipe center" annotation(Dialog(tab="General", group="Laying"));
+  parameter Modelica.SIunits.Length E
+    "Distance between pipes' centers" annotation(Dialog(tab="General", group="Laying"));
   parameter Modelica.SIunits.Diameter d_g = 1.313
     "Diameter of the undisturbed ground" annotation(Dialog(tab="General", group="Geometry"));
   parameter Modelica.SIunits.ThermalConductivity lam_g = 1.2
@@ -26,7 +27,8 @@ protected
 equation
   U[1] = (R_g+R_i)/(((R_g+R_i)^2)-(R_m^2));
   U[2] = (R_m)/(((R_g+R_i)^2)-(R_m^2));
-  assert(E > d_o, " Distance between pipes E, " + String(E)  +" , must be greater than pipe's cover diameter: " + String(d_o));
+  assert(E > d_o, " Distance between pipes E, " + String(E)  +" ,
+    must be greater than pipe's cover diameter: " + String(d_o));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}), graphics), Documentation(info="<html>
 <h4>Main equations</h4>

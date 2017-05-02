@@ -5,15 +5,13 @@ model ParallelPipes
     redeclare package Medium = Medium,
     length=50,
     m_flow_nominal=1,
-    nNodes=1,
-    T_start=338.15,
-    dp_nominal=10000,
     redeclare BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels.UPreinsulated Umodel(
       d_i=0.05,
       H_real=1,
       E=0.08,
-      d_g=2.5))
-    annotation (Placement(transformation(extent={{-12,-12},{8,8}})));
+      d_g=2.5),
+    nNodes=5)
+    annotation (Placement(transformation(extent={{-10,-12},{10,8}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.BoundaryConditions.GroundTemperature0D kusuda0D(
     A=8,
     z=1,
@@ -42,27 +40,27 @@ model ParallelPipes
   replaceable package Medium = BuildingSystems.Media.Water;
 equation
   connect(sink2.ports[1], parallelPipes.port_b2) annotation (Line(
-      points={{-20,-20},{-14,-20},{-14,-8},{-12,-8}},
+      points={{-20,-20},{-14,-20},{-14,-8},{-10,-8}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(parallelPipes.port_a2, source2.ports[1]) annotation (Line(
-      points={{8,-8},{14,-8},{14,-20},{20,-20}},
+      points={{10,-8},{14,-8},{14,-20},{20,-20}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(parallelPipes.port_b1, sink.ports[1]) annotation (Line(
-      points={{8,4},{16,4},{16,20},{20,20}},
+      points={{10,4},{16,4},{16,20},{20,20}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(source.ports[1], parallelPipes.port_a1) annotation (Line(
-      points={{-20,20},{-16,20},{-16,4},{-12,4}},
+      points={{-20,20},{-16,20},{-16,4},{-10,4}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(parallelPipes.port_a, kusuda0D.port[1]) annotation (Line(
-      points={{-2,7.8},{-2,70},{-41,70}},
+      points={{0,7.8},{0,70},{-41,70}},
       color={191,0,0},
       smooth=Smooth.None));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/UndergroundPipes/Examples/ParallelPipes.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
 Documentation(info="<html>
 <p>
 Example that simulates .

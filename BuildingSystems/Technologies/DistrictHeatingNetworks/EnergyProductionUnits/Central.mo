@@ -1,6 +1,8 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyProductionUnits;
 model Central
-  extends BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyProductionUnits.BaseClasses.PartialCentral;
+  extends BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyProductionUnits.BaseClasses.PartialCentral(hex(
+        allowFlowReversal1=allowFlowReversal, allowFlowReversal2=
+          allowFlowReversal));
   Fluid.Sources.MassFlowSource_T source(
     redeclare package Medium = Medium,
     m_flow=999999999,
@@ -10,7 +12,7 @@ model Central
   BuildingSystems.Fluid.Sources.FixedBoundary bou(
     redeclare package Medium = Medium, nPorts=1)
     annotation (Placement(transformation(extent={{-36,2},{-16,22}})));
-  parameter Modelica.Media.Interfaces.Types.Temperature T=Medium.T_default
+  parameter Modelica.Media.Interfaces.Types.Temperature T = 273.15 + 95
     "Production temperature, value close to DHN supply temperature";
 equation
   connect(bou.ports[1], hex.port_b1) annotation (Line(
@@ -23,9 +25,15 @@ equation
       smooth=Smooth.None));
 
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}}), graphics), Documentation(info="<html>
+    -100},{100,100}})),           Documentation(info="<html>
     <p>
     The central acts as endless power central unit. A huge mass flow at a set temperature <code>T</code> flows in order to ensure a supply temperature close to this temperature <code>T</code>.
     </p>
-    </html>"));
+    </html>"),
+    experiment(
+      StartTime=2.88576e+007,
+      StopTime=6.3072e+007,
+      Interval=3600,
+      Tolerance=1e-005,
+      __Dymola_Algorithm="Dassl"));
 end Central;

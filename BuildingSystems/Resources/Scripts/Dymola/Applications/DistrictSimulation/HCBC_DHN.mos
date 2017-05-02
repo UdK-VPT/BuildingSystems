@@ -1,0 +1,29 @@
+simulateModel("BuildingSystems.Applications.DistrictSimulation.HCBC_DHN", stopTime=86400, method="dassl", resultFile="HCBC_DHN");
+createPlot(
+  id = 1,
+  position = {0, 0, 700, 500},
+  y = {"ambient.TAirRef"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HCBC_DHN.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {720, 0, 700, 500},
+  y = {"der(Q_buildings)","der(Q_DHN)"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HCBC_DHN.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

@@ -16,7 +16,8 @@ model DistrictHeatingNetwork_dp
   BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T central(
     redeclare package Medium = Medium,
     m_flow_nominal=10,
-    dp_nominal=0)
+    dp_nominal=0,
+    from_dp=true)
     annotation (Placement(transformation(extent={{46,26},{26,46}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp station1(
     redeclare package Medium = Medium,
@@ -102,7 +103,7 @@ model DistrictHeatingNetwork_dp
       H_real=1,
       E=0.5),
     m_flow_nominal=30,
-    dp_nominal=50000)
+    from_dp=true)
     annotation (Placement(transformation(extent={{-6,20},{-26,40}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes parallelPipes1(
     redeclare package Medium = Medium,
@@ -112,7 +113,7 @@ model DistrictHeatingNetwork_dp
       E=0.4),
     m_flow_nominal=15,
     length=400,
-    dp_nominal=100000)
+    from_dp=true)
     annotation (Placement(transformation(extent={{-92,20},{-112,40}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes parallelPipes2(
     redeclare package Medium = Medium,
@@ -122,7 +123,7 @@ model DistrictHeatingNetwork_dp
       H_real=1,
       E=0.4),
     m_flow_nominal=15,
-    dp_nominal=50000)
+    from_dp=true)
     annotation (Placement(transformation(extent={{0,-80},{-20,-60}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_dp station2(
     redeclare package Medium = Medium,
@@ -212,11 +213,11 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient.TAirRef, station.ambientTAirRef) annotation (Line(
-      points={{-94.2,93},{-100,93},{-100,66},{-47,66},{-47,62}},
+      points={{-95,93},{-100,93},{-100,66},{-47,66},{-47,62}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient1.TAirRef, station1.ambientTAirRef) annotation (Line(
-      points={{-90.2,-15},{-100,-15},{-100,-46},{-51,-46},{-51,-50}},
+      points={{-91,-15},{-100,-15},{-100,-46},{-51,-46},{-51,-50}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(station1.zoneTAir, building1.TAir[1]) annotation (Line(
@@ -242,19 +243,19 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(building1.TAirAmb, ambient1.TAirRef) annotation (Line(
-      points={{-49.8,-12.2},{-49.8,-4},{-96,-4},{-96,-15},{-90.2,-15}},
+      points={{-49.8,-12.2},{-49.8,-4},{-96,-4},{-96,-15},{-91,-15}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(building1.xAirAmb, ambient1.xAir) annotation (Line(
-      points={{-47.6,-12.2},{-47.6,-2},{-98,-2},{-98,-17},{-90.2,-17}},
+      points={{-47.6,-12.2},{-47.6,-2},{-98,-2},{-98,-17},{-91,-17}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient.TAirRef, building.TAirAmb) annotation (Line(
-      points={{-94.2,93},{-96,93},{-96,100},{-49.8,100},{-49.8,95.8}},
+      points={{-95,93},{-96,93},{-96,100},{-49.8,100},{-49.8,95.8}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(building.xAirAmb, ambient.xAir) annotation (Line(
-      points={{-47.6,95.8},{-47.6,102},{-98,102},{-98,91},{-94.2,91}},
+      points={{-47.6,95.8},{-47.6,102},{-98,102},{-98,91},{-95,91}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(parallelPipes.port_a1, central.port_b) annotation (Line(
@@ -303,7 +304,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient2.TAirRef, station2.ambientTAirRef) annotation (Line(
-      points={{-206.2,85},{-212,85},{-212,58},{-159,58},{-159,52}},
+      points={{-207,85},{-212,85},{-212,58},{-159,58},{-159,52}},
       color={0,0,127},
       smooth=Smooth.None));
 
@@ -312,11 +313,11 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient2.TAirRef, building2.TAirAmb) annotation (Line(
-      points={{-206.2,85},{-208,85},{-208,92},{-161.8,92},{-161.8,87.8}},
+      points={{-207,85},{-208,85},{-208,92},{-161.8,92},{-161.8,87.8}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(building2.xAirAmb, ambient2.xAir) annotation (Line(
-      points={{-159.6,87.8},{-159.6,94},{-210,94},{-210,83},{-206.2,83}},
+      points={{-159.6,87.8},{-159.6,94},{-210,94},{-210,83},{-207,83}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(station2.port_a, parallelPipes1.port_b1) annotation (Line(
@@ -398,8 +399,8 @@ equation
   connect(station.Conheat, building.conHeatSourcesPorts[1]) annotation (Line(
         points={{-61,61},{-70,61},{-70,108},{-56,108},{-56,96}}, color={191,0,0}));
   connect(station.Radheat, building.radHeatSourcesPorts[1]) annotation (Line(
-        points={{-58,61},{-58,72},{-44,72},{-44,106},{-53,106},{-53,96}}, color
-        ={191,0,0}));
+        points={{-58,61},{-58,72},{-44,72},{-44,106},{-53,106},{-53,96}}, color=
+         {191,0,0}));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_dp.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,-100},{140,120}})),
     experiment(StartTime=0.0, StopTime=3.1536e+007), __Dymola_experimentSetupOutput,
