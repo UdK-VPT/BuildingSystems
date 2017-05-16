@@ -1,5 +1,5 @@
 within BuildingSystems.Fluid;
-package HeatPumps
+package HeatPumps "Package with models for heat pumps"
   extends Modelica.Icons.VariantsPackage;
 annotation (preferredView="info", Documentation(info="<html>
 <p>
