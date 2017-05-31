@@ -19,8 +19,8 @@ model PhotovoltaicCoolingSystem
     angleDegL=0.0)
     annotation (Placement(transformation(extent={{-72,12},{-52,32}})));
   BuildingSystems.Technologies.ElectricalStorages.BatterySimple battery(
-    E_nominal(displayUnit="kWh")=25200000,
-    PLoadMax=5000)
+    redeclare Technologies.ElectricalStorages.Data.LeadAcid.LeadAcidGeneric batteryData,
+    nBat=3)
     annotation (Placement(transformation(extent={{-38,-10},{-18,10}})));
   BuildingSystems.Technologies.Chillers.CompressionChiller chiller(
     redeclare package Medium1 = Medium,

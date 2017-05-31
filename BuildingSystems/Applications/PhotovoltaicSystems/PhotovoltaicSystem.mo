@@ -18,11 +18,9 @@ model PhotovoltaicSystem
     annotation (Placement(transformation(extent={{-74,68},{-62,80}})));
   Modelica.Blocks.Math.UnitConversions.From_degC from_degC
     annotation (Placement(transformation(extent={{-72,56},{-64,64}})));
-  Technologies.ElectricalStorages.BatterySimple battery(
-    PLoadMax=3000,
-    E_nominal=25200000,
-    eta_nominal=0.95,
-    chargeLevelMin=0.2)
+  BuildingSystems.Technologies.ElectricalStorages.BatterySimple battery(
+    redeclare Technologies.ElectricalStorages.Data.LeadAcid.LeadAcidGeneric batteryData,
+    nBat=3)
     annotation (Placement(transformation(extent={{-30,42},{-10,62}})));
   BoundaryConditions.LoadProfiles.Electrical.VDEW_H0_NRW_Jul2016 SLP_July
     annotation (Placement(transformation(extent={{46,46},{34,58}})));
@@ -92,7 +90,7 @@ equation
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/PhotovoltaicSystems/PhotovoltaicSystem.mos" "Simulate and plot"),
 Documentation(info="<html>
 <p> Example that simulates a photovoltaic system for a private household in Germany in summer (July). The system
-has a PV generator of 2.3 kWpeak and an electrical battery of 7 kWh. The household has a yearly electricty demand
+has a PV generator of 2.3 kWpeak and an electrical battery pack with 3 x 2.88 kWh. The household has a yearly electricty demand
 of 3000 kWh, whereby the electrical load is distributed over the German standard load profile (SLP) for residential buildings.
 </p>
 </html>", revisions="<html>

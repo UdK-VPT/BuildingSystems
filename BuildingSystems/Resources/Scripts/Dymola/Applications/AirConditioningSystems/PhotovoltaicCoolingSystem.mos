@@ -17,7 +17,7 @@ createPlot(
 createPlot(
   id = 2,
   position = {510, 0, 500, 300},
-  y = {"battery.chargeLevel"},
+  y = {"battery.SOC"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,
