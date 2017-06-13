@@ -1,4 +1,10 @@
-Advanced.AutoFormatting:=false;
-OutputCPUtime:=true;
+// Set flags, alphabetic order
+Advanced.AutoFormatting=false;
+Advanced.EnableModelManagement=true;
+// Advanced.PedanticModelica=true;
+// Hidden.PrintFailureToDifferentiate=true;
+OutputCPUtime=true;
+
+// Load libraries, last one determines the working directory
 openModel("./netCDF-DataReader/NcDataReader2/package.mo");
 openModel("../../BuildingSystems/package.mo");
