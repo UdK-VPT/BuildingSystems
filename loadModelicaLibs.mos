@@ -3,6 +3,7 @@ Advanced.AutoFormatting=false;
 Advanced.EnableModelManagement=true;
 // Advanced.PedanticModelica=true;
 // Hidden.PrintFailureToDifferentiate=true;
+// Advanced.SparseActivate=true;
 OutputCPUtime=true;
 
 // Load libraries, last one determines the working directory
