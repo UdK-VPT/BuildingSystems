@@ -2,12 +2,13 @@ within ;
 package BuildingSystems
   "Library for building energy and plant simulation"
   extends Modelica.Icons.Package;
+
   annotation (
     version="2.0.0-beta",
     versionBuild=0,
     versionDate="2017-04-10",
     dateModified = "2017-04-10",
-    uses(Modelica(version="3.2.2")),
+    uses(Modelica(version="3.2.2"),NcDataReader2(version="2.4.0")),
     preferredView="info",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Polygon(points={{-34,62},{0,88},{30,62},{-34,62}},lineColor={0,0,0},fillColor={135,135,135},fillPattern=FillPattern.Solid),
