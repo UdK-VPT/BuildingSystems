@@ -10,27 +10,31 @@ model Window
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
     A=ASur,
     abs = abs_2,
-    geo.angleDegAzi=angleDegAzi,
-    geo.angleDegTil=angleDegTil,
-    geo.width=width,
-    geo.height=height,
-    geo.zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height,
-    geo.point.x={0.0,width,width,0.0},
-    geo.point.y={0.0,0.0,height,height},
-    geo.point.z={0.0,0.0,0.0,0.0},
-    epsilon = epsilon_2)
+    geo(
+      angleDegAzi = angleDegAzi,
+      angleDegTil = angleDegTil,
+      width = width,
+      height = height,
+      zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height,
+    point(
+      x = {0.0,width,width,0.0},
+      y = {0.0,0.0,height,height},
+      z = {0.0,0.0,0.0,0.0})),
+      epsilon = epsilon_2)
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
     A=ASur,
     abs = abs_1,
-    geo.angleDegAzi=angleDegAzi,
-    geo.angleDegTil=angleDegTil,
-    geo.width=width,
-    geo.height=height,
-    geo.zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height,
-    geo.point.x={0.0,width,width,0.0},
-    geo.point.y={0.0,0.0,height,height},
-    geo.point.z={0.0,0.0,0.0,0.0},
+    geo(
+      angleDegAzi = angleDegAzi,
+      angleDegTil = angleDegTil,
+      width = width,
+      height = height,
+      zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height,
+    point(
+      x = {0.0,width,width,0.0},
+      y = {0.0,0.0,height,height},
+      z = {0.0,0.0,0.0,0.0})),
     epsilon = epsilon_1)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
   parameter Modelica.SIunits.Area ASur = height * width
@@ -60,9 +64,18 @@ model Window
   parameter Real b0 = 0.7
     "Coefficient for radiation transmision curve"
     annotation(Dialog(tab = "General", group = "Optical properties"));
-  parameter Real fShadow = 0.0
-    "Shadowing coefficient"
-    annotation(Dialog(tab = "General", group = "Optical properties"));
+  parameter Boolean use_GSC_in = false
+    "= true, use input for geometric shading coefficient GSC"
+    annotation(Dialog(tab = "General", group = "Shadowing"));
+  Modelica.Blocks.Interfaces.RealOutput GSC_constant(
+    min = 0.0,
+    max = 1.0) = 0.0
+    "Constant shading coefficient (if use_GSC_in = true)"
+    annotation(Dialog(tab = "General", group = "Shadowing"));
+  input Modelica.Blocks.Interfaces.RealInput GSC_in if use_GSC_in
+    "Shading coefficient"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90, origin={0,-62}),
+      iconTransformation(extent={{-8,-8},{8,8}},rotation=90, origin={0,-76})));
   parameter Boolean calcAirchange = false
     "True: calculation of air exchange through the window, false: no air exchange"
     annotation(Dialog(tab = "General", group = "Air change calculation"));
@@ -85,7 +98,6 @@ model Window
     tauDir0=tauDir0,
     b0=b0,
     tauDif=tauDif,
-    fShadow=fShadow,
     framePortion=framePortion,
     final areaRatioUnglazed = 0.0)
     annotation (Placement(transformation(extent={{-10,30},{10,50}})));
@@ -93,10 +105,9 @@ model Window
     tauDir0=tauDir0,
     b0=b0,
     tauDif=tauDif,
-    fShadow=fShadow,
     framePortion=framePortion,
     final areaRatioUnglazed = 0.0)
-   annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
+    annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
   BuildingSystems.HAM.HeatConduction.HeatConduction1D heatTransfer(
     material(
       lambda = UVal*thicknessPane,
@@ -117,13 +128,17 @@ model Window
     annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
   BuildingSystems.Buildings.Airpathes.AirpathVariable airpathUp if calcAirchange
     annotation (Placement(transformation(extent={{-10,10},{10,30}})));
-  Modelica.Fluid.Interfaces.FluidPort_a airpathPortUp_1(redeclare final package Medium=Medium) if calcAirchange
+  Modelica.Fluid.Interfaces.FluidPort_a airpathPortUp_1(
+    redeclare final package Medium=Medium) if calcAirchange
     annotation (Placement(transformation(extent={{-28,10},{-8,30}}), iconTransformation(extent={{-8,-8},{8,8}},rotation=90,origin={-18,40})));
-  Modelica.Fluid.Interfaces.FluidPort_b airpathPortUp_2(redeclare final package Medium=Medium) if calcAirchange
+  Modelica.Fluid.Interfaces.FluidPort_b airpathPortUp_2(
+    redeclare final package Medium=Medium) if calcAirchange
     annotation (Placement(transformation(extent={{8,10},{28,30}}), iconTransformation(extent={{-8,-8},{8,8}},rotation=90,origin={18,40})));
-  Modelica.Fluid.Interfaces.FluidPort_a airpathPortDown_1(redeclare final package Medium=Medium) if calcAirchange
+  Modelica.Fluid.Interfaces.FluidPort_a airpathPortDown_1(
+    redeclare final package Medium=Medium) if calcAirchange
     annotation (Placement(transformation(extent={{-28,-30},{-8,-10}}), iconTransformation(extent={{-26,-48},{-10,-32}})));
-  Modelica.Fluid.Interfaces.FluidPort_b airpathPortDown_2(redeclare final package Medium=Medium) if calcAirchange
+  Modelica.Fluid.Interfaces.FluidPort_b airpathPortDown_2(
+    redeclare final package Medium=Medium) if calcAirchange
     annotation (Placement(transformation(extent={{8,-30},{28,-10}}), iconTransformation(extent={{10,-48},{26,-32}})));
   BuildingSystems.Interfaces.Angle_degInput angleDegPanes if calcAirchange
     annotation (Placement(transformation(extent={{-12,-12},{12,12}},rotation=270,origin={0,62}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={0,78})));
@@ -132,50 +147,61 @@ model Window
     height = 0.5 * height,
     aF = aF/3600.0) if calcAirchange
     "Characteristic of the window airpathes";
+protected
+  Modelica.Blocks.Interfaces.RealInput GSC_internal
+    "Shading coefficient";
 equation
+  // Shadowing
+  if use_GSC_in then
+    connect(GSC_internal,GSC_in);
+  else
+    connect(GSC_internal,GSC_constant);
+  end if;
+  connect(GSC_internal, radTra2to1.GSC);
+  connect(GSC_internal, radTra1to2.GSC);
   // Solar Transmittance
   connect(radTra1to2.radiationPort_in, toSurfacePort_1.radiationPort_in)
     annotation (Line(
-      points={{-1,40},{-18,40},{-18,0}},
+      points={{-1,40},{-20,40},{-20,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(radTra1to2.radiationPort_out, toSurfacePort_2.radiationPort_out)
     annotation (Line(
-      points={{1,40},{18,40},{18,0}},
+      points={{1,40},{20,40},{20,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(radTra2to1.radiationPort_in, toSurfacePort_2.radiationPort_in)
     annotation (Line(
-      points={{-1,-40},{18,-40},{18,0}},
+      points={{-1,-40},{20,-40},{20,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(radTra2to1.radiationPort_out, toSurfacePort_1.radiationPort_out)
     annotation (Line(
-      points={{1,-40},{-18,-40},{-18,0}},
+      points={{1,-40},{-20,-40},{-20,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   // Heat transfer
   connect(heatTransfer.heatPort_x2, toSurfacePort_2.heatPort) annotation (Line(
-      points={{8,0},{18,0}},
+      points={{8,0},{20,0}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(heatTransfer.heatPort_x1, toSurfacePort_1.heatPort) annotation (Line(
-      points={{-8,0},{-18,0}},
+      points={{-8,0},{-20,0}},
       color={191,0,0},
       smooth=Smooth.None));
   // Moisture transport
   connect(moistBcPort1.moisturePort, toSurfacePort_1.moisturePort) annotation (
       Line(
-      points={{-35.2,0},{-18,0}},
+      points={{-35.2,0},{-20,0}},
       color={120,0,120},
       smooth=Smooth.None));
   connect(moistBcPort2.moisturePort, toSurfacePort_2.moisturePort) annotation (
       Line(
-      points={{35.2,0},{18,0}},
+      points={{35.2,0},{20,0}},
       color={120,0,120},
       smooth=Smooth.None));
   // Airpath calculation
@@ -205,14 +231,21 @@ equation
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
 
-  annotation (defaultComponentName="window", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
-    Rectangle(extent={{-10,80},{10,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
-    Rectangle(extent={{6,80},{10,-80}},lineColor={170,255,255},fillColor={170,255,255},fillPattern = FillPattern.Solid),
-    Rectangle(extent={{-10,80},{-6,-80}}, lineColor={170,255,255},fillColor={170,255,255},fillPattern = FillPattern.Solid),
-    Rectangle(extent={{-20,80},{20,60}},lineColor={175,175,175},fillColor={175,175,175},fillPattern = FillPattern.Solid),
-    Rectangle(extent={{-20,-60},{20,-80}},lineColor={175,175,175},fillColor={175,175,175},fillPattern = FillPattern.Solid),
+  annotation (defaultComponentName="window", Icon(coordinateSystem(preserveAspectRatio=false,
+    extent={{-100,-100},{100,100}}), graphics={
+    Rectangle(extent={{-10,80},{10,-80}},lineColor={230,230,230},fillColor={230,230,230},
+      fillPattern = FillPattern.Solid),
+    Rectangle(extent={{6,80},{10,-80}},lineColor={170,255,255},fillColor={170,255,255},
+      fillPattern = FillPattern.Solid),
+    Rectangle(extent={{-10,80},{-6,-80}}, lineColor={170,255,255},fillColor={170,255,255},
+      fillPattern = FillPattern.Solid),
+    Rectangle(extent={{-20,80},{20,60}},lineColor={175,175,175},fillColor={175,175,175},
+      fillPattern = FillPattern.Solid),
+    Rectangle(extent={{-20,-60},{20,-80}},lineColor={175,175,175},fillColor={175,175,175},
+      fillPattern = FillPattern.Solid),
     Line(points={{-10,60},{-10,-60}},color={0,0,255},smooth=Smooth.None,thickness=0.5),
-    Text(extent={{-66,146},{66,106}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name")}),
+    Text(extent={{-66,146},{66,106}},lineColor={0,0,255},fillColor={230,230,230},
+      fillPattern = FillPattern.Solid,textString = "%name")}),
 Documentation(info="<html>
 <p>
 This is a simplified model of a window.
@@ -222,6 +255,10 @@ This is a simplified model of a window.
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.
+</li>
+<li>
+July 27, 2017 by Christoph Nytsch-Geusen:<br/>
+Introduction of an external shadowing coefficient (GSC).
 </li>
 </ul>
 </html>"));

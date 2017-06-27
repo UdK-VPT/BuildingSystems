@@ -11,17 +11,19 @@ model RadiationTransmissionSimple
     "Coefficient for radiation transmision curve";
   parameter Real tauDif = 0.7
     "Transmittance of diffuse radiation";
-  parameter Real fShadow = 0.0
-    "Shadowing coefficient";
   parameter Real framePortion
     "Frame portion of the window";
   Real tauBeam
     "Transmittance of direct radiation";
+  input Modelica.Blocks.Interfaces.RealInput GSC
+    "Shading coefficient"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90, origin={0,-62}),
+      iconTransformation(extent={{-8,-8},{8,8}},rotation=90, origin={0,-76})));
   Modelica.Blocks.Interfaces.RealInput areaRatioUnglazed
     "Unglazed area of the transparent surface";
 equation
   tauBeam = tauDir0 * BuildingSystems.Utilities.SmoothFunctions.softcut_lower((1.0 - b0 * (1.0 / BuildingSystems.Utilities.SmoothFunctions.softcut_lower(Modelica.Math.cos(Modelica.Constants.pi / 180.0 * radiationPort_in.angleDegInc),0.0,0.001) - 1.0)),0.0,0.001);
-  radiationPort_out.IrrDir = radiationPort_in.IrrDir * (1.0 - fShadow) * (1.0 - framePortion) * (tauBeam* (1.0- areaRatioUnglazed) + areaRatioUnglazed);
+  radiationPort_out.IrrDir = radiationPort_in.IrrDir * (1.0 - GSC) * (1.0 - framePortion) * (tauBeam* (1.0- areaRatioUnglazed) + areaRatioUnglazed);
   radiationPort_out.IrrDif = radiationPort_in.IrrDif * (1.0 - framePortion) * (tauDif * (1.0 - areaRatioUnglazed) + areaRatioUnglazed);
   radiationPort_out.angleDegInc = radiationPort_in.angleDegInc;
 

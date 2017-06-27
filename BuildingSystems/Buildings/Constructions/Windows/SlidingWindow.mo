@@ -67,9 +67,18 @@ model SlidingWindow
   parameter Real b0 = 0.7
     "Coefficient for radiation transmision curve"
     annotation(Dialog(tab = "General", group = "Optical properties"));
-  parameter Real fShadow = 0.0
-    "Shadowing coefficient"
-    annotation(Dialog(tab = "General", group = "Optical properties"));
+  parameter Boolean use_GSC_in = false
+    "= true, use input for geometric shading coefficient GSC"
+    annotation(Dialog(tab = "General", group = "Shadowing"));
+  Modelica.Blocks.Interfaces.RealOutput GSC_constant(
+    min = 0.0,
+    max = 1.0) = 0.0
+    "Constant shading coefficient (if use_GSC_in = true)"
+    annotation(Dialog(tab = "General", group = "Shadowing"));
+  input Modelica.Blocks.Interfaces.RealInput GSC_in if use_GSC_in
+    "Shading coefficient"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,90}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,90})));
   parameter Boolean show_TSur = false
     "Show surface temperatures on both sides"
     annotation(Dialog(tab = "Advanced", group = "Surface variables"));
@@ -86,7 +95,6 @@ model SlidingWindow
     tauDir0=tauDir0,
     b0=b0,
     tauDif=tauDif,
-    fShadow=fShadow,
     framePortion=framePortion,
     areaRatioUnglazed = widthOpen/width*y)
     annotation (Placement(transformation(extent={{-10,30},{10,50}})));
@@ -94,7 +102,6 @@ model SlidingWindow
     tauDir0=tauDir0,
     b0=b0,
     tauDif=tauDif,
-    fShadow=fShadow,
     framePortion=framePortion,
     areaRatioUnglazed = widthOpen/width*y)
    annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
@@ -114,7 +121,18 @@ model SlidingWindow
   BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowFixed moistBcPort2(
     m_flow_constant=0.0)
     annotation (Placement(transformation(extent={{48,-8},{32,8}})));
+  protected
+    Modelica.Blocks.Interfaces.RealInput GSC_internal
+      "Shading coefficient";
 equation
+  // Shadowing
+  if use_GSC_in then
+    connect(GSC_internal,GSC_in);
+  else
+    connect(GSC_internal,GSC_constant);
+  end if;
+  connect(GSC_internal, radTra2to1.GSC);
+  connect(GSC_internal, radTra1to2.GSC);
   // Solar Transmittance
   connect(radTra1to2.radiationPort_in, toSurfacePort_1.radiationPort_in)
     annotation (Line(
@@ -180,6 +198,10 @@ This is a model of a sliding window.
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.
+</li>
+<li>
+July 27, 2017 by Christoph Nytsch-Geusen:<br/>
+Introduction of an external shadowing coefficient (GSC).
 </li>
 </ul>
 </html>"));
