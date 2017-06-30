@@ -152,6 +152,18 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow1
     "Data of the construction of window1"
     annotation(Dialog(tab = "Transparent constructions", group = "window1 (included in constructionWall1)"), choicesAllMatching=true);
+  parameter Boolean use_GSCWindow1_in = false
+    "= true, use input for geometric shading coefficient GSCWindow1"
+    annotation(Dialog(tab = "Transparent constructions", group = "window1 (included in constructionWall1)"), choicesAllMatching=true);
+  Modelica.Blocks.Interfaces.RealOutput GSCWindow1_constant(
+    min = 0.0,
+    max = 1.0) = 0.0
+    "Constant shading coefficient window1 (if use_GSCWindow1_in = true)"
+    annotation(Dialog(tab ="Transparent constructions",group = "window1 (included in constructionWall1)"));
+  input Modelica.Blocks.Interfaces.RealInput GSCWindow1_in if use_GSCWindow1_in
+    "Shading coefficient window1"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-68,0}),
+      iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-60,54})));
   parameter Modelica.SIunits.Length widthWindow2 = 0.0
     "Width of window2"
     annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
@@ -164,6 +176,18 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow2
     "Data of the construction of window2"
     annotation(Dialog(tab = "Transparent constructions", group = "window2 (included in constructionWall2)"), choicesAllMatching=true);
+  parameter Boolean use_GSCWindow2_in = false
+    "= true, use input for geometric shading coefficient GSCWindow2"
+    annotation(Dialog(tab = "Transparent constructions", group = "window2 (included in constructionWall2)"), choicesAllMatching=true);
+  Modelica.Blocks.Interfaces.RealOutput GSCWindow2_constant(
+    min = 0.0,
+    max = 1.0) = 0.0
+    "Constant shading coefficient window1 (if use_GSCWindow2_in = true)"
+    annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
+  input Modelica.Blocks.Interfaces.RealInput GSCWindow2_in if use_GSCWindow2_in
+    "Shading coefficient window2"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={-66,0}),
+      iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-30,54})));
   parameter Modelica.SIunits.Length widthWindow3 = 0.0
     "Width of window3"
     annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
@@ -176,6 +200,18 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow3
     "Data of the construction of window3"
     annotation(Dialog(tab = "Transparent constructions", group = "window3 (included in constructionWall3)"), choicesAllMatching=true);
+  parameter Boolean use_GSCWindow3_in = false
+    "= true, use input for geometric shading coefficient GSCWindow2"
+    annotation(Dialog(tab = "Transparent constructions", group = "window3 (included in constructionWall3)"), choicesAllMatching=true);
+  Modelica.Blocks.Interfaces.RealOutput GSCWindow3_constant(
+    min = 0.0,
+    max = 1.0) = 0.0
+    "Constant shading coefficient window1 (if use_GSCWindow3_in = true)"
+    annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
+  input Modelica.Blocks.Interfaces.RealInput GSCWindow3_in if use_GSCWindow3_in
+    "Shading coefficient window3"
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,origin={64,18}),
+      iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={0,54})));
   parameter Modelica.SIunits.Length widthWindow4 = 0.0
     "Width of window4"
     annotation(Dialog(tab ="Transparent constructions",group = "window4 (included in constructionWall4)"));
@@ -188,6 +224,18 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow4
     "Data of the construction of window4"
     annotation(Dialog(tab = "Transparent constructions", group = "window4 (included in constructionWall4)"), choicesAllMatching=true);
+  parameter Boolean use_GSCWindow4_in = false
+    "= true, use input for geometric shading coefficient GSCWindow4"
+    annotation(Dialog(tab = "Transparent constructions", group = "window4 (included in constructionWall4)"), choicesAllMatching=true);
+  Modelica.Blocks.Interfaces.RealOutput GSCWindow4_constant(
+    min = 0.0,
+    max = 1.0) = 0.0
+    "Constant shading coefficient window4 (if use_GSCWindow4_in = true)"
+    annotation(Dialog(tab ="Transparent constructions",group = "window4 (included in constructionWall4)"));
+  input Modelica.Blocks.Interfaces.RealInput GSCWindow4_in if use_GSCWindow4_in
+    "Shading coefficient window4"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={28,-52}),
+      iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={30,54})));
   parameter Modelica.SIunits.Temp_K TWall1_start = 293.15
     "Start temperature of each layer of wall1"
     annotation (Dialog(tab="Initialization",group = "Opaque constructions"));
@@ -390,7 +438,8 @@ model Building1Zone1DBox
     UVal = (1.0 - framePortionWindow1) * constructionWindow1.UValGla + framePortionWindow1 * constructionWindow1.UValFra,
     tauDir0 = constructionWindow1.g,
     tauDif = constructionWindow1.g,
-    T_start = TWindow1_start)
+    T_start = TWindow1_start,
+    use_GSC_in = true)
     "Window 1"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-10})));
@@ -433,7 +482,42 @@ model Building1Zone1DBox
     "Window 4"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-20})));
+protected
+  Modelica.Blocks.Interfaces.RealInput GSCWindow1_internal
+    "Shading coefficient window1";
+  Modelica.Blocks.Interfaces.RealInput GSCWindow2_internal
+    "Shading coefficient window2";
+  Modelica.Blocks.Interfaces.RealInput GSCWindow3_internal
+    "Shading coefficient window3";
+  Modelica.Blocks.Interfaces.RealInput GSCWindow4_internal
+    "Shading coefficient window4";
 equation
+  // Shadowing
+  if use_GSCWindow1_in then
+    connect(GSCWindow1_internal,GSCWindow1_in);
+  else
+    connect(GSCWindow1_internal,GSCWindow1_constant);
+  end if;
+  connect(window1.GSC_in,GSCWindow1_internal);
+  if use_GSCWindow2_in then
+    connect(GSCWindow2_internal,GSCWindow2_in);
+  else
+    connect(GSCWindow2_internal,GSCWindow2_constant);
+  end if;
+  connect(window2.GSC_in,GSCWindow2_internal);
+  if use_GSCWindow3_in then
+    connect(GSCWindow3_internal,GSCWindow3_in);
+  else
+    connect(GSCWindow3_internal,GSCWindow3_constant);
+  end if;
+  connect(window3.GSC_in,GSCWindow3_internal);
+  if use_GSCWindow4_in then
+    connect(GSCWindow4_internal,GSCWindow4_in);
+  else
+    connect(GSCWindow4_internal,GSCWindow4_constant);
+  end if;
+  connect(window4.GSC_in,GSCWindow4_internal);
+  // Air and moisture
   connect(zone.TAir, TAir[1])
     annotation (Line(points={{-7,7},{-7,-30},{88,-30},{88,-70},{110,-70}},color={0,0,127},smooth=Smooth.None));
   connect(zone.xAir, xAir[1])
