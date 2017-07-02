@@ -266,7 +266,7 @@ package PhotovoltaicModules
     tUl0 = -0.1,
     Eg=1.02);
 
-   /* Parameter TSM 230 PC05 */
+  /* Parameter TSM 230 PC05 */
   record TSM230PC05 = DataSetPhotovoltaicModule(
     PEl_nominal = 230.0,
     RPar = 9.21908843302, // dummy value
@@ -284,4 +284,23 @@ package PhotovoltaicModules
     tIk0 = 4.13, // 0.0005 * 8.26 * 1000.0
     tUl0 = -0.1295, // -0.0035 * 37.0
     Eg = 1.02); // dummy value
+
+    /* Parameter Solibro SL2 CIGS 110 */
+    record SolibroSL2CIGS110 = DataSetPhotovoltaicModule(
+      PEl_nominal = 110.0,
+      RPar = 482.5,
+      RSer = 0.003,
+      c1 = 0.001625,
+      c2 = 0.00026,
+      cs1 = 0.02,
+      cs2 = 0.003,
+      nCelSer = 150,
+      nCelPar= 1,
+      height = 1.190,
+      width = 0.7895,
+      Ik0 = 1.69,
+      Ul0 = 93.3,
+      tIk0 = 0.012,
+      tUl0 = -0.298,
+      Eg = 1.1); // guess value
 end PhotovoltaicModules;
