@@ -302,5 +302,5 @@ package PhotovoltaicModules
       Ul0 = 93.3,
       tIk0 = 0.012,
       tUl0 = -0.298,
-      Eg = 1.107); // guess value
+      Eg = 1.107);
 end PhotovoltaicModules;
