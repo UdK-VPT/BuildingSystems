@@ -288,12 +288,12 @@ package PhotovoltaicModules
     /* Parameter Solibro SL2 CIGS 110 */
     record SolibroSL2CIGS110 = DataSetPhotovoltaicModule(
       PEl_nominal = 110.0,
-      RPar = 482.5,
-      RSer = 0.003,
-      c1 = 0.001625,
-      c2 = 0.00026,
-      cs1 = 0.02,
-      cs2 = 0.003,
+      RPar = 500.0,
+      RSer = 0.027484527,
+      c1 = 0.0011962052,
+      c2 = 0.001542755,
+      cs1 = 9.490919,
+      cs2 = 0.007634368,
       nCelSer = 150,
       nCelPar= 1,
       height = 1.190,
