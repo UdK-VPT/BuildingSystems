@@ -1,7 +1,7 @@
 within BuildingSystems.BoundaryConditions.LoadProfiles.Electrical;
 block VDEW_H0_NRW_Apr2016
   "Standardized electrical load profile H0 (VDEW) in W for April 2016 (period 1.4.2016 midnight to 1.5.2016 midnight) for a yearly demand of 1000 kWh"
-  extends Modelica.Blocks.Sources.TimeTable(table=[7858800,82.3; 7859700,
+  extends Modelica.Blocks.Sources.TimeTable(table=[0.0, 0.0; 7858800,0.0; 7858800,82.3; 7859700,
         73.7; 7860600,66; 7861500,59.9; 7862400,55.6; 7863300,52.6; 7864200,50.7;
         7865100,49.3; 7866000,48.2; 7866900,47.1; 7867800,46.4; 7868700,45.8; 7869600,
         45.5; 7870500,45.5; 7871400,45.6; 7872300,45.8; 7873200,45.9; 7874100,46.3;
@@ -614,6 +614,6 @@ block VDEW_H0_NRW_Apr2016
         10438200,167.345; 10439100,158.532; 10440000,149.625; 10440900,141.665;
         10441800,135.411; 10442700,131.715; 10443600,131.052; 10444500,131.905;
         10445400,132.189; 10446300,130.104; 10447200,124.229; 10448100,115.511;
-        10449000,105.657; 10449900,96.2; 10450800,88.2]);
+        10449000,105.657; 10449900,96.2; 10450800,88.2; 10450800,0.0; 31536000, 0.0]);
         annotation(Documentation(info="<html>Data source see <a href=\"https://ww-netz.com/synthetisches-verfahren-strom\">Westfalen Weser Netz</a></html>"));
 end VDEW_H0_NRW_Apr2016;
