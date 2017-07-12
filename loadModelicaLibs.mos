@@ -1,6 +1,7 @@
 // Set flags, alphabetic order
 Advanced.AutoFormatting=false;
 Advanced.EnableModelManagement=true;
+// Advanced.DefaultStoreAsOneFile=false;
 // Advanced.PedanticModelica=true;
 // Hidden.PrintFailureToDifferentiate=true;
 // Advanced.SparseActivate=true;
