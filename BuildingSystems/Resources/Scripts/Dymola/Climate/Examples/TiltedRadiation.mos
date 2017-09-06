@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Climate.Examples.TiltedRadiation", stopTime=864000, method="dassl", resultFile="TiltedRadiation");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"radiationFixed.radiationPort.IrrDir","radiationOneAxisTracked.radiationPort.IrrDir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "TiltedRadiation.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+    id = 2,
+    position = {0, 550, 600, 500},
+    y = {"radiationFixed.angleDegTil","radiationOneAxisTracked.angleDegTilTracked"},
+    autoscale = true,
+    autoerase = true,
+    autoreplot = true,
+    description = false,
+    grid = true,
+    color = true,
+    online = false,
+    filename = "TiltedRadiation.mat",
+    leftTitleType = 1,
+    bottomTitleType = 1);
