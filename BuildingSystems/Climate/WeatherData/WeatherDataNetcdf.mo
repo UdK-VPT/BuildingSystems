@@ -1,7 +1,7 @@
 within BuildingSystems.Climate.WeatherData;
 block WeatherDataNetcdf
   "Weather data reader with Netcdf format"
-  extends BuildingSystems.Utilities.NcDataReader2.NcDataReader(
+  extends BuildingSystems.Utilities.NetCDF_DataReader.NcDataReader(
   final nout = size(varNameTime,1),
   final varNameTime = {
     "beam_radiation",

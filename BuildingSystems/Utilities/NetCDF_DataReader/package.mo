@@ -1,5 +1,5 @@
 within BuildingSystems.Utilities;
-package NcDataReader2 "Data reader for the Netcdf-format"
+package NetCDF_DataReader "Data reader for the Netcdf-format"
   extends Modelica.Icons.VariantsPackage;
 
 annotation(Documentation(info="<html>
@@ -16,4 +16,4 @@ annotation(Documentation(info="<html>
  </pre>
  </html>"));
 //version="1.0",versionDate="01.06.2010",
-end NcDataReader2;
+end NetCDF_DataReader;

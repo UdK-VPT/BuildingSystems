@@ -1,4 +1,4 @@
-within BuildingSystems.Utilities.NcDataReader2;
+within BuildingSystems.Utilities.NetCDF_DataReader;
 model ExampleNcDataReader
   extends Modelica.Icons.Example;
   NcDataReader datareader(
