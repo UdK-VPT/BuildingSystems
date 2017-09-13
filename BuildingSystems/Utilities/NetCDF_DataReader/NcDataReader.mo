@@ -1,4 +1,4 @@
-within BuildingSystems.Utilities.NcDataReader2;
+within BuildingSystems.Utilities.NetCDF_DataReader;
 block NcDataReader
   extends Modelica.Blocks.Interfaces.MO(
     nout = size(varNameTime,1));
