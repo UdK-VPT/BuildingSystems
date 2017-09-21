@@ -8,10 +8,12 @@ model Building1Zone0D
     final nAirpathes = 0,
     final calcHygroThermal = false,
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const,
-    final alphaConstant = alphaAmb,
+    final alphaConstant = 15.0,
     final nSurfacesSolid=1,
     surfacesToAmbient(nSurfaces=nWindows+1),
     surfacesToSolids(nSurfaces=nSurfacesSolid));
+  parameter Modelica.SIunits.Length height = 3.0
+    "Height of the building";
   parameter Integer nWindows = 1
     "Number of windows"
     annotation(Dialog(tab="Constructions",group="Windows"));
@@ -69,9 +71,10 @@ model Building1Zone0D
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ambientConstructions(
     final abs_2 = 0.0,
-    final epsilon_2 = 0.0,
-    final width=1.0,
-    final height=AAmb/ambientConstructions.width,
+    final abs_1 = 0.5,
+    final epsilon_2 = 0.9,
+    final width=2.0*AAmb,
+    final height=0.5*height,
     nNodes={1},
     final constructionData.thickness={1.0},
     final constructionData.material.rho={1000.0},
@@ -79,39 +82,43 @@ model Building1Zone0D
     final constructionData.material.lambda={(1.0/(-1.0/alphaAmb-1.0/alphaIns+1.0/UValAmb)*ambientConstructions.constructionData.thickness[1])})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-20})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes groundConstructions(
+    final abs_1 = 0.5,
     final abs_2 = 0.0,
+    final epsilon_1 = 0.9,
     final epsilon_2 = 0.0,
     final width=1.0,
-    final height=AGro/groundConstructions.width,
+    final height=AGro,
     nNodes={1},
     final constructionData.thickness={1.0},
     final constructionData.material.rho={1000.0},
     final constructionData.material.c={CGro/(groundConstructions.constructionData.material[1].rho*AGro*groundConstructions.constructionData.thickness[1])},
-    final constructionData.material.lambda={(1.0/(-1.0/alphaIns-1.0/alphAGro+1.0/UValGro)*groundConstructions.constructionData.thickness[1])})
+    final constructionData.material.lambda={(1.0/(-1.0/alphaIns-1.0/alphaGro+1.0/UValGro)*groundConstructions.constructionData.thickness[1])})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-4,-42})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes innerConstructions(
-    final abs_2 = 0.0,
-    final epsilon_2 = 0.0,
+    final abs_1 = 0.5,
+    final abs_2 = 0.5,
+    final epsilon_2 = 0.9,
+    final epsilon_1 = 0.9,
     final width=1.0,
-    final height=AInn/innerConstructions.width,
+    final height=0.5*AInn,
     nNodes={1},
     final constructionData.thickness={1.0},
     final constructionData.material.rho={1000.0},
-    final constructionData.material.c={CInn/(innerConstructions.constructionData.material[1].rho*AInn*innerConstructions.constructionData.thickness[1])},
+    final constructionData.material.c={CInn/(innerConstructions.constructionData.material[1].rho*0.5*AInn*innerConstructions.constructionData.thickness[1])},
     final constructionData.material.lambda={(1.0/(-1.0/alphaIns-1.0/alphaIns+1.0/UValInn)*innerConstructions.constructionData.thickness[1])})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={40,-2})));
   BuildingSystems.Buildings.Constructions.Windows.Window window[nWindows](
     final angleDegAzi= {angleDegAziWin[i] + angleDegAziBuilding for i in 1:nWindows},
     final angleDegTil = angleDegTilWin,
     UVal = UValWin,
-    each width = 1.0,
-    final height={AWin[i]/window[i].width for i in 1:nWindows})
+    each final width = 1.0,
+    final height={AWin[i] for i in 1:nWindows})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,20})));
   final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaIns = 7.692
     "Heat transfer coefficient (convection + radiation) inside of the building"; // after German DIN 4701 Teil2 tabular 16"
   final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaAmb = 25.0
     "Heat transfer coefficient (convection + radiation) outside of the building"; // after german DIN 4701 Teil2 tabular 16"
-  final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphAGro = 100.0
+  final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaGro = 100.0
     "Heat transfer coefficient (conduction) to the ground";
 equation
   connect(zone.TAir, TAir[1]) annotation (Line(
@@ -142,7 +149,7 @@ equation
       points={{11,-2},{38,-2}},
       color={127,0,0},
       smooth=Smooth.None));
-  connect(window.toSurfacePort_1, zone.toConstructionPorts2)
+  connect(window[1:nWindows].toSurfacePort_1, zone.toConstructionPorts2[1:nWindows])
     annotation (Line(
       points={{-38.2,20},{-20,20},{-20,6},{-11,6}},
       color={0,0,0},

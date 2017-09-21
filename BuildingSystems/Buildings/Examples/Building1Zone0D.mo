@@ -8,15 +8,20 @@ model Building1Zone0D
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
       annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
-    AAmb=1000,
-    AInn=500,
-    AGro=200,
+    AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0, // building shape: 4 m x 6 m x 2.8 m
+    AInn=3.3*2.8*2.0,
+    AGro=4.0*6.0,
     nWindows=1,
-    AWin={100},
-    VAir=2000,
-    CAmb=100000,
-    CInn=100000,
-    CGro=100000)
+    AWin={2.0*1.6},
+    VAir=4.0*6.0*2.8,
+    CAmb=55347250.0,
+    CInn=4435200.0,
+    CGro=480000.0,
+    UValAmb=1.0,
+    UValInn=4.0,
+    UValGro=1.0,
+    UValWin={2.0},
+    calcIdealLoads=true)
     annotation (Placement(transformation(extent={{-10,20},{10,40}})));
   Modelica.Blocks.Sources.Constant TSetCooling(
     k=273.15 + 24.0)
@@ -33,15 +38,19 @@ model Building1Zone0D
     weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
     annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building2(
-    AAmb=1000,
-    AInn=500,
-    AGro=200,
+    AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0, // building shape: 4 m x 6 m x 2.8 m
+    AInn=3.3*2.8*2.0,
+    AGro=4.0*6.0,
     nWindows=1,
-    AWin={100},
-    VAir=2000,
-    CAmb=100000,
-    CInn=100000,
-    CGro=100000,
+    AWin={2.0*1.6},
+    VAir=4.0*6.0*2.8,
+    CAmb=55347250.0,
+    CInn=4435200.0,
+    CGro=480000.0,
+    UValAmb=1.0,
+    UValInn=4.0,
+    UValGro=1.0,
+    UValWin={2.0},
     calcIdealLoads=false)
     annotation (Placement(transformation(extent={{-10,-28},{10,-8}})));
   Modelica.Blocks.Sources.Constant airchange2(
@@ -114,6 +123,10 @@ based on a low-order building model
 </html>",
 revisions="<html>
 <ul>
+<li>
+September 21, 2017, by Christoph Nytsch-Geusen:<br/>
+New parameterisation of the building models.
+</li>
 <li>
 May 21, 2016, by Christoph Nytsch-Geusen:<br/>
 First implementation.
