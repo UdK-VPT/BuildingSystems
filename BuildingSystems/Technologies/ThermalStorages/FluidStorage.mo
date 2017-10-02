@@ -175,10 +175,10 @@ public
     "Initial storage temperature"
     annotation(Dialog(tab="Initialization"));
   Modelica.Blocks.Interfaces.RealOutput T[nEle](
-    final quantity="ThermodynamicTemperature",
-    final unit = "K",
-    min=0,
-    displayUnit = "degC")
+    each final quantity="ThermodynamicTemperature",
+    each final unit = "K",
+    each min=0,
+    each displayUnit = "degC")
     "Starting at bottom"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=180,origin={-114,40}),iconTransformation(extent={{-64,50},{-84,70}})));
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol_bot(
