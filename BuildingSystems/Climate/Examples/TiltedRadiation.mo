@@ -64,7 +64,8 @@ surface is 1 axis tracked ")}),
   experiment(StartTime=0.0, StopTime=3.1536e+007),
   __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Climate/Examples/TiltedRadiation.mos" "Simulate and plot"),
 Documentation(info="<html>
-<p> This example demonstrates the radiaton calculation for tilted surfaces</a>.
+<p>
+This example demonstrates the radiaton calculation for tilted surfaces.
 </p>
 </html>", revisions="<html>
 <ul>
