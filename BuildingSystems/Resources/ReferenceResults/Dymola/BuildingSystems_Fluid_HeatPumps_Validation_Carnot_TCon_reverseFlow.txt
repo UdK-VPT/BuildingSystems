@@ -1,13 +1,13 @@
 last-generated=2016-11-19
 statistics-initialization=
 {
-  "numerical Jacobians": "0",
+  "numerical Jacobians": "0", 
   "nonlinear": "1"
 }
 statistics-simulation=
 {
-  "numerical Jacobians": "0",
-  "nonlinear": "1",
+  "numerical Jacobians": "0", 
+  "nonlinear": "1", 
   "linear": " "
 }
 heaPum.TSet=[313.149993896484375, 313.149993896484375]
