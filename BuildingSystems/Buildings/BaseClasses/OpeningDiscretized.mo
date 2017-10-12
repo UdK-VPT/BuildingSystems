@@ -28,5 +28,6 @@ Adaption of the class
 BuildingSystems.Airflow.Multizone.BaseClasses.DoorDiscretized</a>.
 for general openings for doors and Windows (door icon disabled).
 </li>
+</ul>
 </html>"));
 end OpeningDiscretized;

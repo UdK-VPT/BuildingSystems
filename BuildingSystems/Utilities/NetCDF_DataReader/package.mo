@@ -7,6 +7,6 @@ annotation(Documentation(info="<html>
   <p>
   This package contains a block that calls the netCDF data reader library,
   and an example model.
- </pre>
+ </p>
  </html>"));
 end NetCDF_DataReader;
