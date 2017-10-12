@@ -39,9 +39,9 @@ equation
           lineColor={127,0,0},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid,
-          textString="Ground 
-temperature 
-at 
+          textString="Ground
+temperature
+at
 depth = %z m"),     Rectangle(extent={{-100,100},{100,-100}}, lineColor={127,0,
               0})}),
     Documentation(info="<html>

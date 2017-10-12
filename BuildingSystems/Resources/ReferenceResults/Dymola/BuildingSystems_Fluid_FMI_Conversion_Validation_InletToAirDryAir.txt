@@ -1,8 +1,8 @@
 last-generated=2016-06-28
 statistics-simulation=
 {
-  "numerical Jacobians": "0", 
-  "nonlinear": " ", 
+  "numerical Jacobians": "0",
+  "nonlinear": " ",
   "linear": " "
 }
 conAir.m_flow=[0.20000000298023223877, 0.20000000298023223877]

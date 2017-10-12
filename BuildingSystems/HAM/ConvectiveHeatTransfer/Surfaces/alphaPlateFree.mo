@@ -12,7 +12,7 @@ protected
   Real DELTAT_RAD = 0.00000005 "Radius for deltaT->0 used by softpow()";
   Real SWITCH_FAK = 0.0000000001 "Smoothing for softswitch()";
   Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaVer, alphaHor;
-  
+
 algorithm
   if angle == 90.0 then // vertical: e.g. wall
     value := BuildingSystems.Utilities.SmoothFunctions.softswitch(deltaT, 0.0, 1.0 / (670.656 * height^6 + 120.43 * height^8.7)^(1/6)

@@ -1,8 +1,8 @@
 last-generated=2016-11-18
 statistics-simulation=
 {
-  "numerical Jacobians": "0", 
-  "nonlinear": " ", 
+  "numerical Jacobians": "0",
+  "nonlinear": " ",
   "linear": " "
 }
 dummy=[1., 1.]

@@ -1,4 +1,4 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks;
-package EnergyProductionUnits 
+package EnergyProductionUnits
   extends Modelica.Icons.Package;
 end EnergyProductionUnits;

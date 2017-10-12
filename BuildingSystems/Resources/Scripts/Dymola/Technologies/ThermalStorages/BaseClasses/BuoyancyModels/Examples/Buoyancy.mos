@@ -1,5 +1,5 @@
 simulateModel("BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Examples.Buoyancy(buoyancyModel.nEle=2)", startTime=0, stopTime=500, method="dassl", resultFile="TestBuoyancynEle2");
-simulateModel("BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Examples.Buoyancy(buoyancyModel.nEle=5)", startTime=0, stopTime=500, method="dassl", resultFile="TestBuoyancynEle5"); 
+simulateModel("BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Examples.Buoyancy(buoyancyModel.nEle=5)", startTime=0, stopTime=500, method="dassl", resultFile="TestBuoyancynEle5");
 
 createPlot(
  id = 1,
@@ -23,9 +23,9 @@ createPlot(
  grid = true,
  leftTitleType = 1,
  bottomTitleType = 1);
- 
+
 //Second Plot:
- 
+
 createPlot(
  id = 1,
  position = {610, 0, 600, 500},
@@ -48,10 +48,10 @@ createPlot(
  subPlot = 2,
  grid = true,
  leftTitleType = 1,
- bottomTitleType = 1); 
- 
- 
-//Third Plot: 
+ bottomTitleType = 1);
+
+
+//Third Plot:
  createPlot(
  id = 1,
  position = {0, 0, 600, 500},
@@ -62,7 +62,7 @@ createPlot(
  grid = true,
  leftTitleType = 1,
  bottomTitleType = 1);
- 
+
 createPlot(
  id = 1,
  position = {0, 0, 600, 500},
@@ -74,8 +74,8 @@ createPlot(
  grid = true,
  leftTitleType = 1,
  bottomTitleType = 1);
-  
-//Fourth Plot: 
+
+//Fourth Plot:
 
  createPlot(
  id = 1,

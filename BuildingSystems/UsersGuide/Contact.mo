@@ -14,6 +14,5 @@ class Contact "Contact"
           Germany<br/>
           email: <a href=\"mailto:nytsch@udk-berlin.de\">nytsch@udk-berlin.de</a><br/>
       </p>
-      </html>
-      "));
+      </html>"));
 end Contact;

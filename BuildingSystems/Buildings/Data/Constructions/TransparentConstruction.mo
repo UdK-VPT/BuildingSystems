@@ -12,7 +12,7 @@ record TransparentConstruction
     "U-value of the frame";
   parameter Real g(unit = "1")
     "g-value of of the transparent construction";
-    
+
   annotation (
 Documentation(info="<html>
 <p>

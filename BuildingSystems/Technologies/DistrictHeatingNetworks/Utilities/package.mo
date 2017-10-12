@@ -1,5 +1,5 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks;
-package Utilities 
+package Utilities
 extends Modelica.Icons.Package;
 
 

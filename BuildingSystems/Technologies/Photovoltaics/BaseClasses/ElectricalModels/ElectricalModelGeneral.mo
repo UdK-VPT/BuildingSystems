@@ -28,7 +28,7 @@ protected
     "Boltzmann constant";
 equation
   Ut = k * T / e;
-  
+
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-60,60},{60,-60}}, lineColor={28,108,200}),

@@ -25,10 +25,10 @@ model SimpleBuilding
     widthWindow4=1.0,
     heightWindow4=1.0,
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow4,
-    nZones=1) 
+    nZones=1)
     annotation (Placement(transformation(extent={{12,-10},{32,10}})));
   BuildingSystems.Buildings.Ambient ambient(
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile, 
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile,
     nSurfaces=building.nSurfacesAmbient)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(
@@ -55,9 +55,9 @@ equation
           31.8,6},{40,6},{40,16},{57.4,16}}, color={0,0,127}));
   connect(building.airchange[1], airchange.y)
     annotation (Line(points={{31.8,4},{43.4,4},{43.4,4}}, color={0,0,127}));
-  
+
   annotation (experiment(StartTime=0, StopTime=31536000),
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-40,-20},{80,40}},initialScale=0.1)),
-    Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-40,-20},{80,40}},initialScale=0.1)), 
+    Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-40,-20},{80,40}},initialScale=0.1)),
     uses(Modelica(version="3.2.1"), BuildingSystems(version="0.1")));
 end SimpleBuilding;
