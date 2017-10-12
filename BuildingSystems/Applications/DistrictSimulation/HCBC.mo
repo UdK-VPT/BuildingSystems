@@ -154,8 +154,6 @@ model HCBC
           points={{-5.1,-7.3},{-5.1,92},{-44,92},{-44,120}}, color={127,0,0}));
     connect(radHeatSourcesPorts, zone.radHeatSourcesPorts)
       annotation (Line(points={{0,120},{0,-7.3},{0.7,-7.3}}, color={127,0,0}));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}})));
   end Building;
 
   record ParameterMap
@@ -2299,7 +2297,6 @@ equation
     Diagram(coordinateSystem(extent={{-400,-400},{400,400}},preserveAspectRatio=false),
     graphics={Bitmap(extent={{-398,-402},{396,400}},
     fileName="modelica://BuildingSystems/Resources/Images/Applications/DistrictSimulation/HCBCBackground.png")}),
-    Icon(coordinateSystem(extent={{-100,-100},{100,100}})),
     experiment(StopTime=864000),
     __Dymola_experimentSetupOutput(events=false),
 Documentation(info="<html>

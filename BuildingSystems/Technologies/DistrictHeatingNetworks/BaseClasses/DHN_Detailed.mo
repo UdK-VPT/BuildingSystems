@@ -243,7 +243,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.14))
            annotation (Placement(transformation(
         extent={{-6,5},{6,-5}},
-        rotation=0,
         origin={14,-257})));
   UndergroundPipes.ParallelPipes
                               p21(
@@ -255,7 +254,6 @@ partial model DHN_Detailed "partial model of a DHN"
     U1_constant =      0.523,
     d_o =      0.324))     annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={62,-227})));
   UndergroundPipes.ParallelPipes
                               p24(
@@ -268,7 +266,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.324))
            annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={10,-203})));
   UndergroundPipes.ParallelPipes
                               p23(
@@ -307,7 +304,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.114))
           annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-54,-175})));
   UndergroundPipes.ParallelPipes
                               p26(
@@ -320,7 +316,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.324))
            annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-78,-129})));
   UndergroundPipes.ParallelPipes
                               p34(
@@ -359,7 +354,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.114))
           annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-160,-11})));
   UndergroundPipes.ParallelPipes
                               p39(
@@ -372,7 +366,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.076))
           annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-210,-1})));
   UndergroundPipes.ParallelPipes
                               p40(redeclare package Medium = Medium,
@@ -384,7 +377,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.076))                 annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-274,-1})));
   UndergroundPipes.ParallelPipes
                               p41(redeclare package Medium = Medium,
@@ -550,7 +542,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.076))
           annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-182,77})));
   UndergroundPipes.ParallelPipes
                               p44(
@@ -587,7 +578,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.06))                  annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-158,115})));
   UndergroundPipes.ParallelPipes
                               p45(redeclare package Medium = Medium,
@@ -599,7 +589,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.14))                      annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-136,107})));
   UndergroundPipes.ParallelPipes
                               p58(
@@ -624,7 +613,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.168))                annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
-        rotation=0,
         origin={-104,127})));
   UndergroundPipes.ParallelPipes
                               p61(
@@ -649,7 +637,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.168))                annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
-        rotation=0,
         origin={-80,117})));
   UndergroundPipes.ParallelPipes
                               p47(redeclare package Medium = Medium,
@@ -674,7 +661,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.114))
           annotation (Placement(transformation(
         extent={{6,-5},{-6,5}},
-        rotation=0,
         origin={-140,177})));
   UndergroundPipes.ParallelPipes
                               p50(redeclare package Medium = Medium,
@@ -686,7 +672,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.076))                 annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
-        rotation=0,
         origin={-116,179})));
   UndergroundPipes.ParallelPipes
                               p51(redeclare package Medium = Medium,
@@ -698,7 +683,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.076))                annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
-        rotation=0,
         origin={-82,181})));
   UndergroundPipes.ParallelPipes
                               p54(redeclare package Medium = Medium,
@@ -710,7 +694,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.027))                annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
-        rotation=0,
         origin={-88,225})));
   UndergroundPipes.ParallelPipes
                               p53(
@@ -723,7 +706,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.06))
            annotation (Placement(transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-126,215})));
   UndergroundPipes.ParallelPipes
                               p52(
@@ -748,7 +730,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.168))                annotation (Placement(
         transformation(
         extent={{6,5},{-6,-5}},
-        rotation=0,
         origin={-54,103})));
   UndergroundPipes.ParallelPipes
                               p70(redeclare package Medium = Medium,
@@ -760,7 +741,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.114))                annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
-        rotation=0,
         origin={2,45})));
   UndergroundPipes.ParallelPipes
                               p68(redeclare package Medium = Medium,
@@ -808,7 +788,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.14))                  annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
-        rotation=0,
         origin={26,49})));
   UndergroundPipes.ParallelPipes
                               p73(redeclare package Medium = Medium,
@@ -820,7 +799,6 @@ partial model DHN_Detailed "partial model of a DHN"
     m_flow_nominal=3)                  annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
-        rotation=0,
         origin={44,47})));
   UndergroundPipes.ParallelPipes
                               p74(redeclare package Medium = Medium,
@@ -832,7 +810,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.0424))              annotation (Placement(
         transformation(
         extent={{6,-5},{-6,5}},
-        rotation=0,
         origin={68,61})));
   UndergroundPipes.ParallelPipes
                               p75(redeclare package Medium = Medium,
@@ -856,7 +833,6 @@ partial model DHN_Detailed "partial model of a DHN"
     d_o =      0.114))                annotation (Placement(
         transformation(
         extent={{-6,-5},{6,5}},
-        rotation=0,
         origin={-30,51})));
   UndergroundPipes.ParallelPipes
                               p71(redeclare package Medium = Medium,

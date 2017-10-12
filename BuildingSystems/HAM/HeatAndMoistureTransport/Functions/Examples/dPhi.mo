@@ -20,8 +20,7 @@ equation
   dPhi = BuildingSystems.HAM.HeatAndMoistureTransport.Functions.dPhi(material.dwsTabX, material.dwsTabY,material.dwwTabX,material.dwwTabY, material.wF, w, 0.0,
     BuildingSystems.HAM.HeatAndMoistureTransport.Functions.wDerPhi(w, material.sorTabX, material.sorTabY, material.wF,phi, material.porosity));
 
-  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics),
-    experiment(StopTime=1.1),
+  annotation(    experiment(StopTime=1.1),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/HeatAndMoistureTransport/Functions/Examples/dPhi.mos"
         "Simulate and plot"),
     Documentation(info="<html>

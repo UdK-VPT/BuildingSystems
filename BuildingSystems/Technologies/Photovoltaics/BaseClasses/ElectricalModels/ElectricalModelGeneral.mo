@@ -29,8 +29,7 @@ protected
 equation
   Ut = k * T / e;
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
-    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}), graphics={
+  annotation (    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-60,60},{60,-60}}, lineColor={28,108,200}),
     Line(points={{0,40},{-20,0},{20,12},{0,-40}},color={28,108,200},thickness=0.5),
     Polygon(points={{0,-40},{0,-20},{14,-26},{0,-40}},lineColor={28,108,200},

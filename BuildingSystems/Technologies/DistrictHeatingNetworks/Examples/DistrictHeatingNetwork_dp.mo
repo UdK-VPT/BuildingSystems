@@ -403,8 +403,7 @@ equation
          {191,0,0}));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_dp.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,-100},{140,120}})),
-    experiment(StartTime=0.0, StopTime=3.1536e+007), __Dymola_experimentSetupOutput,
-Documentation(info="<html>
+    experiment(StartTime=0.0, StopTime=3.1536e+007),Documentation(info="<html>
 <p>
 Example that simulates a district heating network with a main pump.
 </p>

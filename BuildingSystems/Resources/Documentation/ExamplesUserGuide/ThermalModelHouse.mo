@@ -47,7 +47,7 @@ package ThermalModelHouse
       height=0.5,
       angleDegAzi=-90.0,
       angleDegTil=90.0)
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={60,0})));
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={60,0})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall5(
       redeclare Construction1THM constructionData,
       width=0.5,
@@ -68,7 +68,7 @@ package ThermalModelHouse
       redeclare Construction2THM constructionData,
       width=0.5,
       height=0.5)
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={0,0})));
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling1(
       redeclare Construction1THM constructionData,
       width=0.5,
@@ -294,8 +294,8 @@ package ThermalModelHouse
             29.8,3.5},{29.8,4},{38,4},{40,4},{40,-26},{59.4,-26}}, color={0,0,
             127}));
 
-    annotation (experiment(StartTime=0, StopTime=864000), Icon(coordinateSystem(preserveAspectRatio=false,extent={{-40,-50},{80,40}},initialScale=0.1)),
-      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-40,-50},{80,40}},initialScale=0.1)));
+    annotation (experiment(StartTime=0, StopTime=864000), Icon(coordinateSystem(preserveAspectRatio=false,extent={{-40,-50},{80,40}})),
+      Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-40,-50},{80,40}})));
   end SystemModel;
   annotation (uses(Modelica(version="3.2.1"), BuildingSystems(version="0.1")));
 end ThermalModelHouse;

@@ -2899,7 +2899,7 @@ equation
 
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/DistrictSimulation/DistrictBerlinKreuzberg.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-320},{400,450}},initialScale=0.1),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-320},{400,450}}),
     graphics={Bitmap(extent={{-152,-278},{438,436}},
     fileName="modelica://BuildingSystems/Resources/Images/Applications/DistrictSimulation/DistrictBerlinKreuzberg.PNG"),
     Text(extent={{-86,-276},{368,-324}},lineColor={28,108,200},textString="City district model with 144 building models")}),

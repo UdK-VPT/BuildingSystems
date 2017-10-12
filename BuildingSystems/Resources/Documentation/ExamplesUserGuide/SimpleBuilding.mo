@@ -57,7 +57,7 @@ equation
     annotation (Line(points={{31.8,4},{43.4,4},{43.4,4}}, color={0,0,127}));
 
   annotation (experiment(StartTime=0, StopTime=31536000),
-    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-40,-20},{80,40}},initialScale=0.1)),
-    Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-40,-20},{80,40}},initialScale=0.1)),
+    Icon(coordinateSystem(preserveAspectRatio=false,extent={{-40,-20},{80,40}})),
+    Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-40,-20},{80,40}})),
     uses(Modelica(version="3.2.1"), BuildingSystems(version="0.1")));
 end SimpleBuilding;

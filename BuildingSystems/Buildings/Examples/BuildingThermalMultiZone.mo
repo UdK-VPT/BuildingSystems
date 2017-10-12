@@ -1451,9 +1451,9 @@ equation
 
   annotation(experiment(StopTime=86400, __Dymola_Algorithm="Dassl"),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/BuildingThermalMultiZone.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{120,50}}, initialScale=0.1), graphics={
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{120,50}}), graphics={
     Text(extent={{-54,-2},{50,-70}},lineColor={0,0,255}, textString="Model of a storey of an office building with 13 thermal zones"),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{100,40}},initialScale =  0.1)),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{100,40}})),
    Rectangle(
      extent={{40,14},{104,6}},
      lineColor={255,0,0},

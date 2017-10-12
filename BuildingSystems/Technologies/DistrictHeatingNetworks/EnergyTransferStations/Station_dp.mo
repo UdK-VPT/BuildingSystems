@@ -179,9 +179,6 @@ equation
   connect(relationRadiationConvection.heatPortLw, Radheat)
     annotation (Line(points={{68,74},{68,90},{60,90}}, color={191,0,0}));
   annotation(Dialog(group = "Nominal condition"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}})),           Icon(coordinateSystem(
-    preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),
     Documentation(info="<html>
     <p>
     The station model uses the ambient air temperature to determine the set point for the supply temperature in the building (secondary loop). The exact temperature depends on the parameters <code>Tsupply_max</code>, <code>Tsupply_min</code>,<code>factor_Tsupply</code> of the <code>tanhAmbient</code> block.

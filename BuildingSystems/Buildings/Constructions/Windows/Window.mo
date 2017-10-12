@@ -90,7 +90,7 @@ model Window
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-46,10}),iconTransformation(extent={{-10,10},{-30,30}})));
   BuildingSystems.Interfaces.Temp_KOutput TSur_2 = toSurfacePort_2.heatPort.T if show_TSur
     "Temperature on surface side 2"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={46,10}),iconTransformation(extent={{10,10},{30,30}})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={46,10}),iconTransformation(extent={{10,10},{30,30}})));
   parameter Modelica.SIunits.Temp_K T_start=293.15
     "Start temperature of the window"
     annotation (Dialog(tab="Initialization"));

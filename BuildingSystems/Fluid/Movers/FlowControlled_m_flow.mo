@@ -162,7 +162,5 @@ Revised implementation to allow zero flow rate.
           visible=inputType == BuildingSystems.Fluid.Types.InputType.Constant,
           extent={{-80,136},{78,102}},
           lineColor={0,0,255},
-          textString="%m_flow_nominal")}),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
-            100}})));
+          textString="%m_flow_nominal")}));
 end FlowControlled_m_flow;
