@@ -87,9 +87,7 @@ equation
     annotation (Line(points={{-9,50},{0,50},{0,57},{5,57}}, color={0,0,127}));
   connect(gain1.y, prescribedHeatFlow.Q_flow)
     annotation (Line(points={{16.5,57},{35,57},{35,70}}, color={0,0,127}));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}})),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
+  annotation (    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,
     100}}), graphics={Rectangle(extent={{-100,100},{100,-100}},
     lineColor={0,0,255})}),
     Documentation(info="<html>

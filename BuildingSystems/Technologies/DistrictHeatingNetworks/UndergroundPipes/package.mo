@@ -1,4 +1,4 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks;
-package UndergroundPipes 
+package UndergroundPipes
   extends Modelica.Icons.Package;
 end UndergroundPipes;

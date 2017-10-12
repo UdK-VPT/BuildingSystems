@@ -49,10 +49,10 @@ model Qmodel
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=90,origin={-76,0})));
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector[nEle] thermalCollectorQ1(
     each m=2)
-    annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=0,origin={0,66})));
+    annotation (Placement(transformation(extent={{-10,10},{10,-10}},origin={0,66})));
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector[nEle] thermalCollectorQ2(
     each m=2)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={0,-64})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={0,-64})));
   Modelica.Blocks.Sources.RealExpression Q1R1[nEle](
     y=if InteractionBetweenPipes then -Q1R2.y else zeros(nEle))
     "Convective heat flow rate"
@@ -142,7 +142,6 @@ equation
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Ellipse(extent={{-80,80},{80,-80}},lineColor={255,0,0},fillPattern=FillPattern.Sphere,fillColor={255,0,0})}),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),
 Documentation(info="<html>
 <p>
 Heat transfer model for two pipes based on steady-state theory.

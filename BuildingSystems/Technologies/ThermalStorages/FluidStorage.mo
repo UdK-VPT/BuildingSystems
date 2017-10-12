@@ -417,6 +417,5 @@ May 23, 2015 by Carles Ribas Tugores:<br/>
 First implementation.
 </li>
 </ul>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})));
+</html>"));
 end FluidStorage;

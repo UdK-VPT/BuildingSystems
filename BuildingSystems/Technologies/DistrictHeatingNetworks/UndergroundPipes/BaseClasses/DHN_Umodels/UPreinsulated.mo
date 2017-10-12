@@ -29,8 +29,7 @@ equation
   U[2] = (R_m)/(((R_g+R_i)^2)-(R_m^2));
   assert(E > d_o, " Distance between pipes E, " + String(E)  +" ,
     must be greater than pipe's cover diameter: " + String(d_o));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics), Documentation(info="<html>
+  annotation ( Documentation(info="<html>
 <h4>Main equations</h4>
 <p>
 <code>U1 = (Rg+Ri)/((Rg+Ri)^2-Rm^2)</code>

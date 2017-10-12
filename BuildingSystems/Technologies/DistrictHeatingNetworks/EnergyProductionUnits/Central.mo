@@ -24,8 +24,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}})),           Documentation(info="<html>
+  annotation (           Documentation(info="<html>
     <p>
     The central acts as endless power central unit. A huge mass flow at a set temperature <code>T</code> flows in order to ensure a supply temperature close to this temperature <code>T</code>.
     </p>

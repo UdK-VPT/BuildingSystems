@@ -6,6 +6,5 @@ class Copyright "Copyright"
         <p>
         Copyright (c) 2013-2017, Berlin University of the Arts, Institute for Architecture and Urban Planning. All rights reserved.
         </p>
-        </html>
-        "));
+        </html>"));
 end Copyright;

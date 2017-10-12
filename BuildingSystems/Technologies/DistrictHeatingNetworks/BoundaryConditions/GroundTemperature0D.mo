@@ -32,16 +32,15 @@ equation
       points={{60,0},{90,0}},
       color={191,0,0},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}), graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
           preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={Text(
           extent={{-100,60},{80,-20}},
           lineColor={127,0,0},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid,
-          textString="Ground 
-temperature 
-at 
+          textString="Ground
+temperature
+at
 depth = %z m"),     Rectangle(extent={{-100,100},{100,-100}}, lineColor={127,0,
               0})}),
     Documentation(info="<html>

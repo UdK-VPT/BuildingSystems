@@ -97,7 +97,7 @@ model ZoneTemplateAirvolumeMixed
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=180,origin={-44,-4}), iconTransformation(extent={{-29,-7},{29,7}},rotation=180,origin={7,-73})));
   BuildingSystems.Interfaces.MoisturePorts moistureSourcesPorts[nMoistureSources] if moistureSources
     "Moisture ports of the moisture sources"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-24,80}),  iconTransformation(extent={{-29,-7},{29,7}}, rotation=180,origin={65,-73})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-24,80}),  iconTransformation(extent={{-29,-7},{29,7}}, rotation=180,origin={65,-73})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow phfHeating if calcIdealLoads
     annotation (Placement(transformation(extent={{-50,52},{-42,60}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow phfCooling if calcIdealLoads

@@ -168,10 +168,7 @@ equation
           {28,-84},{28,-62},{74,-62}}, color={0,127,255}));
   connect(vol.ports[2], externalIdealHeater.port_b) annotation (Line(points={{
           78,-62},{88,-62},{88,0},{80,0}}, color={0,127,255}));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}})),           Icon(coordinateSystem(
-    preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics),
-    Documentation(info="<html>
+  annotation (    Documentation(info="<html>
     <p>
     The station model uses the ambient air temperature to determine the set point for the supply temperature in the building (secondary loop). The exact temperature depends on the parameters <code>Tsupply_max</code>, <code>Tsupply_min</code>,<code>factor_Tsupply</code> of the <code>tanhAmbient</code> block.
     </p>

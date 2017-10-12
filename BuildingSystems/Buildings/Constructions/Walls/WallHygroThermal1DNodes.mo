@@ -33,7 +33,7 @@ model WallHygroThermal1DNodes
       iconTransformation(extent={{-20,10},{-40,30}})));
   BuildingSystems.Interfaces.Temp_KOutput TSur_2 = toSurfacePort_2.heatPort.T if show_TSur
     "Temperature on surface side 2"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={50,20}),
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,20}),
       iconTransformation(extent={{20,10},{40,30}})));
   BuildingSystems.Interfaces.Moisture_absOutput xSur_1 = toSurfacePort_1.moisturePort.x if show_xSur
     "Absolute moisture on surface side 1"
@@ -41,7 +41,7 @@ model WallHygroThermal1DNodes
       iconTransformation(extent={{-20,-30},{-40,-10}})));
   BuildingSystems.Interfaces.Moisture_absOutput xSur_2 = toSurfacePort_2.moisturePort.x if show_xSur
     "Absolute moisture on surface side 2"
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={50,-20}),
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,-20}),
         iconTransformation(extent={{20,-30},{40,-10}})));
 equation
   connect(construction.heatPort_x2, toSurfacePort_2.heatPort) annotation (Line(

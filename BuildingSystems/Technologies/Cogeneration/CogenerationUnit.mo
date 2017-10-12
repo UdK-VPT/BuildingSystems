@@ -51,7 +51,7 @@ model CogenerationUnit
    annotation (Placement(transformation(extent={{60,-50},{80,-30}})));
 Modelica.Blocks.Interfaces.RealOutput EFin(unit="W")
   "Final energy demand (e.g. gas, petrol)"
-  annotation (Placement(transformation(extent={{100,-50},{120,-30}}), iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,-40})));
+  annotation (Placement(transformation(extent={{100,-50},{120,-30}}), iconTransformation(extent={{-10,-10},{10,10}},origin={110,-40})));
 equation
   connect(preHea.port, vol.heatPort) annotation (Line(
       points={{-20,60},{-9,60},{-9,-10}},color={191,0,0}));

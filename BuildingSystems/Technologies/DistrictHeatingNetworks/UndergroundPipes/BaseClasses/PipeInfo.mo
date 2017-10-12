@@ -26,5 +26,4 @@ protected
 equation
   assert(d_o > d_i, " Outter's pipe diameter d_o, " + String(d_o)  +" ,
     must be greater than pipe's inner diameter: " + String(d_i));
-  annotation (Icon(graphics));
 end PipeInfo;

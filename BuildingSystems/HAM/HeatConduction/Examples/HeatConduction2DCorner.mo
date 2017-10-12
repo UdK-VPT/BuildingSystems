@@ -97,17 +97,17 @@ model HeatConduction2DCorner
   Modelica.Thermal.HeatTransfer.Components.Convection con16_1
     annotation (Placement(transformation(extent={{-6,-6},{6,6}},rotation=90,origin={30,68})));
   Modelica.Thermal.HeatTransfer.Components.Convection con16_2
-    annotation (Placement(transformation(extent={{-6,-6},{6,6}},rotation=0,origin={48,50})));
+    annotation (Placement(transformation(extent={{-6,-6},{6,6}},origin={48,50})));
   Modelica.Thermal.HeatTransfer.Components.Convection con26
-    annotation (Placement(transformation(extent={{-6,-6},{6,6}},rotation=0,origin={48,30})));
+    annotation (Placement(transformation(extent={{-6,-6},{6,6}},origin={48,30})));
   Modelica.Thermal.HeatTransfer.Components.Convection con36
-    annotation (Placement(transformation(extent={{-6,-6},{6,6}},rotation=0,origin={48,10})));
+    annotation (Placement(transformation(extent={{-6,-6},{6,6}},origin={48,10})));
   Modelica.Thermal.HeatTransfer.Components.Convection con46
-    annotation (Placement(transformation(extent={{-6,-6},{6,6}},rotation=0,origin={48,-10})));
+    annotation (Placement(transformation(extent={{-6,-6},{6,6}},origin={48,-10})));
   Modelica.Thermal.HeatTransfer.Components.Convection con56
-    annotation (Placement(transformation(extent={{-6,-6},{6,6}},rotation=0,origin={48,-30})));
+    annotation (Placement(transformation(extent={{-6,-6},{6,6}},origin={48,-30})));
   Modelica.Thermal.HeatTransfer.Components.Convection con66
-    annotation (Placement(transformation(extent={{-6,-6},{6,6}},rotation=0,origin={48,-50})));
+    annotation (Placement(transformation(extent={{-6,-6},{6,6}},origin={48,-50})));
   Modelica.Blocks.Sources.Constant alphaIns(
     k=1.0)
     annotation (Placement(transformation(extent={{-84,-44},{-76,-36}})));

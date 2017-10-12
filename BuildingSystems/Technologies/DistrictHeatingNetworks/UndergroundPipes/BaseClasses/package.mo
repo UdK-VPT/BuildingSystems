@@ -1,4 +1,4 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes;
-package BaseClasses 
+package BaseClasses
   extends Modelica.Icons.BasesPackage;
 end BaseClasses;

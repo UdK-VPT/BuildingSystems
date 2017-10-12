@@ -87,7 +87,7 @@ equation
   connect(control.y, booleanToReal2.u) annotation (Line(points={{-44,11.6},{-44,
           10},{-14,10},{-14,8.8}}, color={255,0,255}));
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-80,-100},{100,40}},initialScale=0.1),
+  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-80,-100},{100,40}}),
     graphics={Text(extent={{-62,-66},{66,-108}},lineColor={0,0,255},
     textString="Test of the cogeneration unit  model which loads a warm water storage")}),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/Cogeneration/Examples/CogenerationUnitWithStorage.mos" "Simulate and plot"),

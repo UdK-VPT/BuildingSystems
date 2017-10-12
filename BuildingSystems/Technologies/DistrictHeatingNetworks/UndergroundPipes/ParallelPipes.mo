@@ -120,8 +120,7 @@ equation
       color={127,0,0},
       smooth=Smooth.None));
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}})),           Icon(coordinateSystem(
+  annotation (           Icon(coordinateSystem(
     preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-100,88},{100,28}}, lineColor={0,0,255}),
     Rectangle(extent={{-100,-28},{100,-88}}, lineColor={0,0,255})}),

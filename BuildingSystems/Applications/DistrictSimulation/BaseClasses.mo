@@ -254,7 +254,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.365,
         d_o=0.14)) annotation (Placement(transformation(
           extent={{-6,5},{6,-5}},
-          rotation=0,
           origin={14,-257})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p21(
       redeclare package Medium = Medium,
@@ -267,7 +266,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.523,
         d_o=0.324)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={62,-227})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p24(
       redeclare package Medium = Medium,
@@ -280,7 +278,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.523,
         d_o=0.324)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={10,-203})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p23(
       redeclare package Medium = Medium,
@@ -319,7 +316,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.31,
         d_o=0.114)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-54,-175})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p26(
       redeclare package Medium = Medium,
@@ -332,7 +328,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.5233,
         d_o=0.324)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-78,-129})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p34(
       redeclare package Medium = Medium,
@@ -371,7 +366,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.31,
         d_o=0.114)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-160,-11})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p39(
       redeclare package Medium = Medium,
@@ -384,7 +378,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.288,
         d_o=0.076)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-210,-1})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p40(
       redeclare package Medium = Medium,
@@ -397,7 +390,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.288,
         d_o=0.076)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-274,-1})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p41(
       redeclare package Medium = Medium,
@@ -566,7 +558,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.288,
         d_o=0.076)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-182,77})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p44(
       redeclare package Medium = Medium,
@@ -605,7 +596,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.242,
         d_o=0.06)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-158,115})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p45(
       redeclare package Medium = Medium,
@@ -618,7 +608,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.365,
         d_o=0.14)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-136,107})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p58(
       redeclare package Medium = Medium,
@@ -644,7 +633,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.431,
         d_o=0.168)) annotation (Placement(transformation(
           extent={{6,5},{-6,-5}},
-          rotation=0,
           origin={-104,127})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p61(
       redeclare package Medium = Medium,
@@ -670,7 +658,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.432,
         d_o=0.168)) annotation (Placement(transformation(
           extent={{6,5},{-6,-5}},
-          rotation=0,
           origin={-80,117})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p47(
       redeclare package Medium = Medium,
@@ -696,7 +683,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.31,
         d_o=0.114)) annotation (Placement(transformation(
           extent={{6,-5},{-6,5}},
-          rotation=0,
           origin={-140,177})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p50(
       redeclare package Medium = Medium,
@@ -709,7 +695,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.288,
         d_o=0.076)) annotation (Placement(transformation(
           extent={{6,-5},{-6,5}},
-          rotation=0,
           origin={-116,179})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p51(
       redeclare package Medium = Medium,
@@ -722,7 +707,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.288,
         d_o=0.076)) annotation (Placement(transformation(
           extent={{6,-5},{-6,5}},
-          rotation=0,
           origin={-82,181})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p54(
       redeclare package Medium = Medium,
@@ -735,7 +719,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.179,
         d_o=0.027)) annotation (Placement(transformation(
           extent={{6,-5},{-6,5}},
-          rotation=0,
           origin={-88,225})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p53(
       redeclare package Medium = Medium,
@@ -748,7 +731,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.242,
         d_o=0.06)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-126,215})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p52(
       redeclare package Medium = Medium,
@@ -774,7 +756,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.431,
         d_o=0.168)) annotation (Placement(transformation(
           extent={{6,5},{-6,-5}},
-          rotation=0,
           origin={-54,103})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p70(
       redeclare package Medium = Medium,
@@ -787,7 +768,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.31,
         d_o=0.114)) annotation (Placement(transformation(
           extent={{6,-5},{-6,5}},
-          rotation=0,
           origin={2,45})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p68(
       redeclare package Medium = Medium,
@@ -839,7 +819,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.364,
         d_o=0.14)) annotation (Placement(transformation(
           extent={{6,-5},{-6,5}},
-          rotation=0,
           origin={26,49})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p73(
       redeclare package Medium = Medium,
@@ -852,7 +831,6 @@ extends Modelica.Icons.BasesPackage;
       length=37,
       m_flow_nominal=3) annotation (Placement(transformation(
           extent={{6,-5},{-6,5}},
-          rotation=0,
           origin={44,47})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p74(
       redeclare package Medium = Medium,
@@ -865,7 +843,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.188,
         d_o=0.0424)) annotation (Placement(transformation(
           extent={{6,-5},{-6,5}},
-          rotation=0,
           origin={68,61})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p75(
       redeclare package Medium = Medium,
@@ -891,7 +868,6 @@ extends Modelica.Icons.BasesPackage;
         U1_constant=0.31,
         d_o=0.114)) annotation (Placement(transformation(
           extent={{-6,-5},{6,5}},
-          rotation=0,
           origin={-30,51})));
     Technologies.DistrictHeatingNetworks.UndergroundPipes.ParallelPipes p71(
       redeclare package Medium = Medium,

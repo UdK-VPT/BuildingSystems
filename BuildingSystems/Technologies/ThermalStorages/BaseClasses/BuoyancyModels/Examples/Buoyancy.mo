@@ -98,7 +98,5 @@ equation
 <p>Example that show how the buoyancy models works. </p>
 <p>The simulation starts with a constant temperature at both sides of the buoyancy model block. Where temperature at the upper position (40 deg) is higher than the one at the bottom (20 deg). There is no buoyancy effect during this initial period. </p>
 <p>At time = 150 sec the temperature at the bottom (<code>buoyancy.port_a</code>) start to rise till 60 deg. </p>
-</html>"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{
-            100,100}}), graphics));
+</html>"));
 end Buoyancy;

@@ -360,8 +360,7 @@ equation
         color={191,0,0}));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/DistrictHeatingNetworks/Examples/DistrictHeatingNetwork_m_flow.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-220,-100},{100,120}})),
-    experiment(StopTime=3.1536e+007),               _Dymola_experimentSetupOutput,
-Documentation(info="<html>
+    experiment(StopTime=3.1536e+007),               _Dymola_Documentation(info="<html>
 <p>
 Example that simulates a district heating network with decentralized pumps which control the mass flow rate of the DHN.
 </p>

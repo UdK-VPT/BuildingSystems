@@ -1,7 +1,7 @@
 within BuildingSystems.Utilities.MoistAirFunctions;
 function enthalpy
   "Specific enthalpy dependent on temperature, absolute moisture and absolute moisture at saturation"
-  /* Enthalpy of moisture air h1+x consisting of 1 kg dry air and x kg water vapour. 
+  /* Enthalpy of moisture air h1+x consisting of 1 kg dry air and x kg water vapour.
      Zero position at 0 C > Usage of temperature in computations in C  > - 273.15
      Enthalpy in [kJ/kg dry air], temperature in [K], x in [kg/kg]
      x_satt in [kg/kg] for phi = 1.0 */

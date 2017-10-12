@@ -21,6 +21,5 @@ partial model UPartialClass
             lineColor={0,0,255}), Text(
           extent={{60,-20},{-60,60}},
           lineColor={0,0,255},
-          textString="U model")}), Diagram(coordinateSystem(preserveAspectRatio=
-           false, extent={{-100,-100},{100,100}}), graphics));
+          textString="U model")}));
 end UPartialClass;

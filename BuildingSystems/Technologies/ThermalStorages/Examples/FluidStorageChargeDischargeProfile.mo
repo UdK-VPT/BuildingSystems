@@ -75,7 +75,6 @@ equation
 
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorageChargeDischargeProfile.mos" "Simulate and plot"),
     experiment(StopTime=11000),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
 Documentation(info="<html>
 <p>Charges storage of 1 m&sup3; from the top with increasing temperature for 1000 s at 1 kg/s. After 1 h, discharges the for same duration at the same rate.</p>
 <p>Different storage discretizations show different results, e.g. HRF.</p>

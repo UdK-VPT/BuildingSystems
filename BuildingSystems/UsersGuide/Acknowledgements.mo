@@ -34,6 +34,5 @@ class Acknowledgements "Acknowledgements"
       of the International Energy Agency's
       <a href=\"http://www.iea-ebc.org/\">Energy in Buildings and Communities</a> Programme.
       </p>
-      </html>
-      "));
+      </html>"));
 end Acknowledgements;

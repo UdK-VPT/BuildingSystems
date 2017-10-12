@@ -1,4 +1,4 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks;
-package BoundaryConditions 
+package BoundaryConditions
   extends Modelica.Icons.Package;
 end BoundaryConditions;

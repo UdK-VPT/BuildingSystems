@@ -1,4 +1,4 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks;
-package EnergyTransferStations 
+package EnergyTransferStations
   extends Modelica.Icons.Package;
 end EnergyTransferStations;

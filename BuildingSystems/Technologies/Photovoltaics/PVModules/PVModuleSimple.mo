@@ -64,7 +64,6 @@ equation
 
   annotation (defaultComponentName="pvmodule", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Text(extent={{-48,60},{-16,30}},lineColor={255,255,255},fillColor={0,0,255}, fillPattern = FillPattern.Solid,textString="S")}),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}})),
 Documentation(info="<html>
 <p>
 This is a one diode model of a PV module.

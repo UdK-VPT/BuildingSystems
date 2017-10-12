@@ -83,7 +83,7 @@ equation
           points={{-81.4,63},{-80,63},{-80,82},{-65.6,82},{-65.6,78.56}}, color={0,
             0,127}));
 
-  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,0},{60,100}},initialScale=0.1),                                                                     graphics={Text(
+  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,0},{60,100}}),                                                                     graphics={Text(
     extent={{-86,44},{20,-2}},lineColor={0,0,255},
     textString="PV system for a private household with a electrical house battery")}),
     experiment(StartTime=15721200, StopTime=18399600),

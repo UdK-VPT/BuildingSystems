@@ -24,8 +24,7 @@ equation
       points={{-20,-96},{100,-96},{100,0}},
       color={0,127,255},
       smooth=Smooth.None));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}})),           Icon(coordinateSystem(
+  annotation (           Icon(coordinateSystem(
     preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-100,100},{100,-100}}, lineColor={0,0,255})}));
 end PartialStation;

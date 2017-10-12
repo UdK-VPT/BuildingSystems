@@ -461,7 +461,6 @@ equation
 
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/DistrictSimulation/HCBC_DHN.mos" "Simulate and plot"),
     experiment(StopTime=86400,__Dymola_Algorithm="Dassl"),
-    Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(coordinateSystem(preserveAspectRatio=false)),
 Documentation(info="<html>
 <p>
 Example that simulates heating and cooling demand of the university campus in Berlin-Charlottenburg (Germany)

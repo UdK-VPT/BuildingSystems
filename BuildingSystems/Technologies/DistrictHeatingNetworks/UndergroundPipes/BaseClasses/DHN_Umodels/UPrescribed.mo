@@ -10,8 +10,7 @@ equation
   U[1] = U1_constant;
   U[2] = U2_constant;
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
-    extent={{-100,-100},{100,100}}), graphics), Documentation(info="<html>
+  annotation ( Documentation(info="<html>
 <p>
 Values for <code>U1</code> and <code>U2</code> are defined by the parameters <code>U1_constant</code>  and <code>U2_constant</code> respectively.
 </p>

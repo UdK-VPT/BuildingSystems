@@ -153,7 +153,7 @@ equation
     Rectangle(extent={{50,-38},{70,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
     Rectangle(extent={{-70,-38},{-50,-78}},pattern=LinePattern.None,lineColor={0,0,0},fillColor={170,213,255},fillPattern = FillPattern.Solid),
     Text(extent={{102,-94},{194,-122}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name")}),
-    Diagram(coordinateSystem(extent={{-180,-120},{180,120}}, initialScale=0.1)),
+    Diagram(coordinateSystem(extent={{-180,-120},{180,120}})),
 Documentation(info="<html>
 <p>
 This is partial model description of a building template.

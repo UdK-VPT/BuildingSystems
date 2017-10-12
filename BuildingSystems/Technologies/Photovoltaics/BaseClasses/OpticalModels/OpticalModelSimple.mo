@@ -4,7 +4,7 @@ model OpticalModelSimple
   extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.OpticalModels.OpticalModelGeneral;
 equation
   ITotRed = radiationPort.IrrDir * (1.0 - GSC) + radiationPort.IrrDif;
-  
+
   annotation(
 Documentation(info="<html>
 <p>

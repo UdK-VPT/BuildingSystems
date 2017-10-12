@@ -30,8 +30,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
 
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-    -100},{100,100}}), graphics), Icon(coordinateSystem(
+  annotation ( Icon(coordinateSystem(
     preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Polygon(
     points={{-80,-70},{-80,54},{-60,54},{-60,-6},{-20,34},{-20,-6},{20,34},

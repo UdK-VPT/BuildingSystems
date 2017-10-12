@@ -162,7 +162,7 @@ model Building1Zone1DBox
     annotation(Dialog(tab ="Transparent constructions",group = "window1 (included in constructionWall1)"));
   input Modelica.Blocks.Interfaces.RealInput GSCWindow1_in if use_GSCWindow1_in
     "Shading coefficient window1"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-68,0}),
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-68,0}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-60,54})));
   parameter Modelica.SIunits.Length widthWindow2 = 0.0
     "Width of window2"
@@ -186,7 +186,7 @@ model Building1Zone1DBox
     annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
   input Modelica.Blocks.Interfaces.RealInput GSCWindow2_in if use_GSCWindow2_in
     "Shading coefficient window2"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,origin={-66,0}),
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-66,0}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-30,54})));
   parameter Modelica.SIunits.Length widthWindow3 = 0.0
     "Width of window3"
@@ -210,7 +210,7 @@ model Building1Zone1DBox
     annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
   input Modelica.Blocks.Interfaces.RealInput GSCWindow3_in if use_GSCWindow3_in
     "Shading coefficient window3"
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,origin={64,18}),
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},origin={64,18}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={0,54})));
   parameter Modelica.SIunits.Length widthWindow4 = 0.0
     "Width of window4"

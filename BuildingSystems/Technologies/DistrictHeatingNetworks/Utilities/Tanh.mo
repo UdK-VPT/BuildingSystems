@@ -20,8 +20,7 @@ equation
   else
     y = Min_value + ((Max_value-Min_value)/2) - ((Max_value-Min_value)/2)*tanh((u-SetValue)/factor);
   end if;
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-    graphics), Icon(coordinateSystem(preserveAspectRatio=false,
+  annotation ( Icon(coordinateSystem(preserveAspectRatio=false,
     extent={{-100,-100},{100,100}}), graphics={Line(
     points={{-80,-80},{-30,-70},{-10,-30},{0,0},{10,30},{30,70},{80,80}},color={0,0,255},
     smooth=Smooth.None), Rectangle(extent={{-100,100},{100,-98}},lineColor={0,0,255})}));
