@@ -2,11 +2,13 @@ within BuildingSystems.Buildings.Examples;
 model Building1Zone0D
   "Low-order thermal building model under real weather data"
   extends Modelica.Icons.Example;
+
   // building1 with ideal load calculation
   BuildingSystems.Buildings.Ambient ambient1(
     nSurfaces=building1.nSurfacesAmbient,
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
       annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
+
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
     AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0, // building shape: 4 m x 6 m x 2.8 m
     AInn=3.3*2.8*2.0,
@@ -23,6 +25,7 @@ model Building1Zone0D
     UValWin={2.0},
     calcIdealLoads=true)
     annotation (Placement(transformation(extent={{-10,20},{10,40}})));
+
   Modelica.Blocks.Sources.Constant TSetCooling(
     k=273.15 + 24.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={32,40})));
@@ -32,11 +35,13 @@ model Building1Zone0D
   Modelica.Blocks.Sources.Constant airchange1(
     k=0.5)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={24,34})));
+
   // building2 with free floating temperature calculation
   BuildingSystems.Buildings.Ambient ambient2(
     nSurfaces=building2.nSurfacesAmbient,
     weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin())
     annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
+
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building2(
     AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0, // building shape: 4 m x 6 m x 2.8 m
     AInn=3.3*2.8*2.0,
@@ -53,9 +58,11 @@ model Building1Zone0D
     UValWin={2.0},
     calcIdealLoads=false)
     annotation (Placement(transformation(extent={{-10,-28},{10,-8}})));
+
   Modelica.Blocks.Sources.Constant airchange2(
     k=0.5)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={24,-14})));
+
 equation
   connect(ambient1.toSurfacePorts, building1.toAmbientSurfacesPorts)
     annotation (Line(

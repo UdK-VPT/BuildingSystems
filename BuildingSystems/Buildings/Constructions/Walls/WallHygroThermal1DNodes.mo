@@ -5,6 +5,7 @@ model WallHygroThermal1DNodes
   BuildingSystems.Interfaces.HeatPort heatSourcePort =
     construction.layer[layerWithHeatSource].heatPort_source[nodeWithHeatSource] if heatSource
     annotation (Placement(transformation(extent={{10,-48},{30,-28}}), iconTransformation(extent={{10,-48},{30,-28}})));
+
   BuildingSystems.HAM.HeatAndMoistureTransport.MultiLayerHeatAndMoistureTransfer1DNodes construction(
     lengthY = width,
     lengthZ = height,
@@ -15,6 +16,7 @@ model WallHygroThermal1DNodes
     phi_start = phi_start,
     material = constructionData.material)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+
   parameter Integer nNodes[constructionData.nLayers] = fill(1,constructionData.nLayers)
     "Number of numerical nodes of each layer"
     annotation(Dialog(tab ="Advanced",group="Heat sources"));
@@ -43,6 +45,7 @@ model WallHygroThermal1DNodes
     "Absolute moisture on surface side 2"
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,-20}),
         iconTransformation(extent={{20,-30},{40,-10}})));
+
 equation
   connect(construction.heatPort_x2, toSurfacePort_2.heatPort) annotation (Line(
       points={{8,0},{20,0}},
