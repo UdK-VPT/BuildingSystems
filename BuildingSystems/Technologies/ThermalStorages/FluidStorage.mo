@@ -364,7 +364,7 @@ equation
       points={{-2,40},{-2,-60},{-10,-60}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(HeatBuoyancy.port_b[nEle], vol_top.heatPort) annotation (Line(
+  connect(HeatBuoyancy.port_b[nEle-1], vol_top.heatPort) annotation (Line(
       points={{-22,7},{-22,16},{10,16},{10,40},{-2,40}},
       color={191,0,0},
       smooth=Smooth.None));
