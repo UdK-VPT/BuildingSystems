@@ -1,9 +1,11 @@
 within BuildingSystems.HAM.HeatConduction.BaseClasses;
 partial model HeatConductionGeneral
   "General model for heat conduction of a body"
+  
   replaceable parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral material
    "Material of the body"
    annotation(Dialog(tab = "General"),Evaluate=true, choicesAllMatching=true);
+   
   parameter Modelica.SIunits.Length lengthX = 1.0
     "Length in x dimension"
     annotation(Dialog(tab = "General", group = "Geometry"));
