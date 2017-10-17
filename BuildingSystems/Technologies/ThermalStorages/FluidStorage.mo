@@ -199,6 +199,7 @@ public
     redeclare package Medium = Medium,
     each m_flow_nominal = 1.0)
     annotation (Placement(transformation(extent={{-48,-10},{-68,10}})));
+
 equation
   // Heat loss through walls:
   connect(heatPort, thermalCollector.port_b) annotation (Line(
@@ -229,7 +230,7 @@ equation
       points={{-54,50},{-72,50},{-72,-60},{-48,-60},{-48,-80},{-50,-80}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(HeatThroughWalls[end].port_b, vol_top.heatPort) annotation (Line(
+  connect(HeatThroughWalls[nEle].port_b, vol_top.heatPort) annotation (Line(
       points={{4,70},{18,70},{18,40},{-2,40}},
       color={191,0,0},
       smooth=Smooth.None));
@@ -249,7 +250,7 @@ equation
   end for;
 
   T[1] = vol_bot.T;
-  T[end] = vol_top.T;
+  T[nEle] = vol_top.T;
 
   // Connection fluid ports between layers:
   for i in 1:nEle-3 loop
@@ -261,7 +262,7 @@ equation
       points={{-57.3333,-90},{18,-90},{18,-28},{29.3333,-28},{29.3333,-20}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(vol_top.ports[1], vol[end].ports[2]) annotation (Line(
+  connect(vol_top.ports[1], vol[nEle-2].ports[2]) annotation (Line(
       points={{-9.33333,30},{-9.33333,-20},{32,-20}},
       color={0,127,255},
       smooth=Smooth.None));
@@ -359,11 +360,11 @@ equation
       points={{-50,-80},{-48,-80},{-48,-60},{-30,-60}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(vol_top.heatPort, HeatBetweenLayers[end].port_b) annotation (Line(
+  connect(vol_top.heatPort, HeatBetweenLayers[nEle-1].port_b) annotation (Line(
       points={{-2,40},{-2,-60},{-10,-60}},
       color={191,0,0},
       smooth=Smooth.None));
-  connect(HeatBuoyancy.port_b[end], vol_top.heatPort) annotation (Line(
+  connect(HeatBuoyancy.port_b[nEle], vol_top.heatPort) annotation (Line(
       points={{-22,7},{-22,16},{10,16},{10,40},{-2,40}},
       color={191,0,0},
       smooth=Smooth.None));
