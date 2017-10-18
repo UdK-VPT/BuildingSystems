@@ -24,15 +24,9 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
 
-  annotation (           Documentation(info="<html>
+  annotation (Documentation(info="<html>
     <p>
     The central acts as endless power central unit. A huge mass flow at a set temperature <code>T</code> flows in order to ensure a supply temperature close to this temperature <code>T</code>.
     </p>
-    </html>"),
-    experiment(
-      StartTime=2.88576e+007,
-      StopTime=6.3072e+007,
-      Interval=3600,
-      Tolerance=1e-005,
-      __Dymola_Algorithm="Dassl"));
+    </html>"));
 end Central;
