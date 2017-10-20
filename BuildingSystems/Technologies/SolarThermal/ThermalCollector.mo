@@ -163,10 +163,6 @@ equation
       points={{-49,-70},{-40,-70},{-40,-50},{-70,-50},{-70,-20},{-62,-20},{-62,-19}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(heatPortCon, heatPortCon) annotation (Line(
-      points={{50,90},{50,90}},
-      color={191,0,0},
-      smooth=Smooth.None));
   connect(res.port_b, port_b) annotation (Line(
       points={{40,0},{100,0}},
       color={0,127,255},
