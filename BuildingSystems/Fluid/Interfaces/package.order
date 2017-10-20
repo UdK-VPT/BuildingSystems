@@ -6,7 +6,7 @@ PartialFourPortInterface
 PartialTwoPort
 PartialTwoPortInterface
 PartialTwoPortTransport
-PrescribedOutletState
+PrescribedOutlet
 StaticFourPortHeatMassExchanger
 StaticTwoPortConservationEquation
 StaticTwoPortHeatMassExchanger
@@ -14,6 +14,5 @@ TemperatureControlledHeatFlow
 TwoPortHeatMassExchanger
 FourPortFlowResistanceParameters
 LumpedVolumeDeclarations
-PrescribedOutletStateParameters
 TwoPortFlowResistanceParameters
 Examples
