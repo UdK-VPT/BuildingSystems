@@ -73,7 +73,7 @@ equation
       points={{-100,0},{-12,0}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(thermalCollector[end].port_b, port_b) annotation (Line(
+  connect(thermalCollector[nCol].port_b, port_b) annotation (Line(
       points={{8,0},{100,0}},
       color={0,127,255},
       smooth=Smooth.None));
