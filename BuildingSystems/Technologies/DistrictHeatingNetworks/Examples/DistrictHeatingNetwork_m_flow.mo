@@ -13,7 +13,7 @@ model DistrictHeatingNetwork_m_flow
     Tsupply_max=353.15,
     Tsupply_min=328.15)
     annotation (Placement(transformation(extent={{-42,42},{-62,62}})));
-  BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T central(
+  BuildingSystems.Fluid.HeatExchangers.PrescribedOutlet central(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
     dp_nominal=0)

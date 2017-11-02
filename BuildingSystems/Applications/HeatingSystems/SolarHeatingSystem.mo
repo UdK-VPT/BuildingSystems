@@ -65,7 +65,7 @@ model SolarHeatingSystem
     diameter=0.02)
     "Pipe model"
     annotation (Placement(transformation(extent={{12,-2},{32,-22}})));
-  BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T hea(
+  BuildingSystems.Fluid.HeatExchangers.PrescribedOutlet hea(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=10.0)
