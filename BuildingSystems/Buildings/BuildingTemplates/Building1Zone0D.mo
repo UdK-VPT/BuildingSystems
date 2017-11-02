@@ -90,8 +90,8 @@ model Building1Zone0D
     final abs_2 = 0.0,
     final epsilon_1 = 0.9,
     final epsilon_2 = 0.0,
-    final width=1.0,
-    final height=AGro,
+    final width=sqrt(AGro),
+    final height=sqrt(AGro),
     nNodes={1},
     final constructionData.thickness={1.0},
     final constructionData.material.rho={1000.0},
@@ -127,7 +127,7 @@ model Building1Zone0D
     "Heat transfer coefficient (convection + radiation) outside of the building"; // after german DIN 4701 Teil2 tabular 16"
   final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaGro = 100.0
     "Heat transfer coefficient (conduction) to the ground";
-    
+
 equation
   connect(zone.TAir, TAir[1]) annotation (Line(
     points={{-7,7},{-7,-30},{88,-30},{88,-70},{110,-70}},

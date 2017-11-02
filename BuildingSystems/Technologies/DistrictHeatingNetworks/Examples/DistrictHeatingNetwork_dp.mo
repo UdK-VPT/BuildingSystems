@@ -13,7 +13,7 @@ model DistrictHeatingNetwork_dp
     Tsupply_min=328.15,
     dpValve_nominal=140000)
     annotation (Placement(transformation(extent={{-42,42},{-62,62}})));
-  BuildingSystems.Fluid.HeatExchangers.HeaterCooler_T central(
+  BuildingSystems.Fluid.HeatExchangers.Heater_T central(
     redeclare package Medium = Medium,
     m_flow_nominal=10,
     dp_nominal=0,
