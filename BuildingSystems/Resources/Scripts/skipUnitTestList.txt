@@ -1,10 +1,12 @@
-# skip all tests that take too long, break BuildingsPy or create too large mat files
-BuildingSystems\Resources\Scripts\Dymola\Buildings\Examples\BuildingThermalMultiZone.mos
+# skip some of the examples in Applications, because they take too long
 BuildingSystems\Resources\Scripts\Dymola\Applications\AirConditioningSystems\PhotovoltaicCoolingSystem.mos
-BuildingSystems\Resources\Scripts\Dymola\Applications\ClimateAnalyses\FreeFloatingTemperature
+BuildingSystems\Resources\Scripts\Dymola\Applications\ClimateAnalyses\FreeFloatingTemperature.mos
 BuildingSystems\Resources\Scripts\Dymola\Applications\DistrictSimulation\DistrictBerlinKreuzberg.mos
 BuildingSystems\Resources\Scripts\Dymola\Applications\DistrictSimulation\HCBC.mos
 BuildingSystems\Resources\Scripts\Dymola\Applications\DistrictSimulation\HCBC_DHN.mos
+#
+# some more examples that take very long or create mat files that break BuildingsPy
+BuildingSystems\Resources\Scripts\Dymola\Buildings\Examples\BuildingThermalMultiZone.mos
 BuildingSystems\Resources\Scripts\Dymola\HAM\HeatAndMoistureTransport\Examples\HeatAndMoistureTransport3D.mos
 BuildingSystems\Resources\Scripts\Dymola\Technologies\ThermalStorages\Examples\FluidStorageChargeDischargeProfile.mos
 BuildingSystems\Resources\Scripts\Dymola\Technologies\DistrictHeatingNetworks\Examples\DistrictHeatingNetwork_m_flow.mos
