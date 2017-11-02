@@ -122,7 +122,7 @@ BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
     k1=-1,
     k2=+1)
     annotation (Placement(transformation(extent={{-4,-4},{4,4}},rotation=-90,origin={-50,-12})));
-  BuildingSystems.Fluid.HeatExchangers.PrescribedOutlet hea(
+  BuildingSystems.Fluid.HeatExchangers.Heater_T hea(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
     dp_nominal=1)
