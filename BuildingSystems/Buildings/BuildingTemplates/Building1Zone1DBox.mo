@@ -332,7 +332,7 @@ model Building1Zone1DBox
     angleDegAzi = 90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall1_start for i in 1:wall1.constructionData.nLayers})
-    "Wall 1"
+    "Wall 1 (west oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
@@ -346,7 +346,7 @@ model Building1Zone1DBox
     angleDegAzi = 180.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall2_start for i in 1:wall2.constructionData.nLayers})
-    "Wall 2"
+    "Wall 2 (north oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
@@ -360,7 +360,7 @@ model Building1Zone1DBox
     angleDegAzi = -90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall3_start for i in 1:wall3.constructionData.nLayers})
-    "Wall 3"
+    "Wall 3 (east oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{30,-20},{50,0}})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
@@ -374,7 +374,7 @@ model Building1Zone1DBox
     angleDegAzi = 0.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
     T_start = {TWall4_start for i in 1:wall4.constructionData.nLayers})
-    "Wall 4"
+    "Wall 4 (south oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,-20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
@@ -387,7 +387,7 @@ model Building1Zone1DBox
     angleDegAzi = 0.0,
     angleDegTil = 180.0,
     T_start = {TCeiling_start for i in 1:ceiling.constructionData.nLayers})
-    "Ceiling"
+    "Ceiling (horizontal oriented)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
@@ -440,7 +440,7 @@ model Building1Zone1DBox
     tauDif = constructionWindow1.g,
     T_start = TWindow1_start,
     use_GSC_in = true)
-    "Window 1"
+    "Window 1 (west oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-10})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window2(
@@ -453,7 +453,7 @@ model Building1Zone1DBox
     tauDir0 = constructionWindow2.g,
     tauDif = constructionWindow2.g,
     T_start = TWindow2_start)
-    "Window 2"
+    "Window 2 (north oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={2,20})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window3(
@@ -466,7 +466,7 @@ model Building1Zone1DBox
     tauDir0 = constructionWindow3.g,
     tauDif = constructionWindow3.g,
     T_start = TWindow3_start)
-    "Window 3"
+    "Window 3 (east oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},origin={40,10})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window4(
@@ -479,7 +479,7 @@ model Building1Zone1DBox
     tauDir0 = constructionWindow4.g,
     tauDif = constructionWindow4.g,
     T_start = TWindow4_start)
-    "Window 4"
+    "Window 4 (south oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-20})));
 protected
