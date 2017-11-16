@@ -48,4 +48,5 @@ thumbs.db
 #
 # Ignore some other files
 *.orig
+*.pyc
 *.sdf
