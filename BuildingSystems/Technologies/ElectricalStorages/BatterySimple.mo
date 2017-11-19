@@ -30,7 +30,7 @@ model BatterySimple
     "Maximal discharging power of battery";
   final parameter Modelica.SIunits.Power PCharge_max = nBat*batteryData.PCharge_max
     "Maximal charging power of battery";
-  final parameter Real fDis = batteryData.fDis
+  final parameter Real fDis(unit="1/s") = batteryData.fDis
     "Loss factor of the battery";
   parameter Real SOC_start = 0.5
     "Start charge level of the battery"
@@ -66,8 +66,8 @@ protected
 equation
   h1 = EAva/c;
   h2 = EBou/(1-c);
-  der(EAva) = PChargeEff - PLoadEff - fDis * E + k*(h2 - h1);
-  der(EBou) = -k*(h2 - h1);
+  der(EAva) = PChargeEff - PLoadEff + k*(h2 - h1);
+  der(EBou) = -k*(h2 - h1) - fDis * E;
   E = EAva + EBou;
   SOC = E / E_nominal;
 
@@ -116,6 +116,10 @@ equation
   </html>",
   revisions="<html>
   <ul>
+  <li>
+  <li>
+  November 11, 2017, by Christoph Nytsch-Geusen:<br/>
+  Loss factor to bound energy storage shifted.
   <li>
   May 31, 2017, by Christoph Nytsch-Geusen:<br/>
   Integration of the Kinetic Battery Model.
