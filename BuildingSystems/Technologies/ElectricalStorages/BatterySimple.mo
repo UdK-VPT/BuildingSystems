@@ -73,11 +73,15 @@ equation
 
   PNet = PCharge - PLoad;
 
-  PChargeEff = if PNet > 0.0 then 0.5 * (1.0 - Modelica.Math.tanh(100000.0*(SOC-1.0)))
-    * BuildingSystems.Utilities.SmoothFunctions.softcut_upper(PNet*etaCharge,PCharge_max,0.001) else 0.0;
+  PChargeEff = if PNet > 0.0 and EAva > c*E_nominal then k*(h2-h1)
+               elseif PNet > 0.0 and EAva <= c*E_nominal then 0.5 * (1.0 - Modelica.Math.tanh(100000.0*(SOC-1.0)))
+                 * BuildingSystems.Utilities.SmoothFunctions.softcut_upper(PNet*etaCharge,PCharge_max,0.001)
+               else 0.0;
 
-  PLoadEff = if PNet <= 0.0 then 0.5 * (1.0 + Modelica.Math.tanh(100000.0*(SOC-1.1*SOC_min)))
-    * BuildingSystems.Utilities.SmoothFunctions.softcut_upper(-PNet/etaLoad,PLoad_max,0.001) else 0.0;
+  PLoadEff = if PNet <= 0.0 and EAva < 0.0 then k*(h2-h1)
+             elseif PNet <= 0.0 and EAva >= 0.0 then 0.5 * (1.0 + Modelica.Math.tanh(100000.0*(SOC-1.1*SOC_min)))
+               * BuildingSystems.Utilities.SmoothFunctions.softcut_upper(-PNet/etaLoad,PLoad_max,0.001)
+            else 0.0;
 
   PGrid = if PNet > 0.0 then PNet - PChargeEff/etaCharge
     else PNet + PLoadEff*etaLoad;
@@ -119,7 +123,8 @@ equation
   <li>
   <li>
   November 11, 2017, by Christoph Nytsch-Geusen:<br/>
-  Loss factor to bound energy storage shifted.
+  Loss factor to bound energy storage shifted and plausible
+  limitations of PChargeEff and PLoadEff added.
   <li>
   May 31, 2017, by Christoph Nytsch-Geusen:<br/>
   Integration of the Kinetic Battery Model.
