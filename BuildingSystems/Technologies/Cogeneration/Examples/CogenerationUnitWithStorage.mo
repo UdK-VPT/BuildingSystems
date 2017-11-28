@@ -1,7 +1,6 @@
 within BuildingSystems.Technologies.Cogeneration.Examples;
 model CogenerationUnitWithStorage
   "Example of a cogeneration unit with warm water storage"
-  import BuildingSystems;
   extends Modelica.Icons.Example;
   package Medium = BuildingSystems.Media.Water;
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.1
@@ -14,7 +13,7 @@ model CogenerationUnitWithStorage
   BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTemOut(
     redeclare package Medium = Medium, m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-38,-24},{-18,-4}})));
-  ThermalStorages.FluidStorage storage(
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
     height=1.5,
     HX_2=false,
@@ -25,14 +24,14 @@ model CogenerationUnitWithStorage
     V=1.0,
     T_start=293.15)
     annotation (Placement(transformation(extent={{76,-56},{56,-36}})));
-  Fluid.Movers.FlowControlled_m_flow pump(
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-34,-65},{-54,-45}})));
   Modelica.Blocks.Sources.Constant TSet(
     k=273.15 + 60.0)
     annotation (Placement(transformation(extent={{-56,30},{-50,36}})));
-  Fluid.Storage.ExpansionVessel exp(
+  BuildingSystems.Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
     V_start=0.01)
     "Expansion vessel model"

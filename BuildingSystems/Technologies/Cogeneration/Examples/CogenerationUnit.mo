@@ -1,7 +1,6 @@
 within BuildingSystems.Technologies.Cogeneration.Examples;
 model CogenerationUnit
   "Example of a cogeneration unit"
-  import BuildingSystems;
   extends Modelica.Icons.Example;
   package Medium = BuildingSystems.Media.Water;
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.1
