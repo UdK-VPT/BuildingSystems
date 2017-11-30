@@ -331,7 +331,6 @@ November 07, 2017 by Christoph Nytsch-Geusen:<br/>
 Output for cloud cover added.
 </li>
 <li>
-<li>
 April 4, 2017 by Christoph Nytsch-Geusen:<br/>
 Outputs for latitudeDeg, longitudeDeg and longitudeDeg0 added.
 </li>

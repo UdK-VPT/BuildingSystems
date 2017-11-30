@@ -121,13 +121,14 @@ equation
   revisions="<html>
   <ul>
   <li>
-  <li>
   November 11, 2017, by Christoph Nytsch-Geusen:<br/>
   Loss factor to bound energy storage shifted and plausible
   limitations of PChargeEff and PLoadEff added.
+  </li>
   <li>
   May 31, 2017, by Christoph Nytsch-Geusen:<br/>
   Integration of the Kinetic Battery Model.
+  </li>
   <li>
   June 6, 2016, by Christoph Nytsch-Geusen:<br/>
   First implementation.
