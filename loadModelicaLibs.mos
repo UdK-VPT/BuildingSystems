@@ -1,5 +1,5 @@
 // Set flags, alphabetic order
-Advanced.AutoFormatting=false;
+// Advanced.AutoFormatting=false;
 Advanced.EnableModelManagement=true;
 // Advanced.DefaultStoreAsOneFile=false;
 // Advanced.PedanticModelica=true;
