@@ -72,27 +72,27 @@ partial model ZoneTemplateGeneral
     "Long-wave and short-wave radiation calculation of the zone"
     annotation (Placement(transformation(extent={{-24,-44},{24,4}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts1[nConstructions1](
-    moisturePort.x(each start = 0.005))
+    moisturePort.x(each start = 0.005)) if nConstructions1 > 0
     "Interfaces of the zone to constructions with orientation 1"
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=180,origin={-94,40}), iconTransformation(extent={{-120,0},{-100,80}})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts3[nConstructions3](
-    moisturePort.x(each start = 0.005))
-    "Interfaces of the zone to constructions with orientation 2"
-    annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=180,origin={94,-40}), iconTransformation(extent={{100,-80},{120,0}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts2[nConstructions2](
-    moisturePort.x(each start = 0.005))
-    "Interfaces of the zone to constructions with orientation 3"
+    moisturePort.x(each start = 0.005)) if nConstructions2 > 0
+    "Interfaces of the zone to constructions with orientation 2"
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=90,origin={40,94}), iconTransformation(extent={{-10,-40},{10,40}},rotation=90,origin={40,110})));
+  BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts3[nConstructions3](
+    moisturePort.x(each start = 0.005)) if nConstructions3 > 0
+    "Interfaces of the zone to constructions with orientation 3"
+    annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=180,origin={94,-40}), iconTransformation(extent={{100,-80},{120,0}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts4[nConstructions4](
-    moisturePort.x(each start = 0.005))
+    moisturePort.x(each start = 0.005)) if nConstructions4 > 0
     "Interfaces of the zone to constructions with orientation 4"
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=90,origin={-40,-94}), iconTransformation(extent={{-10,-40},{10,40}},rotation=90,origin={-40,-110})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts5[nConstructions5](
-    moisturePort.x(each start = 0.005))
+    moisturePort.x(each start = 0.005)) if nConstructions5 > 0
     "Interfaces of the zone to constructions with orientation 5"
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=180,origin={84,80}),  iconTransformation(extent={{80,20},{100,100}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts6[nConstructions6](
-    moisturePort.x(each start = 0.005))
+    moisturePort.x(each start = 0.005)) if nConstructions6 > 0
     "Interfaces of the zone to constructions with orientation 6"
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=180,origin={-84,-80}), iconTransformation(extent={{-10,-40},{10,40}},rotation=180,origin={-90,-60})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts1[nAirpathes1](
@@ -122,37 +122,37 @@ partial model ZoneTemplateGeneral
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces1(
     nSurfaces=nConstructions1,
     each surface.convectionOnSurface = convectionOnSurfaces,
-    each surface.alphaConstant = alphaConstant)
+    each surface.alphaConstant = alphaConstant) if nConstructions1 > 0
     "surface models of the zone with orientation 1"
     annotation (Placement(transformation(extent={{-24,-26},{24,26}},origin={-80,40})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces2(
     nSurfaces=nConstructions2,
     each surface.convectionOnSurface = convectionOnSurfaces,
-    each surface.alphaConstant = alphaConstant)
+    each surface.alphaConstant = alphaConstant) if nConstructions2 > 0
     "surface models of the zone with orientation 2"
     annotation (Placement(transformation(extent={{-24,-26},{24,26}},rotation=-90,origin={40,80})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces3(
     nSurfaces=nConstructions3,
     each surface.convectionOnSurface = convectionOnSurfaces,
-    each surface.alphaConstant = alphaConstant)
+    each surface.alphaConstant = alphaConstant) if nConstructions3 > 0
     "surface models of the zone with orientation 3"
     annotation (Placement(transformation(extent={{-24,-26},{24,26}},rotation=180,origin={80,-40})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces4(
     nSurfaces=nConstructions4,
     each surface.convectionOnSurface = convectionOnSurfaces,
-    each surface.alphaConstant = alphaConstant)
+    each surface.alphaConstant = alphaConstant) if nConstructions4 > 0
     "surface models of the zone with orientation 4"
     annotation (Placement(transformation(extent={{-24,-26},{24,26}},rotation=90,origin={-40,-80})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces5(
     nSurfaces=nConstructions5,
     each surface.convectionOnSurface = convectionOnSurfaces,
-    each surface.alphaConstant = alphaConstant)
+    each surface.alphaConstant = alphaConstant) if nConstructions5 > 0
     "surface models of the zone with orientation 5"
     annotation (Placement(transformation(extent={{-24,-26},{24,26}},rotation=180,origin={80,-40})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces6(
     nSurfaces=nConstructions6,
     each surface.convectionOnSurface = convectionOnSurfaces,
-    each surface.alphaConstant = alphaConstant)
+    each surface.alphaConstant = alphaConstant) if nConstructions6 > 0
     "surface models of the zone with orientation 6"
     annotation (Placement(transformation(extent={{-24,-26},{24,26}},rotation=90,origin={-40,-80})));
   BuildingSystems.Interfaces.Temp_KOutput TSurfMean
