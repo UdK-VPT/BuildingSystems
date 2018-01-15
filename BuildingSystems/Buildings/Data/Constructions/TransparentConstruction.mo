@@ -11,8 +11,9 @@ record TransparentConstruction
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValFra
     "U-value of the frame";
   parameter Real g(unit = "1")
-    "g-value of of the transparent construction";
-
+    "g-value of the transparent construction";
+  parameter Real b0(unit = "1")
+    "Coefficient for radiation transmision curve";
   annotation (
 Documentation(info="<html>
 <p>

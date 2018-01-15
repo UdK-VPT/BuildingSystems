@@ -5,7 +5,7 @@ model WindowWithAirpathes
   BuildingSystems.Buildings.Constructions.Windows.Window window(
     height=2.0,
     width=1.0,
-    UVal=0.5,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData,
     calcAirchange=true)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1

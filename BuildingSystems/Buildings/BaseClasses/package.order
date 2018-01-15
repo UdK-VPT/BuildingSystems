@@ -11,5 +11,6 @@ SurfaceGeneral
 WallGeneral
 WallHygroThermalGeneral
 WallThermalGeneral
+WindowGeneral
 ZoneTemplateGeneral
 OpaqueConstruction

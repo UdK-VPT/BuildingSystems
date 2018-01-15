@@ -4,7 +4,8 @@ record DoubleGlazing = BuildingSystems.Buildings.Data.Constructions.TransparentC
   thickness={0.003,0.003},
   UValGla = 3.0,
   UValFra = 2.8,
-  g = 0.8)
+  g = 0.8,
+  b0 = 0.7)
  "Double glazing with UValGla = 3.0 W/(m2.K) and g = 0.8"
 
  annotation (

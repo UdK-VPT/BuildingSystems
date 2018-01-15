@@ -435,9 +435,7 @@ model Building1Zone1DBox
     framePortion = framePortionWindow1,
     angleDegAzi = 90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
-    UVal = (1.0 - framePortionWindow1) * constructionWindow1.UValGla + framePortionWindow1 * constructionWindow1.UValFra,
-    tauDir0 = constructionWindow1.g,
-    tauDif = constructionWindow1.g,
+    constructionData = constructionWindow1,
     T_start = TWindow1_start,
     use_GSC_in = true)
     "Window 1 (west oriented if angleDegAzi is 0 degree)"
@@ -449,9 +447,7 @@ model Building1Zone1DBox
     framePortion = framePortionWindow2,
     angleDegAzi = 180.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
-    UVal = (1.0 - framePortionWindow2) * constructionWindow2.UValGla + framePortionWindow2 * constructionWindow2.UValFra,
-    tauDir0 = constructionWindow2.g,
-    tauDif = constructionWindow2.g,
+    constructionData = constructionWindow2,
     T_start = TWindow2_start)
     "Window 2 (north oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
@@ -462,9 +458,7 @@ model Building1Zone1DBox
     framePortion = framePortionWindow3,
     angleDegAzi = -90.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
-    UVal = (1.0 - framePortionWindow3) * constructionWindow3.UValGla + framePortionWindow3 * constructionWindow3.UValFra,
-    tauDir0 = constructionWindow3.g,
-    tauDif = constructionWindow3.g,
+    constructionData = constructionWindow3,
     T_start = TWindow3_start)
     "Window 3 (east oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
@@ -475,9 +469,7 @@ model Building1Zone1DBox
     framePortion = framePortionWindow4,
     angleDegAzi = 0.0 + angleDegAziBuilding,
     angleDegTil = 90.0,
-    UVal = (1.0 - framePortionWindow4) * constructionWindow4.UValGla + framePortionWindow4 * constructionWindow4.UValFra,
-    tauDir0 = constructionWindow4.g,
-    tauDif = constructionWindow4.g,
+    constructionData = constructionWindow4,
     T_start = TWindow4_start)
     "Window 4 (south oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),

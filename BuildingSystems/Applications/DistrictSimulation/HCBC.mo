@@ -38,25 +38,33 @@ model HCBC
     width=parameterMap.widthWin1,
     height=parameterMap.heightWin1,
     angleDegAzi=parameterMap.angleDegAziWin1,
-    UVal=parameterMap.windowU)
+    constructionData.UValGla=parameterMap.windowU,
+    constructionData.UValFra=parameterMap.windowU,
+    constructionData.g = 0.6)
     annotation (Placement(transformation(extent={{-40,-60},{-20,-40}})));
   BuildingSystems.Buildings.Constructions.Windows.Window rightWindow(
     width=parameterMap.widthWin2,
     height=parameterMap.heightWin2,
     angleDegAzi=parameterMap.angleDegAziWin2,
-    UVal=parameterMap.windowU)
+    constructionData.UValGla=parameterMap.windowU,
+    constructionData.UValFra=parameterMap.windowU,
+    constructionData.g = 0.6)
     annotation (Placement(transformation(extent={{-20,-60},{0,-40}})));
   BuildingSystems.Buildings.Constructions.Windows.Window frontWindow(
     width=parameterMap.widthWin3,
     height=parameterMap.heightWin3,
     angleDegAzi=parameterMap.angleDegAziWin3,
-    UVal=parameterMap.windowU)
+    constructionData.UValGla=parameterMap.windowU,
+    constructionData.UValFra=parameterMap.windowU,
+    constructionData.g = 0.6)
     annotation (Placement(transformation(extent={{0,-60},{20,-40}})));
   BuildingSystems.Buildings.Constructions.Windows.Window backWindow(
     width=parameterMap.widthWin4,
     height=parameterMap.heightWin4,
     angleDegAzi=parameterMap.angleDegAziWin4,
-    UVal=parameterMap.windowU)
+    constructionData.UValGla=parameterMap.windowU,
+    constructionData.UValFra=parameterMap.windowU,
+    constructionData.g = 0.6)
     annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
   BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction
     outerConstruction(

@@ -59,7 +59,6 @@ model BuildingThermalMultiZone
     nHeatSources = 13);
     parameter Modelica.SIunits.Length heightRooms = 3.0
       "Height of all rooms";
-    parameter BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow;
 
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed office1(
       V=bottom1.width*bottom1.height*heightRooms,
@@ -583,99 +582,77 @@ model BuildingThermalMultiZone
       width=2.5,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window1.framePortion) * constructionWindow.UValGla + window1.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-150,90})));
     BuildingSystems.Buildings.Constructions.Windows.Window window2(
       height=1.5,
       width=2.5,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window2.framePortion) * constructionWindow.UValGla + window2.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-110,90})));
     BuildingSystems.Buildings.Constructions.Windows.Window window3(
       height=1.5,
       width=2.5,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window3.framePortion) * constructionWindow.UValGla + window3.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-70,90})));
     BuildingSystems.Buildings.Constructions.Windows.Window window4(
       height=1.5,
       width=2.5,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window4.framePortion) * constructionWindow.UValGla + window4.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90})));
     BuildingSystems.Buildings.Constructions.Windows.Window window5(
       height=1.5,
       width=2.5,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window5.framePortion) * constructionWindow.UValGla + window5.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={10,90})));
     BuildingSystems.Buildings.Constructions.Windows.Window window6(
       height=1.5,
       width=2.5,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window6.framePortion) * constructionWindow.UValGla + window6.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={50,90})));
     BuildingSystems.Buildings.Constructions.Windows.Window window7(
       height=1.5,
       width=2.5,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window7.framePortion) * constructionWindow.UValGla + window7.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={90,90})));
     BuildingSystems.Buildings.Constructions.Windows.Window window8(
       height=1.5,
       width=2.5,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window8.framePortion) * constructionWindow.UValGla + window8.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={130,90})));
     BuildingSystems.Buildings.Constructions.Windows.Window window9(
       height=1.5,
       width=5.0,
       angleDegAzi=90.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window9.framePortion) * constructionWindow.UValGla + window9.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-168,-30})));
     BuildingSystems.Buildings.Constructions.Windows.Window window10(
       height=2.5,
       width=16.0,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window10.framePortion) * constructionWindow.UValGla + window10.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-50,-90})));
     BuildingSystems.Buildings.Constructions.Windows.Window window11(
       height=2.5,
       width=5.0,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      UVal = (1.0 - window11.framePortion) * constructionWindow.UValGla + window11.framePortion * constructionWindow.UValFra,
-      tauDir0 = constructionWindow.g,
-      tauDif = constructionWindow.g)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={110,-90})));
   equation
     connect(wall10.toSurfacePort_1, office1.toConstructionPorts2[1]) annotation (

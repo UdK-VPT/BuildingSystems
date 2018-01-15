@@ -4,7 +4,8 @@ record HeatProtectionTripleGlazingUVal07 = BuildingSystems.Buildings.Data.Constr
   thickness={0.003,0.003,0.003},
   UValGla = 0.7,
   UValFra = 0.7,
-  g = 0.51)
+  g = 0.51,
+  b0 = 0.7)
  "Heat protection triple glazing with UValGla = 0.7 W/(m2.K) and g = 0.51"
 
  annotation (

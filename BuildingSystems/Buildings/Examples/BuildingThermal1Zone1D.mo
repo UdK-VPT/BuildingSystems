@@ -59,13 +59,15 @@ model BuildingThermal1Zone1D
       height=1.0,
       width=2.0,
       angleDegAzi=180.0,
-      angleDegTil=90.0)
+      angleDegTil=90.0,
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={12,20})));
     BuildingSystems.Buildings.Constructions.Windows.Window window4(
       height=1.0,
       width=2.0,
       angleDegAzi=0.0,
-      angleDegTil=90.0)
+      angleDegTil=90.0,
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={12,-20})));
   equation
    connect(wall2.toSurfacePort_1, zone1.toConstructionPorts2[1]) annotation (

@@ -5,7 +5,8 @@ model Window
   BuildingSystems.Buildings.Constructions.Windows.Window window(
     height=1.0,
     width=1.0,
-    use_GSC_in=true)
+    use_GSC_in=true,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface2
     annotation (Placement(transformation(extent={{2,-10},{22,10}})));

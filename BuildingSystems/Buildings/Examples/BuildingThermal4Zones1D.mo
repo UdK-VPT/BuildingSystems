@@ -158,25 +158,29 @@ model BuildingThermal4Zones1D
       height=1.0,
       width=1.0,
       angleDegAzi=0.0,
-      angleDegTil=90.0)
+      angleDegTil=90.0,
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=90,origin={-28,-42})));
     BuildingSystems.Buildings.Constructions.Windows.Window window2(
       height=1.0,
       width=1.0,
       angleDegAzi=0.0,
-      angleDegTil=90.0)
+      angleDegTil=90.0,
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=90,origin={52,-40})));
     BuildingSystems.Buildings.Constructions.Windows.Window window3(
       height=1.0,
       width=1.0,
       angleDegAzi=180.0,
-      angleDegTil=90.0)
+      angleDegTil=90.0,
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-28,60})));
     BuildingSystems.Buildings.Constructions.Windows.Window window4(
       height=1.0,
       width=1.0,
       angleDegAzi=180.0,
-      angleDegTil=90.0)
+      angleDegTil=90.0,
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={52,60})));
     BuildingSystems.Buildings.Airpathes.AirpathConstant airpath1(
       mConstant=0.5,

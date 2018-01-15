@@ -59,6 +59,12 @@ model Building1Zone0D
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValWin[nWindows] = fill(1.0,nWindows)
     "Heat loss coefficient of each window"
     annotation(Dialog(tab="Constructions",group="Windows"));
+  parameter Real gWin[nWindows](each unit = "1") = fill(0.6,nWindows)
+    "g-value of the window";
+    annotation(Dialog(tab="Constructions",group="Windows"));
+  parameter Real framePortionWin[nWindows](each unit = "1") = fill(0.2,nWindows)
+    "Frame portion of the window"
+    annotation(Dialog(tab = "Constructions", group = "Windows"));
 
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
     final prescribedAirchange = prescribedAirchange,
@@ -116,7 +122,10 @@ model Building1Zone0D
   BuildingSystems.Buildings.Constructions.Windows.Window window[nWindows](
     final angleDegAzi= {angleDegAziWin[i] + angleDegAziBuilding for i in 1:nWindows},
     final angleDegTil = angleDegTilWin,
-    UVal = UValWin,
+    final constructionData.UValGla = UValWin,
+    final constructionData.UValFra = UValWin,
+    final constructionData.g = gWin,
+    final framePortion = framePortionWin,
     each final width = 1.0,
     final height={AWin[i] for i in 1:nWindows})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,20})));

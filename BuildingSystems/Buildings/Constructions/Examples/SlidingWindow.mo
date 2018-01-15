@@ -6,7 +6,7 @@ model SlidingWindow
     height=2.0,
     width=2.0,
     widthOpen = 1.0,
-    UVal=0.5,
+    redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData,
     LClo=0.01)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
