@@ -96,27 +96,27 @@ partial model ZoneTemplateGeneral
     "Interfaces of the zone to constructions with orientation 6"
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=180,origin={-84,-80}), iconTransformation(extent={{-10,-40},{10,40}},rotation=180,origin={-90,-60})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts1[nAirpathes1](
-    redeclare each final package Medium = Medium) if not prescribedAirchange
+    redeclare each final package Medium = Medium) if (not prescribedAirchange and nAirpathes1>0)
     "Interfaces of the zone to air pathes with orientation 1"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={-94,-60}, rotation=270), iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-110,-40})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts2[nAirpathes2](
-    redeclare each final package Medium = Medium) if not prescribedAirchange
+    redeclare each final package Medium = Medium) if (not prescribedAirchange and nAirpathes2>0)
     "Interfaces of the zone to air pathes with orientation 2"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=180,origin={-40,94}), iconTransformation(extent={{-40,-10},{40,10}},rotation=180,origin={-40,110})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts3[nAirpathes3](
-    redeclare each final package Medium = Medium) if not prescribedAirchange
+    redeclare each final package Medium = Medium) if (not prescribedAirchange and nAirpathes3>0)
     "Interfaces of the zone to air pathes with orientation 3"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=270,origin={94,60}), iconTransformation(extent={{-40,-10},{40,10}},rotation=270,origin={110,40})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts4[nAirpathes4](
-    redeclare each final package Medium = Medium) if not prescribedAirchange
+    redeclare each final package Medium = Medium) if (not prescribedAirchange and nAirpathes4>0)
     "Interfaces of the zone to air pathes with orientation 4"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=180,origin={42,-94}), iconTransformation(extent={{-40,-10},{40,10}},rotation=180,origin={40,-110})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts5[nAirpathes5](
-    redeclare each final package Medium = Medium) if not prescribedAirchange
+    redeclare each final package Medium = Medium) if (not prescribedAirchange and nAirpathes5>0)
     "Interfaces of the zone to air pathes with orientation 5"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=270,origin={-84,-40}),iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-90,20})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts6[nAirpathes6](
-    redeclare each final package Medium = Medium) if not prescribedAirchange
+    redeclare each final package Medium = Medium) if (not prescribedAirchange and nAirpathes6>0)
     "Interfaces of the zone to air pathes with orientation 6"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=270,origin={84,40}), iconTransformation(extent={{-40,-10},{40,10}},rotation=270,origin={90,-20})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces1(
