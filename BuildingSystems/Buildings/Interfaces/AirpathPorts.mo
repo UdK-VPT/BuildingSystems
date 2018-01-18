@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Interfaces;
 connector AirpathPorts
-  "Port for heat and moisture transport between a surface and the adjacent construction, large icon to be used for vectors of AirpathPorts (complex connector type)"
+  "Port for air exchange through an air path, large icon to be used for vectors of AirpathPorts (complex connector type)"
   extends AirpathPortGeneral;
   annotation (defaultComponentName="airpathPorts", Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-50,-200},{50,200}},grid={1,1},initialScale=0.2), graphics={
   Text(extent={{-75,130},{75,100}}, textString="%name"),
