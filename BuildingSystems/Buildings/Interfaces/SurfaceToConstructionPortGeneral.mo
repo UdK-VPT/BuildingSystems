@@ -18,7 +18,7 @@ connector SurfaceToConstructionPortGeneral
   BuildingSystems.Types.Absorptance abs
     "Short-wave absorptance of the surface";
 
-  annotation(
+  annotation (
 Documentation(info="<html>
 <p>
 General connector model for heat and moisture transport between a surface and the adjacent construction.

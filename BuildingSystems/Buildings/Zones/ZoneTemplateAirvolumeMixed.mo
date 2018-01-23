@@ -16,7 +16,7 @@ model ZoneTemplateAirvolumeMixed
   parameter Real radiationportionIdealCooling = 0.5
     "Radiation portion of the ideal cooling"
     annotation(Dialog(tab="General",group="Ideal heating and cooling"));
-  parameter Modelica.SIunits.Length heightAirpath[nAirpathes]=fill(0.0,nAirpathes)
+  parameter Modelica.SIunits.Length heightAirpath[nAirpathesInternal]=fill(0.0,nAirpathesInternal)
     "Vertical height of each air path in the zone"
     annotation(Dialog(tab="General",group="Zone geometry"));
   parameter Boolean heatSources = false
@@ -34,11 +34,11 @@ model ZoneTemplateAirvolumeMixed
   input BuildingSystems.Interfaces.Temp_KInput T_setHeating if calcIdealLoads
     "Set air temperature for heating of the zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-100,4}),
-      iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={10,70})));
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-110,70})));
   input BuildingSystems.Interfaces.Temp_KInput T_setCooling if calcIdealLoads
     "Set air temperature for cooling of the zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-100,-10}),
-      iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={50,70})));
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-110,50})));
   parameter Modelica.SIunits.Temp_K T_start = 293.15
     "Start air temperature of the zone"
     annotation (Dialog(tab="Initialization"));
@@ -54,7 +54,7 @@ model ZoneTemplateAirvolumeMixed
     x_start=x_start,
     nHeatSources=nHeatSourcesTotal,
     nMoistureSources=nMoistureSources,
-    nAirpathes=nAirpathes)
+    nAirpathes=nAirpathesInternal)
     "Air volume model"
     annotation (Placement(transformation(extent={{-24,64},{24,16}})));
   BuildingSystems.Buildings.BaseClasses.RelationRadiationConvection relRadConHeating(
@@ -80,37 +80,37 @@ model ZoneTemplateAirvolumeMixed
     yMin=Q_flow_coolingMax) if  calcIdealLoads
    annotation (Placement(transformation(extent={{-68,34},{-56,22}})));
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_heating if calcIdealLoads
-    annotation (Placement(transformation(extent={{-52,28},{-32,48}}), iconTransformation(extent={{-10,-10},{10,10}},rotation=-90,origin={30,70})));
+    annotation (Placement(transformation(extent={{-52,28},{-32,48}}), iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,70})));
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_cooling if calcIdealLoads
-    annotation (Placement(transformation(extent={{-52,2},{-32,22}}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={70,70})));
+    annotation (Placement(transformation(extent={{-52,2},{-32,22}}), iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,50})));
   output BuildingSystems.Interfaces.Temp_KOutput TAir
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,36}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-70,70})));
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,36}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-30})));
   output BuildingSystems.Interfaces.Moisture_absOutput xAir
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,46}),    iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-10,70})));
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,46}),    iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-90})));
   output BuildingSystems.Interfaces.Temp_KOutput TOperative = (airvolume.T + radiationDistribution.TSurfMean) / 2.0
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-100,92}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-30,70})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-100,92}), iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-70})));
   BuildingSystems.Interfaces.HeatPorts conHeatSourcesPorts[nHeatSources] if heatSources
     "Heat ports of the convective heat sources"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-66,80}), iconTransformation(extent={{-29,-7},{29,7}},rotation=180,origin={-51,-73})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-66,80}), iconTransformation(extent={{-29,-7},{29,7}},rotation=180,origin={-49,-107})));
   BuildingSystems.Interfaces.HeatPorts radHeatSourcesPorts[nHeatSources] if heatSources
     "Heat ports of the long-wave radiation heat sources"
-    annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=180,origin={-44,-4}), iconTransformation(extent={{-29,-7},{29,7}},rotation=180,origin={7,-73})));
+    annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=180,origin={-44,-4}), iconTransformation(extent={{-29,-7},{29,7}},rotation=180,origin={49,-107})));
   BuildingSystems.Interfaces.MoisturePorts moistureSourcesPorts[nMoistureSources] if moistureSources
     "Moisture ports of the moisture sources"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-24,80}),  iconTransformation(extent={{-29,-7},{29,7}}, rotation=180,origin={65,-73})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-24,80}),  iconTransformation(extent={{-29,-7},{29,7}}, rotation=180,origin={49,107})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow phfHeating if calcIdealLoads
     annotation (Placement(transformation(extent={{-50,52},{-42,60}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow phfCooling if calcIdealLoads
     annotation (Placement(transformation(extent={{-50,24},{-42,32}})));
   input BuildingSystems.Interfaces.Temp_KInput TAirAmb if prescribedAirchange
     "Air temperature of the building ambient"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={106,0}),  iconTransformation(extent={{-10,-10},{10,10}},origin={110,50})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={106,0}),  iconTransformation(extent={{-10,-10},{10,10}},origin={-110,-50})));
   input BuildingSystems.Interfaces.Moisture_absInput xAirAmb if prescribedAirchange
     "Absolute moisture of the building ambient"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={106,-16}),iconTransformation(extent={{-10,-10},{10,10}},origin={110,30})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={106,-16}),iconTransformation(extent={{-10,-10},{10,10}},origin={-110,-70})));
   input BuildingSystems.Interfaces.AirchangeRateInput airchange if prescribedAirchange
     "Air change rate of the thermal zone"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={106,18}),   iconTransformation(extent={{-10,-10},{10,10}},origin={110,70})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={106,18}),   iconTransformation(extent={{-10,-10},{10,10}},origin={-110,-30})));
   Modelica.Blocks.Math.Gain ac2mf(k=-rho_nominal*airvolume.V/3600.0) if prescribedAirchange
     "Transformation from air change in 1/h into air mass flow rate in kg/s"
     annotation (Placement(transformation(extent={{76,14},{68,22}})));
@@ -131,48 +131,18 @@ model ZoneTemplateAirvolumeMixed
     "Changes the sign of mass flow"
     annotation (Placement(transformation(extent={{62,24},{54,32}})));
 equation
-  for i in 1:nConstructions1 loop
-    connect(surfaces1.toAirPorts[i],airvolume.toSurfacePorts[i]);
-  end for;
-  for i in 1:nConstructions2 loop
-    connect(surfaces2.toAirPorts[i],airvolume.toSurfacePorts[nConstructions1+i]);
-  end for;
-  for i in 1:nConstructions3 loop
-    connect(surfaces3.toAirPorts[i],airvolume.toSurfacePorts[nConstructions1+nConstructions2+i]);
-  end for;
-  for i in 1:nConstructions4 loop
-    connect(surfaces4.toAirPorts[i],airvolume.toSurfacePorts[nConstructions1+nConstructions2+nConstructions3+i]);
-  end for;
-  for i in 1:nConstructions5 loop
-    connect(surfaces5.toAirPorts[i],airvolume.toSurfacePorts[nConstructions1+nConstructions2+nConstructions3+nConstructions4+i]);
-  end for;
-  for i in 1:nConstructions6 loop
-    connect(surfaces6.toAirPorts[i],airvolume.toSurfacePorts[nConstructions1+nConstructions2+nConstructions3+nConstructions4+nConstructions5+i]);
+  for i in 1:nConstructions loop
+    connect(surfaces.toAirPorts[i],airvolume.toSurfacePorts[i]);
   end for;
   if not prescribedAirchange then
-    for i in 1:nAirpathes1 loop
-      connect(airpathPorts1[i], airvolume.airpathPorts[i]);
-    end for;
-    for i in 1:nAirpathes2 loop
-      connect(airpathPorts2[i], airvolume.airpathPorts[nAirpathes1+i]);
-    end for;
-    for i in 1:nAirpathes3 loop
-      connect(airpathPorts3[i], airvolume.airpathPorts[nAirpathes1+nAirpathes2+i]);
-    end for;
-    for i in 1:nAirpathes4 loop
-      connect(airpathPorts4[i], airvolume.airpathPorts[nAirpathes1+nAirpathes2+nAirpathes3+i]);
-    end for;
-    for i in 1:nAirpathes5 loop
-      connect(airpathPorts5[i], airvolume.airpathPorts[nAirpathes1+nAirpathes2+nAirpathes3+nAirpathes4+i]);
-    end for;
-    for i in 1:nAirpathes6 loop
-      connect(airpathPorts6[i], airvolume.airpathPorts[nAirpathes1+nAirpathes2+nAirpathes3+nAirpathes4+nAirpathes5+i]);
+    for i in 1:nAirpathes loop
+      connect(airpathPorts[i], airvolume.airpathPorts[i]);
     end for;
   end if;
   // Internal heat sources
   for i in 1:nHeatSources loop
     connect(airvolume.heatSourcesPorts[i],conHeatSourcesPorts[i])
-      annotation (Line(points={{-66,80},{-66,72},{-26,72},{-26,30.4},{-19.2,30.4}}, color={127,0,0}));
+      annotation (Line(points={{-19.2,30.4},{-19.2,80},{-66,80}},                   color={127,0,0}));
     connect(radiationDistribution.heatSourcesPorts[i],radHeatSourcesPorts[i]);
   end for;
   // Internal moisture sources
@@ -202,12 +172,12 @@ equation
         smooth=Smooth.None));
     connect(relRadConHeating.heatPortLw, radiationDistribution.heatSourcesPorts[nHeatSources+1])
       annotation (Line(
-        points={{-30,54},{-26,54},{-26,4},{0,4},{0,-1.28}},
+        points={{-30,54},{-26,54},{-26,4},{0,4},{0,-41.28}},
         color={191,0,0},
         smooth=Smooth.None));
     connect(relRadConCooling.heatPortLw, radiationDistribution.heatSourcesPorts[nHeatSources+2])
       annotation (Line(
-        points={{-30,26},{-30,4},{0,4},{0,-1.28}},
+        points={{-30,26},{-30,4},{0,4},{0,-41.28}},
         color={191,0,0},
         smooth=Smooth.None));
     connect(T_setHeating, heatingLoad.u_s) annotation (Line(

@@ -9,7 +9,8 @@ model SurfacesToSolids
     each calcHygroThermal=calcHygroThermal)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts[nSurfaces]
-    annotation (Placement(transformation(extent={{-20,-40},{0,40}}), iconTransformation(extent={{-20,-40},{0,40}})));
+    annotation (Placement(transformation(extent={{-22,-10},{-2,10}}),iconTransformation(extent={{-40,-20},
+            {0,20}})));
   BuildingSystems.Interfaces.HeatPorts heatPorts[nSurfaces]
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={12,40}), iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={10,40})));
   BuildingSystems.Interfaces.MoisturePorts moisturePorts[nSurfaces] if calcHygroThermal
@@ -18,19 +19,19 @@ equation
   for i in 1:nSurfaces loop
     connect(surface[i].toConstructionPort,toConstructionPorts[i])
         annotation (Line(
-        points={{-10,0},{-0.6,0}},
+        points={{-0.6,0},{-12,0}},
         color={127,0,0},
         smooth=Smooth.None));
     connect(surface[i].heatPort,heatPorts[i])
         annotation (Line(
-        points={{0.6,4},{2,4},{2,40},{10,40}},
+        points={{0.6,-4},{2,-4},{2,40},{12,40}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
     if calcHygroThermal then
       connect(surface[i].moisturePort,moisturePorts[i])
           annotation (Line(
-          points={{0.6,-4},{2,-4},{2,-40},{10,-40}},
+          points={{0.6,4},{2,4},{2,-40},{12,-40}},
           color={0,0,0},
           pattern=LinePattern.Solid,
           smooth=Smooth.None));
@@ -38,7 +39,8 @@ equation
   end for;
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
-    Rectangle(extent={{-6,80},{6,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid)}),
+    Rectangle(extent={{-6,80},{6,-80}},lineColor={230,230,230},fillColor={230,230,230},
+            fillPattern =                                                                            FillPattern.Solid)}),
 Documentation(info="<html>
 <p>
 This is model describes set of surface models between a set of constructions and solid materials.

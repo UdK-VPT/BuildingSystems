@@ -28,54 +28,38 @@ model BuildingThermal4Zones1D
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone1(
       V=3.0*3.0*3.0,
       height=3.0,
-      nAirpathes3=2,
-      nAirpathes4=2,
-      nConstructions1=1,
-      nConstructions2=2,
-      nConstructions4=1,
-      nConstructions3=1,
       prescribedAirchange=false,
       heightAirpath={0.5,1.5,0.5,1.5},
-      convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free)
+      convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free,
+      nConstructions=5,
+      nAirpathes=4)
       annotation (Placement(transformation(extent={{-50,30},{-30,50}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone2(
       V=3.0*3.0*3.0,
       height=3.0,
-      nAirpathes4=2,
-      nConstructions2=2,
-      nConstructions3=1,
-      nConstructions4=1,
-      nConstructions1=1,
       prescribedAirchange=false,
-      nAirpathes1=2,
       heightAirpath={0.5,1.5,0.5,1.5},
-      convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free)
+      convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free,
+      nConstructions=5,
+      nAirpathes=4)
       annotation (Placement(transformation(extent={{30,30},{50,50}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone3(
       V=3.0*3.0*3.0,
       height=3.0,
-      nAirpathes3=2,
-      nAirpathes2=2,
-      nConstructions1=1,
-      nConstructions4=2,
-      nConstructions2=1,
-      nConstructions3=1,
       prescribedAirchange=false,
       heightAirpath={0.5,1.5,0.5,1.5},
-      convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free)
+      convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free,
+      nConstructions=5,
+      nAirpathes=4)
       annotation (Placement(transformation(extent={{-50,-30},{-30,-10}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone4(
       V=3.0*3.0*3.0,
       height=3.0,
-      nAirpathes1=2,
-      nAirpathes2=2,
-      nConstructions3=1,
-      nConstructions4=2,
-      nConstructions2=1,
-      nConstructions1=1,
       prescribedAirchange=false,
       heightAirpath={0.5,1.5,0.5,1.5},
-      convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free)
+      convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free,
+      nConstructions=5,
+      nAirpathes=4)
       annotation (Placement(transformation(extent={{30,-30},{50,-10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
       redeclare Construction1 constructionData,
@@ -189,11 +173,11 @@ model BuildingThermal4Zones1D
     BuildingSystems.Buildings.Airpathes.AirpathConstant airpath2(
       mConstant=0.5,
       kConstant=0.1)
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={26,12})));
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,12})));
     BuildingSystems.Buildings.Airpathes.AirpathConstant airpath3(
       mConstant=0.5,
       kConstant=0.1)
-      annotation (Placement(transformation(extent={{-10,-16},{10,4}})));
+      annotation (Placement(transformation(extent={{-10,-12},{10,8}})));
     BuildingSystems.Buildings.Airpathes.AirpathConstant airpath4(
       mConstant=0.5,
       kConstant=0.1)
@@ -205,7 +189,7 @@ model BuildingThermal4Zones1D
     BuildingSystems.Buildings.Airpathes.AirpathConstant airpath6(
       mConstant=0.5,
       kConstant=0.1)
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+      annotation (Placement(transformation(extent={{-10,-6},{10,14}})));
     BuildingSystems.Buildings.Airpathes.AirpathConstant airpath7(
       mConstant=0.5,
       kConstant=0.1)
@@ -213,342 +197,223 @@ model BuildingThermal4Zones1D
     BuildingSystems.Buildings.Airpathes.AirpathConstant airpath8(
       mConstant=0.5,
       kConstant=0.1)
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={20,12})));
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={16,12})));
   equation
-    connect(zone1.airpathPorts3[1], airpath1.airpathPort_1) annotation (Line(
-       points={{-29,42},{-20,42},{-20,26},{-4,26}},
-       color={0,0,255},
-       smooth=Smooth.None));
-    connect(zone3.airpathPorts3[1], airpath3.airpathPort_1) annotation (Line(
-       points={{-29,-18},{-16,-18},{-16,-6},{-4,-6}},
-       color={0,0,255},
-       smooth=Smooth.None));
-    connect(airpath3.airpathPort_2, zone4.airpathPorts1[1]) annotation (Line(
-       points={{4,-6},{14,-6},{14,-26},{29,-26}},
-       color={0,0,255},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(zone2.airpathPorts4[1], airpath2.airpathPort_2) annotation (Line(
-       points={{44,27},{44,22},{26,22},{26,16}},
-       color={0,0,255},
-       smooth=Smooth.None));
-    connect(airpath2.airpathPort_1, zone4.airpathPorts2[1]) annotation (Line(
-       points={{26,8},{26,-2},{36,-2},{36,-11}},
-       color={0,0,255},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(zone1.airpathPorts4[1], airpath4.airpathPort_2) annotation (Line(
-       points={{-36,27},{-36,24},{-28,24},{-28,14}},
-       color={0,0,255},
-       smooth=Smooth.None));
-    connect(airpath4.airpathPort_1, zone3.airpathPorts2[1]) annotation (Line(
-       points={{-28,6},{-28,-6},{-44,-6},{-44,-11}},
-       color={0,0,255},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
     connect(zone1.T_setHeating, T_setHeating[1]) annotation (Line(
-       points={{-35,33},{-35,72.5},{100,72.5}},
+       points={{-51,47},{-51,87.5},{180,87.5}},
        color={255,0,0},
        smooth=Smooth.None,
        pattern=LinePattern.Dot));
     connect(zone1.T_setCooling, T_setCooling[1]) annotation (Line(
-       points={{-33,33},{-33,52.5},{100,52.5}},
+       points={{-51,45},{-51,67.5},{180,67.5}},
        color={255,0,0},
        smooth=Smooth.None,
        pattern=LinePattern.Dot));
     connect(zone2.T_setHeating, T_setHeating[2]) annotation (Line(
-       points={{45,33},{45,77.5},{100,77.5}},
+       points={{29,47},{29,82.5},{180,82.5}},
        color={255,0,0},
        smooth=Smooth.None,
        pattern=LinePattern.Dot));
     connect(T_setCooling[2], zone2.T_setCooling) annotation (Line(
-       points={{100,57.5},{47,57.5},{47,33}},
+       points={{180,62.5},{29,62.5},{29,45}},
        color={255,0,0},
        smooth=Smooth.None,
        pattern=LinePattern.Dot));
     connect(zone3.T_setHeating, T_setHeating[3]) annotation (Line(
-       points={{-35,-27},{-35,-60},{80,-60},{80,82.5},{100,82.5}},
+       points={{-51,-13},{-51,-60},{80,-60},{80,77.5},{180,77.5}},
        color={255,0,0},
        smooth=Smooth.None,
        pattern=LinePattern.Dot));
     connect(zone3.T_setCooling, T_setCooling[3]) annotation (Line(
-       points={{-33,-27},{-33,-68},{84,-68},{84,62.5},{100,62.5}},
+       points={{-51,-15},{-51,-68},{84,-68},{84,57.5},{180,57.5}},
        color={255,0,0},
        smooth=Smooth.None,
        pattern=LinePattern.Dot));
     connect(zone4.T_setHeating, T_setHeating[4]) annotation (Line(
-       points={{45,-27},{45,-6},{76,-6},{76,87.5},{100,87.5}},
+       points={{29,-13},{29,-6},{76,-6},{76,72.5},{180,72.5}},
        color={255,0,0},
        smooth=Smooth.None,
        pattern=LinePattern.Dot));
     connect(zone4.T_setCooling, T_setCooling[4]) annotation (Line(
-       points={{47,-27},{47,-4},{72,-4},{72,62},{100,62},{100,67.5}},
+       points={{29,-15},{29,-4},{72,-4},{72,62},{180,62},{180,52.5}},
        color={255,0,0},
        smooth=Smooth.None,
        pattern=LinePattern.Dot));
-    connect(wall2.toSurfacePort_1, zone3.toConstructionPorts1[1]) annotation (
-       Line(
-       points={{-58,-20},{-56,-20},{-56,-16},{-51,-16}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall1.toSurfacePort_1, zone1.toConstructionPorts1[1]) annotation (
-       Line(
-       points={{-58,40},{-56,40},{-56,44},{-51,44}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall7.toSurfacePort_1, zone1.toConstructionPorts2[1]) annotation (
-       Line(
-       points={{-52,58},{-52,56},{-36,56},{-36,49}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(window3.toSurfacePort_1, zone1.toConstructionPorts2[2]) annotation (
-       Line(
-       points={{-28,58.2},{-28,56},{-36,56},{-36,53}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall8.toSurfacePort_1, zone2.toConstructionPorts2[1]) annotation (
-       Line(
-       points={{28,58},{28,54},{44,54},{44,49}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(window4.toSurfacePort_1, zone2.toConstructionPorts2[2]) annotation (
-       Line(
-       points={{52,58.2},{52,54},{44,54},{44,53}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall5.toSurfacePort_1, zone2.toConstructionPorts3[1]) annotation (
-       Line(
-       points={{58,40},{54,40},{54,36},{51,36}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall6.toSurfacePort_1, zone4.toConstructionPorts3[1]) annotation (
-       Line(
-       points={{58,-20},{56,-20},{56,-24},{51,-24}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(window2.toSurfacePort_1, zone4.toConstructionPorts4[1]) annotation (
-       Line(
-       points={{52,-38.2},{52,-36},{36,-36},{36,-33}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall12.toSurfacePort_1, zone4.toConstructionPorts4[2]) annotation (
-       Line(
-       points={{28,-38},{28,-36},{36,-36},{36,-29}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(window1.toSurfacePort_1, zone3.toConstructionPorts4[1]) annotation (
-       Line(
-       points={{-28,-40.2},{-28,-36},{-44,-36},{-44,-33}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall11.toSurfacePort_1, zone3.toConstructionPorts4[2]) annotation (
-       Line(
-       points={{-52,-40},{-52,-36},{-44,-36},{-44,-29}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall9.toSurfacePort_1, zone3.toConstructionPorts2[1]) annotation (
-       Line(
-       points={{-40,8},{-40,-2},{-36,-2},{-36,-9}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall9.toSurfacePort_2, zone1.toConstructionPorts4[1]) annotation (
-       Line(
-       points={{-40,12},{-40,20},{-44,20},{-44,29}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(zone4.toConstructionPorts2[1], wall10.toSurfacePort_1) annotation (
-       Line(
-       points={{44,-9},{44,0},{40,0},{40,10}},
-       color={127,0,0},
-       smooth=Smooth.None));
-    connect(wall10.toSurfacePort_2, zone2.toConstructionPorts4[1]) annotation (
-       Line(
-       points={{40,14},{40,24},{36,24},{36,29}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall3.toSurfacePort_2, zone2.toConstructionPorts1[1]) annotation (
-       Line(
-       points={{2,40},{20,40},{20,44},{29,44}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall3.toSurfacePort_1, zone1.toConstructionPorts3[1]) annotation (
-       Line(
-       points={{-2,40},{-16,40},{-16,36},{-29,36}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall4.toSurfacePort_1, zone3.toConstructionPorts3[1]) annotation (
-       Line(
-       points={{-2,-20},{-16,-20},{-16,-24},{-29,-24}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
-    connect(wall4.toSurfacePort_2, zone4.toConstructionPorts1[1]) annotation (
-       Line(
-       points={{2,-20},{20,-20},{20,-16},{29,-16}},
-       color={0,0,0},
-       pattern=LinePattern.Solid,
-       smooth=Smooth.None));
     connect(wall1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[1]) annotation (Line(
-       points={{-62,40},{-76,40},{-76,0},{-89.9,0}},
+       points={{-62,40},{-76,40},{-76,0},{-170.8,0}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(wall7.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[2]) annotation (Line(
-       points={{-52,62},{-52,68},{-76,68},{-76,0},{-89.9,0}},
+       points={{-52,62},{-52,68},{-76,68},{-76,0},{-170.8,0}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(window3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[3]) annotation (Line(
-       points={{-28,61.8},{-28,68},{-76,68},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{-28,62},{-28,68},{-76,68},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(wall8.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4]) annotation (Line(
-       points={{28,62},{28,68},{-76,68},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{28,62},{28,68},{-76,68},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(window4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[5]) annotation (Line(
-       points={{52,61.8},{52,68},{-76,68},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{52,62},{52,68},{-76,68},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(wall5.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[6]) annotation (Line(
-       points={{62,40},{70,40},{70,78},{-76,78},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{62,40},{70,40},{70,78},{-76,78},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(wall2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[7]) annotation (Line(
-       points={{-62,-20},{-76,-20},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{-62,-20},{-76,-20},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(wall11.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[8]) annotation (Line(
-       points={{-52,-44},{-52,-50},{-76,-50},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{-52,-44},{-52,-50},{-76,-50},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(window1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[9]) annotation (Line(
-       points={{-28,-43.8},{-28,-50},{-76,-50},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{-28,-44},{-28,-50},{-76,-50},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(wall12.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[10]) annotation (Line(
-       points={{28,-42},{28,-50},{-76,-50},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{28,-42},{28,-50},{-76,-50},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(window2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[11]) annotation (Line(
-       points={{52,-41.8},{52,-50},{-76,-50},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{52,-42},{52,-50},{-76,-50},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
     connect(wall6.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[12]) annotation (Line(
-       points={{62,-20},{70,-20},{70,-50},{-76,-50},{-76,3.55271e-015},{-89.9,3.55271e-015}},
+       points={{62,-20},{70,-20},{70,-50},{-76,-50},{-76,3.55271e-15},{-170.8,3.55271e-15}},
        color={0,0,0},
        pattern=LinePattern.Solid,
        smooth=Smooth.None));
-    connect(zone3.airpathPorts3[2], airpath6.airpathPort_1) annotation (Line(
-        points={{-29,-14},{-16,-14},{-16,0},{-4,0}},
-        color={0,0,255},
-        smooth=Smooth.None));
-    connect(airpath6.airpathPort_2, zone4.airpathPorts1[2]) annotation (Line(
-        points={{4,0},{14,0},{14,-22},{29,-22}},
-        color={0,0,255},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(airpath8.airpathPort_1, zone4.airpathPorts2[2]) annotation (Line(
-        points={{20,8},{20,-2},{36,-2},{36,-7}},
-        color={0,0,255},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(airpath5.airpathPort_2, zone1.airpathPorts4[2]) annotation (Line(
-        points={{-22,14},{-22,24},{-36,24},{-36,31}},
-        color={0,0,255},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(airpath5.airpathPort_1, zone3.airpathPorts2[2]) annotation (Line(
-        points={{-22,6},{-22,-6},{-44,-6},{-44,-7}},
-        color={0,0,255},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(airpath8.airpathPort_2, zone2.airpathPorts4[2]) annotation (Line(
-        points={{20,16},{20,22},{44,22},{44,31}},
-        color={0,0,255},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(airpath1.airpathPort_2, zone2.airpathPorts1[1]) annotation (Line(
-        points={{4,26},{22,26},{22,34},{29,34}},
-        color={0,0,255},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(zone1.airpathPorts3[2], airpath7.airpathPort_1) annotation (Line(
-        points={{-29,46},{-20,46},{-20,20},{-4,20}},
-        color={0,0,255},
-        smooth=Smooth.None));
-    connect(airpath7.airpathPort_2, zone2.airpathPorts1[2]) annotation (Line(
-        points={{4,20},{18,20},{18,38},{29,38}},
-        color={0,0,255},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
     connect(zone1.Q_flow_cooling, Q_flow_cooling[1]) annotation (Line(
-      points={{-33,47},{-33,18},{-80,18},{-80,-95}},
+      points={{-29,45},{-29,18},{-80,18},{-80,-114.5}},
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
     connect(zone2.Q_flow_cooling, Q_flow_cooling[2]) annotation (Line(
-      points={{47,47},{47,8},{-80,8},{-80,-105}},
+      points={{51,45},{51,8},{-80,8},{-80,-119.5}},
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
     connect(zone3.Q_flow_cooling, Q_flow_cooling[3]) annotation (Line(
-      points={{-33,-13},{-33,-80},{-80,-80},{-80,-105}},
+      points={{-29,-15},{-29,-80},{-80,-80},{-80,-124.5}},
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
     connect(zone4.Q_flow_cooling, Q_flow_cooling[4]) annotation (Line(
-      points={{47,-13},{47,-80},{-80,-80},{-80,-105}},
+      points={{51,-15},{51,-80},{-80,-80},{-80,-129.5}},
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
     connect(zone1.Q_flow_heating, Q_flow_heating[1]) annotation (Line(
-      points={{-37,47},{-37,2},{-10,2},{-10,-76},{80,-76},{80,-92.5}},
+      points={{-29,47},{-29,2},{-10,2},{-10,-76},{80,-76},{80,-114.5}},
       color={0,0,127},
       smooth=Smooth.None,
       pattern=LinePattern.Dot));
     connect(zone2.Q_flow_heating, Q_flow_heating[2]) annotation (Line(
-        points={{43,47},{43,0},{80,0},{80,-97.5}},
+        points={{51,47},{51,0},{80,0},{80,-119.5}},
         color={0,0,127},
         smooth=Smooth.None,
         pattern=LinePattern.Dot));
     connect(zone3.Q_flow_heating, Q_flow_heating[3]) annotation (Line(
-        points={{-37,-13},{-37,-76},{80,-76},{80,-102.5}},
+        points={{-29,-13},{-29,-76},{80,-76},{80,-124.5}},
         color={0,0,127},
         smooth=Smooth.None,
         pattern=LinePattern.Dot));
     connect(zone4.Q_flow_heating, Q_flow_heating[4]) annotation (Line(
-        points={{43,-13},{43,-76},{80,-76},{80,-107.5}},
+        points={{51,-13},{51,-76},{80,-76},{80,-129.5}},
         color={0,0,127},
         smooth=Smooth.None,
         pattern=LinePattern.Dot));
 
+    connect(wall2.toSurfacePort_1, zone3.toConstructionPorts[1]) annotation (Line(
+          points={{-58,-20},{-50,-20},{-50,-21.6},{-40,-21.6}}, color={0,0,0}));
+    connect(zone3.toConstructionPorts[2], wall4.toSurfacePort_1) annotation (Line(
+          points={{-40,-20.8},{-22,-20.8},{-22,-20},{-2,-20}}, color={127,0,0}));
+    connect(wall4.toSurfacePort_2, zone4.toConstructionPorts[1]) annotation (Line(
+          points={{2,-20},{22,-20},{22,-21.6},{40,-21.6}}, color={0,0,0}));
+    connect(zone4.toConstructionPorts[2], wall6.toSurfacePort_1) annotation (Line(
+          points={{40,-20.8},{50,-20.8},{50,-20},{58,-20}}, color={127,0,0}));
+    connect(zone4.toConstructionPorts[3], wall10.toSurfacePort_1)
+      annotation (Line(points={{40,-20},{40,10}}, color={127,0,0}));
+    connect(wall10.toSurfacePort_2, zone2.toConstructionPorts[1])
+      annotation (Line(points={{40,14},{40,38.4}}, color={0,0,0}));
+    connect(zone2.toConstructionPorts[2], wall5.toSurfacePort_1) annotation (Line(
+          points={{40,39.2},{50,39.2},{50,40},{58,40}}, color={127,0,0}));
+    connect(wall3.toSurfacePort_2, zone2.toConstructionPorts[3])
+      annotation (Line(points={{2,40},{22,40},{22,40},{40,40}}, color={0,0,0}));
+    connect(zone1.toConstructionPorts[1], wall3.toSurfacePort_1) annotation (Line(
+          points={{-40,38.4},{-22,38.4},{-22,40},{-2,40}},       color={127,0,0}));
+    connect(wall1.toSurfacePort_1, zone1.toConstructionPorts[2]) annotation (Line(
+          points={{-58,40},{-50,40},{-50,39.2},{-40,39.2}},
+                                                        color={0,0,0}));
+    connect(window3.toSurfacePort_1, zone1.toConstructionPorts[3]) annotation (
+        Line(points={{-28,58},{-28,54},{-40,54},{-40,40}},      color={0,0,0}));
+    connect(wall7.toSurfacePort_1, zone1.toConstructionPorts[4]) annotation (Line(
+          points={{-52,58},{-52,54},{-40,54},{-40,40.8}},    color={0,0,0}));
+    connect(zone1.toConstructionPorts[5], wall9.toSurfacePort_2)
+      annotation (Line(points={{-40,41.6},{-40,12}},
+                                                   color={127,0,0}));
+    connect(wall9.toSurfacePort_1, zone3.toConstructionPorts[3])
+      annotation (Line(points={{-40,8},{-40,-20}}, color={0,0,0}));
+    connect(wall11.toSurfacePort_1, zone3.toConstructionPorts[4]) annotation (
+        Line(points={{-52,-40},{-52,-36},{-40,-36},{-40,-19.2}}, color={0,0,0}));
+    connect(window1.toSurfacePort_1, zone3.toConstructionPorts[5]) annotation (
+        Line(points={{-28,-40},{-28,-36},{-40,-36},{-40,-18.4}}, color={0,0,0}));
+    connect(wall12.toSurfacePort_1, zone4.toConstructionPorts[4]) annotation (
+        Line(points={{28,-38},{28,-34},{40,-34},{40,-19.2}}, color={0,0,0}));
+    connect(window2.toSurfacePort_1, zone4.toConstructionPorts[5]) annotation (
+        Line(points={{52,-38},{52,-34},{40,-34},{40,-18.4}}, color={0,0,0}));
+    connect(wall8.toSurfacePort_1, zone2.toConstructionPorts[4]) annotation (Line(
+          points={{28,58},{28,54},{40,54},{40,40.8}}, color={0,0,0}));
+    connect(window4.toSurfacePort_1, zone2.toConstructionPorts[5]) annotation (
+        Line(points={{52,58},{52,54},{40,54},{40,41.6}}, color={0,0,0}));
+    connect(airpath4.airpathPort_1, zone3.airpathPorts[1]) annotation (Line(
+          points={{-28,6},{-28,-4},{-43,-4},{-43,-9}}, color={0,127,255}));
+    connect(airpath5.airpathPort_1, zone3.airpathPorts[2]) annotation (Line(
+          points={{-22,6},{-22,-2},{-45,-2},{-45,-9}}, color={0,127,255}));
+    connect(airpath4.airpathPort_2, zone1.airpathPorts[1])
+      annotation (Line(points={{-28,14},{-28,51},{-43,51}}, color={0,127,255}));
+    connect(airpath5.airpathPort_2, zone1.airpathPorts[2])
+      annotation (Line(points={{-22,14},{-22,51},{-45,51}}, color={0,127,255}));
+    connect(airpath8.airpathPort_2, zone2.airpathPorts[1])
+      annotation (Line(points={{16,16},{16,51},{37,51}}, color={0,127,255}));
+    connect(airpath2.airpathPort_2, zone2.airpathPorts[2])
+      annotation (Line(points={{22,16},{22,51},{35,51}}, color={0,127,255}));
+    connect(airpath8.airpathPort_1, zone4.airpathPorts[1]) annotation (Line(
+          points={{16,8},{16,-8},{37,-8},{37,-9}}, color={0,127,255}));
+    connect(airpath2.airpathPort_1, zone4.airpathPorts[2])
+      annotation (Line(points={{22,8},{22,-9},{35,-9}}, color={0,127,255}));
+    connect(airpath3.airpathPort_1, zone3.airpathPorts[3]) annotation (Line(
+          points={{-4,-2},{-48,-2},{-48,-9},{-47,-9}}, color={0,127,255}));
+    connect(airpath6.airpathPort_1, zone3.airpathPorts[4])
+      annotation (Line(points={{-4,4},{-49,4},{-49,-9}}, color={0,127,255}));
+    connect(airpath3.airpathPort_2, zone4.airpathPorts[3])
+      annotation (Line(points={{4,-2},{33,-2},{33,-9}}, color={0,127,255}));
+    connect(airpath6.airpathPort_2, zone4.airpathPorts[4])
+      annotation (Line(points={{4,4},{31,4},{31,-9}}, color={0,127,255}));
+    connect(airpath1.airpathPort_1, zone1.airpathPorts[3]) annotation (Line(
+          points={{-4,26},{-8,26},{-8,51},{-47,51}}, color={0,127,255}));
+    connect(airpath7.airpathPort_1, zone1.airpathPorts[4]) annotation (Line(
+          points={{-4,20},{-8,20},{-8,51},{-49,51}}, color={0,127,255}));
+    connect(airpath7.airpathPort_2, zone2.airpathPorts[3]) annotation (Line(
+          points={{4,20},{10,20},{10,51},{33,51}}, color={0,127,255}));
+    connect(airpath1.airpathPort_2, zone2.airpathPorts[4]) annotation (Line(
+          points={{4,26},{10,26},{10,51},{31,51}}, color={0,127,255}));
   end Building;
 
   BuildingSystems.Buildings.Ambient ambient(
@@ -585,43 +450,43 @@ model BuildingThermal4Zones1D
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={36,-14})));
 equation
    connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
-    points={{-22,7.66667},{-20,7.66667},{-20,8},{-20,11.3333},{-20,7.66667},{-9,7.66667}},
+    points={{-22,4},{-20,4},{-20,8},{-20,11.3333},{-20,4},{-9,4}},
     color={0,255,0},
     smooth=Smooth.None));
   connect(ambient.toAirPorts, building.toAmbientAirPorts) annotation (Line(
-    points={{-22,-0.333333},{-16,-0.333333},{-16,-0.333333},{-9,-0.333333}},
+    points={{-22,-4},{-16,-4},{-16,-4},{-9,-4}},
     color={85,170,255},
     smooth=Smooth.None));
   connect(TSetHeatingZone1.y, building.T_setHeating[1]) annotation (Line(
-      points={{15.8,14},{14,14},{14,7.25},{9.8,7.25}},
+      points={{15.8,14},{14,14},{14,8.75},{9.8,8.75}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TSetHeatingZone2.y, building.T_setHeating[2]) annotation (Line(
-      points={{21.8,18},{12,18},{12,7.75},{9.8,7.75}},
+      points={{21.8,18},{12,18},{12,8.25},{9.8,8.25}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TSetHeatingZone3.y, building.T_setHeating[3]) annotation (Line(
-      points={{27.8,22},{9.8,22},{9.8,8.25}},
+      points={{27.8,22},{9.8,22},{9.8,7.75}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TSetHeatingZone4.y, building.T_setHeating[4]) annotation (Line(
-      points={{33.8,26},{9.8,26},{9.8,8.75}},
+      points={{33.8,26},{9.8,26},{9.8,7.25}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TSetCoolingZone1.y, building.T_setCooling[1]) annotation (Line(
-      points={{15.8,4},{14,4},{14,5.25},{9.8,5.25}},
+      points={{15.8,4},{14,4},{14,6.75},{9.8,6.75}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TSetCoolingZone2.y, building.T_setCooling[2]) annotation (Line(
-      points={{21.8,-2},{14,-2},{14,5.75},{9.8,5.75}},
+      points={{21.8,-2},{14,-2},{14,6.25},{9.8,6.25}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TSetCoolingZone3.y, building.T_setCooling[3]) annotation (Line(
-      points={{27.8,-8},{14,-8},{14,6.25},{9.8,6.25}},
+      points={{27.8,-8},{14,-8},{14,5.75},{9.8,5.75}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(building.T_setCooling[4], TSetCoolingZone4.y) annotation (Line(
-      points={{9.8,6.75},{14,6.75},{14,-14},{33.8,-14}},
+      points={{9.8,5.25},{14,5.25},{14,-14},{33.8,-14}},
       color={0,0,127},
       smooth=Smooth.None));
 
