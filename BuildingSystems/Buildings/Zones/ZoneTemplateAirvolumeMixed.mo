@@ -50,8 +50,8 @@ model ZoneTemplateAirvolumeMixed
     V=V,
     height=height,
     heightAirpath = heightAirpath,
-    T_start=T_start,
-    x_start=x_start,
+    T_start={T_start},
+    x_start={x_start},
     nHeatSources=nHeatSourcesTotal,
     nMoistureSources=nMoistureSources,
     nAirpathes=nAirpathesInternal)
@@ -87,7 +87,7 @@ model ZoneTemplateAirvolumeMixed
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,36}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-30})));
   output BuildingSystems.Interfaces.Moisture_absOutput xAir
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,46}),    iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-90})));
-  output BuildingSystems.Interfaces.Temp_KOutput TOperative = (airvolume.T + radiationDistribution.TSurfMean) / 2.0
+  output BuildingSystems.Interfaces.Temp_KOutput TOperative = (airvolume.T[1] + radiationDistribution.TSurfMean) / 2.0
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-100,92}), iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-70})));
   BuildingSystems.Interfaces.HeatPorts conHeatSourcesPorts[nHeatSources] if heatSources
     "Heat ports of the convective heat sources"
@@ -142,7 +142,7 @@ equation
   // Internal heat sources
   for i in 1:nHeatSources loop
     connect(airvolume.heatSourcesPorts[i],conHeatSourcesPorts[i])
-      annotation (Line(points={{-19.2,30.4},{-19.2,80},{-66,80}},                   color={127,0,0}));
+      annotation (Line(points={{-19.2,30.4},{-19.2,80},{-66,80}}, color={127,0,0}));
     connect(radiationDistribution.heatSourcesPorts[i],radHeatSourcesPorts[i]);
   end for;
   // Internal moisture sources
@@ -162,11 +162,11 @@ equation
         points={{-19.2,30.4},{-30,30.4},{-30,30}},
         color={127,0,0},
         smooth=Smooth.None));
-    connect(airvolume.T, coolingLoad.u_m) annotation (Line(
+    connect(airvolume.T[1], coolingLoad.u_m) annotation (Line(
         points={{19.2,35.2},{26,35.2},{26,6},{-72,6},{-72,38},{-62,38},{-62,35.2}},
         color={0,0,127},
         smooth=Smooth.None));
-    connect(airvolume.T, heatingLoad.u_m) annotation (Line(
+    connect(airvolume.T[1], heatingLoad.u_m) annotation (Line(
         points={{19.2,35.2},{26,35.2},{26,66},{-62,66},{-62,63.2}},
         color={0,0,127},
         smooth=Smooth.None));
@@ -245,9 +245,9 @@ equation
         color={0,127,255},
         smooth=Smooth.None));
   end if;
-  connect(airvolume.T, TAir)
+  connect(airvolume.T[1], TAir)
     annotation (Line(points={{19.2,35.2},{22.6,35.2},{22.6,36},{34,36}}, color={0,0,127}));
-  connect(airvolume.x, xAir)
+  connect(airvolume.x[1], xAir)
     annotation (Line(points={{19.2,44.8},{24.6,44.8},{24.6,46},{34,46}}, color={0,0,127}));
 
   annotation(defaultComponentName="zone",
@@ -257,6 +257,10 @@ This is a template model for a thermal zone with fully mixed air volume.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 25, 2017 by Christoph Nytsch-Geusen:<br/>
+Adapted to discretized air volume model.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.

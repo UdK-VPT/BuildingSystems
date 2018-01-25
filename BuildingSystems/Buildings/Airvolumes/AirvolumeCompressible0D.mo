@@ -2,7 +2,8 @@ within BuildingSystems.Buildings.Airvolumes;
 model AirvolumeCompressible0D
   "Compressible ideal-mixed air volume model for moist air"
   extends BuildingSystems.Buildings.BaseClasses.AirvolumeGeneral(
-  redeclare final package Medium = BuildingSystems.Media.Air);
+  redeclare final package Medium = BuildingSystems.Media.Air,
+  final nAirElements = 1);
   parameter Integer nAirpathes = 0
     "Number of air pathes"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
@@ -24,7 +25,7 @@ model AirvolumeCompressible0D
     start = V * rho_nominal)
     "Mass of dry air";
   Modelica.SIunits.Mass mH2OAir(
-    start = x_start * V * rho_nominal)
+    start = x_start[1] * V * rho_nominal)
     "Mass of water vapor in the air";
   Modelica.SIunits.Mass mH2OLiq(
     start = mH2OLiq_start)
@@ -40,22 +41,19 @@ model AirvolumeCompressible0D
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpathes](
     redeclare each final package Medium=Medium)
     "Flow ports of the air pathes"
-    annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={0,-80},rotation=180),
-      iconTransformation(extent={{-40,-90},{40,-70}})));
+    annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={0,-80},rotation=180), iconTransformation(extent={{-40,-90},{40,-70}})));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
     "Heat ports of the convective heat sources"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,40}),
-      iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-80,40})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,40}), iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-80,40})));
   BuildingSystems.Interfaces.MoisturePorts moistureSourcesPorts[nMoistureSources]
     "Moisture ports of the moisture sources"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-80,-40}),
-      iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-80,-40})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-80,-40}), iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-80,-40})));
 protected
   Modelica.SIunits.InternalEnergy U(
     start=((rho_nominal * V * BuildingSystems.Utilities.Psychrometrics.Constants.cpAir
-      + rho_nominal * V * x_start * BuildingSystems.Utilities.Psychrometrics.Constants.cpSte
-      + mH2OLiq_start * BuildingSystems.Utilities.Psychrometrics.Constants.cpWatLiq) * T_start
-      + rH2O * rho_nominal * V * x_start))
+      + rho_nominal * V * x_start[1] * BuildingSystems.Utilities.Psychrometrics.Constants.cpSte
+      + mH2OLiq_start * BuildingSystems.Utilities.Psychrometrics.Constants.cpWatLiq) * T_start[1]
+      + rH2O * rho_nominal * V * x_start[1]))
     "Internal energy of the air volume";
   constant Modelica.SIunits.Velocity vAir_constant = 0.0
     "Air velocity";
@@ -73,29 +71,29 @@ equation
   // Energy balance of the moist air inclusive the liquid water
   U = (BuildingSystems.Utilities.Psychrometrics.Constants.cpAir * m
     + BuildingSystems.Utilities.Psychrometrics.Constants.cpSte * mH2OAir
-    + mH2OLiq * BuildingSystems.Utilities.Psychrometrics.Constants.cpWatLiq) * T + rH2O * mH2OAir;
+    + mH2OLiq * BuildingSystems.Utilities.Psychrometrics.Constants.cpWatLiq) * T[1] + rH2O * mH2OAir;
   der(U) = sum(toSurfacePorts.heatPort.Q_flow) + sum(heatSourcesPorts.Q_flow) + sum(H_flow_airpath) + sum(H_flow_moistureSource);
 
   // Boundary conditions for heat sources of the air volume
   for i in 1:nHeatSources loop
-    heatSourcesPorts[i].T = T;
+    heatSourcesPorts[i].T = T[1];
   end for;
 
   // Boundary conditions for moisture sources of the air volume
   for i in 1:nMoistureSources loop
-    moistureSourcesPorts[i].x = x;
+    moistureSourcesPorts[i].x = x[1];
   end for;
 
   // Boundary conditions for all surfaces of the air volume
   for i in 1:nSurfaces loop
-    toSurfacePorts[i].heatPort.T = T;
-    toSurfacePorts[i].moisturePort.x = x;
+    toSurfacePorts[i].heatPort.T = T[1];
+    toSurfacePorts[i].moisturePort.x = x[1];
     toSurfacePorts[i].angleDegAir = angleDegAir_constant;
     toSurfacePorts[i].vAir = vAir_constant;
   end for;
 
   // Ideal gas law
-  pMean * V = (0.622 + x) * m * R * T;
+  pMean * V = (0.622 + x[1]) * m * R * T[1];
 
   // Mass balance of dry air
   der(m) = sum(airpathPorts.m_flow);
@@ -106,9 +104,9 @@ equation
     + (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5) * sum(moistureSourcesPorts.m_flow) // water vapor from moisture sources
     + BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq; // evaporated water from liquid reservoir
 
-  mH2OAir = x * m;
+  mH2OAir = x[1] * m;
 
-  phi = BuildingSystems.Utilities.Psychrometrics.Functions.phi_pTX(100000,T,x);
+  phi = BuildingSystems.Utilities.Psychrometrics.Functions.phi_pTX(100000,T[1],x[1]);
 
   // Mass balance of liquid water
   der(mH2OLiq) = (1.0 - (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5)) * sum(moistureSourcesPorts.m_flow) // water vapor surplus from moisture sources if relative moisture becomes close to 1
@@ -116,16 +114,17 @@ equation
 
   for i in 1:nAirpathes loop
     // Enthalpy flow through each air path
-    airpathPorts[i].h_outflow = Medium.specificEnthalpy_pTX(p=100000, T=T, X={x,1-x});
+    airpathPorts[i].h_outflow = Medium.specificEnthalpy_pTX(p=100000,T=T[1],X={x[1],1-x[1]});
     H_flow_airpath[i] = airpathPorts[i].m_flow * actualStream(airpathPorts[i].h_outflow);
 
     // Vertical pressure at each air path
-    airpathPorts[i].p = pMean - Modelica.Constants.g_n * (heightAirpath[i] - 0.5 * height) * rho_nominal * T_nominal / T;
+    airpathPorts[i].p = pMean - Modelica.Constants.g_n * (heightAirpath[i] - 0.5 * height) * rho_nominal * T_nominal / T[1];
 
     // Mass flow rate of water vapour through each air path
     m_flow_H2O_airpath[i] = airpathPorts[i].m_flow * actualStream(airpathPorts[i].Xi_outflow[1]);
-    airpathPorts[i].Xi_outflow[1] = x;
+    airpathPorts[i].Xi_outflow[1] = x[1];
   end for;
+  
   // Enthalpy flow by each moisture source
   for i in 1:nMoistureSources loop
     H_flow_moistureSource = rH2O * moistureSourcesPorts.m_flow;

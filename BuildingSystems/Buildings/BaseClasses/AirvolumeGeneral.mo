@@ -5,27 +5,29 @@ partial model AirvolumeGeneral
     "Medium in the air volume"
     annotation (choicesAllMatching = true);
   parameter Modelica.SIunits.Volume V = 1.0
-    "Volume"
+    "Air volume"
     annotation(Dialog(tab="General",group="Air volume geometry"));
   parameter Integer nSurfaces(min=1) = 1
     "Number of surfaces, which enclose the air volume"
     annotation(Dialog(tab="General"));
-  parameter Modelica.SIunits.Temp_K T_start = 293.15
+  parameter Integer nAirElements(min=1) = 1
+    "Number of air elements, which are included in the air volume"
+    annotation(Dialog(tab="General"));
+  parameter Modelica.SIunits.Temp_K T_start[nAirElements] = fill(293.15,nAirElements)
     "Start air temperature"
     annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.MassFraction x_start = 0.005
+  parameter Modelica.SIunits.MassFraction x_start[nAirElements] = fill(0.005,nAirElements)
    "Start air moisture"
     annotation (Dialog(tab="Initialization"));
   parameter Modelica.SIunits.Mass mH2OLiq_start = 0.0
    "Start liquid water mass"
     annotation (Dialog(tab="Initialization"));
   BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toSurfacePorts[nSurfaces]
-    "Interfaces to to the surfaces, which enclose the air volume"
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=90,origin={0,80})));
-  output BuildingSystems.Interfaces.Temp_KOutput T
+  output BuildingSystems.Interfaces.Temp_KOutput T[nAirElements]
     "Air temperature"
     annotation (Placement(transformation(extent={{70,10},{90,30}}), iconTransformation(extent={{70,10},{90,30}})));
-  output BuildingSystems.Interfaces.Moisture_absOutput x
+  output BuildingSystems.Interfaces.Moisture_absOutput x[nAirElements]
     "Absolute air moisture"
     annotation (Placement(transformation(extent={{70,-30},{90,-10}}), iconTransformation(extent={{70,-30},{90,-10}})));
 
