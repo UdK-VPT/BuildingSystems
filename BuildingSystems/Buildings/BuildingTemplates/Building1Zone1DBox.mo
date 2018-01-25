@@ -8,7 +8,7 @@ model Building1Zone1DBox
     final calcHygroThermal = false,
     final nAirpathes = 0,
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
-    final alphaConstant = 0.0, // dummy value
+    final alphaConstant = 0.0,
     surfacesToAmbient(nSurfaces=9
       - (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
       - (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
@@ -23,42 +23,42 @@ model Building1Zone1DBox
     final nSurfacesSolid=1,
     surfacesToSolids(nSurfaces=nSurfacesSolid),
     final show_TAir = true,
-    final show_xAir = true);
+    final show_xAir = true);   // dummy value
 
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall1
-    if (BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall1 if
+       (BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall1";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall1(T=TWall1_constant)
-    if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall1(T=TWall1_constant) if
+       BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall1";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall2
-    if (BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall2 if
+       (BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall2";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall2(T=TWall2_constant)
-    if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall2(T=TWall2_constant) if
+       BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall2";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall3
-    if (BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall3 if
+       (BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall3";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall3(T=TWall3_constant)
-    if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall3(T=TWall3_constant) if
+       BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall3";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall4
-    if (BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall4 if
+       (BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall4";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall4(T=TWall4_constant)
-    if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall4(T=TWall4_constant) if
+       BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall4";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceCeiling
-    if (BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceCeiling if
+       (BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of ceiling";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempCeiling(T=TCeiling_constant)
-    if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempCeiling(T=TCeiling_constant) if
+       BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of ceiling";
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWall1
     "Data of the thermal construction"
@@ -96,35 +96,35 @@ model Building1Zone1DBox
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionCeilingsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall1 =
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall1=
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition wall1"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall1_constant = 293.15
     "Constant temperature on the outer surface of wall1 (used if BCWall1=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall2 =
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall2=
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition wall2"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall2_constant = 293.15
     "Constant temperature on the outer surface of wall2 (used if BCWall2=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall3 =
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall3=
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition wall3"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall3_constant = 293.15
     "Constant temperature on the outer surface of wall3 (used if BCWall3=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall4 =
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall4=
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition wall4"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall4_constant = 293.15
     "Constant temperature on the outer surface of wall4 (used if BCWall4=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCCeiling =
+  parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCCeiling=
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
     "Thermal boundary condition ceiling"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
@@ -142,13 +142,13 @@ model Building1Zone1DBox
     annotation(Dialog(tab="General",group="Geometry"));
   parameter Modelica.SIunits.Length widthWindow1 = 0.0
     "Width of window1"
-    annotation(Dialog(tab ="Transparent constructions",group = "window1 (included in constructionWall1)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window1 (included in constructionWall1)"));
   parameter Modelica.SIunits.Length heightWindow1 = 0.0
     "Height of window1"
-    annotation(Dialog(tab ="Transparent constructions",group = "window1 (included in constructionWall1)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window1 (included in constructionWall1)"));
   parameter Real framePortionWindow1 = 0.2
     "Frame portion of window1"
-    annotation(Dialog(tab ="Transparent constructions",group = "window1 (included in constructionWall1)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window1 (included in constructionWall1)"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow1
     "Data of the construction of window1"
     annotation(Dialog(tab = "Transparent constructions", group = "window1 (included in constructionWall1)"), choicesAllMatching=true);
@@ -159,20 +159,20 @@ model Building1Zone1DBox
     min = 0.0,
     max = 1.0) = 0.0
     "Constant shading coefficient window1 (if use_GSCWindow1_in = true)"
-    annotation(Dialog(tab ="Transparent constructions",group = "window1 (included in constructionWall1)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window1 (included in constructionWall1)"));
   input Modelica.Blocks.Interfaces.RealInput GSCWindow1_in if use_GSCWindow1_in
     "Shading coefficient window1"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-68,0}),
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-98,-12}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-60,54})));
   parameter Modelica.SIunits.Length widthWindow2 = 0.0
     "Width of window2"
-    annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window2 (included in constructionWall2)"));
   parameter Modelica.SIunits.Length heightWindow2 = 0.0
     "Height of window2"
-    annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window2 (included in constructionWall2)"));
   parameter Real framePortionWindow2 = 0.2
     "Frame portion of window2"
-    annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window2 (included in constructionWall2)"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow2
     "Data of the construction of window2"
     annotation(Dialog(tab = "Transparent constructions", group = "window2 (included in constructionWall2)"), choicesAllMatching=true);
@@ -183,20 +183,21 @@ model Building1Zone1DBox
     min = 0.0,
     max = 1.0) = 0.0
     "Constant shading coefficient window1 (if use_GSCWindow2_in = true)"
-    annotation(Dialog(tab ="Transparent constructions",group = "window2 (included in constructionWall2)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window2 (included in constructionWall2)"));
   input Modelica.Blocks.Interfaces.RealInput GSCWindow2_in if use_GSCWindow2_in
     "Shading coefficient window2"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-66,0}),
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={8,52},
+        rotation=-90),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-30,54})));
   parameter Modelica.SIunits.Length widthWindow3 = 0.0
     "Width of window3"
-    annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window3 (included in constructionWall3)"));
   parameter Modelica.SIunits.Length heightWindow3 = 0.0
     "Height of window3"
-    annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window3 (included in constructionWall3)"));
   parameter Real framePortionWindow3 = 0.2
     "Frame portion of window3"
-    annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window3 (included in constructionWall3)"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow3
     "Data of the construction of window3"
     annotation(Dialog(tab = "Transparent constructions", group = "window3 (included in constructionWall3)"), choicesAllMatching=true);
@@ -207,20 +208,20 @@ model Building1Zone1DBox
     min = 0.0,
     max = 1.0) = 0.0
     "Constant shading coefficient window1 (if use_GSCWindow3_in = true)"
-    annotation(Dialog(tab ="Transparent constructions",group = "window3 (included in constructionWall3)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window3 (included in constructionWall3)"));
   input Modelica.Blocks.Interfaces.RealInput GSCWindow3_in if use_GSCWindow3_in
     "Shading coefficient window3"
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}},origin={64,18}),
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},origin={76,10}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={0,54})));
   parameter Modelica.SIunits.Length widthWindow4 = 0.0
     "Width of window4"
-    annotation(Dialog(tab ="Transparent constructions",group = "window4 (included in constructionWall4)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window4 (included in constructionWall4)"));
   parameter Modelica.SIunits.Length heightWindow4 = 0.0
     "Height of window4"
-    annotation(Dialog(tab ="Transparent constructions",group = "window4 (included in constructionWall4)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window4 (included in constructionWall4)"));
   parameter Real framePortionWindow4 = 0.2
     "Frame portion of window4"
-    annotation(Dialog(tab ="Transparent constructions",group = "window4 (included in constructionWall4)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window4 (included in constructionWall4)"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionWindow4
     "Data of the construction of window4"
     annotation(Dialog(tab = "Transparent constructions", group = "window4 (included in constructionWall4)"), choicesAllMatching=true);
@@ -231,10 +232,10 @@ model Building1Zone1DBox
     min = 0.0,
     max = 1.0) = 0.0
     "Constant shading coefficient window4 (if use_GSCWindow4_in = true)"
-    annotation(Dialog(tab ="Transparent constructions",group = "window4 (included in constructionWall4)"));
+    annotation(Dialog(tab= "Transparent constructions",group = "window4 (included in constructionWall4)"));
   input Modelica.Blocks.Interfaces.RealInput GSCWindow4_in if use_GSCWindow4_in
     "Shading coefficient window4"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={28,-52}),
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,-64}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={30,54})));
   parameter Modelica.SIunits.Temp_K TWall1_start = 293.15
     "Start temperature of each layer of wall1"
@@ -275,35 +276,35 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.Temp_K TAir_start = 293.15
     "Start temperature of indoor air temperature"
     annotation (Dialog(tab="Initialization"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall1 =
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall1=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall1"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall2 =
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall2=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall2"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall3 =
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall3=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall3"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall4 =
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall4=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall4"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeiling =
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeiling=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution ceiling"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResBottom =
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResBottom=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution bottom"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeilingsInterior =
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResCeilingsInterior=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution interior ceilings"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
-  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWallsInterior =
+  parameter BuildingSystems.Buildings.Types.NumericalResolution numResWallsInterior=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution interior walls"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
@@ -314,10 +315,7 @@ model Building1Zone1DBox
     final calcIdealLoads = calcIdealLoads,
     final heatSources = heatSources,
     final nHeatSources = nHeatSources,
-    nConstructions1 = if InteriorWalls then 4 else 2,
-    nConstructions2 = if InteriorCeilings then 5 else 3,
-    nConstructions3 = 2,
-    nConstructions4 = 3,
+    nConstructions = 10+(if InteriorWalls then 2 else 0)+(if InteriorCeilings then 2 else 0),
     T_start = TAir_start)
     "Thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
@@ -334,7 +332,7 @@ model Building1Zone1DBox
     T_start = {TWall1_start for i in 1:wall1.constructionData.nLayers})
     "Wall 1 (west oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-54,10})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
     height = height,
     width = width,
@@ -348,7 +346,7 @@ model Building1Zone1DBox
     T_start = {TWall2_start for i in 1:wall2.constructionData.nLayers})
     "Wall 2 (north oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,20})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,26})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
     height = height,
     width = length,
@@ -362,7 +360,7 @@ model Building1Zone1DBox
     T_start = {TWall3_start for i in 1:wall3.constructionData.nLayers})
     "Wall 3 (east oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
-      Placement(transformation(extent={{30,-20},{50,0}})));
+      Placement(transformation(extent={{40,-20},{60,0}})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
     height = height,
     width = width,
@@ -376,7 +374,7 @@ model Building1Zone1DBox
     T_start = {TWall4_start for i in 1:wall4.constructionData.nLayers})
     "Wall 4 (south oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,-20})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,-38})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
     height = length,
     width = width,
@@ -389,7 +387,7 @@ model Building1Zone1DBox
     T_start = {TCeiling_start for i in 1:ceiling.constructionData.nLayers})
     "Ceiling (horizontal oriented)"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,26})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
     height = length,
     width = width,
@@ -402,7 +400,7 @@ model Building1Zone1DBox
     T_start = {TBottom_start for i in 1:bottom.constructionData.nLayers})
     "Bottom"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-38})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wallsInterior(
     final constructionData=constructionWallsInterior,
     nNodes = if numResWallsInterior == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionWallsInterior.nLayers) else
@@ -415,7 +413,7 @@ model Building1Zone1DBox
     T_start = {TWallsInterior_start for i in 1:wallsInterior.constructionData.nLayers}) if InteriorWalls
     "Optional interior walls"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},origin={-18,-6})));
+      Placement(transformation(extent={{-10,-10},{10,10}},origin={-30,-14})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceilingsInterior(
     final constructionData=constructionCeilingsInterior,
     nNodes = if numResCeilingsInterior == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionCeilingsInterior.nLayers) else
@@ -428,7 +426,7 @@ model Building1Zone1DBox
     T_start = {TCeilingsInterior_start for i in 1:ceilingsInterior.constructionData.nLayers}) if InteriorCeilings
     "Optional interior ceilings"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,40})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,50})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window1(
     height = max(heightWindow1,1e-5),
     width = max(widthWindow1,1e-5),
@@ -440,7 +438,7 @@ model Building1Zone1DBox
     use_GSC_in = true)
     "Window 1 (west oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-10})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-54,-10})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window2(
     height = max(heightWindow2,1e-5),
     width = max(widthWindow2,1e-5),
@@ -451,7 +449,7 @@ model Building1Zone1DBox
     T_start = TWindow2_start)
     "Window 2 (north oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={2,20})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={2,26})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window3(
     height = max(heightWindow3,1e-5),
     width = max(widthWindow3,1e-5),
@@ -462,7 +460,7 @@ model Building1Zone1DBox
     T_start = TWindow3_start)
     "Window 3 (east oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},origin={40,10})));
+      Placement(transformation(extent={{-10,-10},{10,10}},origin={50,10})));
   replaceable BuildingSystems.Buildings.Constructions.Windows.Window window4(
     height = max(heightWindow4,1e-5),
     width = max(widthWindow4,1e-5),
@@ -473,7 +471,7 @@ model Building1Zone1DBox
     T_start = TWindow4_start)
     "Window 4 (south oriented if angleDegAzi is 0 degree)"
     annotation (Dialog(tab = "Transparent constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-20})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-38})));
 protected
   Modelica.Blocks.Interfaces.RealInput GSCWindow1_internal
     "Shading coefficient window1";
@@ -509,109 +507,120 @@ equation
     connect(GSCWindow4_internal,GSCWindow4_constant);
   end if;
   connect(window4.GSC_in,GSCWindow4_internal);
+
   // Air and moisture
   connect(zone.TAir, TAir[1])
-    annotation (Line(points={{-7,7},{-7,-30},{88,-30},{88,-70},{110,-70}},color={0,0,127},smooth=Smooth.None));
+    annotation (Line(points={{11,-3},{11,-4},{36,-4},{36,-24},{88,-24},{88,-70},
+      {190,-70}}, color={0,0,127},smooth=Smooth.None));
   connect(zone.xAir, xAir[1])
-    annotation (Line(points={{-1,7},{-1,-90},{0,-90},{190,-90}}, color={0,0,127}));
+    annotation (Line(points={{11,-9},{12,-9},{12,-10},{34,-10},{34,-90},{190,-90}},
+      color={0,0,127}));
+
   // Ideal heat load calculation
   if calcIdealLoads then
     connect(zone.T_setCooling, T_setCooling[1])
-      annotation (Line(points={{5,7},{8,7},{8,-12},{80,-12},{80,60},{100,60}},
+      annotation (Line(points={{-11,5},{-14,5},{-14,-24},{84,-24},{84,60},{180,60}},
         color={0,0,127},smooth=Smooth.None));
     connect(zone.T_setHeating, T_setHeating[1])
-      annotation (Line(points={{1,7},{1,-14},{74,-14},{74,80},{100,80}},
+      annotation (Line(points={{-11,7},{-14,7},{-14,80},{180,80}},
         color={0,0,127},smooth=Smooth.None));
     connect(zone.Q_flow_cooling, Q_flow_cooling[1])
-      annotation (Line(points={{7,7},{7,-80},{-80,-80},{-80,-100}},
+      annotation (Line(points={{11,5},{11,4},{36,4},{36,-70},{-80,-70},{-80,-122}},
         color={0,0,127},smooth=Smooth.None));
     connect(zone.Q_flow_heating, Q_flow_heating[1])
-      annotation (Line(points={{3,7},{3,-40},{80,-40},{80,-100}},
+      annotation (Line(points={{11,7},{24,7},{24,6},{36,6},{36,-50},{80,-50},{80,
+            -122}},
         color={0,0,127},smooth=Smooth.None));
   end if;
+
   // Prescribed airchange
   if prescribedAirchange then
     connect(zone.TAirAmb, TAirAmb)
-      annotation (Line(points={{11,5},{16,5},{16,82},{50,82},{50,100}},
+      annotation (Line(points={{-11,-5},{-14,-5},{-14,82},{50,82},{50,120}},
         color={0,0,127},smooth=Smooth.None));
     connect(zone.xAirAmb, xAirAmb)
-      annotation (Line(points={{11,3},{18,3},{18,80},{70,80},{70,100}},
+      annotation (Line(points={{-11,-7},{-14,-7},{-14,80},{70,80},{70,120}},
         color={0,0,127},smooth=Smooth.None));
     connect(zone.airchange, airchange[1])
-      annotation (Line(points={{11,7},{26,7},{26,40},{100,40}},
+      annotation (Line(points={{-11,-3},{-14,-3},{-14,40},{180,40}},
         color={0,0,127},smooth=Smooth.None));
   end if;
+
   // Ideal load calculation
   if heatSources then
     connect(conHeatSourcesPorts, zone.conHeatSourcesPorts) annotation (Line(
-       points={{-44,120},{-44,120},{-44,46},{-5.1,46},{-5.1,-7.3}}, color={127,0,0}));
+       points={{-44,120},{-44,66},{-40,66},{-40,12},{-16,12},{-16,-14},{-4.9,-14},
+            {-4.9,-10.7}}, color={127,0,0}));
     connect(zone.radHeatSourcesPorts, radHeatSourcesPorts) annotation (Line(
-       points={{0.7,-7.3},{0.7,54.35},{0,54.35},{0,120}}, color={127,0,0}));
+       points={{4.9,-10.7},{4.9,-13.65},{0,-13.65},{0,120}},
+          color={127,0,0}));
   end if;
+
   // Building construction
-  connect(wall1.toSurfacePort_1, zone.toConstructionPorts1[1])
-    annotation (Line(points={{-38,10},{-26,10},{-26,2},{-11,2}},
+  connect(wall1.toSurfacePort_1, zone.toConstructionPorts[1])
+    annotation (Line(points={{-52,10},{-26,10},{-26,0},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(window1.toSurfacePort_1, zone.toConstructionPorts1[2])
-    annotation (Line(points={{-38,-10},{-26,-10},{-26,6},{-11,6}},
+  connect(window1.toSurfacePort_1, zone.toConstructionPorts[2])
+    annotation (Line(points={{-52,-10},{-42,-10},{-42,0},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(window3.toSurfacePort_1, zone.toConstructionPorts3[1])
-    annotation (Line(points={{38,10},{26,10},{26,-6},{11,-6}},
+  connect(window3.toSurfacePort_1, zone.toConstructionPorts[3])
+    annotation (Line(points={{48,10},{26,10},{26,0},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(wall3.toSurfacePort_1, zone.toConstructionPorts3[2])
-    annotation (Line(points={{38,-10},{26,-10},{26,-2},{11,-2}},
+  connect(wall3.toSurfacePort_1, zone.toConstructionPorts[4])
+    annotation (Line(points={{48,-10},{26,-10},{26,0},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(ceiling.toSurfacePort_1, zone.toConstructionPorts2[1])
-    annotation (Line(points={{22,18},{14,18},{14,14},{6.66667,14},{6.66667,11}},
+  connect(ceiling.toSurfacePort_1, zone.toConstructionPorts[5])
+    annotation (Line(points={{22,24},{14,24},{14,14},{0,14},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(wall2.toSurfacePort_1, zone.toConstructionPorts2[2])
-    annotation (Line(points={{-20,18},{-20,14},{4,14},{4,11}},
+  connect(wall2.toSurfacePort_1, zone.toConstructionPorts[6])
+    annotation (Line(points={{-20,24},{-20,14},{0,14},{0,0}},
      color={0,0,0},pattern=LinePattern.Solid));
-  connect(window2.toSurfacePort_1, zone.toConstructionPorts2[3])
-    annotation (Line(points={{2,18},{2,14},{1.33333,14},{1.33333,11}},
+  connect(window2.toSurfacePort_1, zone.toConstructionPorts[7])
+    annotation (Line(points={{2,24},{2,14},{0,14},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(wall4.toSurfacePort_1, zone.toConstructionPorts4[1])
-    annotation (Line(points={{-20,-18},{-20,-16},{-1.33333,-16},{-1.33333,-11}},
+  connect(wall4.toSurfacePort_1, zone.toConstructionPorts[8])
+    annotation (Line(points={{-20,-36},{-20,-26},{0,-26},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(window4.toSurfacePort_1, zone.toConstructionPorts4[2])
-    annotation (Line(points={{0,-18},{0,-16},{-4,-16},{-4,-11}},
+  connect(window4.toSurfacePort_1, zone.toConstructionPorts[9])
+    annotation (Line(points={{0,-36},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(bottom.toSurfacePort_1, zone.toConstructionPorts4[3])
-    annotation (Line(points={{20,-18},{20,-16},{-6.66667,-16},{-6.66667,-11}},
+  connect(bottom.toSurfacePort_1, zone.toConstructionPorts[10])
+    annotation (Line(points={{20,-36},{20,-26},{0,-26},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
   connect(bottom.toSurfacePort_2, surfacesToSolids.toConstructionPorts[1])
-    annotation (Line(points={{20,-22},{20,-22},{20,-70},{8.88178e-016,-70},{8.88178e-016,-90.8}},
+    annotation (Line(points={{20,-40},{20,-90},{8.88178e-16,-90},{8.88178e-16,-109.6}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(wallsInterior.toSurfacePort_2, zone.toConstructionPorts1[3])
-    annotation (Line(points={{-16,-6},{-16,-6},{-16,5},{-11,5}},
+  connect(wallsInterior.toSurfacePort_2, zone.toConstructionPorts[11])
+    annotation (Line(points={{-28,-14},{-26,-14},{-26,0},{0,0}},
       color={0,0,0},pattern=LinePattern.Solid));
-  connect(zone.toConstructionPorts1[4], wallsInterior.toSurfacePort_1)
-    annotation (Line(points={{-11,7},{-14,7},{-14,6},{-22,6},{-22,-6},{-20,-6}},
+  connect(zone.toConstructionPorts[12], wallsInterior.toSurfacePort_1)
+    annotation (Line(points={{0,0},{-32,0},{-32,-14}},
       color={127,0,0}));
-  connect(zone.toConstructionPorts2[4], ceilingsInterior.toSurfacePort_2)
-    annotation (Line(points={{2.4,11},{2.4,50},{-20,50},{-20,42}},
+  connect(zone.toConstructionPorts[11+(if InteriorWalls then 2 else 0)], ceilingsInterior.toSurfacePort_2)
+    annotation (Line(points={{0,0},{0,52},{-20,52}},
       color={127,0,0}));
-  connect(zone.toConstructionPorts2[5], ceilingsInterior.toSurfacePort_1)
-    annotation (Line(points={{0.8,11},{0.8,34},{-20,34},{-20,38}},
+  connect(zone.toConstructionPorts[12+(if InteriorWalls then 2 else 0)], ceilingsInterior.toSurfacePort_1)
+    annotation (Line(points={{0,0},{0,42},{-20,42},{-20,48}},
       color={127,0,0}));
   connect(window1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[1])
-    annotation (Line(points={{-42,-10},{-82,-10},{-82,3.55271e-015},
-      {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+    annotation (Line(points={{-56,-10},{-82,-10},{-82,3.55271e-15},{-170.8,3.55271e-15}},
+                            color={0,0,0},pattern=LinePattern.Solid));
   connect(window2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[2])
-    annotation (Line(points={{2,22},{2,32},{-82,32},{-82,3.55271e-015},
-      {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+    annotation (Line(points={{2,28},{2,32},{-82,32},{-82,3.55271e-15},{-170.8,3.55271e-15}},
+                            color={0,0,0},pattern=LinePattern.Solid));
   connect(window3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[3])
-    annotation (Line(points={{42,10},{44,10},{44,32},{-82,32},{-82,3.55271e-015},
-      {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+    annotation (Line(points={{52,10},{64,10},{64,32},{-82,32},{-82,2.66454e-15},
+          {-170.8,2.66454e-15}},
+                            color={0,0,0},pattern=LinePattern.Solid));
   connect(window4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4])
-    annotation (Line(points={{-4.44089e-016,-22},{-4.44089e-016,-34},{-82,-34},
-      {-82,3.55271e-015},{-89.9,3.55271e-015}},color={0,0,0},
+    annotation (Line(points={{-4.44089e-16,-40},{-4.44089e-16,-50},{-82,-50},{-82,
+          2.66454e-15},{-170.8,2.66454e-15}},  color={0,0,0},
       pattern=LinePattern.Solid));
   if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
     connect(wall1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
       + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
-      annotation (Line(points={{-42,10},{-82,10},{-82,3.55271e-015},
-      {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+      annotation (Line(points={{-56,10},{-82,10},{-82,3.55271e-15},{-170.8,3.55271e-15}},
+                            color={0,0,0},pattern=LinePattern.Solid));
   elseif BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(wall1.toSurfacePort_2,outerSurfaceWall1.toConstructionPort);
     connect(ConstTempWall1.port,outerSurfaceWall1.heatPort);
@@ -622,8 +631,8 @@ equation
     connect(wall2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
-      annotation (Line(points={{-20,22},{-20,32},{-82,32},{-82,3.55271e-015},
-        {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+      annotation (Line(points={{-20,28},{-20,32},{-82,32},{-82,3.55271e-15},{-170.8,
+            3.55271e-15}},    color={0,0,0},pattern=LinePattern.Solid));
   elseif BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(wall2.toSurfacePort_2,outerSurfaceWall2.toConstructionPort);
     connect(ConstTempWall2.port,outerSurfaceWall2.heatPort);
@@ -635,8 +644,8 @@ equation
       + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
       + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
       + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
-      annotation (Line(points={{42,-10},{44,-10},{44,-34},{-82,-34},
-        {-82,3.55271e-015},{-89.9,3.55271e-015}},color={0,0,0},
+      annotation (Line(points={{52,-10},{64,-10},{64,-50},{-82,-50},{-82,2.66454e-15},
+            {-170.8,2.66454e-15}},               color={0,0,0},
         pattern=LinePattern.Solid));
   elseif BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(wall3.toSurfacePort_2,outerSurfaceWall3.toConstructionPort);
@@ -650,8 +659,9 @@ equation
       + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
       + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
       + (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
-      annotation (Line(points={{-20,-22},{-20,-34},{-82,-34},{-82,3.55271e-015},
-        {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+      annotation (Line(points={{-20,-40},{-20,-50},{-82,-50},{-82,2.66454e-15},{
+            -170.8,2.66454e-15}},
+                              color={0,0,0},pattern=LinePattern.Solid));
   elseif BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(wall4.toSurfacePort_2,outerSurfaceWall4.toConstructionPort);
     connect(ConstTempWall4.port,outerSurfaceWall4.heatPort);
@@ -665,8 +675,8 @@ equation
       + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
       + (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
       + (if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
-      annotation (Line(points={{22,22},{22,32},{-82,32},{-82,3.55271e-015},
-        {-89.9,3.55271e-015}},color={0,0,0},pattern=LinePattern.Solid));
+      annotation (Line(points={{22,28},{22,32},{-82,32},{-82,3.55271e-15},{-170.8,
+        3.55271e-15}}, color={0,0,0},pattern=LinePattern.Solid));
   elseif BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
     connect(ceiling.toSurfacePort_2,outerSurfaceCeiling.toConstructionPort);
     connect(ConstTempCeiling.port,outerSurfaceCeiling.heatPort);
@@ -681,6 +691,10 @@ This is a 1 zone thermal building model with the shape of a box.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 25, 2018 by Christoph Nytsch-Geusen:<br/>
+Adaptation to new zone model.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.

@@ -29,18 +29,18 @@ model Door
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Zones.ZoneTemplateAirvolumeMixed zone(
-    nConstructions1=1,
     V=4*4*2.8,
     height=2.8,
     heightAirpath={0.5,1.5},
     calcIdealLoads=true,
     prescribedAirchange=false,
-    nAirpathes1=2)
-    annotation (Placement(transformation(extent={{16,-10},{36,10}})));
+    nAirpathes=2,
+    nConstructions=1)
+    annotation (Placement(transformation(extent={{28,-10},{48,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
-    annotation (Placement(transformation(extent={{20,-6},{24,-2}})));
+    annotation (Placement(transformation(extent={{14,12},{20,18}})));
   Modelica.Blocks.Sources.Constant TSetCooling(k=273.15 + 24.0)
-    annotation (Placement(transformation(extent={{26,-2},{30,2}})));
+    annotation (Placement(transformation(extent={{14,2},{20,8}})));
   Modelica.Blocks.Sources.Trapezoid control(
     amplitude=1.0,
     rising=10,
@@ -49,7 +49,7 @@ model Door
     startTime=0.0,
     width=1800,
     period=3600)
-    annotation (Placement(transformation(extent={{-10,-22},{-2,-14}})));
+    annotation (Placement(transformation(extent={{-8,-20},{-2,-14}})));
 equation
   connect(surface1.toConstructionPort, door.toSurfacePort_1) annotation (Line(
       points={{-15.4,0},{-2,0}},
@@ -66,30 +66,23 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(door.toSurfacePort_2, zone.toConstructionPorts1[1]) annotation (Line(
-      points={{2,0},{4,0},{4,4},{15,4}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(TSetHeating.y, zone.T_setHeating) annotation (Line(
-      points={{24.2,-4},{27,-4},{27,7}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(TSetCooling.y, zone.T_setCooling) annotation (Line(
-      points={{30.2,0},{31,0},{31,7}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(ambient.toAirpathPorts[1], door.port_a1) annotation (Line(points={{-38,
-          9},{-38,12},{-10,12},{-10,6}}, color={0,127,255}));
-  connect(ambient.toAirpathPorts[2], door.port_b2) annotation (Line(points={{-42,
-          9},{-42,12},{-52,12},{-52,-12},{-10,-12},{-10,-6}}, color={0,127,255}));
-  connect(door.port_b1, zone.airpathPorts1[1]) annotation (Line(points={{10,6},
-          {12,6},{12,-6},{15,-6}}, color={0,127,255}));
-  connect(door.port_a2, zone.airpathPorts1[2])
-    annotation (Line(points={{10,-6},{15,-6},{15,-2}}, color={0,127,255}));
+  connect(ambient.toAirpathPorts[1], door.port_a1) annotation (Line(points={{-35,9},
+          {-35,12},{-10,12},{-10,6}},    color={0,127,255}));
+  connect(ambient.toAirpathPorts[2], door.port_b2) annotation (Line(points={{-39,9},
+          {-39,12},{-52,12},{-52,-12},{-10,-12},{-10,-6}},    color={0,127,255}));
   connect(control.y, door.y)
-    annotation (Line(points={{-1.6,-18},{0,-18},{0,-9}}, color={0,0,127}));
+    annotation (Line(points={{-1.7,-17},{0,-17},{0,-9}}, color={0,0,127}));
 
+  connect(door.toSurfacePort_2, zone.toConstructionPorts[1])
+    annotation (Line(points={{2,0},{14,0},{14,0.2},{38,0.2}}, color={0,0,0}));
+  connect(door.port_b1, zone.airpathPorts[1]) annotation (Line(points={{10,6},{12,
+          6},{12,20},{32,20},{32,11}}, color={0,127,255}));
+  connect(door.port_a2, zone.airpathPorts[2]) annotation (Line(points={{10,-6},{
+          12,-6},{12,20},{32,20},{32,11}}, color={0,127,255}));
+  connect(TSetHeating.y, zone.T_setHeating) annotation (Line(points={{20.3,15},{
+          24,15},{24,7},{27,7}}, color={0,0,127}));
+  connect(TSetCooling.y, zone.T_setCooling)
+    annotation (Line(points={{20.3,5},{27,5}}, color={0,0,127}));
   annotation(experiment(StartTime=0, StopTime=86400.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/Door.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={

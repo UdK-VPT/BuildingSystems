@@ -17,75 +17,66 @@ model WindowWithAirpathes
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Zones.ZoneTemplateAirvolumeMixed zone(
-    nConstructions1=1,
-    nAirpathes1=2,
+    nAirpathes=2,
     V=4*4*2.8,
     height=2.8,
     heightAirpath={0.5,1.5},
     calcIdealLoads=true,
-    prescribedAirchange=false)
-    annotation (Placement(transformation(extent={{10,-10},{30,10}})));
+    prescribedAirchange=false,
+    nConstructions=1)
+    annotation (Placement(transformation(extent={{28,-10},{48,10}})));
   Modelica.Blocks.Sources.Ramp anglePan(
     height=30.0,
     duration=10.0,
     startTime=3600)
     annotation (Placement(transformation(extent={{-10,18},{-4,24}})));
   Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
-    annotation (Placement(transformation(extent={{16,-6},{20,-2}})));
+    annotation (Placement(transformation(extent={{14,12},{20,18}})));
   Modelica.Blocks.Sources.Constant TSetCooling(k=273.15 + 24.0)
-    annotation (Placement(transformation(extent={{22,-2},{26,2}})));
+    annotation (Placement(transformation(extent={{14,2},{20,8}})));
 equation
   connect(surface1.toConstructionPort, window.toSurfacePort_1) annotation (Line(
-      points={{-11.4,0},{-1.8,0}},
+      points={{-11.4,0},{-2,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(ambient.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
-      points={{-32,2},{-22,2},{-22,4},{-12.6,4}},
+      points={{-32,4},{-22,4},{-22,4},{-12.6,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(ambient.toAirPorts[1], surface1.toAirPort) annotation (Line(
-      points={{-32,-6},{-22,-6},{-22,-4},{-12.6,-4}},
+      points={{-32,-4},{-22,-4},{-22,-4},{-12.6,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(window.toSurfacePort_2, zone.toConstructionPorts1[1]) annotation (Line(
-      points={{1.8,0},{4,0},{4,2},{9,2}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(zone.airpathPorts1[1], window.airpathPortDown_2)
-    annotation (Line(
-      points={{9,-6},{6,-6},{6,-4},{1.8,-4}},
-      color={0,0,255},
-      smooth=Smooth.None));
-  connect(zone.airpathPorts1[2], window.airpathPortUp_2)
-    annotation (Line(
-      points={{9,-2},{6,-2},{6,4},{1.8,4}},
-      color={0,0,255},
       smooth=Smooth.None));
   connect(anglePan.y, window.angleDegPanes) annotation (Line(
       points={{-3.7,21},{0,21},{0,7.8}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient.toAirpathPorts[1], window.airpathPortDown_1) annotation (Line(
-      points={{-38,9},{-38,12},{-52,12},{-52,-14},{-6,-14},{-6,-4},{-1.8,-4}},
+      points={{-35,9},{-35,12},{-52,12},{-52,-14},{-6,-14},{-6,-4},{-1.8,-4}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(ambient.toAirpathPorts[2], window.airpathPortUp_1) annotation (Line(
-      points={{-42,9},{-42,12},{-6,12},{-6,4},{-1.8,4}},
+      points={{-39,9},{-39,12},{-6,12},{-6,4},{-1.8,4}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(TSetHeating.y, zone.T_setHeating) annotation (Line(
-      points={{20.2,-4},{25,-4},{25,-7}},
+      points={{20.3,15},{24,15},{24,7},{27,7}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TSetCooling.y, zone.T_setCooling) annotation (Line(
-      points={{26.2,0},{27,0},{27,-7}},
+      points={{20.3,5},{27,5}},
       color={0,0,127},
       smooth=Smooth.None));
 
+  connect(window.toSurfacePort_2, zone.toConstructionPorts[1])
+    annotation (Line(points={{2,0},{20,0},{20,0.2},{38,0.2}}, color={0,0,0}));
+  connect(window.airpathPortDown_2, zone.airpathPorts[1]) annotation (Line(
+        points={{1.8,-4},{12,-4},{12,20},{32,20},{32,11}}, color={0,127,255}));
+  connect(window.airpathPortUp_2, zone.airpathPorts[2]) annotation (Line(points
+        ={{1.8,4},{12,4},{12,20},{32,20},{32,11}}, color={0,127,255}));
   annotation(experiment(StartTime=0, StopTime=4500.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WindowWithAirPathes.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={

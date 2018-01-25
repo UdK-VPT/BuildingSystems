@@ -19,10 +19,7 @@ model BuildingThermal1Zone1D
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone1(
       V = 4.0*4.0*2.5,
       height = 2.5,
-      nConstructions2=2,
-      nConstructions1=1,
-      nConstructions4=2,
-      nConstructions3=1,
+      nConstructions=6,
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
@@ -70,37 +67,37 @@ model BuildingThermal1Zone1D
       redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={12,-20})));
   equation
-   connect(wall2.toSurfacePort_1, zone1.toConstructionPorts2[1]) annotation (
+   connect(wall2.toSurfacePort_1, zone1.toConstructionPorts[1]) annotation (
         Line(
         points={{-12,18},{2,18},{2,9},{4,9}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
-    connect(wall1.toSurfacePort_2, zone1.toConstructionPorts1[1]) annotation (
+    connect(wall1.toSurfacePort_2, zone1.toConstructionPorts[2]) annotation (
         Line(
         points={{-18,0},{-16,0},{-16,4},{-11,4}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
-    connect(wall4.toSurfacePort_2, zone1.toConstructionPorts4[1]) annotation (
+    connect(wall4.toSurfacePort_2, zone1.toConstructionPorts[3]) annotation (
         Line(
         points={{-12,-18},{-12,-14},{-4,-14},{-4,-13}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
-    connect(window2.toSurfacePort_1, zone1.toConstructionPorts2[2]) annotation (
+    connect(window2.toSurfacePort_1, zone1.toConstructionPorts[4]) annotation (
         Line(
         points={{12,18.2},{10,18.2},{10,13},{4,13}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
-    connect(window4.toSurfacePort_2, zone1.toConstructionPorts4[2]) annotation (
+    connect(window4.toSurfacePort_2, zone1.toConstructionPorts[5]) annotation (
         Line(
         points={{12,-18.2},{12,-16},{-4,-16},{-4,-9}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
-    connect(wall3.toSurfacePort_1, zone1.toConstructionPorts3[1]) annotation (
+    connect(wall3.toSurfacePort_1, zone1.toConstructionPorts[6]) annotation (
         Line(
         points={{18,0},{14,0},{14,-4},{11,-4}},
         color={0,0,0},

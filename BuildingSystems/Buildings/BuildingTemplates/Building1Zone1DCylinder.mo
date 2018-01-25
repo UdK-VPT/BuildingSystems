@@ -8,7 +8,7 @@ model Building1Zone1DCylinder
     final calcHygroThermal = false,
     final nAirpathes = 0,
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
-    final alphaConstant = 0.0, // dummy value
+    final alphaConstant = 0.0,
     surfacesToAmbient(nSurfaces=nSeg+1),
     nSurfacesSolid=1,
     surfacesToSolids(nSurfaces=nSurfacesSolid));
@@ -28,9 +28,7 @@ model Building1Zone1DCylinder
     final calcIdealLoads = calcIdealLoads,
     final heatSources = heatSources,
     final nHeatSources = nHeatSources,
-    nConstructions1 = nSeg,
-    nConstructions2 = 1,
-    nConstructions4 = 1)
+    nConstructions = 2+nSeg)
     "Thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   parameter Integer nSeg(min=3) = 3
@@ -54,7 +52,7 @@ model Building1Zone1DCylinder
     each angleDegTil = 90.0)
     "Wall segments of tzhe cylinder"
     annotation (Dialog(tab = "Constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,10})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-60,0})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
     height = 1.0,
     width = Modelica.Constants.pi * (diameter/2)^2,
@@ -63,7 +61,7 @@ model Building1Zone1DCylinder
     angleDegTil = 180.0)
     "Ceiling"
     annotation (Dialog(tab = "Constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,20})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,26})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
     height = 1.0,
     width = Modelica.Constants.pi * (diameter/2)^2,
@@ -72,95 +70,102 @@ model Building1Zone1DCylinder
     angleDegTil = 0.0)
     "Bottom"
     annotation (Dialog(tab = "Constructions", group = "model type"),
-      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-20})));
+      Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-30})));
 protected
   parameter BuildingSystems.Geometries.BaseClasses.GeometryCircle circle(
     nSeg = nSeg,
     zMean = height/2,
     angleDegAzi = 0.0,
     angleDegTil = 0.0,
-    point.x = {sin(2.0*Modelica.Constants.pi/nSeg*(i-1))*diameter/2 for i in 1:nSeg},
-    point.y = {cos(2.0*Modelica.Constants.pi/nSeg*(i-1))*diameter/2 for i in 1:nSeg},
-    point.z = {circle.zMean for i in 1:nSeg})
+    point(
+    x = {sin(2.0*Modelica.Constants.pi/nSeg*(i-1))*diameter/2 for i in 1:nSeg},
+    y = {cos(2.0*Modelica.Constants.pi/nSeg*(i-1))*diameter/2 for i in 1:nSeg},
+    z = {circle.zMean for i in 1:nSeg}))
     "3D geometry representation of circular section of the cylinder";
 equation
   connect(zone.TAir, TAir[1]) annotation (Line(
-    points={{-7,7},{-7,-30},{88,-30},{88,-70},{110,-70}},
+    points={{11,-3},{11,-2},{86,-2},{86,-70},{190,-70}},
     color={0,0,127},
     smooth=Smooth.None));
+
   // Ideal heat load calculation
   if calcIdealLoads then
     connect(zone.T_setCooling, T_setCooling[1]) annotation (Line(
-        points={{5,7},{8,7},{8,-12},{80,-12},{80,60},{100,60}},
+        points={{-11,5},{-20,5},{-20,60},{180,60}},
         color={0,0,127},
         smooth=Smooth.None));
     connect(zone.T_setHeating, T_setHeating[1]) annotation (Line(
-        points={{1,7},{1,-14},{74,-14},{74,80},{100,80}},
+        points={{-11,7},{-11,8},{-18,8},{-18,80},{180,80}},
         color={0,0,127},
         smooth=Smooth.None));
     connect(zone.Q_flow_cooling, Q_flow_cooling[1]) annotation (Line(
-      points={{7,7},{7,-80},{-80,-80},{-80,-100}},
+      points={{11,5},{12,5},{12,4},{24,4},{24,-80},{-80,-80},{-80,-122}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(zone.Q_flow_heating, Q_flow_heating[1]) annotation (Line(
-      points={{3,7},{3,-40},{80,-40},{80,-100}},
+      points={{11,7},{12,7},{12,8},{80,8},{80,-122}},
       color={0,0,127},
       smooth=Smooth.None));
   end if;
+
   // Prescribed airchange
   if prescribedAirchange then
     connect(zone.TAirAmb, TAirAmb) annotation (Line(
-      points={{11,5},{16,5},{16,82},{50,82},{50,100}},
+      points={{-11,-5},{-16,-5},{-16,84},{50,84},{50,120}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(zone.xAirAmb, xAirAmb) annotation (Line(
-      points={{11,3},{18,3},{18,80},{70,80},{70,100}},
+      points={{-11,-7},{-14,-7},{-14,80},{70,80},{70,120}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(zone.airchange, airchange[1]) annotation (Line(
-      points={{11,7},{26,7},{26,40},{100,40}},
+      points={{-11,-3},{-22,-3},{-22,40},{180,40}},
       color={0,0,127},
       smooth=Smooth.None));
   end if;
+
   // Ideal load calculation
   if heatSources then
     connect(conHeatSourcesPorts, zone.conHeatSourcesPorts) annotation (Line(
-       points={{-44,120},{-44,120},{-44,46},{-5.1,46},{-5.1,-7.3}}, color={127,0,0}));
+       points={{-44,120},{-44,-14},{-4.9,-14},{-4.9,-10.7}},        color={127,0,0}));
     connect(zone.radHeatSourcesPorts, radHeatSourcesPorts) annotation (Line(
-       points={{0.7,-7.3},{0.7,54.35},{0,54.35},{0,120}}, color={127,0,0}));
+       points={{4.9,-10.7},{4.9,-14},{40,-14},{40,48},{0,48},{0,120}},
+       color={127,0,0}));
   end if;
+
   // Building construction
   for i in 1:nSeg loop
-    connect(wall[i].toSurfacePort_1, zone.toConstructionPorts1[i]) annotation (Line(
-        points={{-38,10},{-26,10},{-26,2},{-11,2}},
+    connect(wall[i].toSurfacePort_1, zone.toConstructionPorts[i]) annotation (Line(
+        points={{-58,-4.44089e-16},{-26,-4.44089e-16},{-26,0},{0,0}},
         color={0,0,0},
         pattern=LinePattern.Solid));
   end for;
-  connect(ceiling.toSurfacePort_1, zone.toConstructionPorts2[1]) annotation (
+  connect(ceiling.toSurfacePort_1, zone.toConstructionPorts[nSeg+1]) annotation (
       Line(
-      points={{22,18},{14,18},{14,14},{6.66667,14},{6.66667,11}},
+      points={{-2.22045e-16,24},{0,24},{0,0}},
       color={0,0,0},
       pattern=LinePattern.Solid));
-  connect(bottom.toSurfacePort_1, zone.toConstructionPorts4[1]) annotation (
+  connect(bottom.toSurfacePort_1, zone.toConstructionPorts[nSeg+2]) annotation (
       Line(
-      points={{20,-18},{20,-16},{-6.66667,-16},{-6.66667,-11}},
+      points={{4.44089e-16,-28},{4.44089e-16,-16},{0,-16},{0,0}},
       color={0,0,0},
       pattern=LinePattern.Solid));
   for i in 1:nSeg loop
     connect(wall[i].toSurfacePort_2, surfacesToAmbient.toConstructionPorts[i])
       annotation (Line(
-        points={{-42,10},{-82,10},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+        points={{-62,2.22045e-16},{-82,2.22045e-16},{-82,3.55271e-15},{-170.8,3.55271e-15}},
         color={0,0,0},
         pattern=LinePattern.Solid));
   end for;
   connect(ceiling.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[nSeg+1])
     annotation (Line(
-      points={{22,22},{22,32},{-82,32},{-82,3.55271e-015},{-89.9,3.55271e-015}},
+      points={{0,28},{0,46},{-82,46},{-82,2.66454e-15},{-170.8,2.66454e-15}},
       color={0,0,0},
       pattern=LinePattern.Solid));
   connect(bottom.toSurfacePort_2, surfacesToSolids.toConstructionPorts[1])
     annotation (Line(
-      points={{20,-22},{20,-22},{20,-70},{8.88178e-016,-70},{8.88178e-016,-90.8}},
+      points={{-4.44089e-16,-32},{0,-32},{0,-72},{1.33227e-15,-72},{1.33227e-15,
+          -109.6}},
       color={0,0,0},
       pattern=LinePattern.Solid));
 
@@ -171,6 +176,10 @@ This is a 1 zone thermal building model with the shape of a cylinder.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 25, 2018 by Christoph Nytsch-Geusen:<br/>
+Adaptation to new zone model.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.

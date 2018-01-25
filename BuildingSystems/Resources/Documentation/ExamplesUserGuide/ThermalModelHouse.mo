@@ -5,18 +5,12 @@ package ThermalModelHouse
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
         surfacesToAmbient(nSurfaces=12), nZones=2);
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone1(
-      nConstructions1=1,
-      nConstructions4=3,
-      nConstructions2=2,
-      nConstructions3=1,
+      nConstructions=7,
       V=0.5*0.5*0.5,
       height=0.5)
       annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone2(
-      nConstructions3=1,
-      nConstructions2=2,
-      nConstructions1=1,
-      nConstructions4=3,
+      nConstructions=7,
       V=0.5*0.5*0.5,
       height=0.5)
       annotation (Placement(transformation(extent={{30,-10},{50,10}})));
@@ -112,33 +106,33 @@ package ThermalModelHouse
       thicknessPane=0.003)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={52,-20})));
   equation
-    connect(wall1.toSurfacePort_1, zone1.toConstructionPorts1[1]) annotation (
+    connect(wall1.toSurfacePort_1, zone1.toConstructionPorts[1]) annotation (
         Line(points={{-58,0},{-54,0},{-54,4},{-51,4}}, color={0,0,0}));
-    connect(zone2.toConstructionPorts3[1], wall4.toSurfacePort_1) annotation (
+    connect(zone2.toConstructionPorts[1], wall4.toSurfacePort_1) annotation (
         Line(points={{51,-4},{54,-4},{54,0},{58,0}}, color={127,0,0}));
-    connect(wall6.toSurfacePort_1, zone1.toConstructionPorts4[1]) annotation (
+    connect(wall6.toSurfacePort_1, zone1.toConstructionPorts[2]) annotation (
         Line(points={{-52,-18},{-52,-18},{-52,-11},{-41.3333,-11}}, color={0,0,0}));
-    connect(window1.toSurfacePort_1, zone1.toConstructionPorts4[2]) annotation (
+    connect(window1.toSurfacePort_1, zone1.toConstructionPorts[3]) annotation (
        Line(points={{-28,-18},{-28,-18},{-28,-11},{-44,-11}}, color={0,0,0}));
-    connect(wall2.toSurfacePort_1, zone1.toConstructionPorts2[1]) annotation (
+    connect(wall2.toSurfacePort_1, zone1.toConstructionPorts[4]) annotation (
         Line(points={{-52,18},{-52,18},{-52,14},{-50,14},{-38,14},{-38,11},{-34,11}}, color={0,0,0}));
-    connect(ceiling1.toSurfacePort_1, zone1.toConstructionPorts2[2])
+    connect(ceiling1.toSurfacePort_1, zone1.toConstructionPorts[5])
       annotation (Line(points={{-40,38},{-40,38},{-40,11},{-38,11}}, color={0,0,0}));
-    connect(ceiling2.toSurfacePort_1, zone2.toConstructionPorts2[1])
+    connect(ceiling2.toSurfacePort_1, zone2.toConstructionPorts[2])
       annotation (Line(points={{40,38},{40,38},{40,36},{40,16},{46,16},{46,11}},color={0,0,0}));
-    connect(wall3.toSurfacePort_1, zone2.toConstructionPorts2[2]) annotation (
+    connect(wall3.toSurfacePort_1, zone2.toConstructionPorts[3]) annotation (
         Line(points={{52,18},{52,18},{52,11},{42,11}}, color={0,0,0}));
-    connect(wall7.toSurfacePort_1, zone1.toConstructionPorts3[1]) annotation (
+    connect(wall7.toSurfacePort_1, zone1.toConstructionPorts[6]) annotation (
         Line(points={{-2,0},{-16,0},{-16,-4},{-29,-4}}, color={0,0,0}));
-    connect(wall7.toSurfacePort_2, zone2.toConstructionPorts1[1])
+    connect(wall7.toSurfacePort_2, zone2.toConstructionPorts[4])
       annotation (Line(points={{2,0},{16,0},{16,4},{29,4}}, color={0,0,0}));
-    connect(zone2.toConstructionPorts4[1], wall5.toSurfacePort_1) annotation (
+    connect(zone2.toConstructionPorts[5], wall5.toSurfacePort_1) annotation (
         Line(points={{38.6667,-11},{28,-11},{28,-18}}, color={127,0,0}));
-    connect(zone2.toConstructionPorts4[2], window2.toSurfacePort_1)
+    connect(zone2.toConstructionPorts[6], window2.toSurfacePort_1)
       annotation (Line(points={{36,-11},{52,-11},{52,-18}}, color={127,0,0}));
-    connect(zone1.toConstructionPorts4[3], bottom1.toSurfacePort_1) annotation (
+    connect(zone1.toConstructionPorts[7], bottom1.toSurfacePort_1) annotation (
        Line(points={{-46.6667,-11},{-46.6667,-16},{-40,-16},{-40,-26},{-40,-38}},color={127,0,0}));
-    connect(bottom2.toSurfacePort_1, zone2.toConstructionPorts4[3]) annotation (
+    connect(bottom2.toSurfacePort_1, zone2.toConstructionPorts[7]) annotation (
        Line(points={{40,-38},{38,-38},{38,-11},{33.3333,-11}}, color={0,0,0}));
     connect(wall1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[1])
       annotation (Line(points={{-62,0},{-89.9,0}},           color={0,0,0}));

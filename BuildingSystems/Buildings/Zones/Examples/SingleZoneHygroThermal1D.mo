@@ -49,26 +49,25 @@ model SingleZoneHygroThermal1D
     height=1.0,
     width=1.0,
     angleDegAzi=0.0,
-    angleDegTil=90.0)
+    angleDegTil=90.0,
+    redeclare Data.Constructions.Transparent.DoubleGlazing constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-20})));
   BuildingSystems.Buildings.Constructions.Windows.Window window2(
     height=1.0,
     width=1.0,
     angleDegAzi=180.0,
-    angleDegTil=90.0)
+    angleDegTil=90.0,
+    redeclare Data.Constructions.Transparent.DoubleGlazing constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,18})));
   BuildingSystems.Buildings.Ambient ambient(
     weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco(),
     nSurfaces=nSurfaces)
     annotation (Placement(transformation(extent={{-58,-10},{-38,10}})));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
-    nConstructions3=1,
-    nConstructions2=3,
-    nConstructions4=3,
-    nConstructions1=1,
     V=3.0*3.0*3.0,
     height=3.0,
-    calcIdealLoads=true)
+    calcIdealLoads=true,
+    nConstructions=8)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-18,24})));
@@ -84,10 +83,10 @@ model SingleZoneHygroThermal1D
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-36,0})));
   Modelica.Blocks.Sources.Constant TSetHeating(
     k=273.15 + 20.0)
-    annotation (Placement(transformation(extent={{-2,2},{0,4}})));
+    annotation (Placement(transformation(extent={{-16,6},{-14,8}})));
   Modelica.Blocks.Sources.Constant TSetCooling(
     k=273.15 + 24.0)
-    annotation (Placement(transformation(extent={{2,2},{4,4}})));
+    annotation (Placement(transformation(extent={{-20,4},{-18,6}})));
   BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes ceiling(
     height=3.0,
     width=3.0,
@@ -110,7 +109,8 @@ model SingleZoneHygroThermal1D
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={20,-26})));
   Modelica.Blocks.Sources.Constant airchange1(
     k=0.5)
-    annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={24,10})));
+    annotation (Placement(transformation(extent={{1,-1},{-1,1}},rotation=180,origin={-15,-3})))
+    ;
 equation
   connect(ambient.toAirPorts[1], surface5.toAirPort)
     annotation (Line(
@@ -153,11 +153,6 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(wall3.toSurfacePort_1, zone.toConstructionPorts3[1]) annotation (Line(
-      points={{32,0},{14,0},{14,-4},{11,-4}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
   connect(surface.toConstructionPort, wall2.toSurfacePort_2)
     annotation (Line(
       points={{-18,23.4},{-18,20}},
@@ -167,17 +162,6 @@ equation
   connect(surface1.toConstructionPort, window2.toSurfacePort_2)
     annotation (Line(
       points={{0,23.4},{0,20}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(wall2.toSurfacePort_1, zone.toConstructionPorts2[1]) annotation (Line(
-      points={{-18,16},{-18,14},{6.66667,14},{6.66667,11}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(window2.toSurfacePort_1, zone.toConstructionPorts2[2]) annotation (
-      Line(
-      points={{0,16},{0,14},{4,14},{4,11}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
@@ -218,18 +202,12 @@ equation
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(TSetCooling.y, zone.T_setCooling) annotation (Line(
-      points={{4.1,3},{5,3},{5,7}},
+      points={{-17.9,5},{-11,5}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TSetHeating.y, zone.T_setHeating) annotation (Line(
-      points={{0.1,3},{1,3},{1,7}},
+      points={{-13.9,7},{-11,7}},
       color={0,0,127},
-      smooth=Smooth.None));
-  connect(ceiling.toSurfacePort_1, zone.toConstructionPorts2[3]) annotation (
-      Line(
-      points={{20,16},{20,14},{1.33333,14},{1.33333,11}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(ceiling.toSurfacePort_2, surface6.toConstructionPort) annotation (
       Line(
@@ -262,26 +240,6 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(window4.toSurfacePort_1, zone.toConstructionPorts4[1]) annotation (
-      Line(points={{0,-18},{0,-14},{-1.33333,-14},{-1.33333,-11}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(wall4.toSurfacePort_1, zone.toConstructionPorts4[2]) annotation (Line(
-      points={{-18,-18},{-18,-14},{-4,-14},{-4,-11}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(bottom.toSurfacePort_1, zone.toConstructionPorts4[3]) annotation (
-      Line(points={{20,-18},{20,-14},{-6.66667,-14},{-6.66667,-11}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(wall1.toSurfacePort_1, zone.toConstructionPorts1[1]) annotation (Line(
-      points={{-28,0},{-14,0},{-14,4},{-11,4}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
   connect(bottom.toSurfacePort_2, surface7.toConstructionPort) annotation (Line(
       points={{20,-22},{20,-25.4}},
       color={0,0,0},
@@ -298,18 +256,34 @@ equation
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(ambient.TAirRef, zone.TAirAmb) annotation (Line(
-      points={{-56.2,7},{-60,7},{-60,-36},{30,-36},{30,5},{11,5}},
+      points={{-57,7},{-60,7},{-60,-30},{-26,-30},{-26,-5},{-11,-5}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambient.xAir, zone.xAirAmb) annotation (Line(
-      points={{-56.2,5},{-60,5},{-60,-36},{30,-36},{30,3},{11,3}},
+      points={{-57,5},{-60,5},{-60,-28},{-26,-28},{-26,-7},{-11,-7}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(airchange1.y, zone.airchange) annotation (Line(
-      points={{21.8,10},{14,10},{14,7},{11,7}},
+      points={{-13.9,-3},{-11,-3}},
       color={0,0,127},
       smooth=Smooth.None));
 
+  connect(window2.toSurfacePort_1, zone.toConstructionPorts[1])
+    annotation (Line(points={{0,16},{0,-3.3}}, color={0,0,0}));
+  connect(ceiling.toSurfacePort_1, zone.toConstructionPorts[2])
+    annotation (Line(points={{20,16},{20,12},{0,12},{0,-2.3}}, color={0,0,0}));
+  connect(wall2.toSurfacePort_1, zone.toConstructionPorts[3]) annotation (Line(
+        points={{-18,16},{-18,12},{0,12},{0,-1.3}}, color={0,0,0}));
+  connect(wall1.toSurfacePort_1, zone.toConstructionPorts[4]) annotation (Line(
+        points={{-28,0},{-14,0},{-14,-0.3},{0,-0.3}}, color={0,0,0}));
+  connect(wall3.toSurfacePort_1, zone.toConstructionPorts[5])
+    annotation (Line(points={{32,0},{16,0},{16,0.7},{0,0.7}}, color={0,0,0}));
+  connect(wall4.toSurfacePort_1, zone.toConstructionPorts[6]) annotation (Line(
+        points={{-18,-18},{-18,-12},{0,-12},{0,1.7}}, color={0,0,0}));
+  connect(bottom.toSurfacePort_1, zone.toConstructionPorts[7]) annotation (Line(
+        points={{20,-18},{20,-12},{0,-12},{0,2.7}}, color={0,0,0}));
+  connect(window4.toSurfacePort_1, zone.toConstructionPorts[8])
+    annotation (Line(points={{0,-18},{0,3.7}}, color={0,0,0}));
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneHygroThermal1D.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={Text(extent={{-52,-18},{52,-86}},lineColor={0,0,255},
