@@ -61,7 +61,6 @@ model Building1Zone0D
     annotation(Dialog(tab="Constructions",group="Windows"));
   parameter Real gWin[nWindows](each unit = "1") = fill(0.6,nWindows)
     "g-value of the window";
-    annotation(Dialog(tab="Constructions",group="Windows"));
   parameter Real framePortionWin[nWindows](each unit = "1") = fill(0.2,nWindows)
     "Frame portion of the window"
     annotation(Dialog(tab = "Constructions", group = "Windows"));
@@ -72,10 +71,8 @@ model Building1Zone0D
     final calcIdealLoads=calcIdealLoads,
     final heatSources=heatSources,
     final nHeatSources=nHeatSources,
-    nConstructions4=1,
-    nConstructions1=1,
-    nConstructions3=2,
-    nConstructions2=nWindows)
+    nConstructions=4+nWindows)
+    "Zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ambientConstructions(
@@ -85,10 +82,13 @@ model Building1Zone0D
     final width=2.0*AAmb,
     final height=0.5*height,
     nNodes={1},
-    final constructionData.thickness={1.0},
-    final constructionData.material.rho={1000.0},
-    final constructionData.material.c={CAmb/(ambientConstructions.constructionData.material[1].rho*AAmb*ambientConstructions.constructionData.thickness[1])},
-    final constructionData.material.lambda={(1.0/(-1.0/alphaAmb-1.0/alphaIns+1.0/UValAmb)*ambientConstructions.constructionData.thickness[1])})
+    constructionData(
+    final thickness = {1.0},
+    material(
+      final rho = {1000.0},
+      final c = {CAmb/(ambientConstructions.constructionData.material[1].rho*AAmb*ambientConstructions.constructionData.thickness[1])},
+      final lambda = {(1.0/(-1.0/alphaAmb-1.0/alphaIns+1.0/UValAmb)*ambientConstructions.constructionData.thickness[1])})))
+    "Opaque constructions in contact to the ambient"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-20})));
 
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes groundConstructions(
@@ -99,11 +99,14 @@ model Building1Zone0D
     final width=sqrt(AGro),
     final height=sqrt(AGro),
     nNodes={1},
-    final constructionData.thickness={1.0},
-    final constructionData.material.rho={1000.0},
-    final constructionData.material.c={CGro/(groundConstructions.constructionData.material[1].rho*AGro*groundConstructions.constructionData.thickness[1])},
-    final constructionData.material.lambda={(1.0/(-1.0/alphaIns-1.0/alphaGro+1.0/UValGro)*groundConstructions.constructionData.thickness[1])})
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-4,-42})));
+    constructionData(
+    final thickness = {1.0},
+    material(
+      final rho = {1000.0},
+      final c = {CGro/(groundConstructions.constructionData.material[1].rho*AGro*groundConstructions.constructionData.thickness[1])},
+      final lambda = {(1.0/(-1.0/alphaIns-1.0/alphaGro+1.0/UValGro)*groundConstructions.constructionData.thickness[1])})))
+    "Opaque constructions in contact to the ground"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-42})));
 
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes innerConstructions(
     final abs_1 = 0.5,
@@ -113,21 +116,27 @@ model Building1Zone0D
     final width=1.0,
     final height=0.5*AInn,
     nNodes={1},
-    final constructionData.thickness={1.0},
-    final constructionData.material.rho={1000.0},
-    final constructionData.material.c={CInn/(innerConstructions.constructionData.material[1].rho*0.5*AInn*innerConstructions.constructionData.thickness[1])},
-    final constructionData.material.lambda={(1.0/(-1.0/alphaIns-1.0/alphaIns+1.0/UValInn)*innerConstructions.constructionData.thickness[1])})
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={40,-2})));
+    constructionData(
+    final thickness = {1.0},
+    material(
+      final rho = {1000.0},
+      final c = {CInn/(innerConstructions.constructionData.material[1].rho*0.5*AInn*innerConstructions.constructionData.thickness[1])},
+      final lambda = {(1.0/(-1.0/alphaIns-1.0/alphaIns+1.0/UValInn)*innerConstructions.constructionData.thickness[1])})))
+    "Inner constructions of the building"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={38,0})));
 
   BuildingSystems.Buildings.Constructions.Windows.Window window[nWindows](
     final angleDegAzi= {angleDegAziWin[i] + angleDegAziBuilding for i in 1:nWindows},
     final angleDegTil = angleDegTilWin,
-    final constructionData.UValGla = UValWin,
-    final constructionData.UValFra = UValWin,
-    final constructionData.g = gWin,
+    constructionData(
+      final UValGla = UValWin,
+      final UValFra = UValWin,
+      final g = gWin,
+      each final b0 = 0.7),
     final framePortion = framePortionWin,
     each final width = 1.0,
     final height={AWin[i] for i in 1:nWindows})
+    "Transparent constructions in contact to the ambient"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,20})));
 
   final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaIns = 7.692
@@ -139,102 +148,109 @@ model Building1Zone0D
 
 equation
   connect(zone.TAir, TAir[1]) annotation (Line(
-    points={{-7,7},{-7,-30},{88,-30},{88,-70},{110,-70}},
+    points={{11,-3},{11,-30},{88,-30},{88,-70},{190,-70}},
     color={0,0,127},
     smooth=Smooth.None));
 
   // Building construction
-  connect(ambientConstructions.toSurfacePort_1, zone.toConstructionPorts1[1])
+  connect(ambientConstructions.toSurfacePort_1, zone.toConstructionPorts[1])
     annotation (Line(
-      points={{-38,-20},{-20,-20},{-20,2},{-11,2}},
+      points={{-38,-20},{-28,-20},{-28,0},{0,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(ambientConstructions.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[nSurfacesAmbient])
     annotation (Line(
-      points={{-89.9,0},{-60,0},{-60,-20},{-42,-20}},
+      points={{-42,-20},{-52,-20},{-52,3.55271e-15},{-170.8,3.55271e-15}},
       color={127,0,0},
       smooth=Smooth.None));
-  connect(innerConstructions.toSurfacePort_1, zone.toConstructionPorts3[1])
+  connect(innerConstructions.toSurfacePort_1, zone.toConstructionPorts[2])
     annotation (Line(
-      points={{42,-2},{46,-2},{46,-12},{18,-12},{18,-6},{11,-6}},
+      points={{40,-2.22045e-16},{50,-2.22045e-16},{50,-16},{28,-16},{28,0},{0,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(zone.toConstructionPorts3[2], innerConstructions.toSurfacePort_2)
+  connect(zone.toConstructionPorts[3], innerConstructions.toSurfacePort_2)
     annotation (Line(
-      points={{11,-2},{38,-2}},
+      points={{0,0},{28,0},{28,4.44089e-16},{36,4.44089e-16}},
       color={127,0,0},
       smooth=Smooth.None));
-  connect(window[1:nWindows].toSurfacePort_1, zone.toConstructionPorts2[1:nWindows])
+  connect(window[1:nWindows].toSurfacePort_1, zone.toConstructionPorts[5:4+nWindows])
     annotation (Line(
-      points={{-38.2,20},{-20,20},{-20,6},{-11,6}},
+      points={{-38,20},{-28,20},{-28,0},{0,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(window[1:nWindows].toSurfacePort_2, surfacesToAmbient.toConstructionPorts[1:nWindows])
    annotation (Line(
-      points={{-89.9,0},{-60,0},{-60,20},{-41.8,20}},
+      points={{-42,20},{-52,20},{-52,3.55271e-15},{-170.8,3.55271e-15}},
       color={127,0,0},
       smooth=Smooth.None));
   connect(groundConstructions.toSurfacePort_2, surfacesToSolids.toConstructionPorts[1])
     annotation (Line(
-      points={{-4,-44},{-4,-68},{-4,-90.8},{8.88178e-016,-90.8}},
+      points={{-4.44089e-16,-44},{-4.44089e-16,-109.6},{8.88178e-16,-109.6}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(groundConstructions.toSurfacePort_1, zone.toConstructionPorts4[1])
+  connect(groundConstructions.toSurfacePort_1, zone.toConstructionPorts[4])
     annotation (Line(
-      points={{-4,-40},{-4,-11}},
+      points={{4.44089e-16,-40},{4.44089e-16,0},{0,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
 
   // Ideal heat load calculation - depends on boolean calcIdealLoads
     connect(zone.T_setCooling, T_setCooling[1]) annotation (Line(
-        points={{6,-7},{8,-7},{8,-12},{80,-12},{80,60},{100,60}},
+        points={{-11,5},{-18,5},{-18,60},{180,60}},
         color={0,0,127},
         smooth=Smooth.None));
     connect(zone.T_setHeating, T_setHeating[1]) annotation (Line(
-        points={{4,-7},{4,-14},{74,-14},{74,80},{100,80}},
+        points={{-11,7},{-16,7},{-16,80},{180,80}},
         color={0,0,127},
         smooth=Smooth.None));
     connect(zone.Q_flow_cooling, Q_flow_cooling[1]) annotation (Line(
-      points={{7,7},{7,-80},{-80,-80},{-80,-100}},
+      points={{11,5},{11,4},{20,4},{20,-50},{-80,-50},{-80,-122}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(zone.Q_flow_heating, Q_flow_heating[1]) annotation (Line(
-      points={{3,7},{3,-34},{80,-34},{80,-100}},
+      points={{11,7},{15,7},{15,-50},{80,-50},{80,-122}},
       color={0,0,127},
       smooth=Smooth.None));
 
   // Prescribed airchange - depends on boolean prescribedAirchange
     connect(zone.TAirAmb, TAirAmb) annotation (Line(
-      points={{11,5},{16,5},{16,82},{50,82},{50,100}},
+      points={{-11,-5},{-22,-5},{-22,86},{50,86},{50,120}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(zone.xAirAmb, xAirAmb) annotation (Line(
-      points={{11,3},{18,3},{18,80},{70,80},{70,100}},
+      points={{-11,-7},{-24,-7},{-24,84},{70,84},{70,120}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(zone.airchange, airchange[1]) annotation (Line(
-      points={{11,7},{26,7},{26,40},{100,40}},
+      points={{-11,-3},{-20,-3},{-20,40},{180,40}},
       color={0,0,127},
       smooth=Smooth.None));
 
   // Ideal heat load calculation - depends on boolean heatSources
     connect(conHeatSourcesPorts, zone.conHeatSourcesPorts) annotation (Line(
-       points={{-44,120},{-44,120},{-44,46},{-5.1,46},{-5.1,-7.3}}, color={127,0,0}));
+       points={{-44,120},{-44,82},{-14,82},{-14,-16},{-4.9,-16},{-4.9,-10.7}},
+       color={127,0,0}));
     connect(zone.radHeatSourcesPorts, radHeatSourcesPorts) annotation (Line(
-       points={{0.7,-7.3},{0.7,54.35},{0,54.35},{0,120}}, color={127,0,0}));
+       points={{4.9,-10.7},{4.9,-16},{24,-16},{24,82},{0,82},{0,120}},
+       color={127,0,0}));
 
-  annotation(defaultComponentName="building",
+    annotation(Dialog(tab="Constructions",group="Windows"),
+      defaultComponentName="building",
 Documentation(info="<html>
 <p>
 This is a low order building model with 3 thermal capacities.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 24, 2017 by Christoph Nytsch-Geusen:<br/>
+Adaptation to new zone model.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.

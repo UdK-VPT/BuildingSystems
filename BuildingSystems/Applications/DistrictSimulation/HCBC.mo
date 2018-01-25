@@ -12,7 +12,7 @@ model HCBC
     nZones=1);
 
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
-    nConstructions1=8,
+    nConstructions=8,
     V=parameterMap.VZon,
     height=parameterMap.heightZon,
     Q_flow_heatingMax=parameterMap.Q_flowHea,
@@ -40,7 +40,8 @@ model HCBC
     angleDegAzi=parameterMap.angleDegAziWin1,
     constructionData.UValGla=parameterMap.windowU,
     constructionData.UValFra=parameterMap.windowU,
-    constructionData.g = 0.6)
+    constructionData.g = 0.6,
+    constructionData.b0 = 0.7)
     annotation (Placement(transformation(extent={{-40,-60},{-20,-40}})));
   BuildingSystems.Buildings.Constructions.Windows.Window rightWindow(
     width=parameterMap.widthWin2,
@@ -48,7 +49,8 @@ model HCBC
     angleDegAzi=parameterMap.angleDegAziWin2,
     constructionData.UValGla=parameterMap.windowU,
     constructionData.UValFra=parameterMap.windowU,
-    constructionData.g = 0.6)
+    constructionData.g = 0.6,
+    constructionData.b0 = 0.7)
     annotation (Placement(transformation(extent={{-20,-60},{0,-40}})));
   BuildingSystems.Buildings.Constructions.Windows.Window frontWindow(
     width=parameterMap.widthWin3,
@@ -56,7 +58,8 @@ model HCBC
     angleDegAzi=parameterMap.angleDegAziWin3,
     constructionData.UValGla=parameterMap.windowU,
     constructionData.UValFra=parameterMap.windowU,
-    constructionData.g = 0.6)
+    constructionData.g = 0.6,
+    constructionData.b0 = 0.7)
     annotation (Placement(transformation(extent={{0,-60},{20,-40}})));
   BuildingSystems.Buildings.Constructions.Windows.Window backWindow(
     width=parameterMap.widthWin4,
@@ -64,7 +67,8 @@ model HCBC
     angleDegAzi=parameterMap.angleDegAziWin4,
     constructionData.UValGla=parameterMap.windowU,
     constructionData.UValFra=parameterMap.windowU,
-    constructionData.g = 0.6)
+    constructionData.g = 0.6,
+    constructionData.b0 = 0.7)
     annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
   BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction
     outerConstruction(
@@ -115,33 +119,33 @@ model HCBC
   connect(surfacesToAmbient.toConstructionPorts[5], backWindow.toSurfacePort_1)
     annotation (Line(points={{-173.9,0},{-173.9,0},{-40,0},{-40,-64},{22,-64},{22,
           -50},{28,-50}},color={127,0,0}));
-  connect(zone.toConstructionPorts1[1], outerCapacity.toSurfacePort_2)
+  connect(zone.toConstructionPorts[1], outerCapacity.toSurfacePort_2)
     annotation (Line(points={{-11,0.5},{-16,0.5},{-20,0.5},{-20,30},{-28,30}},
                      color={127,0,0}));
-  connect(zone.toConstructionPorts1[2], innerCapacity.toSurfacePort_2)
+  connect(zone.toConstructionPorts[2], innerCapacity.toSurfacePort_2)
     annotation (Line(points={{-11,1.5},{-18,1.5},{-20,1.5},{-20,10},{-28,10}},
                      color={127,0,0}));
-  connect(leftWindow.toSurfacePort_2, zone.toConstructionPorts1[3]) annotation (
+  connect(leftWindow.toSurfacePort_2, zone.toConstructionPorts[3]) annotation (
      Line(points={{-28,-50},{-22,-50},{-22,-36},{-20,-36},{-20,2.5},{-11,2.5}},
         color={0,0,0}));
-  connect(rightWindow.toSurfacePort_2, zone.toConstructionPorts1[4])
+  connect(rightWindow.toSurfacePort_2, zone.toConstructionPorts[4])
     annotation (Line(points={{-8,-50},{-2,-50},{-2,-36},{-20,-36},{-20,6.66667},
           {-11,6.66667},{-11,3.5}},
                                   color={0,0,0}));
-  connect(frontWindow.toSurfacePort_2, zone.toConstructionPorts1[5])
+  connect(frontWindow.toSurfacePort_2, zone.toConstructionPorts[5])
     annotation (Line(points={{12,-50},{18,-50},{18,-36},{-20,-36},{-20,6.66667},
           {-11,6.66667},{-11,4.5}},     color={0,0,0}));
-  connect(backWindow.toSurfacePort_2, zone.toConstructionPorts1[6]) annotation (
+  connect(backWindow.toSurfacePort_2, zone.toConstructionPorts[6]) annotation (
      Line(points={{32,-50},{38,-50},{38,-36},{-20,-36},{-20,5.5},{-11,5.5}},
         color={0,0,0}));
-  connect(baseCapacity.toSurfacePort_2, zone.toConstructionPorts1[7])
+  connect(baseCapacity.toSurfacePort_2, zone.toConstructionPorts[7])
     annotation (Line(points={{70,-48},{70,-36},{-20,-36},{-20,7.33333},{-11,
           7.33333},{-11,6.5}},
                           color={0,0,0}));
   connect(baseCapacity.toSurfacePort_1, surfacesToSolids.toConstructionPorts[1])
     annotation (Line(points={{70,-52},{70,-52},{70,-80},{0,-80},{0,-112.8}},
         color={0,0,0}));
-  connect(innerCapacity.toSurfacePort_1, zone.toConstructionPorts1[8])
+  connect(innerCapacity.toSurfacePort_1, zone.toConstructionPorts[8])
     annotation (Line(points={{-32,10},{-36,10},{-36,-4},{-20,-4},{-20,2.85714},
           {-11,2.85714},{-11,7.5}}, color={0,0,0}));
   connect(airchange[1], zone.airchange) annotation (Line(points={{180,40},{180,40},
