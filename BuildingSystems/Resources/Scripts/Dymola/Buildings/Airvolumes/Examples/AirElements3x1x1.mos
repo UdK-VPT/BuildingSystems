@@ -1,9 +1,9 @@
-simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneHygroThermal1D", stopTime=31536000, method="dassl", resultFile="SingleZoneHygroThermal1D");
+simulateModel("BuildingSystems.Buildings.Airvolumes.Examples.AirElements3x1x1", stopTime=360, method="dassl", tolerance = 1e-5, resultFile="AirElements3x1x1");
 removePlots();
 createPlot(
   id = 1,
   position = {0, 0, 600, 500},
-  y = {"ambient.TAirRef","zone.TAir","zone.TOperative"},
+  y = {"airEle111.fluid.T","airEle211.fluid.T","airEle311.fluid.T"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,
@@ -11,13 +11,13 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "SingleZoneHygroThermal1D.mat",
+  filename = "AirElements3x1x1.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
 createPlot(
   id = 2,
   position = {610, 0, 600, 500},
-  y = {"ambient.xAir","zone.xAir"},
+  y = {"airEle111.vVec[1]","airEle211.vVec[1]","airEle311.vVec[1]"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,
@@ -25,6 +25,6 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "SingleZoneHygroThermal1D.mat",
+  filename = "AirElements3x1x1.mat",
   leftTitleType = 1,
   bottomTitleType = 1);

@@ -1,0 +1,724 @@
+within BuildingSystems.Buildings.Zones.Examples;
+model SingleZoneThermal3D3x3x3
+  "Thermal zone model with 3D discretized air volume under real weather data"
+  extends Modelica.Icons.Example;
+  parameter Integer nSurfaces = 54;
+
+  record Construction
+    "Construction"
+    extends
+      BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
+      nLayers=1,
+      thickness={0.01},
+      material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete()});
+  end Construction;
+
+  // Southern walls
+
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south111(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_south111;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south112(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_south112;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south113(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_south113;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south211(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_south211;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south212(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_south212;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south213(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_south213;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south311(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_south311;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south312(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_south312;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south313(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_south313;
+
+  // Eastern walls
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_east113(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=-90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_east113;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_east123(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=-90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_east123;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_east133(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=-90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_east133;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_east213(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=-90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_east213;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_east223(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=-90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_east223;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_east233(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=-90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_east233;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_east313(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=-90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_east313;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_east323(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=-90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_east323;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_east333(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=-90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_east333;
+
+  // Northern walls
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_north131(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=180.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_north131;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_north132(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=180.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_north132;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_north133(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=180.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_north133;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_north231(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=180.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_north231;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_north232(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=180.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_north232;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_north233(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=180.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_north233;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_north331(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=180.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_north331;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_north332(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=180.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_north332;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_north333(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=180.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_north333;
+
+  // Western walls
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_west111(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_west111;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_west121(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_west121;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_west131(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_west131;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_west211(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_west211;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_west221(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_west221;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_west231(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_west231;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_west311(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_west311;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_west321(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_west321;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_west331(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=90.0,
+    angleDegTil=90.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_west331;
+
+  // Floor walls
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor111(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=0.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_floor111;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor112(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=0.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_floor112;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor113(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=0.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_floor113;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor121(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=0.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_floor121;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor122(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=0.0,
+    redeclare Construction constructionData)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=270,
+        origin={0,-22})));
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor123(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=0.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_floor123;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor131(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=0.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_floor131;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor132(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=0.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_floor132;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor133(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=0.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_floor133;
+
+  // Roof walls
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof311(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=180.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof311;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof312(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=180.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof312;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof313(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=180.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof313;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof321(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=180.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof321;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof322(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=180.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof322;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof323(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=180.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof323;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof331(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=180.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof331;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof332(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=180.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof332;
+  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof333(
+    height=1.0,
+    width=1.0,
+    angleDegAzi=0.0,
+    angleDegTil=180.0,
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof333;
+
+  BuildingSystems.Buildings.Ambient ambient(
+    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile,
+    nSurfaces=53)
+    annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
+
+  BuildingSystems.Buildings.Zones.Examples.ZoneAirvolume3D3x3x3 zone(
+    nAirElements = 27,
+    V=1.0*1.0*1.0,
+    nConstructions=54)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surface2
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
+        rotation=-90,
+        origin={0,-30})));
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature tempBC(T=303.15)
+    annotation (Placement(transformation(extent={{2,-2},{-2,2}},
+        rotation=-90,
+        origin={-4,-36})));
+equation
+
+  // zone <-> wall connections; wall <-> surface connection; surface <-> ambient connections
+  // South
+  connect(surface_south111.toConstructionPort, wall_south111.toSurfacePort_2);
+  connect(zone.toConstructionPorts[1], wall_south111.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[1], surface_south111.toSurfacesPort);
+  connect(ambient.toAirPorts[1], surface_south111.toAirPort);
+
+  connect(surface_south112.toConstructionPort, wall_south112.toSurfacePort_2);
+  connect(zone.toConstructionPorts[2], wall_south112.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[2], surface_south112.toSurfacesPort);
+  connect(ambient.toAirPorts[2], surface_south112.toAirPort);
+
+  connect(surface_south113.toConstructionPort, wall_south113.toSurfacePort_2);
+  connect(zone.toConstructionPorts[3], wall_south113.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[3], surface_south113.toSurfacesPort);
+  connect(ambient.toAirPorts[3], surface_south113.toAirPort);
+
+  connect(surface_south211.toConstructionPort, wall_south211.toSurfacePort_2);
+  connect(zone.toConstructionPorts[4], wall_south211.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[4], surface_south211.toSurfacesPort);
+  connect(ambient.toAirPorts[4], surface_south211.toAirPort);
+
+  connect(surface_south212.toConstructionPort, wall_south212.toSurfacePort_2);
+  connect(zone.toConstructionPorts[5], wall_south212.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[5], surface_south212.toSurfacesPort);
+  connect(ambient.toAirPorts[5], surface_south212.toAirPort);
+
+  connect(surface_south213.toConstructionPort, wall_south213.toSurfacePort_2);
+  connect(zone.toConstructionPorts[6], wall_south213.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[6], surface_south213.toSurfacesPort);
+  connect(ambient.toAirPorts[6], surface_south213.toAirPort);
+
+  connect(surface_south311.toConstructionPort, wall_south311.toSurfacePort_2);
+  connect(zone.toConstructionPorts[7], wall_south311.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[7], surface_south311.toSurfacesPort);
+  connect(ambient.toAirPorts[7], surface_south311.toAirPort);
+
+  connect(surface_south312.toConstructionPort, wall_south312.toSurfacePort_2);
+  connect(zone.toConstructionPorts[8], wall_south312.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[8], surface_south312.toSurfacesPort);
+  connect(ambient.toAirPorts[8], surface_south312.toAirPort);
+
+  connect(surface_south313.toConstructionPort, wall_south313.toSurfacePort_2);
+  connect(zone.toConstructionPorts[9], wall_south313.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[9], surface_south313.toSurfacesPort);
+  connect(ambient.toAirPorts[9], surface_south313.toAirPort);
+
+
+  // East
+  connect(surface_east113.toConstructionPort, wall_east113.toSurfacePort_2);
+  connect(zone.toConstructionPorts[10], wall_east113.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[10], surface_east113.toSurfacesPort);
+  connect(ambient.toAirPorts[10], surface_east113.toAirPort);
+
+  connect(surface_east123.toConstructionPort, wall_east123.toSurfacePort_2);
+  connect(zone.toConstructionPorts[11], wall_east123.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[11], surface_east123.toSurfacesPort);
+  connect(ambient.toAirPorts[11], surface_east123.toAirPort);
+
+  connect(surface_east133.toConstructionPort, wall_east133.toSurfacePort_2);
+  connect(zone.toConstructionPorts[12], wall_east133.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[12], surface_east133.toSurfacesPort);
+  connect(ambient.toAirPorts[12], surface_east133.toAirPort);
+
+  connect(surface_east213.toConstructionPort, wall_east213.toSurfacePort_2);
+  connect(zone.toConstructionPorts[13], wall_east213.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[13], surface_east213.toSurfacesPort);
+  connect(ambient.toAirPorts[13], surface_east213.toAirPort);
+
+  connect(surface_east223.toConstructionPort, wall_east223.toSurfacePort_2);
+  connect(zone.toConstructionPorts[14], wall_east223.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[14], surface_east223.toSurfacesPort);
+  connect(ambient.toAirPorts[14], surface_east223.toAirPort);
+
+  connect(surface_east233.toConstructionPort, wall_east233.toSurfacePort_2);
+  connect(zone.toConstructionPorts[15], wall_east233.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[15], surface_east233.toSurfacesPort);
+  connect(ambient.toAirPorts[15], surface_east233.toAirPort);
+
+  connect(surface_east313.toConstructionPort, wall_east313.toSurfacePort_2);
+  connect(zone.toConstructionPorts[16], wall_east313.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[16], surface_east313.toSurfacesPort);
+  connect(ambient.toAirPorts[16], surface_east313.toAirPort);
+
+  connect(surface_east323.toConstructionPort, wall_east323.toSurfacePort_2);
+  connect(zone.toConstructionPorts[17], wall_east323.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[17], surface_east323.toSurfacesPort);
+  connect(ambient.toAirPorts[17], surface_east323.toAirPort);
+
+  connect(surface_east333.toConstructionPort, wall_east333.toSurfacePort_2);
+  connect(zone.toConstructionPorts[18], wall_east333.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[18], surface_east333.toSurfacesPort);
+  connect(ambient.toAirPorts[18], surface_east333.toAirPort);
+
+
+  // North
+  connect(surface_north131.toConstructionPort, wall_north131.toSurfacePort_2);
+  connect(zone.toConstructionPorts[19], wall_north131.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[19], surface_north131.toSurfacesPort);
+  connect(ambient.toAirPorts[19], surface_north131.toAirPort);
+
+  connect(surface_north132.toConstructionPort, wall_north132.toSurfacePort_2);
+  connect(zone.toConstructionPorts[20], wall_north132.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[20], surface_north132.toSurfacesPort);
+  connect(ambient.toAirPorts[20], surface_north132.toAirPort);
+
+  connect(surface_north133.toConstructionPort, wall_north133.toSurfacePort_2);
+  connect(zone.toConstructionPorts[21], wall_north133.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[21], surface_north133.toSurfacesPort);
+  connect(ambient.toAirPorts[21], surface_north133.toAirPort);
+
+  connect(surface_north231.toConstructionPort, wall_north231.toSurfacePort_2);
+  connect(zone.toConstructionPorts[22], wall_north231.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[22], surface_north231.toSurfacesPort);
+  connect(ambient.toAirPorts[22], surface_north231.toAirPort);
+
+  connect(surface_north232.toConstructionPort, wall_north232.toSurfacePort_2);
+  connect(zone.toConstructionPorts[23], wall_north232.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[23], surface_north232.toSurfacesPort);
+  connect(ambient.toAirPorts[23], surface_north232.toAirPort);
+
+  connect(surface_north233.toConstructionPort, wall_north233.toSurfacePort_2);
+  connect(zone.toConstructionPorts[24], wall_north233.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[24], surface_north233.toSurfacesPort);
+  connect(ambient.toAirPorts[24], surface_north233.toAirPort);
+
+  connect(surface_north331.toConstructionPort, wall_north331.toSurfacePort_2);
+  connect(zone.toConstructionPorts[25], wall_north331.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[25], surface_north331.toSurfacesPort);
+  connect(ambient.toAirPorts[25], surface_north331.toAirPort);
+
+  connect(surface_north332.toConstructionPort, wall_north332.toSurfacePort_2);
+  connect(zone.toConstructionPorts[26], wall_north332.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[26], surface_north332.toSurfacesPort);
+  connect(ambient.toAirPorts[26], surface_north332.toAirPort);
+
+  connect(surface_north333.toConstructionPort, wall_north333.toSurfacePort_2);
+  connect(zone.toConstructionPorts[27], wall_north333.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[27], surface_north333.toSurfacesPort);
+  connect(ambient.toAirPorts[27], surface_north333.toAirPort);
+
+
+  // West walls
+  connect(surface_west111.toConstructionPort, wall_west111.toSurfacePort_2);
+  connect(zone.toConstructionPorts[28], wall_west111.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[28], surface_west111.toSurfacesPort);
+  connect(ambient.toAirPorts[28], surface_west111.toAirPort);
+
+  connect(surface_west121.toConstructionPort, wall_west121.toSurfacePort_2);
+  connect(zone.toConstructionPorts[29], wall_west121.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[29], surface_west121.toSurfacesPort);
+  connect(ambient.toAirPorts[29], surface_west121.toAirPort);
+
+  connect(surface_west131.toConstructionPort, wall_west131.toSurfacePort_2);
+  connect(zone.toConstructionPorts[30], wall_west131.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[30], surface_west131.toSurfacesPort);
+  connect(ambient.toAirPorts[30], surface_west131.toAirPort);
+
+  connect(surface_west211.toConstructionPort, wall_west211.toSurfacePort_2);
+  connect(zone.toConstructionPorts[31], wall_west211.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[31], surface_west211.toSurfacesPort);
+  connect(ambient.toAirPorts[31], surface_west211.toAirPort);
+
+  connect(surface_west221.toConstructionPort, wall_west221.toSurfacePort_2);
+  connect(zone.toConstructionPorts[32], wall_west221.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[32], surface_west221.toSurfacesPort);
+  connect(ambient.toAirPorts[32], surface_west221.toAirPort);
+
+  connect(surface_west231.toConstructionPort, wall_west231.toSurfacePort_2);
+  connect(zone.toConstructionPorts[33], wall_west231.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[33], surface_west231.toSurfacesPort);
+  connect(ambient.toAirPorts[33], surface_west231.toAirPort);
+
+  connect(surface_west311.toConstructionPort, wall_west311.toSurfacePort_2);
+  connect(zone.toConstructionPorts[34], wall_west311.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[34], surface_west311.toSurfacesPort);
+  connect(ambient.toAirPorts[34], surface_west311.toAirPort);
+
+  connect(surface_west321.toConstructionPort, wall_west321.toSurfacePort_2);
+  connect(zone.toConstructionPorts[35], wall_west321.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[35], surface_west321.toSurfacesPort);
+  connect(ambient.toAirPorts[35], surface_west321.toAirPort);
+
+  connect(surface_west331.toConstructionPort, wall_west331.toSurfacePort_2);
+  connect(zone.toConstructionPorts[36], wall_west331.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[36], surface_west331.toSurfacesPort);
+  connect(ambient.toAirPorts[36], surface_west331.toAirPort);
+
+
+  // Floor
+  connect(surface_floor111.toConstructionPort, floor111.toSurfacePort_2);
+  connect(zone.toConstructionPorts[37], floor111.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[37], surface_floor111.toSurfacesPort);
+  connect(ambient.toAirPorts[37], surface_floor111.toAirPort);
+
+  connect(surface_floor112.toConstructionPort, floor112.toSurfacePort_2);
+  connect(zone.toConstructionPorts[38], floor112.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[38], surface_floor112.toSurfacesPort);
+  connect(ambient.toAirPorts[38], surface_floor112.toAirPort);
+
+  connect(surface_floor113.toConstructionPort, floor113.toSurfacePort_2);
+  connect(zone.toConstructionPorts[39], floor113.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[39], surface_floor113.toSurfacesPort);
+  connect(ambient.toAirPorts[39], surface_floor113.toAirPort);
+
+  connect(surface_floor121.toConstructionPort, floor121.toSurfacePort_2);
+  connect(zone.toConstructionPorts[40], floor121.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[40], surface_floor121.toSurfacesPort);
+  connect(ambient.toAirPorts[40], surface_floor121.toAirPort);
+
+  connect(zone.toConstructionPorts[41], floor122.toSurfacePort_1)
+    annotation (Line(points={{0,1},{0,-20}}, color={0,0,0}));
+  connect(surface_floor123.toConstructionPort, floor123.toSurfacePort_2);
+  connect(zone.toConstructionPorts[42], floor123.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[41], surface_floor123.toSurfacesPort);
+  connect(ambient.toAirPorts[41], surface_floor123.toAirPort);
+
+  connect(surface_floor131.toConstructionPort, floor131.toSurfacePort_2);
+  connect(zone.toConstructionPorts[43], floor131.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[42], surface_floor131.toSurfacesPort);
+  connect(ambient.toAirPorts[42], surface_floor131.toAirPort);
+
+  connect(surface_floor132.toConstructionPort, floor132.toSurfacePort_2);
+  connect(zone.toConstructionPorts[44], floor132.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[43], surface_floor132.toSurfacesPort);
+  connect(ambient.toAirPorts[43], surface_floor132.toAirPort);
+
+  connect(surface_floor133.toConstructionPort, floor133.toSurfacePort_2);
+  connect(zone.toConstructionPorts[45], floor133.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[44], surface_floor133.toSurfacesPort);
+  connect(ambient.toAirPorts[44], surface_floor133.toAirPort);
+
+
+  // Roof
+  connect(surface_roof311.toConstructionPort, roof311.toSurfacePort_2);
+  connect(zone.toConstructionPorts[46], roof311.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[45], surface_roof311.toSurfacesPort);
+  connect(ambient.toAirPorts[45], surface_roof311.toAirPort);
+
+  connect(surface_roof312.toConstructionPort, roof312.toSurfacePort_2);
+  connect(zone.toConstructionPorts[47], roof312.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[46], surface_roof312.toSurfacesPort);
+  connect(ambient.toAirPorts[46], surface_roof312.toAirPort);
+
+  connect(surface_roof313.toConstructionPort, roof313.toSurfacePort_2);
+  connect(zone.toConstructionPorts[48], roof313.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[47], surface_roof313.toSurfacesPort);
+  connect(ambient.toAirPorts[47], surface_roof313.toAirPort);
+
+  connect(surface_roof321.toConstructionPort, roof321.toSurfacePort_2);
+  connect(zone.toConstructionPorts[49], roof321.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[48], surface_roof321.toSurfacesPort);
+  connect(ambient.toAirPorts[48], surface_roof321.toAirPort);
+
+  connect(surface_roof322.toConstructionPort, roof322.toSurfacePort_2);
+  connect(zone.toConstructionPorts[50], roof322.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[49], surface_roof322.toSurfacesPort);
+  connect(ambient.toAirPorts[49], surface_roof322.toAirPort);
+
+  connect(surface_roof323.toConstructionPort, roof323.toSurfacePort_2);
+  connect(zone.toConstructionPorts[51], roof323.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[50], surface_roof323.toSurfacesPort);
+  connect(ambient.toAirPorts[50], surface_roof323.toAirPort);
+
+  connect(surface_roof331.toConstructionPort, roof331.toSurfacePort_2);
+  connect(zone.toConstructionPorts[52], roof331.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[51], surface_roof331.toSurfacesPort);
+  connect(ambient.toAirPorts[51], surface_roof331.toAirPort);
+
+  connect(surface_roof332.toConstructionPort, roof332.toSurfacePort_2);
+  connect(zone.toConstructionPorts[53], roof332.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[52], surface_roof332.toSurfacesPort);
+  connect(ambient.toAirPorts[52], surface_roof332.toAirPort);
+
+  connect(surface_roof333.toConstructionPort, roof333.toSurfacePort_2);
+  connect(zone.toConstructionPorts[54], roof333.toSurfacePort_1);
+  connect(ambient.toSurfacePorts[53], surface_roof333.toSurfacesPort);
+  connect(ambient.toAirPorts[53], surface_roof333.toAirPort);
+
+  connect(surface2.toConstructionPort, floor122.toSurfacePort_2)
+    annotation (Line(points={{0,-29.4},{0,-24}}, color={0,0,0}));
+  connect(tempBC.port, surface2.heatPort)
+    annotation (Line(points={{-4,-34},{-4,-30.6}}, color={191,0,0}));
+
+  annotation(experiment(StartTime=0, StopTime=86400),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal3D3x3x3.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}),
+      graphics={Text(extent={{-50,68},{54,0}},lineColor={0,0,255},
+textString="3D room model with 3 x 3 x 3 = 27 air
+elements, which is surrounded by
+real weather data. The surface of the
+centered construction element floor122
+is heated to 30 degree Celsius ")}),
+Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+end SingleZoneThermal3D3x3x3;

@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneThermal1D", stopTime=31536000, method="dassl", tolerance = 1e-5, resultFile="SingleZoneThermal1D");
+simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneThermal1D", stopTime=31536000, method="dassl", resultFile="SingleZoneThermal1D");
 removePlots();
 createPlot(
   id = 1,
