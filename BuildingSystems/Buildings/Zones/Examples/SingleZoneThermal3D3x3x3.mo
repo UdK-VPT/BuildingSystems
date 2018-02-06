@@ -413,7 +413,7 @@ model SingleZoneThermal3D3x3x3
 
   BuildingSystems.Buildings.Zones.Examples.ZoneAirvolume3D3x3x3 zone(
     nAirElements = 27,
-    V=1.0*1.0*1.0,
+    V=3.0*3.0*3.0,
     nConstructions=54)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
@@ -428,7 +428,7 @@ model SingleZoneThermal3D3x3x3
 equation
 
   // zone <-> wall connections; wall <-> surface connection; surface <-> ambient connections
-  // South
+  // South walls
   connect(surface_south111.toConstructionPort, wall_south111.toSurfacePort_2);
   connect(zone.toConstructionPorts[1], wall_south111.toSurfacePort_1);
   connect(ambient.toSurfacePorts[1], surface_south111.toSurfacesPort);
@@ -474,8 +474,7 @@ equation
   connect(ambient.toSurfacePorts[9], surface_south313.toSurfacesPort);
   connect(ambient.toAirPorts[9], surface_south313.toAirPort);
 
-
-  // East
+  // East walls
   connect(surface_east113.toConstructionPort, wall_east113.toSurfacePort_2);
   connect(zone.toConstructionPorts[10], wall_east113.toSurfacePort_1);
   connect(ambient.toSurfacePorts[10], surface_east113.toSurfacesPort);
@@ -521,8 +520,7 @@ equation
   connect(ambient.toSurfacePorts[18], surface_east333.toSurfacesPort);
   connect(ambient.toAirPorts[18], surface_east333.toAirPort);
 
-
-  // North
+  // North walls
   connect(surface_north131.toConstructionPort, wall_north131.toSurfacePort_2);
   connect(zone.toConstructionPorts[19], wall_north131.toSurfacePort_1);
   connect(ambient.toSurfacePorts[19], surface_north131.toSurfacesPort);
@@ -567,7 +565,6 @@ equation
   connect(zone.toConstructionPorts[27], wall_north333.toSurfacePort_1);
   connect(ambient.toSurfacePorts[27], surface_north333.toSurfacesPort);
   connect(ambient.toAirPorts[27], surface_north333.toAirPort);
-
 
   // West walls
   connect(surface_west111.toConstructionPort, wall_west111.toSurfacePort_2);
@@ -615,7 +612,6 @@ equation
   connect(ambient.toSurfacePorts[36], surface_west331.toSurfacesPort);
   connect(ambient.toAirPorts[36], surface_west331.toAirPort);
 
-
   // Floor
   connect(surface_floor111.toConstructionPort, floor111.toSurfacePort_2);
   connect(zone.toConstructionPorts[37], floor111.toSurfacePort_1);
@@ -658,7 +654,6 @@ equation
   connect(zone.toConstructionPorts[45], floor133.toSurfacePort_1);
   connect(ambient.toSurfacePorts[44], surface_floor133.toSurfacesPort);
   connect(ambient.toAirPorts[44], surface_floor133.toAirPort);
-
 
   // Roof
   connect(surface_roof311.toConstructionPort, roof311.toSurfacePort_2);
