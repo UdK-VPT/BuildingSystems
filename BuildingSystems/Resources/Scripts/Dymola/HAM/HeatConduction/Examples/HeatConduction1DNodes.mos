@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.HAM.HeatConduction.Examples.HeatConduction1DNodes", stopTime=172800, method="dassl", resultFile="HeatConduction1DNodes");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"TAmb.port.T","body.T[1]","body.T[2]","body.T[3]","body.T[4]","body.T[5]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatConduction1DNodes.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"body.heatPort_x1.Q_flow","body.heatPort_x2.Q_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "HeatConduction1DNodes.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

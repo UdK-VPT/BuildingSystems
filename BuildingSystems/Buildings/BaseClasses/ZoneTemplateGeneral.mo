@@ -77,23 +77,15 @@ equation
     connect(surfaces.toSurfacesPorts[i],radiationDistribution.toSurfacePorts[i]);
   end for;
   connect(radiationDistribution.TSurfMean, TSurfMean)
-    annotation (Line(points={{19.2,-60},{40,-60}},          color={0,0,127}));
+    annotation (Line(points={{19.2,-60},{40,-60}}, color={0,0,127}));
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
-  Rectangle(extent={{-80,80},{80,-80}},lineColor={230,230,230},fillColor={230,230,230},
-            fillPattern =                                                                           FillPattern.Solid),
-  Text(extent={{-46,-132},{46,-160}},
-                                   lineColor={0,0,255},fillColor={230,230,230},
-            fillPattern =                                                                    FillPattern.Solid,textString
-            =                                                                                                              "%name"),
-  Rectangle(extent={{100,100},{80,-100}},lineColor={255,170,85},fillColor={255,170,85},
-            fillPattern =                                                                            FillPattern.Solid),
-  Rectangle(extent={{-80,100},{-100,-100}},lineColor={255,170,85},fillColor={255,170,85},
-            fillPattern =                                                                              FillPattern.Solid),
-  Rectangle(extent={{-80,100},{80,80}}, lineColor={255,170,85},fillColor={255,170,85},
-            fillPattern =                                                                           FillPattern.Solid),
-  Rectangle(extent={{-80,-80},{80,-100}},lineColor={255,170,85},fillColor={255,170,85},
-            fillPattern =                                                                            FillPattern.Solid)}),
+    Rectangle(extent={{-80,80},{80,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
+    Text(extent={{-46,-132},{46,-160}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString="%name"),
+  Rectangle(extent={{100,100},{80,-100}},lineColor={255,170,85},fillColor={255,170,85},fillPattern = FillPattern.Solid),
+  Rectangle(extent={{-80,100},{-100,-100}},lineColor={255,170,85},fillColor={255,170,85},fillPattern = FillPattern.Solid),
+  Rectangle(extent={{-80,100},{80,80}}, lineColor={255,170,85},fillColor={255,170,85},fillPattern = FillPattern.Solid),
+  Rectangle(extent={{-80,-80},{80,-100}},lineColor={255,170,85},fillColor={255,170,85},fillPattern = FillPattern.Solid)}),
 Documentation(info="<html>
 <p>
 This is a template model of a thermal zone.
