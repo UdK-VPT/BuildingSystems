@@ -1,14 +1,15 @@
 within BuildingSystems.HAM.HeatConduction;
 model MultiLayerHeatConduction1DNodes
   "Multi layered-body with 1D heat conduction and a potential inner discretization of each layer"
-  
+
   BuildingSystems.HAM.HeatConduction.HeatConduction1DNodes layer[nLayers](material=material,
-    each lengthY=lengthY,each lengthZ=lengthZ,lengthX=thickness,nNodesX=nNodes,T_start=T_start);
-    
+    each lengthY=lengthY,each lengthZ=lengthZ,lengthX=thickness,nNodesX=nNodes,T_start=T_start)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+
   BuildingSystems.Interfaces.HeatPort heatPort_x1
     "Heat port in direction x1"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={-80,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-80,0})));
-    
+
   BuildingSystems.Interfaces.HeatPort heatPort_x2
     "Heat port in direction x2"
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,0})));
@@ -16,7 +17,7 @@ model MultiLayerHeatConduction1DNodes
   parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral material[nLayers]
     "Thermal properties for each material layer"
     annotation (HideResult=true);
-    
+
   parameter Modelica.SIunits.Length lengthY = 1.0
     "Length in y dimension";
   parameter Modelica.SIunits.Length lengthZ = 1.0
