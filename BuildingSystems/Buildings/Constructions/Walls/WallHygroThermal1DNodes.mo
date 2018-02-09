@@ -2,8 +2,7 @@ within BuildingSystems.Buildings.Constructions.Walls;
 model WallHygroThermal1DNodes
   "Hygro-thermal wall model with 1D discritisation of the single layers"
   extends BuildingSystems.Buildings.BaseClasses.WallHygroThermalGeneral;
-  BuildingSystems.Interfaces.HeatPort heatSourcePort =
-    construction.layer[layerWithHeatSource].heatPort_source[nodeWithHeatSource] if heatSource
+  BuildingSystems.Interfaces.HeatPort heatPort_source if heatSource
     annotation (Placement(transformation(extent={{10,-48},{30,-28}}), iconTransformation(extent={{10,-48},{30,-28}})));
 
   BuildingSystems.HAM.HeatAndMoistureTransport.MultiLayerHeatAndMoistureTransfer1DNodes construction(
@@ -14,7 +13,9 @@ model WallHygroThermal1DNodes
     thickness = constructionData.thickness,
     T_start = T_start,
     phi_start = phi_start,
-    material = constructionData.material)
+    material = constructionData.material,
+    layerWithHeatSource=layerWithHeatSource,
+    nodeWithHeatSource=nodeWithHeatSource)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
   parameter Integer nNodes[constructionData.nLayers] = fill(1,constructionData.nLayers)
@@ -47,6 +48,7 @@ model WallHygroThermal1DNodes
         iconTransformation(extent={{20,-30},{40,-10}})));
 
 equation
+  connect(heatPort_source, construction.heatPort_source);
   connect(construction.heatPort_x2, toSurfacePort_2.heatPort) annotation (Line(
       points={{8,0},{20,0}},
       color={191,0,0},

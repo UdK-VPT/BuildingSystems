@@ -3,9 +3,9 @@ model WallThermal1DNodes
   "Thermal wall model with 1D discritisation of the single layers"
   extends BuildingSystems.Buildings.BaseClasses.WallThermalGeneral;
 
-  BuildingSystems.Interfaces.HeatPort heatSourcePort =
-    construction.layer[layerWithHeatSource].heatPort_source[nodeWithHeatSource] if heatSource
-    annotation (Placement(transformation(extent={{10,-48},{30,-28}}), iconTransformation(extent={{10,-48},{30,-28}})));
+  BuildingSystems.Interfaces.HeatPort heatPort_source if heatSource
+    annotation (Placement(transformation(extent={{10,-48},{30,-28}}),
+      iconTransformation(extent={{10,-48},{30,-28}})));
 
   BuildingSystems.HAM.HeatConduction.MultiLayerHeatConduction1DNodes construction(
     lengthY=width,
@@ -14,7 +14,9 @@ model WallThermal1DNodes
     nNodes=nNodes,
     thickness=constructionData.thickness,
     material=constructionData.material,
-    T_start=T_start)
+    T_start=T_start,
+    layerWithHeatSource=layerWithHeatSource,
+    nodeWithHeatSource=nodeWithHeatSource)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 
   parameter Integer nNodes[constructionData.nLayers] = fill(1,constructionData.nLayers)
@@ -36,6 +38,7 @@ model WallThermal1DNodes
       iconTransformation(extent={{20,10},{40,30}})));
 
 equation
+  connect(heatPort_source, construction.heatPort_source);
   connect(toSurfacePort_1.moisturePort, moistBcPort1.moisturePort) annotation (Line(
     points={{-20,0},{-20,-11.2}},
     color={0,0,0},
