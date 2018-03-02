@@ -79,7 +79,7 @@ model Building1Zone0D
     final abs_2 = 0.0,
     final abs_1 = 0.5,
     final epsilon_2 = 0.9,
-    final width=2.0*AAmb,
+    final width=AAmb*2.0/height,
     final height=0.5*height,
     nNodes={1},
     constructionData(
@@ -134,8 +134,8 @@ model Building1Zone0D
       final g = gWin,
       each final b0 = 0.7),
     final framePortion = framePortionWin,
-    each final width = 1.0,
-    final height={AWin[i] for i in 1:nWindows})
+    final width = {AWin[i]*2.0/height for i in 1:nWindows},
+    each final height=0.5*height)
     "Transparent constructions in contact to the ambient"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,20})));
 
