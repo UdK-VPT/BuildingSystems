@@ -3,7 +3,7 @@ model Building1Zone0DDistrict
   "Low-order building model for district simulation"
   extends BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D(
     final VAir = 0.8*length*width*heightSto*nSto,
-    final AAmb = ARoo+AFac*(1.0-fAreaAdjBld),
+    final AAmb = ARoo+AFac,
     final AGro = length*width,
     final AInn = 2.0*length*width*(nSto-1) // area of interior ceilings
       +(2.0*integer(width/4.0+0.5)*length+2.0*integer(length/4.0+0.5)*width)*nSto, // area of interior walls
@@ -21,7 +21,12 @@ model Building1Zone0DDistrict
       else 105000.0 * AInn,
     final nWindows = 4,
     final height = heightSto*nSto,
-    AWin = {fWin*length*heightSto*nSto,fWin*width*heightSto*nSto,fWin*length*heightSto*nSto,fWin*width*heightSto*nSto},
+    AWin = {
+      fWin*length*heightSto*nSto*(1.0-fAreaAdjBld),
+      fWin*width*heightSto*nSto*(1.0-fAreaAdjBld),
+      fWin*length*heightSto*nSto*(1.0-fAreaAdjBld),
+      fWin*width*heightSto*nSto*(1.0-fAreaAdjBld)
+    },
     UValWin = {2.0,2.0,2.0,2.0});
   parameter Modelica.SIunits.Length length = 10.0
     "Length of the building";
@@ -31,7 +36,8 @@ model Building1Zone0DDistrict
     "Area reduction factor for common walls with adjacent buildings";
   final parameter Modelica.SIunits.Area ARoo = length * width
     "Roof area of the building";
-  final parameter Modelica.SIunits.Area AFac = (2*length+2*width)*heightSto*nSto-sum(AWin)
+  final parameter Modelica.SIunits.Area AFac =
+    (2.0*length+2.0*width)*heightSto*nSto*(1.0-fAreaAdjBld)-sum(AWin)
     "Opaque facade area of the building";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValFac = 1.0
     "Mean heat loss coefficient of the opaque building facade"
