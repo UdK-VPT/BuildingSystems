@@ -3,10 +3,10 @@ model Building1Zone0DDistrict
   "Low-order building model for district simulation"
   extends BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D(
     final VAir = 0.8*length*width*heightSto*nSto,
-    final AAmb = ARoo+AFac,
+    final AAmb = ARoo+AFac*(1.0-fAreaAdjBld),
     final AGro = length*width,
-    final AInn = 2.0 * length * width * (nSto-1) // area of interior ceilings
-      + (2.0 * integer(width/4.0+0.5) * length + 2.0 * integer(length/4.0+0.5) * width) * nSto, // area of interior walls
+    final AInn = 2.0*length*width*(nSto-1) // area of interior ceilings
+      +(2.0*integer(width/4.0+0.5)*length+2.0*integer(length/4.0+0.5)*width)*nSto, // area of interior walls
     final UValAmb = (ARoo*UValRoo+AFac*UValFac)/(ARoo+AFac),
     UValGro = 1.0,
     UValInn = 1.0,
@@ -27,6 +27,8 @@ model Building1Zone0DDistrict
     "Length of the building";
   parameter Modelica.SIunits.Length width = 10.0
     "Width of the building";
+  parameter Real fAreaAdjBld = 0.0
+    "Area reduction factor for common walls with adjacent buildings";
   final parameter Modelica.SIunits.Area ARoo = length * width
     "Roof area of the building";
   final parameter Modelica.SIunits.Area AFac = (2*length+2*width)*heightSto*nSto-sum(AWin)
@@ -64,6 +66,10 @@ This is a low-order building model for district simulation.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+March 4, 2018 by Christoph Nytsch-Geusen:<br/>
+Area reduction factor for common walls of adjacent buildings introduced.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.
