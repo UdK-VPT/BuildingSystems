@@ -21,7 +21,7 @@ model Building1Zone0DDistrict
       else 105000.0 * AInn,
     final nWindows = 4,
     final height = heightSto*nSto,
-    AWin = {
+    final AWin = {
       fWin*length*heightSto*nSto*(1.0-fAreaAdjBld),
       fWin*width*heightSto*nSto*(1.0-fAreaAdjBld),
       fWin*length*heightSto*nSto*(1.0-fAreaAdjBld),
@@ -29,11 +29,14 @@ model Building1Zone0DDistrict
     },
     UValWin = {2.0,2.0,2.0,2.0});
   parameter Modelica.SIunits.Length length = 10.0
-    "Length of the building";
+    "Length of the building"
+    annotation (Dialog(tab = "General", group = "Geometry building"));
   parameter Modelica.SIunits.Length width = 10.0
-    "Width of the building";
+    "Width of the building"
+    annotation (Dialog(tab = "General", group = "Geometry building"));
   parameter Real fAreaAdjBld = 0.0
-    "Area reduction factor for common walls with adjacent buildings";
+    "Area reduction factor for common walls with adjacent buildings"
+    annotation (Dialog(tab = "General", group = "Geometry building"));
   final parameter Modelica.SIunits.Area ARoo = length * width
     "Roof area of the building";
   final parameter Modelica.SIunits.Area AFac =
@@ -55,13 +58,16 @@ model Building1Zone0DDistrict
     "Thermal capacity inner building construction"
     annotation (Evaluate=true, Dialog(tab="Constructions", group="Thermal building capacity"));
   parameter Modelica.SIunits.Length heightSto = 3.0
-    "Height of one storey";
+    "Height of one storey"
+    annotation(Dialog(tab = "General", group = "Geometry building"));
   parameter Integer nSto = 2
-    "Number of storeys";
+    "Number of storeys"
+    annotation(Dialog(tab = "General", group = "Geometry building"));
   final parameter Modelica.SIunits.Area AFloorSpace = width*length*nSto
     "Floor space area of the building";
   parameter Real fWin = 0.3
-    "Window percentage of the facades";
+    "Window percentage of the facades"
+    annotation(Dialog(tab = "General", group = "Geometry windows"));
   final parameter Real AV = (AAmb+length*width+sum(AWin))/(length*width*heightSto*nSto)
     "Ratio area to volume";
 

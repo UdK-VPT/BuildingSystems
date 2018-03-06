@@ -14,7 +14,8 @@ model Building1Zone0D
     surfacesToSolids(nSurfaces=nSurfacesSolid));
 
   parameter Modelica.SIunits.Length height = 3.0
-    "Height of the building";
+    "Height of the building"
+    annotation (Dialog(tab = "General", group = "Geometry building"));
   parameter Integer nWindows = 1
     "Number of windows"
     annotation(Dialog(tab="Constructions",group="Windows"));
@@ -32,10 +33,10 @@ model Building1Zone0D
     annotation(Dialog(tab="Constructions",group="Windows"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin[nWindows] = fill(0.0,nWindows)
     "Azimuth angle of each window"
-    annotation(Dialog(tab="Constructions",group="Windows"));
+    annotation(Dialog(tab = "General", group = "Geometry windows"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTilWin[nWindows] = fill(90.0,nWindows)
     "Tilt angle of each window"
-    annotation(Dialog(tab="Constructions",group="Windows"));
+    annotation(Dialog(tab = "General", group = "Geometry windows"));
   parameter Modelica.SIunits.Volume VAir = 1.0
     "Inner (Air) volume of the building";
   parameter Modelica.SIunits.HeatCapacity CAmb = 1.0
@@ -60,7 +61,8 @@ model Building1Zone0D
     "Heat loss coefficient of each window"
     annotation(Dialog(tab="Constructions",group="Windows"));
   parameter Real gWin[nWindows](each unit = "1") = fill(0.6,nWindows)
-    "g-value of the window";
+    "g-value of the window"
+    annotation(Dialog(tab = "Constructions", group = "Windows"));
   parameter Real framePortionWin[nWindows](each unit = "1") = fill(0.2,nWindows)
     "Frame portion of the window"
     annotation(Dialog(tab = "Constructions", group = "Windows"));
