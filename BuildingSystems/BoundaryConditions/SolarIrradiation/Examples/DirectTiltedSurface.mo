@@ -4,7 +4,7 @@ model DirectTiltedSurface
   extends Modelica.Icons.Example;
   parameter Modelica.SIunits.Angle lat=37/180*Modelica.Constants.pi "Latitude";
   BuildingSystems.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildingSystems/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
+        Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
   BuildingSystems.BoundaryConditions.SolarIrradiation.DirectTiltedSurface HDirRoo(
     til=BuildingSystems.Types.Tilt.Ceiling,

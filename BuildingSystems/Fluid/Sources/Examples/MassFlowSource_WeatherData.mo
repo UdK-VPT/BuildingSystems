@@ -5,7 +5,7 @@ model MassFlowSource_WeatherData
   package Medium = BuildingSystems.Media.Air "Medium model for air";
 
   BuildingSystems.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildingSystems/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
+        Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
   BuildingSystems.Fluid.Sources.MassFlowSource_WeatherData sin_with_h(
     redeclare package Medium = Medium,

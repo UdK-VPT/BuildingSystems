@@ -3,7 +3,7 @@ model BlackBody "Test model for black body sky temperature"
   extends Modelica.Icons.Example;
 
   BuildingSystems.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(filNam=
-        "modelica://BuildingSystems/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos")
+        Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
     annotation (Placement(transformation(extent={{-40,0},{-20,20}})));
   BuildingSystems.BoundaryConditions.SkyTemperature.BlackBody TBlaSky
     "Black body sky temperature computed from temperature and sky cover"

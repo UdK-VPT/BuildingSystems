@@ -1,12 +1,12 @@
 within BuildingSystems.Buildings.Airvolumes;
 package Parameter
   "Parameter to calibrate the zonal model"
-  // this parameter set:
 
+  // this parameter set:
+  final constant Real f_alp = 2.9;
   final constant Real f_lay = 4.00;
   final constant Real f_loss = 0.016;
   final constant Real f_pv = 125;
-  final constant Real f_alp = 2.9;
 
   // is the result of the optimization process using Aachen model room AMoR
   // (RWTH Aachen, E.ON Energy Research Center),
