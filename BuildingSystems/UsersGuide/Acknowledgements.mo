@@ -22,17 +22,18 @@ class Acknowledgements "Acknowledgements"
       <li>Matthis Thorade
       </li>
       </ul>
+      </p>
       <p>
-      The core of this library is the Annex 60 library,
+      The core of this library is the Modelica IPBSA library,
       a free open-source library with basic models that codify best practices for
       the implementation of models for building and community energy and control systems.
-      The Annex 60 library is developed at
-      <a href=\"https://github.com/iea-annex60/modelica-annex60\">
-      https://github.com/iea-annex60/modelica-annex60</a>
-      within the Annex 60 project
-      (<a href=\"http://www.iea-annex60.org\">http://www.iea-annex60.org</a>)
-      of the International Energy Agency's
-      <a href=\"http://www.iea-ebc.org/\">Energy in Buildings and Communities</a> Programme.
+      <p>
+      The Modelica IBPSA library is developed at
+      <a href=\"https://github.com/ibpsa/modelica-ibpsa\">
+      https://github.com/ibpsa/modelica-ibpsa</a>
+      within IBPSA Project 1
+      (<a href=\"https://ibpsa.github.io/project1\">https://ibpsa.github.io/project1</a>)
+      of the <a href=\"http://www.ibpsa.org\">International Building Performance Simulation Association</a>.
       </p>
       </html>"));
 end Acknowledgements;

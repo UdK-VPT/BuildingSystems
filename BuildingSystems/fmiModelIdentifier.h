@@ -1,0 +1,4 @@
+#ifndef FMI_MODELIDENTIFIER_H 
+#define FMI_MODELIDENTIFIER_H 
+#define MODEL_IDENTIFIER BuildingSystems_Applications_HeatingSystems_SolarHeatingSystem 
+#endif 
