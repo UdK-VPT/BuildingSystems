@@ -12,9 +12,9 @@ This library is still under heavy development.
 A release will be published when it is done.
 
 ## License
-The Modelica BuildingSystems library is available under the terms of the Modelica License 2.
-A HTML copy of the license is available at
-[BuildingSystems/LICENSE.html](https://github.com/UdK-VPT/BuildingSystems/blob/master/LICENSE.html).
+The Modelica BuildingSystems library is available under the terms of the 3-clause BSD license.
+A copy of the license is available at
+[BuildingSystems/LICENSE.md](https://github.com/UdK-VPT/BuildingSystems/blob/master/LICENSE.md).
 
 ## Development and contribution
 You may report any issues by using the [Issues](https://github.com/UdK-VPT/BuildingSystems/issues) button.  
