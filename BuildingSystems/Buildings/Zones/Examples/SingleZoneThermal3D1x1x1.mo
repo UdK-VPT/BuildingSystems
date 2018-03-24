@@ -20,35 +20,29 @@ model SingleZoneThermal3D1x1x1
     angleDegAzi=90.0,
     angleDegTil=90.0,
     redeclare Construction constructionData,
-    nNodes={2,2}) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={-28,0})));
+    nNodes={2,2})
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-28,0})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes roof(
     height=1.0,
     width=1.0,
     angleDegAzi=180.0,
     angleDegTil=90.0,
     redeclare Construction constructionData,
-    nNodes={2,2}) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=90,
-        origin={0,28})));
+    nNodes={2,2})
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,28})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor(
     height=1.0,
     width=1.0,
     angleDegAzi=0.0,
     angleDegTil=90.0,
     redeclare Construction constructionData,
-    nNodes={2,2}) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={0,-28})));
+    nNodes={2,2})
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-28})));
   BuildingSystems.Buildings.Ambient ambient(
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile,
     nSurfaces=nSurfaces)
     annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
-  BuildingSystems.Buildings.Zones.Examples.ZoneAirvolume3D1x1 zone(
+  BuildingSystems.Buildings.Zones.Examples.ZoneAirvolume3D1x1x1 zone(
     nAirElements = 1,
     V=1.0*1.0*1.0,
     nConstructions=6)
@@ -67,21 +61,16 @@ model SingleZoneThermal3D1x1x1
     annotation (Placement(transformation(extent={{18,-10},{38,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface9
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={34,0})));
-  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1 annotation (
-      Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        origin={-34,0},
-        rotation=180)));
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-34,0},rotation=180)));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
     height=1.0,
     width=1.0,
     angleDegAzi=90.0,
     angleDegTil=90.0,
     redeclare Construction constructionData,
-    nNodes={2,2}) annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=180,
-        origin={-20,-20})));
+    nNodes={2,2})
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-20,-20})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
     height=1.0,
     width=1.0,
@@ -90,11 +79,8 @@ model SingleZoneThermal3D1x1x1
     redeclare Construction constructionData,
     nNodes={2,2})
     annotation (Placement(transformation(extent={{10,10},{30,30}})));
-  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface2 annotation (
-      Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        origin={-26,-20},
-        rotation=180)));
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface2
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-26,-20},rotation=180)));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface3
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={26,20})));
 equation
