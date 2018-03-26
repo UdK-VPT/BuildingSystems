@@ -73,18 +73,12 @@ equation
 
   PNet = PCharge - PLoad;
 
-  PChargeEff = if PNet > 0.0 and EAva > c*E_nominal then k*(h2-h1)
-               elseif PNet > 0.0 and EAva <= c*E_nominal then 0.5 * (1.0 - Modelica.Math.tanh(100000.0*(SOC-1.0)))
-                 * BuildingSystems.Utilities.SmoothFunctions.softcut_upper(PNet*etaCharge,PCharge_max,0.001)
-               else 0.0;
+  PChargeEff = BuildingSystems.Utilities.Math.Functions.smoothLimit(0.5*(1.0-Modelica.Math.tanh(100000.0*(SOC-1.0)))*PNet*etaCharge,0.0,PCharge_max,0.001);
 
-  PLoadEff = if PNet <= 0.0 and EAva < 0.0 then k*(h2-h1)
-             elseif PNet <= 0.0 and EAva >= 0.0 then 0.5 * (1.0 + Modelica.Math.tanh(100000.0*(SOC-1.1*SOC_min)))
-               * BuildingSystems.Utilities.SmoothFunctions.softcut_upper(-PNet/etaLoad,PLoad_max,0.001)
-            else 0.0;
+  PLoadEff = BuildingSystems.Utilities.Math.Functions.smoothLimit(-0.5*(1.0+Modelica.Math.tanh(100000.0*(SOC-1.0*SOC_min)))*PNet/etaLoad,0.0,PLoad_max,0.001);
 
-  PGrid = if PNet > 0.0 then PNet - PChargeEff/etaCharge
-    else PNet + PLoadEff*etaLoad;
+  PGrid = if PNet > 0.0 then PNet - PChargeEff/etaCharge else PNet + PLoadEff*etaLoad;
+
     annotation (defaultComponentName="battery", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
       Rectangle(extent={{-60,60},{60,-60}},
         lineColor={215,215,215},
