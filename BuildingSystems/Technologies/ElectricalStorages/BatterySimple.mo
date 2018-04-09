@@ -37,7 +37,7 @@ model BatterySimple
     annotation (Dialog(tab="Initialization"));
   final parameter Real c(unit="1") = batteryData.c
     "Capacity relation available to bound energy";
-  final parameter Real kstar(unit="1/s") = batteryData.kstar
+  final parameter Real k(unit="1/s") = batteryData.k
     "Battery rate";
   Modelica.SIunits.Power PChargeEff
     "Effective power of the electrical source";
@@ -56,7 +56,6 @@ model BatterySimple
     start = E_nominal * SOC_start)
     "Total charge of the battery";
 protected
-  final parameter Real k(unit="1/s") = c*(1-c)*kstar;
   Modelica.SIunits.Energy h1
     "Helping variable 1";
   Modelica.SIunits.Energy h2

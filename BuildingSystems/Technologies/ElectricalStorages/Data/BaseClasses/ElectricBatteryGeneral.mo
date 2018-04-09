@@ -8,7 +8,7 @@ record ElectricBatteryGeneral
     "Minimal accepted charge level (SOC)";
   parameter Real c(unit="1")
     "Capacity relation available to bound energy";
-  parameter Real kstar(unit="1/s")
+  parameter Real k(unit="1/s")
     "Battery rate";
   parameter Modelica.SIunits.Efficiency etaCharge
     "Charge efficiency";

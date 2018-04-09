@@ -4,7 +4,7 @@ within BuildingSystems.Technologies.ElectricalStorages.Data.LithiumIon;
     U_nominal = 400.0,
     SOC_min = 0.0,
     c = 0.4,
-    kstar = 8.0,
+    k = 8.0/3600.0,
     etaCharge = 0.92,
     etaLoad = 0.92,
     fDis = 0.1/(30.*24.0*3600.0),
