@@ -1,0 +1,4 @@
+# A pip requirements file
+# the following packages are required to build the tutorial
+# https://pip.pypa.io/en/latest/user_guide/#requirements-files
+sphinxcontrib-bibtex
