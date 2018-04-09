@@ -7,8 +7,12 @@ Welcome to BuildingSystems's documentation!
 ===========================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :numbered:
+   :maxdepth: 3
+
+   introduction
+   simpleBuildingModel
+   multiZoneModelling
 
 
 
