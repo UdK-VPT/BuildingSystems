@@ -12,5 +12,5 @@ User guide BuildingSystems
 
 .. rubric:: References
 
-.. bibliography:: refs.bib
+.. bibliography:: references.bib
    :all:
