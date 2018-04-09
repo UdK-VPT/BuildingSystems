@@ -1,10 +1,6 @@
-.. BuildingSystems documentation master file, created by
-   sphinx-quickstart on Mon Apr  9 11:50:07 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to BuildingSystems's documentation!
-===========================================
+==========================
+User guide BuildingSystems
+==========================
 
 .. toctree::
    :numbered:
@@ -14,11 +10,9 @@ Welcome to BuildingSystems's documentation!
    simpleBuildingModel
    multiZoneModelling
 
+.. only:: html
 
+   .. rubric:: References
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. bibliography:: references.bib
+   :all:
