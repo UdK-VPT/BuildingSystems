@@ -46,7 +46,8 @@ thumbs.db
 *.ppt
 *.pptx
 #
-# Ignore some LaTeX files
+# Ignore docs and LaTeX output
+docs/build/
 *.aux
 *.log
 *.synctex.gz
