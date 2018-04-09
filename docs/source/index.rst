@@ -10,9 +10,7 @@ User guide BuildingSystems
    simpleBuildingModel
    multiZoneModelling
 
-.. only:: html
+.. rubric:: References
 
-   .. rubric:: References
-
-.. bibliography:: references.bib
+.. bibliography:: refs.bib
    :all:
