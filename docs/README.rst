@@ -1,19 +1,42 @@
-This directory contains the files that are required to
-generate the pdf and html versions of the tutorial.
-The source files are in the directory ``source``.
+============================
+Building with Read-The-Docs:
+============================
 
-To generate the tutorial, type
+Everything is configured already, so it should work automatically!
+The admin pages are here:
+- https://readthedocs.org/projects/buildingsystems/
+- https://readthedocs.org/projects/buildingsystems/builds/
 
-.. code-block::
+The output is here:
+- HTML: http://buildingsystems.readthedocs.io/en/latest/
+- PDF: https://media.readthedocs.org/pdf/buildingsystems/latest/buildingsystems.pdf
 
-   make latex
+=================
+Building locally:
+=================
 
-or if you don't have LaTeX, you can try to run
+To build locally, one needs Python, Sphinx, LaTeX, sphinxcontrib-bibtex and Make.
+The recommended way is to install Anaconda, the latest release from:
+https://www.anaconda.com/download/
+Please use Python 3.6, 64 bit!
 
-.. code-block::
+After installing, start the Anaconda Prompt and install all dependencies by running:
 
+.. code-block:: ruby
+
+   conda update conda
+   conda config --append channels conda-forge
+   conda install future sphinx sphinxcontrib-bibtex make
+   conda list 
+
+All tools that are required to generate the HTML and PDF are now installed!
+Open the Anaconda prompt and run
+
+.. code-block:: ruby
+
+   cd BuildingSystems\docs
    make html
+   make pdf
 
-to generate an html version.
-
-The output will be in the folder ``build``.
+The output will be generated in ``BuildingSystems\docs\build``.
+For viewing the pdf on Windows, [SumatraPDF](https://www.sumatrapdfreader.org/download-free-pdf-viewer.html) is recommended (instead of Acrobat Reader), because it does not lock the file.
