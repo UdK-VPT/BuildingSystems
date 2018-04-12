@@ -27,6 +27,7 @@ After installing, start the Anaconda Prompt and install all dependencies by runn
 .. code-block:: ruby
 
    conda update conda
+   conda update anaconda
    conda config --append channels conda-forge
    conda install future sphinx sphinxcontrib-bibtex make
    conda list 
