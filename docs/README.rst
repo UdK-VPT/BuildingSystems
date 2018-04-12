@@ -4,12 +4,14 @@ Building with Read-The-Docs:
 
 Everything is configured already, so it should work automatically!
 The admin pages are here:
-- https://readthedocs.org/projects/buildingsystems/
-- https://readthedocs.org/projects/buildingsystems/builds/
+
+* https://readthedocs.org/projects/buildingsystems/
+* https://readthedocs.org/projects/buildingsystems/builds/
 
 The output is here:
-- HTML: http://buildingsystems.readthedocs.io/en/latest/
-- PDF: https://media.readthedocs.org/pdf/buildingsystems/latest/buildingsystems.pdf
+
+* HTML: http://buildingsystems.readthedocs.io/en/latest/
+* PDF: https://media.readthedocs.org/pdf/buildingsystems/latest/buildingsystems.pdf
 
 =================
 Building locally:
