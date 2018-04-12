@@ -24,7 +24,7 @@ in combination with a district heating network (compare with figure 1.1).
 .. figure:: /images/SDE2014TeamRooftop.*
    :scale: 60 %
 
-   The Rooftop building, which is designed for a placement on the roof of a Berlin old building (UdK Berlin/TU Berlin
+   The Rooftop building, which is designed for placement on the roof of a Berlin old building (UdK Berlin/TU Berlin
    contribution to the competition Solar Decathlon Europe 2014)
 
 **Level of detail (LOD) 1D**: In this case the adaptive building model uses more spatially resolved algorithms and models
