@@ -1,8 +1,8 @@
 ============================
 Building with Read-The-Docs:
 ============================
-
 Everything is configured already, so it should work automatically!
+
 The admin pages are here:
 
 * https://readthedocs.org/projects/buildingsystems/
@@ -13,10 +13,10 @@ The output is here:
 * HTML: http://buildingsystems.readthedocs.io/en/latest/
 * PDF: https://media.readthedocs.org/pdf/buildingsystems/latest/buildingsystems.pdf
 
+
 =================
 Building locally:
 =================
-
 To build locally, one needs Python, Sphinx, LaTeX, sphinxcontrib-bibtex and Make.
 The recommended way is to install Anaconda, the latest release from:
 https://www.anaconda.com/download/
