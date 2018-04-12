@@ -5,7 +5,7 @@ Multi-zone building modeling
 
 In this chapter the application of the BuildingSystems library for multi-zone building modeling is demonstrated.
 
-For this purpose a thermal building model of the *Thermal Model House* (http://www.thermisches-modellhaus.de) with
+For this purpose, a thermal building model of the *Thermal Model House* (http://www.thermisches-modellhaus.de) with
 two thermal zones shall be created:
 
 .. figure:: /images/ThermalModelHouse.*
