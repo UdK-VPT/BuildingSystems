@@ -50,7 +50,7 @@ model Building1Zone0DDistrict
     (length-thicknessFac)*(width-thicknessFac)
     "Roof area of the building";
   final parameter Modelica.SIunits.Area AFac =
-    (2.0*(length-thicknessFac)+2.0*(width-thicknessFac))*(heightSto-thicknessSla)*nSto*(1.0-fAreaAdjBld)-sum(AWin)
+    (2.0*(length-thicknessFac)+2.0*(width-thicknessFac))*heightSto*nSto*(1.0-fAreaAdjBld)-sum(AWin)
     "Opaque facade area of the building";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValFac = 1.0
     "Mean heat loss coefficient of the opaque building facade"
@@ -70,7 +70,7 @@ model Building1Zone0DDistrict
   parameter Modelica.SIunits.Length heightSto = 3.0
     "Brutto height of one storey"
     annotation(Dialog(tab = "General", group = "Geometry building"));
-  parameter Integer nSto = 2
+  parameter Real nSto = 2.0
     "Number of storeys"
     annotation(Dialog(tab = "General", group = "Geometry building"));
   final parameter Modelica.SIunits.Area AFloorSpace = width*length*nSto

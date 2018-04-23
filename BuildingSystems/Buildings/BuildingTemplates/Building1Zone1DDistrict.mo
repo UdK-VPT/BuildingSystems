@@ -9,7 +9,7 @@ model Building1Zone1DDistrict
   final AInteriorWalls = (2.0 * integer(width/sqrt(ARoom) +0.5) * length + 2.0 * integer(length/sqrt(ARoom)+0.5) * width) * nSto);
   parameter Modelica.SIunits.Length heightSto = 3.0
     "Height of one storey";
-  parameter Integer nSto(min = 1) = 2
+  parameter Real nSto = 2.0
     "Number of storeys";
   parameter Modelica.SIunits.Area ARoom = 4.0 * 4.0
     "Mean floor area of a room";
