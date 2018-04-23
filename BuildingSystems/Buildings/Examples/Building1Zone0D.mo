@@ -63,6 +63,13 @@ model Building1Zone0D
     k=0.5)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={24,-14})));
 
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundTemp1(
+    T=273.15 + 10.0)
+    annotation (Placement(transformation(extent={{-24,0},{-16,8}})));
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundTemp2(
+    T=273.15 + 10.0)
+    annotation (Placement(transformation(extent={{-24,-48},{-16,-40}})));
+
 equation
   connect(ambient1.toSurfacePorts, building1.toAmbientSurfacesPorts)
     annotation (Line(
@@ -114,6 +121,10 @@ equation
       points={{-22,-22},{-9,-22}},
       color={85,170,255},
       smooth=Smooth.None));
+  connect(groundTemp1.port, building1.toSolidHeatPorts[1])
+      annotation (Line(points={{-16,4},{-4,4},{-4,21}}, color={191,0,0}));
+  connect(groundTemp2.port, building2.toSolidHeatPorts[1])
+      annotation (Line(points={{-16,-44},{-4,-44},{-4,-27}}, color={191,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=31536000,Interval=3600),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/Building1Zone0D.mos" "Simulate and plot"),
@@ -130,6 +141,10 @@ based on a low-order building model
 </html>",
 revisions="<html>
 <ul>
+<li>
+April 23, 2018, by Christoph Nytsch-Geusen:<br/>
+Boundary condition for ground temperature added.
+</li>
 <li>
 September 21, 2017, by Christoph Nytsch-Geusen:<br/>
 New parameterisation of the building models.
