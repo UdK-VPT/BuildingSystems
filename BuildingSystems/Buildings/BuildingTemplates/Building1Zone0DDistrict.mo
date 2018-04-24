@@ -2,7 +2,7 @@ within BuildingSystems.Buildings.BuildingTemplates;
 model Building1Zone0DDistrict
   "Low-order building model for district simulation"
   extends BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D(
-    final VAir = f_W_BGF*length*width*heightSto*(nSto-thicknessSla),
+    final VAir = f_W_BGF*length*width*(heightSto-thicknessSla)*nSto,
     final AAmb = ARoo+AFac,
     final AGro = (length-thicknessFac)*(width-thicknessFac),
     final AInn = 2.0*length*width*(nSto-1) // area of interior ceilings
