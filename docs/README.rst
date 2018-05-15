@@ -46,6 +46,7 @@ To generate the HTML and PDF output, open the Anaconda prompt again, and run
    make
    make html
    make latexpdf
+   make linkcheck
 
 The output will be generated in ``BuildingSystems\docs\build``.
 For viewing the pdf on Windows, `SumatraPDF`_ is recommended (instead of Acrobat Reader), because it does not lock the file.
