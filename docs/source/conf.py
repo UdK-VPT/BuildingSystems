@@ -47,8 +47,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'BuildingSystems'
-copyright = '2018, Nytsch-Geusen'
-author = 'Nytsch-Geusen'
+copyright = 'Berlin University of the Arts'
+author = 'Christoph Nytsch-Geusen'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -91,6 +91,11 @@ html_theme = 'alabaster'
 #
 # html_theme_options = {}
 
+# The name of an image file (relative to this directory) to place at the top
+# of the sidebar.
+#
+html_logo = './_static/Logo_UdK_Berlin.png'
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
@@ -123,7 +128,7 @@ htmlhelp_basename = 'BuildingSystemsdoc'
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     #
-    # 'papersize': 'letterpaper',
+    'papersize': 'a4paper',
 
     # The font size ('10pt', '11pt' or '12pt').
     #
@@ -136,15 +141,41 @@ latex_elements = {
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
+
+    'maketitle': r'''
+\thispagestyle{empty}
+\begin{center}
+\sffamily
+\vspace{2cm}
+\includegraphics{Logo_UdK_Berlin.pdf}\\
+\vspace{4cm}
+\huge
+Modelica library BuildingSystems\\
+\vspace{\baselineskip}
+User guide\\
+\vspace{3\baselineskip}
+\large Authors: Christoph Nytsch-Geusen\\
+\vspace{2\baselineskip}
+\today
+\vfill{}
+\hrule
+\small{Copyright \textcopyright{} 2014 -- 2018 Berlin University of the Arts. All rights reserved.}
+\end{center}
+''',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'BuildingSystems.tex', 'BuildingSystems Documentation',
-     'Nytsch-Geusen', 'manual'),
+    (master_doc, 'BuildingSystems.tex', project,
+     author, 'manual'),
 ]
+
+# The name of an image file (relative to this directory) to place at the top of
+# the title page.
+#
+latex_logo = './_static/Logo_UdK_Berlin.pdf'
 
 
 # -- Options for manual page output ---------------------------------------
