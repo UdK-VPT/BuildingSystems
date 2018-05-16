@@ -8,10 +8,10 @@ partial model ConstructionGeneral
     "Height"
     annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi = 0.0
-    "Azimuth angle"
+    "Azimuth angle (south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg)"
     annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil = 90.0
-    "Tilt angle"
+    "Tilt angle (bottom: 0 deg, perpendicular: 90 deg, ceiling: 180 deg)"
     annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Modelica.SIunits.Length zLevel = 0.0
     "Vertical position"
