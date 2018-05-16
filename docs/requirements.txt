@@ -1,4 +1,6 @@
 # pip requirements file with packages required to build this tutorial
 # https://pip.pypa.io/en/latest/user_guide/#requirements-files
 #
+sphinx
 sphinxcontrib-bibtex
+sphinx_rtd_theme

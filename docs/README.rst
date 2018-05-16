@@ -34,7 +34,7 @@ To install the dependencies, open the Anaconda Prompt and run
 
 .. code-block:: ruby
 
-   conda install sphinx sphinxcontrib-bibtex make
+   conda install sphinx sphinxcontrib-bibtex sphinx_rtd_theme make
    conda list 
    
 All tools that are required to generate the HTML and PDF are now installed!
