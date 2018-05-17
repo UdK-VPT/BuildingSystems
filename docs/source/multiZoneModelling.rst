@@ -13,7 +13,7 @@ two thermal zones shall be created:
 
    Thermal Model house: A portable experimental test facility for building physics studies, developed by UdK Berlin.
 
-The *Thermal Model House* (THM) is a portable experimental test facility with a simple geometry and a compact size
+The *Thermal Model House* (TMH) is a portable experimental test facility with a simple geometry and a compact size
 of approximately 1 m length, 0.5 m depth and 0.5 m height. This small thermal box is able to reproduce
 different phenomena of building climatization within physical experiments. Due to its manifold configuration
 options, experiments about the energy balance of rooms, about the heat and air transport processes within
@@ -26,7 +26,7 @@ box into two different thermal zones. These zones can be separately heated or co
 heating surfaces on the bottom and cooling surfaces on the ceiling. Exactly this configuration
 shall be modelled in the present case.
 
-The modelling and simulation process is described using the Modelica simulation environment Dymola (version Dymola 2016).
+The modelling and simulation process is described using the Modelica simulation environment Dymola (version Dymola 2018 FD01).
 First of all the Modelica library *BuildingSystems* has to be loaded into Dymola. After that, the library
 will occur in the library tree in addition to the other present Modelica libraries.
 
