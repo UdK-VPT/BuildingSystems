@@ -18,10 +18,10 @@ of approximately 1 m length, 0.5 m depth and 0.5 m height. This small thermal bo
 different phenomena of building climatization within physical experiments. Due to its manifold configuration
 options, experiments about the energy balance of rooms, about the heat and air transport processes within
 rooms, about ventilation, heating and cooling of buildings as well as about building control are enabled.
-The THM is being developed at the Institute of Architecture and Urban Planning at UdK Berlin.
+The TMH is being developed at the Institute of Architecture and Urban Planning at UdK Berlin.
 It is used for the education of architect and engineering students and also for research.
 
-One configuration of the THM works with a inner partition wall, which divides the air volume of the
+One configuration of the TMH works with a inner partition wall, which divides the air volume of the
 box into two different thermal zones. These zones can be separately heated or cooled by individual
 heating surfaces on the bottom and cooling surfaces on the ceiling. Exactly this configuration
 shall be modelled in the present case.
@@ -131,14 +131,14 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
 
 1. Geometrical parameters
 
-   The THM has a strongly simplified geometry. In our problem each thermal zone describes one half of the THM, which has in total an inner dimension
+   The TMH has a strongly simplified geometry. In our problem each thermal zone describes one half of the TMH, which has in total an inner dimension
    of 1.0 m x 0.5 m x 0.5 m. So each opaque construction element (walls, bottoms and ceilings) has a height of 0.5 m and a width of 0.5 m.
    Double-click on each component and fill in these values in the *General tab* in the *Geometry* group.
 
    Both thermal zones have an air volume of 0.5 m x 0.5 m x 0.5 m = 0.125 m3. The height of the zone is 0.5 m.
    Fill in these values into the zone model's *zone1* and *zone2*.
 
-   Each of the windows of the THM has a width of 0.378 m and a height of 0.33 m, which leads to a window area of approx. 0.125 m2.
+   Each of the windows of the TMH has a width of 0.378 m and a height of 0.33 m, which leads to a window area of approx. 0.125 m2.
    The thickness of the window pane is 0.003 m. Assign these three values to both window models.
 
    Because *window1* is enclosed in *wall6* and *window2* in *wall5* the area of the window models has to be communicated from the window to the wall models.
@@ -181,7 +181,7 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
    * Definition of a construction type
 
      Extend a child record from the general parent record for opaque constructions
-     *BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction* and rename it to *Construction1THM*. Then
+     *BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction* and rename it to *Construction1TMH*. Then
      include it in the package *ThermalModelHouse*.
 
      .. figure:: /images/TutorialMZM07a.*
@@ -189,12 +189,12 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
 
         Definition of a construction type based on template for opaque constructions
 
-     The *Construction1THM* shall have three layers. The materials of the three layers are 0.006 m wood, 0.030 m insulation
+     The *Construction1TMH* shall have three layers. The materials of the three layers are 0.006 m wood, 0.030 m insulation
      and again 0.009 m wood. The layer order is counted from inside (zone) to outside (building ambient). The
      BuildingSystems library contains in the package *BuildingSystems.HAM.Data.MaterialProperties*
      a database with pre-defined thermal and hygro-thermal material property sets.
 
-     Now double-click on the construction type record *Construction1THM* left in the package browser and adapt the parameterization
+     Now double-click on the construction type record *Construction1TMH* left in the package browser and adapt the parameterization
      of the construction direct in the Modelica source code editor of Dymola with the help of the pre-defined materials:
 
      .. figure:: /images/TutorialMZM07.*
@@ -204,15 +204,15 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
 
      .. code-block:: modelica
 
-        record Construction1THM
-          "Outer constructions of the THM"
+        record Construction1TMH
+          "Outer constructions of the TMH"
           extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
             nLayers=3,
             thickness={0.006,0.030,0.009},
             material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Wood(),
             BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation(),
             BuildingSystems.HAM.Data.MaterialProperties.Thermal.Wood()});
-        end Construction1THM;
+        end Construction1TMH;
 
    * Assignment of an construction type
 
@@ -227,13 +227,13 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
      .. code-block:: modelica
 
         BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
-          redeclare Construction1THM constructionData,
+          redeclare Construction1TMH constructionData,
           width=0.5,
           height=0.5,
           angleDegAzi=90.0,
           angleDegTil=90.0);
 
-  * Create in the same manner for the partition wall a second *construction2THM*,
+  * Create in the same manner for the partition wall a second *construction2TMH*,
     which only consists in one layer of wood with a thickness of 0.009 m and assign it afterwards to *wall7*.
 
 Configure the system model and set its boundary conditions
@@ -242,7 +242,7 @@ Configure the system model and set its boundary conditions
 .. figure:: /images/TutorialMZM09.*
    :scale: 80 %
 
-   System model of the THM
+   System model of the TMH
 
 1. Create a new model with the name *SystemModel* and insert it into the package *ThermalModelHouse*.
 #. Instantiate the previous defined building model within the system model and rename it to *building*.
@@ -296,4 +296,4 @@ Simulate the system model
   .. figure:: /images/TutorialMZM10.*
      :scale: 100 %
 
-     Simulation results of both the THM over 10 days, location San Francisco (USA)
+     Simulation results of both the TMH over 10 days, location San Francisco (USA)
