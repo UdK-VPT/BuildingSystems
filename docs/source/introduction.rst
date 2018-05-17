@@ -27,7 +27,7 @@ in combination with a district heating network (compare with figure 1.1).
    The Rooftop building, which is designed for placement on the roof of a Berlin old building (UdK Berlin/TU Berlin
    contribution to the competition Solar Decathlon Europe 2014)
 
-**Level of detail (LOD) 1D**: In this case the adaptive building model uses more spatially resolved algoriTMHs and models
+**Level of detail (LOD) 1D**: In this case the adaptive building model uses more spatially resolved algorithms and models
 and also more simulation time for a single building. A typical application are multi-zone-building models,
 which calculate for each thermal zone the heating and cooling energy demand, the air temperatures and air moistures and also
 the air exchange between the single thermal zones of a complex building. E.g. the Rooftop building of figure 1.2 has
