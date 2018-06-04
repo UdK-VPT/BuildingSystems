@@ -245,7 +245,7 @@ package ThermalModelHouse
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
       prescribedAirchange=true,
       calcIdealLoads=true,
-      useAirPathes=false)
+      useAirPaths=false)
       annotation (Placement(transformation(extent={{10,-10},{30,10}})));
     BuildingSystems.Buildings.Ambient ambient(
       redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile,
