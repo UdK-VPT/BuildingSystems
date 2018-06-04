@@ -1,4 +1,4 @@
-within BuildingSystems.Buildings.Airpathes;
+within BuildingSystems.Buildings.Airpaths;
 model AirpathConstant
   "Model of an air path with an constant opening"
   extends BuildingSystems.Buildings.BaseClasses.AirpathGeneral(

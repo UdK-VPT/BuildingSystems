@@ -30,11 +30,11 @@ partial model BuildingTemplate
   parameter Boolean prescribedAirchange = true
     "Switch for air change calculation"
     annotation(HideResult = true, Dialog(tab="General",group="Air change"));
-  parameter Boolean useAirPathes = true
+  parameter Boolean useAirPaths = true
     "True: airpath calculation is possible; false: no airpath calculation"
     annotation(HideResult = true,Dialog(tab = "General", group = "Air change"));
-  parameter Integer nAirpathes = 0
-    "Number of air pathes to the building ambient"
+  parameter Integer nAirpaths = 0
+    "Number of air paths to the building ambient"
     annotation(Dialog(tab="General",group="Air change"));
   parameter Boolean calcHygroThermal = false
     "Switch for hygro-thermal calculation"
@@ -90,9 +90,9 @@ partial model BuildingTemplate
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_heating[nZones] if calcIdealLoads
     "Heating power of each thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={80,-122}),  iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={90,-110})));
-  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAmbientAirpathPorts[nAirpathes](
-    redeclare each final package Medium = Medium) if useAirPathes
-    "Interfaces for air pathes to the building ambient"
+  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAmbientAirpathPorts[nAirpaths](
+    redeclare each final package Medium = Medium) if useAirPaths
+    "Interfaces for air paths to the building ambient"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=90,origin={180,1}),iconTransformation(extent={{-40,-90},{40,-70}},rotation=270,origin={170,-20})));
   BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toAmbientSurfacesPorts[nSurfacesAmbient]
     "Interfaces between outside building surfaces to surfaces of the building ambient"

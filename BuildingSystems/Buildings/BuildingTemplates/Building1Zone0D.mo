@@ -4,8 +4,8 @@ model Building1Zone0D
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
     nZones = 1,
     final prescribedAirchange = true,
-    final useAirPathes = false,
-    final nAirpathes = 0,
+    final useAirPaths = false,
+    final nAirpaths = 0,
     final calcHygroThermal = false,
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const,
     final alphaConstant = 15.0,

@@ -4,8 +4,8 @@ model AirvolumeCompressible0D
   extends BuildingSystems.Buildings.BaseClasses.AirvolumeGeneral(
   redeclare final package Medium = BuildingSystems.Media.Air,
   final nAirElements = 1);
-  parameter Integer nAirpathes = 0
-    "Number of air pathes"
+  parameter Integer nAirpaths = 0
+    "Number of air paths"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
   parameter Integer nHeatSources = 0
     "Number of heat convective sources"
@@ -13,7 +13,7 @@ model AirvolumeCompressible0D
   parameter Integer nMoistureSources = 0
     "Number of moisture sources"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
-  parameter Modelica.SIunits.Length heightAirpath[nAirpathes]
+  parameter Modelica.SIunits.Length heightAirpath[nAirpaths]
     "Vertical height of each air path"
     annotation(Dialog(tab="General",group="Air volume geometry"));
   parameter Modelica.SIunits.Length height = 1.0
@@ -32,15 +32,15 @@ model AirvolumeCompressible0D
     "Mass of liquid water";
   Modelica.SIunits.Pressure pMean
     "Mean air pressure in the air volume";
-  Modelica.SIunits.EnthalpyFlowRate H_flow_airpath[nAirpathes]
+  Modelica.SIunits.EnthalpyFlowRate H_flow_airpath[nAirpaths]
     "Enthalpy flow rate through each air path";
   Modelica.SIunits.EnthalpyFlowRate H_flow_moistureSource[nMoistureSources]
     "Enthalpy flow rate by each moisture source";
-  Modelica.SIunits.MassFlowRate m_flow_H2O_airpath[nAirpathes]
+  Modelica.SIunits.MassFlowRate m_flow_H2O_airpath[nAirpaths]
     "Mass flow rate of water vapour through each air path";
-  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpathes](
+  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpaths](
     redeclare each final package Medium=Medium)
-    "Flow ports of the air pathes"
+    "Flow ports of the air paths"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={0,-80},rotation=180), iconTransformation(extent={{-40,-90},{40,-70}})));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
     "Heat ports of the convective heat sources"
@@ -100,7 +100,7 @@ equation
 
   //Mass balance of water vapor in the air
   der(mH2OAir) = sum(toSurfacePorts.moisturePort.m_flow) // water vaper from moisture transfer of surfaces
-    + sum(m_flow_H2O_airpath) // water vapor within air mass flows through air pathes
+    + sum(m_flow_H2O_airpath) // water vapor within air mass flows through air paths
     + (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5) * sum(moistureSourcesPorts.m_flow) // water vapor from moisture sources
     + BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq; // evaporated water from liquid reservoir
 
@@ -112,7 +112,7 @@ equation
   der(mH2OLiq) = (1.0 - (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5)) * sum(moistureSourcesPorts.m_flow) // water vapor surplus from moisture sources if relative moisture becomes close to 1
     - BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq; // evaporated water which leaves the liquid reservoir
 
-  for i in 1:nAirpathes loop
+  for i in 1:nAirpaths loop
     // Enthalpy flow through each air path
     airpathPorts[i].h_outflow = Medium.specificEnthalpy_pTX(p=100000,T=T[1],X={x[1],1-x[1]});
     H_flow_airpath[i] = airpathPorts[i].m_flow * actualStream(airpathPorts[i].h_outflow);

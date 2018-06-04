@@ -16,7 +16,7 @@ model ZoneTemplateAirvolumeMixed
   parameter Real radiationportionIdealCooling = 0.5
     "Radiation portion of the ideal cooling"
     annotation(Dialog(tab="General",group="Ideal heating and cooling"));
-  parameter Modelica.SIunits.Length heightAirpath[nAirpathesInternal]=fill(0.0,nAirpathesInternal)
+  parameter Modelica.SIunits.Length heightAirpath[nAirpathsInternal]=fill(0.0,nAirpathsInternal)
     "Vertical height of each air path in the zone"
     annotation(Dialog(tab="General",group="Zone geometry"));
   parameter Boolean heatSources = false
@@ -54,7 +54,7 @@ model ZoneTemplateAirvolumeMixed
     x_start={x_start},
     nHeatSources=nHeatSourcesTotal,
     nMoistureSources=nMoistureSources,
-    nAirpathes=nAirpathesInternal)
+    nAirpaths=nAirpathsInternal)
     "Air volume model"
     annotation (Placement(transformation(extent={{-24,64},{24,16}})));
   BuildingSystems.Buildings.BaseClasses.RelationRadiationConvection relRadConHeating(
@@ -114,13 +114,13 @@ model ZoneTemplateAirvolumeMixed
   Modelica.Blocks.Math.Gain ac2mf(k=-rho_nominal*airvolume.V/3600.0) if prescribedAirchange
     "Transformation from air change in 1/h into air mass flow rate in kg/s"
     annotation (Placement(transformation(extent={{76,14},{68,22}})));
-  BuildingSystems.Buildings.Airpathes.AirpathPrescribedMassFlowRate airpathIn(
+  BuildingSystems.Buildings.Airpaths.AirpathPrescribedMassFlowRate airpathIn(
     use_m_flow_in=true,
     use_T_in=true,
     use_x_in=true) if prescribedAirchange
     "Calculates the mass flow rate which is entering the zone"
     annotation (Placement(transformation(extent={{36,4},{56,24}})));
-  Airpathes.AirpathPrescribedMassFlowRate airpathOut(
+  Airpaths.AirpathPrescribedMassFlowRate airpathOut(
     x = 0.005,
     use_m_flow_in = true,
     T = 293.15) if prescribedAirchange
@@ -135,7 +135,7 @@ equation
     connect(surfaces.toAirPorts[i],airvolume.toSurfacePorts[i]);
   end for;
   if not prescribedAirchange then
-    for i in 1:nAirpathes loop
+    for i in 1:nAirpaths loop
       connect(airpathPorts[i], airvolume.airpathPorts[i]);
     end for;
   end if;

@@ -61,7 +61,7 @@ equation
     flowPort_Z1.moist.moistMflow + flowPort_Z2.moist.moistMflow
     + (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5) * moistureSourcesMflow
     + BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq;
-    // 1. water vaper from moisture transfer of surfaces + water vapor within air mass flows through air pathes
+    // 1. water vaper from moisture transfer of surfaces + water vapor within air mass flows through air paths
     // 2. water vapor from moisture sources
     // 3. evaporated water from liquid reservoir
 

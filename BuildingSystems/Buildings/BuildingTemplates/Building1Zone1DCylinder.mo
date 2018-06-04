@@ -4,9 +4,9 @@ model Building1Zone1DCylinder
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
     nZones = 1,
     final prescribedAirchange = true,
-    final useAirPathes = false,
+    final useAirPaths = false,
     final calcHygroThermal = false,
-    final nAirpathes = 0,
+    final nAirpaths = 0,
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
     final alphaConstant = 0.0,
     surfacesToAmbient(nSurfaces=nSeg+1),

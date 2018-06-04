@@ -22,12 +22,12 @@ model Ambient
   parameter Boolean calcLwRad = true
     "True: long-wave radiation exchange on building surfaces is considered; false: no long-wave radiation exchange"
     annotation(HideResult = true,Dialog(tab = "General", group = "Surfaces"));
-  parameter Integer nAirpathes = 0
-    "Number of airpathes to the building"
-    annotation(HideResult=true, Dialog(tab = "General", group = "Airpathes"));
-  parameter Modelica.SIunits.Length heightAirpath[nAirpathes] = fill(0.0,nAirpathes)
-    "Height of the airpathes to the building facades"
-     annotation(Dialog(tab = "General", group = "Airpathes"));
+  parameter Integer nAirpaths = 0
+    "Number of airpaths to the building"
+    annotation(HideResult=true, Dialog(tab = "General", group = "Airpaths"));
+  parameter Modelica.SIunits.Length heightAirpath[nAirpaths] = fill(0.0,nAirpaths)
+    "Height of the airpaths to the building facades"
+     annotation(Dialog(tab = "General", group = "Airpaths"));
   replaceable parameter BuildingSystems.Climate.WeatherData.WeatherDataFile weatherDataFile
     constrainedby BuildingSystems.Climate.WeatherData.WeatherDataFile
     "Weather data file for the location"
@@ -63,9 +63,9 @@ model Ambient
   BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacePorts[nSurfaces]
     "Climate boundary conditions for the building surfaces dependent on ambient surfaces"
     annotation (Placement(transformation(extent={{70,0},{90,80}}), iconTransformation(extent={{70,0},{90,80}})));
-  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAirpathPorts[nAirpathes](
+  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAirpathPorts[nAirpaths](
     redeclare each final package Medium = Medium)
-    "Climate boundary conditions for the building airpathes"
+    "Climate boundary conditions for the building airpaths"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=270,origin={94,0}),
       iconTransformation(extent={{-40,-90},{40,-70}},rotation=180,origin={30,10})));
   Modelica.SIunits.Pressure pGround=
@@ -238,7 +238,7 @@ equation
       annotation (Line(points={{52,11.8},{52,40},{80,40}},color={0,0,0},pattern=LinePattern.Solid,smooth=Smooth.None));
   end for;
   // Air path calculation
-  for i in 1:nAirpathes loop
+  for i in 1:nAirpaths loop
     toAirpathPorts[i].p = BuildingSystems.Buildings.Functions.pAir(pAirRef,TAirRef,heightAirpath[i],zRefTAir,gamma);
     toAirpathPorts[i].h_outflow = Medium.specificEnthalpy_pTX(p=100000, T=BuildingSystems.Buildings.Functions.TAir(TAirRef,heightAirpath[i],zRefTAir,gamma), X={xAir,1-xAir});
     toAirpathPorts[i].Xi_outflow[1] = xAir;

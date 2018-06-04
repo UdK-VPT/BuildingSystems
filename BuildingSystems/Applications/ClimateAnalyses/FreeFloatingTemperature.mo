@@ -6,7 +6,7 @@ model FreeFloatingTemperature
   model Location
     BuildingSystems.Buildings.Ambient ambient(
       nSurfaces=building.nSurfacesAmbient,
-      nAirpathes=building.nAirpathes)
+      nAirpaths=building.nAirpaths)
       annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
     BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building(
       AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0, // building shape: 4 m x 6 m x 2.8 m

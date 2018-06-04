@@ -1,4 +1,4 @@
 within BuildingSystems.Buildings;
-package Airpathes "Package with air path models"
+package Airpaths "Package with air path models"
   extends Modelica.Icons.VariantsPackage;
-end Airpathes;
+end Airpaths;

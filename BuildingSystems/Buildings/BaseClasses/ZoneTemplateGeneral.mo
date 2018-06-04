@@ -22,8 +22,8 @@ partial model ZoneTemplateGeneral
   parameter Integer nConstructions = 0
     "Number of constructions"
     annotation(HideResult = true, Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
-  parameter Integer nAirpathes = 0
-   "Number of external air pathes"
+  parameter Integer nAirpaths = 0
+   "Number of external air paths"
     annotation(HideResult = true, Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
   parameter Boolean prescribedAirchange = true
     "True: zone air change rate is prescribed by zone ambient; false: air path calculation"
@@ -46,9 +46,9 @@ partial model ZoneTemplateGeneral
     "Interfaces of the zone to the constructions"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},    rotation=180,origin={0,0}),
       iconTransformation(extent={{-20,-20},{20,20}})));
-  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpathes](
+  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpaths](
     redeclare each final package Medium = Medium) if not prescribedAirchange
-    "Interfaces of the zone to the air pathes"
+    "Interfaces of the zone to the air paths"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={-94,-60}, rotation=270),
       iconTransformation(extent={{-40,-10},{40,10}},rotation=180,origin={-60,110})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces(
@@ -67,8 +67,8 @@ protected
   // Note, that with following three lines it is assumed, that there is always at least ONE construction!
   parameter Integer nSurfaces = max(nConstructions,1)
     "Overall number of surfaces of the zone";
-  parameter Integer nAirpathesInternal = if prescribedAirchange then 2 else + nAirpathes
-    "Overall number of air pathes of the zone";
+  parameter Integer nAirpathsInternal = if prescribedAirchange then 2 else + nAirpaths
+    "Overall number of air paths of the zone";
   constant Modelica.SIunits.Density rho_nominal = 1.2
     "Air density under nominal conditions";
 equation

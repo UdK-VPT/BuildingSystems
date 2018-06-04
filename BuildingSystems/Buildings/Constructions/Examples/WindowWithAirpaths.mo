@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Constructions.Examples;
-model WindowWithAirpathes
-  "Window model with two airpathes under real weather data"
+model WindowWithAirpaths
+  "Window model with two airpaths under real weather data"
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Constructions.Windows.Window window(
     height=2.0,
@@ -12,12 +12,12 @@ model WindowWithAirpathes
     annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=1,
-    nAirpathes=2,
+    nAirpaths=2,
     heightAirpath={0.5,1.5},
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Zones.ZoneTemplateAirvolumeMixed zone(
-    nAirpathes=2,
+    nAirpaths=2,
     V=4*4*2.8,
     height=2.8,
     heightAirpath={0.5,1.5},
@@ -78,14 +78,14 @@ equation
   connect(window.airpathPortUp_2, zone.airpathPorts[2]) annotation (Line(points
         ={{1.8,4},{12,4},{12,20},{32,20},{32,11}}, color={0,127,255}));
   annotation(experiment(StartTime=0, StopTime=4500.0),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WindowWithAirPathes.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WindowWithAirPaths.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={
     Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
-    textString="Window model with two airpathes under real weather data")}),
+    textString="Window model with two airpaths under real weather data")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates a window model with two airpathes under real weather data.
+Example that simulates a window model with two airpaths under real weather data.
 </p>
 </html>",
 revisions="<html>
@@ -96,4 +96,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end WindowWithAirpathes;
+end WindowWithAirpaths;

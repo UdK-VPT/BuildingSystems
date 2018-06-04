@@ -8,7 +8,7 @@ model BuildingThermal4Zones1D
     nZones = 4,
     surfacesToAmbient(nSurfaces=12),
     convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
-    useAirPathes = false);
+    useAirPaths = false);
 
     record Construction1
       extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
@@ -32,7 +32,7 @@ model BuildingThermal4Zones1D
       heightAirpath={0.5,1.5,0.5,1.5},
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free,
       nConstructions=5,
-      nAirpathes=4)
+      nAirpaths=4)
       annotation (Placement(transformation(extent={{-50,30},{-30,50}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone2(
       V=3.0*3.0*3.0,
@@ -41,7 +41,7 @@ model BuildingThermal4Zones1D
       heightAirpath={0.5,1.5,0.5,1.5},
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free,
       nConstructions=5,
-      nAirpathes=4)
+      nAirpaths=4)
       annotation (Placement(transformation(extent={{30,30},{50,50}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone3(
       V=3.0*3.0*3.0,
@@ -50,7 +50,7 @@ model BuildingThermal4Zones1D
       heightAirpath={0.5,1.5,0.5,1.5},
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free,
       nConstructions=5,
-      nAirpathes=4)
+      nAirpaths=4)
       annotation (Placement(transformation(extent={{-50,-30},{-30,-10}})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone4(
       V=3.0*3.0*3.0,
@@ -59,7 +59,7 @@ model BuildingThermal4Zones1D
       heightAirpath={0.5,1.5,0.5,1.5},
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free,
       nConstructions=5,
-      nAirpathes=4)
+      nAirpaths=4)
       annotation (Placement(transformation(extent={{30,-30},{50,-10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
       redeclare Construction1 constructionData,
@@ -166,35 +166,35 @@ model BuildingThermal4Zones1D
       angleDegTil=90.0,
       redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={52,60})));
-    BuildingSystems.Buildings.Airpathes.AirpathConstant airpath1(
+    BuildingSystems.Buildings.Airpaths.AirpathConstant airpath1(
       mConstant=0.5,
       kConstant=0.1)
       annotation (Placement(transformation(extent={{-10,16},{10,36}})));
-    BuildingSystems.Buildings.Airpathes.AirpathConstant airpath2(
+    BuildingSystems.Buildings.Airpaths.AirpathConstant airpath2(
       mConstant=0.5,
       kConstant=0.1)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={22,12})));
-    BuildingSystems.Buildings.Airpathes.AirpathConstant airpath3(
+    BuildingSystems.Buildings.Airpaths.AirpathConstant airpath3(
       mConstant=0.5,
       kConstant=0.1)
       annotation (Placement(transformation(extent={{-10,-12},{10,8}})));
-    BuildingSystems.Buildings.Airpathes.AirpathConstant airpath4(
+    BuildingSystems.Buildings.Airpaths.AirpathConstant airpath4(
       mConstant=0.5,
       kConstant=0.1)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-28,10})));
-    BuildingSystems.Buildings.Airpathes.AirpathConstant airpath5(
+    BuildingSystems.Buildings.Airpaths.AirpathConstant airpath5(
       mConstant=0.5,
       kConstant=0.1)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-22,10})));
-    BuildingSystems.Buildings.Airpathes.AirpathConstant airpath6(
+    BuildingSystems.Buildings.Airpaths.AirpathConstant airpath6(
       mConstant=0.5,
       kConstant=0.1)
       annotation (Placement(transformation(extent={{-10,-6},{10,14}})));
-    BuildingSystems.Buildings.Airpathes.AirpathConstant airpath7(
+    BuildingSystems.Buildings.Airpaths.AirpathConstant airpath7(
       mConstant=0.5,
       kConstant=0.1)
       annotation (Placement(transformation(extent={{-10,10},{10,30}})));
-    BuildingSystems.Buildings.Airpathes.AirpathConstant airpath8(
+    BuildingSystems.Buildings.Airpaths.AirpathConstant airpath8(
       mConstant=0.5,
       kConstant=0.1)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={16,12})));

@@ -8,7 +8,7 @@ model BuildingThermal1Zone1D
     nZones=1,
     surfacesToAmbient(nSurfaces=6),
     convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
-    useAirPathes = false);
+    useAirPaths = false);
     record Construction
       extends
         BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(

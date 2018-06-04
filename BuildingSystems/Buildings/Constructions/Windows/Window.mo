@@ -16,9 +16,9 @@ model Window
   parameter BuildingSystems.Types.CoefficientOfAirChange aF = 1.0
     "Joint coefficient"
     annotation(Dialog(tab = "General", group = "Air change calculation"));
-  BuildingSystems.Buildings.Airpathes.AirpathVariable airpathDown if calcAirchange
+  BuildingSystems.Buildings.Airpaths.AirpathVariable airpathDown if calcAirchange
     annotation (Placement(transformation(extent={{-10,-30},{10,-10}})));
-  BuildingSystems.Buildings.Airpathes.AirpathVariable airpathUp if calcAirchange
+  BuildingSystems.Buildings.Airpaths.AirpathVariable airpathUp if calcAirchange
     annotation (Placement(transformation(extent={{-10,10},{10,30}})));
   Modelica.Fluid.Interfaces.FluidPort_a airpathPortUp_1(
     redeclare final package Medium=Medium) if calcAirchange
@@ -38,7 +38,7 @@ model Window
     width = width,
     height = 0.5 * height,
     aF = aF/3600.0) if calcAirchange
-    "Characteristic of the window airpathes";
+    "Characteristic of the window airpaths";
 equation
   // Airpath calculation
   connect(airpathChar.angleDegPanes,angleDegPanes);

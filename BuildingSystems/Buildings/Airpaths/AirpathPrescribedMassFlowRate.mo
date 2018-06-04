@@ -1,21 +1,17 @@
-within BuildingSystems.Buildings.Airpathes;
-model AirpathPrescribedPressure
-  "Air path model for a given pressure"
+within BuildingSystems.Buildings.Airpaths;
+model AirpathPrescribedMassFlowRate
+  "Air path model for a given mass flow rate"
   Modelica.Fluid.Interfaces.FluidPort_a airpathPort_1(
     redeclare final package Medium=BuildingSystems.Media.Air)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}}), iconTransformation(extent={{-50,-10},{-30,10}})));
-  Modelica.Blocks.Interfaces.RealInput p_in if use_p_in
+  Modelica.Blocks.Interfaces.RealInput m_flow_in if use_m_flow_in
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={40,0}), iconTransformation(extent={{-5,-5},{5,5}}, rotation=180,origin={35,1})));
   BuildingSystems.Interfaces.Temp_KInput T_in if use_T_in
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={40,20}), iconTransformation(extent={{-5,-5},{5,5}},rotation=180,origin={35,15})));
   BuildingSystems.Interfaces.Moisture_absInput x_in if use_x_in
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={40,-10}), iconTransformation(extent={{-5,-5},{5,5}},rotation=180,origin={35,-15})));
-  parameter BuildingSystems.Types.FlowCoefficient kConstant= 0.5
-    "Flow coefficient";
-  parameter Real mConstant(unit = "1") = 0.5
-    "Flow exponent";
-  parameter Boolean use_p_in = false
-    "Get the pressure from the input connector"
+  parameter Boolean use_m_flow_in = false
+    "Get the mas flow from the input connector"
     annotation(Evaluate=true, HideResult=true);
   parameter Boolean use_T_in= false
     "Get the temperature from the input connector"
@@ -23,31 +19,28 @@ model AirpathPrescribedPressure
   parameter Boolean use_x_in = false
     "Get the composition from the input connector"
     annotation(Evaluate=true, HideResult=true);
-  parameter Modelica.SIunits.Pressure p = airpathPort_1.Medium.p_default
-    "Fixed value of pressure"
-    annotation (Dialog(enable = not use_p_in));
+  parameter Modelica.SIunits.MassFlowRate m_flow = 0.0
+    "Fixed value of mass flow rate"
+    annotation (Dialog(enable = not use_m_flow_in));
   parameter Modelica.SIunits.Temp_K T = airpathPort_1.Medium.T_default
     "Fixed value of temperature"
     annotation (Dialog(enable = not use_T_in));
   parameter Modelica.SIunits.MassFraction x = 0.005
     "Fixed value of absolute moisture"
     annotation (Dialog(enable = not use_x_in));
-  constant Real factor = 20.0 "Numerical factor for air exchange calculation";
-  constant Modelica.SIunits.Density rho_nominal = 1.2
-    "Air density under nominal conditions";
 protected
-  Modelica.Blocks.Interfaces.RealInput p_internal
+  Modelica.Blocks.Interfaces.RealInput m_flow_internal
     "Needed to connect to conditional connector";
   Modelica.Blocks.Interfaces.RealInput T_internal
     "Needed to connect to conditional connector";
   Modelica.Blocks.Interfaces.RealInput x_internal
     "Needed to connect to conditional connector";
 equation
-  connect(p_in, p_internal);
+  connect(m_flow_in, m_flow_internal);
   connect(T_in, T_internal);
   connect(x_in, x_internal);
-  if not use_p_in then
-    p_internal = p;
+  if not use_m_flow_in then
+    m_flow_internal = m_flow;
   end if;
   if not use_T_in then
     T_internal = T;
@@ -56,12 +49,9 @@ equation
     x_internal = x;
   end if;
 
+  airpathPort_1.m_flow = m_flow_internal;
   airpathPort_1.h_outflow = BuildingSystems.Media.Air.specificEnthalpy_pTX(p=100000, T=T_internal, X={x_internal,1-x_internal});
   airpathPort_1.Xi_outflow[1] = x_internal;
-
-  // Mass flow trough air path
-  airpathPort_1.m_flow = Modelica.Math.tanh(factor * (airpathPort_1.p - p_internal)) * rho_nominal * kConstant
-    * BuildingSystems.Utilities.SmoothFunctions.safepow(BuildingSystems.Utilities.SmoothFunctions.softfabs(airpathPort_1.p - p_internal,0.05),mConstant);
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
      Rectangle(extent={{-10,40},{10,-40}},lineColor={230,230,230},fillColor={230,230,230},fillPattern=  FillPattern.Solid,origin={0,1.77636e-015},rotation=90),
@@ -69,7 +59,7 @@ equation
      Rectangle(extent={{-20,9},{20,-9}},  lineColor={230,230,230},fillColor={230,230,230},fillPattern=  FillPattern.Solid,origin={31,0}, rotation=90)}),
 Documentation(info="<html>
 <p>
-This is a model of an air path for a given pressure.
+This is a model of an air path for a given mass flow rate.
 </p>
 </html>", revisions="<html>
 <ul>
@@ -79,4 +69,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end AirpathPrescribedPressure;
+end AirpathPrescribedMassFlowRate;

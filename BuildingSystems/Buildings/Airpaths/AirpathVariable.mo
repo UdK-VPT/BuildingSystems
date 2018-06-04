@@ -1,4 +1,4 @@
-within BuildingSystems.Buildings.Airpathes;
+within BuildingSystems.Buildings.Airpaths;
 model AirpathVariable
   "Model of an air path with an variable opening"
   extends BuildingSystems.Buildings.BaseClasses.AirpathGeneral(k=kVar, m=mVar);

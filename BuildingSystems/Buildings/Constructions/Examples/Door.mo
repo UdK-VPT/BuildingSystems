@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Constructions.Examples;
 model Door
-  "Door model with airpathes under real weather data"
+  "Door model with airpaths under real weather data"
   extends Modelica.Icons.Example;
 
   record ConstructionDoor
@@ -24,7 +24,7 @@ model Door
     annotation (Placement(transformation(extent={{-6,-10},{-26,10}})));
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=1,
-    nAirpathes=2,
+    nAirpaths=2,
     heightAirpath={0.5,1.5},
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
@@ -34,7 +34,7 @@ model Door
     heightAirpath={0.5,1.5},
     calcIdealLoads=true,
     prescribedAirchange=false,
-    nAirpathes=2,
+    nAirpaths=2,
     nConstructions=1)
     annotation (Placement(transformation(extent={{28,-10},{48,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
@@ -86,11 +86,11 @@ equation
   annotation(experiment(StartTime=0, StopTime=86400.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/Door.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={
-    Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},textString="Door model with two airpathes under real weather data")}),
+    Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},textString="Door model with two airpaths under real weather data")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates a door model with airpathes under real weather data.
+Example that simulates a door model with airpaths under real weather data.
 </p>
 </html>",
 revisions="<html>

@@ -54,7 +54,7 @@ model BuildingThermalMultiZone
     nSurfacesSolid=13,
     surfacesToSolids(nSurfaces=nSurfacesSolid),
     convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
-    useAirPathes = false,
+    useAirPaths = false,
     heatSources = true,
     nHeatSources = 13);
     parameter Modelica.SIunits.Length heightRooms = 3.0

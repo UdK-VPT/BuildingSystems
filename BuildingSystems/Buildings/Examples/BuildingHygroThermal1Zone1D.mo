@@ -7,7 +7,7 @@ model BuildingHygroThermal1Zone1D
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
       nZones=1,
       surfacesToAmbient(nSurfaces=6),
-      useAirPathes = false,
+      useAirPaths = false,
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced);
     record Construction
       extends BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
