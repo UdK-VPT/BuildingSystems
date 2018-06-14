@@ -34,7 +34,7 @@ block WeatherDataNetcdf
   output Interfaces.Temp_KOutput TAirRef = y[3]+273.15
     "Air temperature on reference height"
     annotation (Placement(transformation(extent={{-86,60},{-66,80}}),
-      iconTransformation(extent={{-100,60},{-120,80}})));
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=90,origin={-70,-110})));
   output Interfaces.Moisture_absOutput xAir=
       BuildingSystems.Utilities.Psychrometrics.Functions.X_pSatpphi(
       BuildingSystems.Utilities.Psychrometrics.Functions.saturationPressure(y[3]+273.15),
@@ -42,23 +42,23 @@ block WeatherDataNetcdf
       y[6])
     "Absolute moisture of ambient air"
     annotation (Placement(transformation(extent={{-86,36},{-66,56}}),
-      iconTransformation(extent={{-100,40},{-120,60}})));
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=90,origin={-50,-110})));
   output Interfaces.RadiantEnergyFluenceRateOutput IrrDirHor = y[1]
     "Solar beam radiation of horizontal surface"
     annotation (Placement(transformation(extent={{-86,10},{-66,30}}),
-      iconTransformation(extent={{-100,20},{-120,40}})));
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=90,origin={-30,-110})));
   output Interfaces.RadiantEnergyFluenceRateOutput IrrDifHor = y[2]
     "Solar diffuse radiation of horizontal surface"
     annotation (Placement(transformation(extent={{-86,-10},{-66,10}}),
-      iconTransformation(extent={{-100,0},{-120,20}})));
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=90,origin={-10,-110})));
   output Interfaces.VelocityOutput vWindRef = y[4]
     "Wind speed on reference height"
     annotation (Placement(transformation(extent={{-86,-28},{-66,-8}}),
-      iconTransformation(extent={{-100,-20},{-120,0}})));
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=90,origin={10,-110})));
   output Interfaces.Angle_degOutput angleDegWindRef = y[5]
     "Angle of wind direction on reference height"
     annotation (Placement(transformation(extent={{-86,-46},{-66,-26}}),
-      iconTransformation(extent={{-100,-40},{-120,-20}})));
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=90,origin={30,-110})));
   output Interfaces.Temp_KOutput TSky=
       BuildingSystems.Buildings.Functions.TSky(
       TAirRef,
@@ -69,14 +69,14 @@ block WeatherDataNetcdf
       pGround)
     "Sky temperature"
     annotation (Placement(transformation(extent={{-86,-64},{-66,-44}}),
-      iconTransformation(extent={{-100,-60},{-120,-40}})));
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=90,origin={50,-110})));
   output Modelica.Blocks.Interfaces.RealOutput cloudCover(
     min=0.0,
     max=8.0,
     unit="1") = y[7]
     "Cloud cover of the sky"
-    annotation (Placement(transformation(extent={{-86,-80},{-66,-60}}), iconTransformation(extent={{-100,
-            -80},{-120,-60}})));
+    annotation (Placement(transformation(extent={{-86,-80},{-66,-60}}),
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=90,origin={70,-110})));
 
   Modelica.SIunits.Pressure pGround=
     pAirRef * ((TAirRef - gamma * (0.0 - zRefTAir)) / TAirRef)^(Modelica.Constants.g_n / (gamma * RAir))
