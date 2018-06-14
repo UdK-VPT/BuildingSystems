@@ -7,24 +7,20 @@ model SingleCollectorTest
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
     redeclare Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2013 weatherDataFile)
     "time Gdot_beam Gdot_diffuse T_air_env"
-    annotation (Placement(transformation(extent={{-112,60},{-94,76}})));
+    annotation (Placement(transformation(extent={{-96,62},{-82,76}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
     rhoAmb=0.2)
-    annotation (Placement(transformation(extent={{-70,46},{-50,66}})));
-  Modelica.Blocks.Math.UnitConversions.From_degC from_degC
-    annotation (Placement(transformation(extent={{-14,34},{-22,42}})));
+    annotation (Placement(transformation(extent={{-70,30},{-50,50}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature
-    annotation (Placement(transformation(extent={{-28,28},{-38,38}})));
-  BuildingSystems.Fluid.Sources.MassFlowSource_T boundary(
-    nPorts = 1,
-    m_flow = 0.01,
+    annotation (Placement(transformation(extent={{-26,16},{-36,26}})));
+  BuildingSystems.Fluid.Sources.MassFlowSource_T bou1(
+    nPorts=1,
+    m_flow=0.01,
     redeclare package Medium = Medium,
-    T=283.15)
-    annotation (Placement(transformation(extent={{-100,-20},{-80,0}})));
-  BuildingSystems.Fluid.Sources.FixedBoundary bou(
-    redeclare package Medium = Medium,
-    nPorts=1)
-    annotation (Placement(transformation(extent={{0,-20},{-20,0}})));
+    T=283.15) annotation (Placement(transformation(extent={{-98,-18},{-78,2}})));
+  BuildingSystems.Fluid.Sources.FixedBoundary bou2(redeclare package Medium =
+        Medium, nPorts=1)
+    annotation (Placement(transformation(extent={{-2,-18},{-22,2}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
     redeclare package Medium = Medium,
     m_flow_nominal=1,
@@ -32,61 +28,52 @@ model SingleCollectorTest
     angleDegAzi = 0.0,
     redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate.AgenaAZUR8plus_AC28H collectorData,
     angleDegTil = 30.0)
-    annotation (Placement(transformation(extent={{-54,-20},{-34,0}})));
+    annotation (Placement(transformation(extent={{-54,-18},{-34,2}})));
 equation
-  connect(boundary.ports[1], collector.port_a) annotation (Line(
-    points={{-80,-10},{-54,-10}},
-    color={0,127,255},
-    smooth=Smooth.None));
-  connect(collector.port_b, bou.ports[1]) annotation (Line(
-    points={{-34,-10},{-20,-10}},
-    color={0,127,255},
-    smooth=Smooth.None));
+  connect(bou1.ports[1], collector.port_a) annotation (Line(
+      points={{-78,-8},{-54,-8}},
+      color={0,127,255},
+      smooth=Smooth.None));
+  connect(collector.port_b, bou2.ports[1]) annotation (Line(
+      points={{-34,-8},{-22,-8}},
+      color={0,127,255},
+      smooth=Smooth.None));
   connect(collector.heatPortCon, prescribedTemperature.port) annotation (
      Line(
-      points={{-39,-1},{-39,33},{-38,33}},
+      points={{-39,1},{-39,21},{-36,21}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(collector.angleDegAzi, radiation.angleDegAzi) annotation (
       Line(
-      points={{-45,-19},{-45,-20},{-74,-20},{-74,50},{-67.6,50}},
+      points={{-51,-17},{-51,-20},{-74,-20},{-74,34},{-67.6,34}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(collector.angleDegTil, radiation.angleDegTil) annotation (
       Line(
-      points={{-43,-19},{-43,-20},{-74,-20},{-74,54},{-67.6,54}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(prescribedTemperature.T, from_degC.y) annotation (Line(
-      points={{-27,33},{-24.5,33},{-24.5,38},{-22.4,38}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(weatherData.y[3], from_degC.u) annotation (Line(
-      points={{-93.1,67.7714},{-8,67.7714},{-8,38},{-13.2,38}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(radiation.IrrDifHor, weatherData.y[2]) annotation (Line(
-      points={{-67.6,58},{-82,58},{-82,67.5429},{-93.1,67.5429}},
+      points={{-49,-17},{-49,-20},{-74,-20},{-74,38},{-67.6,38}},
       color={0,0,127},
       smooth=Smooth.None));
 
-  connect(weatherData.y[1], radiation.IrrDirHor) annotation (Line(
-      points={{-93.1,67.3143},{-76,67.3143},{-76,62},{-67.6,62}},
-      color={0,0,127},
-      smooth=Smooth.None));
   connect(radiation.radiationPort, collector.radiationPort) annotation (
       Line(
-      points={{-52,55.8},{-50,55.8},{-50,54},{-44,54},{-44,-1},{-45,-1}},
+      points={{-52,39.8},{-50,39.8},{-50,40},{-44,40},{-44,1},{-45,1}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
 
   connect(radiation.latitudeDeg, weatherData.latitudeDeg) annotation (Line(
-        points={{-63.8,63.6},{-63.8,75.2},{-93.1,75.2}}, color={0,0,127}));
+        points={{-63.8,47.6},{-63.8,75.3},{-81.3,75.3}}, color={0,0,127}));
   connect(weatherData.longitudeDeg, radiation.longitudeDeg) annotation (Line(
-        points={{-93.1,73.6},{-60,73.6},{-60,63.6}}, color={0,0,127}));
+        points={{-81.3,73.9},{-60,73.9},{-60,47.6}}, color={0,0,127}));
   connect(weatherData.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
-        points={{-93.1,72},{-72,72},{-56,72},{-56,63.6}}, color={0,0,127}));
+        points={{-81.3,72.5},{-56,72.5},{-56,47.6}},      color={0,0,127}));
+  connect(weatherData.TAirRef, prescribedTemperature.T) annotation (Line(points
+        ={{-93.9,61.3},{-93.9,52},{-22,52},{-22,21},{-25,21}}, color={0,0,127}));
+  connect(weatherData.IrrDirHor, radiation.IrrDirHor) annotation (Line(points={{
+          -91.1,61.3},{-91.1,46},{-67.6,46}}, color={0,0,127}));
+  connect(weatherData.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{
+          -89.7,61.3},{-89.7,42},{-67.6,42}}, color={0,0,127}));
+
   annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{0,80}}), graphics={
     Text(extent={{-94,-26},{-4,-46}},lineColor={0,0,255},textString="Solar thermal collector under real weather data")}),
     experiment(StartTime=10368000, StopTime=10713600),
@@ -98,6 +85,10 @@ BuildingSystems.Technologies.SolarThermal.ThermalCollector</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+June 14, 2018, by Christoph Nytsch-Geusen:<br/>
+Adaptation to the new interfaces of the weather data reader.
+</li>
 <li>
 April 10, 2015, by Carles Ribas Tugores:<br/>
 </li>

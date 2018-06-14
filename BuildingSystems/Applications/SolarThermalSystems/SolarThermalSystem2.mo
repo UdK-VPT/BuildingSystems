@@ -7,15 +7,13 @@ model SolarThermalSystem2
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile)
     "time IrrDir IrrDif TAirAmb"
-    annotation (Placement(transformation(extent={{-126,62},{-110,78}})));
+    annotation (Placement(transformation(extent={{-126,80},{-110,96}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
     rhoAmb=0.2,
     angleDegL=0.0)
-    annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
-  Modelica.Blocks.Math.UnitConversions.From_degC from_degC
-    annotation (Placement(transformation(extent={{-100,82},{-92,90}})));
+    annotation (Placement(transformation(extent={{-100,46},{-80,66}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature
-    annotation (Placement(transformation(extent={{-88,82},{-80,90}})));
+    annotation (Placement(transformation(extent={{-80,72},{-72,80}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump1(
     redeclare package Medium = Medium,
     m_flow=0.01,
@@ -150,14 +148,10 @@ model SolarThermalSystem2
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{28,-70},{8,-50}})));
 equation
-  connect(weatherData.y[1], radiation.IrrDirHor)
-    annotation (Line(points={{-109.2,69.3143},{-104,69.3143},{-104,76},{-97.6,76}},color={0,0,127}));
-  connect(weatherData.y[2], radiation.IrrDifHor)
-    annotation (Line(points={{-109.2,69.5429},{-104,69.5429},{-104,72},{-97.6,72}},  color={0,0,127}));
   connect(collector.angleDegAzi, radiation.angleDegAzi)
-    annotation (Line(points={{-57,31},{-57,30},{-102,30},{-102,64},{-97.6,64}},color={0,0,127}));
+    annotation (Line(points={{-57,31},{-57,30},{-102,30},{-102,50},{-97.6,50}},color={0,0,127}));
   connect(collector.angleDegTil, radiation.angleDegTil)
-    annotation (Line(points={{-55,31},{-55,28},{-104,28},{-104,68},{-97.6,68}}, color={0,0,127}));
+    annotation (Line(points={{-55,31},{-55,28},{-104,28},{-104,54},{-97.6,54}}, color={0,0,127}));
   connect(pipe1.port_b, collector.port_a)
     annotation (Line(points={{-80,20},{-80,20},{-80,40},{-60,40}}, color={0,127,255}));
   connect(collector.port_b, pipe2.port_a)
@@ -170,18 +164,12 @@ equation
     annotation (Line(points={{-70,-36},{-70,-18},{-75,-18}}, color={191,0,0}));
   connect(TAmb.port, pipe4.heatPort)
     annotation (Line(points={{-70,-36},{-70,-18},{-25,-18}}, color={191,0,0}));
-  connect(from_degC.y, prescribedTemperature.T)
-    annotation (Line(points={{-91.6,86},{-88.8,86}}, color={0,0,127}));
-  connect(weatherData.y[3], from_degC.u)
-    annotation (Line(points={{-109.2,69.7714},{-104,69.7714},{-104,86},{-100.8,86}}, color={0,0,127}));
   connect(prescribedTemperature.port, collector.heatPortCon)
-    annotation (Line(points={{-80,86},{-64,86},{-45,86},{-45,49}}, color={191,0,0}));
+    annotation (Line(points={{-72,76},{-45,76},{-45,49}},          color={191,0,0}));
   connect(radiation.radiationPort, collector.radiationPort)
-    annotation (Line(points={{-82,69.8},{-66,69.8},{-66,70},{-51,70},{-51,49}},color={0,0,0},pattern=LinePattern.Solid));
+    annotation (Line(points={{-82,55.8},{-66,55.8},{-66,56},{-51,56},{-51,49}},color={0,0,0},pattern=LinePattern.Solid));
   connect(prescribedTemperature.port, pipe2.heatPort)
-    annotation (Line(points={{-80,86},{-44,86},{-6,86},{-6,10},{-15,10}},color={191,0,0}));
-  connect(prescribedTemperature.port, pipe1.heatPort)
-    annotation (Line(points={{-80,86},{-78,86},{-78,88},{-78,96},{-134,96},{-134,10},{-85,10}},color={191,0,0}));
+    annotation (Line(points={{-72,76},{-6,76},{-6,10},{-15,10}},         color={191,0,0}));
   connect(pipe3.port_a, pump1.port_b)
     annotation (Line(points={{-80,-28},{-80,-60},{-60,-60}}, color={0,127,255}));
   connect(exp.port_a, pump1.port_a)
@@ -189,9 +177,9 @@ equation
   connect(storage.port_a1, consumption.ports[1])
     annotation (Line(points={{49,-59},{48,-59},{48,-63},{54,-63}},color={0,127,255}));
   connect(consumption.m_flow_in, consumptionProfile.y)
-    annotation (Line(points={{64,-59},{67.7,-59}}, color={0,0,127}));
+    annotation (Line(points={{65,-59},{67.7,-59}}, color={0,0,127}));
   connect(pump1.m_flow_in, booleanToReal.y)
-    annotation (Line(points={{-49.8,-48},{-50,-48},{-50,-44.4}}, color={0,0,127}));
+    annotation (Line(points={{-50,-48},{-50,-48},{-50,-44.4}},   color={0,0,127}));
   connect(control.y, booleanToReal.u)
     annotation (Line(points={{-50,-32.4},{-50,-35.2}}, color={255,0,255}));
   connect(control.u, add.y)
@@ -205,11 +193,12 @@ equation
   connect(hea.port_b, sink.ports[1])
     annotation (Line(points={{88,-19},{94,-19}},color={0,127,255}));
   connect(TSet.y, hea.TSet)
-    annotation (Line(points={{62.3,-13},{62.15,-13},{62.15,-13.6},{66,-13.6}}, color={0,0,127}));
+    annotation (Line(points={{62.3,-13},{62.15,-13},{62.15,-11.8},{66,-11.8}}, color={0,0,127}));
   connect(pump2.port_a, storage.port_b2)
     annotation (Line(points={{28,-60},{35,-60},{35,-59}}, color={0,127,255}));
   connect(booleanToReal.y,pump2. m_flow_in)
-    annotation (Line(points={{-50,-44.4},{-38,-44.4},{-38,-44},{-26,-44},{-26,-36},{18.2,-36},{18.2,-48}},color={0,0,127},pattern=LinePattern.Dash));
+    annotation (Line(points={{-50,-44.4},{-38,-44.4},{-38,-44},{-26,-44},{-26,-36},
+          {18,-36},{18,-48}},                                                                             color={0,0,127},pattern=LinePattern.Dash));
   connect(hex.port_a1, pipe4.port_b) annotation (Line(points={{-20,-38},{-20,-33},
           {-20,-28}}, color={0,127,255}));
   connect(hex.port_b1, pump1.port_a) annotation (Line(points={{-20,-58},{-20,-60},
@@ -219,13 +208,22 @@ equation
   connect(hex.port_b2, storage.port_a2) annotation (Line(points={{-8,-38},{28,-38},
           {28,-41},{35,-41}}, color={0,127,255}));
   connect(weatherData.latitudeDeg, radiation.latitudeDeg) annotation (Line(
-          points={{-109.2,77.2},{-106,77.2},{-106,80},{-93.8,80},{-93.8,77.6}},
+          points={{-109.2,95.2},{-106,95.2},{-106,80},{-93.8,80},{-93.8,63.6}},
           color={0,0,127}));
   connect(weatherData.longitudeDeg, radiation.longitudeDeg) annotation (Line(
-        points={{-109.2,75.6},{-106,75.6},{-106,80},{-90,80},{-90,77.6}}, color
-        ={0,0,127}));
+        points={{-109.2,93.6},{-106,93.6},{-106,80},{-90,80},{-90,63.6}}, color=
+         {0,0,127}));
   connect(weatherData.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
-        points={{-109.2,74},{-106,74},{-106,80},{-86,80},{-86,77.6}}, color={0,0,127}));
+        points={{-109.2,92},{-86,92},{-86,63.6}},                     color={0,0,127}));
+
+  connect(pipe1.heatPort, prescribedTemperature.port) annotation (Line(points={{
+          -85,10},{-108,10},{-108,68},{-72,68},{-72,76}}, color={191,0,0}));
+  connect(weatherData.TAirRef, prescribedTemperature.T) annotation (Line(points
+        ={{-123.6,79.2},{-123.6,76},{-80.8,76}}, color={0,0,127}));
+  connect(weatherData.IrrDirHor, radiation.IrrDirHor) annotation (Line(points={{
+          -120.4,79.2},{-120.4,62},{-97.6,62}}, color={0,0,127}));
+  connect(weatherData.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{
+          -118.8,79.2},{-118.8,58},{-97.6,58}}, color={0,0,127}));
 
   annotation (experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem2.mos" "Simulate and plot"),
@@ -239,6 +237,10 @@ Example that simulates a solar thermal system with an external heat exchanger.
 </html>",
 revisions="<html>
 <ul>
+<li>
+June 14, 2018, by Christoph Nytsch-Geusen:<br/>
+Adaptation to the new interfaces of the weather data reader.
+</li>
 <li>
 May 21, 2016, by Christoph Nytsch-Geusen:<br/>
 First implementation.
