@@ -24,13 +24,13 @@ model PhotovoltaicSystem
     annotation (Placement(transformation(extent={{46,46},{34,58}})));
   Modelica.Blocks.Math.Gain load(k=3000/1000)
     annotation (Placement(transformation(extent={{26,46},{14,58}})));
-  Modelica.Blocks.Continuous.Integrator EField(k=1/3600/1000)
+  Modelica.Blocks.Continuous.Integrator EField(y(displayUnit="kWh"))
     "Generated electricity by the PV field"
     annotation (Placement(transformation(extent={{-36,76},{-28,84}})));
-  Modelica.Blocks.Continuous.Integrator EGrid(k=1/3600/1000)
+  Modelica.Blocks.Continuous.Integrator EGrid(y(displayUnit="kWh"))
     "Electricty taken from the grid"
     annotation (Placement(transformation(extent={{-8,76},{0,84}})));
-  Modelica.Blocks.Continuous.Integrator Eload(k=1/3600/1000)
+  Modelica.Blocks.Continuous.Integrator Eload(y(displayUnit="kWh"))
     "Electricty demand"
     annotation (Placement(transformation(extent={{14,76},{22,84}})));
 equation
