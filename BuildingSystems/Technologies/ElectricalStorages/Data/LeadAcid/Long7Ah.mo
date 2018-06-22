@@ -11,6 +11,8 @@ record Long7Ah =
   etaLoad = 0.92736,
   fDis = 0.2/(182.5*24.0*3600.0),
   PLoad_max = 1296.0,
-  PCharge_max = 25.9)
+  PCharge_max = 25.9,
+  p = 1.17,
+  a_mcr = 0.96/3600.0)
   "Lead acid 'WP7.2-12': 86.4 Wh"
   annotation(Documentation(info= "<html>Source: Datasheet for Long WP7.2-12, https://www.kunglong.com/product_pdf/en/WP7.2-12.pdf<br/></html>"));

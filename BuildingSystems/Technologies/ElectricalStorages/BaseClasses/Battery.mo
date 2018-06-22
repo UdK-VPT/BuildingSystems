@@ -61,6 +61,20 @@ partial model Battery "partial model of a battery"
     "Helping variable 2";
   Modelica.SIunits.Power PNet
     "Net power for charging (> 0.0 W) or discharging (< 0.0 W)";
+  Modelica.SIunits.Energy E_charged(
+    start = E_start,
+    displayUnit="kWh")
+    "Total energy charged to the battery";
+  Modelica.SIunits.Energy E_discharged(
+    start = E_start,
+    displayUnit="kWh")
+    "Total energy taken from the battery";
+  Modelica.SIunits.Energy E_grid(
+    start = E_start,
+    displayUnit="kWh")
+    "Total energy taken from/delivered to grid";
+  constant Modelica.SIunits.Energy E_start = 0;
+
 equation
   EAva = h1*c;
   EBou = h2*(1-c);
@@ -69,6 +83,10 @@ equation
   SOC = E / E_nominal;
 
   PNet = PCharge - PLoad;
+
+  der(E_charged) = PChargeEff;
+  der(E_discharged) = PLoadEff;
+  der(E_grid) = PGrid;
 
     annotation (defaultComponentName="battery", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
       Rectangle(extent={{-60,60},{60,-60}},

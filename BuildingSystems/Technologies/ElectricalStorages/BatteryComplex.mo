@@ -1,9 +1,9 @@
 within BuildingSystems.Technologies.ElectricalStorages;
 model BatteryComplex
   extends BaseClasses.Battery;
-  parameter Real p(unit="1") = 1.17
+  final parameter Real p(unit="1") = batteryData.p
     "Peukert coefficient";
-  parameter Real a_mcr(unit="W/J") = 0.96/3600.0
+  final parameter Real a_mcr(unit="W/J") = batteryData.a_mcr
     "Maximum charge rate parameter";
   Modelica.SIunits.Power PLoadAva
     "Discharging power using available electrons in EAva";
@@ -14,18 +14,7 @@ model BatteryComplex
   Modelica.SIunits.Energy E_max(displayUnit="kWh")=
     t_loadMax/t_loadNominal * (t_loadMax/t_loadNominal)^p * E_nominal
     "Maximum energy content at 100hr discharge rate";
-  Modelica.SIunits.Energy E_charged(
-    displayUnit="kWh",
-    start = 0)
-    "Total energy charged to the battery";
-  Modelica.SIunits.Energy E_discharged(
-    displayUnit="kWh",
-    start = 0)
-    "Total energy taken from the battery";
-  Modelica.SIunits.Energy E_grid(
-    displayUnit="kWh",
-    start = 0)
-    "Total energy taken from/delivered to grid";
+
   constant Modelica.SIunits.Time t_loadNominal = 20.0 * 3600.0
     "Nominal discharge time at rated capacity";
   constant Modelica.SIunits.Time t_loadMax = 100.0 * 3600.0
@@ -34,10 +23,6 @@ model BatteryComplex
 equation
   der(EAva) = PChargeEff - E_nominal/E_current * PLoadAva + k*(h2 - h1);
   der(EBou) = -k*(h2 - h1) - E_nominal/E_current * PLoadBou;
-
-  der(E_charged) = PChargeEff;
-  der(E_discharged) = PLoadEff;
-  der(E_grid) = PGrid;
 
   E_current = BuildingSystems.Utilities.Math.Functions.smoothLimit(t_loadNominal*(E_nominal/t_loadNominal/PLoadEff)^p*PLoadEff,
               0.0,

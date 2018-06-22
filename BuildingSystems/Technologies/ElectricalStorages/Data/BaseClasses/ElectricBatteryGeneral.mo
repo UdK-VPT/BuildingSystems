@@ -20,4 +20,8 @@ record ElectricBatteryGeneral
     "Maximal discharging power";
   parameter Modelica.SIunits.Power PCharge_max
     "Maximal charging power";
+  parameter Real p(unit="1")
+    "Peukert coefficient";
+  parameter Real a_mcr(unit="W/J")
+    "Maximum charge rate parameter";
 end ElectricBatteryGeneral;

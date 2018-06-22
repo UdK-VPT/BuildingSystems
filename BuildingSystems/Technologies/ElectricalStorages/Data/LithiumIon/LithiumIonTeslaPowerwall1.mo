@@ -11,6 +11,8 @@ record LithiumIonTeslaPowerwall1 =
   etaLoad = 0.92,
   fDis = 0.1/(30.*24.0*3600.0),
   PLoad_max = 3300.0,
-  PCharge_max = 3300.0)
+  PCharge_max = 3300.0,
+  p = 1.17,
+  a_mcr = 0.96/3600.0)
   "Lithium Ion Tesla Powerwall 1: 6.4 kWh"
   annotation(Documentation(info= "<html>Source: PolySun version 10.0.11 and Tesla except loss factor fDis after http://www.batteryeducation.com<br/></html>"));
