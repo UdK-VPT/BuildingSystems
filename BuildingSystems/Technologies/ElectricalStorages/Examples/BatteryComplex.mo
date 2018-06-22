@@ -3,10 +3,10 @@ model BatteryComplex
   import BuildingSystems;
   extends Modelica.Icons.Example;
   Modelica.Blocks.Sources.Pulse gain(
-    amplitude=400,
     width=50,
     startTime=3600,
-    period=72000)
+    period=72000,
+    amplitude=battery_1C.batteryData.PCharge_max/battery_1C.batteryData.etaCharge)
     annotation (Placement(transformation(extent={{-84,76},{-76,84}})));
   BuildingSystems.Technologies.ElectricalStorages.BatteryComplex battery_1C(
       redeclare
@@ -14,19 +14,18 @@ model BatteryComplex
       batteryData, SOC_start=1)
     annotation (Placement(transformation(extent={{-70,70},{-50,90}})));
   Modelica.Blocks.Sources.Pulse load_1C(
-    amplitude=2226,
     width=5,
-    period=72000)
+    period=72000,
+    amplitude=battery_1C.batteryData.E_nominal*battery_1C.batteryData.etaLoad/(1
+        *3600))
     annotation (Placement(transformation(extent={{-36,76},{-44,84}})));
   BuildingSystems.Technologies.ElectricalStorages.BatteryComplex battery_C20(
-      redeclare
-      BuildingSystems.Technologies.ElectricalStorages.Data.LeadAcid.Chloride200Ah
-      batteryData, SOC_start=1)
+                   SOC_start=1, batteryData=battery_1C.batteryData)
     annotation (Placement(transformation(extent={{-70,30},{-50,50}})));
   Modelica.Blocks.Sources.Pulse load_C20(
     period=72000,
-    amplitude=111.3,
-    width=100)
+    width=100,
+    amplitude=battery_1C.batteryData.E_nominal*battery_1C.batteryData.etaLoad/(20*3600))
     annotation (Placement(transformation(extent={{-36,36},{-44,44}})));
   Modelica.Blocks.Sources.Constant noLoad(k=0)
     annotation (Placement(transformation(extent={{-84,36},{-76,44}})));
