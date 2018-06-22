@@ -1,6 +1,6 @@
 within BuildingSystems.Applications.PhotovoltaicSystems;
 model PhotovoltaicSystem
-  "PV system for a private household with a electrical house battery"
+  "PV system for a private household with an electrical house battery"
   extends Modelica.Icons.Example;
   BuildingSystems.Technologies.Photovoltaics.PVModules.PVModuleSimpleMPP pvField(
     redeclare BuildingSystems.Technologies.Photovoltaics.Data.PhotovoltaicModules.TSM230PC05 pvModuleData,
@@ -70,7 +70,7 @@ equation
 
   annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,0},{60,100}}),                                                                     graphics={Text(
     extent={{-86,44},{20,-2}},lineColor={0,0,255},
-    textString="PV system for a private household with a electrical house battery")}),
+    textString="PV system for a private household with an electrical house battery")}),
     experiment(StartTime=15721200, StopTime=18399600),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/PhotovoltaicSystems/PhotovoltaicSystem.mos" "Simulate and plot"),
 Documentation(info="<html>
