@@ -69,10 +69,6 @@ partial model Battery "partial model of a battery"
     start = E_start,
     displayUnit="kWh")
     "Total energy taken from the battery";
-  Modelica.SIunits.Energy E_grid(
-    start = E_start,
-    displayUnit="kWh")
-    "Total energy taken from/delivered to grid";
   constant Modelica.SIunits.Energy E_start = 0;
 
 equation
@@ -86,7 +82,6 @@ equation
 
   der(E_charged) = PChargeEff;
   der(E_discharged) = PLoadEff;
-  der(E_grid) = PGrid;
 
     annotation (defaultComponentName="battery", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
       Rectangle(extent={{-60,60},{60,-60}},

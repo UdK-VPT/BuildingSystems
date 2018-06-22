@@ -7,16 +7,16 @@ equation
   der(EBou) = -k*(h2 - h1) - fDis * E;
 
   PChargeEff = BuildingSystems.Utilities.Math.Functions.smoothLimit(
-                0.5*(1.0-Modelica.Math.tanh(100000.0*(SOC-1.0)))*PNet*etaCharge,
-                0.0,
-                PCharge_max,
-                0.001);
+               0.5*(1.0-Modelica.Math.tanh(100000.0*(SOC-1.0)))*PNet*etaCharge,
+               0.0,
+               PCharge_max,
+               0.001);
 
   PLoadEff = BuildingSystems.Utilities.Math.Functions.smoothLimit(
-              -0.5*(1.0+Modelica.Math.tanh(100000.0*(SOC-1.0*SOC_min)))*PNet/etaLoad,
-              0.0,
-              PLoad_max,
-              0.001);
+             -0.5*(1.0+Modelica.Math.tanh(100000.0*(SOC-1.0*SOC_min)))*PNet/etaLoad,
+             0.0,
+             PLoad_max,
+             0.001);
 
   PGrid = if PNet > 0.0 then PNet - PChargeEff/etaCharge else PNet + PLoadEff*etaLoad;
 

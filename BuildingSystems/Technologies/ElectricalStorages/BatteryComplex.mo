@@ -24,14 +24,18 @@ equation
   der(EAva) = PChargeEff - E_nominal/E_current * PLoadAva + k*(h2 - h1);
   der(EBou) = -k*(h2 - h1) - E_nominal/E_current * PLoadBou;
 
-  E_current = BuildingSystems.Utilities.Math.Functions.smoothLimit(t_loadNominal*(E_nominal/t_loadNominal/PLoadEff)^p*PLoadEff,
+  E_current = BuildingSystems.Utilities.Math.Functions.smoothLimit(
+              t_loadNominal*(E_nominal/t_loadNominal/PLoadEff)^p*PLoadEff,
               0.0,
               E_max,
               0.001);
   PChargeEff = BuildingSystems.Utilities.Math.Functions.smoothLimit(
                0.5*(1.0-Modelica.Math.tanh(100000.0*(SOC-1.0)))*PNet*etaCharge,
                0.0,
-               BuildingSystems.Utilities.Math.Functions.smoothLimit(a_mcr*(E_nominal-E),0.0,PCharge_max,0.001),
+               BuildingSystems.Utilities.Math.Functions.smoothLimit(a_mcr*(E_nominal-E),
+                   0.0,
+                   PCharge_max,
+                   0.001),
                0.001);
   PLoadBou = BuildingSystems.Utilities.Math.Functions.smoothLimit(
                0.5*(1.0-Modelica.Math.tanh(100000.0*(SOC_min-SOC)))*(-PNet/etaLoad - PLoadAva)+fDis*E,
@@ -45,7 +49,7 @@ equation
                PLoad_max,
                0.001);
   PLoadEff = BuildingSystems.Utilities.Math.Functions.smoothLimit(
-               0.5*(1.0-Modelica.Math.tanh(100000.0*(SOC_min-SOC)))*(PLoadBou + PLoadAva),
+               PLoadBou + PLoadAva,
                0.0,
                PLoad_max,
                0.001);
