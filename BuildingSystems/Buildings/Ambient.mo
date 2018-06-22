@@ -2,19 +2,6 @@ within BuildingSystems.Buildings;
 model Ambient
   "Model which calculates the outside climate boundary conditions of one ore more buildings"
   final package Medium = BuildingSystems.Media.Air;
-  function x
-    "Calculates the absolute humidity dependent on air pressure, saturation pressure and relative humidity"
-    input Modelica.SIunits.Pressure p
-      "Air pressure";
-    input Modelica.SIunits.Pressure pSat
-      "Saturation pressure";
-    input BuildingSystems.Types.RelativeHumidity phi
-      "Relative humidity";
-    output Modelica.SIunits.MassFraction value
-      "Absolute humidity";
-  algorithm
-    value := 0.622 * phi * pSat / (p - phi * pSat);
-  end x;
 
   parameter Integer nSurfaces(min=1)
     "Number of building surfaces"
@@ -50,13 +37,13 @@ model Ambient
   parameter Modelica.SIunits.Pressure pAirRef = 100000.0
     "Static air pressure on reference height"
     annotation(Dialog(tab = "General", group = "Location"));
-  constant Real RAir(unit="J/(kg.K)") = 288.0
-    "Gas constant dry air";
-  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(weatherDataFile=weatherDataFile)
+  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
+     weatherDataFile=weatherDataFile,
+     pAirRef=pAirRef,
+     gamma=gamma,
+     zRefTAir=zRefTAir)
     "Weather data from file"
     annotation(Placement(transformation(extent={{-40,-10},{-20,10}})));
-  Modelica.Blocks.Math.UnitConversions.From_degC from_degC
-    annotation(Placement(transformation(extent={{-2,-38},{14,-22}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAirPorts[nSurfaces]
     "Climate boundary conditions for the building surfaces dependent on the ambient air"
     annotation (Placement(transformation(extent={{70,-80},{90,0}}), iconTransformation(extent={{70,-80},{90,0}})));
@@ -68,15 +55,24 @@ model Ambient
     "Climate boundary conditions for the building airpaths"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=270,origin={94,0}),
       iconTransformation(extent={{-40,-90},{40,-70}},rotation=180,origin={30,10})));
-  Modelica.SIunits.Pressure pGround=
-    pAirRef * ((TAirRef - gamma * (0.0 - zRefTAir)) / TAirRef)^(Modelica.Constants.g_n / (gamma * RAir))
-    "Air pressure on ground level";
-  output BuildingSystems.Interfaces.Moisture_absOutput xAir=
-    BuildingSystems.Utilities.Psychrometrics.Functions.X_pSatpphi(
-    BuildingSystems.Utilities.Psychrometrics.Functions.saturationPressure(from_degC.y),100000.0,phi)
+
+  // Absolute humidity of the ambient air
+  parameter BuildingSystems.Buildings.Types.DataSource xAirSou = BuildingSystems.Buildings.Types.DataSource.File
+    "Data source for absolute humidity of the ambient air"
+    annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
+  parameter Modelica.SIunits.MassFraction xAir_constant = 0.5
+    "Absolute humidity of the ambient air (used if xAirSou=Parameter)"
+    annotation (Dialog(tab="Advanced", group="Data source"));
+  output BuildingSystems.Interfaces.Moisture_absOutput xAir
     "Absolute moisture of ambient air"
     annotation (Placement(transformation(extent={{-86,36},{-66,56}}),
       iconTransformation(extent={{-80,40},{-100,60}})));
+  input BuildingSystems.Interfaces.Moisture_absInput xAir_in(
+    min=0) if xAirSou == BuildingSystems.Buildings.Types.DataSource.Input
+    "Absolute moisture of the ambient air from input"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-50,-74}),
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-50,-90})));
+
   // Air temperature on reference height
   parameter BuildingSystems.Buildings.Types.DataSource TAirRefSou = BuildingSystems.Buildings.Types.DataSource.File
     "Data source for air temperature on reference height"
@@ -93,22 +89,7 @@ model Ambient
     "Air temperature on reference height from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-70,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-70,-90})));
-  // Relative humidity of the ambient air
-  parameter BuildingSystems.Buildings.Types.DataSource phiSou = BuildingSystems.Buildings.Types.DataSource.File
-    "Data source for relative humidity of the ambient air"
-    annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter BuildingSystems.Types.RelativeHumidity phi_constant = 0.5
-    "Relative humidity of the ambient air (used if phiSou=Parameter)"
-    annotation (Dialog(tab="Advanced", group="Data source"));
-  BuildingSystems.Types.RelativeHumidity phi
-    "Relative humidity of the ambient air";
-  input Modelica.Blocks.Interfaces.RealInput phi_in(
-      min=0,
-      max=1.01,
-      unit="1") if phiSou == BuildingSystems.Buildings.Types.DataSource.Input
-    "Relative humidity of the ambient air from input"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-50,-74}),
-      iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-50,-90})));
+
   // Solar beam radiation of horizontal surface
   parameter BuildingSystems.Buildings.Types.DataSource IrrDirHorSou = BuildingSystems.Buildings.Types.DataSource.File
     "Data source for solar beam radiation of horizontal surface"
@@ -125,6 +106,7 @@ model Ambient
     "Solar beam radiation of horizontal surface from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-28,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-30,-90})));
+
   // Solar diffuse radiation of horizontal surface
   parameter BuildingSystems.Buildings.Types.DataSource IrrDifHorSou = BuildingSystems.Buildings.Types.DataSource.File
     "Data source for solar diffuse radiation of horizontal surface"
@@ -140,6 +122,7 @@ model Ambient
     "Solar diffuse radiation of horizontal surface from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-10,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-10,-90})));
+
   // Wind speed on reference height
   parameter BuildingSystems.Buildings.Types.DataSource vWindRefSou = BuildingSystems.Buildings.Types.DataSource.File
     "Data source for solar wind speed on reference height"
@@ -155,6 +138,7 @@ model Ambient
     "Wind speed on reference height from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={12,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={10,-90})));
+
   // Wind direction on reference height
   parameter BuildingSystems.Buildings.Types.DataSource angleDegWindRefSou = BuildingSystems.Buildings.Types.DataSource.File
     "Data source for Angle of wind direction on reference height"
@@ -171,6 +155,7 @@ model Ambient
     "Angle of wind direction on reference height from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={30,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={30,-90})));
+
   // Cloud cover of the sky
   parameter BuildingSystems.Buildings.Types.DataSource cloudCoverSou = BuildingSystems.Buildings.Types.DataSource.File
     "Data source for cloud cover of the sky"
@@ -186,11 +171,12 @@ model Ambient
     "Cloud cover of the sky from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={50,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={50,-90})));
-  output BuildingSystems.Interfaces.Temp_KOutput TSky=
-    BuildingSystems.Buildings.Functions.TSky(TAirRef,time,cloudCover/8.0,xAir,pAirRef,pGround)
+
+  output BuildingSystems.Interfaces.Temp_KOutput TSky = weatherData.TSky
     "Sky temperature"
     annotation (Placement(transformation(extent={{-86,-64},{-66,-44}}),
       iconTransformation(extent={{-80,-60},{-100,-40}})));
+
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation[nSurfaces](
     each rhoAmb=rhoAmb,
     angleDegAzi= toSurfacePorts.angleDegAzi,
@@ -210,14 +196,20 @@ model Ambient
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90})));
 equation
+  connect(weatherData.latitudeDeg, latitudeDeg) annotation (Line(points={{-19,9},
+          {-19,72},{-70,72},{-70,90}}, color={0,0,127}));
+  connect(weatherData.longitudeDeg, longitudeDeg) annotation (Line(points={{-19,
+          7},{-16,7},{-16,74},{-50,74},{-50,90}}, color={0,0,127}));
+  connect(weatherData.longitudeDeg0, longitudeDeg0) annotation (Line(points={{-19,
+          5},{-12,5},{-12,76},{-30,76},{-30,90}}, color={0,0,127}));
   for i in 1:nSurfaces loop
     // position of the location
-    connect(weatherData.longitudeDeg0, radiation[i].longitudeDeg0);
-    connect(weatherData.latitudeDeg, radiation[i].latitudeDeg);
-    connect(weatherData.longitudeDeg, radiation[i].longitudeDeg);
-    connect(weatherData.longitudeDeg0, longitudeDeg0);
-    connect(weatherData.latitudeDeg, latitudeDeg);
-    connect(weatherData.longitudeDeg, longitudeDeg);
+    connect(weatherData.latitudeDeg, radiation[i].latitudeDeg) annotation (Line(
+      points={{-19,9},{10,9},{10,26},{40.2,26},{40.2,19.6}}, color={0,0,127}));
+    connect(weatherData.longitudeDeg, radiation[i].longitudeDeg) annotation (Line(
+      points={{-19,7},{12,7},{12,28},{44,28},{44,19.6}}, color={0,0,127}));
+    connect(weatherData.longitudeDeg0, radiation[i].longitudeDeg0) annotation (
+      Line(points={{-19,5},{14,5},{14,30},{48,30},{48,19.6}}, color={0,0,127}));
     // Direct horizontal radiation
     IrrDirHor = radiation[i].IrrDirHor;
     // Diffuse horizontal radiation
@@ -243,32 +235,30 @@ equation
     toAirpathPorts[i].h_outflow = Medium.specificEnthalpy_pTX(p=100000, T=BuildingSystems.Buildings.Functions.TAir(TAirRef,heightAirpath[i],zRefTAir,gamma), X={xAir,1-xAir});
     toAirpathPorts[i].Xi_outflow[1] = xAir;
   end for;
-  connect(weatherData.y[3], from_degC.u)
-    annotation (Line(points={{-19,0},{-12,0},{-12,-30},{-3.6,-30}},color={0,0,127},smooth=Smooth.None));
 
   // Select source for air temperature on reference height
   if TAirRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     TAirRef = TAirRef_constant;
   elseif TAirRefSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(TAirRef, from_degC.y);
+    connect(TAirRef, weatherData.TAirRef);
   else
     connect(TAirRef, TAirRef_in);
   end if;
 
-  // Select source for relative humidity of the ambient air
-  if phiSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
-    phi = phi_constant;
-  elseif phiSou == BuildingSystems.Buildings.Types.DataSource.File then
-    phi = weatherData.y[6];
+  // Select source for absolute humidity of the ambient air
+  if xAirSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
+    xAir = xAir_constant;
+  elseif xAirSou == BuildingSystems.Buildings.Types.DataSource.File then
+    xAir = weatherData.xAir;
   else
-    connect(phi, phi_in);
+    connect(xAir, xAir_in);
   end if;
 
-  // Select source for solar diffuse radiation of horizontal surface
+  // Select source for solar direct radiation of horizontal surface
   if IrrDirHorSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     IrrDirHor = IrrDirHor_constant;
   elseif IrrDirHorSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(IrrDirHor, weatherData.y[1]);
+    connect(IrrDirHor, weatherData.IrrDirHor);
   else
     connect(IrrDirHor, IrrDirHor_in);
   end if;
@@ -277,16 +267,16 @@ equation
   if IrrDifHorSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     IrrDifHor = IrrDifHor_constant;
   elseif IrrDifHorSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(IrrDifHor, weatherData.y[2]);
+    connect(IrrDifHor, weatherData.IrrDifHor);
   else
     connect(IrrDifHor, IrrDifHor_in);
   end if;
 
-  // Select source for Wind speed on reference height
+  // Select source for wind speed on reference height
   if vWindRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     vWindRef = vWindRef_constant;
   elseif vWindRefSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(vWindRef, weatherData.y[4]);
+    connect(vWindRef, weatherData.vWindRef);
   else
     connect(vWindRef, vWindRef_in);
   end if;
@@ -295,16 +285,16 @@ equation
   if angleDegWindRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     angleDegWindRef = angleDegWindRef_constant;
   elseif angleDegWindRefSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(angleDegWindRef, weatherData.y[5]);
+    connect(angleDegWindRef, weatherData.angleDegWindRef);
   else
     connect(angleDegWindRef, angleDegWindRef_in);
   end if;
 
-  // Select source for Cloud cover of the sky
+  // Select source for cloud cover of the sky
   if cloudCoverSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     cloudCover = cloudCover_constant;
   elseif angleDegWindRefSou == BuildingSystems.Buildings.Types.DataSource.File then
-    cloudCover = weatherData.y[7];
+    cloudCover = weatherData.cloudCover;
   else
     connect(cloudCover, cloudCover_in);
   end if;
@@ -326,6 +316,10 @@ you will find a short guide, which describes a Python based generation of NetCDF
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+June 14, 2018 by Christoph Nytsch-Geusen:<br/>
+Adapted to modified NetCDF weather data reader.
+</li>
 <li>
 November 07, 2017 by Christoph Nytsch-Geusen:<br/>
 Output for cloud cover added.
