@@ -4,7 +4,7 @@ record Chloride200Ah =
     (
   E_nominal = 2.4*1000*3600,
   U_nominal = 12.0,
-  SOC_min = 0.01,
+  SOC_min = 0.2,
   c = 0.315,
   k = 1.24/3600.0,
   etaCharge = 0.92736,

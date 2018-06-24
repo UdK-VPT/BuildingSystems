@@ -12,7 +12,7 @@ record LeadAcidGeneric =
   fDis = 0.05/(30*24.0*3600.0),
   PLoad_max = 23520.0,
   PCharge_max = 864.0,
-  p = 1.17,
+  p = 1.3,
   a_mcr = 0.96/3600.0)
   "Lead Acid generic: 2.88 kWh"
   annotation(Documentation(info= "<html>Source: PolySun version 9.2.9 except loss factor fDis after http://www.batteryeducation.com<br/></html>"));
