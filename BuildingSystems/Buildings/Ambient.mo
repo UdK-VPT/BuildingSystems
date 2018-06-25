@@ -293,8 +293,8 @@ equation
   // Select source for cloud cover of the sky
   if cloudCoverSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     cloudCover = cloudCover_constant;
-  elseif angleDegWindRefSou == BuildingSystems.Buildings.Types.DataSource.File then
-    cloudCover = weatherData.cloudCover;
+  elseif cloudCoverSou == BuildingSystems.Buildings.Types.DataSource.File then
+    connect(cloudCover, weatherData.cloudCover);
   else
     connect(cloudCover, cloudCover_in);
   end if;
