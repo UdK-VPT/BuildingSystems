@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Technologies.ElectricalStorages.Examples.BatteryComplex", stopTime=72000, method="dassl", resultFile="BatteryComplex");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"battery_1C.E","battery_1C.EBou","battery_1C.EAva"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BatteryComplex.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"battery_1C.E_discharged","battery_C20.E_discharged"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BatteryComplex.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

@@ -3,8 +3,7 @@ model BatterySimple
   "Example of a electrical battery"
   extends Modelica.Icons.Example;
   BuildingSystems.Technologies.ElectricalStorages.BatterySimple battery(
-    redeclare Data.LeadAcid.LeadAcidGeneric batteryData,
-    nBat=3)
+    nBat=3, redeclare Data.LeadAcid.LeadAcidGeneric batteryData)
     annotation (Placement(transformation(extent={{-70,50},{-50,70}})));
   Modelica.Blocks.Sources.Pulse gain(
     amplitude=400,
@@ -37,7 +36,7 @@ BuildingSystems.Technologies.Electrical.Batteries</a>.
 </p>
 </html>", revisions="<html>
 <ul>
-  <li>
+<li>
 June 16, 2015, by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>
