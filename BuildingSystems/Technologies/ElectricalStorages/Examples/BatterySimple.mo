@@ -23,16 +23,15 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
 
-  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,0},
-  {-20,100}}), graphics={
+  annotation(Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,0},{-20,100}}), graphics={
     Text(extent={{-62,22},{-62,18}},lineColor={0,0,255},fontSize=22,
-    textString="Test of the simplified battery model")}),
+      textString="Test of the simplified battery model")}),
     experiment(StartTime=0.0, StopTime=3.1536e+007),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ElectricalStorages/Examples/BatterySimple.mos" "Simulate and plot"),
 Documentation(info="<html>
 <p> This example tests the implementation of
-<a href=\"modelica://BuildingSystems.Technologies.Electrica.Batteries\">
-BuildingSystems.Technologies.Electrical.Batteries</a>.
+<a href=\"modelica://BuildingSystems.Technologies.ElectricalStorages.BatterySimple\">
+BuildingSystems.Technologies.ElectricalStorages.BatterySimple</a>.
 </p>
 </html>", revisions="<html>
 <ul>

@@ -21,6 +21,8 @@ class Acknowledgements "Acknowledgements"
       </li>
       <li>Matthis Thorade
       </li>
+      <li>Christoph Banhardt
+      </li>
       </ul>
       </p>
       <p>
