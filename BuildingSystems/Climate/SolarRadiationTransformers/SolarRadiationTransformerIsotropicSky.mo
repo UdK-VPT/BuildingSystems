@@ -6,7 +6,7 @@ equation
 
   IrrTotTil = radiationPort.IrrDir + 0.5 * (1.0 + cosAngleTil) * IrrDifHor + 0.5 * (1.0 - cosAngleTil) * rhoAmb * IrrTotHor;
 
-  annotation (Icon(graphics={
+  annotation (defaultComponentName="radiation", Icon(graphics={
     Rectangle(extent={{-80,80},{80,-80}}, lineColor={170,213,255},fillPattern = FillPattern.Solid,fillColor={170,213,255}),
     Ellipse(extent={{-60,62},{20,-18}},lineColor={255,128,0},fillColor={255,128,0},fillPattern = FillPattern.Solid),
     Line(points={{72,-8},{8,-72}},color={0,0,0},smooth=Smooth.None,thickness=2),
