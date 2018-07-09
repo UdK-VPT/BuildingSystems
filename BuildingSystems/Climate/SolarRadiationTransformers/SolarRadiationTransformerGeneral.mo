@@ -10,7 +10,7 @@ partial model SolarRadiationTransformerGeneral
   input BuildingSystems.Interfaces.Angle_degInput longitudeDeg0
     "Longitude of the local time zone"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=270,origin={30,88}),iconTransformation(extent={{-14,-14},{14,14}},rotation=270,origin={40,76})));
-  parameter Real rhoAmb
+  parameter Real rhoAmb = 0.2
     "Reflection factor of the ambience";
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegL = 0
     "Grad correction winter-/summer time";
