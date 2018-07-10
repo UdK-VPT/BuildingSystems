@@ -6,7 +6,7 @@ This CoTeTo code generator is able to generate 16 different structures of a sola
 The maximum configuration of the solar thermal system includes for solar collector fields 1 to 4 with potentially
 different orientations, collector field areas and storage volumens:
 
-![SolarThermalSystem_111](https://github.com/UdK-VPT/BuildingSystems/blob/master/BuildingSystems/Resources/CodeGeneration/CoTeTo/Images/SolarThermalSystem_111.png)
+![SolarThermalSystem_1111](https://github.com/UdK-VPT/BuildingSystems/blob/master/BuildingSystems/Resources/CodeGeneration/CoTeTo/Images/SolarThermalSystem_1111.png)
 
 The collector field areas are individually controlled by four two-point controllers. The incoming cold water, defined by the components bou1 to bou4, flows through the four thermal hot water storages. The
 leaving hot water is unified by the four junctions jun1 to jun4.
@@ -61,8 +61,32 @@ structures of the solar thermal system can be automatically generated:
 
 ![SolarThermalSystem_structuralVariants](https://github.com/UdK-VPT/BuildingSystems/blob/master/BuildingSystems/Resources/CodeGeneration/CoTeTo/Images/SolarThermalSystem_structuralVariants.png)
 
-This is realised by activating and deactivating different parts of the code template. In addition,
-centrally defined important system parameters
+This is realised by activating and deactivating different parts of the code template:
+
+```python
+% if colLoop1 == True:
+  // collector loop 1
+  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky solRadTra1
+    "Solar radiation transformer 1"
+    annotation (Placement(transformation(extent={{-78,24},{-58,44}})));
+...
+  BuildingSystems.Technologies.SolarThermal.ThermalCollector col1(
+    redeclare package Medium = Medium,
+    angleDegTil=${tiltAngleCol1},
+    angleDegAzi=${azimuthAngleCol1},
+    redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.FlatSolarCollector1 collectorData,
+    m_flow_nominal=0.1,
+    dp_nominal=1,
+    width=${areaCol1},
+    height=1,
+    AColData=false)
+    "Solar thermal collector 1"
+    annotation (Placement(transformation(extent={{-60,4},{-40,24}})));
+...  
+% endif
+```
+
+In addition, centrally defined important system parameters
 
 * the weather location,
 * the azimuth and tilt angle of the collector fields,
