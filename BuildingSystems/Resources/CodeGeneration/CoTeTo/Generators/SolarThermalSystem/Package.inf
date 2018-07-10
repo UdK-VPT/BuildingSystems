@@ -1,0 +1,17 @@
+[GENERATOR]
+name = SolarThermalSystem
+version = 0.1
+description = Generates Modelica models of solar thermal systems.
+author = Christoph Nytsch-Geusen
+
+[REQUIRES]
+modelicaLibs = []
+
+[LOADER]
+name = TestDummy
+minVer = 0.1
+maxVer = 2.0
+
+[TEMPLATES]
+topFile = Main.mot
+type = mako

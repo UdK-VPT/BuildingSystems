@@ -1,0 +1,807 @@
+<%
+# model structure
+colLoop1 = True
+colLoop2 = False
+colLoop3 = True
+colLoop4 = False
+# model class name
+modelClassName = 'SolarThermalSystem_'+str('1' if colLoop1 == True else '0')\
+  +str('1' if colLoop2 == True else '0')\
+  +str('1' if colLoop3 == True else '0')\
+  +str('1' if colLoop4 == True else '0')
+# model parameters
+# Location
+weatherDataClass = 'WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin'
+#weatherDataClass = 'WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna'
+#weatherDataClass = 'WeatherDataMeteonorm.WeatherDataFile_Brasil_Manaus'
+#weatherDataClass = 'WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco'
+# collector area
+areaCol1 = 20.0 # m2
+areaCol2 = 20.0 # m2
+areaCol3 = 20.0 # m2
+areaCol4 = 20.0 # m2
+# collector orientation
+azimuthAngleCol1 = 0.0 # degree
+azimuthAngleCol2 = 90.0 # degree
+azimuthAngleCol3 = 180.0 # degree
+azimuthAngleCol4 = -90.0 # degree
+tiltAngleCol1 = 30.0 # degree
+tiltAngleCol2 = 30.0 # degree
+tiltAngleCol3 = 30.0 # degree
+tiltAngleCol4 = 30.0 # degree
+# storage volume
+volumeSto1 = 1.0 # m3
+volumeSto2 = 1.0 # m3
+volumeSto3 = 1.0 # m3
+volumeSto4 = 1.0 # m3
+# collector area specific mass flow
+mFlowColArea = 30/3600 # kg/(m2*s)
+%>
+within;
+// Automatically by CoTeTo generated Modelica model of a solar thermal system
+model ${modelClassName}
+  extends Modelica.Icons.Example;
+  // Fluid media model
+  package Medium = BuildingSystems.Media.Water (
+    T_max=273.15+100.0,
+    T_min=273.15-20.0)
+    "Medium model water";
+
+  // weather data
+  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weaDat(
+    redeclare BuildingSystems.Climate.${weatherDataClass} weatherDataFile)
+    "Weather data reader"
+    annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+
+% if colLoop1 == True:
+  // collector loop 1
+  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky solRadTra1
+    "Solar radiation transformer 1"
+    annotation (Placement(transformation(extent={{-78,24},{-58,44}})));
+
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature preTmp1
+    annotation (Placement(transformation(extent={{-5,-5},{5,5}},rotation=-90,origin={-45,55})));
+
+  BuildingSystems.Technologies.SolarThermal.ThermalCollector col1(
+    redeclare package Medium = Medium,
+    angleDegTil=${tiltAngleCol1},
+    angleDegAzi=${azimuthAngleCol1},
+    redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.FlatSolarCollector1 collectorData,
+    m_flow_nominal=0.1,
+    dp_nominal=1,
+    width=${areaCol1},
+    height=1,
+    AColData=false)
+    "Solar thermal collector 1"
+    annotation (Placement(transformation(extent={{-60,4},{-40,24}})));
+
+  BuildingSystems.Fluid.FixedResistances.Pipe pipSup1(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    thicknessIns=0.05,
+    lambdaIns=0.05,
+    length=1.0)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90, origin={-66,-20})));
+
+  BuildingSystems.Fluid.FixedResistances.Pipe pipRet1(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    thicknessIns=0.05,
+    lambdaIns=0.05,
+    length=1.0)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-40,-50})));
+
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumSol1(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=-90,origin={-66,-80})));
+
+  BuildingSystems.Fluid.HeatExchangers.ConstantEffectiveness hex1(
+    redeclare package Medium1 = Medium,
+    redeclare package Medium2 = Medium,
+    m1_flow_nominal=0.1,
+    m2_flow_nominal=0.1,
+    dp1_nominal=1,
+    dp2_nominal=1)
+    annotation (Placement(transformation(extent={{-42,-136},{-62,-116}})));
+
+  BuildingSystems.Fluid.Storage.ExpansionVessel expSol1(
+    V_start=0.01,
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{-84,-120},{-70,-106}})));
+
+% endif
+% if colLoop2 == True:
+  // collector loop 2
+  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky solRadTra2
+    "Solar radiation transformer 2"
+    annotation (Placement(transformation(extent={{2,24},{22,44}})));
+
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature preTmp2
+    annotation (Placement(transformation(extent={{-5,-5},{5,5}},rotation=-90,origin={35,55})));
+
+  BuildingSystems.Technologies.SolarThermal.ThermalCollector col2(
+    redeclare package Medium = Medium,
+    angleDegTil=${tiltAngleCol2},
+    angleDegAzi=${azimuthAngleCol2},
+    redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.FlatSolarCollector1 collectorData,
+    m_flow_nominal=0.1,
+    dp_nominal=1,
+    width=${areaCol2},
+    height=1,
+    AColData=false)
+    "Solar thermal collector 2"
+    annotation (Placement(transformation(extent={{20,4},{40,24}})));
+
+  BuildingSystems.Fluid.FixedResistances.Pipe pipSup2(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    thicknessIns=0.05,
+    lambdaIns=0.05,
+    length=1.0)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={14,-20})));
+
+  BuildingSystems.Fluid.FixedResistances.Pipe pipRet2(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    thicknessIns=0.05,
+    lambdaIns=0.05,
+    length=1.0)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={40,-50})));
+
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumSol2(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=-90,origin={14,-80})));
+
+  BuildingSystems.Fluid.HeatExchangers.ConstantEffectiveness hex2(
+    redeclare package Medium1 = Medium,
+    redeclare package Medium2 = Medium,
+    m1_flow_nominal=0.1,
+    m2_flow_nominal=0.1,
+    dp1_nominal=1,
+    dp2_nominal=1)
+    annotation (Placement(transformation(extent={{38,-136},{18,-116}})));
+
+  BuildingSystems.Fluid.Storage.ExpansionVessel expSol2(
+    V_start=0.01,
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{-4,-120},{10,-106}})));
+
+% endif
+% if colLoop3 == True:
+  // collector loop 3
+  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky solRadTra3
+    "Solar radiation transformer 3"
+    annotation (Placement(transformation(extent={{82,24},{102,44}})));
+
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature preTmp3
+    annotation (Placement(transformation(extent={{-5,-5},{5,5}},rotation=-90,origin={115,55})));
+
+  BuildingSystems.Technologies.SolarThermal.ThermalCollector col3(
+    redeclare package Medium = Medium,
+    angleDegTil=${tiltAngleCol3},
+    angleDegAzi=${azimuthAngleCol3},
+    redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.FlatSolarCollector1 collectorData,
+    m_flow_nominal=0.1,
+    dp_nominal=1,
+    width=${areaCol3},
+    height=1,
+    AColData=false)
+    "Solar thermal collector 3"
+    annotation (Placement(transformation(extent={{100,4},{120,24}})));
+
+  BuildingSystems.Fluid.FixedResistances.Pipe pipSup3(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    thicknessIns=0.05,
+    lambdaIns=0.05,
+    length=1.0)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={94,-20})));
+
+  BuildingSystems.Fluid.FixedResistances.Pipe pipRet3(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    thicknessIns=0.05,
+    lambdaIns=0.05,
+    length=1.0)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={120,-50})));
+
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumSol3(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=-90,origin={94,-80})));
+
+  BuildingSystems.Fluid.HeatExchangers.ConstantEffectiveness hex3(
+    redeclare package Medium1 = Medium,
+    redeclare package Medium2 = Medium,
+    m1_flow_nominal=0.1,
+    m2_flow_nominal=0.1,
+    dp1_nominal=1,
+    dp2_nominal=1)
+    annotation (Placement(transformation(extent={{118,-136},{98,-116}})));
+
+  BuildingSystems.Fluid.Storage.ExpansionVessel expSol3(
+    V_start=0.01,
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{76,-120},{90,-106}})));
+
+% endif
+% if colLoop4 == True:
+  // collector loop 4
+  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky solRadTra4
+    "Solar radiation transformer 4"
+    annotation (Placement(transformation(extent={{162,24},{182,44}})));
+
+  Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature preTmp4
+    annotation (Placement(transformation(extent={{-5,-5},{5,5}},rotation=-90,origin={195,55})));
+
+  BuildingSystems.Technologies.SolarThermal.ThermalCollector col4(
+    redeclare package Medium = Medium,
+    angleDegTil=${tiltAngleCol4},
+    angleDegAzi=${azimuthAngleCol4},
+    m_flow_nominal=0.1,
+    dp_nominal=1,
+    redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.FlatSolarCollector1 collectorData,
+    width=width=${areaCol4},
+    height=1,
+    AColData=false)
+    "Solar thermal collector 4"
+    annotation (Placement(transformation(extent={{180,4},{200,24}})));
+
+  BuildingSystems.Fluid.FixedResistances.Pipe pipSup4(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    thicknessIns=0.05,
+    lambdaIns=0.05,
+    length=1.0)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={174,-20})));
+
+  BuildingSystems.Fluid.FixedResistances.Pipe pipRet4(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    thicknessIns=0.05,
+    lambdaIns=0.05,
+    length=1.0)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={200,-50})));
+
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumSol4(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=-90,origin={174,-80})));
+
+  BuildingSystems.Fluid.HeatExchangers.ConstantEffectiveness hex4(
+    redeclare package Medium1 = Medium,
+    redeclare package Medium2 = Medium,
+    m1_flow_nominal=0.1,
+    m2_flow_nominal=0.1,
+    dp1_nominal=1,
+    dp2_nominal=1)
+    annotation (Placement(transformation(extent={{198,-136},{178,-116}})));
+
+  BuildingSystems.Fluid.Storage.ExpansionVessel expSol4(
+    V_start=0.01,
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{156,-120},{170,-106}})));
+
+% endif
+% if colLoop1 == True:
+  // storage loop 1
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage sto1(
+    V=${volumeSto1},
+    HX_2=false,
+    HX_1=false,redeclare package Medium = Medium,
+    nEle=10)
+    annotation (Placement(transformation(extent={{-24,-212},{-44,-192}})));
+
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumSto1(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=-90,origin={-66,-202})));
+
+  BuildingSystems.Fluid.FixedResistances.Junction jun1(
+    redeclare package Medium = Medium,
+    m_flow_nominal={0.1,-0.1,0.1},
+    dp_nominal={1,0,1})
+    annotation (Placement(transformation(extent={{-16,-180},{-36,-160}})));
+
+  BuildingSystems.Fluid.Sources.MassFlowSource_T bou1(
+    nPorts=1,
+    redeclare package Medium = Medium,
+    m_flow=0.1)
+    annotation (Placement(transformation(extent={{6,-250},{-14,-230}})));
+
+% endif
+% if colLoop2 == True:
+  // storage loop 2
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage sto2(
+    V=${volumeSto2},
+    HX_2=false,
+    HX_1=false,
+    redeclare package Medium = Medium,
+    nEle=10)
+    annotation (Placement(transformation(extent={{56,-212},{36,-192}})));
+
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumSto2(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=-90,origin={14,-202})));
+
+  BuildingSystems.Fluid.FixedResistances.Junction jun2(
+    redeclare package Medium = Medium,
+    m_flow_nominal={0.1,-0.1,0.1},
+    dp_nominal={1,0,1})
+    annotation (Placement(transformation(extent={{64,-180},{44,-160}})));
+
+  BuildingSystems.Fluid.Sources.MassFlowSource_T bou2(
+    nPorts=1,
+    redeclare package Medium = Medium,
+    m_flow=0.1)
+    annotation (Placement(transformation(extent={{90,-250},{70,-230}})));
+
+% endif
+% if colLoop3 == True:
+  // storage loop 3
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage sto3(
+    V=${volumeSto3},
+    HX_2=false,
+    HX_1=false,
+    redeclare package Medium = Medium,
+    nEle=10)
+    annotation (Placement(transformation(extent={{136,-212},{116,-192}})));
+
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumSto3(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=-90,origin={94,-202})));
+
+  BuildingSystems.Fluid.FixedResistances.Junction jun3(
+    redeclare package Medium = Medium,
+    m_flow_nominal={0.1,-0.1,0.1},
+    dp_nominal={1,0,1})
+    annotation (Placement(transformation(extent={{144,-180},{124,-160}})));
+
+  BuildingSystems.Fluid.Sources.MassFlowSource_T bou3(
+    nPorts=1,
+    redeclare package Medium = Medium,
+    m_flow=0.1)
+    annotation (Placement(transformation(extent={{166,-250},{146,-230}})));
+
+% endif
+% if colLoop4 == True:
+  // storage loop 4
+  BuildingSystems.Technologies.ThermalStorages.FluidStorage sto4(
+    V=${volumeSto4},
+    HX_2=false,
+    HX_1=false,
+    redeclare package Medium = Medium,
+    nEle=10)
+    annotation (Placement(transformation(extent={{216,-212},{196,-192}})));
+
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumSto4(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1)
+    annotation (Placement(transformation(extent={{10,10},{-10,-10}},rotation=-90,origin={174,-202})));
+
+  BuildingSystems.Fluid.FixedResistances.Junction jun4(
+    redeclare package Medium = Medium,
+    m_flow_nominal={0.1,-0.1,0.1},
+    dp_nominal={1,0,1})
+    annotation (Placement(transformation(extent={{224,-180},{204,-160}})));
+
+  BuildingSystems.Fluid.Sources.MassFlowSource_T bou4(
+    nPorts=1,
+    redeclare package Medium = Medium,
+    m_flow=0.1)
+    annotation (Placement(transformation(extent={{248,-250},{228,-230}})));
+
+% endif
+% if colLoop1 == True:
+  // control loop 1
+  Modelica.Blocks.Math.Add add1(
+    k1=-1,
+    k2=+1)
+    annotation (Placement(transformation(extent={{-4,-4},{4,4}},rotation=-90,origin={-86,-48})));
+
+  Modelica.Blocks.Logical.Hysteresis control1(
+    pre_y_start=false,
+    uLow=2.0,
+    uHigh=4.0)
+    "Two-point controller"
+    annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={-86,-60})));
+
+  Modelica.Blocks.Math.BooleanToReal booToRea1(
+    realTrue=${mFlowColArea*areaCol1})
+    annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={-86,-72})));
+
+  % endif
+  % if colLoop2 == True:
+  // control loop 2
+  Modelica.Blocks.Math.Add add2(
+    k1=-1,
+    k2=+1)
+    annotation (Placement(transformation(extent={{-4,-4},{4,4}},rotation=-90,origin={-6,-48})));
+
+  Modelica.Blocks.Logical.Hysteresis control2(
+    pre_y_start=false,
+    uLow=2.0,
+    uHigh=4.0)
+    "Two-point controller"
+    annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={-6,-60})));
+
+  Modelica.Blocks.Math.BooleanToReal booToRea2(
+    realTrue=${mFlowColArea*areaCol2})
+    annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={-6,-72})));
+
+% endif
+% if colLoop3 == True:
+  // control loop 3
+  Modelica.Blocks.Math.Add add3(
+    k1=-1,
+    k2=+1)
+    annotation (Placement(transformation(extent={{-4,-4},{4,4}},rotation=-90,origin={74,-48})));
+
+  Modelica.Blocks.Logical.Hysteresis control3(
+    pre_y_start=false,
+    uLow=2.0,
+    uHigh=4.0)
+    "Two-point controller"
+    annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={74,-60})));
+
+  Modelica.Blocks.Math.BooleanToReal booToRea3(
+    realTrue=${mFlowColArea*areaCol3})
+    annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={74,-72})));
+
+% endif
+% if colLoop4 == True:
+  // control loop 4
+  Modelica.Blocks.Math.Add add4(
+    k1=-1,
+    k2=+1)
+    annotation (Placement(transformation(extent={{-4,-4},{4,4}},rotation=-90,origin={152,-48})));
+
+  Modelica.Blocks.Logical.Hysteresis control4(
+    pre_y_start=false,
+    uLow=2.0,
+    uHigh=4.0)
+    "Two-point controller"
+    annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={156,-60})));
+
+  Modelica.Blocks.Math.BooleanToReal booToRea4(
+    realTrue=${mFlowColArea*areaCol4})
+    annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=90,origin={156,-72})));
+
+% endif
+  // remaining components
+  BuildingSystems.Fluid.Sources.FixedBoundary fixBou1(
+    nPorts=1,
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{274,-180},{254,-160}})));
+
+  BuildingSystems.Fluid.Sources.FixedBoundary fixBou2(
+    nPorts=1,
+    redeclare package Medium = Medium)
+    annotation (Placement(transformation(extent={{-116,-180},{-96,-160}})));
+
+equation
+  % if colLoop1 == True:
+  // solar loop 1
+  connect(solRadTra1.radiationPort, col1.radiationPort) annotation (Line(points=
+         {{-60,33.8},{-58,33.8},{-58,34},{-51,34},{-51,23}}, color={0,0,0}));
+  connect(weaDat.TAirRef, preTmp1.T) annotation (Line(points={{-97,79},{-97,64},
+         {-45,64},{-45,61}}, color={0,0,127}));
+  connect(col1.angleDegAzi, solRadTra1.angleDegAzi) annotation (Line(points={{
+         -57,5},{-57,0},{-78,0},{-78,28},{-75.6,28}}, color={0,0,127}));
+  connect(col1.angleDegTil, solRadTra1.angleDegTil) annotation (Line(points={{
+         -55,5},{-55,0},{-78,0},{-78,32},{-75.6,32}}, color={0,0,127}));
+  connect(preTmp1.port, col1.heatPortCon)
+         annotation (Line(points={{-45,50},{-45,23}}, color={191,0,0}));
+  connect(weaDat.IrrDirHor, solRadTra1.IrrDirHor) annotation (Line(points={{-93,
+         79},{-93,46},{-75.6,46},{-75.6,40}}, color={0,0,127}));
+  connect(weaDat.IrrDifHor, solRadTra1.IrrDifHor) annotation (Line(points={{-91,
+         79},{-91,46},{-75.6,46},{-75.6,36}}, color={0,0,127}));
+  connect(weaDat.latitudeDeg, solRadTra1.latitudeDeg) annotation (Line(points={
+         {-79,99},{-71.8,99},{-71.8,41.6}}, color={0,0,127}));
+  connect(weaDat.longitudeDeg, solRadTra1.longitudeDeg)
+         annotation (Line(points={{-79,97},{-68,97},{-68,41.6}}, color={0,0,127}));
+  connect(weaDat.longitudeDeg0, solRadTra1.longitudeDeg0)
+         annotation (Line(points={{-79,95},{-64,95},{-64,41.6}}, color={0,0,127}));
+  connect(pipSup1.port_b, col1.port_a)
+         annotation (Line(points={{-66,-10},{-66,14},{-60,14}}, color={0,127,255}));
+  connect(col1.port_b, pipRet1.port_a)
+         annotation (Line(points={{-40,14},{-40,-40}}, color={0,127,255}));
+  connect(pumSol1.port_b, pipSup1.port_a)
+         annotation (Line(points={{-66,-70},{-66,-30}}, color={0,127,255}));
+  connect(pumSol1.port_a, hex1.port_b1) annotation (Line(points={{-66,-90},{-66,
+         -120},{-62,-120}}, color={0,127,255}));
+  connect(pipRet1.port_b, hex1.port_a1) annotation (Line(points={{-40,-60},{-40,
+         -120},{-42,-120}}, color={0,127,255}));
+  connect(expSol1.port_a, hex1.port_b1)
+         annotation (Line(points={{-77,-120},{-62,-120}}, color={0,127,255}));
+
+% endif
+% if colLoop2 == True:
+  // solar loop 2
+  connect(solRadTra2.radiationPort, col2.radiationPort) annotation (Line(points=
+         {{20,33.8},{22,33.8},{22,34},{29,34},{29,23}}, color={0,0,0}));
+  connect(weaDat.TAirRef, preTmp2.T) annotation (Line(points={{-97,79},{-97,64},
+         {35,64},{35,61}}, color={0,0,127}));
+  connect(col2.angleDegAzi, solRadTra2.angleDegAzi) annotation (Line(points={{
+          23,5},{23,0},{2,0},{2,28},{4.4,28}}, color={0,0,127}));
+  connect(col2.angleDegTil, solRadTra2.angleDegTil) annotation (Line(points={{
+          25,5},{25,0},{2,0},{2,32},{4.4,32}}, color={0,0,127}));
+  connect(preTmp2.port, col2.heatPortCon)
+         annotation (Line(points={{35,50},{35,23}}, color={191,0,0}));
+  connect(weaDat.IrrDirHor, solRadTra2.IrrDirHor) annotation (Line(points={{-93,
+         79},{-93,46},{4.4,46},{4.4,40}}, color={0,0,127}));
+  connect(weaDat.IrrDifHor, solRadTra2.IrrDifHor) annotation (Line(points={{-91,
+         79},{-91,46},{4.4,46},{4.4,36}}, color={0,0,127}));
+  connect(weaDat.latitudeDeg, solRadTra2.latitudeDeg)
+         annotation (Line(points={{-79,99},{8.2,99},{8.2,41.6}}, color={0,0,127}));
+  connect(weaDat.longitudeDeg, solRadTra2.longitudeDeg)
+         annotation (Line(points={{-79,97},{12,97},{12,41.6}}, color={0,0,127}));
+  connect(weaDat.longitudeDeg0, solRadTra2.longitudeDeg0)
+         annotation (Line(points={{-79,95},{16,95},{16,41.6}}, color={0,0,127}));
+  connect(pipSup2.port_b, col2.port_a)
+         annotation (Line(points={{14,-10},{14,14},{20,14}}, color={0,127,255}));
+  connect(col2.port_b, pipRet2.port_a)
+         annotation (Line(points={{40,14},{40,-40}}, color={0,127,255}));
+  connect(pipSup2.port_a, pumSol2.port_b)
+         annotation (Line(points={{14,-30},{14,-70}}, color={0,127,255}));
+  connect(pumSol2.port_a, hex2.port_b1) annotation (Line(points={{14,-90},{14,
+         -120},{18,-120}}, color={0,127,255}));
+  connect(pipRet2.port_b, hex2.port_a1) annotation (Line(points={{40,-60},{40,
+         -120},{38,-120}}, color={0,127,255}));
+  connect(expSol2.port_a, hex2.port_b1)
+         annotation (Line(points={{3,-120},{18,-120}}, color={0,127,255}));
+
+% endif
+% if colLoop3 == True:
+  // solar loop 3
+  connect(solRadTra3.radiationPort, col3.radiationPort) annotation (Line(points=
+         {{100,33.8},{104,33.8},{104,34},{109,34},{109,23}}, color={0,0,0}));
+  connect(weaDat.TAirRef, preTmp3.T) annotation (Line(points={{-97,79},{-97,64},
+         {115,64},{115,61}}, color={0,0,127}));
+  connect(col3.angleDegAzi, solRadTra3.angleDegAzi) annotation (Line(points={{
+         103,5},{103,0},{82,0},{82,28},{84.4,28}}, color={0,0,127}));
+  connect(col3.angleDegTil, solRadTra3.angleDegTil) annotation (Line(points={{
+         105,5},{105,0},{82,0},{82,32},{84.4,32}}, color={0,0,127}));
+  connect(preTmp3.port, col3.heatPortCon)
+         annotation (Line(points={{115,50},{115,23}}, color={191,0,0}));
+  connect(weaDat.IrrDirHor, solRadTra3.IrrDirHor) annotation (Line(points={{-93,
+        79},{-93,46},{84.4,46},{84.4,40}}, color={0,0,127}));
+  connect(weaDat.IrrDifHor, solRadTra3.IrrDifHor) annotation (Line(points={{-91,
+        79},{-91,46},{84.4,46},{84.4,36}}, color={0,0,127}));
+  connect(weaDat.latitudeDeg, solRadTra3.latitudeDeg) annotation (Line(points={
+        {-79,99},{88.2,99},{88.2,41.6}}, color={0,0,127}));
+  connect(weaDat.longitudeDeg, solRadTra3.longitudeDeg)
+        annotation (Line(points={{-79,97},{92,97},{92,41.6}}, color={0,0,127}));
+  connect(weaDat.longitudeDeg0, solRadTra3.longitudeDeg0)
+        annotation (Line(points={{-79,95},{96,95},{96,41.6}}, color={0,0,127}));
+  connect(pipSup3.port_b, col3.port_a)
+        annotation (Line(points={{94,-10},{94,14},{100,14}}, color={0,127,255}));
+  connect(col3.port_b, pipRet3.port_a)
+        annotation (Line(points={{120,14},{120,-40}}, color={0,127,255}));
+  connect(pipSup3.port_a, pumSol3.port_b)
+        annotation (Line(points={{94,-30},{94,-70}}, color={0,127,255}));
+  connect(pumSol3.port_a, hex3.port_b1) annotation (Line(points={{94,-90},{94,
+        -120},{98,-120}}, color={0,127,255}));
+  connect(hex3.port_a1, pipRet3.port_b) annotation (Line(points={{118,-120},{
+         120,-120},{120,-60}}, color={0,127,255}));
+
+% endif
+% if colLoop4 == True:
+  // solar loop 4
+  connect(solRadTra4.radiationPort, col4.radiationPort) annotation (Line(points=
+         {{180,33.8},{184,33.8},{184,34},{189,34},{189,23}}, color={0,0,0}));
+  connect(weaDat.TAirRef, preTmp4.T) annotation (Line(points={{-97,79},{-97,64},
+          {195,64},{195,61}}, color={0,0,127}));
+  connect(col4.angleDegAzi, solRadTra4.angleDegAzi) annotation (Line(points={{
+          183,5},{183,0},{162,0},{162,28},{164.4,28}}, color={0,0,127}));
+  connect(col4.angleDegTil, solRadTra4.angleDegTil) annotation (Line(points={{
+          185,5},{185,0},{162,0},{162,32},{164.4,32}}, color={0,0,127}));
+  connect(preTmp4.port, col4.heatPortCon)
+          annotation (Line(points={{195,50},{195,23}}, color={191,0,0}));
+  connect(weaDat.IrrDirHor, solRadTra4.IrrDirHor) annotation (Line(points={{-93,
+          79},{-93,46},{164.4,46},{164.4,40}}, color={0,0,127}));
+  connect(weaDat.IrrDifHor, solRadTra4.IrrDifHor) annotation (Line(points={{-91,
+          79},{-91,46},{164.4,46},{164.4,36}}, color={0,0,127}));
+  connect(weaDat.latitudeDeg, solRadTra4.latitudeDeg) annotation (Line(points={
+          {-79,99},{168.2,99},{168.2,41.6}}, color={0,0,127}));
+  connect(weaDat.longitudeDeg, solRadTra4.longitudeDeg)
+          annotation (Line(points={{-79,97},{172,97},{172,41.6}}, color={0,0,127}));
+  connect(weaDat.longitudeDeg0, solRadTra4.longitudeDeg0)
+          annotation (Line(points={{-79,95},{176,95},{176,41.6}}, color={0,0,127}));
+  connect(pipSup4.port_b, col4.port_a)
+          annotation (Line(points={{174,-10},{174,14},{180,14}}, color={0,127,255}));
+  connect(col4.port_b, pipRet4.port_a)
+          annotation (Line(points={{200,14},{200,-40}}, color={0,127,255}));
+  connect(pipSup4.port_a, pumSol4.port_b)
+          annotation (Line(points={{174,-30},{174,-70}}, color={0,127,255}));
+  connect(pumSol4.port_a, hex4.port_b1) annotation (Line(points={{174,-90},{174,
+          -120},{178,-120}}, color={0,127,255}));
+  connect(hex4.port_a1, pipRet4.port_b) annotation (Line(points={{198,-120},{
+          200,-120},{200,-60}}, color={0,127,255}));
+
+% endif
+% if colLoop1 == True:
+  // storage loop 1
+  connect(hex1.port_b2, sto1.port_a2) annotation (Line(points={{-42,-132},{-42,
+         -193},{-41,-193}}, color={0,127,255}));
+  connect(pumSto1.port_b, hex1.port_a2) annotation (Line(points={{-66,-192},{
+          -66,-132},{-62,-132}}, color={0,127,255}));
+  connect(sto1.port_b2, pumSto1.port_a) annotation (Line(points={{-41,-211},{
+          -41,-220},{-66,-220},{-66,-212}}, color={0,127,255}));
+  connect(bou1.ports[1], sto1.port_a1) annotation (Line(points={{-14,-240},{-20,
+          -240},{-20,-211},{-27,-211}}, color={0,127,255}));
+  connect(sto1.port_b1, jun1.port_3) annotation (Line(points={{-27,-193},{-27,
+          -192.5},{-26,-192.5},{-26,-180}}, color={0,127,255}));
+
+% endif
+% if colLoop2 == True:
+  // storage loop 2
+  connect(hex2.port_b2, sto2.port_a2) annotation (Line(points={{38,-132},{38,
+          -193},{39,-193}}, color={0,127,255}));
+  connect(pumSto2.port_b, hex2.port_a2) annotation (Line(points={{14,-192},{14,
+          -132},{18,-132}}, color={0,127,255}));
+  connect(sto2.port_b2, pumSto2.port_a) annotation (Line(points={{39,-211},{39,
+          -220},{14,-220},{14,-212}}, color={0,127,255}));
+  connect(bou2.ports[1], sto2.port_a1) annotation (Line(points={{70,-240},{64,
+          -240},{64,-211},{53,-211}}, color={0,127,255}));
+  connect(sto2.port_b1, jun2.port_3) annotation (Line(points={{53,-193},{53,
+          -192.5},{54,-192.5},{54,-180}}, color={0,127,255}));
+
+% endif
+% if colLoop3 == True:
+  // storage loop 3
+  connect(hex3.port_b2, sto3.port_a2) annotation (Line(points={{118,-132},{120,
+          -132},{120,-193},{119,-193}}, color={0,127,255}));
+  connect(pumSto3.port_b, hex3.port_a2) annotation (Line(points={{94,-192},{94,
+          -132},{98,-132}}, color={0,127,255}));
+  connect(sto3.port_b2, pumSto3.port_a) annotation (Line(points={{119,-211},{
+          119,-220},{94,-220},{94,-212}}, color={0,127,255}));
+  connect(bou3.ports[1], sto3.port_a1) annotation (Line(points={{146,-240},{144,
+          -240},{144,-211},{133,-211}}, color={0,127,255}));
+  connect(sto3.port_b1, jun3.port_3) annotation (Line(points={{133,-193},{133,
+          -191.5},{134,-191.5},{134,-180}}, color={0,127,255}));
+  connect(expSol3.port_a, hex3.port_b1)
+         annotation (Line(points={{83,-120},{98,-120}}, color={0,127,255}));
+
+% endif
+% if colLoop4 == True:
+  // storage loop 4
+  connect(hex4.port_b2, sto4.port_a2) annotation (Line(points={{198,-132},{198,
+         -193},{199,-193}}, color={0,127,255}));
+  connect(pumSto4.port_b, hex4.port_a2) annotation (Line(points={{174,-192},{
+          174,-132},{178,-132}}, color={0,127,255}));
+  connect(sto4.port_b2, pumSto4.port_a) annotation (Line(points={{199,-211},{
+          199,-220},{174,-220},{174,-212}}, color={0,127,255}));
+  connect(bou4.ports[1], sto4.port_a1) annotation (Line(points={{228,-240},{222,
+          -240},{222,-211},{213,-211}}, color={0,127,255}));
+  connect(sto4.port_b1, jun4.port_3) annotation (Line(points={{213,-193},{213,
+          -192.5},{214,-192.5},{214,-180}}, color={0,127,255}));
+  connect(expSol4.port_a, hex4.port_b1)
+         annotation (Line(points={{163,-120},{178,-120}}, color={0,127,255}));
+
+% endif
+% if colLoop1 == True:
+  // control loop 1
+  connect(add1.y, control1.u)
+         annotation (Line(points={{-86,-52.4},{-86,-55.2}}, color={0,0,127}));
+  connect(control1.y, booToRea1.u)
+         annotation (Line(points={{-86,-64.4},{-86,-67.2}}, color={255,0,255}));
+  connect(booToRea1.y, pumSol1.m_flow_in) annotation (Line(points={{-86,-76.4},
+          {-86,-80},{-78,-80}}, color={0,0,127}));
+  connect(add1.u2, col1.TSeg[10]) annotation (Line(points={{-88.4,-43.2},{-88.4,
+         -6},{-46.8,-6},{-46.8,5}}, color={0,0,127}));
+  connect(add1.u1, sto1.T[1]) annotation (Line(points={{-83.6,-43.2},{-83.6,-36},
+         {-14,-36},{-14,-196.9},{-26.6,-196.9}},color={0,0,127}));
+  connect(booToRea1.y, pumSto1.m_flow_in) annotation (Line(points={{-86,-76.4},
+         {-86,-202},{-78,-202}}, color={0,0,127}));
+
+% endif
+% if colLoop2 == True:
+  // control loop 2
+  connect(add2.y, control2.u)
+         annotation (Line(points={{-6,-52.4},{-6,-55.2}}, color={0,0,127}));
+  connect(control2.y, booToRea2.u)
+         annotation (Line(points={{-6,-64.4},{-6,-67.2}}, color={255,0,255}));
+  connect(booToRea2.y, pumSol2.m_flow_in)
+         annotation (Line(points={{-6,-76.4},{-6,-80},{2,-80}}, color={0,0,127}));
+  connect(add2.u2, col2.TSeg[10]) annotation (Line(points={{-8.4,-43.2},{-8.4,
+          -6},{33.2,-6},{33.2,5}}, color={0,0,127}));
+  connect(add2.u1, sto2.T[1]) annotation (Line(points={{-3.6,-43.2},{-3.6,-36},
+          {66,-36},{66,-196.9},{53.4,-196.9}},color={0,0,127}));
+  connect(booToRea2.y, pumSto2.m_flow_in)
+          annotation (Line(points={{-6,-76.4},{-6,-202},{2,-202}}, color={0,0,127}));
+
+% endif
+% if colLoop3 == True:
+  // control loop 3
+  connect(add3.y, control3.u)
+         annotation (Line(points={{74,-52.4},{74,-55.2}}, color={0,0,127}));
+  connect(control3.y, booToRea3.u)
+         annotation (Line(points={{74,-64.4},{74,-67.2}}, color={255,0,255}));
+  connect(booToRea3.y, pumSol3.m_flow_in)
+         annotation (Line(points={{74,-76.4},{74,-80},{82,-80}}, color={0,0,127}));
+  connect(add3.u2, col3.TSeg[10]) annotation (Line(points={{71.6,-43.2},{71.6,
+          -4},{113.2,-4},{113.2,5}}, color={0,0,127}));
+  connect(add3.u1, sto3.T[1]) annotation (Line(points={{76.4,-43.2},{76.4,-36},
+          {146,-36},{146,-196.9},{133.4,-196.9}},color={0,0,127}));
+  connect(booToRea3.y, pumSto3.m_flow_in) annotation (Line(points={{74,-76.4},{
+          74,-202},{82,-202}}, color={0,0,127}));
+
+% endif
+% if colLoop4 == True:
+  // control loop 4
+  connect(add4.y, control4.u) annotation (Line(points={{152,-52.4},{152,-54},{
+          156,-54},{156,-55.2}}, color={0,0,127}));
+  connect(control4.y, booToRea4.u)
+         annotation (Line(points={{156,-64.4},{156,-67.2}}, color={255,0,255}));
+  connect(booToRea4.y, pumSol4.m_flow_in) annotation (Line(points={{156,-76.4},
+         {156,-80},{162,-80}}, color={0,0,127}));
+  connect(add4.u2, col4.TSeg[10]) annotation (Line(points={{149.6,-43.2},{149.6,
+          -4},{193.2,-4},{193.2,5}}, color={0,0,127}));
+  connect(add4.u1, sto4.T[1]) annotation (Line(points={{154.4,-43.2},{154.4,-36},
+          {226,-36},{226,-196.9},{213.4,-196.9}},color={0,0,127}));
+  connect(booToRea4.y, pumSto4.m_flow_in) annotation (Line(points={{156,-76.4},
+          {156,-202},{162,-202}}, color={0,0,127}));
+
+% endif
+  // remaining components
+% if colLoop1 == True:
+  connect(fixBou2.ports[1], jun1.port_2)
+         annotation (Line(points={{-96,-170},{-36,-170}}, color={0,127,255}));
+% elif colLoop2 == True:
+  connect(fixBou2.ports[1], jun2.port_2)
+         annotation (Line(points={{-96,-170},{-36,-170}}, color={0,127,255}));
+% elif colLoop3 == True:
+  connect(fixBou2.ports[1], jun3.port_2)
+         annotation (Line(points={{-96,-170},{-36,-170}}, color={0,127,255}));
+% elif colLoop4 == True:
+  connect(fixBou2.ports[1], jun4.port_2)
+         annotation (Line(points={{-96,-170},{-36,-170}}, color={0,127,255}));
+% endif
+% if colLoop4 == True:
+  connect(jun4.port_1, fixBou1.ports[1])
+         annotation (Line(points={{224,-170},{254,-170}}, color={0,127,255}));
+% elif colLoop3 == True:
+  connect(jun3.port_1, fixBou1.ports[1])
+         annotation (Line(points={{224,-170},{254,-170}}, color={0,127,255}));
+% elif colLoop2 == True:
+  connect(jun2.port_1, fixBou1.ports[1])
+         annotation (Line(points={{224,-170},{254,-170}}, color={0,127,255}));
+% elif colLoop1 == True:
+  connect(jun1.port_1, fixBou1.ports[1])
+         annotation (Line(points={{224,-170},{254,-170}}, color={0,127,255}));
+% endif
+% if colLoop1 == True and colLoop2 == True:
+  connect(jun1.port_1, jun2.port_2)
+         annotation (Line(points={{-16,-170},{44,-170}}, color={0,127,255}));
+% endif
+% if colLoop2 == True and colLoop3 == True:
+  connect(jun2.port_1, jun3.port_2)
+         annotation (Line(points={{64,-170},{124,-170}}, color={0,127,255}));
+% endif
+% if colLoop3 == True and colLoop4 == True:
+  connect(jun3.port_1, jun4.port_2)
+          annotation (Line(points={{144,-170},{204,-170}}, color={0,127,255}));
+% endif
+% if colLoop1 == True and colLoop2 == False and colLoop3 == True:
+  connect(jun1.port_1, jun3.port_2)
+          annotation (Line(points={{144,-170},{204,-170}}, color={0,127,255}));
+% endif
+% if colLoop1 == True and colLoop2 == False and colLoop3 == False and colLoop4 == True:
+  connect(jun1.port_1, jun4.port_2)
+          annotation (Line(points={{144,-170},{204,-170}}, color={0,127,255}));
+% endif
+% if colLoop2 == True and colLoop3 == False and colLoop4 == True:
+  connect(jun2.port_1, jun4.port_2)
+          annotation (Line(points={{144,-170},{204,-170}}, color={0,127,255}));
+% endif
+
+  annotation (experiment(StartTime=15721200, StopTime=18399600),
+    uses(Modelica(version="3.2.2"), BuildingSystems(version="2.0.0-beta")),
+    Diagram(coordinateSystem(extent={{-130,-260},{280,120}}, initialScale=0.1)),
+    Icon(coordinateSystem(extent={{-130,-260},{280,120}}, initialScale=0.1)));
+end ${modelClassName};
