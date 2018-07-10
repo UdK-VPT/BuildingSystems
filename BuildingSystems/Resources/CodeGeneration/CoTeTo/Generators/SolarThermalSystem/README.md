@@ -64,6 +64,7 @@ structures of the solar thermal system can be automatically generated:
 This is realised by activating and deactivating different parts of the code template:
 
 ```python
+...
 % if colLoop1 == True:
   // collector loop 1
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky solRadTra1
@@ -91,7 +92,7 @@ In addition, centrally defined important system parameters
 * the weather location,
 * the azimuth and tilt angle of the collector fields,
 * the area of the collector fields,
-* the volumens of the thermal storages and
+* the volumes of the thermal storages and
 * the area specific mass flow rate through the collector
 
 are substituted in the component models during the code generation process.
