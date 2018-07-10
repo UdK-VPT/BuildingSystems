@@ -3,15 +3,18 @@ Code generator SolarThermalSystem
 
 This CoTeTo code generator is able to generate 16 different structures of a solar thermal system.
 
-The maximum configuration of the solar thermal system includes for solar collector fields 1 to 4 with potentially
+The maximum configuration of the solar thermal system includes the
+four solar collector fields `col1` to `col4` with potentially
 different orientations, collector field areas and storage volumens:
 
 ![SolarThermalSystem_1111](https://github.com/UdK-VPT/BuildingSystems/blob/master/BuildingSystems/Resources/CodeGeneration/CoTeTo/Images/SolarThermalSystem_1111.png)
 
-The collector field areas are individually controlled by four two-point controllers. The incoming cold water, defined by the components bou1 to bou4, flows through the four thermal hot water storages. The
-leaving hot water is unified by the four junctions jun1 to jun4.
+The collector field areas are individually controlled by four two-point controllers.
+The incoming cold water, defined by the components `bou1` to `bou4`, flows
+through the four thermal hot water storages `sto1` to `sto4`. The
+leaving hot water is unified by the four junctions `jun1` to `jun4`.
 
-The head of the code generator file main.mot includes several Bolean variables (colLoop1 to colLoop4) and
+The head of the code generator file main.mot includes several Bolean variables (`colLoop1` to `colLoop4`) and
 also variables with numerical values of Modelica model parameters:
 
 ```python
