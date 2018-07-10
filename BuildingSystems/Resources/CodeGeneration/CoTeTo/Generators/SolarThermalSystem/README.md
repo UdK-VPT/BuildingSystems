@@ -60,7 +60,7 @@ mFlowColArea = 30/3600 # kg/(m2*s)
 ...
 ```
 
-With the help of this variables and the logic of the code template 16 different
+With the help of these variables and the logic of the code template 16 different
 structures of the solar thermal system can be automatically generated:
 
 ![SolarThermalSystem_structuralVariants](https://github.com/UdK-VPT/BuildingSystems/blob/master/BuildingSystems/Resources/CodeGeneration/CoTeTo/Images/SolarThermalSystem_structuralVariants.png)
