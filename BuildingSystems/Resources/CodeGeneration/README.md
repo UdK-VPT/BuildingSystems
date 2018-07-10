@@ -18,6 +18,6 @@ A short introduction into CoTeTo you can find under [CoTeTo/README.md](https://g
 
 ![CoTeTo-GUI](https://github.com/UdK-VPT/BuildingSystems/blob/master/BuildingSystems/Resources/CodeGeneration/CoTeTo/Images/CoTeTo.png)
 
-5. Name the output file (e.g. SolarThermalSystem.mo) and press `Generate`.
+5. Name the output file (e.g. SolarThermalSystem.mo) and press **Generate**.
 
 6. Open the generated .mo-File in your Modelica simulation environment and simulate it.

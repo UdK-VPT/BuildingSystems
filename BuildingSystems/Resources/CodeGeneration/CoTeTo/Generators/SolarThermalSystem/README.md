@@ -54,6 +54,7 @@ volumeSto4 = 1.0 # m3
 # collector area specific mass flow
 mFlowColArea = 30/3600 # kg/(m2*s)
 %>
+...
 ```
 
 With the help of this variables and the logic of the code template 16 different
@@ -85,6 +86,7 @@ This is realised by activating and deactivating different parts of the code temp
     annotation (Placement(transformation(extent={{-60,4},{-40,24}})));
 ...  
 % endif
+...
 ```
 
 In addition, centrally defined important system parameters
