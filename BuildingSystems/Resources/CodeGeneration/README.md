@@ -5,7 +5,7 @@ This folder includes examples for automatic Modelica code generation of building
 
 For this purpose the template based code generation tool [CoTeTo](https://github.com/UdK-VPT/CoTeTo.git) is used.
 
-A short introduction into CoTeTo you can find under [CoTeTo/README.md](https://github.com/UdK-VPT/BuildingSystems/blob/master/README.md).
+A short introduction into the generator package concept of CoTeTo you can find under [CoTeTo/Generators/README.md](https://github.com/UdK-VPT/CoTeTo/tree/master/Generators).
 
 ## Usage
 1. Clone or download CoTeTo (https://github.com/UdK-VPT/CoTeTo.git)
