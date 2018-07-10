@@ -16,7 +16,7 @@ A short introduction into CoTeTo you can find under [CoTeTo/README.md](https://g
 
 4. Start the GUI of CoTeTo and select the generator of your interest, in this case 'SolarThermalSystem'.
 
-![CoTeTo-GUI](https://github.com/UdK-VPT/BuildingSystems/blob/master/Resources/CodeGeneration/CoTeTo/Images/CoTeTo.png)
+![CoTeTo-GUI](https://github.com/UdK-VPT/BuildingSystems/blob/master/BuildingSystems/Resources/CodeGeneration/CoTeTo/Images/CoTeTo.png)
 
 5. Name the output file (e.g. SolarThermalSystem.mo) and press 'Generate'.
 
