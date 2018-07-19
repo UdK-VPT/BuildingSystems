@@ -1,7 +1,7 @@
-.. _simpleBuildingModel:
+.. _energySystemsSimulation:
 
-Simple building model
-=====================
+Energy systems simulation
+=========================
 
 In the first example a simplified building model is connected with an ambient model which supplies the
 building model with the climate data of a given location (Berlin, Germany). Here you will find the explanations for several fundamental working steps
