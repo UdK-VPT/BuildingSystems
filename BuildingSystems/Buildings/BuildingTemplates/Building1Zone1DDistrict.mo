@@ -13,7 +13,10 @@ model Building1Zone1DDistrict
     "Number of storeys";
   parameter Modelica.SIunits.Area ARoom = 4.0 * 4.0
     "Mean floor area of a room";
-
+  parameter Integer id = 1
+    "Building ID"
+    annotation (Dialog(tab = "General"));
+    
   annotation(defaultComponentName="building",
 Documentation(info="<html>
 <p>
