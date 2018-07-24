@@ -28,6 +28,9 @@ model Building1Zone0DDistrict
       fWin*width*heightSto*nSto*(1.0-fAreaAdjBld)
     },
     UValWin = {2.0,2.0,2.0,2.0});
+  parameter Integer id = 1
+    "Building ID"
+    annotation (Dialog(tab = "General"));
   parameter Modelica.SIunits.Length length = 10.0
     "Length of the building"
     annotation (Dialog(tab = "General", group = "Geometry building"));
