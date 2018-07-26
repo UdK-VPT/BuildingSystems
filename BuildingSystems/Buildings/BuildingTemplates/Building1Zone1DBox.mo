@@ -309,7 +309,7 @@ model Building1Zone1DBox
     "Numerical resolution interior walls"
     annotation(Dialog(tab = "Advanced", group = "Numerical Parameters"));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
-    final prescribedAirchange = prescribedAirchange,
+    prescribedAirchange = prescribedAirchange,
     final V = width*length*height,
     final height = height,
     final calcIdealLoads = calcIdealLoads,
