@@ -3,7 +3,7 @@ model Building1Zone1DBox
   "1 zone thermal building model with the shape of a box"
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
     nZones = 1,
-    final prescribedAirchange = true,
+    prescribedAirchange = true,
     final useAirPaths = false,
     final calcHygroThermal = false,
     final nAirpaths = 0,
