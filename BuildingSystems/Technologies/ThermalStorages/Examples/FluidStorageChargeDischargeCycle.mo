@@ -2,9 +2,11 @@ within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageChargeDischargeCycle
   "Example that demonstrates the controlled charging and discharing process of a thermal storage"
   extends Modelica.Icons.Example;
-  replaceable package Medium = BuildingSystems.Media.Water;
+  package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
+    redeclare package Medium_HX_1 = Medium,
+    redeclare package Medium_HX_2 = Medium,
     height=2.0,
     HX_2=false,
     HX_1=true,
@@ -121,5 +123,17 @@ equation
 Documentation(info="<html>
 <p>Discharges warm storage <span style=\"font-family: MS Shell Dlg 2;\">twice </span>into sink, while refilling cold water at the bottom.</p>
 <p>Temperature drop at middle layer triggers reheating by bottom heat exchanger, repeatedly due to heat loss via surface.</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to possible different media for the storage content and the two internal heat exchangers.
+</li>
+<li>
+May 21, 2016, by Carles Ribas Tugores:<br/>
+First implementation.
+</li>
+</ul>
 </html>"));
 end FluidStorageChargeDischargeCycle;

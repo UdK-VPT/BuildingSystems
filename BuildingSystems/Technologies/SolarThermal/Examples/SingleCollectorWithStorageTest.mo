@@ -2,7 +2,10 @@ within BuildingSystems.Technologies.SolarThermal.Examples;
 model SingleCollectorWithStorageTest
   "Test of the single collector model with a thermal fluid storage"
   extends Modelica.Icons.Example;
-  replaceable package Medium = BuildingSystems.Media.Water;
+  package Medium2 = BuildingSystems.Media.Water;
+  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
+    X_a=0.40,
+    property_T=293.15);
 
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
     redeclare Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2013 weatherDataFile)
@@ -14,7 +17,7 @@ model SingleCollectorWithStorageTest
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature
     annotation (Placement(transformation(extent={{-20,0},{-30,10}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=1,
     dp_nominal=2,
     angleDegAzi = 0.0,
@@ -22,7 +25,7 @@ model SingleCollectorWithStorageTest
     angleDegTil = 30.0)
     annotation (Placement(transformation(extent={{-50,-20},{-30,0}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=5)
     annotation (Placement(transformation(extent={{-10,-20},{10,0}})));
   Controls.Continuous.LimPID conPID(
@@ -33,31 +36,36 @@ model SingleCollectorWithStorageTest
     Ti = 0.001,
     yMax = 1)
     annotation (Placement(transformation(extent={{60,40},{40,60}})));
-  Modelica.Blocks.Sources.RealExpression T_set(y=273.15 + 60)
+  Modelica.Blocks.Sources.RealExpression T_set(
+    y=273.15 + 60)
     annotation (Placement(transformation(extent={{94,40},{76,60}})));
-  BuildingSystems.Fluid.Sensors.Temperature senTem1(redeclare package Medium = Medium)
+  BuildingSystems.Fluid.Sensors.Temperature senTem1(
+    redeclare package Medium = Medium1)
     annotation (Placement(transformation(extent={{100,0},{80,20}})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
-    redeclare package Medium = Medium,
+    redeclare package Medium_HX_1 = Medium1,
+    redeclare package Medium_HX_2 = Medium2,
+    redeclare package Medium = Medium2,
     redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
+    HX_1 = true,
     HX_2 = false,
     PerfectlyIsolated = true,
     nEle = 4)
     annotation (Placement(transformation(extent={{8,-120},{-32,-80}})));
   BuildingSystems.Fluid.Storage.ExpansionVessel exp(
-    redeclare package Medium = Medium,
-    V_start = 1.0,
+    redeclare package Medium = Medium1,
+    V_start = 0.01,
     p_start = 300000)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
   BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     m_flow = 0,
     nPorts = 1,
     use_m_flow_in = true,
     T = 283.15)
     annotation (Placement(transformation(extent={{40,-128},{20,-108}})));
   BuildingSystems.Fluid.Sources.FixedBoundary sink(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     nPorts = 1)
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},origin={30,-82})));
   Modelica.Blocks.Sources.Pulse  consumptionProfile(
@@ -158,6 +166,10 @@ BuildingSystems.Technologies.SolarThermal.ThermalCollector</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to medium BuildingSystems.Media.Anntifreeze.PropyleneGlycolWater in the solar thermal collector loop.
+</li>
 <li>
 June 14, 2018, by Christoph Nytsch-Geusen:<br/>
 Adaptation to the new interfaces of the weather data reader.

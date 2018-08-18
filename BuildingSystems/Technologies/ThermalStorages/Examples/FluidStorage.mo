@@ -2,9 +2,11 @@ within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorage
   "Example that demonstrates the external in internal charging processes of a thermal storage"
   extends Modelica.Icons.Example;
-  replaceable package Medium = BuildingSystems.Media.Water;
+  package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
+    redeclare package Medium_HX_1 = Medium,
+    redeclare package Medium_HX_2 = Medium,
     height=2.0,
     T_start(displayUnit="degC") = 313.15,
     HX_1=true,
@@ -94,7 +96,19 @@ equation
       smooth=Smooth.None));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Technologies/ThermalStorages/Examples/FluidStorage.mos" "Simulate and plot"),
     experiment(StopTime=2000),
-    Documentation(info="<html>
-    <p>Charging once cold through bottom inlet, twice through internal heat exchanger.</p>
-    </html>"));
+Documentation(info="<html>
+<p>Charging once cold through bottom inlet, twice through internal heat exchanger.</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to possible different media for the storage content and the two internal heat exchangers.
+</li>
+<li>
+May 21, 2016, by Carles Ribas Tugores:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end FluidStorage;

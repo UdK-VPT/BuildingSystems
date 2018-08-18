@@ -2,7 +2,10 @@ within BuildingSystems.Technologies.SolarThermal.Examples;
 model BigCollectorInstallationWithStorage
   "Six solar thermal collectors connected to a thermal fluid storage via an external heat exchanger"
   extends Modelica.Icons.Example;
-  replaceable package Medium = BuildingSystems.Media.Water;
+  package Medium2 = BuildingSystems.Media.Water;
+  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
+    X_a=0.40,
+    property_T=293.15);
 
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
     redeclare Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2013 weatherDataFile)
@@ -14,7 +17,7 @@ model BigCollectorInstallationWithStorage
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature
     annotation (Placement(transformation(extent={{4,4},{-6,14}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector3(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal = 1.0,
     dp_nominal = 2.0,
     angleDegAzi = 0.0,
@@ -22,7 +25,7 @@ model BigCollectorInstallationWithStorage
     angleDegTil = 30.0)
     annotation (Placement(transformation(extent={{-86,-24},{-66,-4}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump1(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal = 5.0,
     riseTime(displayUnit="min") = 60-0)
     annotation (Placement(transformation(extent={{24,-24},{44,-4}})));
@@ -37,10 +40,12 @@ model BigCollectorInstallationWithStorage
   Modelica.Blocks.Sources.RealExpression T_set(y=273.15 + 80.0)
     annotation (Placement(transformation(extent={{100,40},{80,60}})));
   BuildingSystems.Fluid.Sensors.Temperature senTem1(
-    redeclare package Medium = Medium)
+    redeclare package Medium = Medium1)
     annotation (Placement(transformation(extent={{100,0},{80,20}})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
+    redeclare package Medium_HX_1 = Medium2,
+    redeclare package Medium_HX_2 = Medium2,
     redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     HX_2 = false,
     PerfectlyIsolated = true,
@@ -51,14 +56,14 @@ model BigCollectorInstallationWithStorage
     T_start=323.15)
     annotation (Placement(transformation(extent={{12,-222},{-28,-182}})));
   BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     m_flow = 0,
     nPorts = 1,
     use_m_flow_in = true,
     T = 283.15)
     annotation (Placement(transformation(extent={{40,-230},{20,-210}})));
   BuildingSystems.Fluid.Sources.FixedBoundary sink(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     nPorts = 1)
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},origin={90,-184})));
   Modelica.Blocks.Sources.Pulse consumptionProfile(
@@ -67,7 +72,7 @@ model BigCollectorInstallationWithStorage
     period=21600) "Mass flow rate"
     annotation (Placement(transformation(extent={{80,-222},{60,-202}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector1(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal = 1.0,
     dp_nominal = 2.0,
     angleDegAzi = 0.0,
@@ -75,7 +80,7 @@ model BigCollectorInstallationWithStorage
     redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.FlatSolarCollector1 collectorData(A=3.17))
     annotation (Placement(transformation(extent={{-56,-24},{-36,-4}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector2(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal = 1.0,
     dp_nominal = 2.0,
     angleDegAzi = 0.0,
@@ -83,8 +88,8 @@ model BigCollectorInstallationWithStorage
     redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.FlatSolarCollector1 collectorData(A=3.17))
     annotation (Placement(transformation(extent={{-26,-24},{-6,-4}})));
   BuildingSystems.Fluid.HeatExchangers.ConstantEffectiveness HX(
-    redeclare package Medium1 = Medium,
-    redeclare package Medium2 = Medium,
+    redeclare package Medium1 = Medium1,
+    redeclare package Medium2 = Medium2,
     m1_flow_nominal=2,
     m2_flow_nominal=2,
     dp1_nominal=1,
@@ -95,12 +100,12 @@ model BigCollectorInstallationWithStorage
     eps=0.9)
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=90,origin={-88,-192})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump2(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     m_flow_nominal=5)
     annotation (Placement(transformation(extent={{-60,-194},{-40,-174}})));
   BuildingSystems.Fluid.Storage.ExpansionVessel exp(
-    redeclare package Medium = Medium,
-    V_start = 1.0,
+    redeclare package Medium = Medium1,
+    V_start = 0.01,
     p_start=300000)
     annotation (Placement(transformation(extent={{-120,-140},{-100,-120}})));
   Modelica.Blocks.Sources.BooleanExpression booleanControl2(y=conPID.y > 0.1)
@@ -110,7 +115,7 @@ model BigCollectorInstallationWithStorage
   Modelica.Blocks.Sources.RealExpression systemOff(y=0)
     annotation (Placement(transformation(extent={{60,-178},{22,-160}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollectorInSeries collectorInSeries(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     nCol=3,
     redeclare BuildingSystems.Technologies.SolarThermal.Data.Collectors.FlatSolarCollector1 collectorData(A=3.17),
     angleDegAzi = 0.0,
@@ -125,7 +130,7 @@ model BigCollectorInstallationWithStorage
     rhoAmb=0.2)
     annotation (Placement(transformation(extent={{-124,-10},{-104,10}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollectorInParallel collectorInParallel(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=1,
     nCol=3,
     nArr=2,
@@ -348,6 +353,10 @@ BuildingSystems.Technologies.SolarThermal.ThermalCollector</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to medium BuildingSystems.Media.Anntifreeze.PropyleneGlycolWater in the solar thermal collector loop.
+</li>
 <li>
 June 14, 2018, by Christoph Nytsch-Geusen:<br/>
 Adaptation to the new interfaces of the weather data reader.

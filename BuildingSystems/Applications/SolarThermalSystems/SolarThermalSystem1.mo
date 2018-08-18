@@ -2,7 +2,11 @@ within BuildingSystems.Applications.SolarThermalSystems;
 model SolarThermalSystem1
   "Example of a  solar thermal system with an internal heat exchanger"
   extends Modelica.Icons.Example;
-  replaceable package Medium = BuildingSystems.Media.Water;
+  package Medium2 = BuildingSystems.Media.Water;
+  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
+    X_a=0.40,
+    property_T=293.15);
+
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.01;
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile)
@@ -15,12 +19,12 @@ model SolarThermalSystem1
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature
     annotation (Placement(transformation(extent={{-80,72},{-72,80}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow=0.01,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-40,-70},{-60,-50}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     dp_nominal=2,
     angleDegAzi=0,
     angleDegTil=30.0,
@@ -33,7 +37,7 @@ model SolarThermalSystem1
     height=1)
     annotation (Placement(transformation(extent={{-60,30},{-40,50}})));
   BuildingSystems.Fluid.FixedResistances.Pipe  pipe1(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -43,7 +47,7 @@ model SolarThermalSystem1
     "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,10})));
   BuildingSystems.Fluid.FixedResistances.Pipe  pipe2(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -53,7 +57,7 @@ model SolarThermalSystem1
     "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,10})));
   BuildingSystems.Fluid.Storage.ExpansionVessel exp(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     V_start=0.01) "Expansion vessel"
     annotation (Placement(transformation(extent={{-40,-56},{-32,-48}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(
@@ -61,7 +65,9 @@ model SolarThermalSystem1
     annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=-90,origin={-70,-40})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
+    redeclare package Medium_HX_1 = Medium1,
+    redeclare package Medium_HX_2 = Medium2,
     height=2.0,
     nEle=10,
     HX_2=false,
@@ -69,7 +75,7 @@ model SolarThermalSystem1
     V=0.4)
     annotation (Placement(transformation(extent={{12,-64},{-8,-44}})));
   BuildingSystems.Fluid.FixedResistances.Pipe  pipe3(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -79,7 +85,7 @@ model SolarThermalSystem1
     "Pipe inside of the building"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=90,origin={-80,-18})));
   BuildingSystems.Fluid.FixedResistances.Pipe  pipe4(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -92,7 +98,7 @@ model SolarThermalSystem1
     "Mean hot water demand: 120 liter per day"
     annotation (Placement(transformation(extent={{34,-62},{28,-56}})));
 BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     nPorts=1,
     m_flow = 0.0,
     use_m_flow_in = true,
@@ -100,7 +106,7 @@ BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
     "Flow source"
     annotation (Placement(transformation(extent={{24,-68},{14,-58}})));
   BuildingSystems.Fluid.Sources.Boundary_pT sink(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     use_T_in=false,
     p(displayUnit="Pa"),
     T=293.15,
@@ -121,7 +127,7 @@ BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
     k2=+1)
     annotation (Placement(transformation(extent={{-4,-4},{4,4}},rotation=-90,origin={-50,-12})));
   BuildingSystems.Fluid.HeatExchangers.Heater_T hea(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     m_flow_nominal=1,
     dp_nominal=1)
     "Ideal heater for back up energy"
@@ -208,7 +214,7 @@ equation
           -120.4,79.2},{-120.4,62},{-97.6,62}}, color={0,0,127}));
   connect(weatherData.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{
           -118.8,79.2},{-118.8,58},{-97.6,58}}, color={0,0,127}));
-          
+
   annotation (experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/SolarThermalSystems/SolarThermalSystem1.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-140,-100},{100,100}}),
@@ -221,6 +227,10 @@ Example that simulates a solar thermal system with an internal heat exchanger.
 </html>",
 revisions="<html>
 <ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to medium BuildingSystems.Media.Anntifreeze.PropyleneGlycolWater in the solar thermal collector loop.
+</li>
 <li>
 June 14, 2018, by Christoph Nytsch-Geusen:<br/>
 Adaptation to the new interfaces of the weather data reader.

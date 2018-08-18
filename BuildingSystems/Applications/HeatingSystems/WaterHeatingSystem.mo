@@ -52,7 +52,7 @@ model WaterHeatingSystem
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={38,56})));
   BuildingSystems.Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
-    V_start=0.1)
+    V_start=0.01)
     "Expansion vessel model"
     annotation (Placement(transformation(extent={{20,-54},{32,-42}})));
   BuildingSystems.Fluid.FixedResistances.Pipe  pip1(

@@ -44,6 +44,8 @@ model CompressionChillerWithStorage
     annotation (Placement(transformation(extent={{-92,28},{-80,40}})));
   ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
+    redeclare package Medium_HX_1 = Medium,
+    redeclare package Medium_HX_2 = Medium,
     height=1.5,
     HX_2=false,
     HX_1=false,
@@ -147,7 +149,11 @@ BuildingSystems.Technologies.Chillers.CompressionChiller</a>.
 </p>
 </html>", revisions="<html>
 <ul>
-  <li>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to possible different media for the storage content and the two internal heat exchangers.
+</li>
+<li>
 June 20, 2015, by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>

@@ -45,7 +45,7 @@ model PhotovoltaicCoolingSystem
     m_flow=m_flow,
     use_T_in=true)
     annotation (Placement(transformation(extent={{52,2},{44,10}})));
-  BuildingSystems.Fluid.Sensors.TemperatureTwoPort  senTemConIn(
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTemConIn(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{40,2},{32,10}})));
@@ -71,9 +71,11 @@ model PhotovoltaicCoolingSystem
     V_start=0.01)
     annotation (Placement(transformation(extent={{-18,-40},{-10,-32}})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
+    redeclare package Medium = Medium,
+    redeclare package Medium_HX_1 = Medium,
+    redeclare package Medium_HX_2 = Medium,
     HX_2=false,
     HX_1=false,
-    redeclare package Medium = Medium,
     redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
     V=1,
     nEle=5,
@@ -347,6 +349,10 @@ into a cold water storage. The cold water is used for the air-conditioning of a 
 </html>",
 revisions="<html>
 <ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to possible different media for the storage content and the two internal heat exchangers.
+</li>
 <li>
 May 21, 2016, by Christoph Nytsch-Geusen:<br/>
 First implementation.

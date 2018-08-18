@@ -2,9 +2,11 @@ within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageChargeDischargeProfile
   "Example that demonstrates the charging / discharging process with different number of layers in the thermal storage"
   extends Modelica.Icons.Example;
-  replaceable package Medium = BuildingSystems.Media.Water;
+  package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
+    redeclare package Medium_HX_1 = Medium,
+    redeclare package Medium_HX_2 = Medium,
     height=2.0,
     HX_2=false,
     Ele_HX_1=3,
@@ -78,5 +80,17 @@ equation
 Documentation(info="<html>
 <p>Charges storage of 1 m&sup3; from the top with increasing temperature for 1000 s at 1 kg/s. After 1 h, discharges the for same duration at the same rate.</p>
 <p>Different storage discretizations show different results, e.g. HRF.</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to possible different media for the storage content and the two internal heat exchangers.
+</li>
+<li>
+May 21, 2016, by Carles Ribas Tugores:<br/>
+First implementation.
+</li>
+</ul>
 </html>"));
 end FluidStorageChargeDischargeProfile;

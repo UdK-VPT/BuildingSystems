@@ -2,8 +2,9 @@ within BuildingSystems.Technologies.SolarThermal.Examples;
 model SingleCollectorTest
 "Test of the single collector model"
   extends Modelica.Icons.Example;
-  replaceable package Medium = BuildingSystems.Media.Water;
-
+  package Medium = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
+    X_a=0.40,
+    property_T=293.15);
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
     redeclare Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2013 weatherDataFile)
     "time Gdot_beam Gdot_diffuse T_air_env"
@@ -18,8 +19,9 @@ model SingleCollectorTest
     m_flow=0.01,
     redeclare package Medium = Medium,
     T=283.15) annotation (Placement(transformation(extent={{-98,-18},{-78,2}})));
-  BuildingSystems.Fluid.Sources.FixedBoundary bou2(redeclare package Medium =
-        Medium, nPorts=1)
+  BuildingSystems.Fluid.Sources.FixedBoundary bou2(
+    redeclare package Medium = Medium,
+    nPorts=1)
     annotation (Placement(transformation(extent={{-2,-18},{-22,2}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
     redeclare package Medium = Medium,
@@ -85,6 +87,10 @@ BuildingSystems.Technologies.SolarThermal.ThermalCollector</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to medium BuildingSystems.Media.Anntifreeze.PropyleneGlycolWater.
+</li>
 <li>
 June 14, 2018, by Christoph Nytsch-Geusen:<br/>
 Adaptation to the new interfaces of the weather data reader.

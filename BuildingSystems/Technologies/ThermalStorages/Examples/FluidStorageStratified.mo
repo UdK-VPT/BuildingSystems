@@ -2,9 +2,11 @@ within BuildingSystems.Technologies.ThermalStorages.Examples;
 model FluidStorageStratified
   "Example that demonstrates a temperature dependent stratified charging process of a thermal storage"
   extends Modelica.Icons.Example;
-  replaceable package Medium = BuildingSystems.Media.Water;
+  package Medium = BuildingSystems.Media.Water;
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare package Medium = Medium,
+    redeclare package Medium_HX_1 = Medium,
+    redeclare package Medium_HX_2 = Medium,
     height=2.0,
     HX_2=false,
     Ele_HX_1=2,
@@ -93,6 +95,10 @@ Example that simulates a temperature dependent stratified charging process of a 
 </html>",
 revisions="<html>
 <ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to possible different media for the storage content and the two internal heat exchangers.
+</li>
 <li>
 May 21, 2016, by Carles Ribas Tugores:<br/>
 First implementation.

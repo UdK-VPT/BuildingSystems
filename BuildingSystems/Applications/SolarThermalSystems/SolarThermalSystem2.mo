@@ -2,7 +2,11 @@ within BuildingSystems.Applications.SolarThermalSystems;
 model SolarThermalSystem2
   "Example of a solar thermal system with an external heat exchanger"
   extends Modelica.Icons.Example;
-  replaceable package Medium = BuildingSystems.Media.Water;
+  package Medium2 = BuildingSystems.Media.Water;
+  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
+    X_a=0.40,
+    property_T=293.15);
+
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.01;
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
     redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile)
@@ -15,12 +19,12 @@ model SolarThermalSystem2
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature prescribedTemperature
     annotation (Placement(transformation(extent={{-80,72},{-72,80}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump1(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow=0.01,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-40,-70},{-60,-50}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     dp_nominal=2,
     angleDegAzi=0,
     angleDegTil=30.0,
@@ -33,7 +37,7 @@ model SolarThermalSystem2
     height=1)
     annotation (Placement(transformation(extent={{-60,30},{-40,50}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pipe1(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -43,7 +47,7 @@ model SolarThermalSystem2
     "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,10})));
   BuildingSystems.Fluid.FixedResistances.Pipe pipe2(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -53,7 +57,7 @@ model SolarThermalSystem2
     "Pipe outside of the building"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-20,10})));
   BuildingSystems.Fluid.Storage.ExpansionVessel exp(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     V_start=0.01)
     "Expansion vessel"
     annotation (Placement(transformation(extent={{-40,-56},{-32,-48}})));
@@ -62,7 +66,9 @@ model SolarThermalSystem2
     annotation (Placement(transformation(extent={{4,-4},{-4,4}},rotation=-90,origin={-70,-40})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     redeclare BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.Buoyancy1 HeatBuoyancy,
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
+    redeclare package Medium_HX_1 = Medium2,
+    redeclare package Medium_HX_2 = Medium2,
     height=2.0,
     nEle=10,
     HX_2=false,
@@ -70,7 +76,7 @@ model SolarThermalSystem2
     HX_1=false)
     annotation (Placement(transformation(extent={{52,-60},{32,-40}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pipe3(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -80,7 +86,7 @@ model SolarThermalSystem2
     "Pipe inside of the building"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},rotation=90,origin={-80,-18})));
   BuildingSystems.Fluid.FixedResistances.Pipe pipe4(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium1,
     m_flow_nominal=m_flow_nominal,
     nNodes=2,
     thicknessIns=0.02,
@@ -94,7 +100,7 @@ model SolarThermalSystem2
     "Mean hot water demand: 120 liter per day"
     annotation (Placement(transformation(extent={{74,-62},{68,-56}})));
   BuildingSystems.Fluid.Sources.MassFlowSource_T consumption(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     nPorts=1,
     m_flow = 0.0,
     use_m_flow_in = true,
@@ -102,7 +108,7 @@ model SolarThermalSystem2
     "Flow source"
     annotation (Placement(transformation(extent={{64,-68},{54,-58}})));
   BuildingSystems.Fluid.Sources.Boundary_pT sink(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     use_T_in=false,
     p(displayUnit="Pa"),
     T=293.15,
@@ -123,7 +129,7 @@ model SolarThermalSystem2
     k2=+1)
     annotation (Placement(transformation(extent={{-4,-4},{4,4}},rotation=-90,origin={-50,-12})));
   BuildingSystems.Fluid.HeatExchangers.Heater_T hea(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     m_flow_nominal=1,
     dp_nominal=1)
     "Ideal heater for back up energy"
@@ -133,8 +139,8 @@ model SolarThermalSystem2
      "Set temperature for hot water production"
     annotation (Placement(transformation(extent={{56,-16},{62,-10}})));
   BuildingSystems.Fluid.HeatExchangers.ConstantEffectiveness hex(
-    redeclare package Medium1 = Medium,
-    redeclare package Medium2 = Medium,
+    redeclare package Medium1 = Medium1,
+    redeclare package Medium2 = Medium2,
     m1_flow_nominal=m_flow_nominal,
     m2_flow_nominal=m_flow_nominal,
     dp1_nominal=1.0,
@@ -143,7 +149,7 @@ model SolarThermalSystem2
     "External heat exchanger"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=90,origin={-14,-48})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump2(
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium2,
     m_flow=0.01,
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{28,-70},{8,-50}})));
@@ -237,6 +243,10 @@ Example that simulates a solar thermal system with an external heat exchanger.
 </html>",
 revisions="<html>
 <ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to medium BuildingSystems.Media.Anntifreeze.PropyleneGlycolWater in the solar thermal collector loop.
+</li>
 <li>
 June 14, 2018, by Christoph Nytsch-Geusen:<br/>
 Adaptation to the new interfaces of the weather data reader.

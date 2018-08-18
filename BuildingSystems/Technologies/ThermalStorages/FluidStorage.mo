@@ -2,7 +2,13 @@ within BuildingSystems.Technologies.ThermalStorages;
 model FluidStorage
   "Model of a thermal fluid storage"
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
-    "Medium of the storage model"
+    "Medium of the storage content"
+    annotation (choicesAllMatching = true);
+  replaceable package Medium_HX_1 = Modelica.Media.Interfaces.PartialMedium
+    "Medium of the internal heat exchanger 1"
+    annotation (choicesAllMatching = true);
+  replaceable package Medium_HX_2 = Modelica.Media.Interfaces.PartialMedium
+    "Medium of the internal heat exchanger 2"
     annotation (choicesAllMatching = true);
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol[nEle-2](
     redeclare package Medium = Medium,
@@ -108,16 +114,16 @@ protected
     "Medium state at default properties";
 public
   Modelica.Fluid.Interfaces.FluidPort_a port_HX_1_a(
-    redeclare package Medium = Medium) if HX_1
+    redeclare package Medium = Medium_HX_1) if HX_1
     "Port a to the HX at the bottom of the storage"
     annotation (Placement(transformation(extent={{60,-50},{80,-30}}), iconTransformation(extent={{60,-50},{80,-30}})));
   Modelica.Fluid.Interfaces.FluidPort_b port_HX_1_b(
-    redeclare package Medium = Medium) if HX_1
+    redeclare package Medium = Medium_HX_1) if HX_1
     "Port b to the HX at the bottom of the storage"
     annotation (Placement(transformation(extent={{60,-70},{80,-50}}), iconTransformation(extent={{60,-70},{80,-50}})));
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol_HX_1(
     nPorts = 2,
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium_HX_1,
     m_flow_nominal = 1.0,
     V = 0.05,
     T_start=T_start) if HX_1
@@ -126,17 +132,17 @@ public
     each G = UA_HX_1) if HX_1
     annotation (Placement(transformation(extent={{10,10},{-10,-10}},origin={34,-54})));
   Modelica.Fluid.Interfaces.FluidPort_a port_HX_2_a(
-    redeclare package Medium = Medium) if  HX_2
+    redeclare package Medium = Medium_HX_2) if  HX_2
     "Port a to the HX at the top of the storage"
     annotation (Placement(transformation(extent={{80,40},{60,60}}), iconTransformation(extent={{80,40},{60,60}})));
   Modelica.Fluid.Interfaces.FluidPort_b port_HX_2_b(
-    redeclare package Medium = Medium) if HX_2
+    redeclare package Medium = Medium_HX_2) if HX_2
     "Port b to the HX at the top of the storage"
     annotation (Placement(transformation(extent={{80,20},{60,40}}), iconTransformation(extent={{80,20},{60,40}})));
   BuildingSystems.Fluid.MixingVolumes.MixingVolume vol_HX_2(
     nPorts = 2,
     m_flow_nominal = 1.0,
-    redeclare package Medium = Medium,
+    redeclare package Medium = Medium_HX_2,
     V = 0.05,
     T_start = T_start) if HX_2
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=90,origin={38,44})));
@@ -413,6 +419,10 @@ However, because all layers are connected to the external heat port, a non-physi
 <p>Up to date the model does not take into account the mixing caused by in and outflows and there is no model for a stratified inlet. </p>
 </html>",revisions="<html>
 <ul>
+<li>
+August 18, 2018, by Christoph Nytsch-Geusen:<br/>
+Adapted to possible different media for the storage content and the two internal heat exchangers.
+</li>
 <li>
 May 23, 2015 by Carles Ribas Tugores:<br/>
 First implementation.
