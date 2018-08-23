@@ -1,6 +1,6 @@
 within BuildingSystems.Climate;
 package WeatherData
-  "Weather data sets from Netcdf"
+  "Weather data reader and weather data sets"
   extends Modelica.Icons.VariantsPackage;
 
 end WeatherData;

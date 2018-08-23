@@ -28,7 +28,7 @@ model SimpleBuilding
     nZones=1)
     annotation (Placement(transformation(extent={{12,-10},{32,10}})));
   BuildingSystems.Buildings.Ambient ambient(
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile,
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF,
     nSurfaces=building.nSurfacesAmbient)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(

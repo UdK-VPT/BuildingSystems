@@ -3,6 +3,12 @@ model Ambient
   "Model which calculates the outside climate boundary conditions of one ore more buildings"
   final package Medium = BuildingSystems.Media.Air;
 
+  replaceable block WeatherData =
+    BuildingSystems.Climate.WeatherData.BaseClasses.WeatherDataFileGeneral
+      constrainedby BuildingSystems.Climate.WeatherData.BaseClasses.WeatherDataFileGeneral
+    "Weather data file for the location"
+    annotation (choicesAllMatching = true,Dialog(tab = "General", group = "Location"));
+
   parameter Integer nSurfaces(min=1)
     "Number of building surfaces"
     annotation(HideResult=true, Dialog(tab = "General", group = "Surfaces"));
@@ -15,10 +21,6 @@ model Ambient
   parameter Modelica.SIunits.Length heightAirpath[nAirpaths] = fill(0.0,nAirpaths)
     "Height of the airpaths to the building facades"
      annotation(Dialog(tab = "General", group = "Airpaths"));
-  replaceable parameter BuildingSystems.Climate.WeatherData.WeatherDataFile weatherDataFile
-    constrainedby BuildingSystems.Climate.WeatherData.WeatherDataFile
-    "Weather data file for the location"
-    annotation(choicesAllMatching=true,Dialog(tab = "General", group = "Location"));
   parameter Real rhoAmb(unit = "1") = 0.2
     "Reflection factor for short-wave radiation of the ground"
     annotation(Dialog(tab = "General", group = "Location"));
@@ -37,12 +39,12 @@ model Ambient
   parameter Modelica.SIunits.Pressure pAirRef = 100000.0
     "Static air pressure on reference height"
     annotation(Dialog(tab = "General", group = "Location"));
-  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
-     weatherDataFile=weatherDataFile,
-     pAirRef=pAirRef,
-     gamma=gamma,
-     zRefTAir=zRefTAir)
-    "Weather data from file"
+  BuildingSystems.Climate.WeatherData.WeatherDataReader weatherDataReader(
+    redeclare replaceable WeatherData weatherData,
+    pAirRef=pAirRef,
+    gamma=gamma,
+    zRefTAir=zRefTAir)
+   "Weather data from file"
     annotation(Placement(transformation(extent={{-40,-10},{-20,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAirPorts[nSurfaces]
     "Climate boundary conditions for the building surfaces dependent on the ambient air"
@@ -172,7 +174,7 @@ model Ambient
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={50,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={50,-90})));
 
-  output BuildingSystems.Interfaces.Temp_KOutput TSky = weatherData.TSky
+  output BuildingSystems.Interfaces.Temp_KOutput TSky = weatherDataReader.TSky
     "Sky temperature"
     annotation (Placement(transformation(extent={{-86,-64},{-66,-44}}),
       iconTransformation(extent={{-80,-60},{-100,-40}})));
@@ -196,19 +198,19 @@ model Ambient
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90})));
 equation
-  connect(weatherData.latitudeDeg, latitudeDeg) annotation (Line(points={{-19,9},
+  connect(weatherDataReader.latitudeDeg, latitudeDeg) annotation (Line(points={{-19,9},
           {-19,72},{-70,72},{-70,90}}, color={0,0,127}));
-  connect(weatherData.longitudeDeg, longitudeDeg) annotation (Line(points={{-19,
+  connect(weatherDataReader.longitudeDeg, longitudeDeg) annotation (Line(points={{-19,
           7},{-16,7},{-16,74},{-50,74},{-50,90}}, color={0,0,127}));
-  connect(weatherData.longitudeDeg0, longitudeDeg0) annotation (Line(points={{-19,
+  connect(weatherDataReader.longitudeDeg0, longitudeDeg0) annotation (Line(points={{-19,
           5},{-12,5},{-12,76},{-30,76},{-30,90}}, color={0,0,127}));
   for i in 1:nSurfaces loop
     // position of the location
-    connect(weatherData.latitudeDeg, radiation[i].latitudeDeg) annotation (Line(
+    connect(weatherDataReader.latitudeDeg, radiation[i].latitudeDeg) annotation (Line(
       points={{-19,9},{10,9},{10,26},{40.2,26},{40.2,19.6}}, color={0,0,127}));
-    connect(weatherData.longitudeDeg, radiation[i].longitudeDeg) annotation (Line(
+    connect(weatherDataReader.longitudeDeg, radiation[i].longitudeDeg) annotation (Line(
       points={{-19,7},{12,7},{12,28},{44,28},{44,19.6}}, color={0,0,127}));
-    connect(weatherData.longitudeDeg0, radiation[i].longitudeDeg0) annotation (
+    connect(weatherDataReader.longitudeDeg0, radiation[i].longitudeDeg0) annotation (
       Line(points={{-19,5},{14,5},{14,30},{48,30},{48,19.6}}, color={0,0,127}));
     // Direct horizontal radiation
     IrrDirHor = radiation[i].IrrDirHor;
@@ -240,7 +242,7 @@ equation
   if TAirRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     TAirRef = TAirRef_constant;
   elseif TAirRefSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(TAirRef, weatherData.TAirRef);
+    connect(TAirRef, weatherDataReader.TAirRef);
   else
     connect(TAirRef, TAirRef_in);
   end if;
@@ -249,7 +251,7 @@ equation
   if xAirSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     xAir = xAir_constant;
   elseif xAirSou == BuildingSystems.Buildings.Types.DataSource.File then
-    xAir = weatherData.xAir;
+    xAir = weatherDataReader.xAir;
   else
     connect(xAir, xAir_in);
   end if;
@@ -258,7 +260,7 @@ equation
   if IrrDirHorSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     IrrDirHor = IrrDirHor_constant;
   elseif IrrDirHorSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(IrrDirHor, weatherData.IrrDirHor);
+    connect(IrrDirHor, weatherDataReader.IrrDirHor);
   else
     connect(IrrDirHor, IrrDirHor_in);
   end if;
@@ -267,7 +269,7 @@ equation
   if IrrDifHorSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     IrrDifHor = IrrDifHor_constant;
   elseif IrrDifHorSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(IrrDifHor, weatherData.IrrDifHor);
+    connect(IrrDifHor, weatherDataReader.IrrDifHor);
   else
     connect(IrrDifHor, IrrDifHor_in);
   end if;
@@ -276,7 +278,7 @@ equation
   if vWindRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     vWindRef = vWindRef_constant;
   elseif vWindRefSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(vWindRef, weatherData.vWindRef);
+    connect(vWindRef, weatherDataReader.vWindRef);
   else
     connect(vWindRef, vWindRef_in);
   end if;
@@ -285,7 +287,7 @@ equation
   if angleDegWindRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     angleDegWindRef = angleDegWindRef_constant;
   elseif angleDegWindRefSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(angleDegWindRef, weatherData.angleDegWindRef);
+    connect(angleDegWindRef, weatherDataReader.angleDegWindRef);
   else
     connect(angleDegWindRef, angleDegWindRef_in);
   end if;
@@ -294,7 +296,7 @@ equation
   if cloudCoverSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     cloudCover = cloudCover_constant;
   elseif cloudCoverSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(cloudCover, weatherData.cloudCover);
+    connect(cloudCover, weatherDataReader.cloudCover);
   else
     connect(cloudCover, cloudCover_in);
   end if;

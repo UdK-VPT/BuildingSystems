@@ -10,7 +10,7 @@ model PVModuleComplexMPP
     angleDegAzi_constant=0.0)
     annotation (Placement(transformation(extent={{-56,34},{-36,54}})));
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_NetCDF)
     annotation(Placement(transformation(extent={{-96,84},{-84,96}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
     rhoAmb = 0.2,

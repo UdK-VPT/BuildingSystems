@@ -21,7 +21,7 @@ model WallHygroThermal1DNodes
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
     annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
   BuildingSystems.Buildings.Ambient ambient(
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile,
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_NetCDF,
     nSurfaces=1)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToSolid surface2(calcHygroThermal=true)

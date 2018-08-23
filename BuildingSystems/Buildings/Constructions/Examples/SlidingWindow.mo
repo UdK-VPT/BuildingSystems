@@ -15,7 +15,7 @@ model SlidingWindow
     nSurfaces=1,
     nAirpaths=2,
     heightAirpath={0.5,1.5},
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_NetCDF)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Zones.ZoneTemplateAirvolumeMixed zone(
     V=4*4*2.8,

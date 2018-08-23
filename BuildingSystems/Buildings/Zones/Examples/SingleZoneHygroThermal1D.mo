@@ -60,7 +60,7 @@ model SingleZoneHygroThermal1D
     redeclare Data.Constructions.Transparent.DoubleGlazing constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,18})));
   BuildingSystems.Buildings.Ambient ambient(
-    weatherDataFile=BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco(),
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_NetCDF,
     nSurfaces=nSurfaces)
     annotation (Placement(transformation(extent={{-58,-10},{-38,10}})));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(

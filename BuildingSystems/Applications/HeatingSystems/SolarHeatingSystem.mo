@@ -12,7 +12,7 @@ model SolarHeatingSystem
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.1;
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF)
     "Ambient model"
     annotation (Placement(transformation(extent={{-26,42},{-6,62}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DDistrict building(

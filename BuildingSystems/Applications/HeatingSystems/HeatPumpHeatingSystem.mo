@@ -7,7 +7,7 @@ model HeatPumpHeatingSystem
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.1;
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_NetCDF)
     "Ambient model"
     annotation (Placement(transformation(extent={{-26,42},{-6,62}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DDistrict building(

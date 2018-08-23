@@ -4,7 +4,7 @@ model BuildingThermal1Zone1DBox
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DBox building(
     width=10,

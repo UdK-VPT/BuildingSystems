@@ -443,7 +443,7 @@ equation
   connect(st7.ambientTAirRef, ambient.TAirRef);
   connect(st7.Radheat, building7.radHeatSourcesPorts[1]);
   connect(st7.Conheat, building7.conHeatSourcesPorts[1]);
-
+  
   connect(p1.port_b1, central.port_a) annotation (Line(points={{214.843,
           -136.736},{214.843,-126},{230,-126},{230,-100}},
                                                  color={0,127,255}));

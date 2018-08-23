@@ -14,7 +14,6 @@ model SingleZoneThermal3D3x3x3
   end Construction;
 
   // Southern walls
-
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall_south111(
     height=1.0,
     width=1.0,
@@ -407,7 +406,7 @@ model SingleZoneThermal3D3x3x3
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof333;
 
   BuildingSystems.Buildings.Ambient ambient(
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin weatherDataFile,
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF,
     nSurfaces=53)
     annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
 

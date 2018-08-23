@@ -31,10 +31,10 @@ modelClassName = 'SolarThermalSystem_'+str('1' if colLoop1 == True else '0')\
   +str('1' if colLoop4 == True else '0')
 # model parameters
 # Location
-weatherDataClass = 'WeatherDataMeteonorm.WeatherDataFile_Germany_Berlin'
-#weatherDataClass = 'WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna'
-#weatherDataClass = 'WeatherDataMeteonorm.WeatherDataFile_Brasil_Manaus'
-#weatherDataClass = 'WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco'
+weatherDataClass = 'WeatherDataMeteonorm.Germany_Berlin_NetCDF'
+#weatherDataClass = 'WeatherDataMeteonorm.Egypt_ElGouna_NetCDF'
+#weatherDataClass = 'WeatherDataMeteonorm.Brasil_Manaus_NetCDF'
+#weatherDataClass = 'WeatherDataMeteonorm.USA_SanFrancisco_NetCDF'
 # collector area
 areaCol1 = 20.0 # m2
 areaCol2 = 20.0 # m2

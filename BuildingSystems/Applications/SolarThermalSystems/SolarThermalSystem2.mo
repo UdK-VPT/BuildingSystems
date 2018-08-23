@@ -9,7 +9,7 @@ model SolarThermalSystem2
 
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.01;
   BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_Egypt_ElGouna weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_NetCDF)
     "time IrrDir IrrDif TAirAmb"
     annotation (Placement(transformation(extent={{-126,80},{-110,96}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(

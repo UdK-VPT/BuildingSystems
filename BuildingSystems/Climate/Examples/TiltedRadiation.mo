@@ -2,11 +2,11 @@ within BuildingSystems.Climate.Examples;
 model TiltedRadiation
   "Example which demonstrates the radiation calculation for tilted surfaces"
   extends Modelica.Icons.Example;
-  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
+  BuildingSystems.Climate.WeatherData.WeatherDataReader weatherData(
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_NetCDF)
     annotation(Placement(transformation(extent={{-94,50},{-82,62}})));
-  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky
-    radiationFixed(rhoAmb=0.2,
+  BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiationFixed(
+    rhoAmb=0.2,
     angleDegL=0.0)
     annotation (Placement(transformation(extent={{-74,68},{-54,88}})));
   Modelica.Blocks.Sources.Constant angleDegTil(
@@ -16,15 +16,16 @@ model TiltedRadiation
     k=0.0)
     annotation (Placement(transformation(extent={{-96,68},{-88,76}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiationOneAxisTracked(
-    rhoAmb=0.2, angleDegL=0.0,
+    rhoAmb=0.2,
+    angleDegL=0.0,
     OneAxisTracking=true)
     annotation (Placement(transformation(extent={{-74,24},{-54,44}})));
 equation
-  connect(weatherData.y[1], radiationFixed.IrrDirHor) annotation (Line(
+  connect(weatherData.IrrDirHor, radiationFixed.IrrDirHor) annotation (Line(
       points={{-81.4,56},{-76,56},{-76,84},{-71.6,84}},
       color={0,0,0},
       smooth=Smooth.None));
-  connect(weatherData.y[2], radiationFixed.IrrDifHor) annotation (Line(
+  connect(weatherData.IrrDifHor, radiationFixed.IrrDifHor) annotation (Line(
       points={{-81.4,56},{-76,56},{-76,80},{-71.6,80}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -48,9 +49,9 @@ equation
     annotation (Line(points={{-81.4,60.2},{-64,60.2},{-64,41.6}}, color={0,0,127}));
   connect(weatherData.longitudeDeg0, radiationOneAxisTracked.longitudeDeg0)
     annotation (Line(points={{-81.4,59},{-60,59},{-60,41.6}}, color={0,0,127}));
-  connect(weatherData.y[1], radiationOneAxisTracked.IrrDirHor) annotation (Line(
+  connect(weatherData.IrrDirHor, radiationOneAxisTracked.IrrDirHor) annotation (Line(
         points={{-81.4,56},{-76,56},{-76,40},{-71.6,40}}, color={0,0,127}));
-  connect(weatherData.y[2], radiationOneAxisTracked.IrrDifHor) annotation (Line(
+  connect(weatherData.IrrDifHor, radiationOneAxisTracked.IrrDifHor) annotation (Line(
         points={{-81.4,56},{-76,56},{-76,36},{-71.6,36}}, color={0,0,127}));
   connect(angleDegAzi.y, radiationOneAxisTracked.angleDegAzi) annotation (Line(
         points={{-87.6,72},{-78,72},{-78,28},{-71.6,28}}, color={0,0,127}));

@@ -10,7 +10,6 @@ model HCBC
     nSurfacesSolid=1,
     surfacesToAmbient(nSurfaces=5),
     nZones=1);
-
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
     nConstructions=8,
     V=parameterMap.VZon,
@@ -1303,7 +1302,7 @@ model HCBC
 
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=190,
-    redeclare BuildingSystems.Climate.WeatherDataTRYGermany.WeatherDataFile_Germany_PotsdamTRYnormal weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataTRYGermany.Germany_PotsdamTRYnormal_NetCDF)
     annotation (Placement(transformation(extent={{162,194},{262,294}})));
   Building building1(nZones=1, parameterMap = parameterMap1)
     annotation (Placement(transformation(extent={{-182,30},{-162,50}})));

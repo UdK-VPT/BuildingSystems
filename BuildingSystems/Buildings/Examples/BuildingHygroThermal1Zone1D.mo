@@ -166,7 +166,7 @@ model BuildingHygroThermal1Zone1D
 
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_NetCDF)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Building building(nZones=1)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));

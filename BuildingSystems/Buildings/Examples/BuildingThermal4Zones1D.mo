@@ -418,7 +418,7 @@ model BuildingThermal4Zones1D
 
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare BuildingSystems.Climate.WeatherDataMeteonorm.WeatherDataFile_USA_SanFrancisco weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_NetCDF)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Building building(
     nZones = 4,

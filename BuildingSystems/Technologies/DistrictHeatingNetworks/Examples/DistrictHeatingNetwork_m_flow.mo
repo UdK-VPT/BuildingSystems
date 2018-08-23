@@ -54,7 +54,7 @@ model DistrictHeatingNetwork_m_flow
     annotation (Placement(transformation(extent={{-66,76},{-46,96}})));
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare BuildingSystems.Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2003 weatherDataFile)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_NetCDF)
     "Ambient model"
     annotation (Placement(transformation(extent={{-96,76},{-76,96}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
@@ -75,9 +75,9 @@ model DistrictHeatingNetwork_m_flow
     AAmb=2*(2*50 + 2*60)*28 + 50*60,
     VAir=2*50*60*28) "Building model"
     annotation (Placement(transformation(extent={{-66,-32},{-46,-12}})));
-  BuildingSystems.Buildings.Ambient ambient1(redeclare
-    BuildingSystems.Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2003
-    weatherDataFile, nSurfaces=building1.nSurfacesAmbient)
+  BuildingSystems.Buildings.Ambient ambient1(
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_NetCDF,
+    nSurfaces=building1.nSurfacesAmbient)
     "Ambient model"
     annotation (Placement(transformation(extent={{-92,-32},{-72,-12}})));
   Modelica.Blocks.Sources.Constant airchange(
@@ -147,7 +147,7 @@ model DistrictHeatingNetwork_m_flow
     "Building model"
     annotation (Placement(transformation(extent={{-178,68},{-158,88}})));
   BuildingSystems.Buildings.Ambient ambient2(
-    redeclare BuildingSystems.Climate.WeatherDataDWD.WeatherDataFile_Germany_Potsdam2003 weatherDataFile,
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_NetCDF,
     nSurfaces=building2.nSurfacesAmbient)
     "Ambient model"
     annotation (Placement(transformation(extent={{-208,68},{-188,88}})));
