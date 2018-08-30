@@ -9,7 +9,7 @@ model PhotovoltaicSystem
     nModPar=2,
     nModSer=5)
     annotation (Placement(transformation(extent={{-56,34},{-36,54}})));
-  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
+  BuildingSystems.Climate.WeatherData.WeatherDataReader weatherData(
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF)
     annotation(Placement(transformation(extent={{-86,72},{-74,84}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(

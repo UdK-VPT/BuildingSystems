@@ -5,7 +5,7 @@ model SingleCollectorTest
   package Medium = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
     X_a=0.40,
     property_T=293.15);
-  BuildingSystems.Climate.WeatherData.WeatherDataNetcdf weatherData(
+  BuildingSystems.Climate.WeatherData.WeatherDataReader weatherData(
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2013_NetCDF)
     "time Gdot_beam Gdot_diffuse T_air_env"
     annotation (Placement(transformation(extent={{-96,62},{-82,76}})));
