@@ -1,4 +1,4 @@
-﻿within BuildingSystems.Technologies.ElectricalStorages;
+within BuildingSystems.Technologies.ElectricalStorages;
 model BatterySimple
   extends BaseClasses.Battery;
 
@@ -25,7 +25,7 @@ equation
   Model for an eletrical battery based on the Kinetic Battery Model (KiBaM) of Manwell and McGowan
   (J. Manwell, J. McGowan, B.-G. E.I., S. W., and L. A., Evaluation of battery models
    for wind/hybrid power system simulation, in Proceedings of the 5th European Wind
-   Energy Association Conference (EWEC 94), 1994, pp. 1182–1187.).
+   Energy Association Conference (EWEC 94), 1994, pp. 1182-1187.).
   </p>
   </html>",
   revisions="<html>
