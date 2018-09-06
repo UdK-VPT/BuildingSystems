@@ -20,7 +20,7 @@ model FlowConnectionY
   Real Fm_tmp(start = 0);
 
 equation
-  // Velocity ​​values: Pressure forces + Impulse forces + Viscose forces
+  // Velocity values: Pressure forces + Impulse forces + Viscose forces
   // Type momentum equation (with parameterization)
   // Problem Fg: (if time < 1 then time else 1)* Modelica.Constants.g_n*dyGravity
   // Problem Fg: homotopy(actual=  Modelica.Constants.g_n*dyGravity, simplified=  0)

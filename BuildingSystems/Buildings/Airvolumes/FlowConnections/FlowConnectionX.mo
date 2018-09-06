@@ -14,7 +14,7 @@ model FlowConnectionX
   Real Fm_tmp(start = 0);
 
 equation
-  // Velocity ​​values: Pressure forces + Impulse forces + Viscose forces
+  // Velocity values: Pressure forces + Impulse forces + Viscose forces
   // Type momentum equation (with parameterization)
   //
   Fp = - 1/(0.5*(port_1.rho + port_2.rho))*dP;
