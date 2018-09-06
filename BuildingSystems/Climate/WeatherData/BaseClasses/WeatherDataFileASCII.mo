@@ -28,7 +28,7 @@ equation
   tAirRef=y[3];
   vWindRef=BuildingSystems.Utilities.Math.Functions.smoothMax(y[4],0.0,0.1);
   angleDegWindRef=y[5];
-  phiAir=BuildingSystems.Utilities.Math.Functions.smoothMax(y[6]/100.0,0.0,0.1);
+  phiAir=BuildingSystems.Utilities.Math.Functions.smoothMax(y[6]*0.1,0.0,0.1);
   cloudCover=BuildingSystems.Utilities.Math.Functions.smoothMax(y[7],0.0,0.1);
   annotation (
 Documentation(info="<html>
