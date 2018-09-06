@@ -41,9 +41,9 @@ equation
     + moistureSourcesMflow *(if noEvent(moistureSourcesMflow > 0) then moistureSource_h else fluid.h)
     + heatPort_extern.Q_flow+ heatPort_intern.Q_flow);
   //// T and P: humid air
-  //// h = cAir * T + (cVap * xD + cWat* xF + cE * x)*fluid.T + hv * xD − hs*xD //-> incl. air, vapour, liquid, ice
-  //// fluid.h = cAir * fluid.T + (cH20 * xD + cH20Liq * xF + 2070 * x)*fluid.T + rH2O * xD − 333.4*xD;
-  //// h = cAir * T + (cVap * xD + cWat* xF + cE * x)*fluid.T + hv * xD − hs*xD //-> incl. air, vapour, liquid
+  //// h = cAir * T + (cVap * xD + cWat* xF + cE * x)*fluid.T + hv * xD - hs*xD //-> incl. air, vapour, liquid, ice
+  //// fluid.h = cAir * fluid.T + (cH20 * xD + cH20Liq * xF + 2070 * x)*fluid.T + rH2O * xD - 333.4*xD;
+  //// h = cAir * T + (cVap * xD + cWat* xF + cE * x)*fluid.T + hv * xD - hs*xD //-> incl. air, vapour, liquid
   fluid.h = cAir * fluid.T + (cH20 * mH2OAir/mAir + cH20Liq * mH2OLiq/mAir)*fluid.T + rH2O * mH2OAir/mAir;
   // Druck: p*V = (0.622 + x) * m * R_v * T;
   fluid.p * dx*dy*dz = (0.622 + fluid.Xi) * mAir * R_v * fluid.T;
