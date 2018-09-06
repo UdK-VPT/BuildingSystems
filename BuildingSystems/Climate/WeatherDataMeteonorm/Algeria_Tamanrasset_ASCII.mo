@@ -1,10 +1,10 @@
 within BuildingSystems.Climate.WeatherDataMeteonorm;
-block Germany_Berlin_ASCII
+block Algeria_Tamanrasset_ASCII
   extends BuildingSystems.Climate.WeatherData.BaseClasses.WeatherDataFileASCII(
   info="Source: Meteonorm 7.0",
-  fileName=Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Climate/weather/Germany_Berlin.txt"),
-  final latitudeDeg = 52.47,
-  final longitudeDeg = 13.4,
+  fileName=Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Climate/weather/Algeria_Tamanrasset.txt"),
+  final latitudeDeg = 22.783,
+  final longitudeDeg = 5.517,
   final longitudeDeg_0 = 1.0);
   annotation(Documentation(info="<html>source: Meteonorm 7.0</html>"));
-end Germany_Berlin_ASCII;
+end Algeria_Tamanrasset_ASCII;

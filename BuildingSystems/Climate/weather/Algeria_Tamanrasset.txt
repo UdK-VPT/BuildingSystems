@@ -1,7 +1,9 @@
-Tamanrasset
- 22,783        5,517         1377          1 
-
- hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+#1
+#Tamanrasset
+# 22,783         5,517          1377            1
+#
+# hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+double tab1(8760,9)
  1	865	10.2	38	0	0	5	1.6	263
  2	865	10.0	37	0	0	5	1.1	297
  3	865	9.8	37	0	0	5	1.2	294

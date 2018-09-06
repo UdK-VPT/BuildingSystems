@@ -8,6 +8,7 @@ partial block WeatherDataFileASCII
     final smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative,
     final extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic,
     final tableName="tab1",
+    final startTime = -1800.0,
     final columns={
       5, // beam_radiation
       6, // diffuse_radiation
@@ -22,13 +23,13 @@ partial block WeatherDataFileASCII
       final unit={"W/m2","W/m2","K","m/s","deg","1","1"},
       final displayUnit={"W/m2","W/m2","degC","m/s","deg","1","1"}));
 equation
-  IrrDirHor=y[1];
-  IrrDifHor=y[2];
+  IrrDirHor=BuildingSystems.Utilities.Math.Functions.smoothMax(y[1],0.0,0.1);
+  IrrDifHor=BuildingSystems.Utilities.Math.Functions.smoothMax(y[2],0.0,0.1);
   tAirRef=y[3];
-  vWindRef=y[4];
+  vWindRef=BuildingSystems.Utilities.Math.Functions.smoothMax(y[4],0.0,0.1);
   angleDegWindRef=y[5];
-  phiAir=y[6];
-  cloudCover=y[7];
+  phiAir=BuildingSystems.Utilities.Math.Functions.smoothMax(y[6]/10.0,0.0,0.1);
+  cloudCover=BuildingSystems.Utilities.Math.Functions.smoothMax(y[7],0.0,0.1);
   annotation (
 Documentation(info="<html>
 <p>
