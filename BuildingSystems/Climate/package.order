@@ -2,6 +2,7 @@ SolarRadiationTransformers
 Sources
 WeatherData
 WeatherDataDWD
+WeatherDataEPW
 WeatherDataMeteonorm
 WeatherDataTRYGermany
 Examples

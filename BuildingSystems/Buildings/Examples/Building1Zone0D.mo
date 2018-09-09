@@ -6,7 +6,7 @@ model Building1Zone0D
   // building1 with ideal load calculation
   BuildingSystems.Buildings.Ambient ambient1(
     nSurfaces=building1.nSurfacesAmbient,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF)
       annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
 
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
@@ -39,7 +39,7 @@ model Building1Zone0D
   // building2 with free floating temperature calculation
   BuildingSystems.Buildings.Ambient ambient2(
     nSurfaces=building2.nSurfacesAmbient,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF)
     annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
 
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building2(

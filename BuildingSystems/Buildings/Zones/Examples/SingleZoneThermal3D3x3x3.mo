@@ -406,7 +406,7 @@ model SingleZoneThermal3D3x3x3
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof333;
 
   BuildingSystems.Buildings.Ambient ambient(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF,
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF,
     nSurfaces=53)
     annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
 

@@ -1302,7 +1302,7 @@ model HCBC
 
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=190,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataTRYGermany.Germany_PotsdamTRYnormal_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataTRYGermany.Germany_Potsdam_TRYnormal_NetCDF)
     annotation (Placement(transformation(extent={{162,194},{262,294}})));
   Building building1(nZones=1, parameterMap = parameterMap1)
     annotation (Placement(transformation(extent={{-182,30},{-162,50}})));

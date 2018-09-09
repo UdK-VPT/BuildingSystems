@@ -36,7 +36,7 @@ and perform the following steps:
    It fits to our first example because it needs only the definition of few parameters for a simulation analysis.
 
 #. Instantiate in the same manner by drag and drop an ambient model *BuildingsSystems.Buildings.Ambient* and
-   set the climate data (parameter WeatherData) to *Germany_Berlin_NetCDF*. Now pre-calculated
+   set the climate data (parameter WeatherData) to *Germany_Berlin_Meteonorm_NetCDF*. Now pre-calculated
    hourly weather data from Meteonorm (http://www.meteonorm.com/en/) for Berlin is used to support the building model
    with ambient values of air temperature, moisture, direct and diffuse radiation, wind speed and wind direction.
 
@@ -158,7 +158,7 @@ Change the climate location
 
 In the next step the location shall be changed to study the impact of a hot and dry climate on the thermal energy demand
 of the building model in comparison to the moderate climate of Berlin. For this purpose change the parameter *WeatherData*
-within the ambient component to *Iran_Hashtgerd_NetCDF* (Hashtgerd is a city in north Iran 100 km west of Tehran).
+within the ambient component to *Iran_Hashtgerd_Meteonorm_NetCDF* (Hashtgerd is a city in north Iran 100 km west of Tehran).
 
 In comparison to Berlin the outside temperature is close to 40 degree Celsius during the summer (Berlin 32 degree Celsius). This
 leads to a significant cooling demand in summer, but there is still a relevant heating demand in winter.

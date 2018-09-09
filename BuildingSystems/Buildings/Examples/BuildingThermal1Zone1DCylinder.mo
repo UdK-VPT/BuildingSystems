@@ -5,7 +5,7 @@ model BuildingThermal1Zone1DCylinder
 
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DCylinder building(
     height = 2.8,

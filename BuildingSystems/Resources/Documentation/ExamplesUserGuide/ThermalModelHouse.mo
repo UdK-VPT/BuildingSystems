@@ -248,7 +248,7 @@ package ThermalModelHouse
       useAirPaths=false)
       annotation (Placement(transformation(extent={{10,-10},{30,10}})));
     BuildingSystems.Buildings.Ambient ambient(
-      redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_NetCDF,
+      redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_NetCDF,
       nSurfaces=building.nSurfacesAmbient)
       annotation (Placement(transformation(extent={{-32,-10},{-12,10}})));
     Modelica.Blocks.Sources.Constant TSetHeatingZone1(k=273.15 + 22.0)

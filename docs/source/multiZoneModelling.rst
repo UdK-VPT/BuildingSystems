@@ -247,7 +247,7 @@ Configure the system model and set its boundary conditions
 1. Create a new model with the name *SystemModel* and insert it into the package *ThermalModelHouse*.
 #. Instantiate the previous defined building model within the system model and rename it to *building*.
 #. Instantiate an ambient model *BuildingSystems.Buildings.Ambient* within the system model and set the climate data
-   (parameter WeatherData) to *USA_SanFrancisco_NetCDF*.
+   (parameter WeatherData) to *USA_SanFrancisco_Meteonorm_NetCDF*.
 #. Assign the parameter *nSurfaces* of the ambient model to the number of surfaces of the building, which are in contact
    with the building environment:
 

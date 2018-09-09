@@ -1591,7 +1591,7 @@ model DistrictBerlinKreuzberg
   Modelica.Blocks.Sources.Constant airchange(k=0.5);
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces = 720,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_NetCDF);
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF);
   Modelica.SIunits.HeatFlowRate Q_flow_heating;
   Modelica.SIunits.HeatFlowRate Q_flow_cooling;
 equation
