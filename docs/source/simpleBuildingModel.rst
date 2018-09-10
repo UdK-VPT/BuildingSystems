@@ -41,7 +41,7 @@ and perform the following steps:
    It it suited to our first example, because it needs only the definition of few parameters for a simulation analysis.
 
 #. In the same manner, drag and drop an ambient model *BuildingsSystems.Buildings.Ambient* onto the grid. Double-click on the model, and
-   choose the climate data for *WeatherDataFile_Germany_Berlin* from the drop-down menu in the parameter *weatherDataFile*. Now pre-calculated
+   choose the climate data for *Germany_Berlin_Meteonorm_NetCDF* from the drop-down menu in the parameter *weatherDataFile*. Now pre-calculated
    hourly weather data from Meteonorm (http://www.meteonorm.com/en/) for Berlin is used to support the building model
    with ambient values of air temperature, moisture, direct and diffuse radiation, wind speed and wind direction.
 
@@ -159,7 +159,7 @@ Change the climate location
 
 In the next step, change the location of the building to study the impact of a hot and dry climate on the thermal energy demand
 of the building model in comparison to the moderate climate of Berlin. For this purpose change the parameter weatherDataFile
-within the ambient component to *WeatherDataFile_Iran_Hashtgerd*. Hashtgerd is a city in northern Iran, 100 km west of Tehran.
+within the ambient component to *Iran_Hashtgerd_Meteonorm_NetCDF*. Hashtgerd is a city in northern Iran, 100 km west of Tehran.
 
 In comparison to Berlin the outside temperature is close to 40 degrees Celsius during the summer (Berlin 32 degrees Celsius). This
 leads to a significant cooling demand in summer, but there is still a relevant heating demand in winter.
