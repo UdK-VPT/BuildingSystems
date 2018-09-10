@@ -16,17 +16,17 @@ two thermal zones shall be created:
 The *Thermal Model House* (TMH) is a portable experimental test facility with a simple geometry and a compact size
 of approximately 1 m length, 0.5 m depth and 0.5 m height. This small thermal box is able to reproduce
 different phenomena of building climatization within physical experiments. Due to its manifold configuration
-options, experiments about the energy balance of rooms, about the heat and air transport processes within
-rooms, about ventilation, heating and cooling of buildings as well as about building control are enabled.
+options, it is possible to do experiments about the energy balance of rooms, about the heat and air transport processes within
+rooms, about ventilation, heating and cooling of buildings as well as about building control.
 The TMH is being developed at the Institute of Architecture and Urban Planning at UdK Berlin.
-It is used for the education of architect and engineering students and also for research.
+It is used for the education of architecture and engineering students and also for research.
 
 One configuration of the TMH works with a inner partition wall, which divides the air volume of the
-box into two different thermal zones. These zones can be separately heated or cooled by individual
+box into two different thermal zones. These zones can be separately heated or cooled using individual
 heating surfaces on the bottom and cooling surfaces on the ceiling. Exactly this configuration
 shall be modelled in the present case.
 
-The modelling and simulation process is described using the Modelica simulation environment Dymola (version Dymola 2018 FD01).
+The modelling and simulation process is described using the Modelica simulation environment, Dymola (version Dymola 2018 FD01).
 First of all the Modelica library *BuildingSystems* has to be loaded into Dymola. After that, the library
 will occur in the library tree in addition to the other present Modelica libraries.
 
@@ -39,13 +39,13 @@ The creation and configuration of a new thermal building model takes place in th
 Set up the building model structure
 -----------------------------------
 
-1. **Create a new package** for your simulation experiment
+1. **Create a new package** for your simulation experiment.
 
   * Open dialog: *File* -> *New* -> *Package* and fill in the field *Name of new package:* "ThermalModelHouse" and click OK
 
   * Mark the new package *ThermalModelHouse* in the package browser and save it with *File* -> *Save* in the file *ThermalModelHouse.mo* in a folder of your choice.
 
-2. **Create a new building model**, based on the template model class *BuildingTemplate*. Therefore insert a new building model in the previous defined package as follows:
+2. **Create a new building model** based on the template model class *BuildingTemplate*. That means you insert a new building model into the previously defined package as follows:
 
   .. figure:: /images/TutorialMZM01.*
      :scale: 50 %
@@ -53,7 +53,7 @@ Set up the building model structure
      Definition of a building model based on a building template
 
   * Open dialog: *File* -> *New* -> *Model* and fill in the field *Name of new model:* "Building". Then
-    click on the button right of the field *Extends (optional):* and navigate to the model class
+    click on the button to the right of the field *Extends (optional):* and navigate to the model class
     *BuildingSystems.Buildings.BaseClasses.BuildingTemplate* and click OK. Further click on the button right of the field
     *Insert in Package (optional):* and navigate to the package *ThermalModelHouse* on the top level and click OK (compare the Dymola screenshoot above).
 
@@ -247,7 +247,7 @@ Configure the system model and set its boundary conditions
 1. Create a new model with the name *SystemModel* and insert it into the package *ThermalModelHouse*.
 #. Instantiate the previous defined building model within the system model and rename it to *building*.
 #. Instantiate an ambient model *BuildingSystems.Buildings.Ambient* within the system model and set the climate data
-   (parameter WeatherData) to *USA_SanFrancisco_Meteonorm_NetCDF*.
+   (parameter weatherDataFile) to *USA_SanFrancisco_Meteonorm_NetCDF*.
 #. Assign the parameter *nSurfaces* of the ambient model to the number of surfaces of the building, which are in contact
    with the building environment:
 
