@@ -1,7 +1,6 @@
 within BuildingSystems.Fluid.MixingVolumes.Validation;
 model CoupledVolumesWater
   "Validation model for two coupled volumes with water"
-  import BuildingSystems;
   extends Modelica.Icons.Example;
 
   replaceable package Medium = BuildingSystems.Media.Water
