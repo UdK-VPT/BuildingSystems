@@ -672,8 +672,8 @@ equation
  Documentation(info="<html>
  <p>
  Example that simulates the air flow between nine two-dimensional connected air elements, where the left
- elements airEle111, airEle121 and airEle131 have a thermal boundary condition of 21 °C and the
- right elements airEle311, airEle321 and airEle331 a thermal boundary condition of 19 °C.
+ elements airEle111, airEle121 and airEle131 have a thermal boundary condition of 21 degree Celsius and the
+ right elements airEle311, airEle321 and airEle331 a thermal boundary condition of 19 degree Celsius.
  </p>
  </html>",
  revisions="<html>

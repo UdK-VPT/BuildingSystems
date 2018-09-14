@@ -257,8 +257,8 @@ equation
 Documentation(info="<html>
 <p>
 Example that simulates the air flow between three serial connected air elements, where the left
-element airEle111 has a thermal boundary condition of 21 °C and the right element airEle311
-a thermal boundary condition of 19 °C.
+element airEle111 has a thermal boundary condition of 21 degree Celsius and the right element airEle311
+a thermal boundary condition of 19 degree Celsius.
 </p>
 </html>",
 revisions="<html>

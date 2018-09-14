@@ -1,4 +1,4 @@
-﻿within BuildingSystems.Buildings.Airvolumes.AirElements;
+within BuildingSystems.Buildings.Airvolumes.AirElements;
 model AirElementHygroThermal
   "A hygro-thermal finite volume element"
   extends BuildingSystems.Buildings.BaseClasses.AirElementGeneral;

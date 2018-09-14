@@ -47,7 +47,7 @@ model Building1Zone0DDistrict
     "Area reduction factor for common walls with adjacent buildings"
     annotation (Dialog(tab = "General", group = "Geometry building"));
   parameter Real f_W_BGF = 0.75
-    "Relation living area (Wohnfläche) to gross floor area (Bruttogrundfläche)"
+    "Relation living area (Wohnflaeche) to gross floor area (Bruttogrundflaeche)"
       annotation (Dialog(tab = "General", group = "Geometry building"));
   final parameter Modelica.SIunits.Area ARoo =
     (length-thicknessFac)*(width-thicknessFac)

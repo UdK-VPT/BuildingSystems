@@ -1,4 +1,4 @@
-﻿within BuildingSystems.Buildings.Airvolumes.FlowConnections;
+within BuildingSystems.Buildings.Airvolumes.FlowConnections;
 model FlowConnectionX
   "Flow connection from center of FV1 to center of FV2 in X-direction"
   extends BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnection;
