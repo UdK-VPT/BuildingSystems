@@ -11,7 +11,7 @@ package PropyleneGlycolWater
     final eta_const=dynamicViscosity_TX_a(T = property_T, X_a = X_a),
     final lambda_const=thermalConductivity_TX_a(T = property_T, X_a = X_a),
     a_const=1484,
-    final T_min=fusionTemperature_TX_a(T = property_T, X_a = X_a),
+    T_min=fusionTemperature_TX_a(T = property_T, X_a = X_a),
     //final T_max=Modelica.SIunits.Conversions.from_degC(100),
 	final T_max=Modelica.SIunits.Conversions.from_degC(100),
     T0=273.15,
