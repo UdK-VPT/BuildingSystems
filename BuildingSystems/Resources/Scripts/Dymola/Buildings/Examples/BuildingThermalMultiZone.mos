@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Examples.BuildingThermalMultiZone", startTime = 1.5552e7, stopTime=1.6416e7, method="dassl", tolerance = 1e-5, resultFile="BuildingThermalMultiZone");
+simulateModel("BuildingSystems.Buildings.Examples.BuildingThermalMultiZone", startTime = 1.5552e7, stopTime=1.6416e7, method="dassl", resultFile="BuildingThermalMultiZone");
 removePlots();
 createPlot(
   id = 1,
