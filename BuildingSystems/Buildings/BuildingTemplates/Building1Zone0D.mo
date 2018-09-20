@@ -15,57 +15,57 @@ model Building1Zone0D
 
   parameter Modelica.SIunits.Length height = 3.0
     "Height of the building"
-    annotation (Dialog(tab = "General", group = "Geometry building"));
+    annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   parameter Integer nWindows = 1
     "Number of windows"
     annotation(Dialog(tab="Constructions",group="Windows"));
   parameter Modelica.SIunits.Area AAmb = 1.0
     "Surface area of the building constructions with air contact to the environment"
-    annotation(Dialog(tab="Constructions",group="Ambient constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambient constructions"));
   parameter Modelica.SIunits.Area AInn = 1.0
     "Surface area of both sides of the internal building constructions"
-    annotation(Dialog(tab="Constructions",group="Inner constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));
   parameter Modelica.SIunits.Area AGro = 1.0
     "Surface area of the building constructions with contact to the ground"
     annotation(Dialog(tab="Constructions",group="Ground constructions"));
   parameter Modelica.SIunits.Area AWin[nWindows] = {1.0}
     "Area of each window"
-    annotation(Dialog(tab="Constructions",group="Windows"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Windows"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin[nWindows] = fill(0.0,nWindows)
     "Azimuth angle of each window"
-    annotation(Dialog(tab = "General", group = "Geometry windows"));
+    annotation(Evaluate=false, Dialog(tab = "General", group = "Geometry windows"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTilWin[nWindows] = fill(90.0,nWindows)
     "Tilt angle of each window"
-    annotation(Dialog(tab = "General", group = "Geometry windows"));
+    annotation(Evaluate=false, Dialog(tab = "General", group = "Geometry windows"));
   parameter Modelica.SIunits.Volume VAir = 1.0
     "Inner (Air) volume of the building";
   parameter Modelica.SIunits.HeatCapacity CAmb = 1.0
     "Total heat capacity of the building envelope"
-    annotation(Dialog(tab="Constructions",group="Ambient constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambient constructions"));
   parameter Modelica.SIunits.HeatCapacity CInn = 1.0
     "Total heat capacity of the internal building construction"
-    annotation(Dialog(tab="Constructions",group="Inner constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));
   parameter Modelica.SIunits.HeatCapacity CGro = 1.0
     "Total heat capacity of the building groundplate"
-    annotation(Dialog(tab="Constructions",group="Ground constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ground constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValAmb = 1.0
     "Mean heat loss coefficient of the building envelope"
-    annotation(Dialog(tab="Constructions",group="Ambient constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambient constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValGro = 1.0
     "Mean heat loss coefficient of the building groundplate"
     annotation(Dialog(tab="Constructions",group="Ground constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValInn = 1.0
     "Mean heat loss coefficient of internal building construction"
-    annotation(Dialog(tab="Constructions",group="Inner constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValWin[nWindows] = fill(1.0,nWindows)
     "Heat loss coefficient of each window"
-    annotation(Dialog(tab="Constructions",group="Windows"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Windows"));
   parameter Real gWin[nWindows](each unit = "1") = fill(0.6,nWindows)
     "g-value of the window"
-    annotation(Dialog(tab = "Constructions", group = "Windows"));
+    annotation(Evaluate=false, Dialog(tab = "Constructions", group = "Windows"));
   parameter Real framePortionWin[nWindows](each unit = "1") = fill(0.2,nWindows)
     "Frame portion of the window"
-    annotation(Dialog(tab = "Constructions", group = "Windows"));
+    annotation(Evaluate=false, Dialog(tab = "Constructions", group = "Windows"));
 
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
     final prescribedAirchange = prescribedAirchange,

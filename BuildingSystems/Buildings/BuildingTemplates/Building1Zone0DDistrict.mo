@@ -33,22 +33,27 @@ model Building1Zone0DDistrict
     annotation (Dialog(tab = "General"));
   parameter Modelica.SIunits.Length length = 10.0
     "Length of the building"
-    annotation (Dialog(tab = "General", group = "Geometry building"));
+    annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   parameter Modelica.SIunits.Length width = 10.0
     "Width of the building"
-    annotation (Dialog(tab = "General", group = "Geometry building"));
+    annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   parameter Modelica.SIunits.Length thicknessFac = 0.4
     "Mean thickness of the facade opaque construction"
-    annotation (Dialog(tab = "General", group = "Geometry building"));
+    annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   parameter Modelica.SIunits.Length thicknessSla = 0.3
     "Mean thickness of the slab construction between the floors"
-    annotation (Dialog(tab = "General", group = "Geometry building"));
+    annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   parameter Real fAreaAdjBld = 0.0
     "Area reduction factor for common walls with adjacent buildings"
-    annotation (Dialog(tab = "General", group = "Geometry building"));
+    annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   parameter Real f_W_BGF = 0.75
+<<<<<<< HEAD
     "Relation living area (Wohnflaeche) to gross floor area (Bruttogrundflaeche)"
       annotation (Dialog(tab = "General", group = "Geometry building"));
+=======
+    "Relation living area (Wohnfläche) to gross floor area (Bruttogrundfläche)"
+      annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
+>>>>>>> Number of air path models reduced
   final parameter Modelica.SIunits.Area ARoo =
     (length-thicknessFac)*(width-thicknessFac)
     "Roof area of the building";
@@ -57,10 +62,10 @@ model Building1Zone0DDistrict
     "Opaque facade area of the building";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValFac = 1.0
     "Mean heat loss coefficient of the opaque building facade"
-    annotation (Evaluate=true, Dialog(tab="Constructions", group="Ambient constructions"));
+    annotation (Evaluate=false, Dialog(tab="Constructions", group="Ambient constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValRoo = 1.0
     "Mean heat loss coefficient of the building roof"
-    annotation (Evaluate=true, Dialog(tab="Constructions", group="Roof constructions"));
+    annotation (Evaluate=false, Dialog(tab="Constructions", group="Roof constructions"));
   parameter BuildingSystems.Buildings.Types.ThermalBuildingCapacity conAmb = BuildingSystems.Buildings.Types.ThermalBuildingCapacity.Medium
     "Thermal capacity outside construction"
     annotation (Evaluate=true, Dialog(tab="Constructions", group="Thermal building capacity"));
@@ -72,15 +77,15 @@ model Building1Zone0DDistrict
     annotation (Evaluate=true, Dialog(tab="Constructions", group="Thermal building capacity"));
   parameter Modelica.SIunits.Length heightSto = 3.0
     "Brutto height of one storey"
-    annotation(Dialog(tab = "General", group = "Geometry building"));
+    annotation(Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   parameter Real nSto = 2.0
     "Number of storeys"
-    annotation(Dialog(tab = "General", group = "Geometry building"));
+    annotation(Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   final parameter Modelica.SIunits.Area AFloorSpace = width*length*nSto
     "Floor space area of the building";
   parameter Real fWin = 0.3
     "Window percentage of the facades"
-    annotation(Dialog(tab = "General", group = "Geometry windows"));
+    annotation(Evaluate=false, Dialog(tab = "General", group = "Geometry windows"));
   final parameter Real AV = (2*length+2*width+2*length*width)/(length*width*heightSto*nSto)
     "Ratio area to volume";
 
