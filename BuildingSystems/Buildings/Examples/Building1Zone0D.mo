@@ -6,7 +6,7 @@ model Building1Zone0D
   // building1 with ideal load calculation
   BuildingSystems.Buildings.Ambient ambient1(
     nSurfaces=building1.nSurfacesAmbient,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
       annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
 
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
@@ -19,10 +19,10 @@ model Building1Zone0D
     CAmb=55347250.0,
     CInn=4435200.0,
     CGro=480000.0,
-    UValAmb=1.0,
+    UValAmb=0.25,
     UValInn=4.0,
-    UValGro=1.0,
-    UValWin={2.0},
+    UValGro=0.2,
+    UValWin={1.0},
     calcIdealLoads=true)
     annotation (Placement(transformation(extent={{-10,20},{10,40}})));
 
@@ -39,7 +39,7 @@ model Building1Zone0D
   // building2 with free floating temperature calculation
   BuildingSystems.Buildings.Ambient ambient2(
     nSurfaces=building2.nSurfacesAmbient,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
 
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building2(
@@ -52,10 +52,10 @@ model Building1Zone0D
     CAmb=55347250.0,
     CInn=4435200.0,
     CGro=480000.0,
-    UValAmb=1.0,
+    UValAmb=0.25,
     UValInn=4.0,
-    UValGro=1.0,
-    UValWin={2.0},
+    UValGro=0.2,
+    UValWin={1.0},
     calcIdealLoads=false)
     annotation (Placement(transformation(extent={{-10,-28},{10,-8}})));
 
@@ -126,7 +126,7 @@ equation
   connect(groundTemp2.port, building2.toSolidHeatPorts[1])
       annotation (Line(points={{-16,-44},{-4,-44},{-4,-27}}, color={191,0,0}));
 
-  annotation(experiment(StartTime=0, StopTime=31536000,Interval=3600),
+  annotation(experiment(StartTime=0, StopTime=31536000,Interval=8760),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/Building1Zone0D.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={
     Text(extent={{-52,-20},{52,-88}}, lineColor={0,0,255},textString="Low-order thermal building model under real weather data"),
