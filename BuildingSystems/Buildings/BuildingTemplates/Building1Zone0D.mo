@@ -27,7 +27,7 @@ model Building1Zone0D
     annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));
   parameter Modelica.SIunits.Area AGro = 1.0
     "Surface area of the building constructions with contact to the ground"
-    annotation(Dialog(tab="Constructions",group="Ground constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ground constructions"));
   parameter Modelica.SIunits.Area AWin[nWindows] = {1.0}
     "Area of each window"
     annotation(Evaluate=false, Dialog(tab="Constructions",group="Windows"));
@@ -53,7 +53,7 @@ model Building1Zone0D
     annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambient constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValGro = 1.0
     "Mean heat loss coefficient of the building groundplate"
-    annotation(Dialog(tab="Constructions",group="Ground constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ground constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValInn = 1.0
     "Mean heat loss coefficient of internal building construction"
     annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));

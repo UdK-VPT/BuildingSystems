@@ -47,13 +47,8 @@ model Building1Zone0DDistrict
     "Area reduction factor for common walls with adjacent buildings"
     annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   parameter Real f_W_BGF = 0.75
-<<<<<<< HEAD
     "Relation living area (Wohnflaeche) to gross floor area (Bruttogrundflaeche)"
-      annotation (Dialog(tab = "General", group = "Geometry building"));
-=======
-    "Relation living area (Wohnfläche) to gross floor area (Bruttogrundfläche)"
-      annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
->>>>>>> Number of air path models reduced
+    annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
   final parameter Modelica.SIunits.Area ARoo =
     (length-thicknessFac)*(width-thicknessFac)
     "Roof area of the building";
