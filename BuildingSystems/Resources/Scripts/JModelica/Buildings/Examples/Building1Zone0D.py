@@ -22,7 +22,6 @@ my_fmu = compile_fmu(model_name, moLibs)
 from pyfmi import load_fmu
 
 myModel = load_fmu(my_fmu)
-value1 = 0.5
 
 opts = myModel.simulate_options()
 opts['solver'] = "CVode"
@@ -34,7 +33,7 @@ opts['CVode_options']['maxord'] = 5
 opts['CVode_options']['atol'] = 1e-5
 opts['CVode_options']['rtol'] = 1e-5
 
-res = myModel.simulate(start_time=0, final_time=31536000, options=opts)
+res = myModel.simulate(start_time=0.0, final_time=31536000, options=opts)
 
 # plotting of the results
 import pylab as P

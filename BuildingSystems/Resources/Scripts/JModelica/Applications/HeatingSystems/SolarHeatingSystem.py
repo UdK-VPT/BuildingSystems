@@ -15,7 +15,7 @@ print(os.getcwd())
 
 # compile model to fmu
 from pymodelica import compile_fmu
-model_name = 'BuildingSystems.Buildings.Examples.BuildingThermalMultiZone'
+model_name = 'BuildingSystems.Applications.HeatingSystems.SolarHeatingSystem'
 my_fmu = compile_fmu(model_name, moLibs)
 
 # simulate the fmu and store results
@@ -33,7 +33,7 @@ opts['CVode_options']['maxord'] = 5
 opts['CVode_options']['atol'] = 1e-5
 opts['CVode_options']['rtol'] = 1e-5
 
-res = myModel.simulate(start_time=1.5552e7, final_time=1.6416e7, options=opts)
+res = myModel.simulate(start_time=0.0, final_time=31536000, options=opts)
 
 # plotting of the results
 import pylab as P
@@ -42,31 +42,38 @@ P.clf()
 # building
 # temperatures
 y1 = res['ambient.TAirRef']
-y2 = res['building.office1.TAir']
-y3 = res['building.office2.TAir']
-y4 = res['building.office3.TAir']
-y5 = res['building.office4.TAir']
-y6 = res['building.office5.TAir']
-y7 = res['building.office6.TAir']
-y8 = res['building.office7.TAir']
-y9 = res['building.office8.TAir']
-y10 = res['building.bullpen.TAir']
-y11 = res['building.conferenceRoom.TAir']
+y2 = res['building.zone.TAir']
+y3 = res['building.zone.TOperative']
 t = res['time']
-P.subplot(2,1,1)
-P.plot(t, y1, t, y2, t, y3, t, y4, t, y5, t, y6, t, y7, t, y8, t, y9, t, y10, t, y11)
-P.legend(['ambient.TAirRef','building.office1.TAir','building.office2.TAir',
-'building.office3.TAir','building.office4.TAir','building.office5.TAir',
-'building.office6.TAir','building.office7.TAir','building.office8.TAir',
-'building.bullpen.TAir','building.conferenceRoom.TAir'])
+P.subplot(4,1,1)
+P.plot(t, y1, t, y2, t, y3)
+P.legend(['ambient.TAirRef','building.zone.TAir','building.zone.TOperative'])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
-# Heating and cooling load
-y1 = res['building.bullpen.Q_flow_cooling']
-y2 = res['building.conferenceRoom.Q_flow_cooling']
-P.subplot(2,1,2)
-P.plot(t, y1, t, y2)
-P.legend(['building.bullpen.Q_flow_cooling','building.conferenceRoom.Q_flow_cooling'])
+# Heating load
+y1 = res['rad.Q_flow']
+P.subplot(4,1,2)
+P.plot(t, y1)
+P.legend(['rad.Q_flow'])
 P.ylabel('power (W)')
+P.xlabel('Time (s)')
+# temperatures solar thermal system
+y1 = res['collector.vol[10].T']
+y2 = res['storage.T[1]']
+y3 = res['storage.T[10]']
+t = res['time']
+P.subplot(4,1,3)
+P.plot(t, y1, t, y2, t, y3)
+P.legend(['collector.vol[10].T','storage.T[1]','storage.T[10]'])
+P.ylabel('Temperature (K)')
+P.xlabel('Time (s)')
+# solar radiation on collector
+y1 = res['collector.radiationPort.IrrDir']
+y2 = res['collector.radiationPort.IrrDif']
+t = res['time']
+P.subplot(4,1,4)
+P.plot(t, y1, t, y2)
+P.legend(['collector.radiationPort.IrrDir','collector.radiationPort.IrrDif')
+P.ylabel('Radiation (W/m2)')
 P.xlabel('Time (s)')
 P.show()

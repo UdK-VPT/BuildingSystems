@@ -407,10 +407,10 @@ model Building1Zone1DBox
       if numResWallsInterior == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionWallsInterior.nLayers) else
       fill(4,constructionWallsInterior.nLayers),
     final angleDegTil = 90.0,
-    final width = AInteriorWalls/wallsInterior.height,
+    final width = AInteriorWalls/1.0,
     height = 1.0,
     final angleDegAzi = 0,
-    T_start = {TWallsInterior_start for i in 1:wallsInterior.constructionData.nLayers}) if InteriorWalls
+    T_start = fill(TWallsInterior_start,constructionWallsInterior.nLayers)) if InteriorWalls
     "Optional interior walls"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},origin={-30,-14})));
@@ -419,11 +419,11 @@ model Building1Zone1DBox
     nNodes = if numResCeilingsInterior == BuildingSystems.Buildings.Types.NumericalResolution.Low then fill(1,constructionCeilingsInterior.nLayers) else
       if numResCeilingsInterior == BuildingSystems.Buildings.Types.NumericalResolution.Medium then fill(2,constructionCeilingsInterior.nLayers) else
       fill(4,constructionCeilingsInterior.nLayers),
-    final width = AInteriorCeilings/ceilingsInterior.height,
+    final width = AInteriorCeilings/1.0,
     height = 1.0,
     final angleDegAzi = 0.0,
     final angleDegTil = 0.0,
-    T_start = {TCeilingsInterior_start for i in 1:ceilingsInterior.constructionData.nLayers}) if InteriorCeilings
+    T_start = fill(TCeilingsInterior_start, constructionCeilingsInterior.nLayers)) if InteriorCeilings
     "Optional interior ceilings"
     annotation (Dialog(tab = "Opaque constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-20,50})));
