@@ -73,7 +73,7 @@ y2 = res['collector.radiationPort.IrrDif']
 t = res['time']
 P.subplot(4,1,4)
 P.plot(t, y1, t, y2)
-P.legend(['collector.radiationPort.IrrDir','collector.radiationPort.IrrDif')
+P.legend(['collector.radiationPort.IrrDir','collector.radiationPort.IrrDif'])
 P.ylabel('Radiation (W/m2)')
 P.xlabel('Time (s)')
 P.show()
