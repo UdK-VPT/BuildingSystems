@@ -1,24 +1,25 @@
-# paths and info
+# <codecell> paths and info
 import os, sys
 homeDir = os.environ['HOMEPATH']
+jmodDir = os.environ['JMODELICA_HOME']
 workDir = "Desktop" # has to be adapted by the user !!!
-moLibsDir = os.path.join(homeDir, workDir, "BuildingSystems")
+moLiDir = os.path.join(homeDir, workDir, "BuildingSystems")
 
 # give the path to directory where package.mo is stored
-moLibs = [os.path.normpath("C:\JModelica.org-2.2\install\ThirdParty\MSL\Modelica"),
-		  os.path.join(moLibsDir,"BuildingSystems"),
+moLibs = [os.path.join(jmodDir, "ThirdParty\MSL\Modelica"),
+          os.path.join(moLiDir,"BuildingSystems"),
          ]
 
 print(sys.version)
 print(all(os.path.isfile(os.path.join(moLib, "package.mo")) for moLib in moLibs))
 print(os.getcwd())
 
-# compile model to fmu
+# <codecell> compile model to fmu
 from pymodelica import compile_fmu
 model_name = 'BuildingSystems.Applications.HeatingSystems.SolarHeatingSystem'
 my_fmu = compile_fmu(model_name, moLibs)
 
-# simulate the fmu and store results
+# <codecell> simulate the fmu and store results
 from pyfmi import load_fmu
 
 myModel = load_fmu(my_fmu)
@@ -35,7 +36,7 @@ opts['CVode_options']['rtol'] = 1e-5
 
 res = myModel.simulate(start_time=0.0, final_time=31536000, options=opts)
 
-# plotting of the results
+# <codecell> plotting of the results
 import pylab as P
 fig = P.figure(1)
 P.clf()
