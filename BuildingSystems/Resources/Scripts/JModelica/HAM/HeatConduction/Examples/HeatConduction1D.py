@@ -16,7 +16,7 @@ print(os.getcwd())
 
 # compile model to fmu
 from pymodelica import compile_fmu
-model_name = 'BuildingSystems.Applications.DistrictSimulation.DistrictBerlinKreuzberg'
+model_name = 'BuildingSystems.HAM.HeatConduction.Examples.HeatConduction1D'
 my_fmu = compile_fmu(model_name, moLibs)
 
 # simulate the fmu and store results
@@ -34,29 +34,35 @@ opts['CVode_options']['maxord'] = 5
 opts['CVode_options']['atol'] = 1e-5
 opts['CVode_options']['rtol'] = 1e-5
 
-res = myModel.simulate(start_time=0.0, final_time=864000, options=opts)
+res = myModel.simulate(start_time=0.0, final_time=172800, options=opts)
 
 # plotting of the results
 import pylab as P
 fig = P.figure(1)
 P.clf()
-# building
+# body
 # temperatures
-y1 = res['ambient.TAirRef']
-y2 = res['building122.zone.TAir']
+y1 = res['TAmb.port.T']
+y2 = res['body1.T']
+y3 = res['body2.T']
+y4 = res['body3.T']
+y5 = res['body4.T']
+y6 = res['body5.T']
 t = res['time']
 P.subplot(2,1,1)
-P.plot(t, y1, t, y2)
-P.legend(['ambient.TAirRef','building122.zone.TAir'])
+P.plot(t, y1, t, y2, t, y3, t, y4, t, y5, t, y6)
+P.legend(['TAmb.port.T','body1.T','body2.T','body3.T','body4.T','body5.T',])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
-# Heating load
-y1 = res['heatingLoad.y']
-y2 = res['coolingLoad.y']
-t = res['time']
+# heat flows
+y1 = res['body1.heatPort_x1.Q_flow']
+y2 = res['body2.heatPort_x1.Q_flow']
+y3 = res['body3.heatPort_x1.Q_flow']
+y4 = res['body4.heatPort_x1.Q_flow']
+y5 = res['body5.heatPort_x1.Q_flow']
 P.subplot(2,1,2)
-P.plot(t, y1, t, y2)
-P.legend(['heatingLoad.y','coolingLoad.y'])
-P.ylabel('Power (W)')
+P.plot(t, y1, t, y2, t, y3, t, y4, t, y5)
+P.legend(['body1.heatPort_x1.Q_flow','body2.heatPort_x1.Q_flow','body3.heatPort_x1.Q_flow','body4.heatPort_x1.Q_flow','body5.heatPort_x1.Q_flow'])
+P.ylabel('power (W)')
 P.xlabel('Time (s)')
 P.show()

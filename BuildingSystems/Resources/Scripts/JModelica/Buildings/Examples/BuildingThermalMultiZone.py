@@ -26,7 +26,7 @@ myModel = load_fmu(my_fmu)
 
 opts = myModel.simulate_options()
 opts['solver'] = "CVode"
-opts['ncp'] = 8760
+opts['ncp'] = 500
 opts['result_handling']="file"
 opts["CVode_options"]['discr'] = 'BDF'
 opts['CVode_options']['iter'] = 'Newton'
