@@ -14,6 +14,10 @@ print(sys.version)
 print(all(os.path.isfile(os.path.join(moLib, "package.mo")) for moLib in moLibs))
 print(os.getcwd())
 
+# necessary for large models
+import pymodelica
+pymodelica.environ['JVM_ARGS'] = '-Xmx11048m'
+
 # compile model to fmu
 from pymodelica import compile_fmu
 model_name = 'BuildingSystems.Applications.DistrictSimulation.DistrictBerlinKreuzberg'
