@@ -31,7 +31,7 @@ in combination with a district heating network (compare with Figure 1.1).
 and also more simulation time for a single building. A typical application is multi-zone-building models,
 which calculate the heating and cooling energy demand, the air temperatures and air moistures for each thermal zone as well as
 the air exchange between the single thermal zones of a complex building. The Rooftop building in Figure 1.2, for example, has
-four different air-conditioned rooms, so it could be modelled with four thermal zones.
+two air-conditioned and two not air-conditioned rooms, so it could be modelled with four thermal zones.
 
 .. figure:: /images/UCaHS_Zonal_CFD.*
    :scale: 70 %
@@ -44,6 +44,6 @@ which describes the three-dimensional air flow within a room volume, the geometr
 short-wave radiation distribution and also the multidimensional heat transport within the building construction.
 For example, this model is able to calculate the location-dependent thermal comfort within a room (compare with Figure 1.3).
 
-The BuildingSystems library supports for all three LODs pure thermal or hygro-thermal calculations (multi-physics modelling approach).
+The BuildingSystems library supports for all three modelling approaches pure thermal or also hygro-thermal calculations.
 Also a mixed thermal and hygro-thermal simulation analysis and different spatial resolutions for different
-parts of a building model are supported.
+zones of a building model are supported.
