@@ -1,6 +1,7 @@
-within ;
+within ExamplesUserGuide;
 model SimpleBuilding
- "User Guide of the BuildingSystems library Chapter 2: Simple Building"
+  "User Guide of the BuildingSystems library Chapter 2: Simple Building"
+  extends Modelica.Icons.Example;
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DBox building(
     width=9.0,
     length=9.0,

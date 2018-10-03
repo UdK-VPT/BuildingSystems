@@ -1,6 +1,7 @@
-within ;
+within ExamplesUserGuide;
 package ThermalModelHouse
   "User Guide of the BuildingSystems library Chapter 3: Multi-Zone Building Modeling "
+  extends Modelica.Icons.ExamplesPackage;
   model Building
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
         surfacesToAmbient(nSurfaces=12), nZones=2);
@@ -48,7 +49,7 @@ package ThermalModelHouse
       height=0.5,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      AInnSur=window2.A)
+      AInnSur=window2.ASur)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={28,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall6(
       redeclare Construction1THM constructionData,
@@ -56,7 +57,7 @@ package ThermalModelHouse
       height=0.5,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      AInnSur=window1.A)
+      AInnSur=window1.ASur)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-52,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall7(
       redeclare Construction2THM constructionData,
@@ -96,14 +97,14 @@ package ThermalModelHouse
       angleDegTil=90.0,
       width=0.378,
       height=0.33,
-      thicknessPane=0.003)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-28,-20})));
     BuildingSystems.Buildings.Constructions.Windows.Window window2(
       angleDegAzi=0.0,
       angleDegTil=90.0,
       width=0.378,
       height=0.33,
-      thicknessPane=0.003)
+      redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={52,-20})));
   equation
     connect(wall1.toSurfacePort_1, zone1.toConstructionPorts[1]) annotation (
@@ -240,6 +241,7 @@ package ThermalModelHouse
   end Construction2THM;
 
   model SystemModel
+    extends Modelica.Icons.Example;
     Building building(
       nZones=2,
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
