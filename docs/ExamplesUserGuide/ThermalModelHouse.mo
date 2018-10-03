@@ -1,6 +1,6 @@
 within ;
 package ThermalModelHouse
-  "User Guide of the BuildingSystems library Chapter 3: Multi-Zone Building Modeling "
+  "User Guide of the BuildingSystems library Chapter 3: Multi-Zone Building Modeling"
   extends Modelica.Icons.ExamplesPackage;
   model Building
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
@@ -16,35 +16,35 @@ package ThermalModelHouse
       height=0.5)
       annotation (Placement(transformation(extent={{30,-10},{50,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=90.0,
       angleDegTil=90.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-60,0})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=180.0,
       angleDegTil=90.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-52,20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=90.0,
       angleDegTil=90.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={52,20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=-90.0,
       angleDegTil=90.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={60,0})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall5(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=0.0,
@@ -52,7 +52,7 @@ package ThermalModelHouse
       AInnSur=window2.ASur)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={28,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall6(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=0.0,
@@ -60,33 +60,33 @@ package ThermalModelHouse
       AInnSur=window1.ASur)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-52,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall7(
-      redeclare Construction2THM constructionData,
+      redeclare Construction2TMH constructionData,
       width=0.5,
       height=0.5)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling1(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=0.0,
       angleDegTil=0.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-40,40})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling2(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=0.0,
       angleDegTil=0.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={40,40})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom1(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=0.0,
       angleDegTil=180.0)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-40,-40})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom2(
-      redeclare Construction1THM constructionData,
+      redeclare Construction1TMH constructionData,
       width=0.5,
       height=0.5,
       angleDegAzi=0.0,
@@ -220,8 +220,8 @@ package ThermalModelHouse
         pattern=LinePattern.Dash));
   end Building;
 
-  record Construction1THM
-    "Outer constructions of the THM"
+  record Construction1TMH
+    "Outer constructions of the TMH"
     extends
       BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
       nLayers=3,
@@ -229,16 +229,16 @@ package ThermalModelHouse
       material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Wood(),
         BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation(),
         BuildingSystems.HAM.Data.MaterialProperties.Thermal.Wood()});
-  end Construction1THM;
+  end Construction1TMH;
 
-  record Construction2THM
-    "Partition wall of the THM"
+  record Construction2TMH
+    "Partition wall of the TMH"
     extends
       BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
       nLayers=1,
       thickness={0.009},
       material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Wood()});
-  end Construction2THM;
+  end Construction2TMH;
 
   model SystemModel
     extends Modelica.Icons.Example;
