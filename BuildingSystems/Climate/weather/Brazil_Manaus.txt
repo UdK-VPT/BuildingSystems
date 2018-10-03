@@ -1,7 +1,9 @@
-Manaus
--3,133        -60,017        72           -4 
-
- hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+#1
+#Manaus
+#-3,133        -60,017        72           -4
+#
+# hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+double tab1(8760,9)
  1	999	27.5	98	0	0	8	0.5	83
  2	999	28.9	91	0	0	8	0.2	72
  3	999	28.7	89	0	0	8	0.2	114

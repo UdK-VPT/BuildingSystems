@@ -177,7 +177,7 @@ model PhotovoltaicCoolingSystem
     annotation (Placement(transformation(extent={{88,30},{108,50}})));
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Brazil_Manaus_Meteonorm_ASCII)
     "Ambient model"
     annotation (Placement(transformation(extent={{64,30},{84,50}})));
   Modelica.Blocks.Sources.Constant airchange(

@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Applications.AirConditioningSystems.PhotovoltaicCoolingSystem", stopTime=31536000, method="dassl", tolerance = 1e-5, resultFile="PhotovoltaicCoolingSystem");
+simulateModel("BuildingSystems.Applications.AirConditioningSystems.PhotovoltaicCoolingSystem", stopTime=864000, method="dassl", resultFile="PhotovoltaicCoolingSystem");
 removePlots();
 createPlot(
   id = 1,
@@ -16,7 +16,7 @@ createPlot(
   bottomTitleType = 1);
 createPlot(
   id = 2,
-  position = {510, 0, 500, 300},
+  position = {520, 0, 500, 300},
   y = {"battery.SOC"},
   autoscale = true,
   autoerase = true,
@@ -30,7 +30,7 @@ createPlot(
   bottomTitleType = 1);
 createPlot(
  id = 3,
-  position = {0, 330, 500, 300},
+  position = {0, 350, 500, 300},
   y = {"pvField.thermalModel.TAmb","pvField.thermalModel.TCel","chiller.volEva.T","chiller.volCon.T"},
   autoscale = true,
   autoerase = true,
@@ -44,8 +44,36 @@ createPlot(
   bottomTitleType = 1);
 createPlot(
   id = 4,
-  position = {510, 330, 500, 300},
+  position = {520, 350, 500, 300},
   y = {"chiller.COP"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PhotovoltaicCoolingSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+ id = 5,
+  position = {0, 700, 500, 300},
+  y = {"building.TAir[1]","building.zone.TOperative"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "PhotovoltaicCoolingSystem.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 6,
+  position = {520, 700, 500, 300},
+  y = {"storage.T[1]","storage.T[3]","storage.T[5]"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,
