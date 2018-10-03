@@ -1,4 +1,4 @@
-within ExamplesUserGuide;
+within ;
 model SimpleBuilding
   "User Guide of the BuildingSystems library Chapter 2: Simple Building"
   extends Modelica.Icons.Example;
@@ -60,5 +60,5 @@ equation
   annotation (experiment(StartTime=0, StopTime=31536000),
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-40,-20},{80,40}})),
     Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-40,-20},{80,40}})),
-    uses(Modelica(version="3.2.1"), BuildingSystems(version="0.1")));
+    uses(Modelica(version="3.2.2"), BuildingSystems(version="2.0.0-beta")));
 end SimpleBuilding;

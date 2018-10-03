@@ -1,4 +1,4 @@
-within ExamplesUserGuide;
+within ;
 package ThermalModelHouse
   "User Guide of the BuildingSystems library Chapter 3: Multi-Zone Building Modeling "
   extends Modelica.Icons.ExamplesPackage;
@@ -293,5 +293,5 @@ package ThermalModelHouse
     annotation (experiment(StartTime=0, StopTime=864000), Icon(coordinateSystem(preserveAspectRatio=false,extent={{-40,-50},{80,40}})),
       Diagram(coordinateSystem(preserveAspectRatio=false,extent={{-40,-50},{80,40}})));
   end SystemModel;
-  annotation (uses(Modelica(version="3.2.1"), BuildingSystems(version="0.1")));
+  annotation (uses(Modelica(version="3.2.2"), BuildingSystems(version="2.0.0-beta")));
 end ThermalModelHouse;
