@@ -284,6 +284,7 @@ equation
         points={{20,-18},{20,-12},{0,-12},{0,2.7}}, color={0,0,0}));
   connect(window4.toSurfacePort_1, zone.toConstructionPorts[8])
     annotation (Line(points={{0,-18},{0,3.7}}, color={0,0,0}));
+    
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneHygroThermal1D.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={Text(extent={{-52,-18},{52,-86}},lineColor={0,0,255},
