@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Applications.HeatingSystems.WaterHeatingSystem", stopTime=864000, method="dassl", resultFile="WaterHeatingSystem");
+simulateModel("BuildingSystems.Applications.HeatingSystems.WaterHeatingSystem", stopTime=31536000, method="cvode", resultFile="WaterHeatingSystem");
 removePlots();
 createPlot(
   id = 1,
