@@ -16,7 +16,7 @@ In order to generate weather data files that are compatible with the `WeatherDat
 
 | Variable          | Abbreviation | Unit  |
 |-------------------|--------------|-------|
-| Time              | hy           | s     |
+| Time              | hy           | h     |
 | Air pressure      | p            | hPa   |
 | Air temperature   | Ta           | °C    |
 | Relative humidity | RH           | %     |
