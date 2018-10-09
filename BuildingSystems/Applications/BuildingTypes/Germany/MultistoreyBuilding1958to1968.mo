@@ -5,7 +5,7 @@ model MultistoreyBuilding1958to1968
 
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare block WeatherData = Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF)
+    redeclare block WeatherData = Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
 
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DDistrict building(

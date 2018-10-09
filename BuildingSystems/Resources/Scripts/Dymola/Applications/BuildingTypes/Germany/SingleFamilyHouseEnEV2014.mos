@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Applications.BuildingTypes.Germany.SingleFamilyHouseEnEV2014", stopTime=31536000, method="dassl", resultFile="SingleFamilyHouseEnEV2014");
+simulateModel("BuildingSystems.Applications.BuildingTypes.Germany.SingleFamilyHouseEnEV2014", stopTime=31536000, method="cvode", resultFile="SingleFamilyHouseEnEV2014");
 removePlots();
 createPlot(
   id = 1,

@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Applications.BuildingTypes.Germany.Rowhouse1918", stopTime=31536000, method="dassl", resultFile="Rowhouse1918");
+simulateModel("BuildingSystems.Applications.BuildingTypes.Germany.Rowhouse1918", stopTime=31536000, method="cvode", resultFile="Rowhouse1918");
 removePlots();
 createPlot(
   id = 1,
