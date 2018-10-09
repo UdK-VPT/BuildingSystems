@@ -196,9 +196,9 @@ algorithm
   elseif (BCwall_west and not BCwall_east) then
     if noEvent(flowPort_X1.m_flow > 0 or flowPort_X1.m_flow < 0) then
       vVec[1] := flowPort_X1.m_flow/(inStream(flowPort_X1.rho)*dz*dy); // BC
-    elseif noEvent(flowPort_X1.m_flow == 0.0 and flowPort_X2.m_flow > 0.0) then
+    elseif noEvent(abs(flowPort_X1.m_flow) < Modelica.Constants.small and flowPort_X2.m_flow > 0.0) then
       vVec[1] := - flowPort_X2.m_flow/(inStream(flowPort_X2.rho)*dz*dy);
-    elseif noEvent(flowPort_X1.m_flow == 0.0 and flowPort_X2.m_flow <= 0.0) then
+    elseif noEvent(abs(flowPort_X1.m_flow) < Modelica.Constants.small and flowPort_X2.m_flow <= 0.0) then
       vVec[1] := min(0.05,(log(1 + dim[1]))) * (- flowPort_X2.m_flow/(inStream(flowPort_X2.rho)*dz*dy));
     else
       vVec[1] := 0;
@@ -207,9 +207,9 @@ algorithm
   elseif (BCwall_east and not BCwall_west) then
     if noEvent(flowPort_X2.m_flow > 0 or flowPort_X2.m_flow < 0) then
       vVec[1] := - flowPort_X2.m_flow/(inStream(flowPort_X2.rho)*dz*dy); // BC
-    elseif noEvent(flowPort_X2.m_flow == 0.0 and flowPort_X1.m_flow > 0.0) then
+    elseif noEvent(abs(flowPort_X2.m_flow) < Modelica.Constants.small and flowPort_X1.m_flow > 0.0) then
       vVec[1] := flowPort_X1.m_flow/(inStream(flowPort_X1.rho)*dz*dy);
-    elseif noEvent(flowPort_X2.m_flow == 0.0 and flowPort_X1.m_flow <= 0.0) then
+    elseif noEvent(abs(flowPort_X2.m_flow) < Modelica.Constants.small and flowPort_X1.m_flow <= 0.0) then
        vVec[1] := min(0.05,(log(1 + dim[1]))) * flowPort_X1.m_flow/(inStream(flowPort_X1.rho)*dz*dy);
     else
     vVec[1] := 0;
@@ -219,11 +219,11 @@ algorithm
   elseif (BCwall_east and  BCwall_west) then
     if noEvent(flowPort_X1.m_flow > 0) and noEvent(flowPort_X2.m_flow < 0) then
       vVec[1] := flowPort_X1.m_flow/(inStream(flowPort_X1.rho)*dz*dy);
-    elseif noEvent(flowPort_X1.m_flow > 0) and noEvent(flowPort_X2.m_flow == 0) then
+    elseif noEvent(flowPort_X1.m_flow > 0) and noEvent(abs(flowPort_X2.m_flow) < Modelica.Constants.small) then
       vVec[1] := min(0.05,(log(1 + dim[1]))) * flowPort_X1.m_flow/(inStream(flowPort_X1.rho)*dz*dy);
     elseif noEvent(flowPort_X1.m_flow < 0) and noEvent(flowPort_X2.m_flow > 0) then
       vVec[1] := - flowPort_X2.m_flow/(inStream(flowPort_X2.rho)*dz*dy);
-    elseif noEvent(flowPort_X1.m_flow == 0) and noEvent(flowPort_X2.m_flow > 0) then
+    elseif noEvent(abs(flowPort_X1.m_flow) < Modelica.Constants.small) and noEvent(flowPort_X2.m_flow > 0) then
       vVec[1] := - min(0.05,(log(1 + dim[1]))) * flowPort_X2.m_flow/(inStream(flowPort_X2.rho)*dz*dy);
     elseif noEvent(flowPort_X1.m_flow > 0) and noEvent(flowPort_X2.m_flow > 0) then
       vVec[1] := (flowPort_X1.m_flow/(inStream(flowPort_X1.rho)*dz*dy) - flowPort_X2.m_flow/(inStream(flowPort_X2.rho)*dz*dy));
@@ -252,9 +252,9 @@ algorithm
   elseif (BCwall_floor and not BCwall_roof) then
     if noEvent(flowPort_Y1.m_flow > 0 or flowPort_Y1.m_flow < 0) then
       vVec[2] := flowPort_Y1.m_flow/(inStream(flowPort_Y1.rho)*dz*dx);  // BC
-    elseif noEvent(flowPort_Y1.m_flow == 0.0 and flowPort_Y2.m_flow > 0.0) then
+    elseif noEvent(abs(flowPort_Y1.m_flow) < Modelica.Constants.small and flowPort_Y2.m_flow > 0.0) then
       vVec[2] := - flowPort_Y2.m_flow/(inStream(flowPort_Y2.rho)*dz*dx);
-    elseif noEvent(flowPort_Y1.m_flow == 0.0 and flowPort_Y2.m_flow <= 0.0) then
+    elseif noEvent(abs(flowPort_Y1.m_flow) < Modelica.Constants.small and flowPort_Y2.m_flow <= 0.0) then
       vVec[2] := min(0.05,(log(1 + dim[2]))) * (- flowPort_Y2.m_flow/(inStream(flowPort_Y2.rho)*dz*dx));
     else
       vVec[2] := 0;
@@ -263,9 +263,9 @@ algorithm
   elseif (BCwall_roof and not BCwall_floor) then
     if noEvent(flowPort_Y2.m_flow > 0 or flowPort_Y2.m_flow < 0) then
       vVec[2] := - flowPort_Y2.m_flow/(inStream(flowPort_Y2.rho)*dz*dx);  // BC
-    elseif noEvent(flowPort_Y2.m_flow == 0.0 and flowPort_Y1.m_flow > 0.0) then
+    elseif noEvent(abs(flowPort_Y2.m_flow) < Modelica.Constants.small and flowPort_Y1.m_flow > 0.0) then
       vVec[2] := flowPort_Y1.m_flow/(inStream(flowPort_Y1.rho)*dz*dx);
-    elseif noEvent(flowPort_Y2.m_flow == 0.0 and flowPort_Y1.m_flow <= 0.0) then
+    elseif noEvent(abs(flowPort_Y2.m_flow) < Modelica.Constants.small and flowPort_Y1.m_flow <= 0.0) then
       vVec[2] :=  min(0.05,(log(1 + dim[2]))) * (flowPort_Y1.m_flow/(inStream(flowPort_Y1.rho)*dz*dx));
     else
       vVec[2] := 0;
@@ -275,11 +275,11 @@ algorithm
   elseif (BCwall_roof and BCwall_floor) then
     if noEvent(flowPort_Y1.m_flow > 0) and noEvent(flowPort_Y2.m_flow < 0) then
       vVec[2] := flowPort_Y1.m_flow/(inStream(flowPort_Y1.rho)*dz*dx);
-    elseif noEvent(flowPort_Y1.m_flow > 0) and noEvent(flowPort_Y2.m_flow == 0) then
+    elseif noEvent(flowPort_Y1.m_flow > 0) and noEvent(abs(flowPort_Y2.m_flow) < Modelica.Constants.small) then
       vVec[2] := min(0.05,(log(1 + dim[2]))) * flowPort_Y1.m_flow/(inStream(flowPort_Y1.rho)*dz*dx);
     elseif noEvent(flowPort_Y1.m_flow < 0) and noEvent(flowPort_Y2.m_flow > 0) then
       vVec[2]:= - flowPort_Y2.m_flow/(inStream(flowPort_Y2.rho)*dz*dx);
-    elseif noEvent(flowPort_Y1.m_flow == 0) and noEvent(flowPort_Y2.m_flow > 0) then
+    elseif noEvent(abs(flowPort_Y1.m_flow) < Modelica.Constants.small) and noEvent(flowPort_Y2.m_flow > 0) then
       vVec[2]:= - min(0.05,(log(1 + dim[2]))) * flowPort_Y2.m_flow/(inStream(flowPort_Y2.rho)*dz*dx);
     elseif noEvent(flowPort_Y1.m_flow > 0) and noEvent(flowPort_Y2.m_flow > 0) then
       vVec[2] := flowPort_Y1.m_flow/(inStream(flowPort_Y1.rho)*dz*dx) - flowPort_Y2.m_flow/(inStream(flowPort_Y2.rho)*dz*dx);
@@ -308,9 +308,9 @@ algorithm
   elseif (BCwall_south and not BCwall_north) then
     if noEvent(flowPort_Z1.m_flow > 0 or flowPort_Z1.m_flow < 0) then
       vVec[3] := flowPort_Z1.m_flow/(inStream(flowPort_Z1.rho)*dy*dx);  // BC
-    elseif noEvent(flowPort_Z1.m_flow == 0.0 and flowPort_Z2.m_flow > 0.0) then
+    elseif noEvent(abs(flowPort_Z1.m_flow) < Modelica.Constants.small and flowPort_Z2.m_flow > 0.0) then
       vVec[3] := - flowPort_Z2.m_flow/(inStream(flowPort_Z2.rho)*dy*dx);
-    elseif noEvent(flowPort_Z1.m_flow == 0.0 and flowPort_Z2.m_flow <= 0.0) then
+    elseif noEvent(abs(flowPort_Z1.m_flow) < Modelica.Constants.small and flowPort_Z2.m_flow <= 0.0) then
       vVec[3] := min(0.05,(log(1 + dim[3]))) * (- flowPort_Z2.m_flow/(inStream(flowPort_Z2.rho)*dy*dx));
     else
       vVec[3] := 0;
@@ -319,9 +319,9 @@ algorithm
   elseif (BCwall_north and not BCwall_south) then
     if noEvent(flowPort_Z2.m_flow > 0 or flowPort_Z2.m_flow < 0) then
       vVec[3] := - flowPort_Z2.m_flow/(inStream(flowPort_Z2.rho)*dy*dx);  // BC
-    elseif noEvent(flowPort_Z2.m_flow == 0.0 and flowPort_Z1.m_flow > 0.0) then
+    elseif noEvent(abs(flowPort_Z2.m_flow) < Modelica.Constants.small and flowPort_Z1.m_flow > 0.0) then
       vVec[3] := flowPort_Z1.m_flow/(inStream(flowPort_Z1.rho)*dy*dx);
-    elseif noEvent(flowPort_Z2.m_flow == 0.0 and flowPort_Z1.m_flow <= 0.0) then
+    elseif noEvent(abs(flowPort_Z2.m_flow) < Modelica.Constants.small and flowPort_Z1.m_flow <= 0.0) then
       vVec[3] := min(0.05,(log(1 + dim[3]))) * (flowPort_Z1.m_flow/(inStream(flowPort_Z1.rho)*dy*dx));
     else
       vVec[3] := 0;
@@ -331,11 +331,11 @@ algorithm
   elseif (BCwall_north and BCwall_south) then
     if noEvent(flowPort_Z1.m_flow > 0) and noEvent(flowPort_Z2.m_flow < 0) then
       vVec[3] := flowPort_Z1.m_flow/(inStream(flowPort_Z1.rho)*dy*dx);
-    elseif noEvent(flowPort_Z1.m_flow > 0) and noEvent(flowPort_Z2.m_flow == 0) then
+    elseif noEvent(flowPort_Z1.m_flow > 0) and noEvent(abs(flowPort_Z2.m_flow) < Modelica.Constants.small) then
       vVec[3] := min(0.05,(log(1 + dim[3]))) * flowPort_Z1.m_flow/(inStream(flowPort_Z1.rho)*dy*dx);
     elseif noEvent(flowPort_Z1.m_flow < 0) and noEvent(flowPort_Z2.m_flow > 0) then
       vVec[3] := - flowPort_Z2.m_flow/(inStream(flowPort_Z2.rho)*dy*dx);
-    elseif noEvent(flowPort_Z1.m_flow == 0) and noEvent(flowPort_Z2.m_flow > 0) then
+    elseif noEvent(abs(flowPort_Z1.m_flow) < Modelica.Constants.small) and noEvent(flowPort_Z2.m_flow > 0) then
       vVec[3] := - min(0.05,(log(1 + dim[3]))) * flowPort_Z2.m_flow/(inStream(flowPort_Z2.rho)*dy*dx);
     elseif noEvent(flowPort_Z1.m_flow > 0) and noEvent(flowPort_Z2.m_flow > 0) then
       vVec[3]:= flowPort_Z1.m_flow/(inStream(flowPort_Z1.rho)*dy*dx) - flowPort_Z2.m_flow/(inStream(flowPort_Z2.rho)*dy*dx);
