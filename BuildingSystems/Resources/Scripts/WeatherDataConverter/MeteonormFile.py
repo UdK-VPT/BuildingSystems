@@ -126,7 +126,7 @@ def writeNcFile(data, fileName=None, oldStyle=False):
     if not ncOk:
         raise Exception('module pupynere not found, please make sure it is installed, writeNcFile() failed!')
     if not fileName:
-        fileName = data['name']+'_weather.nc'
+        fileName = data['name']+'.nc'
     f = netcdf_file(fileName, 'w')
     f.createDimension('time', data['time'].shape[0])
     f.file_format = file_format
@@ -214,7 +214,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 2:
         fileName = sys.argv[2]
     else:
-        fileName = data['name']+'_weather.nc'
+        fileName = data['name']+'.nc'
     print ('>>> Writing "%s"...' % fileName),
     sys.stdout.flush()
     writeNcFile(data, fileName, False)

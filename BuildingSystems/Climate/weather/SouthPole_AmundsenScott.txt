@@ -1,7 +1,9 @@
-SouthPole_AmundsenScott
--90            0             2835          0 
-
- hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+#1
+#SouthPole_AmundsenScott
+#-90            0             2835          0
+#
+# hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+double tab1(8760,9)
  1	704	-15.4	70	353	68	0	3.9	83
  2	704	-16.3	74	353	68	0	3.5	117
  3	704	-17.2	70	353	66	0	3.0	159

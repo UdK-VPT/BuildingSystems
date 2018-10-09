@@ -1,7 +1,9 @@
-Japan_Tokyo
- 35,683        139,767       5             9 
-
- hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+#1
+#Japan_Tokyo
+#35,683        139,767       5             9
+#
+# hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+double tab1(8760,9)
  1	1011	9.1	35	0	0	7	2.0	263
  2	1011	8.7	36	0	0	7	1.6	297
  3	1011	8.4	35	0	0	7	1.2	294
