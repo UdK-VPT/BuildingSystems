@@ -16,7 +16,7 @@ print(os.getcwd())
 
 # <codecell> compile model to fmu
 from pymodelica import compile_fmu
-model_name = 'BuildingSystems.Applications.HeatingSystems.WaterHeatingSystem'
+model_name = 'BuildingSystems.Applications.HeatingSystems.HeatPumpHeatingSystem'
 my_fmu = compile_fmu(model_name, moLibs)
 
 # <codecell> simulate the fmu and store results
@@ -46,16 +46,24 @@ y1 = res['ambient.TAirRef']
 y2 = res['building.zone.TAir']
 y3 = res['building.zone.TOperative']
 t = res['time']
-P.subplot(2,1,1)
+P.subplot(3,1,1)
 P.plot(t, y1, t, y2, t, y3)
 P.legend(['ambient.TAirRef','building.zone.TAir','building.zone.TOperative'])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 # Heating load
 y1 = res['rad.Q_flow']
-P.subplot(2,1,2)
-P.plot(t, y1)
-P.legend(['rad.Q_flow'])
+y2 = res['heaPum.QCon_flow']
+P.subplot(3,1,2)
+P.plot(t, y1, t, y2)
+P.legend(['rad.Q_flow','heaPum.QCon_flow'])
 P.ylabel('power (W)')
+P.xlabel('Time (s)')
+# heat pump
+y1 = res['heaPum.COP']
+P.subplot(3,1,3)
+P.plot(t, y1)
+P.legend(['heaPum.COP'])
+P.ylabel('COP (1)')
 P.xlabel('Time (s)')
 P.show()
