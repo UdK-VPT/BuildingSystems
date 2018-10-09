@@ -59,7 +59,7 @@ model SingleZoneThermal1D
     redeclare Data.Constructions.Transparent.DoubleGlazing constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,18})));
   BuildingSystems.Buildings.Ambient ambient(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_NetCDF,
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII,
     nSurfaces=nSurfaces)
     annotation (Placement(transformation(extent={{-58,-10},{-38,10}})));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
@@ -283,7 +283,7 @@ equation
         points={{-18,-18},{-18,-12},{0,-12},{0,2.7}}, color={0,0,0}));
   connect(bottom.toSurfacePort_1, zone.toConstructionPorts[8]) annotation (Line(
         points={{20,-18},{20,-12},{0,-12},{0,3.7}}, color={0,0,0}));
-        
+
     annotation(experiment(StartTime=0, StopTime=31536000),
       __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal1D.mos" "Simulate and plot"),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={

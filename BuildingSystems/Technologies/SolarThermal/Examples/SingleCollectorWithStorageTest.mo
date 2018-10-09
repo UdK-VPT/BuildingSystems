@@ -8,7 +8,7 @@ model SingleCollectorWithStorageTest
     property_T=293.15);
 
   BuildingSystems.Climate.WeatherData.WeatherDataReader weatherData(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2013_Meteonorm_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     "time Gdot_beam Gdot_diffuse T_air_env"
     annotation (Placement(transformation(extent={{-8,58},{-26,76}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(

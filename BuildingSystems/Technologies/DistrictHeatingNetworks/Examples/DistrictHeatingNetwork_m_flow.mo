@@ -54,7 +54,7 @@ model DistrictHeatingNetwork_m_flow
     annotation (Placement(transformation(extent={{-66,76},{-46,96}})));
   BuildingSystems.Buildings.Ambient ambient(
     nSurfaces=building.nSurfacesAmbient,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_Meteonorm_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     "Ambient model"
     annotation (Placement(transformation(extent={{-96,76},{-76,96}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
@@ -76,7 +76,7 @@ model DistrictHeatingNetwork_m_flow
     VAir=2*50*60*28) "Building model"
     annotation (Placement(transformation(extent={{-66,-32},{-46,-12}})));
   BuildingSystems.Buildings.Ambient ambient1(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_Meteonorm_NetCDF,
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
     nSurfaces=building1.nSurfacesAmbient)
     "Ambient model"
     annotation (Placement(transformation(extent={{-92,-32},{-72,-12}})));
@@ -147,7 +147,7 @@ model DistrictHeatingNetwork_m_flow
     "Building model"
     annotation (Placement(transformation(extent={{-178,68},{-158,88}})));
   BuildingSystems.Buildings.Ambient ambient2(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_Meteonorm_NetCDF,
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
     nSurfaces=building2.nSurfacesAmbient)
     "Ambient model"
     annotation (Placement(transformation(extent={{-208,68},{-188,88}})));
