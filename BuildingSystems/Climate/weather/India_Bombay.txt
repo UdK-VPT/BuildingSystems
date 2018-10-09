@@ -1,7 +1,9 @@
-India_Bombay
- 19,117        72,85         15            5 
-
- hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+#1
+#India_Bombay
+#19,117        72,85         15            5
+#
+# hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+double tab1(8760,9)
  1	1005	26.1	55	0	0	8	1.0	83
  2	1005	25.8	54	0	0	8	0.6	162
  3	1005	25.6	56	0	0	8	0.5	249

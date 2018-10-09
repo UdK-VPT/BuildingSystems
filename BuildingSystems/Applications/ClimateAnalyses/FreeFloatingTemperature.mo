@@ -1,6 +1,6 @@
 within BuildingSystems.Applications.ClimateAnalyses;
 model FreeFloatingTemperature
-  "Free floating temperature within a building at different climate locations"
+  "Free floating temperature within a building at 8 different climate locations"
   extends Modelica.Icons.Example;
 
   model Location
@@ -62,28 +62,28 @@ model FreeFloatingTemperature
   end Location;
 
   Location AmundsenScott(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.SouthPole_AmundsenScott_Meteonorm_NetCDF))
+    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.SouthPole_AmundsenScott_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{-5,-84},{5,-74}})));
   Location SanFrancisco(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_NetCDF))
+    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{-91,44},{-81,54}})));
   Location ElGouna(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_NetCDF))
+    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{19,30},{29,40}})));
   Location Berlin(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF))
+    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{3,52},{13,62}})));
   Location NewYork(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_NewYork_Meteonorm_NetCDF))
+    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_NewYork_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{-61,38},{-51,48}})));
   Location Tokyo(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Japan_Tokyo_Meteonorm_NetCDF))
+    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Japan_Tokyo_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{95,42},{105,52}})));
   Location Moscow(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Russia_Moscow_Meteonorm_NetCDF))
+    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Russia_Moscow_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{15,56},{25,66}})));
   Location Bombay(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.India_Bombay_Meteonorm_NetCDF))
+    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.India_Bombay_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{53,20},{63,30}})));
 
     annotation(experiment(StartTime=0, StopTime=31536000),
@@ -94,7 +94,7 @@ model FreeFloatingTemperature
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
   Documentation(info="<html>
   <p>
-  Example that simulates the Free floating temperature within a building at different worldwide distributed climate locations.
+  Example that simulates the Free floating temperature within a building at 8 different worldwide distributed climate locations.
   </p>
   </html>",
   revisions="<html>

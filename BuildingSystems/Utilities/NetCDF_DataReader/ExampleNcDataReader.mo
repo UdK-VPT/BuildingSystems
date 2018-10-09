@@ -6,6 +6,6 @@ model ExampleNcDataReader
     varTimeLowerLimit = {-273.15, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
     varTimeUpperLimit = {100.0, 20.0, 360.0, 1000.0, 1000.0, 1.0, 8.0},
     varNameConstant = {"longitude", "latitude", "longitude_0"},
-    fileName = Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Climate/weather/Germany_HamburgTRYnormal_weather.nc"));
+    fileName = Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Climate/weather/Germany_HamburgTRYnormal.nc"));
   annotation(experiment(StartTime=-3e+006,StopTime=4e+007,Interval = 860));
 end ExampleNcDataReader;

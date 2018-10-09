@@ -1,7 +1,9 @@
-USA_SanFrancisco
- 37,617       -122,367       5            -8 
-
- hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+#1
+#USA_SanFrancisco
+#37,617       -122,367       5            -8
+#
+# hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+double tab1(8760,9)
  1	1005	11.9	93	0	0	8	1.8	218
  2	1005	13.5	82	0	0	8	1.1	252
  3	1005	13.2	86	0	0	8	0.8	249

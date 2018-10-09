@@ -1,7 +1,9 @@
-USA_NewYork
- 40,767       -73,9          9            -5 
-
- hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+#1
+#USA_NewYork
+#40,767       -73,9          9            -5
+#
+# hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+double tab1(8760,9)
  1	1007	9.6	87	0	0	8	3.6	218
  2	1007	10.5	78	0	0	8	3.1	297
  3	1007	10.2	78	0	0	8	2.9	294
