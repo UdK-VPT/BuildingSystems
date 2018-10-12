@@ -14,7 +14,7 @@ The Folder BuildingSystems/Resources/Scripts/JModelica contains Python Scripts
 which define exactly the same simulation experiments as in the folder with the
 mos-files for simulation experiments with Dymola.
 
-The following Python script defines a JModelica simulation experiment for the example BuildingSystems.HAM.HeatConduction.Examples.HeatConduction2DCorner: 
+The following Python script defines a JModelica simulation experiment for the example BuildingSystems.HAM.HeatConduction.Examples.HeatConduction2DCorner:
 
 ```python
 # paths and info
@@ -85,3 +85,6 @@ P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 P.show()
 ```
+When the simulation experiment with JModelica is finished the results are displayed in two plots (compare their definitions in the Python code):
+
+![SimulationResults](https://github.com/UdK-VPT/BuildingSystems/blob/master/Resources/Images/Resources/Scripts/JModelica/HeatConduction2DCorner.png)
