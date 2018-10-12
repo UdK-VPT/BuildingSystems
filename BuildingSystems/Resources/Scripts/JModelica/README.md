@@ -87,4 +87,5 @@ P.show()
 ```
 When the simulation experiment with JModelica is finished the results are displayed in two plots (compare their definitions in the Python code):
 
-![SimulationResults](https://github.com/UdK-VPT/BuildingSystems/blob/master/Resources/Images/Resources/Scripts/JModelica/HeatConduction2DCorner.png)
+![Simulation results](https://github.com/UdK-VPT/BuildingSystems/BuildingSystems/Resources/Images/Resources/Scripts/JModelica/HeatConduction2DCorner.png)
+
