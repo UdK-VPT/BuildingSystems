@@ -10,7 +10,7 @@ Download JModelica from [JModelica.org](https://jmodelica.org).
 The easiest way is to install the [Windows installer](https://jmodelica.org/downloads/JModelica.org-2.2.exe).
 
 ## Running a simulation experiment
-The Folder BuildingSystems/Resources/Scripts/JModelica contains Python Scripts
+The folder BuildingSystems/Resources/Scripts/JModelica contains Python Scripts
 which define exactly the same simulation experiments as in the folder with the
 mos-files for simulation experiments with Dymola.
 
@@ -85,7 +85,10 @@ P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 P.show()
 ```
+This script can be executed with the IPython shell of JModelica:
+
+![JModelica_IPython](https://github.com/UdK-VPT/BuildingSystems/blob/master/BuildingSystems/Resources/Images/Resources/Scripts/JModelica/JModelica_IPython.png)
+
 When the simulation experiment with JModelica is finished the results are displayed in two plots (compare their definitions in the Python code):
 
 ![Simulation results](https://github.com/UdK-VPT/BuildingSystems/blob/master/BuildingSystems/Resources/Images/Resources/Scripts/JModelica/HeatConduction2DCorner.png)
-
