@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Constructions.Examples.WallThermal1DNodes", stopTime=864000, method="dassl", numberOfIntervals=240, tolerance = 1e-5, resultFile="WallThermal1DNodes");
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.WallThermal1DNodes", stopTime=864000, method="cvode", resultFile="WallThermal1DNodes");
 removePlots();
 createPlot(
   id = 1,
