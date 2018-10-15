@@ -16,7 +16,7 @@ print(os.getcwd())
 
 # compile model to fmu
 from pymodelica import compile_fmu
-model_name = 'BuildingSystems.Buildings.Examples.BuildingThermal1Zone1DBox'
+model_name = 'BuildingSystems.Buildings.Examples.BuildingThermal1Zone1D'
 my_fmu = compile_fmu(model_name, moLibs)
 
 # simulate the fmu and store results
@@ -43,20 +43,20 @@ P.clf()
 # building
 # temperatures
 y1 = res['ambient.TAirRef']
-y2 = res['building.zone.TAir']
-y3 = res['building.zone.TOperative']
+y2 = res['building.zone1.TAir']
+y3 = res['building.zone1.TOperative']
 t = res['time']
 P.subplot(2,1,1)
 P.plot(t, y1, t, y2, t, y3)
-P.legend(['ambient.TAirRef','building.zone.TAir','building.zone.TOperative'])
+P.legend(['ambient.TAirRef','building.zone1.TAir','building.zone1.TOperative'])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 # Heating and cooling load
-y1 = res['building.zone.Q_flow_heating']
-y2 = res['building.zone.Q_flow_cooling']
+y1 = res['building.zone1.Q_flow_heating']
+y2 = res['building.zone1.Q_flow_cooling']
 P.subplot(2,1,2)
 P.plot(t, y1, t, y2)
-P.legend(['building.zone.Q_flow_heating','building.zone.Q_flow_cooling'])
+P.legend(['building.zone1.Q_flow_heating','building.zone1.Q_flow_cooling'])
 P.ylabel('power (W)')
 P.xlabel('Time (s)')
 P.show()
