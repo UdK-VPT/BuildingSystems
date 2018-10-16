@@ -11,8 +11,8 @@ The Modelica BuildingSystems library is a free and open-source library for energ
 This library is still under heavy development.
 A release will be published when it is done.
 
-## License
-The Modelica BuildingSystems library is available under the terms of the 3-clause BSD license.
+## License3
+The Modelica BuildingSystems library is available under the terms of the BSD 3-Clause License.
 A copy of the license is available at
 [BuildingSystems/LICENSE.md](https://github.com/UdK-VPT/BuildingSystems/blob/master/LICENSE.md).
 
