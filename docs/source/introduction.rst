@@ -3,8 +3,8 @@
 Introduction
 ============
 
-This user guide shall explain the use of the Modelica library BuildingSystems (http://www.modelica-buildingsystems.de),
-which is being developed for dynamic simulation of the energetic behavior of single rooms, buildings and whole districts.
+This user guide explains the use of the Modelica library BuildingSystems (http://www.modelica-buildingsystems.de),
+which is being developed for the dynamic simulation of the energetic behavior of single rooms, buildings and whole districts.
 
 One important part of the library consists of an adaptive building model, which is able to adapt its spatial resolution
 (0D, 1D, 3D modelling approach) and also its physical model (e.g. pure thermal or a hygro-thermal calculation) to the
@@ -17,14 +17,14 @@ respective problem of the simulation analysis.
    of the Campus Berlin-Charlottenburg are connected by a district heating grid (ATES project).
 
 **0D modelling approach**: The adaptive building model works in a strongly simplified and abstracted configuration
-(low-order or grey box model), which leads to numerically fast calculations. A typical case study is the
+(low-order or gray box model), which leads to numerically fast calculations. A typical case study is the
 simultaneous calculation of the thermal energy demand of a large number of single buildings of a district
 in combination with a district heating network (compare with Figure 1.1).
 
 .. figure:: /images/SDE2014TeamRooftop.*
    :scale: 60 %
 
-   The Rooftop building, which is designed for placement on the roof of a Gründerzeit building in Berlin (UdK Berlin/TU Berlin
+   The Rooftop building, which was designed for placement on the roof of a Gründerzeit building in Berlin (UdK Berlin/TU Berlin
    contribution to the competition Solar Decathlon Europe 2014)
 
 **1D modelling approach**: In this case the adaptive building model uses more spatially resolved algorithms and models
@@ -44,6 +44,6 @@ which describes the three-dimensional air flow within a room volume, the geometr
 short-wave radiation distribution and also the multidimensional heat transport within the building construction.
 For example, this model is able to calculate the location-dependent thermal comfort within a room (compare with Figure 1.3).
 
-The BuildingSystems library supports for all three modelling approaches pure thermal or also hygro-thermal calculations.
-Also a mixed thermal and hygro-thermal simulation analysis and different spatial resolutions for different
-zones of a building model are supported.
+The BuildingSystems library supports pure thermal or also hygro-thermal calculations for all three modelling approaches.
+Mixed thermal and hygro-thermal simulation analysis and different spatial resolutions for different
+zones of a building model are also supported.
