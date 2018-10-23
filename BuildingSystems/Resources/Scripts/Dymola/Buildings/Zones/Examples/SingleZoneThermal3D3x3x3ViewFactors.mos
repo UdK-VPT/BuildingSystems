@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneThermal3D3x3x3ViewFactors", stopTime=86400, method="cvode", resultFile="SingleZoneThermal3D3x3x3ViewFactors");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","zone.airvolume.airEle212.fluid.T","zone.airvolume.airEle222.fluid.T","zone.airvolume.airEle232.fluid.T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneThermal3D3x3x3ViewFactors.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"zone.airvolume.airEle212.velMag","zone.airvolume.airEle222.velMag","zone.airvolume.airEle232.velMag"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneThermal3D3x3x3ViewFactors.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
