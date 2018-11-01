@@ -16,7 +16,7 @@ print(os.getcwd())
 
 # compile model to fmu
 from pymodelica import compile_fmu
-model_name = 'BuildingSystems.Buildings.Examples.BuildingThermal1Zone1DBox'
+model_name = 'BuildingSystems.Buildings.Examples.BuildingThermal1Zone1DCylinder'
 my_fmu = compile_fmu(model_name, moLibs)
 
 # simulate the fmu and store results

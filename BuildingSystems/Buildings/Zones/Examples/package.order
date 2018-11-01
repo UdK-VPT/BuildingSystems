@@ -4,5 +4,6 @@ SingleZoneHygroThermal1D
 SingleZoneThermal1D
 SingleZoneThermal3D1x1x1
 SingleZoneThermal3D3x3x3
+SingleZoneThermal3D3x3x3ViewFactors
 ZoneAirvolume3D1x1x1
 ZoneAirvolume3D3x3x3

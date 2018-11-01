@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Applications.SolarThermalSystems.SolarThermalSystem1", stopTime=864000, method="dassl", tolerance = 1e-5, resultFile="SolarThermalSystem1");
+simulateModel("BuildingSystems.Applications.SolarThermalSystems.SolarThermalSystem1", stopTime=864000, method="dassl", resultFile="SolarThermalSystem1");
 removePlots();
 createPlot(
   id = 1,

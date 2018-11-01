@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Technologies.Chillers.Examples.CompressionChillerWithStorage", stopTime=7200, method="dassl", resultFile="CompressionChillerWithStorage");
+simulateModel("BuildingSystems.Technologies.Chillers.Examples.CompressionChillerWithStorage", stopTime=7200, method="cvode", resultFile="CompressionChillerWithStorage");
 removePlots();
 createPlot(
   id = 1,
