@@ -48,7 +48,7 @@ Set up the building model structure
 2. **Create a new building model** based on the template model class *BuildingTemplate*. That means you insert a new building model into the previously defined package as follows:
 
   .. figure:: /images/TutorialMZM01.*
-     :scale: 50 %
+     :scale: 40 %
 
      Definition of a building model based on a building template
 
@@ -58,7 +58,7 @@ Set up the building model structure
     *Insert in Package (optional):* and navigate to the package *ThermalModelHouse* on the top level and click OK (compare the Dymola screenshoot above).
 
   .. figure:: /images/TutorialMZM02.*
-     :scale: 50 %
+     :scale: 40 %
 
      View on the empty building model
 
@@ -74,7 +74,7 @@ Set up the building model structure
   into the building model and rename it to *zone1*. Add *zone2* in the same manner:
 
   .. figure:: /images/TutorialMZM03.*
-     :scale: 50 %
+     :scale: 40 %
 
      Building model with two thermal zones
 
@@ -91,7 +91,7 @@ Set up the building model structure
   show to the zones respectively in the case of the partition wall to *zone1* and to the adjacent *zone2*.
 
   .. figure:: /images/TutorialMZM04.*
-     :scale: 50 %
+     :scale: 40 %
 
      Building model with zone and construction models
 
@@ -103,7 +103,7 @@ Set up the building model structure
   Now connect the connectors of all "blue sides" with the zone models as in the following picture:
 
   .. figure:: /images/TutorialMZM05.*
-     :scale: 60 %
+     :scale: 50 %
 
      Building model with connected construction elements
 
@@ -117,7 +117,7 @@ Set up the building model structure
   Now your topology of your building model is completely specified:
 
   .. figure:: /images/TutorialMZM06.*
-     :scale: 100 %
+     :scale: 60 %
 
      Completed topology of the building model with two thermal zones
 
@@ -185,7 +185,7 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
      include it in the package *ThermalModelHouse*.
 
      .. figure:: /images/TutorialMZM07a.*
-        :scale: 65 %
+        :scale: 50 %
 
         Definition of a construction type based on template for opaque constructions
 
@@ -198,7 +198,7 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
      of the construction direct in the Modelica source code editor of Dymola with the help of the pre-defined materials:
 
      .. figure:: /images/TutorialMZM07.*
-        :scale: 70 %
+        :scale: 60 %
 
         Adapted record type of the first construction
 
@@ -220,7 +220,7 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
      component references using the component parameter dialog of Dymola:
 
      .. figure:: /images/TutorialMZM08.*
-        :scale: 75 %
+        :scale: 65 %
 
      The generated code, for example for *wall1* shall look now like:
 
@@ -240,7 +240,7 @@ Configure the system model and set its boundary conditions
 ----------------------------------------------------------
 
 .. figure:: /images/TutorialMZM09.*
-   :scale: 80 %
+   :scale: 70 %
 
    System model of the TMH
 
@@ -294,6 +294,6 @@ Simulate the system model
   #. The heat flow by heat transmittance through both surfaces of *wall7* between both zones (8th and 9th line).
 
   .. figure:: /images/TutorialMZM10.*
-     :scale: 100 %
+     :scale: 80 %
 
      Simulation results of both the TMH over 10 days, location San Francisco (USA)
