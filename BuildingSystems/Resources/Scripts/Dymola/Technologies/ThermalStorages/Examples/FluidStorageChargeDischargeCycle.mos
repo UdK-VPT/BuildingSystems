@@ -44,7 +44,6 @@ createPlot(
  online = false,
  leftTitleType = 1,
  bottomTitleType = 1);
-
  createPlot(
  id = 2,
  position = {600, 0, 600, 500},
