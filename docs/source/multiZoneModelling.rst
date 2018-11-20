@@ -146,7 +146,7 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
 
    .. code-block:: modelica
 
-      aInnSur={window1.A)
+      AInnSur={window1.A}
 
    Do the same with *wall5* and *window2*.
 
