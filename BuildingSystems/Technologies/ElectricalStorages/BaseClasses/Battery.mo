@@ -39,6 +39,8 @@ partial model Battery "partial model of a battery"
     "Capacity relation available to bound energy";
   final parameter Real k(unit="1/s") = batteryData.k
     "Battery rate";
+  final parameter Real a_mcr(unit="W/J") = batteryData.a_mcr
+    "Maximum charge rate parameter";
   Modelica.SIunits.Power PChargeEff
     "Effective power of the electrical source";
   Modelica.SIunits.Power PLoadEff
@@ -82,6 +84,18 @@ equation
 
   der(E_charged) = PChargeEff;
   der(E_discharged) = PLoadEff;
+
+  PChargeEff = BuildingSystems.Utilities.Math.Functions.smoothLimit(
+               0.5*(1.0-Modelica.Math.tanh(100000.0*(SOC-1.0)))*PNet*etaCharge,
+               0.0,
+               BuildingSystems.Utilities.Math.Functions.smoothLimit(a_mcr*(E_nominal-E),
+                   0.0,
+                   PCharge_max,
+                   0.001),
+               0.001);
+
+  PGrid = 0.5*(1.0-Modelica.Math.tanh(100000.0*(PNet)))*(PNet + PLoadEff*etaLoad)+
+          0.5*(1.0+Modelica.Math.tanh(100000.0*(PNet)))*(PNet - PChargeEff/etaCharge);               
 
     annotation (defaultComponentName="battery", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
       Rectangle(extent={{-60,60},{60,-60}},
