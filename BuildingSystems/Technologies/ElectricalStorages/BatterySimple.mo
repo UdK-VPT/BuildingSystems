@@ -18,8 +18,9 @@ equation
              PLoad_max,
              0.001);
 
-  PGrid = if PNet > 0.0 then PNet - PChargeEff/etaCharge else PNet + PLoadEff*etaLoad;
-
+  PGrid = 0.5*(1.0-Modelica.Math.tanh(100000.0*(PNet)))*(PNet + PLoadEff*etaLoad)+
+          0.5*(1.0+Modelica.Math.tanh(100000.0*(PNet)))*(PNet - PChargeEff/etaCharge);
+          
     annotation (Documentation(info="<html>
   <p>
   Model for an eletrical battery based on the Kinetic Battery Model (KiBaM) of Manwell and McGowan
