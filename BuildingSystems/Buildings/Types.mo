@@ -21,8 +21,8 @@ package Types
     "Enumeration of numerical resolution";
 
   type ThermalBuildingCapacity = enumeration(
-  Low "Light construction: 25 kJ/(m2.K)",
-  Medium "Medium construction: 65 kJ/(m2.K)",
-  High "Heavy construction: 105 kJ/(m2.K)")
-  "Enumeration of thermal capacity";
+    Low "Light construction: 25 kJ/(m2.K)",
+    Medium "Medium construction: 65 kJ/(m2.K)",
+    High "Heavy construction: 105 kJ/(m2.K)")
+    "Enumeration of thermal capacity";
 end Types;
