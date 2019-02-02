@@ -45,6 +45,7 @@ partial model SolarRadiationTransformerGeneral
   Modelica.SIunits.Angle angleZen
     "Zenith angle";
   Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziSun
+    (start = 0.0)
     "Azimuth angle of the sun";
   Real cosAngleAzi
     "Cosinus of the azimuth angle";
