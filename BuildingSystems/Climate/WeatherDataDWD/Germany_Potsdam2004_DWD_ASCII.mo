@@ -1,5 +1,5 @@
 within BuildingSystems.Climate.WeatherDataDWD;
-block Germany_Potsdam2016_DWD_ASCII
+block Germany_Potsdam2004_DWD_ASCII
   extends BuildingSystems.Climate.WeatherData.BaseClasses.WeatherDataFileASCII(
   info="Source: DWD",
   filNam=Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Climate/weather/Germany_Potsdam_2004_DWD.txt"),
@@ -20,4 +20,4 @@ block Germany_Potsdam2016_DWD_ASCII
   final longitudeDeg = 13.4,
   final longitudeDeg_0 = 1.0);
   annotation(Documentation(info="<html>source: DWD</html>"));
-end Germany_Potsdam2016_DWD_ASCII;
+end Germany_Potsdam2004_DWD_ASCII;
