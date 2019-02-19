@@ -118,7 +118,8 @@ model ZoneTemplateAirvolumeMixed
     "Air change rate of the thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={106,18}),
       iconTransformation(extent={{-10,-10},{10,10}},origin={-110,-30})));
-  Modelica.Blocks.Math.Gain ac2mf(k=-rho_nominal*airvolume.V/3600.0) if prescribedAirchange
+  Modelica.Blocks.Math.Gain ac2mf(
+    k=rho_nominal*airvolume.V/3600.0) if prescribedAirchange
     "Transformation from air change in 1/h into air mass flow rate in kg/s"
     annotation (Placement(transformation(extent={{94,14},{86,22}})));
   Fluid.Sources.MassFlowSource_T airpathIn(
