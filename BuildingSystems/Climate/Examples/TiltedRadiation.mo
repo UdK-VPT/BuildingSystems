@@ -3,7 +3,7 @@ model TiltedRadiation
   "Example which demonstrates the radiation calculation for tilted surfaces"
   extends Modelica.Icons.Example;
   BuildingSystems.Climate.WeatherData.WeatherDataReader weatherData(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_NetCDF)
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation(Placement(transformation(extent={{-94,50},{-82,62}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiationFixed(
     rhoAmb=0.2,
