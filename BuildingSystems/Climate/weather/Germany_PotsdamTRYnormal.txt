@@ -1,7 +1,9 @@
-Potsdam DWD normal
- 52,383        13,067        81            1 
-
- hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+#1
+#Potsdam DWD normal
+# 52,383        13,067        81            1 
+#
+# hy	 p	 Ta	 RH	G_Bh	G_Dh	N	 FF	 DD
+double tab1(8760,9)
  1	1005	-2.6	93	0	0	8	5.7	230
  2	1011	-3.9	89	0	0	8	5.7	240
  3	1016	-4.6	90	0	0	8	5.7	260
