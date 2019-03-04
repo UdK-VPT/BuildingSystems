@@ -113,7 +113,7 @@ partial model BuildingTemplate
     (Placement(transformation(extent={{-54,110},{-34,130}}), iconTransformation(extent={{-10,90},{10,110}})));
   BuildingSystems.Interfaces.HeatPorts radHeatSourcesPorts[nHeatSources] if heatSources
     "Heat port to internal long-wave radiation heat sources of the building"
-    annotation (Placement(transformation(extent={{-10,110},{10,130}}),iconTransformation(extent={{20,90},{40,110}})));
+    annotation (Placement(transformation(extent={{-10,110},{10,130}}),iconTransformation(extent={{10,90},{30,110}})));
   BuildingSystems.Interfaces.MoisturePorts moisturePorts[nMoistureSources] if moistureSources
     "Moisture port to internal moisture sources"
     annotation (Placement(transformation(extent={{-98,110},{-78,130}}),iconTransformation(extent={{-40,90},{-20,110}})));
