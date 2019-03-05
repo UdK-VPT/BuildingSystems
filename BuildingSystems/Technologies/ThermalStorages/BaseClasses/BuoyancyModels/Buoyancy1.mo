@@ -1,9 +1,8 @@
 within BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels;
 model Buoyancy1
   "Semilinear buoyancy model with fixed (from literature) coefficients"
-protected
   extends BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels.PartialBuoyancy;
-  parameter Modelica.SIunits.ThermalConductance G = if nEle <10 then 0.8*nEle+16 else 26-0.2571*nEle
+  final parameter Modelica.SIunits.ThermalConductance G = if nEle <10 then 0.8*nEle+16 else 26-0.2571*nEle
     "Equivalent thermal conductance between layers";
   parameter Real exp_nEle = 1.5
     "Exponent for nEle";
