@@ -1,18 +1,13 @@
 within BuildingSystems.Buildings.Constructions.Windows;
 model SlidingWindow
   "Model of a sliding window"
-  extends BuildingSystems.Buildings.BaseClasses.OpeningDiscretizedOperable(
-    final wOpe = widthOpen,
-    final hOpe = height,
-    redeclare package Medium = BuildingSystems.Media.Air);
   extends BuildingSystems.Buildings.BaseClasses.WindowGeneral(
-  toSurfacePort_2(A=AFix+AOpe),
-  toSurfacePort_1(A=AFix+AOpe),
+  final calcAirchange = true,
+  ope(
+    final wOpe = widthOpen,
+    final hOpe = height),
   radTra1to2(areaRatioUnglazed = widthOpen/width*y),
   radTra2to1(areaRatioUnglazed = widthOpen/width*y));
-  final parameter Modelica.SIunits.Area AFix = height * (width - widthOpen)
-    "Fixe area of the sliding window"
-    annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
   parameter Modelica.SIunits.Length widthOpen = 0.5
     "Max. width of the open part (full opened postion)"
     annotation(Dialog(tab = "General", group = "Geometry"));
@@ -33,6 +28,10 @@ This is a model of a sliding window.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+March 19, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to the BuildingSystems.Airflow package.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.

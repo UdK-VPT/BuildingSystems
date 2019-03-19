@@ -18,7 +18,8 @@ model Door
     angleDegTil = 90.0,
     height=2.0,
     width=1.0,
-    LClo=0.01)
+    calcAirchange = true,
+    LClo=0.001)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
     annotation (Placement(transformation(extent={{-6,-10},{-26,10}})));
@@ -83,6 +84,7 @@ equation
           24,15},{24,7},{27,7}}, color={0,0,127}));
   connect(TSetCooling.y, zone.T_setCooling)
     annotation (Line(points={{20.3,5},{27,5}}, color={0,0,127}));
+
   annotation(experiment(StartTime=0, StopTime=86400.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/Door.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={

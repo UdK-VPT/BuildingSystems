@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Constructions.Examples.Window", stopTime=172800, method="dassl", tolerance = 1e-5, resultFile="Window");
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.Window", stopTime=864000, method="dassl", resultFile="Window");
 removePlots();
 createPlot(
   id = 1,
@@ -26,5 +26,19 @@ createPlot(
   color = true,
   online = false,
   filename = "Window.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id =3,
+  position = {1220, 0, 600, 500},
+  y = {"zone.Q_flow_heating"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithAirpaths.mat",
   leftTitleType = 1,
   bottomTitleType = 1);

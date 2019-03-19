@@ -74,6 +74,7 @@ equation
           {10,20},{32,20},{32,11}}, color={0,127,255}));
   connect(window.port_a2, zone.airpathPorts[2]) annotation (Line(points={{10,-6},
           {10,20},{32,20},{32,11}}, color={0,127,255}));
+          
   annotation(experiment(StartTime=0, StopTime=86400.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/SlidingWindow.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={

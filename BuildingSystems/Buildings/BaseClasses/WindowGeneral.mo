@@ -6,16 +6,20 @@ partial model WindowGeneral
   height = 1.0,
   final abs_1 = 0.0,
   final abs_2 = 0.0);
-
+  final package Medium = BuildingSystems.Media.Air;
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionData
     "Data of the thermal construction"
     annotation(Dialog(tab = "General", group = "Construction"), choicesAllMatching=true);
+  // Geometry
+  final parameter Modelica.SIunits.Area ASur = height * width
+    "Surface area";
   parameter Real framePortion = 0.2
     "Frame portion of the window"
     annotation(Dialog(tab = "General", group = "Geometry"));
   final parameter Modelica.SIunits.Length thicknessPane = sum(constructionData.thickness)
     "Thickness of all panes"
     annotation(Dialog(tab = "General", group = "Geometry"));
+  // Thermal properties
   constant Modelica.SIunits.Density rhoPane = 2000.0
     "Density of the panes"
     annotation(Dialog(tab = "General", group = "Thermal properties"));
@@ -26,6 +30,7 @@ partial model WindowGeneral
     = (1.0 - framePortion) * constructionData.UValGla + framePortion * constructionData.UValFra
     "Mean U-value of the window"
     annotation(Dialog(tab = "General", group = "Thermal properties"));
+  // Optical properties
   final parameter Real tauDir0 = constructionData.g
     "Transmittance of direct radiation for perpendicular irradiation"
     annotation(Dialog(tab = "General", group = "Optical properties"));
@@ -35,6 +40,7 @@ partial model WindowGeneral
   final parameter Real b0 = constructionData.g
     "Coefficient for radiation transmision curve"
     annotation(Dialog(tab = "General", group = "Optical properties"));
+  // Shadowing
   parameter Boolean use_GSC_in = false
     "= true, use input for geometric shading coefficient GSC"
     annotation(Dialog(tab = "General", group = "Shadowing"));
@@ -44,9 +50,20 @@ partial model WindowGeneral
     "Constant shading coefficient (if use_GSC_in = true)"
     annotation(Dialog(tab = "General", group = "Shadowing"));
   input Modelica.Blocks.Interfaces.RealInput GSC_in if use_GSC_in
-    "Shading coefficient"
+    "Input for external shading coefficient"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90, origin={0,-62}),
-      iconTransformation(extent={{-8,-8},{8,8}},rotation=90, origin={0,-76})));
+      iconTransformation(extent={{-9,-9},{9,9}},rotation=270,origin={1,89})));
+  // Ventilation
+  parameter Boolean calcAirchange = false
+    "True: calculation of air exchange through the window, false: no air exchange"
+    annotation(Dialog(tab = "General", group = "Air change calculation"));
+  parameter Integer nCom=10
+    "Number of compartments for the discretization"
+    annotation(Dialog(tab = "General", group = "Air change calculation"));
+  parameter Modelica.SIunits.Area LClo(min=0)=0.001
+    "Effective leakage area of closed window"
+    annotation(Dialog(tab = "General", group = "Air change calculation"));
+  // Advanced parameters
   parameter Boolean show_TSur = false
     "Show surface temperatures on both sides"
     annotation(Dialog(tab = "Advanced", group = "Surface variables"));
@@ -60,6 +77,7 @@ partial model WindowGeneral
     "Start temperature of the window"
     annotation (Dialog(tab="Initialization"));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
+    A=ASur,
     abs = abs_2,
     geo(
       angleDegAzi = angleDegAzi,
@@ -74,6 +92,7 @@ partial model WindowGeneral
       epsilon = epsilon_2)
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
+    A=ASur,
     abs = abs_1,
     geo(
       angleDegAzi = angleDegAzi,
@@ -115,6 +134,36 @@ partial model WindowGeneral
     tauDif=tauDif,
     framePortion=framePortion)
     annotation (Placement(transformation(extent={{-10,-50},{10,-30}})));
+  BuildingSystems.Airflow.Multizone.DoorDiscretizedOperable ope(
+    redeclare package Medium = Medium,
+    LClo=LClo,
+    nCom=nCom) if calcAirchange
+    "Opening of the window"
+    annotation (Placement(transformation(extent={{-10,70},{10,90}})));
+  input Modelica.Blocks.Interfaces.RealInput y(min=0, max=1, unit="1") if calcAirchange
+    "Percentage of the openable part of the opening (1.0 = 100 % open, 0.0 = 100 % closed)"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-28,80}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=90, origin={0,-90})));
+  Modelica.Fluid.Interfaces.FluidPort_a port_a1(
+    redeclare final package Medium = Medium) if calcAirchange
+    "Fluid connector a1 (positive design flow direction is from port_a1 to port_b1)"
+    annotation (Placement(transformation(extent={{-30,50},{-10,70}}),
+      iconTransformation(extent={{-30,50},{-10,70}})));
+  Modelica.Fluid.Interfaces.FluidPort_b port_b1(
+     redeclare final package Medium = Medium) if calcAirchange
+    "Fluid connector b1 (positive design flow direction is from port_a1 to port_b1)"
+    annotation (Placement(transformation(extent={{30,50},{10,70}}),
+      iconTransformation(extent={{30,50},{10,70}})));
+  Modelica.Fluid.Interfaces.FluidPort_a port_a2(
+     redeclare final package Medium = Medium) if calcAirchange
+    "Fluid connector a2 (positive design flow direction is from port_a2 to port_b2)"
+    annotation (Placement(transformation(extent={{10,-70},{30,-50}}),
+      iconTransformation(extent={{10,-70},{30,-50}})));
+  Modelica.Fluid.Interfaces.FluidPort_b port_b2(
+     redeclare final package Medium = Medium) if calcAirchange
+    "Fluid connector b2 (positive design flow direction is from port_a2 to port_b2)"
+    annotation (Placement(transformation(extent={{-10,-70},{-30,-50}}),
+      iconTransformation(extent={{-10,-70},{-30,-50}})));
   protected
     Modelica.Blocks.Interfaces.RealInput GSC_internal
       "Shading coefficient";
@@ -172,6 +221,17 @@ equation
       points={{35.2,0},{20,0}},
       color={120,0,120},
       smooth=Smooth.None));
+  // Ventilation
+  connect(ope.y, y)
+      annotation (Line(points={{-11,80},{-28,80}}, color={0,0,127}));
+  connect(ope.port_b1, port_b1) annotation (Line(points={{10,86},{40,86},{40,60},
+            {20,60}}, color={0,127,255}));
+  connect(ope.port_a1, port_a1) annotation (Line(points={{-10,86},{-40,86},{-40,
+          60},{-20,60}}, color={0,127,255}));
+  connect(ope.port_a2, port_a2) annotation (Line(points={{10,74},{60,74},{60,-60},
+          {20,-60}}, color={0,127,255}));
+  connect(ope.port_b2, port_b2) annotation (Line(points={{-10,74},{-60,74},{-60,
+          -60},{-20,-60}}, color={0,127,255}));
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Rectangle(extent={{-20,80},{20,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
