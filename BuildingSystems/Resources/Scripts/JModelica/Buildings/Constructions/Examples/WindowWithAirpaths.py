@@ -34,14 +34,13 @@ opts['CVode_options']['maxord'] = 5
 opts['CVode_options']['atol'] = 1e-5
 opts['CVode_options']['rtol'] = 1e-5
 
-res = myModel.simulate(start_time=0.0, final_time=864000, options=opts)
+res = myModel.simulate(start_time=0.0, final_time=7200, options=opts)
 
 # plotting of the results
 import pylab as P
 fig = P.figure(1)
 P.clf()
 # Temperatures
-ambient.TAirRef","zone.TAir
 y1 = res['ambient.TAirRef']
 y2 = res['zone.TAir']
 t = res['time']
