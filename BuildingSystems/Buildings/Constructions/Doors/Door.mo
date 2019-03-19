@@ -60,8 +60,8 @@ equation
           -60},{-20,-60}}, color={0,127,255}));
 
       annotation (Placement(transformation(extent={{-10,-70},{-30,-50}}),
-          iconTransformation(extent={{-10,-70},{-30,-50}})));
-  annotation (defaultComponentName="door",Icon(graphics={
+          iconTransformation(extent={{-10,-70},{-30,-50}})),
+              defaultComponentName="door",Icon(graphics={
     Rectangle(
       extent={{-20,80},{20,62}},
       fillColor={135,135,135},
