@@ -24,7 +24,7 @@ protected
   Modelica.Blocks.Tables.CombiTable1Ds datRea(
     final tableName=tabNam,
     final tableOnFile=true,
-    final fileName=filNam,
+    fileName=filNam,
     final columns=columns,
     final smoothness=Modelica.Blocks.Types.Smoothness.ContinuousDerivative)
     "Data reader"
