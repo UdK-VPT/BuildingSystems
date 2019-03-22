@@ -15,7 +15,6 @@ partial block WeatherDataFileASCII
     "Time scale factor for ASCII file";
   parameter Real deltaTime = 0.0
     "Time shift factor for ASCII file values";
-protected
   BuildingSystems.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim
     "Convert simulation time to calendar time"
     annotation (Placement(transformation(extent={{-70,-16},{-50,4}})));
