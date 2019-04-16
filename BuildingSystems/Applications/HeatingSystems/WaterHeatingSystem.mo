@@ -76,7 +76,7 @@ model WaterHeatingSystem
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
     dp_nominal=10.0,
-    Q_flow_nominal=8000.0,
+    Q_flow_nominal=12000.0,
     VWat=0.005,
     mDry=0.0001,
     nEle=5,
@@ -135,7 +135,7 @@ model WaterHeatingSystem
     m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{-84,-22},{-64,-2}})));
   Modelica.Blocks.Sources.Constant dpSet(
-    k=4000.0)
+    k=150000.0)
     "Set pressure for the pump model"
     annotation (Placement(transformation(extent={{-68,6},{-72,10}})));
   Modelica.Blocks.Sources.Constant TAirSet(
