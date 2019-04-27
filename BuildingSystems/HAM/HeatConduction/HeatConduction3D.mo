@@ -50,13 +50,13 @@ model HeatConduction3D
     annotation (Dialog(tab="Initialization"));
   Modelica.SIunits.Temp_K T(start = T_start) "Temperature of the thermal node";
 protected
-  parameter Modelica.SIunits.HeatCapacity C = material.c * material.rho * (lengthX * lengthY * lengthZ - VRed)
+  Modelica.SIunits.HeatCapacity C = material.c * material.rho * (lengthX * lengthY * lengthZ - VRed)
     "Heat capacity of the thermal node";
-  parameter Modelica.SIunits.ThermalConductance CThX = 2.0 * material.lambda / (lengthX * geoFacX) * (lengthY * lengthZ - ARedYZ)
+  Modelica.SIunits.ThermalConductance CThX = 2.0 * material.lambda / (lengthX * geoFacX) * (lengthY * lengthZ - ARedYZ)
     "Thermal conductance in the x dimension";
-  parameter Modelica.SIunits.ThermalConductance CThY = 2.0 * material.lambda / (lengthY* geoFacY) * (lengthX * lengthZ - ARedXZ)
+  Modelica.SIunits.ThermalConductance CThY = 2.0 * material.lambda / (lengthY* geoFacY) * (lengthX * lengthZ - ARedXZ)
     "Thermal conductance in the y dimension";
-  parameter Modelica.SIunits.ThermalConductance CThZ = 2.0 * material.lambda / (lengthZ* geoFacZ) * (lengthY * lengthX - ARedXY)
+  Modelica.SIunits.ThermalConductance CThZ = 2.0 * material.lambda / (lengthZ* geoFacZ) * (lengthY * lengthX - ARedXY)
     "Thermal conductance in the z dimension";
 
 equation
@@ -122,6 +122,10 @@ can be used and combined with other models from the
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to flexible geometries.
+</li>
 <li>
 May 23, 2016 by Christoph Nytsch-Geusen:<br/>
 First implementation.

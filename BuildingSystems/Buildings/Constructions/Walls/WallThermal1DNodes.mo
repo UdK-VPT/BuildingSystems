@@ -8,8 +8,8 @@ model WallThermal1DNodes
       iconTransformation(extent={{10,-48},{30,-28}})));
 
   BuildingSystems.HAM.HeatConduction.MultiLayerHeatConduction1DNodes construction(
-    lengthY=width,
-    lengthZ=height,
+    lengthY=width_internal,
+    lengthZ=height_internal,
     nLayers=constructionData.nLayers,
     nNodes=nNodes,
     thickness=constructionData.thickness,
@@ -68,6 +68,10 @@ This is a thermal wall model with 1D discritisation of the single layers.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to flexible geometries.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.

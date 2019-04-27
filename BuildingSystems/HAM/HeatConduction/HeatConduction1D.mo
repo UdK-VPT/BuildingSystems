@@ -18,9 +18,9 @@ model HeatConduction1D
   Modelica.SIunits.Temp_K T(start = T_start)
     "Temperature of the thermal node";
 protected
-  parameter Modelica.SIunits.HeatCapacity C = material.c * material.rho * lengthX * lengthY * lengthZ
+  Modelica.SIunits.HeatCapacity C = material.c * material.rho * lengthX * lengthY * lengthZ
     "Heat capacity of the thermal node";
-  parameter Modelica.SIunits.ThermalConductance kX = 2.0 * material.lambda / lengthX * lengthY * lengthZ
+  Modelica.SIunits.ThermalConductance kX = 2.0 * material.lambda / lengthX * lengthY * lengthZ
     "Thermal conductance in the x dimension";
 equation
   heatPort_x1.Q_flow = kX * (heatPort_x1.T - T);
@@ -68,6 +68,10 @@ can be used and combined with other models from the
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to flexible geometries.
+</li>
 <li>
 May 23, 2016 by Christoph Nytsch-Geusen:<br/>
 First implementation.

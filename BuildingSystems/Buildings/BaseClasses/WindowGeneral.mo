@@ -2,8 +2,6 @@ within BuildingSystems.Buildings.BaseClasses;
 partial model WindowGeneral
   "General window model"
   extends BuildingSystems.Buildings.BaseClasses.ConstructionGeneral(
-  width = 1.0,
-  height = 1.0,
   final abs_1 = 0.0,
   final abs_2 = 0.0);
   final package Medium = BuildingSystems.Media.Air;
@@ -11,7 +9,7 @@ partial model WindowGeneral
     "Data of the thermal construction"
     annotation(Dialog(tab = "General", group = "Construction"), choicesAllMatching=true);
   // Geometry
-  final parameter Modelica.SIunits.Area ASur = height * width
+  Modelica.SIunits.Area ASur = height_internal * width_internal
     "Surface area";
   parameter Real framePortion = 0.2
     "Frame portion of the window"
@@ -82,12 +80,12 @@ partial model WindowGeneral
     geo(
       angleDegAzi = angleDegAzi,
       angleDegTil = angleDegTil,
-      width = width,
-      height = height,
-      zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height,
+      width = width_internal,
+      height = height_internal,
+      zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
     point(
-      x = {0.0,width,width,0.0},
-      y = {0.0,0.0,height,height},
+      x = {0.0,width_internal,width_internal,0.0},
+      y = {0.0,0.0,height_internal,height_internal},
       z = {0.0,0.0,0.0,0.0})),
       epsilon = epsilon_2)
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
@@ -97,12 +95,12 @@ partial model WindowGeneral
     geo(
       angleDegAzi = angleDegAzi,
       angleDegTil = angleDegTil,
-      width = width,
-      height = height,
-      zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height,
+      width = width_internal,
+      height = height_internal,
+      zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
     point(
-      x = {0.0,width,width,0.0},
-      y = {0.0,0.0,height,height},
+      x = {0.0,width_internal,width_internal,0.0},
+      y = {0.0,0.0,height_internal,height_internal},
       z = {0.0,0.0,0.0,0.0})),
     epsilon = epsilon_1)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
@@ -112,8 +110,8 @@ partial model WindowGeneral
       rho = rhoPane,
       c = cPane),
     lengthX=thicknessPane,
-    lengthY=width,
-    lengthZ=height,
+    lengthY=width_internal,
+    lengthZ=height_internal,
     T_start=T_start)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowFixed moistBcPort1(
@@ -140,7 +138,10 @@ partial model WindowGeneral
     nCom=nCom) if calcAirchange
     "Opening of the window"
     annotation (Placement(transformation(extent={{-10,70},{10,90}})));
-  input Modelica.Blocks.Interfaces.RealInput y(min=0, max=1, unit="1") if calcAirchange
+  input Modelica.Blocks.Interfaces.RealInput y(
+    min=0,
+    max=1,
+    unit="1") if calcAirchange
     "Percentage of the openable part of the opening (1.0 = 100 % open, 0.0 = 100 % closed)"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-28,80}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90, origin={0,-90})));
@@ -242,6 +243,10 @@ This is partial model description of a win dow.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to flexible geometries.
+</li>
 <li>
 January 14, 2018 by Christoph Nytsch-Geusen:<br/>
 First implementation.

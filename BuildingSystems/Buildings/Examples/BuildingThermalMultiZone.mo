@@ -185,7 +185,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom1.width,
-      AInnSur=window1.ASur)
+      AInnSur=window1.width*window1.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-136,80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall11(
       redeclare ConstructionFacade constructionData,
@@ -193,7 +193,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom2.width,
-      AInnSur=window2.ASur)
+      AInnSur=window2.width*window2.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-96,80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall12(
       redeclare ConstructionFacade constructionData,
@@ -201,7 +201,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom3.width,
-      AInnSur=window3.ASur)
+      AInnSur=window3.width*window3.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-56,80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall13(
       redeclare ConstructionFacade constructionData,
@@ -209,7 +209,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom4.width,
-      AInnSur=window4.ASur)
+      AInnSur=window4.width*window4.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-16,80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall14(
       redeclare ConstructionFacade constructionData,
@@ -217,7 +217,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom5.width,
-      AInnSur=window5.ASur)
+      AInnSur=window5.width*window5.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={24,80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall15(
       redeclare ConstructionFacade constructionData,
@@ -225,7 +225,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom6.width,
-      AInnSur=window6.ASur)
+      AInnSur=window6.width*window6.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={64,80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall16(
       redeclare ConstructionFacade constructionData,
@@ -233,7 +233,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom7.width,
-      AInnSur=window7.ASur)
+      AInnSur=window7.width*window7.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={104,80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall17(
       redeclare ConstructionFacade constructionData,
@@ -241,7 +241,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom8.width,
-      AInnSur=window8.ASur)
+      AInnSur=window8.width*window8.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={144,80})));
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed corridor(
       V=bottom13.width*bottom13.height*heightRooms,
@@ -375,7 +375,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom12.width,
-      AInnSur=window11.ASur)
+      AInnSur=window11.width*window11.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={120,-80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall32(
       redeclare ConstructionFacade constructionData,
@@ -383,7 +383,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom9.width,
-      AInnSur=window10.ASur)
+      AInnSur=window10.width*window10.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-60,-80})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall33(
       redeclare ConstructionInnerWall constructionData,
@@ -419,7 +419,7 @@ model BuildingThermalMultiZone
       angleDegTil = 90.0,
       height=heightRooms,
       width=bottom9.height,
-      AInnSur=window9.ASur)
+      AInnSur=window9.width*window9.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-160,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall38(
       redeclare ConstructionFacade constructionData,

@@ -1,0 +1,58 @@
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.WindowWithAirpathsFlexGeo", stopTime=7200, method="dassl", resultFile="WindowWithAirPathsFlexGeo");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 400, 500},
+  y = {"ambient.TAirRef","zone.TAir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithAirPathsFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {410, 0, 400, 500},
+  y = {"window.port_a1.m_flow", "window.port_b1.m_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithAirPathsFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id =3,
+  position = {820, 0, 400, 500},
+  y = {"zone.Q_flow_heating"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithAirPathsFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 4,
+  position = {1230, 0, 400, 500},
+  y = {"window.ASur","window.width_internal","window.height_internal"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithAirPathsFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

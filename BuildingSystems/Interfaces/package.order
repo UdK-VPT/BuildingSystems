@@ -2,6 +2,8 @@ AirchangeRateInput
 AirchangeRateOutput
 Angle_degInput
 Angle_degOutput
+AreaInput
+AreaOutput
 FlowPort
 FlowPorts
 HeatFlowRateInput
