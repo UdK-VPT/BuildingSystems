@@ -4,9 +4,19 @@ partial model ZoneTemplateGeneral
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium in the air model of the zone"
     annotation (choicesAllMatching = true);
+  parameter BuildingSystems.Buildings.Types.GeometryType geometryType = BuildingSystems.Buildings.Types.GeometryType.Fixed
+    "Fixed (default) or flexible geometry"
+    annotation (Evaluate=true, Dialog(tab = "General", group = "Zone geometry"));
   parameter Modelica.SIunits.Volume V = 1.0
-    "Air volume of the zone"
+    "Air volume of the zone (if geometryType == Fixed)"
     annotation(Dialog(tab="General",group="Zone geometry"));
+  output BuildingSystems.Interfaces.VolumeOutput V_internal
+    "Air volume of the zone";
+  input BuildingSystems.Interfaces.VolumeInput V_in(
+    min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
+    "Air volume of the zone from input"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-110,0}),
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,0})));
   parameter Modelica.SIunits.Length height = 1.0
     "Vertical height of the zone"
     annotation(Dialog(tab="General",group="Zone geometry"));
@@ -72,6 +82,12 @@ protected
   constant Modelica.SIunits.Density rho_nominal = 1.2
     "Air density under nominal conditions";
 equation
+  if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
+    V_internal = V;
+  else
+    connect(V_internal, V_in);
+  end if;
+
   for i in 1:nConstructions loop
     connect(surfaces.toConstructionPorts[i],toConstructionPorts[i]);
     connect(surfaces.toSurfacesPorts[i],radiationDistribution.toSurfacePorts[i]);
@@ -92,6 +108,10 @@ This is a template model of a thermal zone.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to flexible geometries.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.
