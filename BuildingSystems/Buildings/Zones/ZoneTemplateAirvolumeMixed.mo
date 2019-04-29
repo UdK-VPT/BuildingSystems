@@ -46,6 +46,7 @@ model ZoneTemplateAirvolumeMixed
     "Start air moisture of the zone"
     annotation (Dialog(tab="Initialization"));
   BuildingSystems.Buildings.Airvolumes.AirvolumeCompressible0D airvolume(
+    geometryType = geometryType,
     nSurfaces=nSurfaces,
     V = V,
     height=height,
