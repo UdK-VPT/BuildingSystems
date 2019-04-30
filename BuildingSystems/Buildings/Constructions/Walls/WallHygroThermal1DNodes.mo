@@ -3,8 +3,8 @@ model WallHygroThermal1DNodes
   "Hygro-thermal wall model with 1D discritisation of the single layers"
   extends BuildingSystems.Buildings.BaseClasses.WallHygroThermalGeneral;
   BuildingSystems.Interfaces.HeatPort heatPort_source if heatSource
-    annotation (Placement(transformation(extent={{10,-48},{30,-28}}), iconTransformation(extent={{10,-48},{30,-28}})));
-
+    annotation (Placement(transformation(extent={{-10,-48},{10,-28}}),
+       iconTransformation(extent={{-10,-48},{10,-28}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.MultiLayerHeatAndMoistureTransfer1DNodes construction(
     lengthY = width,
     lengthZ = height,
@@ -17,7 +17,6 @@ model WallHygroThermal1DNodes
     layerWithHeatSource=layerWithHeatSource,
     nodeWithHeatSource=nodeWithHeatSource)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-
   parameter Integer nNodes[constructionData.nLayers] = fill(1,constructionData.nLayers)
     "Number of numerical nodes of each layer"
     annotation(Dialog(tab ="Advanced",group="Heat sources"));
@@ -40,14 +39,29 @@ model WallHygroThermal1DNodes
       iconTransformation(extent={{20,10},{40,30}})));
   BuildingSystems.Interfaces.Moisture_absOutput xSur_1 = toSurfacePort_1.moisturePort.x if show_xSur
     "Absolute moisture on surface side 1"
-    annotation (Placement(transformation(extent={{-40,-30},{-60,-10}}),
-      iconTransformation(extent={{-20,-30},{-40,-10}})));
+    annotation (Placement(transformation(extent={{-40,26},{-60,46}}),
+      iconTransformation(extent={{-20,30},{-40,50}})));
   BuildingSystems.Interfaces.Moisture_absOutput xSur_2 = toSurfacePort_2.moisturePort.x if show_xSur
     "Absolute moisture on surface side 2"
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,-20}),
-        iconTransformation(extent={{20,-30},{40,-10}})));
-
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,40}),
+        iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={30,40})));
+  parameter Modelica.SIunits.Area AInnSur = 0.0
+    "Area of all enclosed surfaces (if geometryType == Fixed)"
+    annotation(Dialog(tab = "General", group = "Geometry"));
+  output BuildingSystems.Interfaces.AreaOutput AInnSur_internal
+    "Area of all enclosed surfaces";
+  input BuildingSystems.Interfaces.AreaInput AInnSur_in(
+    min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
+    "Area of all enclosed surfaces from input"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-56}),
+          iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-60})));
 equation
+  if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
+    AInnSur_internal = AInnSur;
+  else
+    connect(AInnSur_internal, AInnSur_in);
+  end if;
+  ASur = height_internal * width_internal - AInnSur_internal;
   connect(heatPort_source, construction.heatPort_source);
   connect(construction.heatPort_x2, toSurfacePort_2.heatPort) annotation (Line(
       points={{8,0},{20,0}},
@@ -77,6 +91,10 @@ This is a hygro-thermal wall model with 1D discritisation of the single layers.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to flexible geometries.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.

@@ -39,18 +39,24 @@ model WindowWithAirpathsFlexGeo
     width=1800,
     period=3600)
     annotation (Placement(transformation(extent={{-8,-20},{-2,-14}})));
-  Modelica.Blocks.Sources.Sine width(
-    amplitude=0.40,
-    freqHz=1/7200,
-    startTime=0,
-    offset=1.2)
-    annotation (Placement(transformation(extent={{-14,26},{-8,32}})));
   Modelica.Blocks.Sources.Sine height(
-    amplitude=0.20,
-    freqHz=1/7200,
-    offset=2.2,
+    amplitude=0.5,
+    freqHz=1/86400,
+    offset=1,
     startTime=0)
-    annotation (Placement(transformation(extent={{14,26},{8,32}})));
+    annotation (Placement(transformation(extent={{-16,32},{-10,38}})));
+  Modelica.Blocks.Sources.Constant angleDegAzi(
+    k=0.0)
+    annotation (Placement(transformation(extent={{16,32},{10,38}})));
+  Modelica.Blocks.Sources.Constant angleDegTil(
+    k=90.0)
+    annotation (Placement(transformation(extent={{16,22},{10,28}})));
+  Modelica.Blocks.Sources.Sine width(
+    amplitude=0.5,
+    freqHz=1/86400,
+    startTime=0,
+    offset=2)
+    annotation (Placement(transformation(extent={{-16,22},{-10,28}})));
 equation
   connect(surface1.toConstructionPort, window.toSurfacePort_1) annotation (Line(
       points={{-15.4,0},{-2,0}},
@@ -85,12 +91,16 @@ equation
           20},{34,20},{34,11}},     color={0,127,255}));
   connect(window.port_a2, zone.airpathPorts[2]) annotation (Line(points={{2,-6},{
           8,-6},{8,20},{30,20},{30,11}},color={0,127,255}));
-  connect(width.y, window.width_in) annotation (Line(points={{-7.7,29},{-6,29},{
-          -6,4},{-2,4}}, color={0,0,127}));
-  connect(height.y, window.height_in)
-    annotation (Line(points={{7.7,29},{6,29},{6,4},{2,4}}, color={0,0,127}));
-
+  connect(height.y, window.height_in) annotation (Line(points={{-9.7,35},{-6,35},
+          {-6,-4},{-2,-4}}, color={0,0,127}));
+  connect(width.y, window.width_in) annotation (Line(points={{-9.7,25},{-8,25},{
+          -8,-2},{-2,-2}}, color={0,0,127}));
+  connect(window.angleDegTil_in, angleDegTil.y) annotation (Line(points={{2.2,-2},
+          {4,-2},{4,25},{9.7,25}}, color={0,0,127}));
+  connect(window.angleDegAzi_in, angleDegAzi.y) annotation (Line(points={{2.2,-4},
+          {6,-4},{6,35},{9.7,35}}, color={0,0,127}));
   annotation(experiment(StartTime=0, StopTime=7200.0),
+
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WindowWithAirPathsFlexGeo.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={
     Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
@@ -104,7 +114,7 @@ Example that simulates a window model with two airpaths and a time dependent hei
 revisions="<html>
 <ul>
 <li>
-May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+April 24, 2019, by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>
 </ul>

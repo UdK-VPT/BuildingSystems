@@ -42,19 +42,9 @@ partial model WallGeneral
     angleDegInc_constant = 0.0)
     "Interface to short-wave radiation on side 2"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,16})));
-  Modelica.SIunits.Area ASur = height_internal * width_internal - AInnSur_internal
+  Modelica.SIunits.Area ASur
     "Net surface area (gross area minus enclosed surfaces)"
     annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Area AInnSur = 0.0
-    "Area of all enclosed surfaces (if geometryType == Fixed)"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  output BuildingSystems.Interfaces.AreaOutput AInnSur_internal
-    "Area of all enclosed surfaces";
-  input BuildingSystems.Interfaces.AreaInput AInnSur_in(
-    min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
-    "Area of all enclosed surfaces from input"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,40}),
-      iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-40})));
   parameter Boolean heatSource = false
     "True: heat source present in specified layer; false: no heat source present in specified layer"
     annotation(HideResult = true,Dialog(tab = "Advanced", group = "Heat sources"));
@@ -62,12 +52,6 @@ partial model WallGeneral
     "Wall layer with internal heat source (used if heatSource = true)"
     annotation(Dialog(tab = "Advanced", group = "Heat sources"));
 equation
-  if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
-    AInnSur_internal = AInnSur;
-  else
-    connect(AInnSur_internal, AInnSur_in);
-  end if;
-
   connect(radBcPort1.radiationPort, toSurfacePort_1.radiationPort_out) annotation (Line(
       points={{-20,11.2},{-20,0}},
       color={0,0,0},

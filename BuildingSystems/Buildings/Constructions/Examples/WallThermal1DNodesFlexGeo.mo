@@ -3,7 +3,8 @@ model WallThermal1DNodesFlexGeo
   "1D thermal wall model with a time dependent height and width under real weather data"
   extends Modelica.Icons.Example;
   record Construction
-    extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
+    extends
+      BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
       nLayers=2,
       thickness={0.1,0.1},
       material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),
@@ -29,16 +30,22 @@ model WallThermal1DNodesFlexGeo
     freqHz=1/86400,
     startTime=0,
     offset=2)
-    annotation (Placement(transformation(extent={{-14,18},{-8,24}})));
+    annotation (Placement(transformation(extent={{-16,18},{-10,24}})));
   Modelica.Blocks.Sources.Sine height(
     amplitude=0.5,
     freqHz=1/86400,
     offset=1,
     startTime=0)
-    annotation (Placement(transformation(extent={{14,18},{8,24}})));
+    annotation (Placement(transformation(extent={{-16,28},{-10,34}})));
   Modelica.Blocks.Sources.Constant AInnSur(
     k=0.0)
     annotation (Placement(transformation(extent={{-14,-22},{-8,-16}})));
+  Modelica.Blocks.Sources.Constant angleDegTil(
+    k=90.0)
+    annotation (Placement(transformation(extent={{16,18},{10,24}})));
+  Modelica.Blocks.Sources.Constant angleDegAzi(
+    k=0.0)
+    annotation (Placement(transformation(extent={{16,28},{10,34}})));
 equation
   connect(surface1.toConstructionPort, wall.toSurfacePort_1) annotation (Line(
       points={{-11.4,0},{-2,0}},
@@ -70,12 +77,18 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(width.y, wall.width_in) annotation (Line(points={{-7.7,21},{-6,21},{-6,
-          4},{-2,4}}, color={0,0,127}));
-  connect(height.y, wall.height_in)
-    annotation (Line(points={{7.7,21},{6,21},{6,4},{2,4}}, color={0,0,127}));
+  connect(width.y, wall.width_in) annotation (Line(points={{-9.7,21},{-6,21},{-6,
+          -2},{-2,-2}},
+                      color={0,0,127}));
   connect(AInnSur.y, wall.AInnSur_in) annotation (Line(points={{-7.7,-19},{-6,-19},
-          {-6,-4},{-2,-4}}, color={0,0,127}));
+          {-6,-6},{-2,-6}}, color={0,0,127}));
+
+  connect(height.y, wall.height_in) annotation (Line(points={{-9.7,31},{-8,31},{
+          -8,-4},{-2,-4}}, color={0,0,127}));
+  connect(wall.angleDegTil_in, angleDegAzi.y) annotation (Line(points={{2.2,-2},
+          {6,-2},{6,31},{9.7,31}}, color={0,0,127}));
+  connect(wall.angleDegAzi_in, angleDegTil.y) annotation (Line(points={{2.2,-4},
+          {8,-4},{8,21},{9.7,21}}, color={0,0,127}));
 
   annotation(experiment(StartTime=0, StopTime=31536000,Interval=3600),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WallThermal1DNodesFlexGeo.mos" "Simulate and plot"),
