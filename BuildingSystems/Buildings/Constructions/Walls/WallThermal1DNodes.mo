@@ -44,12 +44,14 @@ model WallThermal1DNodes
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-56}),
           iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-60})));
 equation
+  // Geometry
   ASur = height_internal * width_internal - AInnSur_internal;
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
     AInnSur_internal = AInnSur;
   else
     connect(AInnSur_internal, AInnSur_in);
   end if;
+  // Energy and moisture transport
   connect(heatPort_source, construction.heatPort_source);
   connect(toSurfacePort_1.moisturePort, moistBcPort1.moisturePort) annotation (Line(
     points={{-20,0},{-20,-11.2}},

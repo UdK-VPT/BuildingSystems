@@ -25,7 +25,7 @@ partial model ConstructionGeneral
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-46}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-40})));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi = 0.0
-    "Azimuth angle (south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg)"
+    "Azimuth angle (if geometryType == Fixed) -> south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg"
     annotation(Dialog(tab = "General", group = "Geometry"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegAzi_internal
     "Azimuth angle";
@@ -36,7 +36,7 @@ partial model ConstructionGeneral
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,  origin={30,-46}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={22,-40})));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil = 90.0
-    "Tilt angle (bottom: 0 deg, perpendicular: 90 deg, ceiling: 180 deg)"
+    "Tilt angle (if geometryType == Fixed) -> bottom: 0 deg, perpendicular: 90 deg, ceiling: 180 deg"
     annotation(Dialog(tab = "General", group = "Geometry"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegTil_internal
     "Tilt angle";
@@ -61,6 +61,8 @@ partial model ConstructionGeneral
   parameter Modelica.SIunits.Emissivity epsilon_2 = 0.9
     "Long-wave emittance side 2"
     annotation(Dialog(tab = "General", group = "Surfaces"));
+  Modelica.SIunits.Area ASur
+    "Surface area";
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
     width_internal = width;

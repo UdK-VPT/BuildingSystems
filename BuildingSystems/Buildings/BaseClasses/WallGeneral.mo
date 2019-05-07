@@ -42,9 +42,6 @@ partial model WallGeneral
     angleDegInc_constant = 0.0)
     "Interface to short-wave radiation on side 2"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,16})));
-  Modelica.SIunits.Area ASur
-    "Net surface area (gross area minus enclosed surfaces)"
-    annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
   parameter Boolean heatSource = false
     "True: heat source present in specified layer; false: no heat source present in specified layer"
     annotation(HideResult = true,Dialog(tab = "Advanced", group = "Heat sources"));

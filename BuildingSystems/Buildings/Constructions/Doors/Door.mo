@@ -71,8 +71,9 @@ model Door
     annotation (Placement(transformation(extent={{-10,-70},{-30,-50}}),
       iconTransformation(extent={{-10,-70},{-30,-50}})));
 equation
+  // Geometry
   ASur = height_internal * width_internal;
-  // energy and moisture transport
+  // Energy and moisture transport
   connect(toSurfacePort_1.moisturePort, moistBcPort1.moisturePort) annotation (Line(
     points={{-20,0},{-20,-11.2}},
     color={0,0,0},

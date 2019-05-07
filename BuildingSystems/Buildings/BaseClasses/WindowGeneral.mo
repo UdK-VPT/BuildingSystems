@@ -9,8 +9,6 @@ partial model WindowGeneral
     "Data of the thermal construction"
     annotation(Dialog(tab = "General", group = "Construction"), choicesAllMatching=true);
   // Geometry
-  Modelica.SIunits.Area ASur = height_internal * width_internal
-    "Surface area";
   parameter Real framePortion = 0.2
     "Frame portion of the window"
     annotation(Dialog(tab = "General", group = "Geometry"));
@@ -169,6 +167,8 @@ partial model WindowGeneral
     Modelica.Blocks.Interfaces.RealInput GSC_internal
       "Shading coefficient";
 equation
+  // Geometry
+  ASur = height_internal * width_internal;
   // Shadowing
   if use_GSC_in then
     connect(GSC_internal,GSC_in);
