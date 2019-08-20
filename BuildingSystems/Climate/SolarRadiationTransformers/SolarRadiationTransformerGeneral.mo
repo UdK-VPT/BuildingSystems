@@ -42,11 +42,16 @@ partial model SolarRadiationTransformerGeneral
     "Tilt angle of the surface"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=180,origin={-82,-26}),
       iconTransformation(extent={{-14,-14},{14,14}}, rotation=180,origin={-76,-20})));
+  output Interfaces.Angle_degOutput angleDegAziSun(start = 0.0)
+    "Azimuth angle of the sun"
+    annotation (Placement(transformation(extent={{20,-20},{-20,20}},rotation=90,origin={-50,-90}),
+      iconTransformation(extent={{-14,-14},{14,14}},rotation=-90,origin={-40,-78})));
+  output Interfaces.Angle_degOutput angleDegHeightSun = 90.0 - angleZen * 180.0 / Modelica.Constants.pi
+    "Height angle of the sun"
+    annotation (Placement(transformation(extent={{20,-20},{-20,20}},rotation=90,origin={-10,-90}),
+      iconTransformation(extent={{-14,-14},{14,14}},rotation=-90,origin={0,-78})));
   Modelica.SIunits.Angle angleZen
     "Zenith angle";
-  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziSun
-    (start = 0.0)
-    "Azimuth angle of the sun";
   Real cosAngleAzi
     "Cosinus of the azimuth angle";
   Real cosAngleInc
@@ -140,7 +145,7 @@ equation
     Line(points={{32,8},{52,-12}}, color={255,128,0},thickness=1,smooth=Smooth.None),
     Line(points={{-8,-32},{12,-52}},color={255,128,0},thickness=1,smooth=Smooth.None),
     Line(points={{2,-22},{22,-42}},color={255,128,0},thickness=1,smooth=Smooth.None),
-    Text(extent={{-32,-78},{36,-104}}, lineColor={0,0,255},textString="%name")}),
+    Text(extent={{20,-78},{136,-142}}, lineColor={0,0,255},textString="%name")}),
 Documentation(info="<html>
 <p>
 This model calculates the direct solar radiation on a tilted surface (general model).
@@ -161,6 +166,10 @@ IrrTotTil = IrrDirNor * cosAngleInc
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+Aug 20, 2019 by Christoph Nytsch-Geusen:<br/>
+Outputs for height angle and azimuth of the sun added.
+</li>
 <li>
 Sep 9, 2017 by Christoph Nytsch-Geusen:<br/>
 Radiation calculation for one axis tracking added.

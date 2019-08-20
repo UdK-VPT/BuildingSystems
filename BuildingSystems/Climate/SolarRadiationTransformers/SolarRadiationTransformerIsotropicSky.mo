@@ -14,8 +14,7 @@ equation
     Line(points={{22,-2},{42,-22}}, color={255,128,0},thickness=1,smooth=Smooth.None),
     Line(points={{32,8},{52,-12}}, color={255,128,0},thickness=1,smooth=Smooth.None),
     Line(points={{-8,-32},{12,-52}},color={255,128,0},thickness=1,smooth=Smooth.None),
-    Line(points={{2,-22},{22,-42}},color={255,128,0},thickness=1,smooth=Smooth.None),
-    Text(extent={{-32,-78},{36,-104}}, lineColor={0,0,255},textString="%name")}),
+    Line(points={{2,-22},{22,-42}},color={255,128,0},thickness=1,smooth=Smooth.None)}),
 Documentation(info="<html>
 <p>
 This model calculates the diffuse solar radiation on a tilted surface after the isotropic sky model of Liu-Jordan and the total incident radation on a tilted surface.

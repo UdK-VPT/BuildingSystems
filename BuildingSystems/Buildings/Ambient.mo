@@ -48,15 +48,17 @@ model Ambient
     annotation(Placement(transformation(extent={{-40,-10},{-20,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAirPorts[nSurfaces]
     "Climate boundary conditions for the building surfaces dependent on the ambient air"
-    annotation (Placement(transformation(extent={{70,-80},{90,0}}), iconTransformation(extent={{70,-80},{90,0}})));
+    annotation (Placement(transformation(extent={{80,-80},{100,0}}),
+      iconTransformation(extent={{80,-80},{100,0}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacePorts[nSurfaces]
     "Climate boundary conditions for the building surfaces dependent on ambient surfaces"
-    annotation (Placement(transformation(extent={{70,0},{90,80}}), iconTransformation(extent={{70,0},{90,80}})));
+    annotation (Placement(transformation(extent={{80,0},{100,80}}),
+      iconTransformation(extent={{80,0},{100,80}})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAirpathPorts[nAirpaths](
     redeclare each final package Medium = Medium)
     "Climate boundary conditions for the building airpaths"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=270,origin={94,0}),
-      iconTransformation(extent={{-40,-90},{40,-70}},rotation=180,origin={30,10})));
+      iconTransformation(extent={{-40,-90},{40,-70}},rotation=180,origin={60,10})));
 
   // Absolute humidity of the ambient air
   parameter BuildingSystems.Buildings.Types.DataSource xAirSou = BuildingSystems.Buildings.Types.DataSource.File
@@ -173,30 +175,36 @@ model Ambient
     "Cloud cover of the sky from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={50,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={50,-90})));
-
   output BuildingSystems.Interfaces.Temp_KOutput TSky = weatherDataReader.TSky
     "Sky temperature"
     annotation (Placement(transformation(extent={{-86,-64},{-66,-44}}),
       iconTransformation(extent={{-80,-60},{-100,-40}})));
-
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation[nSurfaces](
     each rhoAmb=rhoAmb,
     angleDegAzi= toSurfacePorts.angleDegAzi,
     angleDegTil= toSurfacePorts.angleDegTil)
     "Radiation on tilted surfaces"
     annotation(Placement(transformation(extent={{34,2},{54,22}})));
-  BuildingSystems.Interfaces.Angle_degOutput latitudeDeg
+  output BuildingSystems.Interfaces.Angle_degOutput latitudeDeg
     "Latitude"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-70,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-70,90})));
-  BuildingSystems.Interfaces.Angle_degOutput longitudeDeg
+  output BuildingSystems.Interfaces.Angle_degOutput longitudeDeg
     "Longitude"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90, origin={-50,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-50,90})));
-  BuildingSystems.Interfaces.Angle_degOutput longitudeDeg0
+  output BuildingSystems.Interfaces.Angle_degOutput longitudeDeg0
     "Longitude of the local time zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90})));
+  output BuildingSystems.Interfaces.Angle_degOutput angleDegAziSun
+    "Azimuth angle of the sun"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-10,90}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-10,90})));
+  output BuildingSystems.Interfaces.Angle_degOutput angleDegHeightSun
+    "Height angle of the sun"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={10,90}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={10,90})));
 equation
   connect(weatherDataReader.latitudeDeg, latitudeDeg) annotation (Line(points={{-19,9},
           {-19,72},{-70,72},{-70,90}}, color={0,0,127}));
@@ -204,6 +212,10 @@ equation
           7},{-16,7},{-16,74},{-50,74},{-50,90}}, color={0,0,127}));
   connect(weatherDataReader.longitudeDeg0, longitudeDeg0) annotation (Line(points={{-19,
           5},{-12,5},{-12,76},{-30,76},{-30,90}}, color={0,0,127}));
+  connect(radiation[1].angleDegAziSun, angleDegAziSun) annotation (Line(points={
+            {40,2.2},{40,0},{-10,0},{-10,90}}, color={0,0,127}));
+  connect(radiation[1].angleDegHeightSun, angleDegHeightSun) annotation (Line(
+        points={{44,2.2},{44,0},{10,0},{10,90}}, color={0,0,127}));
   for i in 1:nSurfaces loop
     // position of the location
     connect(weatherDataReader.latitudeDeg, radiation[i].latitudeDeg) annotation (Line(
@@ -318,6 +330,10 @@ you will find a short guide, which describes a Python based generation of NetCDF
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+Aug 20, 2019 by Christoph Nytsch-Geusen:<br/>
+Outputs for height angle and azimuth of the sun added.
+</li>
 <li>
 June 14, 2018 by Christoph Nytsch-Geusen:<br/>
 Adapted to modified NetCDF weather data reader.
