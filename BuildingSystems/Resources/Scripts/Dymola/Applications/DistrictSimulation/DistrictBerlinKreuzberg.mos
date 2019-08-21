@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Applications.DistrictSimulation.DistrictBerlinKreuzberg", stopTime=864000, method="dassl", tolerance = 1e-5, resultFile="DistrictBerlinKreuzberg");
+simulateModel("BuildingSystems.Applications.DistrictSimulation.DistrictBerlinKreuzberg", stopTime=864000, method="dassl", resultFile="DistrictBerlinKreuzberg");
 removePlots();
 createPlot(
   id = 1,

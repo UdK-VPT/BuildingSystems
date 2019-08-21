@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Applications.ClimateAnalyses.FreeFloatingTemperature", stopTime=31536000, method="cvode", numberOfIntervals=8760, tolerance = 1e-5, resultFile="FreeFloatingTemperature");
+simulateModel("BuildingSystems.Applications.ClimateAnalyses.FreeFloatingTemperature", stopTime=31536000, method="dassl",resultFile="FreeFloatingTemperature");
 removePlots();
 createPlot(
   id = 1,
