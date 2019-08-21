@@ -13,7 +13,7 @@ model TiltedRadiation
     k=30.0)
     annotation (Placement(transformation(extent={{-96,82},{-88,90}})));
   Modelica.Blocks.Sources.Constant angleDegAzi(
-    k=30.0)
+    k=0.0)
     annotation (Placement(transformation(extent={{-96,68},{-88,76}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiationOneAxisTracked(
     rhoAmb=0.2,
