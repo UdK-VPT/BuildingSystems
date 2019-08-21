@@ -34,7 +34,7 @@ opts['CVode_options']['maxord'] = 5
 opts['CVode_options']['atol'] = 1e-5
 opts['CVode_options']['rtol'] = 1e-5
 
-res = myModel.simulate(start_time=0.0, final_time=864000, options=opts)
+res = myModel.simulate(start_time=1.728e7, final_time=1.7539e7, options=opts)
 
 # plotting of the results
 import pylab as P
@@ -44,7 +44,7 @@ P.clf()
 y1 = res['radiationFixed.radiationPort.IrrDir']
 y2 = res['radiationOneAxisTracked.radiationPort.IrrDir']
 t = res['time']
-P.subplot(2,1,1)
+P.subplot(3,1,1)
 P.plot(t, y1, t, y2)
 P.legend(['radiationFixed.radiationPort.IrrDir','radiationOneAxisTracked.radiationPort.IrrDir'])
 P.ylabel('Radiation (W/m2)')
@@ -52,9 +52,17 @@ P.xlabel('Time (s)')
 # Tilt angle
 y1 = res['radiationFixed.angleDegTil']
 y2 = res['radiationOneAxisTracked.angleDegTilTracked']
-P.subplot(2,1,2)
+P.subplot(3,1,2)
 P.plot(t, y1, t, y2)
 P.legend(['radiationFixed.angleDegTil','radiationOneAxisTracked.angleDegTilTracked'])
+P.ylabel('Angle (degree)')
+P.xlabel('Time (s)')
+# Azimut and height angle of the sun
+y1 = res['radiationFixed.angleDegAziSun']
+y2 = res['radiationFixed.angleDegHeightSun']
+P.subplot(3,1,3)
+P.plot(t, y1, t, y2)
+P.legend(['radiationFixed.angleDegAziSun','radiationFixed.angleDegHeightSun'])
 P.ylabel('Angle (degree)')
 P.xlabel('Time (s)')
 P.show()
