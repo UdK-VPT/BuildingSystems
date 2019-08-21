@@ -91,7 +91,7 @@ equation
 
   angleDec = 23.45 * Modelica.Constants.pi / 180.0 * sin((360.0 * (284.0 + dayOfYear) / 365.0) * (Modelica.Constants.pi / 180.0));
 
-  timeSun = time / 3600.0 + Z / 60.0 + 4.0 / 60.0 * (longitudeDeg0 - longitudeDeg + angleDegL);
+  timeSun = mod(time / 3600.0 + Z / 60.0 + 4.0 / 60.0 * (longitudeDeg0 - longitudeDeg + angleDegL),24);
 
   angleHr = 15.0 * (timeSun - 12.0) * Modelica.Constants.pi / 180.0;
 
@@ -103,8 +103,10 @@ equation
     connect(angleDegTil_internal,angleDegTil);
   end if;
 
-  cosAngleZen = BuildingSystems.Utilities.Math.Functions.smoothLimit(cosAngleLat * cos(angleDec) * cos(angleHr)
-    + sinAngleLat * sin(angleDec),0.00001,1.0,0.0001);
+  //cosAngleZen = BuildingSystems.Utilities.Math.Functions.smoothLimit(cosAngleLat * cos(angleDec) * cos(angleHr)
+  //  + sinAngleLat * sin(angleDec),0.00001,1.0,0.0001);
+
+  cosAngleZen = cosAngleLat * cos(angleDec) * cos(angleHr) + sinAngleLat * sin(angleDec);
 
   angleZen = acos(cosAngleZen);
 
