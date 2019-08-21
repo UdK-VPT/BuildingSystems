@@ -15,7 +15,9 @@ partial block WeatherDataFileASCII
     "Time scale factor for ASCII file";
   parameter Real deltaTime = 0.0
     "Time shift factor for ASCII file values";
-  BuildingSystems.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim
+  BuildingSystems.BoundaryConditions.WeatherData.BaseClasses.ConvertTime conTim(
+    weaDatStaTim=0.0,
+    weaDatEndTim=31536000.0)
     "Convert simulation time to calendar time"
     annotation (Placement(transformation(extent={{-70,-16},{-50,4}})));
   BuildingSystems.Utilities.Time.ModelTime modTim "Model time"
@@ -32,7 +34,8 @@ partial block WeatherDataFileASCII
     annotation (Placement(transformation(extent={{-4,-10},{16,10}})));
   Modelica.Blocks.Math.Add add
     annotation (Placement(transformation(extent={{-34,-10},{-14,10}})));
-  Modelica.Blocks.Sources.Constant timeShift(k=deltaTime)
+  Modelica.Blocks.Sources.Constant timeShift(
+    k=deltaTime)
     annotation (Placement(transformation(extent={{-70,20},{-50,40}})));
 equation
   IrrDirHor=BuildingSystems.Utilities.Math.Functions.smoothMax((datRea.y[1]-datRea.y[2])*scaleFac[1],0.0,0.1);
@@ -65,6 +68,10 @@ This is a partial model for reading weather data sets in ASCII data format.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+August 21, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to revised model BuildingSystems.BoundaryConditions.WeatherData.BaseClasses.ConvertTime.
+</li>
 <li>
 September 9, 2018 by Christoph Nytsch-Geusen:<br/>
 First implementation.
