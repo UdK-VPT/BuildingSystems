@@ -24,4 +24,10 @@ record ElectricBatteryGeneral
     "Peukert coefficient";
   parameter Real a_mcr(unit="W/J")
     "Maximum charge rate parameter";
+  parameter Modelica.SIunits.Resistance R_int
+    "Internal battery resistance";
+  parameter Real A(unit="1")
+    "Initial linear variation of internal battery voltage with SOC, calculation is described in Banhardt et al. 2019";
+  parameter Real C(unit="1")
+    "Parameter reflecting the decrease of battery voltage when battery nearly discharged, calculation is described in Banhardt et al. 2019";
 end ElectricBatteryGeneral;

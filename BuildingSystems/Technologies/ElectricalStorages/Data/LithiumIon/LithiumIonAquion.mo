@@ -13,6 +13,8 @@ record LithiumIonAquion =
   PLoad_max = 11700.0,
   PCharge_max = 11700.0,
   p = 1.05,
-  a_mcr = 0.96/3600.0)
+  a_mcr = 0.96/3600.0,
+  A = 0.0,
+  C = 0.0)
   "Lithium Ion Aquion: 25.9 kWh"
   annotation(Documentation(info= "<html>Source: PolySun version 10.0.11 except loss factor fDis after http://www.batteryeducation.com<br/></html>"));

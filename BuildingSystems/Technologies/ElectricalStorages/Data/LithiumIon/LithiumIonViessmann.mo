@@ -13,6 +13,8 @@ record LithiumIonViessmann =
   PLoad_max = 2850.0,
   PCharge_max = 2850.0,
   p = 1.05,
-  a_mcr = 0.96/3600.0)
+  a_mcr = 0.96/3600.0,
+  A = 0.0,
+  C = 0.0)
   "Lithium Ion Viessmann: 4.7 kWh"
   annotation(Documentation(info= "<html>Source: PolySun version 10.0.11 except loss factor fDis after http://www.batteryeducation.com<br/></html>"));
