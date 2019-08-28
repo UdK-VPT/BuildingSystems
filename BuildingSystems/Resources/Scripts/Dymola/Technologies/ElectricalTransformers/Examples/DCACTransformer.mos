@@ -1,0 +1,29 @@
+simulateModel("BuildingSystems.Technologies.ElectricalTransformers.Examples.DCACTransformer", stopTime=2, numberOfIntervals=200, method="Dassl", resultFile="DCACTransformer");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1000, 200},
+  y = {"DCAC.eta_dcac"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "DCACTransformer.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {0, 225, 1000, 600},
+  y = {"DCAC.P2","DCAC.P1"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  leftTitleType = 1,
+  bottomTitleType = 1);

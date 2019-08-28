@@ -1,0 +1,16 @@
+simulateModel("BuildingSystems.Technologies.ElectricalStorages.Examples.BatteryComplexIA", stopTime=72000, method="Dassl", resultFile="BatteryComplexIA.mat");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1000, 400},
+  y = {"battery.UBattery"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "BatteryComplexIA.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

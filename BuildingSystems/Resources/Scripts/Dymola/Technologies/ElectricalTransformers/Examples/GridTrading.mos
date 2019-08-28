@@ -1,0 +1,29 @@
+simulateModel("BuildingSystems.Technologies.ElectricalTransformers.Examples.GridTrading", stopTime=72000, numberOfIntervals=72000, method="Dassl", resultFile="GridTrading");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1000, 200},
+  y = {"battery.SOC"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "GridTrading.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {0, 225, 1000, 600},
+  y = {"DCAC_load.P1","DCAC_load.P1","DCAC_grid.P1","DCAC_grid.P2"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  leftTitleType = 1,
+  bottomTitleType = 1);
