@@ -1,19 +1,17 @@
 within BuildingSystems.Buildings.BaseClasses;
 partial model WallGeneral
   "General wall model"
-  extends BuildingSystems.Buildings.BaseClasses.ConstructionGeneral(
-  width = 1.0,
-  height = 1.0);
+  extends BuildingSystems.Buildings.BaseClasses.ConstructionGeneral;
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
     A=ASur,
     abs = abs_2,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
-    geo.width=width,
-    geo.height=height,
-    geo.zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height,
-    geo.point.x={0.0,width,width,0.0},
-    geo.point.y={0.0,0.0,height,height},
+    geo.width=width_internal,
+    geo.height=height_internal,
+    geo.zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
+    geo.point.x={0.0,width_internal,width_internal,0.0},
+    geo.point.y={0.0,0.0,height_internal,height_internal},
     geo.point.z={0.0,0.0,0.0,0.0},
     epsilon = epsilon_2)
     "Interface to surface on side 2"
@@ -23,11 +21,11 @@ partial model WallGeneral
     abs = abs_1,
     geo.angleDegAzi=angleDegAzi,
     geo.angleDegTil=angleDegTil,
-    geo.width=width,
-    geo.height=height,
-    geo.zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height,
-    geo.point.x={0.0,width,width,0.0},
-    geo.point.y={0.0,0.0,height,height},
+    geo.width=width_internal,
+    geo.height=height_internal,
+    geo.zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
+    geo.point.x={0.0,width_internal,width_internal,0.0},
+    geo.point.y={0.0,0.0,height_internal,height_internal},
     geo.point.z={0.0,0.0,0.0,0.0},
     epsilon = epsilon_1)
     "Interface to surface on side 1"
@@ -44,12 +42,6 @@ partial model WallGeneral
     angleDegInc_constant = 0.0)
     "Interface to short-wave radiation on side 2"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,16})));
-  parameter Modelica.SIunits.Area ASur = height * width - AInnSur
-    "Net surface area (gross area minus enclosed surfaces)"
-    annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Area AInnSur = 0.0
-    "Area of all enclosed surfaces"
-    annotation(Dialog(tab = "General", group = "Geometry"));
   parameter Boolean heatSource = false
     "True: heat source present in specified layer; false: no heat source present in specified layer"
     annotation(HideResult = true,Dialog(tab = "Advanced", group = "Heat sources"));
@@ -77,6 +69,10 @@ This is partial model description of a wall.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to flexible geometries.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.

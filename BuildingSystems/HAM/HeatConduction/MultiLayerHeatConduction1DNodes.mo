@@ -30,9 +30,9 @@ model MultiLayerHeatConduction1DNodes
     "Thermal properties for each material layer"
     annotation (HideResult=true);
 
-  parameter Modelica.SIunits.Length lengthY = 1.0
+  Modelica.SIunits.Length lengthY = 1.0
     "Length in y dimension";
-  parameter Modelica.SIunits.Length lengthZ = 1.0
+  Modelica.SIunits.Length lengthZ = 1.0
     "Length in z dimension";
   parameter Integer nLayers = 1
     "Number of material layers in the x dimension";
@@ -74,6 +74,10 @@ layer can have a different <code>thickness</code> and an edge length <code>dy</c
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to flexible geometries.
+</li>
 <li>
 May 23, 2016 by Christoph Nytsch-Geusen:<br/>
 First implementation.

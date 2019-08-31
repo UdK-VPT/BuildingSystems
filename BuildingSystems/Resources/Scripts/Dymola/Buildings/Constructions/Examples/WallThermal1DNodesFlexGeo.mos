@@ -1,0 +1,44 @@
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.WallThermal1DNodesFlexGeo", stopTime=864000, method="cvode", resultFile="WallThermal1DNodesFlexGeo");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambient.TAirRef","wall.construction.layer[1].T[1]","wall.construction.layer[1].T[2]","wall.construction.layer[2].T[1]","wall.construction.layer[2].T[2]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WallThermal1DNodesFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"wall.construction.heatPort_x1.Q_flow","wall.construction.heatPort_x2.Q_flow"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WallThermal1DNodesFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 3,
+  position = {1220, 0, 600, 500},
+  y = {"wall.ASur","wall.width_internal","wall.height_internal"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WallThermal1DNodesFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

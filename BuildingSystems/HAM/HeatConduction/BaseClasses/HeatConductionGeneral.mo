@@ -1,18 +1,18 @@
 within BuildingSystems.HAM.HeatConduction.BaseClasses;
 partial model HeatConductionGeneral
   "General model for heat conduction of a body"
-  
+
   replaceable parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral material
    "Material of the body"
    annotation(Dialog(tab = "General"),Evaluate=true, choicesAllMatching=true);
-   
+
   parameter Modelica.SIunits.Length lengthX = 1.0
     "Length in x dimension"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length lengthY = 1.0
+  Modelica.SIunits.Length lengthY = 1.0
     "Length in y dimension"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length lengthZ = 1.0
+  Modelica.SIunits.Length lengthZ = 1.0
     "Length in z dimension"
     annotation(Dialog(tab = "General", group = "Geometry"));
 
@@ -27,6 +27,10 @@ the edge length <code>dx</code>, <code>dy</code> and <code>dz</code>
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+April 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Adaptation to flexible geometries.
+</li>
 <li>
 May 23, 2016 by Christoph Nytsch-Geusen:<br/>
 First implementation.

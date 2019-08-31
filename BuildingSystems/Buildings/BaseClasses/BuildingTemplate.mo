@@ -3,6 +3,20 @@ partial model BuildingTemplate
   "General template for building models"
   final package Medium = BuildingSystems.Media.Air;
 
+  parameter Boolean flexibleOrientation = false
+    "False (default) or true: building can dynamically rotate (azimuth angle of the building from input)"
+    annotation (Evaluate=true, Dialog(tab = "General", group = "Orientation"));
+  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziBuilding = 0.0
+    "Fixed azimuth angle of the building: south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg (if flexibleOrientation == false)"
+    annotation(Dialog(tab="General",group="Orientation"));
+  output BuildingSystems.Interfaces.Angle_degOutput angleDegAziBuilding_internal
+    "Azimuth angle of the building";
+  input BuildingSystems.Interfaces.Angle_degInput angleDegAziBuilding_in(
+    min=-180.0,
+    max=180.0) if flexibleOrientation == true
+    "Azimuth angle of the building from input"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-140,120}),
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=90, origin={-60,98})));
   parameter Integer nZones = 0
     "Number of thermal zones of the building"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
@@ -24,9 +38,6 @@ partial model BuildingTemplate
   parameter Integer nSurfacesSolid = 0
     "Number of surfaces (with contact to solids) to the building ambient"
     annotation(Dialog(tab="General",group="Solid building ambient"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziBuilding = 0.0
-    "Azimuth angle of the building: south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg"
-    annotation(Dialog(tab="General",group="Orientation"));
   parameter Boolean prescribedAirchange = true
     "Switch for air change calculation"
     annotation(HideResult = true, Dialog(tab="General",group="Air change"));
@@ -124,6 +135,11 @@ partial model BuildingTemplate
     "Model for all building surfaces to the ground under the building"
     annotation (Placement(transformation(extent={{-32,-30},{32,30}},rotation=270,origin={0,-116})));
 equation
+  if flexibleOrientation == false then
+    angleDegAziBuilding_internal = angleDegAziBuilding;
+  else
+    connect(angleDegAziBuilding_internal, angleDegAziBuilding_in);
+  end if;
   for i in 1:nSurfacesAmbient loop
     connect(surfacesToAmbient.toAirPorts[i],toAmbientAirPorts[i]);
     connect(surfacesToAmbient.toSurfacesPorts[i],toAmbientSurfacesPorts[i]);

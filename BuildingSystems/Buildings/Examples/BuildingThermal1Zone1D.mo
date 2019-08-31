@@ -42,7 +42,7 @@ model BuildingThermal1Zone1D
       width=4.0,
       angleDegAzi=180.0,
       angleDegTil=90.0,
-      AInnSur=window2.ASur,
+      AInnSur=window2.width*window2.height,
       redeclare Construction constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-12,20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall4(
@@ -50,7 +50,7 @@ model BuildingThermal1Zone1D
       width=4.0,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      AInnSur=window4.ASur,
+      AInnSur=window4.width*window4.height,
       redeclare Construction constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-12,-20})));
     BuildingSystems.Buildings.Constructions.Windows.Window window2(

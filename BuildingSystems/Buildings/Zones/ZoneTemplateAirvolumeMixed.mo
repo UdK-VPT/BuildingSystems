@@ -46,8 +46,9 @@ model ZoneTemplateAirvolumeMixed
     "Start air moisture of the zone"
     annotation (Dialog(tab="Initialization"));
   BuildingSystems.Buildings.Airvolumes.AirvolumeCompressible0D airvolume(
+    geometryType = geometryType,
     nSurfaces=nSurfaces,
-    V=V,
+    V = V,
     height=height,
     heightAirpath = heightAirpath,
     T_start={T_start},
@@ -141,6 +142,10 @@ model ZoneTemplateAirvolumeMixed
     "Changes the sign of mass flow"
     annotation (Placement(transformation(extent={{80,24},{72,32}})));
 equation
+  if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible then
+    connect(airvolume.V_in, V_in);
+  end if;
+
   for i in 1:nConstructions loop
     connect(surfaces.toAirPorts[i],airvolume.toSurfacePorts[i]);
   end for;

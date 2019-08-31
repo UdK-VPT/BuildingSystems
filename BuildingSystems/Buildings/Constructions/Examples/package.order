@@ -2,5 +2,7 @@ Door
 SlidingWindow
 WallHygroThermal1DNodes
 WallThermal1DNodes
+WallThermal1DNodesFlexGeo
 Window
 WindowWithAirpaths
+WindowWithAirpathsFlexGeo
