@@ -9,7 +9,7 @@ model Central
     T=T,
     nPorts=1)
     annotation (Placement(transformation(extent={{36,2},{16,22}})));
-  BuildingSystems.Fluid.Sources.FixedBoundary bou(
+  BuildingSystems.Fluid.Sources.Boundary_pT bou(
     redeclare package Medium = Medium, nPorts=1)
     annotation (Placement(transformation(extent={{-36,2},{-16,22}})));
   parameter Modelica.Media.Interfaces.Types.Temperature T = 273.15 + 95

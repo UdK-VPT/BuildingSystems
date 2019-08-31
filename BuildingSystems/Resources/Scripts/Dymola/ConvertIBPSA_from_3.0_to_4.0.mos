@@ -1,0 +1,9 @@
+// Conversion script for BuildingSystems library
+//  from: Version 3.0
+//  to:   Version 4.0
+clear
+
+convertClear();
+
+convertClass("BuildingSystems.Fluid.Sources.Boundary_pT",
+             "BuildingSystems.Obsolete.Fluid.Sources.FixedBoundary");

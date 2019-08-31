@@ -64,7 +64,7 @@ model SingleCollectorWithStorageTest
     use_m_flow_in = true,
     T = 283.15)
     annotation (Placement(transformation(extent={{40,-128},{20,-108}})));
-  BuildingSystems.Fluid.Sources.FixedBoundary sink(
+  BuildingSystems.Fluid.Sources.Boundary_pT sink(
     redeclare package Medium = Medium2,
     nPorts = 1)
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},origin={30,-82})));

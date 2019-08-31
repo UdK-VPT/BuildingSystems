@@ -5,8 +5,8 @@ package Soil "Collection of records of soil data"
 annotation (Documentation(info="<html>
 <p>
 This package contains data records for use with ground heat exchanger models
-in <a href=\"modelica://BuildingSystems.Fluid.HeatExchangers.Ground\">
-BuildingSystems.Fluid.HeatExchangers.Ground</a>. The soil data
+in <a href=\"modelica://BuildingSystems.Fluid.Geothermal.Borefields\">
+BuildingSystems.Fluid.Geothermal.Borefields</a>. The soil data
 records contain the heat transfer properties of soil materials.
 </p>
 </html>"));
