@@ -19,7 +19,7 @@ model PartialInletStratification
     each use_T_in=true)
     "Flow source"
     annotation (Placement(transformation(extent={{-78,-10},{-58,10}})));
-  BuildingSystems.Fluid.Sources.FixedBoundary bou(nPorts=1, redeclare package Medium = Medium)
+  BuildingSystems.Fluid.Sources.Boundary_pT bou(nPorts=1, redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-20,-80},{0,-60}})));
   Modelica.Blocks.Sources.RealExpression m_flow[nEle](y=m_flow_eq)
     annotation (Placement(transformation(extent={{-20,20},{-40,40}})));

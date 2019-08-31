@@ -14,19 +14,19 @@ extends Modelica.Icons.ExamplesPackage;
       use_T_in=true,
       T=328.15)
       annotation (Placement(transformation(extent={{64,-60},{44,-40}})));
-    BuildingSystems.Fluid.Sources.FixedBoundary bou1(
+    BuildingSystems.Fluid.Sources.Boundary_pT bou1(
       redeclare package Medium = Medium, nPorts=1)
       annotation (Placement(transformation(extent={{-80,-90},{-60,-70}})));
     replaceable package Medium = BuildingSystems.Media.Water;
     Modelica.Blocks.Sources.RealExpression fixedTemperature1(y=273.15 + 50)
       annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
-    BuildingSystems.Fluid.Sources.FixedBoundary bou2(
+    BuildingSystems.Fluid.Sources.Boundary_pT bou2(
       redeclare package Medium = Medium,
       nPorts=1)
       annotation (Placement(transformation(extent={{-80,-50},{-60,-30}})));
     Modelica.Blocks.Sources.RealExpression fixedTemperature2(y=274.15 + 60)
       annotation (Placement(transformation(extent={{-80,44},{-60,64}})));
-    BuildingSystems.Fluid.Sources.FixedBoundary bou3(
+    BuildingSystems.Fluid.Sources.Boundary_pT bou3(
       redeclare package Medium = Medium, nPorts=1)
       annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
     Modelica.Blocks.Sources.RealExpression fixedTemperature3(y=274.15 + 70)

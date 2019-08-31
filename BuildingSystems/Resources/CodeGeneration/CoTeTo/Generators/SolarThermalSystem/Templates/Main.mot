@@ -473,12 +473,12 @@ model ${modelClassName}
 
 % endif
   // remaining components
-  BuildingSystems.Fluid.Sources.FixedBoundary fixBou1(
+  BuildingSystems.Fluid.Sources.Boundary_pT fixBou1(
     nPorts=1,
     redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{274,-180},{254,-160}})));
 
-  BuildingSystems.Fluid.Sources.FixedBoundary fixBou2(
+  BuildingSystems.Fluid.Sources.Boundary_pT fixBou2(
     nPorts=1,
     redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-116,-180},{-96,-160}})));

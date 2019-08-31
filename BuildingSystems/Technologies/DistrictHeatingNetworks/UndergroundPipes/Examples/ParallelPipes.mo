@@ -25,14 +25,14 @@ model ParallelPipes
     m_flow=1,
     T=353.15)
     annotation (Placement(transformation(extent={{-40,10},{-20,30}})));
-  BuildingSystems.Fluid.Sources.FixedBoundary sink(redeclare package Medium = Medium, nPorts=1)
+  BuildingSystems.Fluid.Sources.Boundary_pT sink(redeclare package Medium = Medium, nPorts=1)
     annotation (Placement(transformation(extent={{40,10},{20,30}})));
   BuildingSystems.Fluid.Sources.MassFlowSource_T sink2(
     redeclare package Medium = Medium,
     nPorts=1,
     m_flow=-1)
     annotation (Placement(transformation(extent={{-40,-30},{-20,-10}})));
-  BuildingSystems.Fluid.Sources.FixedBoundary source2(
+  BuildingSystems.Fluid.Sources.Boundary_pT source2(
     redeclare package Medium = Medium,
     nPorts=1,
     T=323.15)

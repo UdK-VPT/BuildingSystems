@@ -5,5 +5,5 @@ clear
 
 convertClear();
 
-convertClass("BuildingSystems.Fluid.Sources.FixedBoundary",
+convertClass("BuildingSystems.Fluid.Sources.Boundary_pT",
              "BuildingSystems.Obsolete.Fluid.Sources.FixedBoundary");

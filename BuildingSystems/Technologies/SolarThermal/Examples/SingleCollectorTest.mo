@@ -19,7 +19,7 @@ model SingleCollectorTest
     m_flow=0.01,
     redeclare package Medium = Medium,
     T=283.15) annotation (Placement(transformation(extent={{-98,-18},{-78,2}})));
-  BuildingSystems.Fluid.Sources.FixedBoundary bou2(
+  BuildingSystems.Fluid.Sources.Boundary_pT bou2(
     redeclare package Medium = Medium,
     nPorts=1)
     annotation (Placement(transformation(extent={{-2,-18},{-22,2}})));
