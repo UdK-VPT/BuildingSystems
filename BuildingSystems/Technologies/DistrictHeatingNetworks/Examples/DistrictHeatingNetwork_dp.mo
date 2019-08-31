@@ -155,7 +155,7 @@ model DistrictHeatingNetwork_dp
     "Building model"
     annotation (Placement(transformation(extent={{-178,68},{-158,88}})));
   BuildingSystems.Buildings.Ambient ambient2(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_Meteonorm_NetCDF,
+    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_DWD_ASCII,
     nSurfaces=building2.nSurfacesAmbient)
     "Ambient model"
     annotation (Placement(transformation(extent={{-208,68},{-188,88}})));
