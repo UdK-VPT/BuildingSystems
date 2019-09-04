@@ -25,9 +25,9 @@ model HeatAndMoistureTransport1DNodes
   Modelica.Blocks.Sources.Constant const1(
     k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{58,-16},{46,-4}})));
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.AbsoluteMoisturePrescribed absMoistBC1
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.PrescribedAbsoluteMoisture absMoistBC1
     annotation (Placement(transformation(extent={{-44,0},{-24,20}})));
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.AbsoluteMoisturePrescribed absMoistBC2
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.PrescribedAbsoluteMoisture absMoistBC2
     annotation (Placement(transformation(extent={{44,0},{24,20}})));
   Modelica.Blocks.Sources.Constant const2(
     k=0.008)

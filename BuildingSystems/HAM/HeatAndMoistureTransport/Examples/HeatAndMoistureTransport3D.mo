@@ -32,9 +32,9 @@ model HeatAndMoistureTransport3D
   Modelica.Blocks.Sources.Constant const1(
     k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{70,-10},{58,2}})));
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.AbsoluteMoisturePrescribed absMoistBC1
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.PrescribedAbsoluteMoisture absMoistBC1
     annotation (Placement(transformation(extent={{-54,6},{-34,26}})));
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.AbsoluteMoisturePrescribed absMoistBC2
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.PrescribedAbsoluteMoisture absMoistBC2
     annotation (Placement(transformation(extent={{56,6},{36,26}})));
   Modelica.Blocks.Sources.Constant const2(
     k=0.008)

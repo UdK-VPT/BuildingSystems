@@ -1,5 +1,5 @@
-AbsoluteMoistureFixed
-AbsoluteMoisturePrescribed
-MoistureFlowFixed
-MoistureFlowPrescribed
+FixedAbsoluteMoisture
+FixedMoistureFlow
 MoistureSourceGeneral
+PrescribedAbsoluteMoisture
+PrescribedMoistureFlow

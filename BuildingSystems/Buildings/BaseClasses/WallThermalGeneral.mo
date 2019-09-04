@@ -2,11 +2,11 @@ within BuildingSystems.Buildings.BaseClasses;
 partial model WallThermalGeneral
   "General thermal wall model"
   extends BuildingSystems.Buildings.BaseClasses.WallGeneral;
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowFixed moistBcPort1(
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.FixedMoistureFlow moistBcPort1(
     m_flow_constant = 0.0)
     "Moisture port on side 1"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=90,origin={-20,-16})));
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowFixed moistBcPort2(
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.FixedMoistureFlow moistBcPort2(
     m_flow_constant = 0.0)
     "Moisture port on side 2"
     annotation (Placement(transformation(extent={{8,-8},{-8,8}},rotation=-90,origin={20,-16})));

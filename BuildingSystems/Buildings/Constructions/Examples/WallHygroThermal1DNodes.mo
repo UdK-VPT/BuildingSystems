@@ -28,7 +28,7 @@ model WallHygroThermal1DNodes
     annotation (Placement(transformation(extent={{2,-10},{22,10}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature tempBC(T=293.15)
     annotation (Placement(transformation(extent={{26,-10},{18,-2}})));
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.AbsoluteMoistureFixed moistBC(
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.FixedAbsoluteMoisture moistBC(
     x_constant =0.008)
     annotation (Placement(transformation(extent={{28,0},{16,12}})));
 equation

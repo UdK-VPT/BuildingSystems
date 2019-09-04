@@ -14,7 +14,7 @@ model SurfaceToSolid
   parameter Boolean calcHygroThermal = false
     "Switch for hygro-thermal calculation"
     annotation(HideResult = true);
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.AbsoluteMoistureFixed moistBc(x_constant=0.0) if not calcHygroThermal
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.FixedAbsoluteMoisture moistBc(x_constant=0.0) if not calcHygroThermal
     "Dummy boundary condition for absolute moisture";
 equation
   connect(toConstructionPort.moisturePort,moistBc.moisturePort);

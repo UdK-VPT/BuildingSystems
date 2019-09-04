@@ -112,10 +112,10 @@ partial model WindowGeneral
     lengthZ=height_internal,
     T_start=T_start)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowFixed moistBcPort1(
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.FixedMoistureFlow moistBcPort1(
     m_flow_constant=0.0)
     annotation (Placement(transformation(extent={{-48,-8},{-32,8}})));
-  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.MoistureFlowFixed moistBcPort2(
+  BuildingSystems.HAM.HeatAndMoistureTransport.Sources.FixedMoistureFlow moistBcPort2(
     m_flow_constant=0.0)
     annotation (Placement(transformation(extent={{48,-8},{32,8}})));
   BuildingSystems.Buildings.Constructions.Windows.RadiationTransmission.RadiationTransmissionSimple radTra1to2(
