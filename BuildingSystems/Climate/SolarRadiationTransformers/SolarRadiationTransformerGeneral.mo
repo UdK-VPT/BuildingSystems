@@ -38,18 +38,10 @@ partial model SolarRadiationTransformerGeneral
     annotation (Placement(transformation(extent={{-102,-46},{-62,-6}}),
       iconTransformation(extent={{-90,-34},{-62,-6}})));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegTilTracked =
-    180.0 / Modelica.Constants.pi * atan(-sin((angleDegAziSun + angleDegAzi - 90.0)*Modelica.Constants.pi/180.0) * tan(angleZen)) if OneAxisTracking
+    180.0 / Modelica.Constants.pi * atan(-sin((radiationPort.angleDegAziSun + angleDegAzi - 90.0)*Modelica.Constants.pi/180.0) * tan(angleZen)) if OneAxisTracking
     "Tilt angle of the surface"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=180,origin={-82,-26}),
       iconTransformation(extent={{-14,-14},{14,14}}, rotation=180,origin={-76,-20})));
-  output Interfaces.Angle_degOutput angleDegAziSun(start = 0.0)
-    "Azimuth angle of the sun"
-    annotation (Placement(transformation(extent={{20,-20},{-20,20}},rotation=90,origin={-50,-90}),
-      iconTransformation(extent={{-14,-14},{14,14}},rotation=-90,origin={-40,-78})));
-  output Interfaces.Angle_degOutput angleDegHeightSun = 90.0 - angleZen * 180.0 / Modelica.Constants.pi
-    "Height angle of the sun"
-    annotation (Placement(transformation(extent={{20,-20},{-20,20}},rotation=90,origin={-10,-90}),
-      iconTransformation(extent={{-14,-14},{14,14}},rotation=-90,origin={0,-78})));
 protected
   BuildingSystems.Interfaces.Angle_degOutput angleDegTil_internal
     "Tilt angle of the surface";
@@ -108,17 +100,17 @@ equation
     // Outside the polar circle, the only non-differentiability is at night when the sun is set.
     // Hence, we use noEvent.
     if noEvent(timeSun < 12.0) then
-      angleDegAziSun =-solAziTem;
+      radiationPort.angleDegAziSun = -solAziTem;
     else
-      angleDegAziSun = solAziTem;
+      radiationPort.angleDegAziSun = solAziTem;
     end if;
   else
     // Inside the polar circle, there is a jump at (solar-)midnight when the sun can
     // be above the horizon. Hence, we do not use noEvent(...)
     if timeSun < 12.0 then
-      angleDegAziSun =-solAziTem;
+      radiationPort.angleDegAziSun = -solAziTem;
     else
-      angleDegAziSun = solAziTem;
+      radiationPort.angleDegAziSun = solAziTem;
     end if;
   end if;
 
@@ -137,7 +129,7 @@ equation
   // One axis tracking
   if OneAxisTracking then
     angleDegTil_internal =
-      radDeg * atan(-sin((angleDegAziSun + angleDegAzi - 90.0) * degRad) * tan(angleZen));
+      radDeg * atan(-sin((radiationPort.angleDegAziSun + angleDegAzi - 90.0) * degRad) * tan(angleZen));
   else
     connect(angleDegTil_internal,angleDegTil);
   end if;
@@ -153,6 +145,8 @@ equation
     + cos(angleDec) * sinAngleTil * sinAngleAzi * sin(angleHr),0.0,1.0,0.0001);
 
   radiationPort.angleDegInc = acos(cosAngleInc) * radDeg;
+
+  radiationPort.angleDegHeightSun = 90.0 - angleZen * 180.0 / Modelica.Constants.pi;
 
   sinAngleAzi = sin(angleDegAzi * degRad);
 
@@ -203,8 +197,8 @@ IrrTotTil = IrrDirNor * cosAngleInc
 </html>", revisions="<html>
 <ul>
 <li>
-Aug 21, 2019 by Christoph Nytsch-Geusen:<br/>
-Outputs for height angle and azimuth angle of the sun added.
+Sep 4, 2019 by Christoph Nytsch-Geusen:<br/>
+Height angle and azimuth angle of the sun to the radiation port added.
 </li>
 <li>
 Sep 9, 2017 by Christoph Nytsch-Geusen:<br/>

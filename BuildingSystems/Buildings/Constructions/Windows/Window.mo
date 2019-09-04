@@ -7,7 +7,6 @@ model Window
     final hOpe = height),
   radTra1to2(final areaRatioUnglazed = 0.0),
   radTra2to1(final areaRatioUnglazed = 0.0));
-
   annotation (defaultComponentName="window", Icon(coordinateSystem(preserveAspectRatio=false,
     extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-10,80},{10,-80}},lineColor={230,230,230},fillColor={230,230,230},
@@ -32,16 +31,16 @@ March 19, 2019 by Christoph Nytsch-Geusen:<br/>
 Adaptation to the BuildingSystems.Airflow package.
 </li>
 <li>
-May 23, 2015 by Christoph Nytsch-Geusen:<br/>
-First implementation.
+January 14, 2018 by Christoph Nytsch-Geusen:<br/>
+Now model is inherited by WindowGeneral.
 </li>
 <li>
 July 27, 2017 by Christoph Nytsch-Geusen:<br/>
 Introduction of an external shadowing coefficient (GSC).
 </li>
 <li>
-January 14, 2018 by Christoph Nytsch-Geusen:<br/>
-Now model is inherited by WindowGeneral.
+May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+First implementation.
 </li>
 </ul>
 </html>"));

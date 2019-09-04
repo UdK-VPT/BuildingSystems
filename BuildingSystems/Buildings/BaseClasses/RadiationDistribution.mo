@@ -55,6 +55,8 @@ equation
     toSurfacePorts[i].radiationPort_in.IrrDir= 0.0;
     toSurfacePorts[i].radiationPort_in.IrrDif = - Q_flow_Sw / ATotal;
     toSurfacePorts[i].radiationPort_in.angleDegInc = 50.0;
+    toSurfacePorts[i].radiationPort_in.angleDegAziSun = 0.0;
+    toSurfacePorts[i].radiationPort_in.angleDegHeightSun = 0.0;
   end for;
   // Mean surface temperature
   TSurfMean = sum({toSurfacePorts[i].heatPortLw.T * toSurfacePorts[i].A for i in 1:nSurfaces}) / ATotal;

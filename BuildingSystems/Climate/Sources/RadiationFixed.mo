@@ -4,7 +4,9 @@ model RadiationFixed
   BuildingSystems.Interfaces.RadiationPort radiationPort(
     IrrDir = IrrDir_constant,
     IrrDif = IrrDif_constant,
-    angleDegInc = angleDegInc_constant)
+    angleDegInc = angleDegInc_constant,
+    angleDegAziSun = 0.0,
+    angleDegHeightSun = 0.0)
     annotation (Placement(transformation(extent={{50,-10},{70,10}}), iconTransformation(extent={{50,-10},{70,10}})));
   parameter Modelica.SIunits.RadiantEnergyFluenceRate IrrDir_constant = 0.0
     "Constant area specific direct solar radiation";
@@ -22,6 +24,10 @@ This model calculates a boundary condition for constant direct and diffuse solar
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+September 24, 2019 by Christoph Nytsch-Geusen:<br/>
+Last modification.
+</li>
 <li>
 May 23, 2015 by Christoph Nytsch-Geusen:<br/>
 First implementation.

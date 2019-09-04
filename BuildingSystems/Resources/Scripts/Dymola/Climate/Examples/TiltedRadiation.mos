@@ -31,7 +31,7 @@ createPlot(
 createPlot(
   id = 3,
   position = {0, 800, 1000, 350},
-  y = {"radiationFixed.angleDegAziSun","radiationOneAxisTracked.angleDegHeightSun"},
+  y = {"radiationFixed.radiationPort.angleDegAziSun","radiationOneAxisTracked.radiationPort.angleDegHeightSun"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,

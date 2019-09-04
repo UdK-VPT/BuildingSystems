@@ -122,7 +122,8 @@ model Ambient
     "Solar diffuse radiation of horizontal surface"
     annotation (Placement(transformation(extent={{-86,-10},{-66,10}}),
       iconTransformation(extent={{-80,0},{-100,20}})));
-  input BuildingSystems.Interfaces.RadiantEnergyFluenceRateInput IrrDifHor_in if IrrDifHorSou == BuildingSystems.Buildings.Types.DataSource.Input
+  input BuildingSystems.Interfaces.RadiantEnergyFluenceRateInput IrrDifHor_in
+    if IrrDifHorSou == BuildingSystems.Buildings.Types.DataSource.Input
     "Solar diffuse radiation of horizontal surface from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-10,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-10,-90})));
@@ -138,7 +139,8 @@ model Ambient
     "Wind speed on reference height"
     annotation (Placement(transformation(extent={{-86,-28},{-66,-8}}),
       iconTransformation(extent={{-80,-20},{-100,0}})));
-  input BuildingSystems.Interfaces.VelocityInput vWindRef_in if vWindRefSou == BuildingSystems.Buildings.Types.DataSource.Input
+  input BuildingSystems.Interfaces.VelocityInput vWindRef_in
+    if vWindRefSou == BuildingSystems.Buildings.Types.DataSource.Input
     "Wind speed on reference height from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={12,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={10,-90})));
@@ -197,33 +199,31 @@ model Ambient
     "Longitude of the local time zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90})));
-  output BuildingSystems.Interfaces.Angle_degOutput angleDegAziSun
+  output BuildingSystems.Interfaces.Angle_degOutput angleDegAziSun =
+    radiation[1].radiationPort.angleDegAziSun
     "Azimuth angle of the sun"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-10,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-10,90})));
-  output BuildingSystems.Interfaces.Angle_degOutput angleDegHeightSun
+  output BuildingSystems.Interfaces.Angle_degOutput angleDegHeightSun =
+    radiation[1].radiationPort.angleDegHeightSun
     "Height angle of the sun"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={10,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={10,90})));
 equation
-  connect(weatherDataReader.latitudeDeg, latitudeDeg) annotation (Line(points={{-19,9},
-          {-19,72},{-70,72},{-70,90}}, color={0,0,127}));
-  connect(weatherDataReader.longitudeDeg, longitudeDeg) annotation (Line(points={{-19,
-          7},{-16,7},{-16,74},{-50,74},{-50,90}}, color={0,0,127}));
-  connect(weatherDataReader.longitudeDeg0, longitudeDeg0) annotation (Line(points={{-19,
-          5},{-12,5},{-12,76},{-30,76},{-30,90}}, color={0,0,127}));
-  connect(radiation[1].angleDegAziSun, angleDegAziSun) annotation (Line(points={
-            {40,2.2},{40,0},{-10,0},{-10,90}}, color={0,0,127}));
-  connect(radiation[1].angleDegHeightSun, angleDegHeightSun) annotation (Line(
-        points={{44,2.2},{44,0},{10,0},{10,90}}, color={0,0,127}));
+  connect(weatherDataReader.latitudeDeg, latitudeDeg)
+    annotation (Line(points={{-19,9},{-19,72},{-70,72},{-70,90}}, color={0,0,127}));
+  connect(weatherDataReader.longitudeDeg, longitudeDeg)
+    annotation (Line(points={{-19,7},{-16,7},{-16,74},{-50,74},{-50,90}}, color={0,0,127}));
+  connect(weatherDataReader.longitudeDeg0, longitudeDeg0)
+    annotation (Line(points={{-19,5},{-12,5},{-12,76},{-30,76},{-30,90}}, color={0,0,127}));
   for i in 1:nSurfaces loop
     // position of the location
-    connect(weatherDataReader.latitudeDeg, radiation[i].latitudeDeg) annotation (Line(
-      points={{-19,9},{10,9},{10,26},{40.2,26},{40.2,19.6}}, color={0,0,127}));
-    connect(weatherDataReader.longitudeDeg, radiation[i].longitudeDeg) annotation (Line(
-      points={{-19,7},{12,7},{12,28},{44,28},{44,19.6}}, color={0,0,127}));
-    connect(weatherDataReader.longitudeDeg0, radiation[i].longitudeDeg0) annotation (
-      Line(points={{-19,5},{14,5},{14,30},{48,30},{48,19.6}}, color={0,0,127}));
+    connect(weatherDataReader.latitudeDeg, radiation[i].latitudeDeg)
+      annotation (Line(points={{-19,9},{10,9},{10,26},{40.2,26},{40.2,19.6}}, color={0,0,127}));
+    connect(weatherDataReader.longitudeDeg, radiation[i].longitudeDeg)
+      annotation (Line(points={{-19,7},{12,7},{12,28},{44,28},{44,19.6}}, color={0,0,127}));
+    connect(weatherDataReader.longitudeDeg0, radiation[i].longitudeDeg0)
+      annotation (Line(points={{-19,5},{14,5},{14,30},{48,30},{48,19.6}}, color={0,0,127}));
     // Direct horizontal radiation
     IrrDirHor = radiation[i].IrrDirHor;
     // Diffuse horizontal radiation
@@ -235,11 +235,13 @@ equation
     toAirPorts[i].angleDegAir = 0.0;
     // Further ambient parameters
     if calcLwRad then
-      toSurfacePorts[i].heatPortLw.Q_flow = Modelica.Constants.sigma * toSurfacePorts[i].epsilon * (toSurfacePorts[i].heatPortLw.T^4 - TSky^4) * toSurfacePorts[i].A;
+      toSurfacePorts[i].heatPortLw.Q_flow = Modelica.Constants.sigma * toSurfacePorts[i].epsilon *
+        (toSurfacePorts[i].heatPortLw.T^4 - TSky^4) * toSurfacePorts[i].A;
     else
       toSurfacePorts[i].heatPortLw.Q_flow = 0.0;
     end if;
-    toSurfacePorts[i].heatPortSw.Q_flow = - toSurfacePorts[i].abs * (radiation[i].radiationPort.IrrDir + radiation[i].radiationPort.IrrDif) * toSurfacePorts[i].A;
+    toSurfacePorts[i].heatPortSw.Q_flow = - toSurfacePorts[i].abs *
+      (radiation[i].radiationPort.IrrDir + radiation[i].radiationPort.IrrDif) * toSurfacePorts[i].A;
     connect(radiation[i].radiationPort, toSurfacePorts[i].radiationPort_in)
       annotation (Line(points={{52,11.8},{52,40},{80,40}},color={0,0,0},pattern=LinePattern.Solid,smooth=Smooth.None));
   end for;

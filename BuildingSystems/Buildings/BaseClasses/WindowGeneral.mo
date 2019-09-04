@@ -177,6 +177,11 @@ equation
   end if;
   connect(GSC_internal, radTra2to1.GSC);
   connect(GSC_internal, radTra1to2.GSC);
+  // Sun angles
+  toSurfacePort_1.radiationPort_in.angleDegAziSun = toSurfacePort_2.radiationPort_out.angleDegAziSun;
+  toSurfacePort_1.radiationPort_in.angleDegHeightSun = toSurfacePort_2.radiationPort_out.angleDegHeightSun;
+  toSurfacePort_2.radiationPort_in.angleDegAziSun = toSurfacePort_1.radiationPort_out.angleDegAziSun;
+  toSurfacePort_2.radiationPort_in.angleDegHeightSun = toSurfacePort_1.radiationPort_out.angleDegHeightSun;
   // Solar Transmittance
   connect(radTra1to2.radiationPort_in, toSurfacePort_1.radiationPort_in)
     annotation (Line(
