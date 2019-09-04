@@ -34,7 +34,7 @@ opts['CVode_options']['maxord'] = 5
 opts['CVode_options']['atol'] = 1e-5
 opts['CVode_options']['rtol'] = 1e-5
 
-res = myModel.simulate(start_time=0.0, final_time=864, options=opts)
+res = myModel.simulate(start_time=0.0, final_time=864000, options=opts)
 
 # plotting of the results
 import pylab as P
