@@ -39,6 +39,6 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "WindowWithAirpaths.mat",
+  filename = "Window.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
