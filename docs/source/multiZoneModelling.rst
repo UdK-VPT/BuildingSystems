@@ -34,7 +34,7 @@ The creation and configuration of a new thermal building model takes place in th
 
 * Configuration of the building model structure (topology of the construction of the buildings model)
 * Definition of the building model parameters (building geometry and physical parameters of the construction elements)
-* Definition of the boundary conditions of the system model (climate conditions of the building ambient, set temperatures for heating and cooling for each thermal zone)
+* Definition of the boundary conditions of the system model (climate conditions of the building ambience, set temperatures for heating and cooling for each thermal zone)
 
 Set up the building model structure
 -----------------------------------
@@ -63,9 +63,9 @@ Set up the building model structure
      View on the empty building model
 
   As a result you can see now the inner structure (the *Diagram view* in Dymola) of the empty building model.
-  On the left side you see the interfaces to the building ambient, below the interfaces to the ground of the building and on
+  On the left side you see the interfaces to the building ambience, below the interfaces to the ground of the building and on
   the right side the input signals for the set temperatures for heating and cooling of each zone and the interfaces of the air
-  paths to the ambient.
+  paths to the ambience.
 
 
 3. **Instantiate two thermal zones**, which shall represent the left and right part of the TMH.
@@ -150,7 +150,7 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
 
    Do the same with *wall5* and *window2*.
 
-   Finally add the parameter values for the orientation of each construction elements, which face to the ambient by setting the azimuth angle
+   Finally add the parameter values for the orientation of each construction elements, which face to the ambience by setting the azimuth angle
    and the tilt angle. The default values for each construction element (walls and windows are 90.0 degree for the tilt angle and 0.0 degree
    for the azimuth angle. North is defined by an azimuth angle of 180 degree, east by -90 degree and west by + 90 degree:
 
@@ -190,7 +190,7 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
         Definition of a construction type based on template for opaque constructions
 
      The *Construction1TMH* shall have three layers. The materials of the three layers are 0.006 m wood, 0.030 m insulation
-     and again 0.009 m wood. The layer order is counted from inside (zone) to outside (building ambient). The
+     and again 0.009 m wood. The layer order is counted from inside (zone) to outside (building ambience). The
      BuildingSystems library contains in the package *BuildingSystems.HAM.Data.MaterialProperties*
      a database with pre-defined thermal and hygro-thermal material property sets.
 
@@ -246,19 +246,19 @@ Configure the system model and set its boundary conditions
 
 1. Create a new model with the name *SystemModel* and insert it into the package *ThermalModelHouse*.
 #. Instantiate the previous defined building model within the system model and rename it to *building*.
-#. Instantiate an ambient model *BuildingSystems.Buildings.Ambient* within the system model and set the climate data
+#. Instantiate an ambient model *BuildingSystems.Buildings.Ambience* within the system model and set the climate data
    (parameter weatherDataFile) to *USA_SanFrancisco_Meteonorm_NetCDF*.
 #. Assign the parameter *nSurfaces* of the ambient model to the number of surfaces of the building, which are in contact
    with the building environment:
 
    .. code-block:: modelica
 
-      nSurfaces={building.nSurfacesAmbient)
+      nSurfaces={building.nSurfacesAmbience)
 
 #. Connect the ambient model and the building model regarding to their blue interfaces (boundary conditions of the facade surfaces to the air)
    and their green interfaces (boundary conditions of the facade surfaces to the solar irradiation and other enclosing surfaces)
-#. Connect the output variable *ambient.TAirRef* and the input variable *building.TAirAmb* (ambient temperature at
-   a reference height of 10 m) and also *ambient.xAirRef* and *building.xAirAmb* (ambient absolute moisture).
+#. Connect the output variable *ambience.TAirRef* and the input variable *building.TAirAmb* (ambient temperature at
+   a reference height of 10 m) and also *ambience.xAirRef* and *building.xAirAmb* (ambient absolute moisture).
 #. Add six constant sources of the type *Modelica.Blocks.Sources.Constant* for the definition of
    the set temperatures for heating and cooling as well as the air change for both thermal zones:
 

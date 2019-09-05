@@ -14,7 +14,7 @@ package Types
     "Enumeration to select the geometry type";
 
   type ThermalBoundaryCondition = enumeration(
-    Ambient "Ambient climate",
+    Ambience "Ambience climate",
     Adiabatic "Adiabatic boundary condition",
     Constant "Constant temperature")
     "Enumeration of thermal boundary conditions";

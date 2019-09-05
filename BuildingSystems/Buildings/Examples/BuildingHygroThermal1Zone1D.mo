@@ -6,7 +6,7 @@ model BuildingHygroThermal1Zone1D
   model Building
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
       nZones=1,
-      surfacesToAmbient(nSurfaces=6),
+      surfacesToAmbience(nSurfaces=6),
       useAirPaths = false,
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced);
     record Construction
@@ -102,32 +102,32 @@ model BuildingHygroThermal1Zone1D
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
-    connect(surfacesToAmbient.toConstructionPorts[1], wall1.toSurfacePort_1)
+    connect(surfacesToAmbience.toConstructionPorts[1], wall1.toSurfacePort_1)
       annotation (Line(
         points={{-170.8,3.10862e-15},{-55.95,3.10862e-15},{-55.95,0},{-26,0}},
         color={127,0,0},
         smooth=Smooth.None));
-    connect(surfacesToAmbient.toConstructionPorts[2], wall2.toSurfacePort_2)
+    connect(surfacesToAmbience.toConstructionPorts[2], wall2.toSurfacePort_2)
       annotation (Line(
         points={{-170.8,0},{-40,0},{-40,28},{-12,28},{-12,22}},
         color={127,0,0},
         smooth=Smooth.None));
-    connect(surfacesToAmbient.toConstructionPorts[3], window2.toSurfacePort_2)
+    connect(surfacesToAmbience.toConstructionPorts[3], window2.toSurfacePort_2)
       annotation (Line(
         points={{-170.8,0},{-40,0},{-40,28},{12,28},{12,22}},
         color={127,0,0},
         smooth=Smooth.None));
-    connect(surfacesToAmbient.toConstructionPorts[4], wall3.toSurfacePort_2)
+    connect(surfacesToAmbience.toConstructionPorts[4], wall3.toSurfacePort_2)
       annotation (Line(
         points={{-170.8,0},{-40,0},{-40,28},{32,28},{32,0},{28,0}},
         color={127,0,0},
         smooth=Smooth.None));
-    connect(surfacesToAmbient.toConstructionPorts[5], window4.toSurfacePort_1)
+    connect(surfacesToAmbience.toConstructionPorts[5], window4.toSurfacePort_1)
       annotation (Line(
         points={{-170.8,0},{-40,0},{-40,-30},{12,-30},{12,-22}},
         color={127,0,0},
         smooth=Smooth.None));
-    connect(surfacesToAmbient.toConstructionPorts[6], wall4.toSurfacePort_1)
+    connect(surfacesToAmbience.toConstructionPorts[6], wall4.toSurfacePort_1)
       annotation (Line(
         points={{-170.8,0},{-40,0},{-40,-30},{-12,-30},{-12,-22}},
         color={127,0,0},
@@ -164,8 +164,8 @@ model BuildingHygroThermal1Zone1D
 
   end Building;
 
-  BuildingSystems.Buildings.Ambient ambient(
-    nSurfaces=building.nSurfacesAmbient,
+  BuildingSystems.Buildings.Ambience ambience(
+    nSurfaces=building.nSurfacesAmbience,
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Building building(nZones=1)
@@ -177,11 +177,11 @@ model BuildingHygroThermal1Zone1D
   Modelica.Blocks.Sources.Constant airchange(k=0.5)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,-2})));
 equation
-   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
+   connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts) annotation (Line(
     points={{-22,4},{-20,4},{-20,8},{-20,11.3333},{-20,4},{-9,4}},
     color={0,255,0},
     smooth=Smooth.None));
-  connect(ambient.toAirPorts, building.toAmbientAirPorts) annotation (Line(
+  connect(ambience.toAirPorts, building.toAmbienceAirPorts) annotation (Line(
     points={{-22,-4},{-16,-4},{-16,-4},{-9,-4}},
     color={85,170,255},
     smooth=Smooth.None));
@@ -193,11 +193,11 @@ equation
       points={{15.8,6},{9.8,6}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(building.TAirAmb, ambient.TAirRef) annotation (Line(
+  connect(building.TAirAmb, ambience.TAirRef) annotation (Line(
       points={{6.2,9.8},{6.2,12},{-40,12},{-40,7},{-39,7}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(building.xAirAmb, ambient.xAir) annotation (Line(
+  connect(building.xAirAmb, ambience.xAir) annotation (Line(
       points={{8.4,9.8},{8.4,14},{-42,14},{-42,5},{-39,5}},
       color={0,0,127},
       smooth=Smooth.None));

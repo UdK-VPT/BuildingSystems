@@ -41,14 +41,14 @@ import pylab as P
 fig = P.figure(1)
 P.clf()
 # Temperatures
-y1 = res['ambient.TAirRef']
+y1 = res['ambience.TAirRef']
 y2 = res['window.toSurfacePort_1.heatPort.T']
 y3 = res['window.heatTransfer.T']
 y4 = res['window.toSurfacePort_2.heatPort.T']
 t = res['time']
 P.subplot(3,1,1)
 P.plot(t, y1, t, y2, t, y3, t, y4)
-P.legend(['ambient.TAirRef','window.toSurfacePort_1.heatPort.T','window.heatTransfer.T','window.toSurfacePort_2.heatPort.T'])
+P.legend(['ambience.TAirRef','window.toSurfacePort_1.heatPort.T','window.heatTransfer.T','window.toSurfacePort_2.heatPort.T'])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 # Radiation

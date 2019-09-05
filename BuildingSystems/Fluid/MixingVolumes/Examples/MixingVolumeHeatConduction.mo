@@ -9,7 +9,7 @@ model MixingVolumeHeatConduction "Test model for heat transfer to volume"
     "Heat flow sensor"
     annotation (Placement(transformation(extent={{0,20},{20,40}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(T=293.15)
-    "Ambient temperature"
+    "Ambience temperature"
     annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
   Modelica.Fluid.Sources.MassFlowSource_T sou(
     redeclare package Medium = Medium,
@@ -66,7 +66,7 @@ equation
   annotation (Documentation(
         info="<html>
 <p>
-This model demonstrates the use of the mixing volume with heat conduction to the ambient.
+This model demonstrates the use of the mixing volume with heat conduction to the ambience.
 The mixing volume is configured as a steady-state model.
 </p>
 </html>", revisions="<html>

@@ -19,7 +19,7 @@ follow the second approach. This approach is, for example, described in the Germ
 Guideline VDI 6007 Part 1 (VDI, 2012). The influence of indoor temperatures
 via heat transfer through exterior walls is neglected. The exterior wall&apos;s
 outdoor surface is assumed to have the outdoor air temperature for calculation
-of radiative heat exchange with the ambient.</p>
+of radiative heat exchange with the ambience.</p>
 <p>The fundamental equation is: </p>
 <p align=\"center\" style=\"font-style:italic;\">
 T<sub>EqAirExt</sub> = T

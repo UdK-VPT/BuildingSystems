@@ -58,7 +58,7 @@ model PlugFlowULg "Validation against data from Université de Liège"
     annotation (Placement(transformation(extent={{0,-80},{20,-60}})));
 
   Modelica.Blocks.Math.UnitConversions.From_degC Tout
-    "Ambient temperature in degrees"
+    "Ambience temperature in degrees"
     annotation (Placement(transformation(extent={{40,-110},{60,-90}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TBou(T=295.15)
     "Fixed boundary condition"
@@ -118,7 +118,7 @@ model PlugFlowULg "Validation against data from Université de Liège"
     "Difference between simulated and measurement enthalpy flow difference"
     annotation (Placement(transformation(extent={{190,50},{210,70}})));
   Modelica.Blocks.Sources.Constant Tamb(k=273 + 18)
-    "Ambient temperature in Kelvin";
+    "Ambience temperature in Kelvin";
 equation
   connect(DataReader.y[3], Tout.u) annotation (Line(
       points={{21,-70},{32,-70},{32,-100},{38,-100}},

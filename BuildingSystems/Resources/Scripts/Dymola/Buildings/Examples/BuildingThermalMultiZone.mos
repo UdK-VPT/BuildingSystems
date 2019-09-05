@@ -3,7 +3,7 @@ removePlots();
 createPlot(
   id = 1,
   position = {0, 0, 600, 500},
-  y = {"ambient.TAirRef","building.office1.TAir","building.office2.TAir","building.office3.TAir","building.office4.TAir","building.office5.TAir","building.office6.TAir","building.office7.TAir","building.office8.TAir", "building.bullpen.TAir","building.conferenceRoom.TAir"},
+  y = {"ambience.TAirRef","building.office1.TAir","building.office2.TAir","building.office3.TAir","building.office4.TAir","building.office5.TAir","building.office6.TAir","building.office7.TAir","building.office8.TAir", "building.bullpen.TAir","building.conferenceRoom.TAir"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,

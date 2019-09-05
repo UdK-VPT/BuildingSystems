@@ -9,7 +9,7 @@ model Building1Zone1DBox
     final nAirpaths = 0,
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
     final alphaConstant = 0.0,
-    surfacesToAmbient(nSurfaces=9
+    surfacesToAmbience(nSurfaces=9
       - (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
       - (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
       - (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic then 1 else 0)
@@ -97,35 +97,35 @@ model Building1Zone1DBox
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
   parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall1=
-    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition wall1"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall1_constant = 293.15
     "Constant temperature on the outer surface of wall1 (used if BCWall1=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall2=
-    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition wall2"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall2_constant = 293.15
     "Constant temperature on the outer surface of wall2 (used if BCWall2=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall3=
-    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition wall3"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall3_constant = 293.15
     "Constant temperature on the outer surface of wall3 (used if BCWall3=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall4=
-    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition wall4"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TWall4_constant = 293.15
     "Constant temperature on the outer surface of wall4 (used if BCWall4=Constant)"
     annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCCeiling=
-    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient
+    BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition ceiling"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
   parameter Modelica.SIunits.Temp_K TCeiling_constant = 293.15
@@ -602,23 +602,23 @@ equation
   connect(zone.toConstructionPorts[12+(if InteriorWalls then 2 else 0)], ceilingsInterior.toSurfacePort_1)
     annotation (Line(points={{0,0},{0,42},{-20,42},{-20,48}},
       color={127,0,0}));
-  connect(window1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[1])
+  connect(window1.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[1])
     annotation (Line(points={{-56,-10},{-82,-10},{-82,3.55271e-15},{-170.8,3.55271e-15}},
                             color={0,0,0},pattern=LinePattern.Solid));
-  connect(window2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[2])
+  connect(window2.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[2])
     annotation (Line(points={{2,28},{2,32},{-82,32},{-82,3.55271e-15},{-170.8,3.55271e-15}},
                             color={0,0,0},pattern=LinePattern.Solid));
-  connect(window3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[3])
+  connect(window3.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[3])
     annotation (Line(points={{52,10},{64,10},{64,32},{-82,32},{-82,2.66454e-15},
           {-170.8,2.66454e-15}},
                             color={0,0,0},pattern=LinePattern.Solid));
-  connect(window4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4])
+  connect(window4.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[4])
     annotation (Line(points={{-4.44089e-16,-40},{-4.44089e-16,-50},{-82,-50},{-82,
           2.66454e-15},{-170.8,2.66454e-15}},  color={0,0,0},
       pattern=LinePattern.Solid));
-  if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
-    connect(wall1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
-      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
+  if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then
+    connect(wall1.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[4
+      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)])
       annotation (Line(points={{-56,10},{-82,10},{-82,3.55271e-15},{-170.8,3.55271e-15}},
                             color={0,0,0},pattern=LinePattern.Solid));
   elseif BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
@@ -627,10 +627,10 @@ equation
   else
     connect(wall1.toSurfacePort_2,outerSurfaceWall1.toConstructionPort);
   end if;
-  if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
-    connect(wall2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
-     + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-     + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
+  if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then
+    connect(wall2.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[4
+     + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+     + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)])
       annotation (Line(points={{-20,28},{-20,32},{-82,32},{-82,3.55271e-15},{-170.8,
             3.55271e-15}},    color={0,0,0},pattern=LinePattern.Solid));
   elseif BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then
@@ -639,11 +639,11 @@ equation
   else
     connect(wall2.toSurfacePort_2,outerSurfaceWall2.toConstructionPort);
   end if;
-  if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
-    connect(wall3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
-      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-      + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
+  if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then
+    connect(wall3.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[4
+      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+      + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)])
       annotation (Line(points={{52,-10},{64,-10},{64,-50},{-82,-50},{-82,2.66454e-15},
             {-170.8,2.66454e-15}},               color={0,0,0},
         pattern=LinePattern.Solid));
@@ -653,12 +653,12 @@ equation
   else
     connect(wall3.toSurfacePort_2,outerSurfaceWall3.toConstructionPort);
   end if;
-  if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
-    connect(wall4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
-      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-      + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-      + (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
+  if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then
+    connect(wall4.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[4
+      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+      + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+      + (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)])
       annotation (Line(points={{-20,-40},{-20,-50},{-82,-50},{-82,2.66454e-15},{
             -170.8,2.66454e-15}},
                               color={0,0,0},pattern=LinePattern.Solid));
@@ -668,13 +668,13 @@ equation
   else
     connect(wall4.toSurfacePort_2,outerSurfaceWall4.toConstructionPort);
   end if;
-  if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then
-    connect(ceiling.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4
-      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-      + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-      + (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)
-      + (if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient then 1 else 0)])
+  if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then
+    connect(ceiling.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[4
+      + (if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+      + (if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+      + (if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+      + (if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)
+      + (if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience then 1 else 0)])
       annotation (Line(points={{22,28},{22,32},{-82,32},{-82,3.55271e-15},{-170.8,
         3.55271e-15}}, color={0,0,0},pattern=LinePattern.Solid));
   elseif BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant then

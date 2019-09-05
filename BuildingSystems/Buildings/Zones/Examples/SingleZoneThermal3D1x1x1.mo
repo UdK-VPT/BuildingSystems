@@ -38,7 +38,7 @@ model SingleZoneThermal3D1x1x1
     redeclare Construction constructionData,
     nNodes={2,2})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-28})));
-  BuildingSystems.Buildings.Ambient ambient(
+  BuildingSystems.Buildings.Ambience ambience(
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
     nSurfaces=nSurfaces)
     annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
@@ -103,22 +103,22 @@ equation
   connect(floor.toSurfacePort_1, zone.toConstructionPorts[4]) annotation (Line(
         points={{4.44089e-016,-26},{4.44089e-016,-20},{0,-20},{0,-16},{-4,-16},{
           -4,-11}}, color={0,0,0}));
-  connect(ambient.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
         points={{-44,4},{-40,4},{-40,-4},{-34.6,-4}}, color={0,255,0}));
-  connect(ambient.toSurfacePorts[2], surface.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[2], surface.toSurfacesPort) annotation (Line(
         points={{-44,4},{-40,4},{-40,38},{-4,38},{-4,34.6}},   color={0,255,0}));
-  connect(ambient.toSurfacePorts[3], surface9.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[3], surface9.toSurfacesPort) annotation (Line(
         points={{-44,4},{-40,4},{-40,38},{38,38},{38,4},{34.6,4}},   color={0,255,
           0}));
-  connect(ambient.toSurfacePorts[4], surface4.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[4], surface4.toSurfacesPort) annotation (Line(
         points={{-44,4},{-40,4},{-40,-40},{4,-40},{4,-34.6}},     color={0,255,0}));
-  connect(ambient.toAirPorts[1], surface1.toAirPort) annotation (Line(points={{-44,-4},
+  connect(ambience.toAirPorts[1], surface1.toAirPort) annotation (Line(points={{-44,-4},
           {-34.6,-4},{-34.6,4}},     color={85,170,255}));
-  connect(ambient.toAirPorts[2], surface.toAirPort) annotation (Line(points={{-44,-4},
+  connect(ambience.toAirPorts[2], surface.toAirPort) annotation (Line(points={{-44,-4},
           {-38,-4},{-38,36},{4,36},{4,34.6}},         color={85,170,255}));
-  connect(ambient.toAirPorts[3], surface9.toAirPort) annotation (Line(points={{-44,-4},
+  connect(ambience.toAirPorts[3], surface9.toAirPort) annotation (Line(points={{-44,-4},
           {-38,-4},{-38,36},{36,36},{36,-4},{34.6,-4}},     color={85,170,255}));
-  connect(ambient.toAirPorts[4], surface4.toAirPort) annotation (Line(points={{-44,-4},
+  connect(ambience.toAirPorts[4], surface4.toAirPort) annotation (Line(points={{-44,-4},
           {-38,-4},{-38,-38},{-4,-38},{-4,-34.6}},           color={85,170,255}));
 
   connect(wall3.toSurfacePort_1, zone.toConstructionPorts[6]) annotation (Line(
@@ -129,14 +129,14 @@ equation
         points={{-25.4,-20},{-23.7,-20},{-22,-20}}, color={0,0,0}));
   connect(wall4.toSurfacePort_2, surface3.toConstructionPort)
     annotation (Line(points={{22,20},{25.4,20}},           color={0,0,0}));
-  connect(ambient.toSurfacePorts[6], surface3.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[6], surface3.toSurfacesPort) annotation (Line(
         points={{-44,4},{-40,4},{-40,38},{38,38},{38,24},{26.6,24}}, color={0,255,
           0}));
-  connect(ambient.toSurfacePorts[5], surface2.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[5], surface2.toSurfacesPort) annotation (Line(
         points={{-44,4},{-40,4},{-40,-20},{-40,-24},{-26.6,-24}}, color={0,255,0}));
-  connect(ambient.toAirPorts[6], surface3.toAirPort) annotation (Line(points={{-44,
+  connect(ambience.toAirPorts[6], surface3.toAirPort) annotation (Line(points={{-44,
           -4},{-38,-4},{-38,36},{36,36},{36,16},{26.6,16}}, color={85,170,255}));
-  connect(ambient.toAirPorts[5], surface2.toAirPort) annotation (Line(points={{-44,
+  connect(ambience.toAirPorts[5], surface2.toAirPort) annotation (Line(points={{-44,
           -4},{-38,-4},{-38,-16},{-26.6,-16}}, color={85,170,255}));
 
   annotation(experiment(StartTime=0, StopTime=31536000),

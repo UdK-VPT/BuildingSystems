@@ -41,12 +41,12 @@ import pylab as P
 fig = P.figure(1)
 P.clf()
 # Temperatures
-y1 = res['ambient.TAirRef']
+y1 = res['ambience.TAirRef']
 y2 = res['zone.TAir']
 t = res['time']
 P.subplot(3,1,1)
 P.plot(t, y1, t, y2)
-P.legend(['ambient.TAirRef','zone.TAir'])
+P.legend(['ambience.TAirRef','zone.TAir'])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 # Mass flow rates

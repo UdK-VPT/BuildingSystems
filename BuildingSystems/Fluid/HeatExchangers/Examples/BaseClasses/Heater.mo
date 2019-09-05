@@ -120,7 +120,7 @@ BuildingSystems.Fluid.HeatExchangers.Examples.WaterHeater_T</a>
 and
 <a href=\"modelica://BuildingSystems.Fluid.HeatExchangers.Examples.WaterHeater_u\">
 BuildingSystems.Fluid.HeatExchangers.Examples.WaterHeater_u</a>.
-It consists of a volume with heat loss to the ambient,
+It consists of a volume with heat loss to the ambience,
 a fan,
 a set point for the temperature of the volume and a PI controller.
 </p>

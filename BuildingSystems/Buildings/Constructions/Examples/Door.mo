@@ -23,7 +23,7 @@ model Door
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
     annotation (Placement(transformation(extent={{-6,-10},{-26,10}})));
-  BuildingSystems.Buildings.Ambient ambient(
+  BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=1,
     nAirpaths=2,
     heightAirpath={0.5,1.5},
@@ -57,19 +57,19 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
       points={{-32,4},{-16.6,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.toAirPorts[1], surface1.toAirPort) annotation (Line(
+  connect(ambience.toAirPorts[1], surface1.toAirPort) annotation (Line(
       points={{-32,-4},{-16.6,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.toAirpathPorts[1], door.port_a1) annotation (Line(points={{-35,9},
+  connect(ambience.toAirpathPorts[1], door.port_a1) annotation (Line(points={{-35,9},
           {-35,12},{-10,12},{-10,6}},    color={0,127,255}));
-  connect(ambient.toAirpathPorts[2], door.port_b2) annotation (Line(points={{-39,9},
+  connect(ambience.toAirpathPorts[2], door.port_b2) annotation (Line(points={{-39,9},
           {-39,12},{-52,12},{-52,-12},{-10,-12},{-10,-6}},    color={0,127,255}));
   connect(control.y, door.y)
     annotation (Line(points={{-1.7,-17},{0,-17},{0,-9}}, color={0,0,127}));

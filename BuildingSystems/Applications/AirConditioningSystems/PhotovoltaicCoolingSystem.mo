@@ -168,17 +168,17 @@ model PhotovoltaicCoolingSystem
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow4,
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionWindow1,
     redeclare BuildingSystems.Buildings.Data.Constructions.Thermal.RoofRowhouse1918 constructionCeiling,
-    BCWall1=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
-    BCWall2=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
-    BCWall3=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
-    BCWall4=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
-    BCCeiling=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient)
+    BCWall1=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience,
+    BCWall2=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience,
+    BCWall3=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience,
+    BCWall4=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience,
+    BCCeiling=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience)
     "Building model"
     annotation (Placement(transformation(extent={{88,30},{108,50}})));
-  BuildingSystems.Buildings.Ambient ambient(
-    nSurfaces=building.nSurfacesAmbient,
+  BuildingSystems.Buildings.Ambience ambience(
+    nSurfaces=building.nSurfacesAmbience,
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Brazil_Manaus_Meteonorm_ASCII)
-    "Ambient model"
+    "Ambience model"
     annotation (Placement(transformation(extent={{64,30},{84,50}})));
   Modelica.Blocks.Sources.Constant airchange(
     k=0.5)
@@ -271,23 +271,23 @@ equation
     annotation (Line(points={{96,0},{98,0},{100,0}}, color={0,127,255}));
   connect(pip4.port_b, senTemColSurIn.port_a) annotation (Line(points={{120,-38},
           {140,-38},{140,0},{136,0}}, color={0,127,255}));
-  connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts)
+  connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts)
     annotation (Line(points={{82,44},{89,44}}, color={0,255,0}));
-  connect(ambient.toAirPorts, building.toAmbientAirPorts)
+  connect(ambience.toAirPorts, building.toAmbienceAirPorts)
     annotation (Line(points={{82,36},{89,36}}, color={85,170,255}));
   connect(building.airchange[1], airchange.y)
     annotation (Line(points={{107.8,44},{113.8,44}}, color={0,0,127}));
-  connect(ambient.TAirRef, building.TAirAmb) annotation (Line(points={{65.8,47},
+  connect(ambience.TAirRef, building.TAirAmb) annotation (Line(points={{65.8,47},
           {62,47},{62,56},{104.2,56},{104.2,49.8}}, color={0,0,127}));
-  connect(ambient.xAir, building.xAirAmb) annotation (Line(points={{65.8,45},{60,
+  connect(ambience.xAir, building.xAirAmb) annotation (Line(points={{65.8,45},{60,
           45},{60,60},{106.4,60},{106.4,49.8}}, color={0,0,127}));
-  connect(ambient.IrrDirHor, radiation.IrrDirHor) annotation (Line(points={{65.8,
+  connect(ambience.IrrDirHor, radiation.IrrDirHor) annotation (Line(points={{65.8,
           43},{-74,43},{-74,28},{-69.6,28}}, color={0,0,127}));
-  connect(radiation.IrrDifHor, ambient.IrrDifHor) annotation (Line(points={{-69.6,
+  connect(radiation.IrrDifHor, ambience.IrrDifHor) annotation (Line(points={{-69.6,
           24},{-76,24},{-76,42},{65.8,42},{65.8,41}}, color={0,0,127}));
-  connect(ambient.TAirRef, pvField.TAmb)
+  connect(ambience.TAirRef, pvField.TAmb)
     annotation (Line(points={{65.8,47},{-42,47},{-42,0}}, color={0,0,127}));
-  connect(ambient.TAirRef, m_flow_con.T_in) annotation (Line(points={{65.8,47},{
+  connect(ambience.TAirRef, m_flow_con.T_in) annotation (Line(points={{65.8,47},{
           58,47},{58,7.6},{52.8,7.6}}, color={0,0,127}));
   connect(building.TAir[1], control_temp_buildin.u) annotation (Line(points={{117,33},
           {142,33},{142,16},{104.8,16}},     color={0,0,127}));
@@ -325,11 +325,11 @@ equation
     annotation (Line(points={{108,0},{110,0},{112,0}}, color={0,127,255}));
   connect(coolingSurface.port_a, senTemColSurIn.port_b)
     annotation (Line(points={{124,0},{126,0},{128,0}}, color={0,127,255}));
-  connect(ambient.latitudeDeg, radiation.latitudeDeg) annotation (Line(points={{
+  connect(ambience.latitudeDeg, radiation.latitudeDeg) annotation (Line(points={{
           67,49},{67,64},{-65.8,64},{-65.8,29.6}}, color={0,0,127}));
-  connect(ambient.longitudeDeg, radiation.longitudeDeg) annotation (Line(points
+  connect(ambience.longitudeDeg, radiation.longitudeDeg) annotation (Line(points
         ={{69,49},{69,64},{-62,64},{-62,29.6}}, color={0,0,127}));
-  connect(ambient.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
+  connect(ambience.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
         points={{71,49},{71,64},{-58,64},{-58,29.6}}, color={0,0,127}));
 
   annotation(experiment(StartTime=0, StopTime=31536000),

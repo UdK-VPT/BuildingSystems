@@ -2,7 +2,7 @@ simulateModel("BuildingSystems.Applications.DistrictSimulation.HCBC", startTime=
 createPlot(
   id = 1,
   position = {0, 0, 700, 500},
-  y = {"ambient.TAirRef"},
+  y = {"ambience.TAirRef"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,

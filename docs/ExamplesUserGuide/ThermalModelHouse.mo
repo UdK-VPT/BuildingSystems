@@ -4,7 +4,7 @@ package ThermalModelHouse
   extends Modelica.Icons.ExamplesPackage;
   model Building
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
-        surfacesToAmbient(nSurfaces=12), nZones=2);
+        surfacesToAmbience(nSurfaces=12), nZones=2);
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone1(
       nConstructions=7,
       V=0.5*0.5*0.5,
@@ -135,32 +135,32 @@ package ThermalModelHouse
        Line(points={{-46.6667,-11},{-46.6667,-16},{-40,-16},{-40,-26},{-40,-38}},color={127,0,0}));
     connect(bottom2.toSurfacePort_1, zone2.toConstructionPorts[7]) annotation (
        Line(points={{40,-38},{38,-38},{38,-11},{33.3333,-11}}, color={0,0,0}));
-    connect(wall1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[1])
+    connect(wall1.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[1])
       annotation (Line(points={{-62,0},{-89.9,0}},           color={0,0,0}));
-    connect(wall2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[2])
+    connect(wall2.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[2])
       annotation (Line(points={{-52,22},{-52,30},{-76,30},{-76,3.55271e-015},{
             -89.9,3.55271e-015}}, color={0,0,0}));
-    connect(wall6.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[3])
+    connect(wall6.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[3])
       annotation (Line(points={{-52,-22},{-52,-22},{-52,-32},{-76,-32},{-76,0},
             {-82,0},{-82,3.55271e-015},{-89.9,3.55271e-015}},         color={0,0,0}));
-    connect(ceiling1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[4])
+    connect(ceiling1.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[4])
       annotation (Line(points={{-40,42},{-40,52},{-76,52},{-76,3.55271e-015},{-89.9,3.55271e-015}}, color={0,0,0}));
-    connect(bottom1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[5])
+    connect(bottom1.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[5])
       annotation (Line(points={{-40,-42},{-40,-50},{-76,-50},{-76,0},{-89.9,0},{-89.9,3.55271e-015}}, color={0,0,0}));
-    connect(window1.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[6])
+    connect(window1.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[6])
       annotation (Line(points={{-28,-22},{-28,-22},{-28,-50},{-76,-50},{-76,0},{-89.9,0},{-89.9,3.55271e-015}},         color={0,0,0}));
-    connect(ceiling2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[7])
+    connect(ceiling2.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[7])
       annotation (Line(points={{40,42},{46,42},{46,50},{46,52},{-76,52},{-76,3.55271e-015},{-89.9,3.55271e-015}}, color={0,0,0}));
-    connect(surfacesToAmbient.toConstructionPorts[8], wall5.toSurfacePort_2)
+    connect(surfacesToAmbience.toConstructionPorts[8], wall5.toSurfacePort_2)
       annotation (Line(points={{-89.9,3.55271e-015},{-76,3.55271e-015},{-76,-50},
             {28,-50},{28,-46},{28,-36},{28,-22}},          color={127,0,0}));
-    connect(wall3.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[9])
+    connect(wall3.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[9])
       annotation (Line(points={{52,22},{52,22},{52,48},{52,52},{-76,52},{-76,3.55271e-015},{-89.9,3.55271e-015}}, color={0,0,0}));
-    connect(wall4.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[10])
+    connect(wall4.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[10])
       annotation (Line(points={{62,0},{66,0},{66,52},{-76,52},{-76,0},{-89.9,0}},color={0,0,0}));
-    connect(bottom2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[11])
+    connect(bottom2.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[11])
       annotation (Line(points={{40,-42},{40,-42},{40,-50},{-76,-50},{-76,3.55271e-015},{-89.9,3.55271e-015}}, color={0,0,0}));
-    connect(window2.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[12])
+    connect(window2.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[12])
       annotation (Line(points={{52,-22},{52,-22},{52,-50},{46,-50},{-76,-50},{-76,-6},{-76,3.55271e-015},{-89.9,3.55271e-015}},           color={0,0,0}));
     connect(zone1.airchange, airchange[1]) annotation (Line(
         points={{-29,7},{-16,7},{-16,30},{80,30},{80,40},{100,40}},
@@ -249,9 +249,9 @@ package ThermalModelHouse
       calcIdealLoads=true,
       useAirPaths=false)
       annotation (Placement(transformation(extent={{10,-10},{30,10}})));
-    BuildingSystems.Buildings.Ambient ambient(
+    BuildingSystems.Buildings.Ambience ambience(
       redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_NetCDF,
-      nSurfaces=building.nSurfacesAmbient)
+      nSurfaces=building.nSurfacesAmbience)
       annotation (Placement(transformation(extent={{-32,-10},{-12,10}})));
     Modelica.Blocks.Sources.Constant TSetHeatingZone1(k=273.15 + 22.0)
       annotation (Placement(transformation(extent={{56,2},{44,14}})));
@@ -266,13 +266,13 @@ package ThermalModelHouse
     Modelica.Blocks.Sources.Constant airchangeZone2(k=0.5)
       annotation (Placement(transformation(extent={{72,-32},{60,-20}})));
   equation
-    connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts)
+    connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts)
       annotation (Line(points={{-14,4},{11,4}}, color={0,255,0}));
-    connect(ambient.toAirPorts, building.toAmbientAirPorts)
+    connect(ambience.toAirPorts, building.toAmbienceAirPorts)
       annotation (Line(points={{-14,-4},{11,-4}}, color={85,170,255}));
-    connect(ambient.TAirRef, building.TAirAmb) annotation (Line(points={{-30.2,
+    connect(ambience.TAirRef, building.TAirAmb) annotation (Line(points={{-30.2,
             7},{-32,7},{-32,14},{26.2,14},{26.2,9.8}}, color={0,0,127}));
-    connect(ambient.xAir, building.xAirAmb) annotation (Line(points={{-30.2,5},
+    connect(ambience.xAir, building.xAirAmb) annotation (Line(points={{-30.2,5},
             {-34,5},{-34,16},{28.4,16},{28.4,9.8}}, color={0,0,127}));
     connect(TSetHeatingZone1.y, building.T_setHeating[1]) annotation (Line(
           points={{43.4,8},{29.8,8},{29.8,8.5}}, color={0,0,127}));

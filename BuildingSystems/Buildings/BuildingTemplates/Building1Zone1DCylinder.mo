@@ -9,7 +9,7 @@ model Building1Zone1DCylinder
     final nAirpaths = 0,
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
     final alphaConstant = 0.0,
-    surfacesToAmbient(nSurfaces=nSeg+1),
+    surfacesToAmbience(nSurfaces=nSeg+1),
     nSurfacesSolid=1,
     surfacesToSolids(nSurfaces=nSurfacesSolid));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWall
@@ -151,13 +151,13 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid));
   for i in 1:nSeg loop
-    connect(wall[i].toSurfacePort_2, surfacesToAmbient.toConstructionPorts[i])
+    connect(wall[i].toSurfacePort_2, surfacesToAmbience.toConstructionPorts[i])
       annotation (Line(
         points={{-62,2.22045e-16},{-82,2.22045e-16},{-82,3.55271e-15},{-170.8,3.55271e-15}},
         color={0,0,0},
         pattern=LinePattern.Solid));
   end for;
-  connect(ceiling.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[nSeg+1])
+  connect(ceiling.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[nSeg+1])
     annotation (Line(
       points={{0,28},{0,46},{-82,46},{-82,2.66454e-15},{-170.8,2.66454e-15}},
       color={0,0,0},

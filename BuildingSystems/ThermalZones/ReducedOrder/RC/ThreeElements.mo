@@ -27,7 +27,7 @@ model ThreeElements "Thermal Zone with three elements for exterior walls,
     annotation(Dialog(group="Floor plate"),choices(checkBox = true));
 
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a floor if  AFloor > 0
-    "Ambient port for floor plate"
+    "Ambience port for floor plate"
     annotation (Placement(transformation(extent={{-10,-190},{10,-170}}),
     iconTransformation(extent={{-10,-190},{10,-170}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a floorIndoorSurface if

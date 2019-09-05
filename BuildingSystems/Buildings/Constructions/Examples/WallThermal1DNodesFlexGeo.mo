@@ -21,7 +21,7 @@ model WallThermal1DNodesFlexGeo
     annotation (Placement(transformation(extent={{2,-10},{22,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
     annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
-  BuildingSystems.Buildings.Ambient ambient(
+  BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=2,
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
@@ -57,22 +57,22 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
       points={{-32,2},{-22,2},{-22,4},{-12.6,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.toAirPorts[1], surface1.toAirPort) annotation (Line(
+  connect(ambience.toAirPorts[1], surface1.toAirPort) annotation (Line(
       points={{-32,-6},{-22,-6},{-22,-4},{-12.6,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.toSurfacePorts[2], surface2.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[2], surface2.toSurfacesPort) annotation (Line(
       points={{-32,6},{-24,6},{-24,16},{24,16},{24,4},{12.6,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.toAirPorts[2], surface2.toAirPort) annotation (Line(
+  connect(ambience.toAirPorts[2], surface2.toAirPort) annotation (Line(
       points={{-32,-2},{-28,-2},{-28,-6},{-24,-6},{-24,-14},{24,-14},{24,-4},{12.6,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,

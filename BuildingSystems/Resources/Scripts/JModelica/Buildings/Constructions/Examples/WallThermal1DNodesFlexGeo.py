@@ -42,7 +42,7 @@ fig = P.figure(1)
 P.clf()
 # wall
 # temperatures
-y1 = res['ambient.TAirRef']
+y1 = res['ambience.TAirRef']
 y2 = res['wall.construction.layer[1].T[1]']
 y3 = res['wall.construction.layer[1].T[2]']
 y4 = res['wall.construction.layer[2].T[1]']
@@ -50,7 +50,7 @@ y5 = res['wall.construction.layer[2].T[2]']
 t = res['time']
 P.subplot(3,1,1)
 P.plot(t, y1, t, y2, t, y3, t, y4, t, y5)
-P.legend(['ambient.TAirRef','wall.construction.layer[1].T[1]','wall.construction.layer[1].T[2]','wall.construction.layer[2].T[1]','wall.construction.layer[2].T[2]'])
+P.legend(['ambience.TAirRef','wall.construction.layer[1].T[1]','wall.construction.layer[1].T[2]','wall.construction.layer[2].T[1]','wall.construction.layer[2].T[2]'])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 # wall

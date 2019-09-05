@@ -3,7 +3,7 @@ removePlots();
 createPlot(
   id = 1,
   position = {0, 0, 600, 500},
-  y = {"ambient.TAirRef","wall.construction.layer[1].T[1]","wall.construction.layer[2].T[1]","wall.construction.layer[3].T[1]"},
+  y = {"ambience.TAirRef","wall.construction.layer[1].T[1]","wall.construction.layer[2].T[1]","wall.construction.layer[3].T[1]"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,

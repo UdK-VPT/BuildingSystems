@@ -15,12 +15,12 @@ model Station_dp
   parameter Modelica.SIunits.TemperatureDifference Tdrop = 25
     "Desired Temperature drop in building's installation";
 
-  BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhAmbient(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhAmbience(
     Max_value=Tsupply_max,
     Min_value=Tsupply_min,
     factor=factor_Tsupply)
     annotation (Placement(transformation(extent={{-58,64},{-78,84}})));
-  Modelica.Blocks.Sources.Constant constAmbient(k=273.15)
+  Modelica.Blocks.Sources.Constant constAmbience(k=273.15)
     annotation (Placement(transformation(extent={{-34,62},{-48,76}})));
   BuildingSystems.Fluid.Actuators.Valves.TwoWayLinear pumpDHN(
     redeclare package Medium = Medium,
@@ -103,11 +103,11 @@ model Station_dp
   parameter Boolean from_dp=true
     "= true, use m_flow = f(dp) else dp = f(m_flow)" annotation(Evaluate=true, Dialog(tab="Advanced"));
 equation
-  connect(tanhAmbient.u, ambientTAirRef) annotation (Line(
+  connect(tanhAmbience.u, ambienceTAirRef) annotation (Line(
       points={{-58,77},{-50,77},{-50,100}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(tanhAmbient.SetValue, constAmbient.y) annotation (Line(
+  connect(tanhAmbience.SetValue, constAmbience.y) annotation (Line(
       points={{-58,69},{-48.7,69}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -119,7 +119,7 @@ equation
       points={{-72,0},{-72,-20},{-98,-20},{-98,-96},{-40,-96}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(conPID.u_s, tanhAmbient.y) annotation (Line(
+  connect(conPID.u_s, tanhAmbience.y) annotation (Line(
       points={{-84,46},{-84,73.8},{-78,73.8}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -181,7 +181,7 @@ equation
   annotation(Dialog(group = "Nominal condition"),
     Documentation(info="<html>
     <p>
-    The station model uses the ambient air temperature to determine the set point for the supply temperature in the building (secondary loop). The exact temperature depends on the parameters <code>Tsupply_max</code>, <code>Tsupply_min</code>,<code>factor_Tsupply</code> of the <code>tanhAmbient</code> block.
+    The station model uses the ambient air temperature to determine the set point for the supply temperature in the building (secondary loop). The exact temperature depends on the parameters <code>Tsupply_max</code>, <code>Tsupply_min</code>,<code>factor_Tsupply</code> of the <code>tanhAmbience</code> block.
     </p>
 
     <p>

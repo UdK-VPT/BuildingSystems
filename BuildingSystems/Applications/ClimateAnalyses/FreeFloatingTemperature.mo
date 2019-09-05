@@ -4,8 +4,8 @@ model FreeFloatingTemperature
   extends Modelica.Icons.Example;
 
   model Location
-    BuildingSystems.Buildings.Ambient ambient(
-      nSurfaces=building.nSurfacesAmbient,
+    BuildingSystems.Buildings.Ambience ambience(
+      nSurfaces=building.nSurfacesAmbience,
       nAirpaths=building.nAirpaths)
       annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
     BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building(
@@ -29,25 +29,25 @@ model FreeFloatingTemperature
       k=0.5)
       annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={24,-14})));
   equation
-    connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts)
+    connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts)
       annotation (Line(
         points={{-22,-14},{-9,-14}},
         color={0,255,0},
         smooth=Smooth.None));
-    connect(ambient.toAirPorts, building.toAmbientAirPorts) annotation (Line(
+    connect(ambience.toAirPorts, building.toAmbienceAirPorts) annotation (Line(
         points={{-22,-22},{-9,-22}},
         color={85,170,255},
         smooth=Smooth.None));
-    connect(ambient.toAirpathPorts, building.toAmbientAirpathPorts) annotation (
+    connect(ambience.toAirpathPorts, building.toAmbienceAirpathPorts) annotation (
        Line(
         points={{-30,-10},{-30,0},{14,0},{14,-20},{11,-20}},
         color={0,0,255},
         smooth=Smooth.None));
-    connect(ambient.TAirRef, building.TAirAmb) annotation (Line(
+    connect(ambience.TAirRef, building.TAirAmb) annotation (Line(
         points={{-38.2,-11},{-40,-11},{-40,-6},{6.2,-6},{6.2,-8.2}},
         color={0,0,127},
         smooth=Smooth.None));
-    connect(ambient.xAir, building.xAirAmb) annotation (Line(
+    connect(ambience.xAir, building.xAirAmb) annotation (Line(
         points={{-38.2,-13},{-42,-13},{-42,-4},{8.4,-4},{8.4,-8.2}},
         color={0,0,127},
         smooth=Smooth.None));
@@ -62,28 +62,28 @@ model FreeFloatingTemperature
   end Location;
 
   Location AmundsenScott(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.SouthPole_AmundsenScott_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.SouthPole_AmundsenScott_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{-5,-84},{5,-74}})));
   Location SanFrancisco(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{-91,44},{-81,54}})));
   Location ElGouna(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{19,30},{29,40}})));
   Location Berlin(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{3,52},{13,62}})));
   Location NewYork(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_NewYork_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_NewYork_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{-61,38},{-51,48}})));
   Location Tokyo(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Japan_Tokyo_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Japan_Tokyo_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{95,42},{105,52}})));
   Location Moscow(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Russia_Moscow_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Russia_Moscow_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{15,56},{25,66}})));
   Location Bombay(
-    ambient(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.India_Bombay_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.India_Bombay_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{53,20},{63,30}})));
 
     annotation(experiment(StartTime=0, StopTime=31536000),

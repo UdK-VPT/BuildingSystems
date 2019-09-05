@@ -57,7 +57,7 @@ model Building1Zone0DDistrict
     "Opaque facade area of the building";
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValFac = 1.0
     "Mean heat loss coefficient of the opaque building facade"
-    annotation (Evaluate=false, Dialog(tab="Constructions", group="Ambient constructions"));
+    annotation (Evaluate=false, Dialog(tab="Constructions", group="Ambience constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValRoo = 1.0
     "Mean heat loss coefficient of the building roof"
     annotation (Evaluate=false, Dialog(tab="Constructions", group="Roof constructions"));

@@ -28,9 +28,9 @@ model SimpleBuilding
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow4,
     nZones=1)
     annotation (Placement(transformation(extent={{12,-10},{32,10}})));
-  BuildingSystems.Buildings.Ambient ambient(
+  BuildingSystems.Buildings.Ambience ambience(
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_NetCDF,
-    nSurfaces=building.nSurfacesAmbient)
+    nSurfaces=building.nSurfacesAmbience)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(
     k=273.15 + 20.0)
@@ -42,13 +42,13 @@ model SimpleBuilding
     k=0.5)
     annotation (Placement(transformation(extent={{56,-2},{44,10}})));
 equation
-  connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts)
+  connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts)
     annotation (Line(points={{-12,4},{13,4}}, color={0,255,0}));
-  connect(ambient.toAirPorts, building.toAmbientAirPorts)
+  connect(ambience.toAirPorts, building.toAmbienceAirPorts)
     annotation (Line(points={{-12,-4},{13,-4}}, color={85,170,255}));
-  connect(ambient.TAirRef, building.TAirAmb) annotation (Line(points={{-28.2,7},
+  connect(ambience.TAirRef, building.TAirAmb) annotation (Line(points={{-28.2,7},
           {-32,7},{-32,14},{28.2,14},{28.2,9.8}}, color={0,0,127}));
-  connect(ambient.xAir, building.xAirAmb) annotation (Line(points={{-28.2,5},{
+  connect(ambience.xAir, building.xAirAmb) annotation (Line(points={{-28.2,5},{
           -34,5},{-34,16},{30.4,16},{30.4,9.8}}, color={0,0,127}));
   connect(building.T_setHeating[1], TSetHeating.y) annotation (Line(points={{
           31.8,8},{36,8},{36,26},{40,26},{40,26},{43.4,26}}, color={0,0,127}));

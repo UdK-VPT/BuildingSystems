@@ -43,14 +43,14 @@ fig = P.figure(1)
 P.clf()
 # locations
 # outside temperatures
-y1 = res['Berlin.ambient.TAirRef']
-y2 = res['AmundsenScott.ambient.TAirRef']
-y3 = res['ElGouna.ambient.TAirRef']
-y4 = res['Bombay.ambient.TAirRef']
+y1 = res['Berlin.ambience.TAirRef']
+y2 = res['AmundsenScott.ambience.TAirRef']
+y3 = res['ElGouna.ambience.TAirRef']
+y4 = res['Bombay.ambience.TAirRef']
 t = res['time']
 P.subplot(2,1,1)
 P.plot(t, y1, t, y2, t, y3, t, y4)
-P.legend(['Berlin.ambient.TAirRef','AmundsenScott.ambient.TAirRef','ElGouna.ambient.TAirRef','Bombay.ambient.TAirRef'])
+P.legend(['Berlin.ambience.TAirRef','AmundsenScott.ambience.TAirRef','ElGouna.ambience.TAirRef','Bombay.ambience.TAirRef'])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 # buildings

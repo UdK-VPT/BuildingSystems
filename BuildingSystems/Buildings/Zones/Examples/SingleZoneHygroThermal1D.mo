@@ -59,7 +59,7 @@ model SingleZoneHygroThermal1D
     angleDegTil=90.0,
     redeclare Data.Constructions.Transparent.DoubleGlazing constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,18})));
-  BuildingSystems.Buildings.Ambient ambient(
+  BuildingSystems.Buildings.Ambience ambience(
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_NetCDF,
     nSurfaces=nSurfaces)
     annotation (Placement(transformation(extent={{-58,-10},{-38,10}})));
@@ -112,36 +112,36 @@ model SingleZoneHygroThermal1D
     annotation (Placement(transformation(extent={{1,-1},{-1,1}},rotation=180,origin={-15,-3})))
     ;
 equation
-  connect(ambient.toAirPorts[1], surface5.toAirPort)
+  connect(ambience.toAirPorts[1], surface5.toAirPort)
     annotation (Line(
       points={{-40,-4},{-40,4},{-36.6,4}},
       color={85,170,255},
       smooth=Smooth.None));
-  connect(surface.toAirPort, ambient.toAirPorts[2])
+  connect(surface.toAirPort, ambience.toAirPorts[2])
     annotation (Line(
       points={{-14,24.6},{-14,30},{-40,30},{-40,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface1.toAirPort, ambient.toAirPorts[3])
+  connect(surface1.toAirPort, ambience.toAirPorts[3])
     annotation (Line(
       points={{4,24.6},{4,30},{-40,30},{-40,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface4.toAirPort, ambient.toAirPorts[4])
+  connect(surface4.toAirPort, ambience.toAirPorts[4])
     annotation (Line(
       points={{-22,-26.6},{-22,-32},{-40,-32},{-40,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface3.toAirPort, ambient.toAirPorts[5])
+  connect(surface3.toAirPort, ambience.toAirPorts[5])
     annotation (Line(
       points={{-4,-26.6},{-4,-32},{-40,-32},{-40,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface2.toAirPort, ambient.toAirPorts[6])
+  connect(surface2.toAirPort, ambience.toAirPorts[6])
     annotation (Line(
       points={{40.6,-4},{42,-4},{42,-32},{-40,-32},{-40,-4}},
       color={0,0,0},
@@ -165,37 +165,37 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface.toSurfacesPort, ambient.toSurfacePorts[1])
+  connect(surface.toSurfacesPort, ambience.toSurfacePorts[1])
     annotation (Line(
       points={{-22,24.6},{-22,30},{-40,30},{-40,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface1.toSurfacesPort, ambient.toSurfacePorts[2])
+  connect(surface1.toSurfacesPort, ambience.toSurfacePorts[2])
     annotation (Line(
       points={{-4,24.6},{-4,30},{-40,30},{-40,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface2.toSurfacesPort, ambient.toSurfacePorts[3])
+  connect(surface2.toSurfacesPort, ambience.toSurfacePorts[3])
     annotation (Line(
       points={{40.6,4},{42,4},{42,30},{-40,30},{-40,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface5.toSurfacesPort, ambient.toSurfacePorts[4])
+  connect(surface5.toSurfacesPort, ambience.toSurfacePorts[4])
     annotation (Line(
       points={{-36.6,-4},{-40,-4},{-40,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface4.toSurfacesPort, ambient.toSurfacePorts[5])
+  connect(surface4.toSurfacesPort, ambience.toSurfacePorts[5])
     annotation (Line(
       points={{-14,-26.6},{-14,-32},{-40,-32},{-40,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface3.toSurfacesPort, ambient.toSurfacePorts[6])
+  connect(surface3.toSurfacesPort, ambience.toSurfacePorts[6])
     annotation (Line(
       points={{4,-26.6},{4,-32},{-40,-32},{-40,4}},
       color={0,0,0},
@@ -215,12 +215,12 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface6.toAirPort, ambient.toAirPorts[7]) annotation (Line(
+  connect(surface6.toAirPort, ambience.toAirPorts[7]) annotation (Line(
       points={{24,24.6},{24,30},{-40,30},{-40,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface6.toSurfacesPort, ambient.toSurfacePorts[7]) annotation (Line(
+  connect(surface6.toSurfacesPort, ambience.toSurfacePorts[7]) annotation (Line(
       points={{16,24.6},{16,30},{-40,30},{-40,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
@@ -245,21 +245,21 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface7.toAirPort, ambient.toAirPorts[8]) annotation (Line(
+  connect(surface7.toAirPort, ambience.toAirPorts[8]) annotation (Line(
       points={{16,-26.6},{16,-32},{-40,-32},{-40,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(surface7.toSurfacesPort, ambient.toSurfacePorts[8]) annotation (Line(
+  connect(surface7.toSurfacesPort, ambience.toSurfacePorts[8]) annotation (Line(
       points={{24,-26.6},{24,-32},{-40,-32},{-40,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.TAirRef, zone.TAirAmb) annotation (Line(
+  connect(ambience.TAirRef, zone.TAirAmb) annotation (Line(
       points={{-57,7},{-60,7},{-60,-30},{-26,-30},{-26,-5},{-11,-5}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ambient.xAir, zone.xAirAmb) annotation (Line(
+  connect(ambience.xAir, zone.xAirAmb) annotation (Line(
       points={{-57,5},{-60,5},{-60,-28},{-26,-28},{-26,-7},{-11,-7}},
       color={0,0,127},
       smooth=Smooth.None));

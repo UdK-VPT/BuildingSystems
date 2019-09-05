@@ -108,11 +108,11 @@ model ZoneTemplateAirvolumeMixed
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow phfCooling if calcIdealLoads
     annotation (Placement(transformation(extent={{-50,24},{-42,32}})));
   input BuildingSystems.Interfaces.Temp_KInput TAirAmb if prescribedAirchange
-    "Air temperature of the building ambient"
+    "Air temperature of the building ambience"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={106,0}),
       iconTransformation(extent={{-10,-10},{10,10}},origin={-110,-50})));
   input BuildingSystems.Interfaces.Moisture_absInput xAirAmb if prescribedAirchange
-    "Absolute moisture of the building ambient"
+    "Absolute moisture of the building ambience"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={106,-16}),
       iconTransformation(extent={{-10,-10},{10,10}},origin={-110,-70})));
   input BuildingSystems.Interfaces.AirchangeRateInput airchange if prescribedAirchange

@@ -10,7 +10,7 @@ model Building1Zone0D
     final convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const,
     final alphaConstant = 15.0,
     final nSurfacesSolid=1,
-    surfacesToAmbient(nSurfaces=nWindows+1),
+    surfacesToAmbience(nSurfaces=nWindows+1),
     surfacesToSolids(nSurfaces=nSurfacesSolid));
 
   parameter Modelica.SIunits.Length height = 3.0
@@ -21,7 +21,7 @@ model Building1Zone0D
     annotation(Dialog(tab="Constructions",group="Windows"));
   parameter Modelica.SIunits.Area AAmb = 1.0
     "Surface area of the building constructions with air contact to the environment"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambient constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambience constructions"));
   parameter Modelica.SIunits.Area AInn = 1.0
     "Surface area of both sides of the internal building constructions"
     annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));
@@ -41,7 +41,7 @@ model Building1Zone0D
     "Inner (Air) volume of the building";
   parameter Modelica.SIunits.HeatCapacity CAmb = 1.0
     "Total heat capacity of the building envelope"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambient constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambience constructions"));
   parameter Modelica.SIunits.HeatCapacity CInn = 1.0
     "Total heat capacity of the internal building construction"
     annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));
@@ -50,7 +50,7 @@ model Building1Zone0D
     annotation(Evaluate=false, Dialog(tab="Constructions",group="Ground constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValAmb = 1.0
     "Mean heat loss coefficient of the building envelope"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambient constructions"));
+    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambience constructions"));
   parameter Modelica.SIunits.CoefficientOfHeatTransfer UValGro = 1.0
     "Mean heat loss coefficient of the building groundplate"
     annotation(Evaluate=false, Dialog(tab="Constructions",group="Ground constructions"));
@@ -90,7 +90,7 @@ model Building1Zone0D
       final rho = {1000.0},
       final c = {CAmb/(ambientConstructions.constructionData.material[1].rho*AAmb*ambientConstructions.constructionData.thickness[1])},
       final lambda = {(1.0/(-1.0/alphaAmb-1.0/alphaIns+1.0/UValAmb)*ambientConstructions.constructionData.thickness[1])})))
-    "Opaque constructions in contact to the ambient"
+    "Opaque constructions in contact to the ambience"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,-20})));
 
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes groundConstructions(
@@ -138,7 +138,7 @@ model Building1Zone0D
     final framePortion = framePortionWin,
     final width = {AWin[i]*2.0/height for i in 1:nWindows},
     each final height=0.5*height)
-    "Transparent constructions in contact to the ambient"
+    "Transparent constructions in contact to the ambience"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,20})));
 
   final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaIns = 7.692
@@ -161,7 +161,7 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambientConstructions.toSurfacePort_2, surfacesToAmbient.toConstructionPorts[nSurfacesAmbient])
+  connect(ambientConstructions.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[nSurfacesAmbience])
     annotation (Line(
       points={{-42,-20},{-52,-20},{-52,3.55271e-15},{-170.8,3.55271e-15}},
       color={127,0,0},
@@ -183,7 +183,7 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(window[1:nWindows].toSurfacePort_2, surfacesToAmbient.toConstructionPorts[1:nWindows])
+  connect(window[1:nWindows].toSurfacePort_2, surfacesToAmbience.toConstructionPorts[1:nWindows])
    annotation (Line(
       points={{-42,20},{-52,20},{-52,3.55271e-15},{-170.8,3.55271e-15}},
       color={127,0,0},

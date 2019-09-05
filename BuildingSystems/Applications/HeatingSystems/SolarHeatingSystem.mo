@@ -10,10 +10,10 @@ model SolarHeatingSystem
     T_max = 273.15+200.0);
 
   parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.1;
-  BuildingSystems.Buildings.Ambient ambient(
-    nSurfaces=building.nSurfacesAmbient,
+  BuildingSystems.Buildings.Ambience ambience(
+    nSurfaces=building.nSurfacesAmbience,
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
-    "Ambient model"
+    "Ambience model"
     annotation (Placement(transformation(extent={{-26,42},{-6,62}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DDistrict building(
     calcIdealLoads=false,
@@ -45,11 +45,11 @@ model SolarHeatingSystem
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow2,
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow3,
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal14 constructionWindow4,
-    BCWall1=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
-    BCWall2=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
-    BCWall3=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
-    BCWall4=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient,
-    BCCeiling=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambient)
+    BCWall1=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience,
+    BCWall2=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience,
+    BCWall3=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience,
+    BCWall4=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience,
+    BCCeiling=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience)
     "Building model"
     annotation (Placement(transformation(extent={{4,42},{24,62}})));
   Modelica.Blocks.Sources.Constant airchange(
@@ -148,7 +148,7 @@ model SolarHeatingSystem
     annotation (Placement(transformation(extent={{-20,24},{-24,28}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TAmb(
     each T=293.15)
-    "Ambient temperature"
+    "Ambience temperature"
     annotation (Placement(transformation(extent={{-72,-46},{-60,-34}})));
   BuildingSystems.Technologies.ThermalStorages.FluidStorage storage(
     HX_2=false,
@@ -223,19 +223,19 @@ model SolarHeatingSystem
     realTrue=40.0/3600.0*collector.width*collector.height)
     annotation (Placement(transformation(extent={{-4,-4},{4,4}},rotation=180,origin={84,-40})));
 equation
-   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
+   connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts) annotation (Line(
     points={{-8,56},{5,56}},
     color={0,255,0},
     smooth=Smooth.None));
-  connect(ambient.toAirPorts, building.toAmbientAirPorts) annotation (Line(
+  connect(ambience.toAirPorts, building.toAmbienceAirPorts) annotation (Line(
     points={{-8,48},{5,48}},
     color={85,170,255},
     smooth=Smooth.None));
-  connect(ambient.TAirRef, building.TAirAmb) annotation (Line(
+  connect(ambience.TAirRef, building.TAirAmb) annotation (Line(
       points={{-24.2,59},{-26,59},{-26,64},{20.2,64},{20.2,61.8}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ambient.xAir, building.xAirAmb) annotation (Line(
+  connect(ambience.xAir, building.xAirAmb) annotation (Line(
       points={{-24.2,57},{-28,57},{-28,66},{22.4,66},{22.4,61.8}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -314,10 +314,10 @@ equation
       points={{88,17.8},{86,17.8},{86,18},{101,18},{101,-5}},
       color={0,0,0},
       pattern=LinePattern.Solid));
-  connect(ambient.IrrDirHor, radiation.IrrDirHor) annotation (
+  connect(ambience.IrrDirHor, radiation.IrrDirHor) annotation (
      Line(points={{-24.2,
           55},{-32,55},{-32,72},{58,72},{58,24},{72.4,24}}, color={0,0,127}));
-  connect(ambient.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{-24.2,
+  connect(ambience.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{-24.2,
           53},{-36,53},{-36,76},{54,76},{54,20},{72.4,20}}, color={0,0,127}));
   connect(collector.angleDegAzi, radiation.angleDegAzi) annotation (
       Line(points={{95,-23},{95,-24},{86,-24},{86,6},{70,6},{70,12},{72.4,12}},
@@ -327,7 +327,7 @@ equation
         color={0,0,127}));
   connect(prescribedTemperature.port, collector.heatPortCon)
     annotation (Line(points={{98,34},{107,34},{107,-5}}, color={191,0,0}));
-  connect(ambient.TAirRef, prescribedTemperature.T) annotation (Line(points={{-24.2,
+  connect(ambience.TAirRef, prescribedTemperature.T) annotation (Line(points={{-24.2,
           59},{-40,59},{-40,80},{62,80},{62,34},{89.2,34}}, color={0,0,127}));
   connect(pip5.heatPort, TAmb.port) annotation (Line(points={{104,-65},{104,-78},
           {-50,-78},{-50,-40},{-60,-40}}, color={191,0,0}));
@@ -351,11 +351,11 @@ equation
       smooth=Smooth.None));
   connect(rad.heatPortRad, building.radHeatSourcesPorts[1]) annotation (Line(
       points={{0,-4.8},{0,-4.8},{0,68},{17,68},{17,62}}, color={191,0,0}));
-  connect(ambient.latitudeDeg, radiation.latitudeDeg) annotation (Line(points={{
+  connect(ambience.latitudeDeg, radiation.latitudeDeg) annotation (Line(points={{
           -23,61},{-23,84},{76.2,84},{76.2,25.6}}, color={0,0,127}));
-  connect(ambient.longitudeDeg, radiation.longitudeDeg) annotation (Line(points
+  connect(ambience.longitudeDeg, radiation.longitudeDeg) annotation (Line(points
         ={{-21,61},{-21,84},{80,84},{80,25.6}}, color={0,0,127}));
-  connect(ambient.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
+  connect(ambience.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
         points={{-19,61},{-19,84},{84,84},{84,25.6}}, color={0,0,127}));
   connect(booleanToReal.u, control.y)
       annotation (Line(points={{88.8,-40},{93.6,-40}}, color={255,0,255}));

@@ -2,8 +2,8 @@ within BuildingSystems.Buildings.Examples;
 model BuildingThermal1Zone1DBox
   "1D-hermal box shaped building model with 1 zone under real weather data"
   extends Modelica.Icons.Example;
-  BuildingSystems.Buildings.Ambient ambient(
-    nSurfaces=building.nSurfacesAmbient,
+  BuildingSystems.Buildings.Ambience ambience(
+    nSurfaces=building.nSurfacesAmbience,
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DBox building(
@@ -49,10 +49,10 @@ model BuildingThermal1Zone1DBox
     annotation (Placement(transformation(extent={{2,0},{-2,4}})));
 equation
   connect(soilTemp.port,building.toSolidHeatPorts[1]);
-  connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
+  connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts) annotation (Line(
    points={{-22,4},{-20,4},{-20,8},{-20,11.3333},{-20,4},{-9,4}},
    color={0,255,0},smooth=Smooth.None));
-  connect(ambient.toAirPorts, building.toAmbientAirPorts) annotation (Line(
+  connect(ambience.toAirPorts, building.toAmbienceAirPorts) annotation (Line(
     points={{-22,-4},{-16,-4},{-16,-4},{-9,-4}},
     color={85,170,255},
     smooth=Smooth.None));
@@ -64,11 +64,11 @@ equation
       points={{15.8,6},{9.8,6}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(building.TAirAmb, ambient.TAirRef) annotation (Line(
+  connect(building.TAirAmb, ambience.TAirRef) annotation (Line(
       points={{6.2,9.8},{6.2,12},{-40,12},{-40,7},{-39,7}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(building.xAirAmb, ambient.xAir) annotation (Line(
+  connect(building.xAirAmb, ambience.xAir) annotation (Line(
       points={{8.4,9.8},{8.4,14},{-42,14},{-42,5},{-39,5}},
       color={0,0,127},
       smooth=Smooth.None));

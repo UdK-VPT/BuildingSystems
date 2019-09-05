@@ -103,7 +103,7 @@ equation
     Otherwise, the <code>assert</code> block would terminate the simulation.
     </p>
     <p>
-    The model on the top is connected to the ambient with one heat port,
+    The model on the top is connected to the ambience with one heat port,
     whereas the model at the bottom uses a vector of heat ports.
     Since they are all connected to the same temperature, they
     result in the same energy balance for the medium that flows

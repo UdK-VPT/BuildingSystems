@@ -11,7 +11,7 @@ model Window
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
     annotation (Placement(transformation(extent={{-6,-10},{-26,10}})));
-  BuildingSystems.Buildings.Ambient ambient(
+  BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=1,
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
@@ -44,12 +44,12 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
+  connect(ambience.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
       points={{-32,4},{-16.6,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
-  connect(ambient.toAirPorts[1], surface1.toAirPort) annotation (Line(
+  connect(ambience.toAirPorts[1], surface1.toAirPort) annotation (Line(
       points={{-32,-4},{-16.6,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
@@ -65,9 +65,9 @@ equation
 
   connect(control.y, window.GSC_in)
     annotation (Line(points={{-3.7,15},{0.1,15},{0.1,8.9}}, color={0,0,127}));
-  connect(ambient.TAirRef, zone.TAirAmb) annotation (Line(points={{-49,7},{-52,7},
+  connect(ambience.TAirRef, zone.TAirAmb) annotation (Line(points={{-49,7},{-52,7},
           {-52,-14},{22,-14},{22,-5},{27,-5}}, color={0,0,127}));
-  connect(ambient.xAir, zone.xAirAmb) annotation (Line(points={{-49,5},{-54,5},{
+  connect(ambience.xAir, zone.xAirAmb) annotation (Line(points={{-49,5},{-54,5},{
           -54,-16},{24,-16},{24,-7},{27,-7}}, color={0,0,127}));
   connect(airchange.y, zone.airchange) annotation (Line(points={{18.3,-5},{20,-5},
           {20,-3},{27,-3}}, color={0,0,127}));

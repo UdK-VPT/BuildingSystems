@@ -360,7 +360,7 @@ Documentation(info="<html>
 <p>
 Example that simulates the 2D dynamic heat conduction of a corner problem within a room.
 Bodies from two materials (concrete and insulation) are configured in a way that
-the concrete layer is in contact to the room and the insulation layer to the ambient.
+the concrete layer is in contact to the room and the insulation layer to the ambience.
 </p>
 </html>",
 revisions="<html>

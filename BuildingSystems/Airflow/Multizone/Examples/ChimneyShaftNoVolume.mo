@@ -151,7 +151,7 @@ This model demonstrate buoyancy-induced air flow
 through a vertical shaft.
 On the right, there are two flow paths that are connected
 to a volume, which is kept at 20&deg;C through a feedback
-controller, and to the ambient, which is at
+controller, and to the ambience, which is at
 0&deg;C.
 The flow path on the very right consists of an orifice
 and two models that compute the pressure difference

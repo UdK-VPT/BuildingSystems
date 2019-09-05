@@ -40,12 +40,12 @@ and perform the following steps:
    This component is able to calculate the thermal energy balance of a one-zone thermal building model.
    It is suited to our first example, because a simulation analysis can be carried out after defining only a few parameters.
 
-#. Drag and drop an ambient model *BuildingsSystems.Buildings.Ambient* from the package browser onto the grid. Double-click on the model, and
+#. Drag and drop an ambient model *BuildingsSystems.Buildings.Ambience* from the package browser onto the grid. Double-click on the model, and
    choose the climate data for *Germany_Berlin_Meteonorm_NetCDF* from the drop-down menu in the parameter *weatherDataFile*. Now, pre-calculated
    hourly weather data for Berlin provided by Meteonorm (http://www.meteonorm.com/en/) will be used to support the building model
    with ambient values for air temperature, moisture, direct and diffuse radiation, wind speed and wind direction.
 
-6. Connect the blue connectors *ambient.toAirPorts* and *building.toAmbientAirPorts*
+6. Connect the blue connectors *ambience.toAirPorts* and *building.toAmbienceAirPorts*
    of the two models. Click on OK in the window that opens to connect all ports of the selected type. Now the climate boundary conditions which are caused by the ambient air of the building
    will be considered (convective heat transfer and optionally also the moisture transport).
 
@@ -54,17 +54,17 @@ and perform the following steps:
 
    The simulation model, which consists of a building model and an ambient model
 
-7. Next, connect the green connectors *ambient.toSurfacePorts* and *building.toAmbientSurfacePorts*
-   of the ambient and the building model. This enables the ambient model to deliver the boundary conditions
+7. Next, connect the green connectors *ambience.toSurfacePorts* and *building.toAmbienceSurfacePorts*
+   of the ambience and the building model. This enables the ambient model to deliver the boundary conditions
    for short-wave radiation from the sun and the long-wave radiation exchange with the sky.
 
 #. The ambient model needs to know the number of surfaces of the building model which are in contact with
    the ambient air. For this purpose double-click on the ambient component and add this information to
-   the parameter *ambient.nSurfaces* by clicking on the small arrow/triangle to the right of the text field and selecting Insert Component Reference: building ->
-   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate -> nSurfacesAmbient.
+   the parameter *ambience.nSurfaces* by clicking on the small arrow/triangle to the right of the text field and selecting Insert Component Reference: building ->
+   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate -> nSurfacesAmbience.
 
-#. Connect the output variable *ambient.TAirRef* and the input variable *building.TAirAmb* (ambient temperature at
-   a reference height of 10 m) and also *ambient.xAirRef* and *building.xAirAmb* (ambient absolute moisture). Both
+#. Connect the output variable *ambience.TAirRef* and the input variable *building.TAirAmb* (ambient temperature at
+   a reference height of 10 m) and also *ambience.xAirRef* and *building.xAirAmb* (ambient absolute moisture). Both
    variables are necessary for the calculation of the energy loss caused by the air exchange of the building. Your model should now look like Figure 2.
 
 Define the building model parameters

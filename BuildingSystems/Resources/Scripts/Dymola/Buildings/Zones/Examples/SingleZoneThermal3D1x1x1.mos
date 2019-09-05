@@ -3,7 +3,7 @@ removePlots();
 createPlot(
   id = 1,
   position = {0, 0, 600, 500},
-  y = {"ambient.TAirRef","zone.TAir[1]"},
+  y = {"ambience.TAirRef","zone.TAir[1]"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,

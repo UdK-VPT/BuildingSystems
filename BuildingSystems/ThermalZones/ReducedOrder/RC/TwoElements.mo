@@ -139,7 +139,7 @@ equation
   </html>", info="<html>
   <p>This model distinguishes between internal
   thermal masses and exterior walls. While exterior walls contribute to heat
-  transfer to the ambient, adiabatic conditions apply to internal masses.
+  transfer to the ambience, adiabatic conditions apply to internal masses.
   Parameters for the internal wall element are the length of the RC-chain
   <code>nInt</code>, the vector of the capacities
   <code>CInt[nInt]</code> and the vector of the resistances <code>RInt[nInt]</code>.

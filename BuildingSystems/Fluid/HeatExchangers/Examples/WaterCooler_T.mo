@@ -45,7 +45,7 @@ This example illustrates how to use the sensible cooler model that takes as an
 input the leaving fluid temperature.
 </p>
 <p>
-The model consist of a water volume with heat gain from the ambient.
+The model consist of a water volume with heat gain from the ambience.
 The set point of the water temperature is different between night and day.
 The heater tracks the set point temperature, except for the periods in
 which the water temperature is above the set point.

@@ -26,8 +26,8 @@ partial model BuildingTemplate
   parameter Integer nMoistureSources = 0
     "Number of moisture sources of the building"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
-  final parameter Integer nSurfacesAmbient = surfacesToAmbient.nSurfaces
-    "Number of surfaces (with air contact) to the building ambient"
+  final parameter Integer nSurfacesAmbience = surfacesToAmbience.nSurfaces
+    "Number of surfaces (with air contact) to the building ambience"
     annotation(Dialog(tab = "Advanced", group = "3D discretisation"), HideResult=true);
   parameter BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection convectionOnSurfaces = BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const
     "Type of convection calculation for outside building surfaces"
@@ -36,8 +36,8 @@ partial model BuildingTemplate
     "Convective heat transfer coefficient for simplified calculations"
     annotation(Dialog(tab="Advanced",group="Convection model on building facades"));
   parameter Integer nSurfacesSolid = 0
-    "Number of surfaces (with contact to solids) to the building ambient"
-    annotation(Dialog(tab="General",group="Solid building ambient"));
+    "Number of surfaces (with contact to solids) to the building ambience"
+    annotation(Dialog(tab="General",group="Solid building ambience"));
   parameter Boolean prescribedAirchange = true
     "Switch for air change calculation"
     annotation(HideResult = true, Dialog(tab="General",group="Air change"));
@@ -45,7 +45,7 @@ partial model BuildingTemplate
     "True: airpath calculation is possible; false: no airpath calculation"
     annotation(HideResult = true,Dialog(tab = "General", group = "Air change"));
   parameter Integer nAirpaths = 0
-    "Number of air paths to the building ambient"
+    "Number of air paths to the building ambience"
     annotation(Dialog(tab="General",group="Air change"));
   parameter Boolean calcHygroThermal = false
     "Switch for hygro-thermal calculation"
@@ -81,10 +81,10 @@ partial model BuildingTemplate
     "Air change rate of each thermal zone"
      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={180,40}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,40})));
   input BuildingSystems.Interfaces.Temp_KInput TAirAmb if prescribedAirchange
-    "Air temperature of the building ambient"
+    "Air temperature of the building ambience"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={50,120}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={62,98})));
   input BuildingSystems.Interfaces.Moisture_absInput xAirAmb if prescribedAirchange
-    "Absolute moisture of the building ambient"
+    "Absolute moisture of the building ambience"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={70,120}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={84,98})));
   output BuildingSystems.Interfaces.Temp_KOutput TAir[nZones] if show_TAir
     "Air temperature of each thermal zone"
@@ -101,20 +101,20 @@ partial model BuildingTemplate
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_heating[nZones] if calcIdealLoads
     "Heating power of each thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={80,-122}),  iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={90,-110})));
-  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAmbientAirpathPorts[nAirpaths](
+  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAmbienceAirpathPorts[nAirpaths](
     redeclare each final package Medium = Medium) if useAirPaths
-    "Interfaces for air paths to the building ambient"
+    "Interfaces for air paths to the building ambience"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},rotation=90,origin={180,1}),iconTransformation(extent={{-40,-90},{40,-70}},rotation=270,origin={170,-20})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toAmbientSurfacesPorts[nSurfacesAmbient]
-    "Interfaces between outside building surfaces to surfaces of the building ambient"
+  BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toAmbienceSurfacesPorts[nSurfacesAmbience]
+    "Interfaces between outside building surfaces to surfaces of the building ambience"
     annotation (Placement(transformation(extent={{-8,-30},{8,30}},rotation=180,origin={-180,40}),iconTransformation(extent={{-100,0},{-80,80}})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAmbientAirPorts[nSurfacesAmbient]
-    "Interfaces between outside building surfaces to the air of the building ambient"
+  BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toAmbienceAirPorts[nSurfacesAmbience]
+    "Interfaces between outside building surfaces to the air of the building ambience"
     annotation (Placement(transformation(extent={{-8,-30},{8,30}}, rotation=180,origin={-180,-40}),iconTransformation(extent={{-100,-80},{-80,0}})));
-  BuildingSystems.Buildings.Surfaces.SurfacesToAir surfacesToAmbient(
+  BuildingSystems.Buildings.Surfaces.SurfacesToAir surfacesToAmbience(
     surface(each convectionOnSurface = convectionOnSurfaces,
     each alphaConstant = alphaConstant))
-    "Model for all building surfaces to the building ambient"
+    "Model for all building surfaces to the building ambience"
     annotation (Placement(transformation(extent={{-31,-28},{31,28}},rotation=180,origin={-177,0})));
   BuildingSystems.Interfaces.HeatPorts toSolidHeatPorts[nSurfacesSolid]
     "Heat port to the ground under the building"
@@ -140,9 +140,9 @@ equation
   else
     connect(angleDegAziBuilding_internal, angleDegAziBuilding_in);
   end if;
-  for i in 1:nSurfacesAmbient loop
-    connect(surfacesToAmbient.toAirPorts[i],toAmbientAirPorts[i]);
-    connect(surfacesToAmbient.toSurfacesPorts[i],toAmbientSurfacesPorts[i]);
+  for i in 1:nSurfacesAmbience loop
+    connect(surfacesToAmbience.toAirPorts[i],toAmbienceAirPorts[i]);
+    connect(surfacesToAmbience.toSurfacesPorts[i],toAmbienceSurfacesPorts[i]);
   end for;
   for i in 1:nSurfacesSolid loop
     connect(surfacesToSolids.heatPorts[i],toSolidHeatPorts[i]);

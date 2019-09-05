@@ -1,5 +1,5 @@
 within BuildingSystems.Buildings;
-model Ambient
+model Ambience
   "Model which calculates the outside climate boundary conditions of one ore more buildings"
   final package Medium = BuildingSystems.Media.Air;
 
@@ -315,7 +315,7 @@ equation
     connect(cloudCover, cloudCover_in);
   end if;
 
-  annotation (defaultComponentName="ambient",Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
+  annotation (defaultComponentName="ambience",Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-80,80},{80,-80}},lineColor={85,170,255},fillColor={170,213,255},fillPattern = FillPattern.Solid),
     Text(extent={{90,-94},{182,-122}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name"),
     Ellipse(extent={{-18,58},{58,-14}},lineColor={255,255,0},fillColor={255,255,85},fillPattern = FillPattern.Solid),
@@ -332,6 +332,10 @@ you will find a short guide, which describes a Python based generation of NetCDF
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+Sep 5, 2019 by Christoph Nytsch-Geusen:<br/>
+Model class renamed in Ambience.
+</li>
 <li>
 Aug 20, 2019 by Christoph Nytsch-Geusen:<br/>
 Outputs for height angle and azimuth of the sun added.
@@ -354,4 +358,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end Ambient;
+end Ambience;

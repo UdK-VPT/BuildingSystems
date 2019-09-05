@@ -3,8 +3,8 @@ model MultistoreyBuilding1958to1968
   "Example of a typical German multistorey building from 1958 to 1968 based on IWU building typology"
   extends Modelica.Icons.Example;
 
-  BuildingSystems.Buildings.Ambient ambient(
-    nSurfaces=building.nSurfacesAmbient,
+  BuildingSystems.Buildings.Ambience ambience(
+    nSurfaces=building.nSurfacesAmbience,
     redeclare block WeatherData = Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
 
@@ -42,11 +42,11 @@ model MultistoreyBuilding1958to1968
   Modelica.Blocks.Sources.Constant airchange(k=0.5)
      annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,-2})));
 equation
-   connect(ambient.toSurfacePorts, building.toAmbientSurfacesPorts) annotation (Line(
+   connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts) annotation (Line(
     points={{-22,4},{-9,4}},
     color={0,255,0},
     smooth=Smooth.None));
-  connect(ambient.toAirPorts, building.toAmbientAirPorts) annotation (Line(
+  connect(ambience.toAirPorts, building.toAmbienceAirPorts) annotation (Line(
     points={{-22,-4},{-9,-4}},
     color={85,170,255},
     smooth=Smooth.None));
@@ -58,11 +58,11 @@ equation
       points={{15.8,6},{9.8,6}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(building.TAirAmb, ambient.TAirRef) annotation (Line(
+  connect(building.TAirAmb, ambience.TAirRef) annotation (Line(
       points={{6.2,9.8},{6.2,12},{-40,12},{-40,7},{-38.2,7}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(building.xAirAmb, ambient.xAir) annotation (Line(
+  connect(building.xAirAmb, ambience.xAir) annotation (Line(
       points={{8.4,9.8},{8.4,14},{-42,14},{-42,5},{-38.2,5}},
       color={0,0,127},
       smooth=Smooth.None));

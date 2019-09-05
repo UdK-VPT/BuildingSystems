@@ -1,7 +1,7 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.BaseClasses;
 partial model PartialStation
 extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface;
-  Modelica.Blocks.Interfaces.RealInput ambientTAirRef
+  Modelica.Blocks.Interfaces.RealInput ambienceTAirRef
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=-90,origin={-50,100})));
   Modelica.Blocks.Interfaces.RealInput zoneTAir
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=-90,origin={-10,100})));

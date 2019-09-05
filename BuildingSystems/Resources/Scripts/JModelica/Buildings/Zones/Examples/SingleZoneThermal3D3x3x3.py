@@ -42,14 +42,14 @@ fig = P.figure(1)
 P.clf()
 # zone
 # air element temperatures
-y1 = res['ambient.TAirRef']
+y1 = res['ambience.TAirRef']
 y2 = res['zone.airvolume.airEle212.fluid.T']
 y3 = res['zone.airvolume.airEle222.fluid.T']
 y4 = res['zone.airvolume.airEle232.fluid.T']
 t = res['time']
 P.subplot(2,1,1)
 P.plot(t, y1, t, y2, t, y3, t, y4)
-P.legend(['ambient.TAirRef','zone.airvolume.airEle212.fluid.T','zone.airvolume.airEle222.fluid.T','zone.airvolume.airEle232.fluid.T'])
+P.legend(['ambience.TAirRef','zone.airvolume.airEle212.fluid.T','zone.airvolume.airEle222.fluid.T','zone.airvolume.airEle232.fluid.T'])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 # air velocities

@@ -42,13 +42,13 @@ fig = P.figure(1)
 P.clf()
 # building
 # temperatures
-y1 = res['ambient.TAirRef']
+y1 = res['ambience.TAirRef']
 y2 = res['building.zone1.TAir']
 y3 = res['building.zone1.TOperative']
 t = res['time']
 P.subplot(2,1,1)
 P.plot(t, y1, t, y2, t, y3)
-P.legend(['ambient.TAirRef','building.zone1.TAir','building.zone1.TOperative'])
+P.legend(['ambience.TAirRef','building.zone1.TAir','building.zone1.TOperative'])
 P.ylabel('Temperature (K)')
 P.xlabel('Time (s)')
 # Heating and cooling load

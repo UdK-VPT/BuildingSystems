@@ -88,12 +88,12 @@ model OneElement "Thermal Zone with one element for exterior walls"
     extent={{-30.5,-8},{30.5,8}},
     origin={150,-179.5})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a extWall if ATotExt > 0
-    "Ambient port for exterior walls"
+    "Ambience port for exterior walls"
     annotation (Placement(transformation(
     extent={{-250,-50},{-230,-30}}), iconTransformation(extent={{-250,-50},{
             -230,-30}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a window if ATotWin > 0
-    "Ambient port for windows"
+    "Ambience port for windows"
     annotation (Placement(transformation(extent={{-250,30},{-230,50}}),
     iconTransformation(extent={{-250,30},{-230,50}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a intGainsConv if
@@ -454,9 +454,9 @@ This model merges all thermal masses into one
 element, parameterized by the length of the RC-chain
 <code>nExt,</code> the vector of the capacities <code>CExt[nExt]</code> that is
 connected via the vector of resistances <code>RExt[nExt]</code> and
-<code>RExtRem</code> to the ambient and indoor air.
+<code>RExtRem</code> to the ambience and indoor air.
 By default, the model neglects all
-internal thermal masses that are not directly connected to the ambient.
+internal thermal masses that are not directly connected to the ambience.
 However, the thermal capacity of the room air can be increased by
 using the parameter <code>mSenFac</code>.
 </p>

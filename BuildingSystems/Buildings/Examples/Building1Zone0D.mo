@@ -4,8 +4,8 @@ model Building1Zone0D
   extends Modelica.Icons.Example;
 
   // building1 with ideal load calculation
-  BuildingSystems.Buildings.Ambient ambient1(
-    nSurfaces=building1.nSurfacesAmbient,
+  BuildingSystems.Buildings.Ambience ambience1(
+    nSurfaces=building1.nSurfacesAmbience,
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
       annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
 
@@ -37,8 +37,8 @@ model Building1Zone0D
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={24,34})));
 
   // building2 with free floating temperature calculation
-  BuildingSystems.Buildings.Ambient ambient2(
-    nSurfaces=building2.nSurfacesAmbient,
+  BuildingSystems.Buildings.Ambience ambience2(
+    nSurfaces=building2.nSurfacesAmbience,
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
 
@@ -71,16 +71,16 @@ model Building1Zone0D
     annotation (Placement(transformation(extent={{-24,-48},{-16,-40}})));
 
 equation
-  connect(ambient1.toSurfacePorts, building1.toAmbientSurfacesPorts)
+  connect(ambience1.toSurfacePorts, building1.toAmbienceSurfacesPorts)
     annotation (Line(
       points={{-22,34},{-9,34}},
       color={0,255,0},
       smooth=Smooth.None));
-  connect(ambient1.TAirRef, building1.TAirAmb) annotation (Line(
+  connect(ambience1.TAirRef, building1.TAirAmb) annotation (Line(
       points={{-38.2,37},{-40,37},{-40,42},{6.2,42},{6.2,39.8}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ambient1.xAir, building1.xAirAmb) annotation (Line(
+  connect(ambience1.xAir, building1.xAirAmb) annotation (Line(
       points={{-38.2,35},{-42,35},{-42,44},{8.4,44},{8.4,39.8}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -88,7 +88,7 @@ equation
       points={{9.8,34},{21.8,34}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ambient1.toAirPorts, building1.toAmbientAirPorts) annotation (Line(
+  connect(ambience1.toAirPorts, building1.toAmbienceAirPorts) annotation (Line(
       points={{-22,26},{-9,26}},
       color={85,170,255},
       smooth=Smooth.None));
@@ -100,16 +100,16 @@ equation
       points={{9.8,36},{18,36},{18,40},{29.8,40}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ambient2.toSurfacePorts, building2.toAmbientSurfacesPorts)
+  connect(ambience2.toSurfacePorts, building2.toAmbienceSurfacesPorts)
     annotation (Line(
       points={{-22,-14},{-9,-14}},
       color={0,255,0},
       smooth=Smooth.None));
-  connect(ambient2.TAirRef, building2.TAirAmb) annotation (Line(
+  connect(ambience2.TAirRef, building2.TAirAmb) annotation (Line(
       points={{-38.2,-11},{-40,-11},{-40,-6},{6.2,-6},{6.2,-8.2}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ambient2.xAir, building2.xAirAmb) annotation (Line(
+  connect(ambience2.xAir, building2.xAirAmb) annotation (Line(
       points={{-38.2,-13},{-42,-13},{-42,-4},{8.4,-4},{8.4,-8.2}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -117,7 +117,7 @@ equation
       points={{9.8,-14},{21.8,-14}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ambient2.toAirPorts, building2.toAmbientAirPorts) annotation (Line(
+  connect(ambience2.toAirPorts, building2.toAmbienceAirPorts) annotation (Line(
       points={{-22,-22},{-9,-22}},
       color={85,170,255},
       smooth=Smooth.None));

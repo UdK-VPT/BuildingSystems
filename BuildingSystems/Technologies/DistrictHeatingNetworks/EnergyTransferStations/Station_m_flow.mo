@@ -11,12 +11,12 @@ model Station_m_flow
   parameter Modelica.SIunits.TemperatureDifference Tdrop = 25
     "Desired Temperature drop in building's installation";
   parameter Real eps_inst = 1 "Factor accountig per inneficiency of installation. Increase heat to be delivered";
-  BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhAmbient(
+  BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhAmbience(
     Max_value=Tsupply_max,
     Min_value=Tsupply_min,
     factor=factor_Tsupply)
     annotation (Placement(transformation(extent={{-58,64},{-78,84}})));
-  Modelica.Blocks.Sources.Constant constAmbient(k=273.15)
+  Modelica.Blocks.Sources.Constant constAmbience(k=273.15)
     annotation (Placement(transformation(extent={{-34,62},{-48,76}})));
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pumpDHN(
     redeclare package Medium = Medium,
@@ -91,11 +91,11 @@ model Station_m_flow
     m_flow_nominal=m_flow_nominalHeating,
     V=2) annotation (Placement(transformation(extent={{66,-62},{86,-82}})));
 equation
-  connect(tanhAmbient.u, ambientTAirRef) annotation (Line(
+  connect(tanhAmbience.u, ambienceTAirRef) annotation (Line(
       points={{-58,77},{-50,77},{-50,100}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(tanhAmbient.SetValue, constAmbient.y) annotation (Line(
+  connect(tanhAmbience.SetValue, constAmbience.y) annotation (Line(
       points={{-58,69},{-48.7,69}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -107,7 +107,7 @@ equation
       points={{-70,0},{-70,-20},{-98,-20},{-98,-96},{-40,-96}},
       color={0,127,255},
       smooth=Smooth.None));
-  connect(conPID.u_s, tanhAmbient.y) annotation (Line(
+  connect(conPID.u_s, tanhAmbience.y) annotation (Line(
       points={{-84,46},{-84,73.8},{-78,73.8}},
       color={0,0,127},
       smooth=Smooth.None));
@@ -170,7 +170,7 @@ equation
           78,-62},{88,-62},{88,0},{80,0}}, color={0,127,255}));
   annotation (    Documentation(info="<html>
     <p>
-    The station model uses the ambient air temperature to determine the set point for the supply temperature in the building (secondary loop). The exact temperature depends on the parameters <code>Tsupply_max</code>, <code>Tsupply_min</code>,<code>factor_Tsupply</code> of the <code>tanhAmbient</code> block.
+    The station model uses the ambient air temperature to determine the set point for the supply temperature in the building (secondary loop). The exact temperature depends on the parameters <code>Tsupply_max</code>, <code>Tsupply_min</code>,<code>factor_Tsupply</code> of the <code>tanhAmbience</code> block.
     </p>
 
     <p>

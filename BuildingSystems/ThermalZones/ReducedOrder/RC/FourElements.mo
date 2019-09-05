@@ -27,7 +27,7 @@ model FourElements "Thermal Zone with four elements for exterior walls,
     annotation(Dialog(group="Roof"),choices(checkBox = true));
 
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a roof if ARoof > 0
-    "Ambient port for roof"
+    "Ambience port for roof"
       annotation (Placement(transformation(extent={{-21,170},{-1,190}}),
                        iconTransformation(extent={{-21,170},{-1,190}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a roofIndoorSurface if
