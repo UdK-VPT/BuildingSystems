@@ -15,7 +15,7 @@ model GridTrading "test to evaluate combination of battery and transformers"
         extent={{10,-10},{-10,10}},
         rotation=0,
         origin={26,0})));
-  ElectricalStorages.BatteryComplexIA battery(redeclare
+  ElectricalStorages.BatteryComplexIU battery(redeclare
       ElectricalStorages.Data.LeadAcid.Chloride200Ah batteryData,
       SOC_start=0.7)
     annotation (Placement(transformation(extent={{-66,-4},{-30,32}})));

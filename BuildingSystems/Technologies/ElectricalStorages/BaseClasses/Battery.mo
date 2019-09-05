@@ -95,7 +95,7 @@ equation
                0.001);
 
   PGrid = 0.5*(1.0-Modelica.Math.tanh(100000.0*(PNet)))*(PNet + PLoadEff*etaLoad)+
-          0.5*(1.0+Modelica.Math.tanh(100000.0*(PNet)))*(PNet - PChargeEff/etaCharge);               
+          0.5*(1.0+Modelica.Math.tanh(100000.0*(PNet)))*(PNet - PChargeEff/etaCharge);
 
     annotation (defaultComponentName="battery", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
       Rectangle(extent={{-60,60},{60,-60}},

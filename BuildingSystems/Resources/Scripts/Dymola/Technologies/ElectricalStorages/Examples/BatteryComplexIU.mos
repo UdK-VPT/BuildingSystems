@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Technologies.ElectricalStorages.Examples.BatteryComplexIA", stopTime=72000, method="Dassl", resultFile="BatteryComplexIA.mat");
+simulateModel("BuildingSystems.Technologies.ElectricalStorages.Examples.BatteryComplexIU", stopTime=72000, method="Dassl", resultFile="BatteryComplexIU");
 removePlots();
 createPlot(
   id = 1,
@@ -11,6 +11,6 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "BatteryComplexIA.mat",
+  filename = "BatteryComplexIU.mat",
   leftTitleType = 1,
   bottomTitleType = 1);

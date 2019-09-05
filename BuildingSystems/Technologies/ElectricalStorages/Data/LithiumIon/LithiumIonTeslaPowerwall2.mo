@@ -14,6 +14,7 @@ record LithiumIonTeslaPowerwall2 =
   PCharge_max = 4600.0,
   p = 1.05,
   a_mcr = 0.96/3600.0,
+  R_int = 0.0,
   A = 0.0,
   C = 0.0)
   "Lithium Ion Tesla Powerwall 2: 13.5 kWh"

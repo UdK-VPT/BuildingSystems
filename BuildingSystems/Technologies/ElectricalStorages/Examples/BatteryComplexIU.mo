@@ -1,10 +1,10 @@
 within BuildingSystems.Technologies.ElectricalStorages.Examples;
-model BatteryComplexIA
+model BatteryComplexIU
   "Example of a electrical battery with Voltage and Current calculation"
   extends Modelica.Icons.Example;
-  BuildingSystems.Technologies.ElectricalStorages.BatteryComplexIA
+  BuildingSystems.Technologies.ElectricalStorages.BatteryComplexIU
     battery(nBat=1,
-            redeclare Data.LeadAcid.Chloride200Ah batteryData(SOC_min=0.01),
+    redeclare Data.LithiumIon.LithiumIonViessmann batteryData,
             SOC_start=1.0)
     annotation (Placement(transformation(extent={{-70,50},{-50,70}})));
   Modelica.Blocks.Sources.Constant load(k=120)
@@ -24,7 +24,7 @@ equation
           textString="Test of the extended complex battery model")}),
     experiment(StartTime=0.0, StopTime=3.1536e+007),
     __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Technologies/ElectricalStorages/Examples/BatteryComplexIA.mos"
+          "Resources/Scripts/Dymola/Technologies/ElectricalStorages/Examples/BatteryComplexIU.mos"
         "Simulate and plot"),
 Documentation(info="<html>
 <p> This example tests the implementation of
@@ -39,4 +39,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end BatteryComplexIA;
+end BatteryComplexIU;

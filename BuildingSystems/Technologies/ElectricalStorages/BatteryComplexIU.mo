@@ -1,5 +1,5 @@
 ﻿within BuildingSystems.Technologies.ElectricalStorages;
-model BatteryComplexIA
+model BatteryComplexIU
   extends BuildingSystems.Technologies.ElectricalStorages.BatteryComplex;
 
   output Modelica.Blocks.Interfaces.RealOutput UBattery(
@@ -104,5 +104,6 @@ equation
   First implementation.
   </li>
   </ul>
-  </html>"),   Dialog(tab = "Advanced"));
-end BatteryComplexIA;
+  </html>"),   Dialog(tab = "Advanced"),
+    __Dymola_Commands);
+end BatteryComplexIU;

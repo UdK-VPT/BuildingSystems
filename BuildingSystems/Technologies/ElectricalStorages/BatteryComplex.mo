@@ -43,7 +43,7 @@ equation
                0.0,
                PLoad_max,
                0.001);
-  
+
     annotation (Documentation(info="<html>
   <p>
   Extended model for an eletrical battery based on the Kinetic Battery Model (KiBaM) of Manwell and McGowan
