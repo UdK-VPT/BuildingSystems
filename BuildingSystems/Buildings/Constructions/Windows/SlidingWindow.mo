@@ -6,11 +6,15 @@ model SlidingWindow
   ope(
     final wOpe = widthOpen,
     final hOpe = height),
-  radTra1to2(areaRatioUnglazed = widthOpen/width*y),
-  radTra2to1(areaRatioUnglazed = widthOpen/width*y));
+  radTra1to2(areaRatioUnglazed = widthOpen/width*y_internal),
+  radTra2to1(areaRatioUnglazed = widthOpen/width*y_internal));
   parameter Modelica.SIunits.Length widthOpen = 0.5
     "Max. width of the open part (full opened postion)"
     annotation(Dialog(tab = "General", group = "Geometry"));
+  output Modelica.Blocks.Interfaces.RealOutput y_internal
+    "Percentage of the openable part of the opening (1.0 = 100 % open, 0.0 = 100 % closed)";
+equation
+   connect(y_internal,y);
 
   annotation (defaultComponentName="slidingWindow", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(extent={{-10,80},{10,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
