@@ -6,6 +6,7 @@ ConstructionGeneral
 HeatConduction3DWithTube
 RadiationDistribution
 RelationRadiationConvection
+ShadowingElementGeneral
 SurfaceGeneral
 WallGeneral
 WallHygroThermalGeneral

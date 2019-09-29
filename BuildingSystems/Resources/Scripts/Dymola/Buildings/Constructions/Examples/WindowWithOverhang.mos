@@ -1,0 +1,58 @@
+simulateModel("BuildingSystems.Buildings.Constructions.Examples.WindowWithOverhang", stopTime=864000, method="dassl", resultFile="WindowWithOverhang");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambience.TAirRef","window.toSurfacePort_1.heatPort.T", "window.heatTransfer.T", "window.toSurfacePort_2.heatPort.T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithOverhang.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"window.toSurfacePort_1.radiationPort_in.IrrDir", "window.toSurfacePort_1.radiationPort_in.IrrDif", "window.toSurfacePort_2.radiationPort_out.IrrDir", "window.toSurfacePort_2.radiationPort_out.IrrDif"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithOverhang.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id =3,
+  position = {1220, 0, 600, 500},
+  y = {"zone.Q_flow_heating"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithOverhang.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 4,
+  position = {0, 620, 1200, 300},
+  y = {"overhang.SC"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "WindowWithOverhang.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
