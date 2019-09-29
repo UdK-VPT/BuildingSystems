@@ -24,7 +24,7 @@ partial model SolarRadiationTransformerGeneral
     annotation (Placement(transformation(extent={{-102,-6},{-62,34}}),iconTransformation(extent={{-90,6},{-62,34}})));
   BuildingSystems.Interfaces.RadiationPort radiationPort
     "Radiation port to the tilted surface"
-    annotation (Placement(transformation(extent={{70,-12},{90,8}}), iconTransformation(extent={{70,-12},{90,8}})));
+    annotation (Placement(transformation(extent={{70,-10},{90,10}}),iconTransformation(extent={{70,-10},{90,10}})));
   Modelica.SIunits.RadiantEnergyFluenceRate IrrTotHor
     "Solar total radiation of horizontal surface";
   Modelica.SIunits.RadiantEnergyFluenceRate IrrTotTil

@@ -38,27 +38,33 @@ partial model WindowGeneral
     annotation(Dialog(tab = "General", group = "Optical properties"));
   // Shadowing
   parameter Boolean use_GSC_in = false
-    "= true, use input for geometric shading coefficient GSC"
-    annotation(Dialog(tab = "General", group = "Shadowing"));
+    "true: use input for geometric shading coefficient GSC"
+    annotation(Dialog(tab = "Shadowing", group = "External shadowing"));
   Modelica.Blocks.Interfaces.RealOutput GSC_constant(
     min = 0.0,
     max = 1.0) = 0.0
-    "Constant shading coefficient (if use_GSC_in = true)"
-    annotation(Dialog(tab = "General", group = "Shadowing"));
+    "Constant shading coefficient (if use_GSC_in == true)"
+    annotation(Dialog(tab = "Shadowing", group = "External shadowing"));
   input Modelica.Blocks.Interfaces.RealInput GSC_in if use_GSC_in
     "Input for external shading coefficient"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90, origin={0,-62}),
       iconTransformation(extent={{-9,-9},{9,9}},rotation=270,origin={1,89})));
+  parameter Boolean calcEmbrasure = false
+    "true: shadowing effect of embrasure is considered"
+    annotation(Dialog(tab = "Shadowing", group = "Shadowing embrasure"));
+  parameter Modelica.SIunits.Length depthEmbrasure = 0.0
+    "Depth of the embrasure (if calcEmbrasure == true)"
+    annotation(Dialog(tab = "Shadowing", group = "Shadowing embrasure"));
   // Ventilation
   parameter Boolean calcAirchange = false
-    "True: calculation of air exchange through the window, false: no air exchange"
-    annotation(Dialog(tab = "General", group = "Air change calculation"));
+    "true: calculation of air exchange through the window, false: no air exchange"
+    annotation(Dialog(tab = "Air change", group = "Air change calculation"));
   parameter Integer nCom=10
     "Number of compartments for the discretization"
-    annotation(Dialog(tab = "General", group = "Air change calculation"));
+    annotation(Dialog(tab = "Air change", group = "Air change calculation"));
   parameter Modelica.SIunits.Area LClo(min=0)=0.001
     "Effective leakage area of closed window"
-    annotation(Dialog(tab = "General", group = "Air change calculation"));
+    annotation(Dialog(tab = "Air change", group = "Air change calculation"));
   // Advanced parameters
   parameter Boolean show_TSur = false
     "Show surface temperatures on both sides"
@@ -81,11 +87,11 @@ partial model WindowGeneral
       width = width_internal,
       height = height_internal,
       zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
-    point(
-      x = {0.0,width_internal,width_internal,0.0},
-      y = {0.0,0.0,height_internal,height_internal},
-      z = {0.0,0.0,0.0,0.0})),
-      epsilon = epsilon_2)
+      point(
+        x = {0.0,width_internal,width_internal,0.0},
+        y = {0.0,0.0,height_internal,height_internal},
+        z = {0.0,0.0,0.0,0.0})),
+        epsilon = epsilon_2)
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
     A=ASur,
@@ -96,11 +102,11 @@ partial model WindowGeneral
       width = width_internal,
       height = height_internal,
       zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
-    point(
-      x = {0.0,width_internal,width_internal,0.0},
-      y = {0.0,0.0,height_internal,height_internal},
-      z = {0.0,0.0,0.0,0.0})),
-    epsilon = epsilon_1)
+      point(
+        x = {0.0,width_internal,width_internal,0.0},
+        y = {0.0,0.0,height_internal,height_internal},
+        z = {0.0,0.0,0.0,0.0})),
+      epsilon = epsilon_1)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
   BuildingSystems.HAM.HeatConduction.HeatConduction1D heatTransfer(
     material(
@@ -163,9 +169,15 @@ partial model WindowGeneral
     "Fluid connector b2 (positive design flow direction is from port_a2 to port_b2)"
     annotation (Placement(transformation(extent={{-10,-70},{-30,-50}}),
       iconTransformation(extent={{-10,-70},{-30,-50}})));
-  protected
-    Modelica.Blocks.Interfaces.RealInput GSC_internal
-      "Shading coefficient";
+  BuildingSystems.Buildings.Constructions.Shadowing.Embrasure embrasure(
+    width=width,
+    height=height,
+    depth=depthEmbrasure) if calcEmbrasure
+    "Shadowing caused by embrasure"
+    annotation (Placement(transformation(extent={{20,-50},{0,-30}})));
+protected
+  Modelica.Blocks.Interfaces.RealInput GSC_internal
+    "Shading coefficient";
 equation
   // Geometry
   ASur = height_internal * width_internal;
@@ -189,15 +201,19 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
+  if calcEmbrasure then
+    connect(radTra2to1.radiationPort_in, embrasure.radiationPort_out)
+      annotation (Line(points={{1,-40},{6,-40}}, color={0,0,0}));
+    connect(embrasure.radiationPort_in, toSurfacePort_2.radiationPort_in)
+      annotation (Line(points={{14,-40},{20,-40},{20,0}}, color={0,0,0}));
+  else
+    connect(radTra2to1.radiationPort_in, toSurfacePort_2.radiationPort_in)
+      annotation (Line(points={{-1,-40},{20,-40},{20,0}},
+        color={0,0,0},pattern=LinePattern.Solid,smooth=Smooth.None));
+  end if;
   connect(radTra1to2.radiationPort_out, toSurfacePort_2.radiationPort_out)
     annotation (Line(
       points={{1,40},{20,40},{20,0}},
-      color={0,0,0},
-      pattern=LinePattern.Solid,
-      smooth=Smooth.None));
-  connect(radTra2to1.radiationPort_in, toSurfacePort_2.radiationPort_in)
-    annotation (Line(
-      points={{-1,-40},{20,-40},{20,0}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
@@ -238,7 +254,6 @@ equation
           {20,-60}}, color={0,127,255}));
   connect(ope.port_b2, port_b2) annotation (Line(points={{-10,74},{-60,74},{-60,
           -60},{-20,-60}}, color={0,127,255}));
-
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Rectangle(extent={{-20,80},{20,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
     Line(points={{-20,80},{-20,-80}},color={0,0,255},smooth=Smooth.None,thickness=0.5)}),

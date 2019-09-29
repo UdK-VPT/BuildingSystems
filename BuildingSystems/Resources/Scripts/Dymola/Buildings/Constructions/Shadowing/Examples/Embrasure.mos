@@ -1,0 +1,58 @@
+simulateModel("BuildingSystems.Buildings.Constructions.Shadowing.Examples.Embrasure", stopTime=259200, method="dassl", resultFile="Embrasure");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1200, 300},
+  y = {"embEast.SC","embSouth.SC", "embWest.SC"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Embrasure.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {0, 310, 1200, 300},
+  y = {"embEast.radiationPort_in.IrrDir", "embEast.radiationPort_out.IrrDir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Embrasure.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id =3,
+  position = {0, 620, 1200, 300},
+  y = {"embSouth.radiationPort_in.IrrDir", "embSouth.radiationPort_out.IrrDir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Embrasure.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id =4,
+  position = {0, 930, 1200, 300},
+  y = {"embWest.radiationPort_in.IrrDir", "embWest.radiationPort_out.IrrDir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "Embrasure.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
