@@ -7,9 +7,13 @@ model Overhang
   parameter Modelica.SIunits.Length heightOH = 0.0
     "Height of the overhang";
 equation
-  SC = min(1.0,max(0.0,(heightOH+height_internal)/height_internal*(1.0 - depthOH/(heightOH+height_internal)
-       * Modelica.Math.tan(Modelica.Constants.pi/180.0*radiationPort_in.angleDegHeightSun)/Modelica.Math.cos(Modelica.Constants.pi/180.0*(radiationPort_in.angleDegAziSun - angleDegAzi)))
-       * (0.5 + 0.5*Modelica.Math.tanh(10000.0*radiationPort_in.angleDegHeightSun))));
+  SC = BuildingSystems.Buildings.Constructions.Shadowing.Functions.overhang(
+    height_internal,
+    heightOH,
+    depthOH,
+    angleDegAzi,
+    radiationPort_in.angleDegAziSun,
+    radiationPort_in.angleDegHeightSun);
 
  annotation (Placement(transformation(extent={{-10,-70},{-30,-50}}),
    iconTransformation(extent={{-10,-70},{-30,-50}})),

@@ -5,8 +5,13 @@ model Embrasure
   parameter Modelica.SIunits.Length depth = 0.0
     "Depth of the embrasure";
 equation
-  SC = min(1.0,max(0.0,(1.0 - depth/height_internal * Modelica.Math.tan(Modelica.Constants.pi/180.0*radiationPort_in.angleDegHeightSun)/Modelica.Math.cos(Modelica.Constants.pi/180.0*(radiationPort_in.angleDegAziSun - angleDegAzi)))*
-       (1.0 - depth/width_internal * abs(Modelica.Math.tan(Modelica.Constants.pi/180.0*(radiationPort_in.angleDegAziSun - angleDegAzi))))*(0.5 + 0.5*Modelica.Math.tanh(10000.0*radiationPort_in.angleDegHeightSun))));
+  SC = BuildingSystems.Buildings.Constructions.Shadowing.Functions.embrasure(
+    height_internal,
+    width_internal,
+    depth,
+    angleDegAzi,
+    radiationPort_in.angleDegAziSun,
+    radiationPort_in.angleDegHeightSun);
 
 annotation (Placement(transformation(extent={{-10,-70},{-30,-50}}),
   iconTransformation(extent={{-10,-70},{-30,-50}})),
