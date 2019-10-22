@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Examples;
 model BuildingThermal1Zone1DCylinder
-  "1D-thermal cylinder shaped building model with 1 zone under real weather data"
+  "1D-thermal cylinder shaped building model with 1 zone"
   extends Modelica.Icons.Example;
 
   BuildingSystems.Buildings.Ambience ambience(
@@ -60,7 +60,7 @@ equation
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/BuildingThermal1Zone1DCylinder.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={Text(extent={{-52,-18},{52,-86}},lineColor={0,0,255},
-    textString="Predefined 1D-thermal cylindrical shaped building model with 1 zone under real weather data")}),
+    textString="Predefined 1D-thermal cylindrical shaped building model")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>

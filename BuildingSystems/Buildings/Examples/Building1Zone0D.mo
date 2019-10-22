@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Examples;
 model Building1Zone0D
-  "Low-order thermal building model under real weather data"
+  "Low-order thermal building model"
   extends Modelica.Icons.Example;
 
   // building1 with ideal load calculation
@@ -129,7 +129,7 @@ equation
   annotation(experiment(StartTime=0, StopTime=31536000,Interval=8760),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/Building1Zone0D.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={
-    Text(extent={{-52,-20},{52,-88}}, lineColor={0,0,255},textString="Low-order thermal building model under real weather data"),
+    Text(extent={{-42,-30},{40,-80}}, lineColor={0,0,255}, textString="Two low-order thermal building models"),
     Text(extent={{-40,42},{0,-12}}, lineColor={0,0,255},textString="Variant 1: ideal load calculation"),
     Text(extent={{-41,6},{17,-74}},lineColor={0,0,255},textString="Variant 2: free floating temperature calculation")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),

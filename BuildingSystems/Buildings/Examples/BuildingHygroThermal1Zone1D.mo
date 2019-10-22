@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Examples;
 model BuildingHygroThermal1Zone1D
-  "1D-Hygro-thermal building model with 1 zone under real weather data"
+  "1D-Hygro-thermal building model with 1 zone"
   extends Modelica.Icons.Example;
 
   model Building
@@ -209,7 +209,7 @@ equation
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/BuildingHygroThermal1Zone1D.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={Text(extent={{-52,-18},{52,-86}},lineColor={0,0,255},
-    textString="1D-Hygro-thermal building model with 1 zone under real weather data")}),
+    textString="1D-Hygro-thermal building model with 1 zone")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>

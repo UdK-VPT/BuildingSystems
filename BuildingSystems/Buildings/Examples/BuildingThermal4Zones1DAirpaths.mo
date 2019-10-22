@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Examples;
 model BuildingThermal4Zones1DAirpaths
-  "1D-Thermal building model with 4 zones and interzonal air paths under real weather data"
+  "1D-Thermal building model with 4 zones and interzonal air paths"
   extends Modelica.Icons.Example;
 
   package Medium = BuildingSystems.Media.Air;
@@ -497,7 +497,7 @@ equation
   annotation(experiment(StartTime=0, StopTime=86400),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/BuildingThermal4Zones1DAirpaths.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={Text(extent={{-52,-18},{52,-86}},lineColor={0,0,255},
-    textString="1D-Thermal building model with 4 zones under real weather data")}),
+    textString="1D-Thermal building model with 4 zones")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>

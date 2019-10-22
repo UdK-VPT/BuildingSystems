@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Examples;
 model BuildingThermal1Zone1DBox
-  "1D-hermal box shaped building model with 1 zone under real weather data"
+  "1D-hermal box shaped building model with 1 zone with an overhang"
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=building.nSurfacesAmbience,
@@ -34,26 +34,41 @@ model BuildingThermal1Zone1DBox
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.HeatProtectionDoubleGlazingUVal19 constructionWindow4,
     BCWall1=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic,
     BCWall3=BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant,
-    TWall3_constant=293.15,
-    use_GSCWindow2_in=true)
+    use_GSCWindow4_in=true,
+    TWall3_constant=293.15)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
+  Modelica.Blocks.Sources.Constant TSetHeating(
+    k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,14})));
-  Modelica.Blocks.Sources.Constant TSetCooling(k=273.15 + 24.0)
+  Modelica.Blocks.Sources.Constant TSetCooling(
+    k=273.15 + 24.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,6})));
-  Modelica.Blocks.Sources.Constant airchange(k=0.5)
+  Modelica.Blocks.Sources.Constant airchange(
+    k=0.5)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,-2})));
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature soilTemp(T=283.15)
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature soilTemp(
+    T=283.15)
     "Thermal boundary condition under the building (soil temperature)";
-  Modelica.Blocks.Sources.Constant sha(k=0.8)
-    annotation (Placement(transformation(extent={{2,0},{-2,4}})));
+  Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky
+    radiation annotation (Placement(transformation(extent={{-14,26},{-4,36}})));
+  Constructions.Shadowing.OverhangElement overhang(
+    depthOH=0.5,
+    heightOH=0.1,
+    heightWin=1.5)
+    annotation (Placement(transformation(extent={{-6,22},{12,40}})));
+  Modelica.Blocks.Sources.Constant angTil(
+    k=90.0)
+    annotation (Placement(transformation(extent={{-28,26},{-24,30}})));
+  Modelica.Blocks.Sources.Constant angAzi(
+    k=0.0)
+    annotation (Placement(transformation(extent={{-22,22},{-18,26}})));
 equation
   connect(soilTemp.port,building.toSolidHeatPorts[1]);
   connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts) annotation (Line(
-   points={{-22,4},{-20,4},{-20,8},{-20,11.3333},{-20,4},{-9,4}},
+   points={{-21,4},{-20,4},{-20,8},{-20,11.3333},{-20,4},{-9,4}},
    color={0,255,0},smooth=Smooth.None));
   connect(ambience.toAirPorts, building.toAmbienceAirPorts) annotation (Line(
-    points={{-22,-4},{-16,-4},{-16,-4},{-9,-4}},
+    points={{-21,-4},{-16,-4},{-16,-4},{-9,-4}},
     color={85,170,255},
     smooth=Smooth.None));
   connect(TSetHeating.y, building.T_setHeating[1]) annotation (Line(
@@ -76,20 +91,35 @@ equation
       points={{9.8,4},{12,4},{12,-2},{15.8,-2}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(sha.y, building.GSCWindow2_in)
-    annotation (Line(points={{-2.2,2},{-3,2},{-3,5.4}}, color={0,0,127}));
-
+  connect(building.GSCWindow4_in, overhang.SC)
+    annotation (Line(points={{3,5.4},{3,22.9}}, color={0,0,127}));
+  connect(radiation.radiationPort, overhang.radiationPort_in)
+    annotation (Line(points={{-5,31},{-0.6,31}}, color={0,0,0}));
+  connect(angTil.y, radiation.angleDegTil) annotation (Line(points={{-23.8,28},{
+          -18,28},{-18,30},{-12.8,30}}, color={0,0,127}));
+  connect(ambience.IrrDirHor, radiation.IrrDirHor) annotation (Line(points={{-39,
+          3},{-44,3},{-44,34},{-12.8,34}}, color={0,0,127}));
+  connect(ambience.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{-39,
+          1},{-44,1},{-44,32},{-12.8,32}}, color={0,0,127}));
+  connect(ambience.latitudeDeg, radiation.latitudeDeg) annotation (Line(points={
+          {-37,9},{-37,38},{-10.9,38},{-10.9,34.8}}, color={0,0,127}));
+  connect(ambience.longitudeDeg, radiation.longitudeDeg) annotation (Line(
+        points={{-35,9},{-35,40},{-9,40},{-9,34.8}}, color={0,0,127}));
+  connect(ambience.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
+        points={{-33,9},{-33,40},{-7,40},{-7,34.8}}, color={0,0,127}));
+  connect(angAzi.y, radiation.angleDegAzi) annotation (Line(points={{-17.8,24},{
+          -16,24},{-16,28},{-12.8,28}}, color={0,0,127}));
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/BuildingThermal1Zone1DBox.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={Text(extent={{-52,-18},{52,-86}},lineColor={0,0,255},
-    textString="Predefined 1D-Thermal building model with 1 zone under real weather data")}),
+    textString="Predefined 1D-Thermal building model with 1 zone")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
 Example that simulates a predefined thermal building model with 1 zone, based on 1D-discretized building elements.
 The areas of window1 (included in wall1) and window3 (included in wall3) are set to zero. Further wall1 is definend
 as an adiabatic wall and the outer surface temperature of wall3 is set to 20 degree Celsius. The soil
-temperature under the building is set to 10 degree Celsius. window2 is shaded by 80 percent for the direct solar radiation.
+temperature under the building is set to 10 degree Celsius. window4 on the south facade is shaded by an horizontal overhang.
 </p>
 </html>",
 revisions="<html>
@@ -101,6 +131,10 @@ First implementation.
 <li>
 June 30, 2017, by Christoph Nytsch-Geusen:<br/>
 Introduction of an external shadowing coefficient.
+</li>
+<li>
+October 22, 2019, by Christoph Nytsch-Geusen:<br/>
+Horizontal overhang model added.
 </li>
 </ul>
 </html>"));

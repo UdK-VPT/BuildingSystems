@@ -1515,7 +1515,7 @@ equation
   connect(relationRadiationConvection.heatPort, heatFlow.port)
     annotation (Line(points={{21,15.9},{21,18},{24,18}}, color={191,0,0}));
 
-  annotation(experiment(StopTime=86400, __Dymola_Algorithm="Dassl"),
+  annotation(experiment(StopTime=86400),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Examples/BuildingThermalMultiZone.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{120,50}}), graphics={
     Text(extent={{-54,-2},{50,-70}},lineColor={0,0,255}, textString="Model of a storey of an office building with 13 thermal zones"),
