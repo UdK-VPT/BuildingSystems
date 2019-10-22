@@ -17,9 +17,15 @@ function overhang
   output Real SC
     "Shading coefficient";
 algorithm
-  SC := min(1.0,max(0.0,(heightOH+height)/height*(1.0 - depthOH/(heightOH+height)
-       * Modelica.Math.tan(Modelica.Constants.pi/180.0*angleDegHeightSun)/Modelica.Math.cos(Modelica.Constants.pi/180.0*(angleDegAziSun - angleDegAzi)))
-       * (0.5 + 0.5*Modelica.Math.tanh(10000.0*angleDegHeightSun))));
+  if angleDegHeightSun > 0.0 then
+      SC := BuildingSystems.Utilities.Math.Functions.smoothLimit(
+            (heightOH + height) / height * (1.0 - depthOH / (heightOH + height)
+            * Modelica.Math.tan(Modelica.Constants.pi / 180.0 * angleDegHeightSun)
+            / Modelica.Math.cos(Modelica.Constants.pi / 180.0 * (angleDegAziSun - angleDegAzi))),
+            0.0,1.0,0.01);
+  else
+    SC := 0.0;
+  end if;
   annotation (
 Documentation(info="<html>
 <p>
