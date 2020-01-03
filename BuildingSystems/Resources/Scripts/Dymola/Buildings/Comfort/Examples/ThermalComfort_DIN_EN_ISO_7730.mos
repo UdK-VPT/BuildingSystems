@@ -1,0 +1,44 @@
+simulateModel("BuildingSystems.Buildings.Comfort.Examples.ThermalComfort_DIN_EN_ISO_7730", stopTime=7200, method="dassl", resultFile="ThermalComfort_DIN_EN_ISO_7730");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1200, 350},
+  y = {"thermalComfort.PMV"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ThermalComfort_DIN_EN_ISO_7730.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {0, 400, 1200, 350},
+  y = {"thermalComfort.PPD"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ThermalComfort_DIN_EN_ISO_7730.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id =3,
+  position = {0, 800, 1200, 350},
+  y = {"thermalComfort.TAir","thermalComfort.Tr"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ThermalComfort_DIN_EN_ISO_7730.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
