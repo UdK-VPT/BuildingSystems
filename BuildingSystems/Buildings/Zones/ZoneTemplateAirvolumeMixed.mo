@@ -39,6 +39,21 @@ model ZoneTemplateAirvolumeMixed
     "Set air temperature for cooling of the zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-100,-10}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-110,50})));
+  parameter Boolean calcThermalComfort = false
+    "true: PMV and PPD calculated, false: no thermal comfort assessment"
+    annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort"));
+  parameter Real clo = 0.5
+    "Clothing"
+    annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort"));
+  parameter Real met = 1.2
+    "Metabolism rate"
+    annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort"));
+  Modelica.Blocks.Interfaces.RealInput wme = 0.0
+    "External work"
+    annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort"));
+  parameter Modelica.SIunits.Velocity vAir = 0.1
+     "Mean relative air velocity in the area of user presence"
+     annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort"));
   parameter Modelica.SIunits.Temp_K T_start = 293.15
     "Start air temperature of the zone"
     annotation (Dialog(tab="Initialization"));
@@ -141,6 +156,29 @@ model ZoneTemplateAirvolumeMixed
     k = -1.0) if prescribedAirchange
     "Changes the sign of mass flow"
     annotation (Placement(transformation(extent={{80,24},{72,32}})));
+  BuildingSystems.Buildings.Comfort.ThermalComfort_DIN_EN_ISO_7730 thermalComfort if calcThermalComfort
+    "Thermal comfort assessment accordinng to DIN EN ISO 7730"
+    annotation (Placement(transformation(extent={{42,-50},{62,-30}})));
+  Modelica.Blocks.Interfaces.RealOutput PMV if calcThermalComfort
+    "Predicted mean vote"
+    annotation (Placement(transformation(extent={{-7,-7},{7,7}},rotation=0,origin={89,-27}),
+      iconTransformation(extent={{100,0},{120,20}})));
+  Modelica.Blocks.Interfaces.RealOutput PPD if calcThermalComfort
+    "Predicted percentage dissatisfied"
+    annotation (Placement(transformation(extent={{-7,-7},{7,7}},rotation=0,origin={73,-37}),
+      iconTransformation(extent={{100,-20},{120,0}})));
+  Modelica.Blocks.Sources.RealExpression cloVal(
+    y=clo) if calcThermalComfort
+    annotation (Placement(transformation(extent={{86,-60},{70,-42}})));
+  Modelica.Blocks.Sources.RealExpression metVal(
+    y=met) if calcThermalComfort
+    annotation (Placement(transformation(extent={{86,-72},{70,-54}})));
+  Modelica.Blocks.Sources.RealExpression wmeVal(
+    y=wme) if calcThermalComfort
+    annotation (Placement(transformation(extent={{86,-84},{70,-66}})));
+  Modelica.Blocks.Sources.RealExpression vAirVal(
+    y=vAir) if calcThermalComfort
+    annotation (Placement(transformation(extent={{86,-96},{70,-78}})));
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible then
     connect(airvolume.V_in, V_in);
@@ -248,6 +286,27 @@ equation
         color={0,0,127},
         smooth=Smooth.None));
   end if;
+  // Thermal comfort assessment
+  if calcThermalComfort then
+    connect(TAir, thermalComfort.TAir)
+      annotation (Line(points={{34,36},{32,36},{32,-34},{45,-34}}, color={0,0,127}));
+    connect(radiationDistribution.TSurfMean, thermalComfort.Tr)
+      annotation (Line(points={{19.2,-60},{24,-60},{24,-37},{45,-37}}, color={0,0,127}));
+    connect(xAir, thermalComfort.xAir)
+      annotation (Line(points={{34,46},{34,-40},{45,-40}}, color={0,0,127}));
+    connect(thermalComfort.PMV, PMV)
+      annotation (Line(points={{61,-34},{64,-34},{64,-27},{89,-27}}, color={0,0,127}));
+    connect(thermalComfort.PPD, PPD)
+      annotation (Line(points={{61,-37},{73,-37}}, color={0,0,127}));
+    connect(cloVal.y, thermalComfort.clo)
+      annotation (Line(points={{69.2,-51},{47,-51},{47,-47}}, color={0,0,127}));
+    connect(metVal.y, thermalComfort.met)
+      annotation (Line(points={{69.2,-63},{50,-63},{50,-47}}, color={0,0,127}));
+    connect(wmeVal.y, thermalComfort.wme)
+      annotation (Line(points={{69.2,-75},{53,-75},{53,-47}}, color={0,0,127}));
+    connect(vAirVal.y, thermalComfort.vAir)
+      annotation (Line(points={{69.2,-87},{42,-87},{42,-43},{45,-43}}, color={0,0,127}));
+  end if;
   connect(airvolume.T[1], TAir)
     annotation (Line(points={{19.2,35.2},{22.6,35.2},{22.6,36},{34,36}}, color={0,0,127}));
   connect(airvolume.x[1], xAir)
@@ -266,6 +325,10 @@ This is a template model for a thermal zone with fully mixed air volume.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+January 3, 2020 by Christoph Nytsch-Geusen:<br/>
+Thermal comfort assessment added.
+</li>
 <li>
 September 19, 2018 by Christoph Nytsch-Geusen:<br/>
 Air path models against IBPSA 1 library models exchanged.

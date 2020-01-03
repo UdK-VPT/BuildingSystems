@@ -1,0 +1,44 @@
+simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneThermal1DThermalComfort", stopTime=3153600, method="dassl", resultFile="SingleZoneThermal1DThermalComfort");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1500, 350},
+  y = {"ambience.TAirRef","zone.TAir","zone.TSurfMean"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneThermal1DThermalComfort.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {0, 400, 1500, 350},
+  y = {"zone.PMV"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneThermal1DThermalComfort.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 3,
+  position = {0, 800, 1500, 350},
+  y = {"zone.PPD"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneThermal1DThermalComfort.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

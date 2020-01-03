@@ -13,7 +13,7 @@ model ThermalComfort_DIN_EN_ISO_7730
     "Absolute air moisture"
     annotation (Placement(transformation(extent={{-100,-30},{-60,10}}),
       iconTransformation(extent={{-80,-10},{-60,10}})));
-  Modelica.Blocks.Interfaces.RealInput vAir
+  BuildingSystems.Interfaces.VelocityInput vAir
     "Relative air velocity"
     annotation (Placement(transformation(extent={{-100,-60},{-60,-20}}),
       iconTransformation(extent={{-80,-40},{-60,-20}})));
