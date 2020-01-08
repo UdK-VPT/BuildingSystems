@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Comfort.Examples.ThermalComfort_DIN_EN_ISO_7730", stopTime=7200, method="dassl", resultFile="ThermalComfort_DIN_EN_ISO_7730");
+simulateModel("BuildingSystems.Buildings.Comfort.Examples.ThermalComfort_DIN_EN_ISO_7730_Dynamic", stopTime=7200, method="dassl", resultFile="ThermalComfort_DIN_EN_ISO_7730_Dynamic");
 removePlots();
 createPlot(
   id = 1,
@@ -11,7 +11,7 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "ThermalComfort_DIN_EN_ISO_7730.mat",
+  filename = "ThermalComfort_DIN_EN_ISO_7730_Dynamic.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
 createPlot(
@@ -25,7 +25,7 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "ThermalComfort_DIN_EN_ISO_7730.mat",
+  filename = "ThermalComfort_DIN_EN_ISO_7730_Dynamic.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
   createPlot(
@@ -39,6 +39,6 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "ThermalComfort_DIN_EN_ISO_7730.mat",
+  filename = "ThermalComfort_DIN_EN_ISO_7730_Dynamic.mat",
   leftTitleType = 1,
   bottomTitleType = 1);

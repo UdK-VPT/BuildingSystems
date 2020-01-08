@@ -1,5 +1,5 @@
 within BuildingSystems.Buildings.Comfort.Examples;
-model ThermalComfort_DIN_EN_ISO_7730
+model ThermalComfort_DIN_EN_ISO_7730_Dynamic
   "Example that simulates the PMV and PPD indeces for an indoor space"
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Comfort.ThermalComfort_DIN_EN_ISO_7730 thermalComfort
@@ -18,19 +18,24 @@ model ThermalComfort_DIN_EN_ISO_7730
     amplitude=14.0)
     "Mean radiant temperature"
     annotation (Placement(transformation(extent={{-74,54},{-66,62}})));
-  Modelica.Blocks.Sources.Constant xAir(k=0.008)
+  Modelica.Blocks.Sources.Constant xAir(
+    k=0.008)
     "Absolute air moisture"
     annotation (Placement(transformation(extent={{-74,38},{-66,46}})));
-  Modelica.Blocks.Sources.Constant vAir(k=0.1)
+  Modelica.Blocks.Sources.Constant vAir(
+    k=0.1)
     "Relative air velocity"
     annotation (Placement(transformation(extent={{-74,24},{-66,32}})));
-  Modelica.Blocks.Sources.Constant clo(k=0.5)
+  Modelica.Blocks.Sources.Constant clo(
+    k=1.0)
     "Clothing"
     annotation (Placement(transformation(extent={{-54,40},{-46,48}})));
-  Modelica.Blocks.Sources.Constant met(k=1.2)
+  Modelica.Blocks.Sources.Constant met(
+    k=1.2)
     "Metabolism rate"
     annotation (Placement(transformation(extent={{-54,28},{-46,36}})));
-  Modelica.Blocks.Sources.Constant wme(k=0.0)
+  Modelica.Blocks.Sources.Constant wme(
+    k=0.0)
     "External work"
     annotation (Placement(transformation(extent={{-54,16},{-46,24}})));
 equation
@@ -50,7 +55,7 @@ equation
     annotation (Line(points={{-45.6,20},{-39,20},{-39,53}}, color={0,0,127}));
 
     annotation(experiment(StartTime=0, StopTime=7200.0),
-      __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Comfort/Examples/ThermalComfort_DIN_EN_ISO_7730.mos" "Simulate and plot"),
+      __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Comfort/Examples/ThermalComfort_DIN_EN_ISO_7730_Dynamic.mos" "Simulate and plot"),
       Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,0},{-20,80}}),
       graphics={Text(extent={{-84,20},{-40,-4}},lineColor={28,108,200},
       textString="Calculation of PMV and PPD
@@ -58,7 +63,7 @@ equation
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,0},{-20,80}})),
   Documentation(info="<html>
   <p>
-  Example that simulates the PMV and PPD indices for an indoor space.
+  Example that simulates the PMV and PPD indices for an indoor space under dynamic temperatures.
   </p>
   </html>",
   revisions="<html>
@@ -69,4 +74,4 @@ equation
   </li>
   </ul>
   </html>"));
-end ThermalComfort_DIN_EN_ISO_7730;
+end ThermalComfort_DIN_EN_ISO_7730_Dynamic;
