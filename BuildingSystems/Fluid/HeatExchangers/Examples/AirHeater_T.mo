@@ -37,7 +37,7 @@ This example illustrates how to use the heater model that takes as an
 input the leaving fluid temperature.
 </p>
 <p>
-The model consist of an air volume with heat loss to the ambience.
+The model consist of an air volume with heat loss to the ambient.
 The set point of the air temperature is different between night and day.
 The heater tracks the set point temperature, except for the periods in
 which the air temperature is above the set point.

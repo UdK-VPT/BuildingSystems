@@ -35,7 +35,7 @@ This example illustrates how to use the heater model that takes as an
 input the heat added to the medium.
 </p>
 <p>
-The model consist of a water volume with heat loss to the ambience.
+The model consist of a water volume with heat loss to the ambient.
 The set point of the water temperature is different between night and day.
 The heater tracks the set point temperature, except for the periods in
 which the water temperature is above the set point.

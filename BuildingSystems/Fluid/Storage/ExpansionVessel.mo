@@ -85,7 +85,7 @@ Documentation(info="<html>
 This is a model of a pressure expansion vessel. The vessel has a constant pressure
 that is equal to the value of the parameter <code>p_start</code>.
 The model takes into account the energy and mass balance of the medium.
-It has no heat exchange with the ambience.
+It has no heat exchange with the ambient.
 </p>
 <p>
 The expansion vessel needs to be used in closed loops that contain

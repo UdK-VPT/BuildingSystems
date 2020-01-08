@@ -126,7 +126,8 @@ equation
   // asserts
   if not allowFlowReversal then
     assert(ports[1].m_flow > -m_flow_small,
-"Model has flow reversal, but the parameter allowFlowReversal is set to false.
+  "In " + getInstanceName() + ": Model has flow reversal,
+  but the parameter allowFlowReversal is set to false.
   m_flow_small    = " + String(m_flow_small) + "
   ports[1].m_flow = " + String(ports[1].m_flow) + "
 ");
@@ -229,7 +230,7 @@ in this case, <code>heatPort.Q_flow=0</code>.
 computed as <i>K * (T-heatPort.T)</i>, for some temperature <i>T</i> and some conductance <i>K</i>,
 which may itself be a function of temperature or mass flow rate.<br/>
 If there is a combination of <i>K * (T-heatPort.T)</i> and a prescribed heat flow rate,
-for example a solar collector that dissipates heat to the ambience and receives heat from
+for example a solar collector that dissipates heat to the ambient and receives heat from
 the solar radiation, then set <code>prescribedHeatFlowRate=false</code>.
 </li>
 </ul>
@@ -297,6 +298,13 @@ BuildingSystems.Fluid.MixingVolumes</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+October 30, 2019 by Filip Jorissen:<br/>
+Added <code>getInstanceName()</code> to flow
+reversal check.
+This if or <a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1228\">
+issue 1228</a>.
+</li>
 <li>
 October 19, 2017, by Michael Wetter:<br/>
 Changed initialization of pressure from a <code>constant</code> to a <code>parameter</code>.<br/>

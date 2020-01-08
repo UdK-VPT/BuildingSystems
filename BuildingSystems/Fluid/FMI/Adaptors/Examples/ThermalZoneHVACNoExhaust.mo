@@ -181,7 +181,7 @@ BuildingSystems.Fluid.FMI.Adaptors.ThermalZone</a>
 On the left hand side is an HVAC system with supply and return air stream.
 These are all connected to the adaptor.
 On the right of the adaptor is a simple room model, approximated by a volume with
-first order dynamics and heat loss to the ambience.
+first order dynamics and heat loss to the ambient.
 </p>
 <p>
 Note that the there is zero net air flow into and out of the volume <code>vol</code>

@@ -140,7 +140,7 @@ model ReverseBuoyancy
     redeclare package Medium = Medium,
     p=100000,
     T=283.15,
-    nPorts=2) "Ambience conditions"
+    nPorts=2) "Ambient conditions"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
       rotation=180, origin={130,-50})));
 equation

@@ -27,7 +27,7 @@ width=\"387\" height=\"453\"/>
 <p>
 The tank uses several volumes to model the stratification.
 Heat conduction is modeled between the volumes through the fluid,
-and between the volumes and the ambience.
+and between the volumes and the ambient.
 </p>
 <p>
 The heat port <code>heaPorVol</code> may be used to connect a temperature sensor
