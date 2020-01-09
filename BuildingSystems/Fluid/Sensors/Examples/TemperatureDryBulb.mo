@@ -7,7 +7,7 @@ model TemperatureDryBulb "Test model for the dry bulb temperature sensor"
     redeclare package Medium = Medium,
     T=298.15,
     nPorts=1)
-    "Ambience conditions, used to test the relative temperature sensor"
+    "Ambient conditions, used to test the relative temperature sensor"
      annotation (Placement(
         transformation(extent={{10,-10},{-10,10}},
                                                  rotation=180,
