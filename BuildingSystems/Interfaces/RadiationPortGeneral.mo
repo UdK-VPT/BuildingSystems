@@ -5,6 +5,8 @@ connector RadiationPortGeneral
     "Area specific direct solar radiation";
   Modelica.SIunits.RadiantEnergyFluenceRate IrrDif
     "Area specific diffuse solar radiation";
+  Modelica.SIunits.RadiantEnergyFluenceRate IrrDif_g
+    "Area specific diffuse solar radiation reflected from the ground.";
   Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegInc
     "Incident angle of the direct solar radiation";
   Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziSun
