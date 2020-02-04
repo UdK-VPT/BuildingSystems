@@ -276,6 +276,18 @@ model Building1Zone1DBox
   parameter Modelica.SIunits.Temp_K TAir_start = 293.15
     "Start temperature of indoor air temperature"
     annotation (Dialog(tab="Initialization"));
+  parameter Real clo = 0.5
+    "Clothing"
+    annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort (PMV and PPD calculation)"));
+  parameter Real met = 1.2
+    "Metabolism rate"
+    annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort (PMV and PPD calculation)"));
+  Modelica.Blocks.Interfaces.RealInput wme = 0.0
+    "External work"
+    annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort (PMV and PPD calculation)"));
+  parameter Modelica.SIunits.Velocity vAir = 0.1
+     "Mean relative air velocity in the area of user presence"
+     annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort (PMV and PPD calculation)"));
   parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall1=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall1"
@@ -316,7 +328,12 @@ model Building1Zone1DBox
     final heatSources = heatSources,
     final nHeatSources = nHeatSources,
     nConstructions = 10+(if InteriorWalls then 2 else 0)+(if InteriorCeilings then 2 else 0),
-    T_start = TAir_start)
+    T_start = TAir_start,
+    calcThermalComfort = true,
+    clo = clo,
+    met = met,
+    wme = wme,
+    vAir = vAir)
     "Thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
@@ -691,6 +708,10 @@ This is a 1 zone thermal building model with the shape of a box.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+February 4, 2020 by Christoph Nytsch-Geusen:<br/>
+Thermal comfort assessment added</li>
+<li>
 <li>
 January 25, 2018 by Christoph Nytsch-Geusen:<br/>
 Adaptation to new zone model.
