@@ -93,7 +93,7 @@ equation
   end for;
 
   // Ideal gas law
-  pMean * V = (0.622 + x[1]) * m * R * T[1];
+  pMean * V_internal = (0.622 + x[1]) * m * R * T[1];
 
   // Mass balance of dry air
   der(m) = sum(airpathPorts.m_flow);
@@ -124,7 +124,7 @@ equation
     m_flow_H2O_airpath[i] = airpathPorts[i].m_flow * actualStream(airpathPorts[i].Xi_outflow[1]);
     airpathPorts[i].Xi_outflow[1] = x[1];
   end for;
-  
+
   // Enthalpy flow by each moisture source
   for i in 1:nMoistureSources loop
     H_flow_moistureSource = rH2O * moistureSourcesPorts.m_flow;
