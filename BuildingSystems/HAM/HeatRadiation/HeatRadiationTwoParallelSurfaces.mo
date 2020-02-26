@@ -7,5 +7,5 @@ function HeatRadiationTwoParallelSurfaces
   input Modelica.SIunits.Emissivity epsilon2
     "Long-wave emission coefficient of surface 2";
 algorithm
- qdot := Modelica.Constants.sigma * (T1*T1*T1*T1 - T2*T2*T2*T2) / (1.0 / epsilon1 + 1.0 / epsilon2 - 1.0);
+ q_flow := Modelica.Constants.sigma * (T1*T1*T1*T1 - T2*T2*T2*T2) / (1.0 / epsilon1 + 1.0 / epsilon2 - 1.0);
 end HeatRadiationTwoParallelSurfaces;
