@@ -265,7 +265,7 @@ equation
   if TAirRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     TSky = TAirRef_constant;
   elseif TAirRefSou == BuildingSystems.Buildings.Types.DataSource.File then
-    connect(TAirRef, weatherDataReader.TSky);
+    connect(TSky, weatherDataReader.TSky);
   end if;
 
   // Select source for absolute humidity of the ambient air
