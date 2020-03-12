@@ -177,7 +177,7 @@ model Ambience
     "Cloud cover of the sky from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={50,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={50,-90})));
-  output BuildingSystems.Interfaces.Temp_KOutput TSky = weatherDataReader.TSky
+  output BuildingSystems.Interfaces.Temp_KOutput TSky
     "Sky temperature"
     annotation (Placement(transformation(extent={{-86,-64},{-66,-44}}),
       iconTransformation(extent={{-80,-60},{-100,-40}})));
@@ -261,6 +261,13 @@ equation
     connect(TAirRef, TAirRef_in);
   end if;
 
+  // Select source for sky temperature on reference height
+  if TAirRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
+    TSky = TAirRef_constant;
+  elseif TAirRefSou == BuildingSystems.Buildings.Types.DataSource.File then
+    connect(TAirRef, weatherDataReader.TSky);
+  end if;
+
   // Select source for absolute humidity of the ambient air
   if xAirSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     xAir = xAir_constant;
@@ -332,6 +339,12 @@ you will find a short guide, which describes a Python based generation of NetCDF
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+Mar 12, 2020 by Christoph Nytsch-Geusen:<br/>
+Sky temperature can have also a constant value.
+</li>
+<li>
+
 <li>
 Sep 5, 2019 by Christoph Nytsch-Geusen:<br/>
 Model class renamed in Ambience.
