@@ -49,7 +49,7 @@ package ThermalModelHouse
       height=0.5,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      AInnSur=window2.ASur)
+      AInnSur=window2.width*window2.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={28,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall6(
       redeclare Construction1TMH constructionData,
@@ -57,7 +57,7 @@ package ThermalModelHouse
       height=0.5,
       angleDegAzi=0.0,
       angleDegTil=90.0,
-      AInnSur=window1.ASur)
+      AInnSur=window1.width*window1.height)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-52,-20})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall7(
       redeclare Construction2TMH constructionData,
@@ -250,7 +250,7 @@ package ThermalModelHouse
       useAirPaths=false)
       annotation (Placement(transformation(extent={{10,-10},{30,10}})));
     BuildingSystems.Buildings.Ambience ambience(
-      redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_NetCDF,
+      redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII,
       nSurfaces=building.nSurfacesAmbience)
       annotation (Placement(transformation(extent={{-32,-10},{-12,10}})));
     Modelica.Blocks.Sources.Constant TSetHeatingZone1(k=273.15 + 22.0)
