@@ -146,7 +146,7 @@ e.g. the size of the construction elements or the volumes of the zones. The seco
 
    .. code-block:: modelica
 
-      AInnSur=window1.ASur
+      AInnSur=window1.width*window1.height
 
    Do the same with *wall5* and *window2*.
 
