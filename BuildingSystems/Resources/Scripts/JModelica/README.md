@@ -1,13 +1,13 @@
 JModelica
 =========
 
-The majority of the examples of the BuildingSystems library are running with [JModelica](https://jmodelica.org/).
+The majority of the examples of the BuildingSystems library are running with [JModelica](https://en.wikipedia.org/wiki/JModelica.org).
 
 To perform a simulation experiment with JModelica following preparation steps have to be done:
 
 ## Installation of JModelica
-Download JModelica from [JModelica.org](https://jmodelica.org).
-The easiest way is to install the [Windows installer](https://jmodelica.org/downloads/JModelica.org-2.2.exe).
+Download JModelica from [JModelica](https://github.com/JModelica/JModelica).
+The easiest way is to install the [Windows installer](https://github.com/JModelica/JModelica/releases).
 
 ## Running a simulation experiment
 The folder BuildingSystems/Resources/Scripts/JModelica contains Python Scripts
