@@ -266,6 +266,8 @@ equation
     TSky = TAirRef_constant;
   elseif TAirRefSou == BuildingSystems.Buildings.Types.DataSource.File then
     connect(TSky, weatherDataReader.TSky);
+  else
+    connect(TSky, TAirRef_in);
   end if;
 
   // Select source for absolute humidity of the ambient air
@@ -344,7 +346,6 @@ Mar 12, 2020 by Christoph Nytsch-Geusen:<br/>
 Sky temperature can have also a constant value.
 </li>
 <li>
-
 <li>
 Sep 5, 2019 by Christoph Nytsch-Geusen:<br/>
 Model class renamed in Ambience.
