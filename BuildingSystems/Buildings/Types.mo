@@ -3,10 +3,10 @@ package Types
   "Package with new types for building models"
   extends Modelica.Icons.TypesPackage;
   type DataSource = enumeration(
-    File "Use data from file",
-    Parameter "Use parameter",
-    Input "Use input connector")
-    "Enumeration to select data source";
+    Calculation "Calculated value",
+    Parameter "Constant value",
+    Input "External input")
+    "Enumeration to select data sources";
 
   type GeometryType = enumeration(
     Fixed "Fixed",

@@ -61,7 +61,7 @@ model Ambience
       iconTransformation(extent={{-40,-90},{40,-70}},rotation=180,origin={60,10})));
 
   // Absolute humidity of the ambient air
-  parameter BuildingSystems.Buildings.Types.DataSource xAirSou = BuildingSystems.Buildings.Types.DataSource.File
+  parameter BuildingSystems.Buildings.Types.DataSource xAirSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for absolute humidity of the ambient air"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
   parameter Modelica.SIunits.MassFraction xAir_constant = 0.5
@@ -78,7 +78,7 @@ model Ambience
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-50,-90})));
 
   // Air temperature on reference height
-  parameter BuildingSystems.Buildings.Types.DataSource TAirRefSou = BuildingSystems.Buildings.Types.DataSource.File
+  parameter BuildingSystems.Buildings.Types.DataSource TAirRefSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for air temperature on reference height"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
   parameter Modelica.SIunits.Temp_K TAirRef_constant = 293.15
@@ -95,7 +95,7 @@ model Ambience
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-70,-90})));
 
   // Solar beam radiation of horizontal surface
-  parameter BuildingSystems.Buildings.Types.DataSource IrrDirHorSou = BuildingSystems.Buildings.Types.DataSource.File
+  parameter BuildingSystems.Buildings.Types.DataSource IrrDirHorSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for solar beam radiation of horizontal surface"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
   parameter Modelica.SIunits.RadiantEnergyFluenceRate IrrDirHor_constant = 0.0
@@ -112,7 +112,7 @@ model Ambience
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-30,-90})));
 
   // Solar diffuse radiation of horizontal surface
-  parameter BuildingSystems.Buildings.Types.DataSource IrrDifHorSou = BuildingSystems.Buildings.Types.DataSource.File
+  parameter BuildingSystems.Buildings.Types.DataSource IrrDifHorSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for solar diffuse radiation of horizontal surface"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
   parameter Modelica.SIunits.RadiantEnergyFluenceRate IrrDifHor_constant = 0.0
@@ -129,7 +129,7 @@ model Ambience
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-10,-90})));
 
   // Wind speed on reference height
-  parameter BuildingSystems.Buildings.Types.DataSource vWindRefSou = BuildingSystems.Buildings.Types.DataSource.File
+  parameter BuildingSystems.Buildings.Types.DataSource vWindRefSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for solar wind speed on reference height"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
   parameter Modelica.SIunits.Velocity vWindRef_constant = 0.0
@@ -146,7 +146,7 @@ model Ambience
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={10,-90})));
 
   // Wind direction on reference height
-  parameter BuildingSystems.Buildings.Types.DataSource angleDegWindRefSou = BuildingSystems.Buildings.Types.DataSource.File
+  parameter BuildingSystems.Buildings.Types.DataSource angleDegWindRefSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for Angle of wind direction on reference height"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegWindRef_constant = 0.0
@@ -163,7 +163,7 @@ model Ambience
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={30,-90})));
 
   // Cloud cover of the sky
-  parameter BuildingSystems.Buildings.Types.DataSource cloudCoverSou = BuildingSystems.Buildings.Types.DataSource.File
+  parameter BuildingSystems.Buildings.Types.DataSource cloudCoverSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for cloud cover of the sky"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
   parameter Real cloudCover_constant(min = 0.0,max = 8.0, unit = "1") = 0.0
@@ -255,7 +255,7 @@ equation
   // Select source for air temperature on reference height
   if TAirRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     TAirRef = TAirRef_constant;
-  elseif TAirRefSou == BuildingSystems.Buildings.Types.DataSource.File then
+  elseif TAirRefSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     connect(TAirRef, weatherDataReader.TAirRef);
   else
     connect(TAirRef, TAirRef_in);
@@ -264,7 +264,7 @@ equation
   // Select source for sky temperature on reference height
   if TAirRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     TSky = TAirRef_constant;
-  elseif TAirRefSou == BuildingSystems.Buildings.Types.DataSource.File then
+  elseif TAirRefSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     connect(TSky, weatherDataReader.TSky);
   else
     connect(TSky, TAirRef_in);
@@ -273,7 +273,7 @@ equation
   // Select source for absolute humidity of the ambient air
   if xAirSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     xAir = xAir_constant;
-  elseif xAirSou == BuildingSystems.Buildings.Types.DataSource.File then
+  elseif xAirSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     xAir = weatherDataReader.xAir;
   else
     connect(xAir, xAir_in);
@@ -282,7 +282,7 @@ equation
   // Select source for solar direct radiation of horizontal surface
   if IrrDirHorSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     IrrDirHor = IrrDirHor_constant;
-  elseif IrrDirHorSou == BuildingSystems.Buildings.Types.DataSource.File then
+  elseif IrrDirHorSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     connect(IrrDirHor, weatherDataReader.IrrDirHor);
   else
     connect(IrrDirHor, IrrDirHor_in);
@@ -291,7 +291,7 @@ equation
   // Select source for solar diffuse radiation of horizontal surface
   if IrrDifHorSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     IrrDifHor = IrrDifHor_constant;
-  elseif IrrDifHorSou == BuildingSystems.Buildings.Types.DataSource.File then
+  elseif IrrDifHorSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     connect(IrrDifHor, weatherDataReader.IrrDifHor);
   else
     connect(IrrDifHor, IrrDifHor_in);
@@ -300,7 +300,7 @@ equation
   // Select source for wind speed on reference height
   if vWindRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     vWindRef = vWindRef_constant;
-  elseif vWindRefSou == BuildingSystems.Buildings.Types.DataSource.File then
+  elseif vWindRefSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     connect(vWindRef, weatherDataReader.vWindRef);
   else
     connect(vWindRef, vWindRef_in);
@@ -309,7 +309,7 @@ equation
   // Select source for wind direction on reference height
   if angleDegWindRefSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     angleDegWindRef = angleDegWindRef_constant;
-  elseif angleDegWindRefSou == BuildingSystems.Buildings.Types.DataSource.File then
+  elseif angleDegWindRefSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     connect(angleDegWindRef, weatherDataReader.angleDegWindRef);
   else
     connect(angleDegWindRef, angleDegWindRef_in);
@@ -318,7 +318,7 @@ equation
   // Select source for cloud cover of the sky
   if cloudCoverSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
     cloudCover = cloudCover_constant;
-  elseif cloudCoverSou == BuildingSystems.Buildings.Types.DataSource.File then
+  elseif cloudCoverSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     connect(cloudCover, weatherDataReader.cloudCover);
   else
     connect(cloudCover, cloudCover_in);
