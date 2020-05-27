@@ -60,11 +60,8 @@ model ThermalCollector
     redeclare package Medium = Medium,
     dp_nominal=dp_nominal,
     from_dp=from_dp,
-    homotopyInitialization=homotopyInitialization,
     linearized=linearized)
     annotation (Placement(transformation(extent={{20,-10},{40,10}})));
-  parameter Boolean homotopyInitialization = true
-    "= true, use homotopy method";
   parameter Boolean from_dp = false
     "= true, use m_flow = f(dp) else dp = f(m_flow)";
   parameter Boolean linearized = false
