@@ -1,13 +1,13 @@
 within BuildingSystems.Buildings.Constructions.Walls;
-model WallThermal1DNodes
+model WallThermalTriangular1DNodes
   "Thermal wall model with 1D discritisation of the single layers"
-  extends BuildingSystems.Buildings.BaseClasses.WallThermalGeneral;
+  extends BuildingSystems.Buildings.BaseClasses.WallThermalTriangularGeneral;
   BuildingSystems.Interfaces.HeatPort heatPort_source if heatSource
     annotation (Placement(transformation(extent={{-10,-48},{10,-28}}),
        iconTransformation(extent={{-10,-48},{10,-28}})));
   BuildingSystems.HAM.HeatConduction.MultiLayerHeatConduction1DNodes construction(
-    lengthY=width_internal,
-    lengthZ=height_internal,
+    lengthY=sqrt(ASur),
+    lengthZ=sqrt(ASur),
     nLayers=constructionData.nLayers,
     nNodes=nNodes,
     thickness=constructionData.thickness,
@@ -27,30 +27,13 @@ model WallThermal1DNodes
     annotation(Dialog(tab = "Advanced", group = "Surface variables"));
   BuildingSystems.Interfaces.Temp_KOutput TSur_1 = toSurfacePort_1.heatPort.T if show_TSur
     "Temperature on surface side 1"
-    annotation (Placement(transformation(extent={{-40,30},{-60,50}}),
+    annotation (Placement(transformation(extent={{-40,10},{-60,30}}),
       iconTransformation(extent={{-20,30},{-40,50}})));
   BuildingSystems.Interfaces.Temp_KOutput TSur_2 = toSurfacePort_2.heatPort.T if show_TSur
     "Temperature on surface side 2"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,40}),
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,20}),
       iconTransformation(extent={{20,30},{40,50}})));
-  parameter Modelica.SIunits.Area AInnSur = 0.0
-    "Area of all enclosed surfaces (if geometryType == Fixed)"
-    annotation(Dialog(tab = "Geometry", group = "General"));
-  output BuildingSystems.Interfaces.AreaOutput AInnSur_internal
-    "Area of all enclosed surfaces";
-  input BuildingSystems.Interfaces.AreaInput AInnSur_in(
-    min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
-    "Area of all enclosed surfaces from input"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-56}),
-          iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-60})));
 equation
-  // Geometry
-  ASur = height_internal * width_internal - AInnSur_internal;
-  if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
-    AInnSur_internal = AInnSur;
-  else
-    connect(AInnSur_internal, AInnSur_in);
-  end if;
   // Energy and moisture transport
   connect(heatPort_source, construction.heatPort_source);
   connect(toSurfacePort_1.moisturePort, moistBcPort1.moisturePort) annotation (Line(
@@ -74,8 +57,10 @@ equation
       smooth=Smooth.None));
 
   annotation (defaultComponentName="wall", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
-    Text(extent={{-16,81},{16,38}}, lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern = FillPattern.Solid,textString = "1D"),
-    Text(extent={{-66,146},{66,106}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name")}),
+    Text(extent={{-16,35},{16,-8}}, lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},
+            fillPattern = FillPattern.Solid,textString = "1D"),
+    Text(extent={{-66,146},{66,106}},lineColor={0,0,255},fillColor={230,230,230},
+            fillPattern = FillPattern.Solid,textString = "%name")}),
 Documentation(info="<html>
 <p>
 This is a thermal wall model with 1D discritisation of the single layers.
@@ -83,13 +68,9 @@ This is a thermal wall model with 1D discritisation of the single layers.
 </html>", revisions="<html>
 <ul>
 <li>
-April 24, 2019 by Christoph Nytsch-Geusen:<br/>
-Adaptation to flexible geometries.
-</li>
-<li>
-May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+August 6, 2020 by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>
 </ul>
 </html>"));
-end WallThermal1DNodes;
+end WallThermalTriangular1DNodes;

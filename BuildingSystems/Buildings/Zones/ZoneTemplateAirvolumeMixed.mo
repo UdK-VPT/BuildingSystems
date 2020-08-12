@@ -18,7 +18,7 @@ model ZoneTemplateAirvolumeMixed
     annotation(Dialog(tab="General",group="Ideal heating and cooling"));
   parameter Modelica.SIunits.Length heightAirpath[nAirpathsInternal]=fill(0.0,nAirpathsInternal)
     "Vertical height of each air path in the zone"
-    annotation(Dialog(tab="General",group="Zone geometry"));
+    annotation(Dialog(tab="General",group="Air change"));
   parameter Boolean heatSources = false
     "True: heat sources present; false: no heat sources present"
     annotation(Dialog(tab="General",group="Heat and moisture sources"));

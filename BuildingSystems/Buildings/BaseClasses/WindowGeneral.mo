@@ -71,43 +71,15 @@ partial model WindowGeneral
     annotation(Dialog(tab = "Advanced", group = "Surface variables"));
   BuildingSystems.Interfaces.Temp_KOutput TSur_1 = toSurfacePort_1.heatPort.T if show_TSur
     "Temperature on surface side 1"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-46,10}),iconTransformation(extent={{-10,10},{-30,30}})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-46,10}),
+      iconTransformation(extent={{-10,30},{-30,50}})));
   BuildingSystems.Interfaces.Temp_KOutput TSur_2 = toSurfacePort_2.heatPort.T if show_TSur
     "Temperature on surface side 2"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={46,10}),iconTransformation(extent={{10,10},{30,30}})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={46,10}),
+      iconTransformation(extent={{10,30},{30,50}})));
   parameter Modelica.SIunits.Temp_K T_start=293.15
     "Start temperature of the window"
     annotation (Dialog(tab="Initialization"));
-  BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
-    A=ASur,
-    abs = abs_2,
-    geo(
-      angleDegAzi = angleDegAzi,
-      angleDegTil = angleDegTil,
-      width = width_internal,
-      height = height_internal,
-      zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
-      point(
-        x = {0.0,width_internal,width_internal,0.0},
-        y = {0.0,0.0,height_internal,height_internal},
-        z = {0.0,0.0,0.0,0.0})),
-        epsilon = epsilon_2)
-    annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
-    A=ASur,
-    abs = abs_1,
-    geo(
-      angleDegAzi = angleDegAzi,
-      angleDegTil = angleDegTil,
-      width = width_internal,
-      height = height_internal,
-      zMean = zLevel + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
-      point(
-        x = {0.0,width_internal,width_internal,0.0},
-        y = {0.0,0.0,height_internal,height_internal},
-        z = {0.0,0.0,0.0,0.0})),
-      epsilon = epsilon_1)
-    annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
   BuildingSystems.HAM.HeatConduction.HeatConduction1D heatTransfer(
     material(
       lambda = UVal*thicknessPane,
@@ -256,7 +228,7 @@ equation
           -60},{-20,-60}}, color={0,127,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Rectangle(extent={{-20,80},{20,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
-    Line(points={{-20,80},{-20,-80}},color={0,0,255},smooth=Smooth.None,thickness=0.5),
+    Line(points={{-20,80},{-20,-80}},color={0,0,255},smooth=Smooth.None,thickness=1.0),
     Text(extent={{-4,144},{128,104}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString = "%name")}),
 Documentation(info="<html>
 <p>

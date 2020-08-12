@@ -6,10 +6,10 @@ partial model ZoneTemplateGeneral
     annotation (choicesAllMatching = true);
   parameter BuildingSystems.Buildings.Types.GeometryType geometryType = BuildingSystems.Buildings.Types.GeometryType.Fixed
     "Fixed (default) or flexible geometry"
-    annotation (Evaluate=true, Dialog(tab = "General", group = "Zone geometry"));
+    annotation (Evaluate=true, Dialog(tab = "Geometry", group = "Zone geometry"));
   parameter Modelica.SIunits.Volume V = 1.0
     "Air volume of the zone (if geometryType == Fixed)"
-    annotation(Dialog(tab="General",group="Zone geometry"));
+    annotation(Dialog(tab="Geometry",group="Zone geometry"));
   output BuildingSystems.Interfaces.VolumeOutput V_internal
     "Air volume of the zone";
   input BuildingSystems.Interfaces.VolumeInput V_in(
@@ -19,7 +19,7 @@ partial model ZoneTemplateGeneral
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,0})));
   parameter Modelica.SIunits.Length height = 1.0
     "Vertical height of the zone"
-    annotation(Dialog(tab="General",group="Zone geometry"));
+    annotation(Dialog(tab="General",group="Air change"));
   parameter BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection convectionOnSurfaces = BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const
     "Type of convection calculation of the zone surfaces"
     annotation(Dialog(tab="Advanced",group="Convection model on building facades"));
@@ -36,14 +36,14 @@ partial model ZoneTemplateGeneral
    "Number of external air paths"
     annotation(HideResult = true, Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
   parameter Boolean prescribedAirchange = true
-    "True: zone air change rate is prescribed by zone ambient; false: air path calculation"
+    "True: zone air change rate is prescribed by zone ambience; false: air path calculation"
     annotation(HideResult = true, Dialog(tab="General",group="Air change"));
   parameter Boolean geometricViewFactors = false
     "true: use of geometric view factors, false: use of surface area weighted view factors"
-    annotation(HideResult = true, Dialog(tab="Advanced",group="View Factors"));
+    annotation(HideResult = true, Dialog(tab="Geometry",group="View Factors"));
   parameter BuildingSystems.Types.ViewFactor ViewFac[nSurfaces,nSurfaces]=fill(fill(0.0,nSurfaces),nSurfaces)
     "Geometric view factor matrix of the thermal zone"
-    annotation(HideResult = true,Dialog(tab="Advanced",group="View Factors"));
+    annotation(HideResult = true,Dialog(tab="Geometry",group="View Factors"));
   BuildingSystems.Buildings.BaseClasses.RadiationDistribution radiationDistribution(
     nSurfaces=nSurfaces,
     nHeatSources=nHeatSourcesTotal,

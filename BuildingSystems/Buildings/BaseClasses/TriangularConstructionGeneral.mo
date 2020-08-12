@@ -1,79 +1,86 @@
 within BuildingSystems.Buildings.BaseClasses;
-partial model ConstructionGeneral
+partial model TriangularConstructionGeneral
   "General model of building constructions (walls, windows, roofs etc.)"
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
     A=ASur,
     abs = abs_1,
     geo(
-      angleDegAzi = angleDegAzi_internal,
-      angleDegTil = angleDegTil_internal,
-      width = width_internal,
-      height = height_internal,
-      zMean = position[3] + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
+      angleDegAzi = angleDegAzi,
+      angleDegTil = angleDegTil,
+      width = sqrt(ASur),
+      height = sqrt(ASur),
+      zMean = position[3],
       vertex1 = {0.0,0.0,0.0},
-      vertex2 = {width_internal,0.0,0.0},
-      vertex3 = {width_internal,height_internal,0.0},
-      vertex4 = {0.0,height_internal,0.0}),
+      vertex2 = {0.0,0.0,0.0},
+      vertex3 = {0.0,0.0,0.0}),
     epsilon = epsilon_1)
-    annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
+    annotation (Placement(transformation(extent={{-40,-10},{-20,10}}),
+      iconTransformation(extent={{-40,-10},{-20,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
     A=ASur,
     abs = abs_2,
     geo(
-      angleDegAzi = angleDegAzi_internal,
-      angleDegTil = angleDegTil_internal,
-      width = width_internal,
-      height = height_internal,
-      zMean = position[3] + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
-      vertex1={0.0,0.0,0.0},
-      vertex2={width_internal,0.0,0.0},
-      vertex3={width_internal,height_internal,0.0},
-      vertex4={0.0,height_internal,0.0}),
+      angleDegAzi = angleDegAzi,
+      angleDegTil = angleDegTil,
+      width = sqrt(ASur),
+      height = sqrt(ASur),
+      zMean = position[3],
+      vertex1 = {0.0,0.0,0.0},
+      vertex2 = {0.0,0.0,0.0},
+      vertex3 = {0.0,0.0,0.0}),
     epsilon = epsilon_2)
     "Interface to surface on side 2"
-    annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
+    annotation (Placement(transformation(extent={{20,-10},{40,10}}),
+      iconTransformation(extent={{20,-10},{40,10}})));
   parameter BuildingSystems.Buildings.Types.GeometryType geometryType = BuildingSystems.Buildings.Types.GeometryType.Fixed
     "Fixed (default) or flexible geometry"
     annotation (Evaluate=true, Dialog(tab = "Geometry", group = "General"));
-  parameter Modelica.SIunits.Length width = 1.0
-    "Width (if geometryType == Fixed)"
-    annotation(Dialog(tab = "Geometry", group = "Dimension"));
-  output BuildingSystems.Interfaces.LengthOutput width_internal
-    "Width";
-  input BuildingSystems.Interfaces.LengthInput width_in(
-    min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
-    "Width from input"
+  parameter BuildingSystems.Buildings.Types.CoordinateType coordinateType = BuildingSystems.Buildings.Types.CoordinateType.Local
+    "Local (default) or global"
+    annotation (Evaluate=true, Dialog(tab = "Geometry", group = "Coordinates"));
+  parameter Modelica.SIunits.Length verticesLocal[3,2] = {{0.0,0.0},{0.0,1.0},{0.5,1.0}}
+    "Local 2D vertices (if geometryType == Fixed and coordinateType == Local)"
+    annotation(Dialog(tab = "Geometry", group = "Coordinates"));
+  output BuildingSystems.Interfaces.LengthOutput verticesLocal_internal[3,2]
+    "Local 2D vertices";
+  input BuildingSystems.Interfaces.LengthInput verticesLocal_in[3,2]
+    if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
+      and coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Local
+    "Local 2D vertices from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-36}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-20})));
-  parameter Modelica.SIunits.Length height = 1.0
-    "Height (if geometryType == Fixed)"
-    annotation(Dialog(tab = "Geometry", group = "Dimension"));
-  output BuildingSystems.Interfaces.LengthOutput height_internal
-    "Height";
-  input BuildingSystems.Interfaces.LengthInput height_in(
-    min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
-    "Height from input"
+  parameter Modelica.SIunits.Length verticesGlobal[3,3] = {{0.0,0.0,0.0},{0.0,1.0,0.0},{0.5,1.0,0.0}}
+    "Global 3D vertices (if geometryType == Fixed and coordinateType == Global)"
+    annotation(Dialog(tab = "Geometry", group = "Coordinates"));
+  output BuildingSystems.Interfaces.LengthOutput verticesGlobal_internal[3,3]
+    "Global 3D vertices";
+  input BuildingSystems.Interfaces.LengthInput verticesGlobal_in[3,3]
+    if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
+      and coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Global
+      "Global 3D vertices from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-46}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-40})));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi = 0.0
-    "Azimuth angle (if geometryType == Fixed) -> south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg"
+    "Azimuth angle (if geometryType == Fixed and coordinateType = Local) -> south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg"
     annotation(Dialog(tab = "Geometry", group = "Orientation"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegAzi_internal
     "Azimuth angle";
   input BuildingSystems.Interfaces.Angle_degInput angleDegAzi_in(
     min=-180.0,
     max=180.0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
+                  and coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Local
     "Azimuth angle from input"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,  origin={30,-46}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={22,-40})));
   parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil = 90.0
-    "Tilt angle (if geometryType == Fixed) -> bottom: 0 deg, perpendicular: 90 deg, ceiling: 180 deg"
+    "Tilt angle (if geometryType == Fixed and coordinateType = Local) -> bottom: 0 deg, perpendicular: 90 deg, ceiling: 180 deg"
     annotation(Dialog(tab = "Geometry", group = "Orientation"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegTil_internal
     "Tilt angle";
   input BuildingSystems.Interfaces.Angle_degInput angleDegTil_in(
     min=0.0,
     max=180.0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
+                  and coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Local
     "Tilt angle from input"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,  origin={30,-36}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={22,-20})));
@@ -103,34 +110,33 @@ partial model ConstructionGeneral
     "Surface area";
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
-    width_internal = width;
-    height_internal = height;
     angleDegAzi_internal = angleDegAzi;
     angleDegTil_internal = angleDegTil;
+    verticesLocal_internal = verticesLocal;
+    verticesGlobal_internal = verticesGlobal;
     position_internal = position;
   else
-    connect(width_internal, width_in);
-    connect(height_internal, height_in);
-    connect(angleDegAzi_internal, angleDegAzi_in);
-    connect(angleDegTil_internal, angleDegTil_in);
     connect(position_internal, position_in);
+    if coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Local then
+      connect(angleDegAzi_internal,angleDegAzi_in);
+      connect(angleDegTil_internal,angleDegTil_in);
+      connect(verticesLocal_internal,verticesLocal_in);
+    else
+      connect(verticesGlobal_internal,verticesGlobal_in);
+    end if;
   end if;
 
   annotation (
 Documentation(info="<html>
 <p>
-This is partial model description of a building construction.
+This is partial model description of a triangular building construction.
 </p>
 </html>", revisions="<html>
 <ul>
 <li>
-April 24, 2019 by Christoph Nytsch-Geusen:<br/>
-Adaptation to flexible geometries.
-</li>
-<li>
-May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+August 8, 2020 by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>
 </ul>
 </html>"));
-end ConstructionGeneral;
+end TriangularConstructionGeneral;

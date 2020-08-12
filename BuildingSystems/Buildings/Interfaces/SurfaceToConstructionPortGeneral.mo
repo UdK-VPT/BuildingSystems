@@ -1,7 +1,7 @@
 within BuildingSystems.Buildings.Interfaces;
 connector SurfaceToConstructionPortGeneral
   "Port for heat and moisture transport between a surface and the adjacent construction (complex connector type)"
-  BuildingSystems.Geometries.BaseClasses.GeometryRectangle geo
+  BuildingSystems.Buildings.Geometries.BaseClasses.GeometryPolygon geo
     "3D geometry representation of the connected surface";
   BuildingSystems.Interfaces.HeatPort heatPort
     "Port for heat transfer";

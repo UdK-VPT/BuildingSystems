@@ -1,16 +1,17 @@
-within BuildingSystems.Geometries.BaseClasses;
+within BuildingSystems.Buildings.Geometries.BaseClasses;
 record GeometryCircle
   "3D representation of a circle"
-  extends BuildingSystems.Geometries.BaseClasses.GeometryGeneral(
-  nPoints=nSeg);
+  parameter Integer nVertices(min=3)
+    "Number of vertices, which represent the circle";
+  BuildingSystems.Buildings.Geometries.BaseClasses.Vertex3D vertex[nVertices];
   parameter Integer nSeg(min=3)
-   "Number of points, which represent the circle";
+   "Number of vertices, which represent the circle";
   parameter Modelica.SIunits.Length diameter = 1.0
    "Diameter of the circle";
   Modelica.SIunits.Length zMean
     "Mean vertical position";
   Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi
-    "Azimuth angle of the rectangle";
+    "Azimuth angle";
   Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil
-    "Tilt angle of the rectangle";
+    "Tilt angle";
 end GeometryCircle;

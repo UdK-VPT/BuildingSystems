@@ -23,11 +23,11 @@ model Door
   BuildingSystems.Interfaces.Temp_KOutput TSur_1 = toSurfacePort_1.heatPort.T if show_TSur
     "Temperature on surface side 1"
     annotation (Placement(transformation(extent={{-40,10},{-60,30}}),
-      iconTransformation(extent={{-20,10},{-40,30}})));
+      iconTransformation(extent={{-20,30},{-40,50}})));
   BuildingSystems.Interfaces.Temp_KOutput TSur_2 = toSurfacePort_2.heatPort.T if show_TSur
     "Temperature on surface side 2"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,20}),
-      iconTransformation(extent={{20,10},{40,30}})));
+      iconTransformation(extent={{20,30},{40,50}})));
   // Ventilation
   parameter Boolean calcAirchange = false
     "True: calculation of air exchange through the door, false: no air exchange"
