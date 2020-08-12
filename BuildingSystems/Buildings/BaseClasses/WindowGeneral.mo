@@ -3,7 +3,8 @@ partial model WindowGeneral
   "General window model"
   extends BuildingSystems.Buildings.BaseClasses.ConstructionGeneral(
   final abs_1 = 0.0,
-  final abs_2 = 0.0);
+  final abs_2 = 0.0,
+  thickness = 0.05);
   final package Medium = BuildingSystems.Media.Air;
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.TransparentConstruction constructionData
     "Data of the thermal construction"

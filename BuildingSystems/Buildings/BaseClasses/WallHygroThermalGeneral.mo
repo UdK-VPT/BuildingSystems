@@ -1,7 +1,8 @@
 within BuildingSystems.Buildings.BaseClasses;
 partial model WallHygroThermalGeneral
   "General hygro-hermal wall model"
-  extends BuildingSystems.Buildings.BaseClasses.WallGeneral;
+  extends BuildingSystems.Buildings.BaseClasses.WallGeneral(
+    thickness = sum(constructionData.thickness[i] for i in 1:constructionData.nLayers));
   parameter Modelica.SIunits.Temp_K T_start[constructionData.nLayers]={293.15 for i in 1:constructionData.nLayers}
     "Start temperature of each layer"
     annotation (Dialog(tab="Initialization"));

@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.BaseClasses;
 partial model TriangularConstructionGeneral
-  "General model of building constructions (walls, windows, roofs etc.)"
+  "General model of triangular building constructions (walls, windows, roofs etc.)"
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_1(
     A=ASur,
     abs = abs_1,
@@ -10,9 +10,10 @@ partial model TriangularConstructionGeneral
       width = sqrt(ASur),
       height = sqrt(ASur),
       zMean = position[3],
-      vertex1 = {0.0,0.0,0.0},
-      vertex2 = {0.0,0.0,0.0},
-      vertex3 = {0.0,0.0,0.0}),
+      vertex1 = verticesGlobal_internal[1],
+      vertex2 = verticesGlobal_internal[2],
+      vertex3 = verticesGlobal_internal[3],
+      vertex4 = {0.0,0.0,0.0}),
     epsilon = epsilon_1)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}}),
       iconTransformation(extent={{-40,-10},{-20,10}})));
@@ -25,9 +26,10 @@ partial model TriangularConstructionGeneral
       width = sqrt(ASur),
       height = sqrt(ASur),
       zMean = position[3],
-      vertex1 = {0.0,0.0,0.0},
-      vertex2 = {0.0,0.0,0.0},
-      vertex3 = {0.0,0.0,0.0}),
+      vertex1 = verticesGlobal_internal[1],
+      vertex2 = verticesGlobal_internal[2],
+      vertex3 = verticesGlobal_internal[3],
+      vertex4 = {0.0,0.0,0.0}),
     epsilon = epsilon_2)
     "Interface to surface on side 2"
     annotation (Placement(transformation(extent={{20,-10},{40,10}}),
@@ -108,22 +110,38 @@ partial model TriangularConstructionGeneral
     annotation(Dialog(tab = "General", group = "Surfaces"));
   Modelica.SIunits.Area ASur
     "Surface area";
+protected
+  parameter Modelica.SIunits.Length thickness
+    "Total thickness of the construction";
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
     angleDegAzi_internal = angleDegAzi;
     angleDegTil_internal = angleDegTil;
     verticesLocal_internal = verticesLocal;
-    verticesGlobal_internal = verticesGlobal;
+    if coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Global then
+      verticesGlobal_internal = verticesGlobal;
+    end if;
     position_internal = position;
   else
     connect(position_internal, position_in);
-    if coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Local then
-      connect(angleDegAzi_internal,angleDegAzi_in);
-      connect(angleDegTil_internal,angleDegTil_in);
-      connect(verticesLocal_internal,verticesLocal_in);
-    else
+    connect(angleDegAzi_internal,angleDegAzi_in);
+    connect(angleDegTil_internal,angleDegTil_in);
+    connect(verticesLocal_internal,verticesLocal_in);
+    if coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Global then
       connect(verticesGlobal_internal,verticesGlobal_in);
     end if;
+  end if;
+
+  if coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Local then
+    verticesGlobal_internal[1] = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+      BuildingSystems.Buildings.Geometries.Functions.rotateVector({verticesLocal_internal[1,1],verticesLocal_internal[1,2],0.0},{1.0,0.0,0.0},
+      Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal);
+    verticesGlobal_internal[2] = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+      BuildingSystems.Buildings.Geometries.Functions.rotateVector({verticesLocal_internal[2,1],verticesLocal_internal[2,2],0.0},{1.0,0.0,0.0},
+      Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal);
+    verticesGlobal_internal[3] = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+      BuildingSystems.Buildings.Geometries.Functions.rotateVector({verticesLocal_internal[3,1],verticesLocal_internal[3,2],0.0},{1.0,0.0,0.0},
+      Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal);
   end if;
 
   annotation (

@@ -1,7 +1,8 @@
 within BuildingSystems.Buildings.BaseClasses;
 partial model WallThermalTriangularGeneral
   "General thermal wall model"
-  extends BuildingSystems.Buildings.BaseClasses.WallTriangularGeneral;
+  extends BuildingSystems.Buildings.BaseClasses.WallTriangularGeneral(
+    thickness = sum(constructionData.thickness[i] for i in 1:constructionData.nLayers));
   BuildingSystems.HAM.HeatAndMoistureTransport.Sources.FixedMoistureFlow moistBcPort1(
     m_flow_constant = 0.0)
     "Moisture port on side 1"

@@ -10,10 +10,22 @@ partial model ConstructionGeneral
       width = width_internal,
       height = height_internal,
       zMean = position[3] + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
-      vertex1 = {0.0,0.0,0.0},
-      vertex2 = {width_internal,0.0,0.0},
-      vertex3 = {width_internal,height_internal,0.0},
-      vertex4 = {0.0,height_internal,0.0}),
+      vertex1 = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        {position_internal[1]-0.5*width_internal,position_internal[2]-0.5*height_internal,position_internal[3]+0.5*thickness},
+        {1.0,0.0,0.0},Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal),
+      vertex2 = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        {position_internal[1]+0.5*width_internal,position_internal[2]-0.5*height_internal,position_internal[3]+0.5*thickness},
+        {1.0,0.0,0.0},Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal),
+      vertex3 = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        {position_internal[1]+0.5*width_internal,position_internal[2]+0.5*height_internal,position_internal[3]+0.5*thickness},
+        {1.0,0.0,0.0},Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal),
+      vertex4 = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        {position_internal[1]-0.5*width_internal,position_internal[2]+0.5*height_internal,position_internal[3]+0.5*thickness},
+        {1.0,0.0,0.0},Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal)),
     epsilon = epsilon_1)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}}), iconTransformation(extent={{-30,-10},{-10,10}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPort toSurfacePort_2(
@@ -25,10 +37,22 @@ partial model ConstructionGeneral
       width = width_internal,
       height = height_internal,
       zMean = position[3] + Modelica.Math.sin(Modelica.Constants.pi/180.0*angleDegTil) * height_internal,
-      vertex1={0.0,0.0,0.0},
-      vertex2={width_internal,0.0,0.0},
-      vertex3={width_internal,height_internal,0.0},
-      vertex4={0.0,height_internal,0.0}),
+      vertex1 = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        {position_internal[1]-0.5*width_internal,position_internal[2]-0.5*height_internal,position_internal[3]-0.5*thickness},
+        {1.0,0.0,0.0},Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal),
+      vertex2 = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        {position_internal[1]-0.5*width_internal,position_internal[2]+0.5*height_internal,position_internal[3]-0.5*thickness},
+        {1.0,0.0,0.0},Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal),
+      vertex3 = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        {position_internal[1]+0.5*width_internal,position_internal[2]+0.5*height_internal,position_internal[3]-0.5*thickness},
+        {1.0,0.0,0.0},Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal),
+      vertex4 = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+        {position_internal[1]+0.5*width_internal,position_internal[2]-0.5*height_internal,position_internal[3]-0.5*thickness},
+        {1.0,0.0,0.0},Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal)),
     epsilon = epsilon_2)
     "Interface to surface on side 2"
     annotation (Placement(transformation(extent={{10,-10},{30,10}}), iconTransformation(extent={{10,-10},{30,10}})));
@@ -101,6 +125,9 @@ partial model ConstructionGeneral
     annotation(Dialog(tab = "General", group = "Surfaces"));
   Modelica.SIunits.Area ASur
     "Surface area";
+protected
+  parameter Modelica.SIunits.Length thickness
+    "Total thickness of the construction";
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
     width_internal = width;

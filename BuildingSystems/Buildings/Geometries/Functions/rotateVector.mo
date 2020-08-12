@@ -13,7 +13,7 @@ protected
   Real x, a, b, c, d;
   Real mat[3,3];
 algorithm
-  x := sqrt(axis[1] * axis[2] + axis[3] * axis[2] + axis[3] * axis[3]);
+  x := sqrt(axis[1] * axis[1] + axis[2] * axis[2] + axis[3] * axis[3]);
   a := cos(theta / 2.0);
   b := -(axis[1] / x) * sin(theta / 2.0);
   c := -(axis[2] / x) * sin(theta / 2.0);
