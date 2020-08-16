@@ -21,14 +21,7 @@ partial model WallTriangularGeneral
     "Wall layer with internal heat source (used if heatSource = true)"
     annotation(Dialog(tab = "Advanced", group = "Heat sources"));
 equation
-  if coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Local then
-    ASur = abs(0.5*(verticesLocal_internal[1,1]*(verticesLocal_internal[2,2]-verticesLocal_internal[3,2])
-           +verticesLocal_internal[2,1]*(verticesLocal_internal[3,2]-verticesLocal_internal[1,2])
-           +verticesLocal_internal[3,1]*(verticesLocal_internal[1,2]-verticesLocal_internal[2,2])));
-  end if;
-  if coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Global then
     ASur = 0.5 * Modelica.Math.Vectors.length(cross(verticesGlobal_internal[1]-verticesGlobal_internal[2],verticesGlobal_internal[1]-verticesGlobal_internal[3]));
-  end if;
   connect(radBcPort1.radiationPort, toSurfacePort_1.radiationPort_out) annotation (Line(
       points={{-20,11.2},{-20,0}},
       color={0,0,0},

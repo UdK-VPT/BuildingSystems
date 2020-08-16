@@ -135,13 +135,13 @@ equation
   if coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Local then
     verticesGlobal_internal[1] = position_internal + BuildingSystems.Buildings.Geometries.Functions.rotateVector(
       BuildingSystems.Buildings.Geometries.Functions.rotateVector({verticesLocal_internal[1,1],verticesLocal_internal[1,2],0.0},{1.0,0.0,0.0},
-      Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal);
+      -Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},-Modelica.Constants.pi/180.0*angleDegAzi_internal);
     verticesGlobal_internal[2] = position_internal + BuildingSystems.Buildings.Geometries.Functions.rotateVector(
       BuildingSystems.Buildings.Geometries.Functions.rotateVector({verticesLocal_internal[2,1],verticesLocal_internal[2,2],0.0},{1.0,0.0,0.0},
-      Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal);
+      -Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},-Modelica.Constants.pi/180.0*angleDegAzi_internal);
     verticesGlobal_internal[3] = position_internal + BuildingSystems.Buildings.Geometries.Functions.rotateVector(
       BuildingSystems.Buildings.Geometries.Functions.rotateVector({verticesLocal_internal[3,1],verticesLocal_internal[3,2],0.0},{1.0,0.0,0.0},
-      Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal);
+      -Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},-Modelica.Constants.pi/180.0*angleDegAzi_internal);
   end if;
 
   annotation (
