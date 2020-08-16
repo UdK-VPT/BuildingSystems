@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Zones.Examples;
 model SingleZoneThermal3D1x1x1
-  "Thermal zone model and some 1D-constructions elements under real weather data"
+  "1x1x1 disretized thermal zone model"
   extends Modelica.Icons.Example;
   parameter Integer nSurfaces = 6;
 
@@ -142,5 +142,18 @@ equation
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal3D1x1x1.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}})),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+ Documentation(info="<html>
+ <p>
+ Example that simulates a 1x1x1 disretized thermal zone model.
+ </p>
+ </html>",
+ revisions="<html>
+ <ul>
+ <li>
+ August 16, 2020, by Christoph Nytsch-Geusen:<br/>
+ First implementation.
+ </li>
+ </ul>
+ </html>"));
 end SingleZoneThermal3D1x1x1;

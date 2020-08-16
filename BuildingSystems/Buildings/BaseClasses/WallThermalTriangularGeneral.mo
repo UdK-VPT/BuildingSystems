@@ -1,7 +1,7 @@
 within BuildingSystems.Buildings.BaseClasses;
-partial model WallThermalGeneral
+partial model WallThermalTriangularGeneral
   "General thermal wall model"
-  extends BuildingSystems.Buildings.BaseClasses.WallGeneral(
+  extends BuildingSystems.Buildings.BaseClasses.WallTriangularGeneral(
     thickness = sum(constructionData.thickness[i] for i in 1:constructionData.nLayers));
   BuildingSystems.HAM.HeatAndMoistureTransport.Sources.FixedMoistureFlow moistBcPort1(
     m_flow_constant = 0.0)
@@ -38,4 +38,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end WallThermalGeneral;
+end WallThermalTriangularGeneral;

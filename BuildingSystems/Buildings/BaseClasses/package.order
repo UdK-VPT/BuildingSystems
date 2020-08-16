@@ -8,9 +8,12 @@ RadiationDistribution
 RelationRadiationConvection
 ShadowingElementGeneral
 SurfaceGeneral
+TriangularConstructionGeneral
 WallGeneral
 WallHygroThermalGeneral
 WallThermalGeneral
+WallThermalTriangularGeneral
+WallTriangularGeneral
 WindowGeneral
 ZoneTemplateGeneral
 OpaqueConstruction

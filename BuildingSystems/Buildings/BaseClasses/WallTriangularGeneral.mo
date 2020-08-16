@@ -1,7 +1,7 @@
 within BuildingSystems.Buildings.BaseClasses;
-partial model WallGeneral
+partial model WallTriangularGeneral
   "General wall model"
-  extends BuildingSystems.Buildings.BaseClasses.ConstructionGeneral;
+  extends BuildingSystems.Buildings.BaseClasses.TriangularConstructionGeneral;
   BuildingSystems.Climate.Sources.RadiationFixed radBcPort1(
     IrrDir_constant = 0.0,
     IrrDif_constant = 0.0,
@@ -21,6 +21,7 @@ partial model WallGeneral
     "Wall layer with internal heat source (used if heatSource = true)"
     annotation(Dialog(tab = "Advanced", group = "Heat sources"));
 equation
+    ASur = 0.5 * Modelica.Math.Vectors.length(cross(verticesGlobal_internal[1]-verticesGlobal_internal[2],verticesGlobal_internal[1]-verticesGlobal_internal[3]));
   connect(radBcPort1.radiationPort, toSurfacePort_1.radiationPort_out) annotation (Line(
       points={{-20,11.2},{-20,0}},
       color={0,0,0},
@@ -33,8 +34,9 @@ equation
       smooth=Smooth.None));
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
-    Rectangle(extent={{-20,80},{20,-80}},lineColor={230,230,230},fillColor={230,230,230},fillPattern = FillPattern.Solid),
-    Line(points={{-20,80},{-20,-80}},color={0,0,255},smooth=Smooth.None,thickness=1.0)}),
+    Polygon(points={{0,80},{-60,-80},{60,-82},{0,80}},lineColor={28,108,200},
+      pattern=LinePattern.None,fillColor={230,230,230},fillPattern=FillPattern.Solid),
+    Line(points={{0,80},{-60,-80}},  color={0,0,255},smooth=Smooth.None,thickness=1.0)}),
 Documentation(info="<html>
 <p>
 This is partial model description of a wall.
@@ -42,13 +44,9 @@ This is partial model description of a wall.
 </html>", revisions="<html>
 <ul>
 <li>
-April 24, 2019 by Christoph Nytsch-Geusen:<br/>
-Adaptation to flexible geometries.
-</li>
-<li>
-May 23, 2015 by Christoph Nytsch-Geusen:<br/>
+August 6, 2020 by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>
 </ul>
 </html>"));
-end WallGeneral;
+end WallTriangularGeneral;

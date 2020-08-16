@@ -32,19 +32,19 @@ model WallHygroThermal1DNodes
   BuildingSystems.Interfaces.Temp_KOutput TSur_1 = toSurfacePort_1.heatPort.T if show_TSur
     "Temperature on surface side 1"
     annotation (Placement(transformation(extent={{-40,10},{-60,30}}),
-      iconTransformation(extent={{-20,10},{-40,30}})));
+      iconTransformation(extent={{-20,30},{-40,50}})));
   BuildingSystems.Interfaces.Temp_KOutput TSur_2 = toSurfacePort_2.heatPort.T if show_TSur
     "Temperature on surface side 2"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,20}),
-      iconTransformation(extent={{20,10},{40,30}})));
+      iconTransformation(extent={{20,30},{40,50}})));
   BuildingSystems.Interfaces.Moisture_absOutput xSur_1 = toSurfacePort_1.moisturePort.x if show_xSur
     "Absolute moisture on surface side 1"
     annotation (Placement(transformation(extent={{-40,26},{-60,46}}),
-      iconTransformation(extent={{-20,30},{-40,50}})));
+      iconTransformation(extent={{-20,50},{-40,70}})));
   BuildingSystems.Interfaces.Moisture_absOutput xSur_2 = toSurfacePort_2.moisturePort.x if show_xSur
     "Absolute moisture on surface side 2"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,40}),
-        iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={30,40})));
+        iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={30,60})));
   parameter Modelica.SIunits.Area AInnSur = 0.0
     "Area of all enclosed surfaces (if geometryType == Fixed)"
     annotation(Dialog(tab = "General", group = "Geometry"));

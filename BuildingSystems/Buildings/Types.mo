@@ -13,6 +13,17 @@ package Types
     Flexible "Flexible")
     "Enumeration to select the geometry type";
 
+  type GeometryShape = enumeration(
+    Rectangle "Rectangle",
+    Triangle "Triangle",
+    Circle "Circle")
+    "Enumeration to select the geometry shape";
+
+  type CoordinateType = enumeration(
+    Local "Local coordinates",
+    Global "Global coordinates")
+    "Enumeration to select the coordinate type";
+
   type ThermalBoundaryCondition = enumeration(
     Ambience "Ambience climate",
     Adiabatic "Adiabatic boundary condition",

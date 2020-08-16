@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Zones.Examples;
 model SingleZoneHygroThermal1D
-  "Hygro-thermal zone model and some 1D-constructions elements under real weather data"
+  "Hygro-thermal zone model and some 1D-constructions elements"
   extends Modelica.Icons.Example;
 
   parameter Integer nSurfaces = 8;
@@ -288,6 +288,19 @@ equation
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneHygroThermal1D.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={Text(extent={{-52,-18},{52,-86}},lineColor={0,0,255},
-    textString="Hygro-thermal zone model and some 1D-constructions elements
-    under real weather data")}),Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+    textString="Hygro-thermal zone model and some 1D-constructions elements")})
+    ,Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates a hygro-thermal zone model and some 1D-constructions elements.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+August 16, 2020, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SingleZoneHygroThermal1D;

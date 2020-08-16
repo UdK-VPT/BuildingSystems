@@ -6,35 +6,35 @@ model BuildingThermal1Zone1D
   model Building
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
     nZones=1,
-    surfacesToAmbience(nSurfaces=6),
+    surfacesToAmbience(nSurfaces=8),
     convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
     useAirPaths = false);
-    record Construction
-      extends
-        BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
+    record Construction extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
       nLayers=2,
       thickness={0.2,0.1},
       material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),
         BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation()});
     end Construction;
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone1(
-      V = 4.0*4.0*2.5,
+      V=3.0*4.0*2.5,
       height = 2.5,
-      nConstructions=6,
+      nConstructions=8,
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.free)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
       height=2.5,
-      width=4.0,
+      width=3.0,
       angleDegAzi=90.0,
       angleDegTil=90.0,
+      position={-2.0,0.0,1.25},
       redeclare Construction constructionData)
-      annotation (Placement(transformation(extent={{-34,-10},{-14,10}})));
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-24,0})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall3(
       height=2.5,
-      width=4.0,
+      width=3.0,
       angleDegAzi=-90.0,
       angleDegTil=90.0,
+      position={2.0,0.0,1.25},
       redeclare Construction constructionData)
       annotation (Placement(transformation(extent={{16,-10},{36,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall2(
@@ -42,6 +42,7 @@ model BuildingThermal1Zone1D
       width=4.0,
       angleDegAzi=180.0,
       angleDegTil=90.0,
+      position={0.0,1.5,1.25},
       AInnSur=window2.width*window2.height,
       redeclare Construction constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-12,20})));
@@ -50,14 +51,16 @@ model BuildingThermal1Zone1D
       width=4.0,
       angleDegAzi=0.0,
       angleDegTil=90.0,
+      position={0.0,-1.5,1.25},
       AInnSur=window4.width*window4.height,
       redeclare Construction constructionData)
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-12,-20})));
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-12,-20})));
     BuildingSystems.Buildings.Constructions.Windows.Window window2(
       height=1.0,
       width=2.0,
       angleDegAzi=180.0,
       angleDegTil=90.0,
+      position={0.0,1.5,0.5 + 0.6},
       redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={12,20})));
     BuildingSystems.Buildings.Constructions.Windows.Window window4(
@@ -65,68 +68,51 @@ model BuildingThermal1Zone1D
       width=2.0,
       angleDegAzi=0.0,
       angleDegTil=90.0,
+      position={0.0,-1.5,0.5 + 0.6},
       redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
-      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={12,-20})));
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={12,-20})));
+    BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
+      height=4.0,
+      width=3.0,
+      angleDegAzi=0.0,
+      angleDegTil=0.0,
+      position={0.0,0.0,0.0},
+      redeclare Construction constructionData)
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-38})));
+    BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
+      height=4.0,
+      width=3.0,
+      angleDegAzi=0.0,
+      angleDegTil=180.0,
+      position={0.0,0.0,2.5},
+      redeclare Construction constructionData)
+      annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,42})));
   equation
    connect(wall2.toSurfacePort_1, zone1.toConstructionPorts[1]) annotation (
         Line(
-        points={{-12,18},{-12,14},{0,14},{0,-1.66667}},
+        points={{-12,18},{-12,14},{0,14},{0,-1.75}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
-    connect(wall1.toSurfacePort_2, zone1.toConstructionPorts[2]) annotation (
+    connect(wall3.toSurfacePort_1, zone1.toConstructionPorts[2]) annotation (
         Line(
-        points={{-22,0},{-16,0},{-16,-1},{0,-1}},
+        points={{24,0},{0,0},{0,-1.25}},
         color={0,0,0},
         pattern=LinePattern.Solid,
         smooth=Smooth.None));
-    connect(wall4.toSurfacePort_2, zone1.toConstructionPorts[3]) annotation (
-        Line(
-        points={{-12,-18},{-12,-16},{0,-16},{0,-0.333333}},
-        color={0,0,0},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(window4.toSurfacePort_2, zone1.toConstructionPorts[4]) annotation (
-        Line(
-        points={{12,-18},{12,-16},{0,-16},{0,0.333333}},
-        color={0,0,0},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(wall3.toSurfacePort_1, zone1.toConstructionPorts[5]) annotation (
-        Line(
-        points={{24,0},{0,0},{0,1}},
-        color={0,0,0},
-        pattern=LinePattern.Solid,
-        smooth=Smooth.None));
-    connect(surfacesToAmbience.toConstructionPorts[1], wall1.toSurfacePort_1)
-      annotation (Line(
-        points={{-170.8,3.10862e-15},{-55.95,3.10862e-15},{-55.95,0},{-26,0}},
-        color={127,0,0},
-        smooth=Smooth.None));
-    connect(surfacesToAmbience.toConstructionPorts[2], wall2.toSurfacePort_2)
+    connect(surfacesToAmbience.toConstructionPorts[1], wall2.toSurfacePort_2)
       annotation (Line(
         points={{-170.8,2.66454e-15},{-40,2.66454e-15},{-40,28},{-12,28},{-12,22}},
         color={127,0,0},
         smooth=Smooth.None));
-    connect(surfacesToAmbience.toConstructionPorts[3], window2.toSurfacePort_2)
+    connect(surfacesToAmbience.toConstructionPorts[2], window2.toSurfacePort_2)
       annotation (Line(
         points={{-170.8,2.66454e-15},{-40,2.66454e-15},{-40,28},{12,28},{12,22}},
         color={127,0,0},
         smooth=Smooth.None));
-    connect(surfacesToAmbience.toConstructionPorts[4], wall3.toSurfacePort_2)
+    connect(surfacesToAmbience.toConstructionPorts[3], wall3.toSurfacePort_2)
       annotation (Line(
-        points={{-170.8,2.66454e-15},{-40,2.66454e-15},{-40,28},{32,28},{32,0},{
-            28,0}},
-        color={127,0,0},
-        smooth=Smooth.None));
-    connect(surfacesToAmbience.toConstructionPorts[5], window4.toSurfacePort_1)
-      annotation (Line(
-        points={{-170.8,0},{-40,0},{-40,-30},{12,-30},{12,-22}},
-        color={127,0,0},
-        smooth=Smooth.None));
-    connect(surfacesToAmbience.toConstructionPorts[6], wall4.toSurfacePort_1)
-      annotation (Line(
-        points={{-170.8,0},{-40,0},{-40,-30},{-12,-30},{-12,-22}},
+        points={{-170.8,2.66454e-15},{-40,2.66454e-15},{-40,28},{32,28},{32,0},{28,0}},
         color={127,0,0},
         smooth=Smooth.None));
     connect(zone1.T_setCooling, T_setCooling[1]) annotation (Line(
@@ -138,15 +124,15 @@ model BuildingThermal1Zone1D
         color={0,0,127},
         smooth=Smooth.None));
     connect(zone1.airchange, airchange[1]) annotation (Line(
-      points={{-11,-3},{-14,-3},{-14,10},{70,10},{70,40},{180,40}},
+      points={{-11,-2},{-14,-2},{-14,10},{70,10},{70,40},{180,40}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(zone1.xAirAmb, xAirAmb) annotation (Line(
-      points={{-11,-7},{-14,-7},{-14,10},{70,10},{70,120}},
+      points={{-11,-8},{-14,-8},{-14,10},{70,10},{70,120}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(TAirAmb, zone1.TAirAmb) annotation (Line(
-      points={{50,120},{50,10},{-14,10},{-14,-5},{-11,-5}},
+      points={{50,120},{50,10},{-14,10},{-14,-4},{-11,-4}},
       color={0,0,127},
       smooth=Smooth.None));
     connect(zone1.Q_flow_cooling, Q_flow_cooling[1]) annotation (Line(
@@ -155,10 +141,33 @@ model BuildingThermal1Zone1D
       smooth=Smooth.None));
     connect(zone1.Q_flow_heating, Q_flow_heating[1]) annotation (Line(
       points={{11,7},{11,8},{22,8},{22,-80},{80,-80},{80,-122}},
-      color={0,0,127},
-      smooth=Smooth.None));
-    connect(window2.toSurfacePort_1, zone1.toConstructionPorts[6]) annotation (
-        Line(points={{12,18},{12,14},{0,14},{0,1.66667}}, color={0,0,0}));
+      color={0,0,127},smooth=Smooth.None));
+    connect(window2.toSurfacePort_1, zone1.toConstructionPorts[3]) annotation (
+        Line(points={{12,18},{12,14},{0,14},{0,-0.75}},   color={0,0,0}));
+    connect(surfacesToAmbience.toConstructionPorts[4], wall1.toSurfacePort_2)
+      annotation (Line(points={{-170.8,0},{-26,0}}, color={127,0,0}));
+    connect(wall1.toSurfacePort_1, zone1.toConstructionPorts[4]) annotation (
+        Line(points={{-22,0},{-12,0},{-12,-0.25},{0,-0.25}},color={0,0,0}));
+    connect(ceiling.toSurfacePort_1, zone1.toConstructionPorts[5])
+      annotation (Line(points={{0,40},{0,0.25}}, color={0,0,0}));
+    connect(bottom.toSurfacePort_1, zone1.toConstructionPorts[6])
+      annotation (Line(points={{0,-36},{0,0.75}}, color={0,0,0}));
+    connect(ceiling.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[5])
+      annotation (Line(points={{0,44},{0,50},{-40,50},{-40,0},{-170,0},{-170,2.66454e-15},
+            {-170.8,2.66454e-15}}, color={0,0,0}));
+    connect(bottom.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[6])
+      annotation (Line(points={{-4.44089e-16,-40},{-4.44089e-16,-42},{0,-42},{0,
+            -46},{-40,-46},{-40,2.66454e-15},{-170.8,2.66454e-15}}, color={0,0,0}));
+    connect(wall4.toSurfacePort_1, zone1.toConstructionPorts[7]) annotation (
+        Line(points={{-12,-18},{-12,-16},{0,-16},{0,1.25}}, color={0,0,0}));
+    connect(window4.toSurfacePort_1, zone1.toConstructionPorts[8]) annotation (
+        Line(points={{12,-18},{12,-16},{0,-16},{0,1.75}}, color={0,0,0}));
+    connect(wall4.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[7])
+      annotation (Line(points={{-12,-22},{-12,-28},{-40,-28},{-40,0},{-170.8,0},
+            {-170.8,2.66454e-15}}, color={0,0,0}));
+    connect(window4.toSurfacePort_2, surfacesToAmbience.toConstructionPorts[8])
+      annotation (Line(points={{12,-22},{12,-28},{-40,-28},{-40,0},{-170.8,0},{-170.8,
+            2.66454e-15}}, color={0,0,0}));
   end Building;
 
   BuildingSystems.Buildings.Ambience ambience(
@@ -173,14 +182,13 @@ model BuildingThermal1Zone1D
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,6})));
   Modelica.Blocks.Sources.Constant airchange(k=0.5)
      annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,-2})));
-
 equation
    connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts) annotation (Line(
-    points={{-22,4},{-20,4},{-20,8},{-20,11.3333},{-20,4},{-9,4}},
+    points={{-21,4},{-20,4},{-20,8},{-20,11.3333},{-20,4},{-9,4}},
     color={0,255,0},
     smooth=Smooth.None));
   connect(ambience.toAirPorts, building.toAmbienceAirPorts) annotation (Line(
-    points={{-22,-4},{-16,-4},{-16,-4},{-9,-4}},
+    points={{-21,-4},{-16,-4},{-16,-4},{-9,-4}},
     color={85,170,255},
     smooth=Smooth.None));
   connect(TSetHeating.y, building.T_setHeating[1]) annotation (Line(

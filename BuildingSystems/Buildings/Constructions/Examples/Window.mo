@@ -3,6 +3,7 @@ model Window
   "Window model under real weather data"
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Constructions.Windows.Window window(
+    position={0.0,0.0,1.0},
     height=2.0,
     width=1.0,
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData,

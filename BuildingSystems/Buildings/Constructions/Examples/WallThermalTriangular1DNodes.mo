@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Constructions.Examples;
-model WallThermal1DNodes
-  "1D thermal wall model under real weather data"
+model WallThermalTriangular1DNodes
+  "1D thermal triangular wall model under real weather data"
   extends Modelica.Icons.Example;
   record Construction
     extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction (
@@ -9,12 +9,11 @@ model WallThermal1DNodes
       material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),
                 BuildingSystems.HAM.Data.MaterialProperties.Thermal.Insulation()});
   end Construction;
-  BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall(
-    position={0.0,0.0,0.5},
+  BuildingSystems.Buildings.Constructions.Walls.WallThermalTriangular1DNodes wall(
     angleDegAzi = 0.0,
     angleDegTil = 90.0,
-    height=1.0,
-    width=1.0,
+    coordinateType=BuildingSystems.Buildings.Types.CoordinateType.Local,
+    verticesLocal={{0.0,0.0},{1.0,0.0},{0.0,1.0}},
     nNodes={2,2},
     redeclare Construction constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
@@ -60,21 +59,21 @@ equation
       smooth=Smooth.None));
 
   annotation(experiment(StartTime=0, StopTime=31536000,Interval=3600),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WallThermal1DNodes.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WallThermalTriangular1DNodes.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
-    textString="1D thermal wall model under real weather data")}),
+    textString="1D thermal triangular wall model under real weather data")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates a 1D-layered thermal wall model under real weather data.
+Example that simulates a 1D-layered thermal triangular wall model under real weather data.
 </p>
 </html>",
 revisions="<html>
 <ul>
 <li>
-May 21, 2016, by Christoph Nytsch-Geusen:<br/>
+August 9, 2020, by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>
 </ul>
 </html>"));
-end WallThermal1DNodes;
+end WallThermalTriangular1DNodes;

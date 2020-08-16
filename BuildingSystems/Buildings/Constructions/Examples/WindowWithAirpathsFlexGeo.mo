@@ -57,6 +57,8 @@ model WindowWithAirpathsFlexGeo
     startTime=0,
     offset=2)
     annotation (Placement(transformation(extent={{-16,22},{-10,28}})));
+  Modelica.Blocks.Sources.Constant position[3](k={0.0,0.0,1.0})
+    annotation (Placement(transformation(extent={{20,-20},{14,-14}})));
 equation
   connect(surface1.toConstructionPort, window.toSurfacePort_1) annotation (Line(
       points={{-15.4,0},{-2,0}},
@@ -99,8 +101,10 @@ equation
           {4,-2},{4,25},{9.7,25}}, color={0,0,127}));
   connect(window.angleDegAzi_in, angleDegAzi.y) annotation (Line(points={{2.2,-4},
           {6,-4},{6,35},{9.7,35}}, color={0,0,127}));
-  annotation(experiment(StartTime=0, StopTime=7200.0),
+  connect(window.position_in, position.y) annotation (Line(points={{2.2,2},{10,2},
+          {10,-17},{13.7,-17}}, color={0,0,127}));
 
+  annotation(experiment(StartTime=0, StopTime=7200.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WindowWithAirPathsFlexGeo.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={
     Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
