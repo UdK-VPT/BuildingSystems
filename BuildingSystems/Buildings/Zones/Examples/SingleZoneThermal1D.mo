@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Zones.Examples;
 model SingleZoneThermal1D
-  "Thermal zone model and some 1D-constructions elements under real weather data"
+  "Thermal zone model and some 1D-constructions elements"
   extends Modelica.Icons.Example;
 
   parameter Integer nSurfaces = 8;
@@ -284,10 +284,24 @@ equation
   connect(bottom.toSurfacePort_1, zone.toConstructionPorts[8]) annotation (Line(
         points={{20,-18},{20,-12},{0,-12},{0,3.7}}, color={0,0,0}));
 
-    annotation(experiment(StartTime=0, StopTime=31536000),
-      __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal1D.mos" "Simulate and plot"),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={
-      Text(extent={{-54,-14},{50,-82}}, lineColor={0,0,255},
-      textString="Thermal zone model and some 1D-constructions elements under real weather data")}),
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+  annotation(experiment(StartTime=0, StopTime=31536000),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal1D.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}), graphics={
+    Text(extent={{-54,-14},{50,-82}}, lineColor={0,0,255},
+    textString="Thermal zone model and some 1D-constructions elements")}),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates a thermal zone model and some 1D-constructions elements.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+August 16, 2020, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
+
 end SingleZoneThermal1D;

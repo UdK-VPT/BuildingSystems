@@ -4,14 +4,15 @@ function rotateVector
   input Modelica.SIunits.Length v[3]
     "Original Bector";
   input Modelica.SIunits.Length axis[3]
-    "Vector of the rotation";
+    "Vector of the rotation axis";
   input Modelica.SIunits.Angle theta
     "Rotation angle";
   output Modelica.SIunits.Length vr[3]
     "Rotated vector";
 protected
   Real x, a, b, c, d;
-  Real mat[3,3];
+  Real mat[3,3]
+    "Rotation  matrix";
 algorithm
   x := sqrt(axis[1] * axis[1] + axis[2] * axis[2] + axis[3] * axis[3]);
   a := cos(theta / 2.0);

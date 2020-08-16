@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Zones.Examples;
 model SingleZoneThermal3D3x3x3ViewFactors
-  "Thermal zone model with 3D discretized air volume and geometric view factors under real weather data"
+  "Thermal zone model with 3D discretized air volume and geometric view factors"
   extends Modelica.Icons.Example;
   parameter Integer nSurfaces = 54;
 
@@ -772,5 +772,18 @@ elements, geometric view factors, which is surrounded by
 real weather data. The surface of the
 centered construction element floor122
 is heated to 30 degree Celsius ")}),
-Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})));
+Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Documentation(info="<html>
+<p>
+Example that simulates a 13x3x3 discretized thermal zone model with geometric view factors.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+August 16, 2020, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SingleZoneThermal3D3x3x3ViewFactors;

@@ -71,7 +71,7 @@ model BuildingThermal1Zone1D
       position={0.0,-1.5,0.5 + 0.6},
       redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={12,-20})));
-    Constructions.Walls.WallThermal1DNodes bottom(
+    BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes bottom(
       height=4.0,
       width=3.0,
       angleDegAzi=0.0,
@@ -79,7 +79,7 @@ model BuildingThermal1Zone1D
       position={0.0,0.0,0.0},
       redeclare Construction constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-38})));
-    Constructions.Walls.WallThermal1DNodes ceiling(
+    BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
       height=4.0,
       width=3.0,
       angleDegAzi=0.0,

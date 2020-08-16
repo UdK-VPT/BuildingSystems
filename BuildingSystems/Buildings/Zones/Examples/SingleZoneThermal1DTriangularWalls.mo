@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Zones.Examples;
 model SingleZoneThermal1DTriangularWalls
-  "Thermal zone model and some 1D-constructions elements under real weather data"
+  "Thermal zone model of a box with triangulated walls"
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Ambience ambience(
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII,
@@ -227,8 +227,23 @@ equation
       Line(points={{-8,-72.6},{-8,-76},{-50,-76},{-50,-40},{-39,-40},{-39,4}},
         color={0,0,0}));
 
-    annotation(experiment(StartTime=0, StopTime=31536000),
-      __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal1DTriangularWalls.mos" "Simulate and plot"),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-80},{100,80}})),
-      Icon(coordinateSystem(preserveAspectRatio=false, extent={{-60,-80},{100,80}})));
+  annotation(experiment(StartTime=0, StopTime=31536000),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal1DTriangularWalls.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-100},{100,80}}), graphics={
+   Text(extent={{-58,-38},{100,-140}},lineColor={0,0,255},
+   textString="Thermal zone model of a box with triangulated walls")}),
+   Icon(coordinateSystem(preserveAspectRatio=false, extent={{-60,-100},{100,80}})),
+Documentation(info="<html>
+<p>
+Example that simulates a thermal zone model of a box with triangulated walls.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+August 16, 2020, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SingleZoneThermal1DTriangularWalls;
