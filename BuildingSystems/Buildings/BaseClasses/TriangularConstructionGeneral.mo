@@ -26,9 +26,9 @@ partial model TriangularConstructionGeneral
       width = sqrt(ASur),
       height = sqrt(ASur),
       zMean = position[3],
-      vertex1 = verticesGlobal_internal[1],
+      vertex1 = verticesGlobal_internal[3],
       vertex2 = verticesGlobal_internal[2],
-      vertex3 = verticesGlobal_internal[3],
+      vertex3 = verticesGlobal_internal[1],
       vertex4 = {0.0,0.0,0.0}),
     epsilon = epsilon_2)
     "Interface to surface on side 2"
@@ -87,7 +87,7 @@ partial model TriangularConstructionGeneral
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,  origin={30,-36}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={22,-20})));
   parameter Modelica.SIunits.Length position[3] = {0.0,0.0,0.0}
-    "Position (if geometryType == Fixed)"
+    "Position (if geometryType == Fixed and coordinateType == Local)"
     annotation(Dialog(tab = "Geometry", group = "General"));
   output BuildingSystems.Interfaces.LengthOutput position_internal[3]
     "Position";
@@ -133,13 +133,13 @@ equation
   end if;
 
   if coordinateType == BuildingSystems.Buildings.Types.CoordinateType.Local then
-    verticesGlobal_internal[1] = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+    verticesGlobal_internal[1] = position_internal + BuildingSystems.Buildings.Geometries.Functions.rotateVector(
       BuildingSystems.Buildings.Geometries.Functions.rotateVector({verticesLocal_internal[1,1],verticesLocal_internal[1,2],0.0},{1.0,0.0,0.0},
       Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal);
-    verticesGlobal_internal[2] = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+    verticesGlobal_internal[2] = position_internal + BuildingSystems.Buildings.Geometries.Functions.rotateVector(
       BuildingSystems.Buildings.Geometries.Functions.rotateVector({verticesLocal_internal[2,1],verticesLocal_internal[2,2],0.0},{1.0,0.0,0.0},
       Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal);
-    verticesGlobal_internal[3] = BuildingSystems.Buildings.Geometries.Functions.rotateVector(
+    verticesGlobal_internal[3] = position_internal + BuildingSystems.Buildings.Geometries.Functions.rotateVector(
       BuildingSystems.Buildings.Geometries.Functions.rotateVector({verticesLocal_internal[3,1],verticesLocal_internal[3,2],0.0},{1.0,0.0,0.0},
       Modelica.Constants.pi/180.0*angleDegTil_internal),{0.0,0.0,0.1},Modelica.Constants.pi/180.0*angleDegAzi_internal);
   end if;
