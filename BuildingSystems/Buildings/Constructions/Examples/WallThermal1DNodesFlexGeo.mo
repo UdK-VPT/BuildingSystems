@@ -46,7 +46,7 @@ model WallThermal1DNodesFlexGeo
   Modelica.Blocks.Sources.Constant angleDegAzi(
     k=0.0)
     annotation (Placement(transformation(extent={{16,28},{10,34}})));
-  Modelica.Blocks.Sources.Constant position[3](k={0.0,0.0,0.0})
+  Modelica.Blocks.Sources.Constant position[3](k={0.0,0.0,1.0})
   annotation (Placement(transformation(extent={{12,-22},{6,-16}})));
 equation
   connect(surface1.toConstructionPort, wall.toSurfacePort_1) annotation (Line(

@@ -11,6 +11,7 @@ model WallHygroThermal1DNodes
         BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Kalkputz()});
   end Construction;
   BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall(
+    position={0.0,0.0,0.5},
     angleDegAzi = 0.0,
     angleDegTil = 90.0,
     height=1.0,

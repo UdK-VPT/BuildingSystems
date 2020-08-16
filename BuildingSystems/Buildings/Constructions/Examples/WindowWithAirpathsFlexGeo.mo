@@ -57,7 +57,7 @@ model WindowWithAirpathsFlexGeo
     startTime=0,
     offset=2)
     annotation (Placement(transformation(extent={{-16,22},{-10,28}})));
-  Modelica.Blocks.Sources.Constant position[3](k={0.0,0.0,0.0})
+  Modelica.Blocks.Sources.Constant position[3](k={0.0,0.0,1.0})
     annotation (Placement(transformation(extent={{20,-20},{14,-14}})));
 equation
   connect(surface1.toConstructionPort, window.toSurfacePort_1) annotation (Line(
