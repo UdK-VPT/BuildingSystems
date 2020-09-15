@@ -17,6 +17,18 @@ partial model ZoneTemplateGeneral
     "Air volume of the zone from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-110,0}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,0})));
+  parameter Modelica.SIunits.Length position[3] = {0.0,0.0,0.0}
+    "Position (if geometryType == Fixed)"
+    annotation(Dialog(tab = "Geometry", group = "Zone geometry"));
+  output BuildingSystems.Interfaces.LengthOutput position_internal[3]
+    "Position"
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={110,20}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,30})));
+  input BuildingSystems.Interfaces.LengthInput position_in[3]
+    if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
+    "Position from input"
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,20}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-110,20})));
   parameter Modelica.SIunits.Length height = 1.0
     "Vertical height of the zone"
     annotation(Dialog(tab="General",group="Air change"));
@@ -84,8 +96,10 @@ protected
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
     V_internal = V;
+    position_internal = position;
   else
     connect(V_internal, V_in);
+    connect(position_internal, position_in);
   end if;
 
   for i in 1:nConstructions loop

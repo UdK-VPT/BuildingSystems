@@ -16,20 +16,20 @@ model WindowWithAirpathsFlexGeo
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Zones.ZoneTemplateAirvolumeMixed zone(
-    V=4*4*2.8,
+    geometryType=BuildingSystems.Buildings.Types.GeometryType.Flexible,
     height=2.8,
     heightAirpath={0.5,1.5},
     calcIdealLoads=true,
     prescribedAirchange=false,
     nAirpaths=2,
     nConstructions=1)
-    annotation (Placement(transformation(extent={{28,-10},{48,10}})));
+    annotation (Placement(transformation(extent={{34,-10},{54,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(
     k=273.15 + 20.0)
-    annotation (Placement(transformation(extent={{14,12},{20,18}})));
+    annotation (Placement(transformation(extent={{20,12},{26,18}})));
   Modelica.Blocks.Sources.Constant TSetCooling(
     k=273.15 + 24.0)
-    annotation (Placement(transformation(extent={{14,2},{20,8}})));
+    annotation (Placement(transformation(extent={{20,2},{26,8}})));
   Modelica.Blocks.Sources.Trapezoid control(
     amplitude=1.0,
     rising=10,
@@ -57,8 +57,14 @@ model WindowWithAirpathsFlexGeo
     startTime=0,
     offset=2)
     annotation (Placement(transformation(extent={{-16,22},{-10,28}})));
-  Modelica.Blocks.Sources.Constant position[3](k={0.0,0.0,1.0})
-    annotation (Placement(transformation(extent={{20,-20},{14,-14}})));
+  Modelica.Blocks.Sources.RealExpression positionWindow[3](
+    y={zone.position_internal[1] + 0.0,zone.position_internal[2] + 0.0,zone.position_internal[3] + 0.0})
+    annotation (Placement(transformation(extent={{18,-8},{12,-2}})));
+  Modelica.Blocks.Sources.Constant positionZone[3](k={0.0,0.0,0.0})
+    annotation (Placement(transformation(extent={{20,-8},{26,-2}})));
+  Modelica.Blocks.Sources.RealExpression volumeZone(
+    y=height.y*width.y*4.0)
+    annotation (Placement(transformation(extent={{20,-20},{26,-14}})));
 equation
   connect(surface1.toConstructionPort, window.toSurfacePort_1) annotation (Line(
       points={{-15.4,0},{-2,0}},
@@ -66,33 +72,33 @@ equation
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(ambience.toSurfacePorts[1], surface1.toSurfacesPort) annotation (Line(
-      points={{-32,4},{-16.6,4}},
+      points={{-31,4},{-16.6,4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(ambience.toAirPorts[1], surface1.toAirPort) annotation (Line(
-      points={{-32,-4},{-16.6,-4}},
+      points={{-31,-4},{-16.6,-4}},
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
   connect(TSetHeating.y, zone.T_setHeating) annotation (Line(
-      points={{20.3,15},{24,15},{24,7},{27,7}},
+      points={{26.3,15},{30,15},{30,7},{33,7}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(ambience.toAirpathPorts[1], window.port_a1) annotation (Line(points={{-35,9},
-          {-35,12},{-2,12},{-2,6}},      color={0,127,255}));
-  connect(ambience.toAirpathPorts[2], window.port_b2) annotation (Line(points={{-39,9},
-          {-39,12},{-52,12},{-52,-12},{-2,-12},{-2,-6}},      color={0,127,255}));
+  connect(ambience.toAirpathPorts[1], window.port_a1) annotation (Line(points={{-32,9},
+          {-32,12},{-2,12},{-2,6}},      color={0,127,255}));
+  connect(ambience.toAirpathPorts[2], window.port_b2) annotation (Line(points={{-36,9},
+          {-36,12},{-52,12},{-52,-12},{-2,-12},{-2,-6}},      color={0,127,255}));
   connect(control.y, window.y)
     annotation (Line(points={{-1.7,-17},{0,-17},{0,-9}}, color={0,0,127}));
   connect(TSetCooling.y, zone.T_setCooling)
-    annotation (Line(points={{20.3,5},{27,5}}, color={0,0,127}));
+    annotation (Line(points={{26.3,5},{33,5}}, color={0,0,127}));
   connect(window.toSurfacePort_2, zone.toConstructionPorts[1])
-    annotation (Line(points={{2,0},{20,0},{20,0},{38,0}},     color={0,0,0}));
+    annotation (Line(points={{2,0},{44,0}},                   color={0,0,0}));
   connect(window.port_b1, zone.airpathPorts[1]) annotation (Line(points={{2,6},{2,
-          20},{34,20},{34,11}},     color={0,127,255}));
+          20},{40,20},{40,11}},     color={0,127,255}));
   connect(window.port_a2, zone.airpathPorts[2]) annotation (Line(points={{2,-6},{
-          8,-6},{8,20},{30,20},{30,11}},color={0,127,255}));
+          8,-6},{8,20},{36,20},{36,11}},color={0,127,255}));
   connect(height.y, window.height_in) annotation (Line(points={{-9.7,35},{-6,35},
           {-6,-4},{-2,-4}}, color={0,0,127}));
   connect(width.y, window.width_in) annotation (Line(points={{-9.7,25},{-8,25},{
@@ -101,8 +107,12 @@ equation
           {4,-2},{4,25},{9.7,25}}, color={0,0,127}));
   connect(window.angleDegAzi_in, angleDegAzi.y) annotation (Line(points={{2.2,-4},
           {6,-4},{6,35},{9.7,35}}, color={0,0,127}));
-  connect(window.position_in, position.y) annotation (Line(points={{2.2,2},{10,2},
-          {10,-17},{13.7,-17}}, color={0,0,127}));
+  connect(window.position_in, positionWindow.y) annotation (Line(points={{2.2,2},
+          {10,2},{10,-5},{11.7,-5}}, color={0,0,127}));
+  connect(positionZone.y, zone.position_in) annotation (Line(points={{26.3,-5},{
+          30,-5},{30,2},{33,2}}, color={0,0,127}));
+  connect(volumeZone.y, zone.V_in) annotation (Line(points={{26.3,-17},{30,-17},
+          {30,0},{33,0}}, color={0,0,127}));
 
   annotation(experiment(StartTime=0, StopTime=7200.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WindowWithAirPathsFlexGeo.mos" "Simulate and plot"),
