@@ -88,11 +88,11 @@ equation
   annotation(experiment(StartTime=0, StopTime=86400.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/Door.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={
-    Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},textString="Door model with two airpaths under real weather data")}),
+    Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},textString="Door model with two airpaths")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates a door model with airpaths under real weather data.
+Example that simulates a door model with airpaths.
 </p>
 </html>",
 revisions="<html>

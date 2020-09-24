@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Constructions.Examples;
 model WindowWithOverhang
-  "Window model with an overhang under real weather data"
+  "Window model with an overhang"
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Constructions.Windows.Window window(
     position={0.0,0.0,1.0},
@@ -93,11 +93,11 @@ equation
   annotation(experiment(StartTime=0, StopTime=31536000,Interval=3600),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WindowWithOverhang.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
-    textString="Window model under real weather data")}),
+    textString="Window model with an overhang")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates a window model with an overhang under real weather data.
+Example that simulates a window model with an overhang.
 </p>
 </html>",
 revisions="<html>

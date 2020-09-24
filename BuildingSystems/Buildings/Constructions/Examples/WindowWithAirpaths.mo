@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Constructions.Examples;
 model WindowWithAirpaths
-  "Window model with two airpaths under real weather data"
+  "Window model with two airpaths"
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Constructions.Windows.Window window(
     position={0.0,0.0,1.0},
@@ -78,11 +78,11 @@ model WindowWithAirpaths
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WindowWithAirPaths.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}), graphics={
     Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
-    textString="Window model with two airpaths under real weather data")}),
+    textString="Window model with two airpaths")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates a window model with two airpaths under real weather data.
+Example that simulates a window model with two airpaths.
 </p>
 </html>",
 revisions="<html>

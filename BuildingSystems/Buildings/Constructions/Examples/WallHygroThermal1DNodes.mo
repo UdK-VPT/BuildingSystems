@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Constructions.Examples;
 model WallHygroThermal1DNodes
-"1D thermal wall model under real weather data"
+"1D thermal wall model"
   extends Modelica.Icons.Example;
   record Construction
     extends BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
@@ -65,11 +65,11 @@ equation
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Constructions/Examples/WallHygroThermal1DNodes.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,40}}),                                                                       graphics={Text(extent={{-52,6},{52,-62}},lineColor={0,0,255},
-    textString="1D hygro-thermal wall model under real weather data")}),
+    textString="1D hygro-thermal wall model")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
-Example that simulates a 1D-layered hygro-thermal wall model under real weather data
+Example that simulates a 1D-layered hygro-thermal wall model.
 </p>
 </html>",
 revisions="<html>
