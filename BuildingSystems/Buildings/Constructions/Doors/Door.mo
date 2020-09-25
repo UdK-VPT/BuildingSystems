@@ -105,9 +105,9 @@ equation
   connect(ope.port_b2, port_b2) annotation (Line(points={{-10,74},{-60,74},{-60,
           -60},{-20,-60}}, color={0,127,255}));
 
-      annotation (Placement(transformation(extent={{-10,-70},{-30,-50}}),
-          iconTransformation(extent={{-10,-70},{-30,-50}})),
-              defaultComponentName="door",Icon(graphics={
+  annotation (Placement(transformation(extent={{-10,-70},{-30,-50}}),
+    iconTransformation(extent={{-10,-70},{-30,-50}})),
+    defaultComponentName="door",Icon(graphics={
     Rectangle(
       extent={{-20,80},{20,62}},
       fillColor={135,135,135},
@@ -122,7 +122,9 @@ equation
       extent={{-6,62},{6,-62}},
       pattern=LinePattern.None,
       fillColor={135,135,135},
-      fillPattern=FillPattern.Solid)}),
+      fillPattern=FillPattern.Solid),
+    Text(extent={{-66,146},{66,106}},lineColor={0,0,255},fillColor={230,230,230},
+            fillPattern = FillPattern.Solid,textString = "%name")}),
 Documentation(info="<html>
 <p>
 This is a model of an openable door.
