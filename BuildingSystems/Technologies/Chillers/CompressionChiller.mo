@@ -8,10 +8,18 @@ model CompressionChiller
   replaceable parameter BuildingSystems.Technologies.Chillers.Data.CompressionChillers.CompressionChillerGeneral chillerData
     "Characteristic data of the chiller"
     annotation(Dialog(tab = "General"),Evaluate=true, choicesAllMatching=true);
-  Modelica.SIunits.HeatFlowRate Q_flow_eva
-    "Heat flow rate of the evaporator";
-  Modelica.SIunits.HeatFlowRate Q_flow_con
-    "Heat flow rate of the condensor";
+  BuildingSystems.Interfaces.PowerOutput Q_flow_eva
+    "Heat flow rate of the evaporator"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0, origin={80,10}),
+      iconTransformation(extent={{-10,-10},{10,10}},origin={82,20})));
+  BuildingSystems.Interfaces.PowerOutput Q_flow_con
+    "Heat flow rate of the condensor"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0, origin={80,-10}),
+      iconTransformation(extent={{-10,-10},{10,10}},origin={82,-20})));
+  BuildingSystems.Interfaces.PowerOutput P
+    "Electrical power demand of the chiller"
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0, origin={80,0}),
+      iconTransformation(extent={{-10,-10},{10,10}},origin={82,0})));
   Real COP
     "Coefficient of performance of the chiller";
   Modelica.Blocks.Interfaces.BooleanInput on(start = false)
@@ -54,9 +62,6 @@ model CompressionChiller
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,34})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow2
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-34})));
-  BuildingSystems.Interfaces.PowerOutput P
-    "Electrical power demand of the chiller"
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={80,4}),  iconTransformation(extent={{-10,-10},{10,10}},origin={82,0})));
   final parameter Real eta_nominal = chillerData.TCon_nominal / (chillerData.TCon_nominal - chillerData.TEva_nominal)
     "Ideal COP under nominal conditions";
   Modelica.Blocks.Tables.CombiTable1Ds COP_nominal(
@@ -106,7 +111,7 @@ equation
     color={191,0,0},
     smooth=Smooth.None));
 
-   annotation (defaultComponentName="chiller",
+   annotation (defaultComponentName="chi",
     Icon(coordinateSystem(preserveAspectRatio=false,extent={{-100,-100},{100,100}}), graphics={
     Rectangle(
       extent={{-80,80},{80,-80}},
@@ -191,5 +196,18 @@ equation
       points={{50,-56},{50,-14}},
       color={85,85,255},
       smooth=Smooth.None,
-      thickness=1)}));
+      thickness=1)}),
+Documentation(info="<html>
+<p>
+Model for a compression chiller based on a characteristic curve.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+June 6, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end CompressionChiller;
