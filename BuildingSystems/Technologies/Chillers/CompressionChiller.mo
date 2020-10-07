@@ -71,7 +71,7 @@ model CompressionChiller
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
 equation
   if on == true then
-    Q_flow_eva = COP * P;
+    Q_flow_eva = - COP * P;
     P = load * chillerData.P_nominal;
   else
     Q_flow_eva = 0.0;
@@ -80,8 +80,8 @@ equation
   COP = COP_nominal.y[1] * BuildingSystems.Utilities.SmoothFunctions.softcut_upper(volEva.T / BuildingSystems.Utilities.SmoothFunctions.softcut_lower(volCon.T - volEva.T, 0.01, 0.1),30.0,0.1) / eta_nominal;
   Q_flow_con + Q_flow_eva + P = 0.0;
 
-  prescribedHeatFlow1.Q_flow = - Q_flow_con;
-  prescribedHeatFlow2.Q_flow = - Q_flow_eva;
+  prescribedHeatFlow1.Q_flow = Q_flow_con;
+  prescribedHeatFlow2.Q_flow = Q_flow_eva;
 
   connect(port_a1, resCon.port_a) annotation (Line(
      points={{-100,60},{-70,60}},
