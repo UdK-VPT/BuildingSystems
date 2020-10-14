@@ -16,8 +16,8 @@ block Germany_Potsdam2008_DWD_ASCII
     7  // cloud cover
     },
   final scaleFac = {1.0,1.0,1.0,1.0,1.0,0.01,1.0},
-  final latitudeDeg = 52.47,
-  final longitudeDeg = 13.4,
+  final latitudeDeg = 52.383,
+  final longitudeDeg = 13.067,
   final longitudeDeg_0 = 1.0);
   annotation(Documentation(info="<html>source: DWD</html>"));
 end Germany_Potsdam2008_DWD_ASCII;

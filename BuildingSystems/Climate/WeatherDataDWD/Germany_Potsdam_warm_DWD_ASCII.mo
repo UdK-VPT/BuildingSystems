@@ -1,5 +1,5 @@
 within BuildingSystems.Climate.WeatherDataDWD;
-block Germany_Potsdam2019_DWD_ASCII
+block Germany_Potsdam_warm_DWD_ASCII
   extends BuildingSystems.Climate.WeatherData.BaseClasses.WeatherDataFileASCII(
   info="Source: DWD",
   filNam=Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Climate/weather/Germany_Potsdam_warm_DWD.txt"),
@@ -16,8 +16,8 @@ block Germany_Potsdam2019_DWD_ASCII
     7  // cloud cover
     },
   final scaleFac = {1.0,1.0,1.0,1.0,1.0,0.01,1.0},
-  final latitudeDeg = 52.47,
-  final longitudeDeg = 13.4,
+  final latitudeDeg = 52.383,
+  final longitudeDeg = 13.067,
   final longitudeDeg_0 = 1.0);
   annotation(Documentation(info="<html>source: DWD</html>"));
-end Germany_Potsdam2019_DWD_ASCII;
+end Germany_Potsdam_warm_DWD_ASCII;
