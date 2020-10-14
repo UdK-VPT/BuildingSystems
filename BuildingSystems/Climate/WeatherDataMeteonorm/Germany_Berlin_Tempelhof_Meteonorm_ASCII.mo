@@ -1,5 +1,5 @@
 within BuildingSystems.Climate.WeatherDataMeteonorm;
-block Germany_Berlin_Meteonorm_ASCII
+block Germany_Berlin_Tempelhof_Meteonorm_ASCII
   extends BuildingSystems.Climate.WeatherData.BaseClasses.WeatherDataFileASCII(
   info="Source: Meteonorm 7.0",
   filNam=Modelica.Utilities.Files.loadResource("modelica://BuildingSystems/Climate/weather/Germany_Berlin_Tempelhof.txt"),
@@ -20,4 +20,4 @@ block Germany_Berlin_Meteonorm_ASCII
   final longitudeDeg = 13.4,
   final longitudeDeg_0 = 1.0);
   annotation(Documentation(info="<html>source: Meteonorm 7.0</html>"));
-end Germany_Berlin_Meteonorm_ASCII;
+end Germany_Berlin_Tempelhof_Meteonorm_ASCII;
