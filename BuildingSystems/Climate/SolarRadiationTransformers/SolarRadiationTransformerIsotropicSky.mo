@@ -5,10 +5,12 @@ model SolarRadiationTransformerIsotropicSky
 equation
 
   IrrTotTil = radiationPort.IrrDir + 0.5 * (1.0 + cosAngleTil) * IrrDifHor + 0.5 * (1.0 - cosAngleTil) * rhoAmb * IrrTotHor;
+  radiationPort.IrrDif_g = 0.5 * (1.0 - cosAngleTil) * rhoAmb * IrrTotHor;
 
   annotation (defaultComponentName="solRadTra", Icon(graphics={
     Rectangle(extent={{-80,80},{80,-80}}, lineColor={170,213,255},fillPattern = FillPattern.Solid,fillColor={170,213,255}),
-    Ellipse(extent={{-60,62},{20,-18}},lineColor={255,128,0},fillColor={255,128,0},fillPattern = FillPattern.Solid),
+    Ellipse(extent={{-60,62},{20,-18}},lineColor={255,128,0},fillColor={255,128,0},
+            fillPattern =                                                                        FillPattern.Solid),
     Line(points={{72,-8},{8,-72}},color={0,0,0},smooth=Smooth.None,thickness=2),
     Line(points={{12,-12},{32,-32}},color={255,128,0},thickness=1,smooth=Smooth.None),
     Line(points={{22,-2},{42,-22}}, color={255,128,0},thickness=1,smooth=Smooth.None),
