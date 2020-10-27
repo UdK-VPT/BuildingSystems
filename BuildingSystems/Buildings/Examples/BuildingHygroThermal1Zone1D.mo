@@ -9,13 +9,6 @@ model BuildingHygroThermal1Zone1D
       surfacesToAmbience(nSurfaces=8),
       useAirPaths = false,
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced);
-    record Construction
-      extends BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
-      nLayers=2,
-      thickness={0.1,0.1},
-      material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton(),
-        BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton()});
-    end Construction;
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone1(
       V=3.0*4.0*2.5,
       height = 2.5,
@@ -28,7 +21,7 @@ model BuildingHygroThermal1Zone1D
       angleDegAzi=90.0,
       angleDegTil=90.0,
       position={-2.0,0.0,1.25},
-      redeclare Construction constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-24,0})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall3(
       height=2.5,
@@ -36,7 +29,7 @@ model BuildingHygroThermal1Zone1D
       angleDegAzi=-90.0,
       angleDegTil=90.0,
       position={2.0,0.0,1.25},
-      redeclare Construction constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
       annotation (Placement(transformation(extent={{16,-10},{36,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall2(
       height=2.5,
@@ -45,7 +38,7 @@ model BuildingHygroThermal1Zone1D
       angleDegTil=90.0,
       position={0.0,1.5,1.25},
       AInnSur=window2.width*window2.height,
-      redeclare Construction constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-12,20})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall4(
       height=2.5,
@@ -54,7 +47,7 @@ model BuildingHygroThermal1Zone1D
       angleDegTil=90.0,
       position={0.0,-1.5,1.25},
       AInnSur=window4.width*window4.height,
-      redeclare Construction constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-12,-20})));
     BuildingSystems.Buildings.Constructions.Windows.Window window2(
       height=1.0,
@@ -78,7 +71,7 @@ model BuildingHygroThermal1Zone1D
       angleDegAzi=0.0,
       angleDegTil=0.0,
       position={0.0,0.0,0.0},
-      redeclare Construction constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-38})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes ceiling(
       height=4.0,
@@ -86,7 +79,7 @@ model BuildingHygroThermal1Zone1D
       angleDegAzi=0.0,
       angleDegTil=180.0,
       position={0.0,0.0,2.5},
-      redeclare Construction constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,42})));
   equation
    connect(wall2.toSurfacePort_1, zone1.toConstructionPorts[1]) annotation (
