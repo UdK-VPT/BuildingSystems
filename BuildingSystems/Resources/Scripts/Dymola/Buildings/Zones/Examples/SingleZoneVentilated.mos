@@ -1,0 +1,44 @@
+simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneVentilated", stopTime=3600, method="dassl", resultFile="SingleZoneVentilated");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1200, 400},
+  y = {"TAirIn.y","zone.TAir"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneVentilated.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+      id = 2,
+      position = {0, 460, 1200, 400},
+      y = {"zone.airpathPorts[1].m_flow","zone.airpathPorts[2].m_flow"},
+      autoscale = true,
+      autoerase = true,
+      autoreplot = true,
+      description = false,
+      grid = true,
+      color = true,
+      online = false,
+      filename = "SingleZoneVentilated.mat",
+      leftTitleType = 1,
+      bottomTitleType = 1);
+createPlot(
+    id = 3,
+    position = {0, 920, 1200, 400},
+    y = {"xAirIn.y","zone.xAir"},
+    autoscale = true,
+    autoerase = true,
+    autoreplot = true,
+    description = false,
+    grid = true,
+    color = true,
+    online = false,
+    filename = "SingleZoneVentilated.mat",
+    leftTitleType = 1,
+    bottomTitleType = 1);
