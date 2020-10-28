@@ -3,7 +3,7 @@ removePlots();
 createPlot(
   id = 1,
   position = {0, 0, 1200, 400},
-  y = {"TAirIn.y","zone.TAir"},
+  y = {"bou1.T","zone.TAir"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,
@@ -31,7 +31,7 @@ createPlot(
 createPlot(
     id = 3,
     position = {0, 920, 1200, 400},
-    y = {"xAirIn.y","zone.xAir"},
+    y = {"bou1.Xi_in[1]","zone.xAir"},
     autoscale = true,
     autoerase = true,
     autoreplot = true,
