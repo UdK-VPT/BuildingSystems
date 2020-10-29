@@ -58,7 +58,6 @@ model AirvolumeCompressible0D
     "Prediscribed external air moisture (used if xSou=Input)"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={80,0}),
       iconTransformation(extent={{90,-10},{70,10}})));
-protected
   constant Modelica.SIunits.Velocity vAir_constant = 0.0
     "Air velocity";
   constant Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAir_constant = 0.0
@@ -79,10 +78,9 @@ protected
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor senTem
     if TSou == BuildingSystems.Buildings.Types.DataSource.Calculation
     annotation (Placement(transformation(extent={{-10,-30},{-30,-10}})));
-  BuildingSystems.Fluid.Sensors.Pressure senPre(
-    redeclare package Medium = Media.Air)
-    if TSou == BuildingSystems.Buildings.Types.DataSource.Calculation
-    annotation (Placement(transformation(extent={{10,-30},{30,-10}})));
+  Modelica.Blocks.Sources.RealExpression pAir(
+    y=air.p)
+    annotation (Placement(transformation(extent={{44,50},{64,70}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
     annotation (Placement(transformation(extent={{-36,-6},{-24,6}})));
   Modelica.Blocks.Sources.RealExpression QSum_flow(
@@ -150,9 +148,8 @@ equation
     annotation (Line(points={{-19,20},{-16,20},{-16,8},{-12,8}}, color={0,0,127}));
   connect(senTem.port, air.heatPort)
     annotation (Line(points={{-10,-20},{-10,0}}, color={191,0,0}));
-  connect(air.ports[1], senPre.port)
-    annotation (Line(points={{0,-10},{0,-30},{20,-30}}, color={0,127,255}));
-  connect(senPre.p, p[1]) annotation (Line(points={{31,-20},{40,-20},{40,60},{80,60}}, color={0,0,127}));
+  connect(pAir.y, p[1])
+    annotation (Line(points={{65,60},{80,60}}, color={0,0,127}));
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100}, {100,100}}), graphics={
     Text(extent={{-18,71},{50,5}},lineColor={255,128,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="D"),
