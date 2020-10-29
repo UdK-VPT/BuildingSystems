@@ -21,6 +21,8 @@ Moisture_absInput
 Moisture_absOutput
 PowerInput
 PowerOutput
+PressureInput
+PressureOutput
 RadiantEnergyFluenceRateInput
 RadiantEnergyFluenceRateOutput
 RadiationPort

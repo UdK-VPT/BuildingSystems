@@ -27,7 +27,7 @@ partial model ZoneTemplateGeneral
   output BuildingSystems.Interfaces.LengthOutput position_internal[3]
     "Position"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={110,20}),
-      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,30})));
+          iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,50})));
   parameter Modelica.SIunits.Length height = 1.0
     "Vertical height of the zone"
     annotation(Dialog(tab="General",group="Air change"));
@@ -68,7 +68,7 @@ partial model ZoneTemplateGeneral
   BuildingSystems.Interfaces.Temp_KOutput TSurfMean
     "Mean surface temperature of the zone"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={40,-60}),
-      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-50})));
+     iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-30})));
 protected
   output BuildingSystems.Interfaces.VolumeOutput V_internal
     "Air volume of the zone";

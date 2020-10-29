@@ -1076,111 +1076,137 @@ equation
   airEle111.fluid.T = T[1];
   airEle111.fluid.Xi = x[1];
   airEle111.velMag = v[1];
+  airEle111.fluid.p = p[1];
 
   airEle121.fluid.T = T[2];
   airEle121.fluid.Xi = x[2];
   airEle121.velMag = v[2];
+  airEle121.fluid.p = p[2];
 
   airEle131.fluid.T = T[3];
   airEle131.fluid.Xi = x[3];
   airEle131.velMag = v[3];
+  airEle131.fluid.p = p[3];
 
   airEle112.fluid.T = T[4];
   airEle112.fluid.Xi = x[4];
   airEle112.velMag = v[4];
+  airEle112.fluid.p = p[4];
 
   airEle122.fluid.T = T[5];
   airEle122.fluid.Xi = x[5];
   airEle122.velMag = v[5];
+  airEle122.fluid.p = p[5];
 
   airEle132.fluid.T = T[6];
   airEle132.fluid.Xi = x[6];
   airEle132.velMag = v[6];
+  airEle132.fluid.p = p[6];
 
   airEle113.fluid.T = T[7];
   airEle113.fluid.Xi = x[7];
   airEle113.velMag = v[7];
+  airEle113.fluid.p = p[7];
 
   airEle123.fluid.T = T[8];
   airEle123.fluid.Xi = x[8];
   airEle123.velMag = v[8];
+  airEle123.fluid.p = p[8];
 
   airEle133.fluid.T = T[9];
   airEle133.fluid.Xi = x[9];
   airEle133.velMag = v[9];
+  airEle133.fluid.p = p[9];
 
   airEle211.fluid.T = T[10];
   airEle211.fluid.Xi = x[10];
   airEle211.velMag = v[10];
+  airEle211.fluid.p = p[10];
 
   airEle221.fluid.T = T[11];
   airEle221.fluid.Xi = x[11];
   airEle221.velMag = v[11];
+  airEle221.fluid.p = p[11];
 
   airEle231.fluid.T = T[12];
   airEle231.fluid.Xi = x[12];
   airEle231.velMag = v[12];
+  airEle231.fluid.p = p[12];
 
   airEle212.fluid.T = T[13];
   airEle212.fluid.Xi = x[13];
   airEle212.velMag = v[13];
+  airEle212.fluid.p = p[13];
 
   airEle222.fluid.T = T[14];
   airEle222.fluid.Xi = x[14];
   airEle222.velMag = v[14];
+  airEle222.fluid.p = p[14];
 
   airEle232.fluid.T = T[15];
   airEle232.fluid.Xi = x[15];
   airEle232.velMag = v[15];
+  airEle232.fluid.p = p[15];
 
   airEle213.fluid.T = T[16];
   airEle213.fluid.Xi = x[16];
   airEle213.velMag = v[16];
+  airEle213.fluid.p = p[16];
 
   airEle223.fluid.T = T[17];
   airEle223.fluid.Xi = x[17];
   airEle223.velMag = v[17];
+  airEle223.fluid.p = p[17];
 
   airEle233.fluid.T = T[18];
   airEle233.fluid.Xi = x[18];
   airEle233.velMag = v[18];
+  airEle233.fluid.p = p[18];
 
   airEle311.fluid.T = T[19];
   airEle311.fluid.Xi = x[19];
   airEle311.velMag = v[19];
+  airEle311.fluid.p = p[19];
 
   airEle321.fluid.T = T[20];
   airEle321.fluid.Xi = x[20];
   airEle321.velMag = v[20];
+  airEle321.fluid.p = p[20];
 
   airEle331.fluid.T = T[21];
   airEle331.fluid.Xi = x[21];
   airEle331.velMag = v[21];
+  airEle331.fluid.p = p[21];
 
   airEle312.fluid.T = T[22];
   airEle312.fluid.Xi = x[22];
   airEle312.velMag = v[22];
+  airEle312.fluid.p = p[22];
 
   airEle322.fluid.T = T[23];
   airEle322.fluid.Xi = x[23];
   airEle322.velMag = v[23];
+  airEle322.fluid.p = p[23];
 
   airEle332.fluid.T = T[24];
   airEle332.fluid.Xi = x[24];
   airEle332.velMag = v[24];
+  airEle332.fluid.p = p[24];
 
   airEle313.fluid.T = T[25];
   airEle313.fluid.Xi = x[25];
   airEle313.velMag = v[25];
+  airEle313.fluid.p = p[25];
 
   airEle323.fluid.T = T[26];
   airEle323.fluid.Xi = x[26];
   airEle323.velMag = v[26];
+  airEle323.fluid.p = p[26];
 
   airEle333.fluid.T = T[27];
   airEle333.fluid.Xi = x[27];
   airEle333.velMag = v[27];
-
+  airEle333.fluid.p = p[27];
 
 // Air element <-> surface connections
 // south

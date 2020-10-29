@@ -62,17 +62,23 @@ model ZoneTemplateAirvolumeMixed
     annotation (Dialog(tab="Initialization"));
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_heating if calcIdealLoads
     annotation (Placement(transformation(extent={{-52,28},{-32,48}}),
-      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,70})));
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,90})));
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_cooling if calcIdealLoads
     annotation (Placement(transformation(extent={{-52,2},{-32,22}}),
-      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,50})));
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,70})));
   output BuildingSystems.Interfaces.Temp_KOutput TAir
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,36}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-30})));
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,36}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-10})));
   output BuildingSystems.Interfaces.Moisture_absOutput xAir
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,46}),    iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-90})));
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,46}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-70})));
+  output BuildingSystems.Interfaces.PressureOutput pAirMean
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,26}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,-90})));
   output BuildingSystems.Interfaces.Temp_KOutput TOperative=
     (airvolume.T[1] + radiationDistribution.TSurfMean) / 2.0
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-100,92}), iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-70})));
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-100,92}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-50})));
   BuildingSystems.Interfaces.HeatPorts conHeatSourcesPorts[nHeatSources] if heatSources
     "Heat ports of the convective heat sources"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-66,80}), iconTransformation(extent={{-29,-7},{29,7}},rotation=180,origin={-49,-107})));
@@ -98,12 +104,12 @@ model ZoneTemplateAirvolumeMixed
   Modelica.Blocks.Interfaces.RealOutput PMV if calcThermalComfort
     "Predicted mean vote"
     annotation (Placement(transformation(extent={{-7,-7},{7,7}},rotation=0,origin={89,-27}),
-      iconTransformation(extent={{100,0},{120,20}})));
+      iconTransformation(extent={{100,20},{120,40}})));
   Modelica.Blocks.Interfaces.RealOutput PPD if calcThermalComfort
     "Predicted percentage dissatisfied"
     annotation (Placement(transformation(extent={{-7,-7},{7,7}},rotation=0,origin={73,-37}),
-      iconTransformation(extent={{100,-20},{120,0}})));
-  parameter BuildingSystems.Buildings.Types.DataSource TAirSou =
+      iconTransformation(extent={{100,0},{120,20}})));
+  parameter BuildingSystems.Buildings.Types.DataSource TAirSou=
    BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for air temperature"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
@@ -115,7 +121,7 @@ model ZoneTemplateAirvolumeMixed
     "Prediscribed external air temperature (used if TAirSou=Input)"
     annotation(Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={110,54}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,-60})));
-  parameter BuildingSystems.Buildings.Types.DataSource xAirSou =
+  parameter BuildingSystems.Buildings.Types.DataSource xAirSou=
    BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for air moisture"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
@@ -208,7 +214,7 @@ protected
     yMax=0.0,
     yMin=Q_flow_coolingMax) if calcIdealLoads
    annotation (Placement(transformation(extent={{-68,34},{-56,22}})));
-  BuildingSystems.Airflow.Multizone.MediumColumn col[nAirpaths](
+  BuildingSystems.Airflow.Multizone.MediumColumn airpath[nAirpaths](
     redeclare package Medium = Medium,
     h = {- 0.5 * height + heightAirpath[i] for i in 1:nAirpaths},
     each densitySelection=BuildingSystems.Airflow.Multizone.Types.densitySelection.fromBottom)
@@ -216,33 +222,40 @@ protected
     "Air columns for air paths"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-60,-60})));
 equation
+  // Flexible zone geometry
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible then
     connect(airvolume.V_in, V_in);
   end if;
 
+  // Connection construction surfaces <-> enclosed air
   for i in 1:nConstructions loop
     connect(surfaces.toAirPorts[i],airvolume.toSurfacePorts[i]);
   end for;
+
+  // Air exchange by air path calculation
   if not prescribedAirchange then
     for i in 1:nAirpaths loop
-      connect(col[i].port_b, airvolume.airpathPorts[i])
+      connect(airpath[i].port_b, airvolume.airpathPorts[i])
         annotation (Line(points={{-50,-60},{-40,-60},{-40,-94},{24,-94},{24,70},
-          {6.4,70},{6.4,59.2}}, color={0,127,255}));
-      connect(airpathPorts[i], col[i].port_a)
+              {0,70},{0,59.2}}, color={0,127,255}));
+      connect(airpathPorts[i], airpath[i].port_a)
         annotation (Line(points={{-94,-60},{-70,-60}}, color={0,127,255}));
     end for;
   end if;
+
   // Internal heat sources
   for i in 1:nHeatSources loop
     connect(airvolume.heatSourcesPorts[i],conHeatSourcesPorts[i])
       annotation (Line(points={{-19.2,30.4},{-19.2,80},{-66,80}}, color={127,0,0}));
     connect(radiationDistribution.heatSourcesPorts[i],radHeatSourcesPorts[i]);
   end for;
+
   // Internal moisture sources
   for i in 1:nMoistureSources loop
     connect(moistureSourcesPorts[i], airvolume.moistureSourcesPorts[i])
       annotation (Line(points={{-24,80},{-24,49.6},{-19.2,49.6}}, color={0,0,255}));
   end for;
+
   // Ideal load calculation
   if calcIdealLoads then
     connect(airvolume.heatSourcesPorts[nHeatSources+1], relRadConHeating.heatPortCv)
@@ -297,12 +310,14 @@ equation
         points={{-50,28},{-55.4,28}},
         color={0,0,127},
         smooth=Smooth.None));
+
     //Connect Outputs with ideal heating/cooling loads
     connect(Q_flow_heating, heatingLoad.y)
       annotation (Line(points={{-42,38},{-55.4,38},{-55.4,56}}, color={0,0,127}));
     connect(Q_flow_cooling, coolingLoad.y)
       annotation (Line(points={{-42,12},{-55.4,12},{-55.4,28}}, color={0,0,127}));
   end if;
+
   // Prescribed air change
   if prescribedAirchange then
     connect(ac2mf.u, airchange) annotation (Line(
@@ -326,6 +341,7 @@ equation
         color={0,0,127},
         smooth=Smooth.None));
   end if;
+
   // Thermal comfort assessment
   if calcThermalComfort then
     connect(TAir, thermalComfort.TAir)
@@ -347,10 +363,13 @@ equation
     connect(vAirVal.y, thermalComfort.vAir)
       annotation (Line(points={{69.2,-87},{42,-87},{42,-43},{45,-43}}, color={0,0,127}));
   end if;
+
   connect(airvolume.T[1], TAir)
     annotation (Line(points={{19.2,35.2},{22.6,35.2},{22.6,36},{34,36}}, color={0,0,127}));
   connect(airvolume.x[1], xAir)
     annotation (Line(points={{19.2,44.8},{24.6,44.8},{24.6,46},{34,46}}, color={0,0,127}));
+  connect(airvolume.p[1], pAirMean) annotation (Line(points={{19.2,25.6},{22.6,25.6},
+          {22.6,26},{34,26}}, color={0,0,127}));
   connect(airpathIn.Xi_in[1], xAirAmb) annotation (Line(points={{61.6,-7.2},{80,
           -7.2},{80,-16},{106,-16}}, color={0,0,127}));
   connect(airpathIn.ports[1], airvolume.airpathPorts[1]) annotation (Line(
@@ -361,7 +380,7 @@ equation
           {60,54},{110,54}}, color={0,0,127}));
   connect(airvolume.x_in, xAir_in) annotation (Line(points={{19.2,40},{22,40},{22,
           22},{66,22},{66,38},{110,38}}, color={0,0,127}));
-          
+
   annotation(defaultComponentName="zone",
 Documentation(info="<html>
 <p>
@@ -369,6 +388,10 @@ This is a template model for a thermal zone with fully mixed air volume.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+October 29, 2020 by Christoph Nytsch-Geusen:<br/>
+Adapted ti IBPSA library.
+</li>
 <li>
 January 3, 2020 by Christoph Nytsch-Geusen:<br/>
 Thermal comfort assessment added.

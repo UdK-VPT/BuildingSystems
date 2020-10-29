@@ -37,6 +37,9 @@ partial model AirvolumeGeneral
   output BuildingSystems.Interfaces.Moisture_absOutput x[nAirElements]
     "Absolute air moisture"
     annotation (Placement(transformation(extent={{70,-30},{90,-10}}), iconTransformation(extent={{70,-30},{90,-10}})));
+  output BuildingSystems.Interfaces.PressureOutput p[nAirElements]
+    "Air pressure"
+    annotation (Placement(transformation(extent={{70,50},{90,70}}), iconTransformation(extent={{70,50},{90,70}})));
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
     V_internal = V;

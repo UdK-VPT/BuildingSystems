@@ -60,7 +60,7 @@ equation
   airEle111.fluid.T = T[1];
   airEle111.fluid.Xi = x[1];
   airEle111.velMag = v[1];
-
+  airEle111.fluid.p = p[1];
 
 // Air element <-> surface connections
 // south
