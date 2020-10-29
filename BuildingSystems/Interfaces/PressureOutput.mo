@@ -1,2 +1,2 @@
 within BuildingSystems.Interfaces;
-connector PressureOutput = Modelica.Blocks.Interfaces.RealOutput(final quantity="Pressure",final unit="Pa",min = 0.0, displayUnit="bar");
+connector PressureOutput = Modelica.Blocks.Interfaces.RealOutput(final quantity="AbsolutePressure",final unit="Pa",min = 0.0, displayUnit="bar");
