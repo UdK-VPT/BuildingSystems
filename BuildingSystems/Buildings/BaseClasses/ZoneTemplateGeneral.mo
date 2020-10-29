@@ -4,14 +4,13 @@ partial model ZoneTemplateGeneral
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium in the air model of the zone"
     annotation (choicesAllMatching = true);
-  parameter BuildingSystems.Buildings.Types.GeometryType geometryType = BuildingSystems.Buildings.Types.GeometryType.Fixed
+  parameter BuildingSystems.Buildings.Types.GeometryType geometryType =
+    BuildingSystems.Buildings.Types.GeometryType.Fixed
     "Fixed (default) or flexible geometry"
     annotation (Evaluate=true, Dialog(tab = "Geometry", group = "Zone geometry"));
   parameter Modelica.SIunits.Volume V = 1.0
     "Air volume of the zone (if geometryType == Fixed)"
     annotation(Dialog(tab="Geometry",group="Zone geometry"));
-  output BuildingSystems.Interfaces.VolumeOutput V_internal
-    "Air volume of the zone";
   input BuildingSystems.Interfaces.VolumeInput V_in(
     min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
     "Air volume of the zone from input"
@@ -20,15 +19,15 @@ partial model ZoneTemplateGeneral
   parameter Modelica.SIunits.Length position[3] = {0.0,0.0,0.0}
     "Position (if geometryType == Fixed)"
     annotation(Dialog(tab = "Geometry", group = "Zone geometry"));
-  output BuildingSystems.Interfaces.LengthOutput position_internal[3]
-    "Position"
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={110,20}),
-      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,30})));
   input BuildingSystems.Interfaces.LengthInput position_in[3]
     if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
     "Position from input"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,20}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-110,20})));
+  output BuildingSystems.Interfaces.LengthOutput position_internal[3]
+    "Position"
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={110,20}),
+          iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,50})));
   parameter Modelica.SIunits.Length height = 1.0
     "Vertical height of the zone"
     annotation(Dialog(tab="General",group="Air change"));
@@ -56,6 +55,23 @@ partial model ZoneTemplateGeneral
   parameter BuildingSystems.Types.ViewFactor ViewFac[nSurfaces,nSurfaces]=fill(fill(0.0,nSurfaces),nSurfaces)
     "Geometric view factor matrix of the thermal zone"
     annotation(HideResult = true,Dialog(tab="Geometry",group="View Factors"));
+  BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts[nConstructions](
+      moisturePort(x(each start = 0.005)))
+    "Interfaces of the zone to the constructions"
+    annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=180,origin={0,0}),
+      iconTransformation(extent={{-20,-20},{20,20}})));
+  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpaths](
+    redeclare each final package Medium = Medium) if not prescribedAirchange
+    "Interfaces of the zone to the air paths"
+    annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={-94,-60}, rotation=270),
+      iconTransformation(extent={{-40,-10},{40,10}},rotation=180,origin={-60,110})));
+  BuildingSystems.Interfaces.Temp_KOutput TSurfMean
+    "Mean surface temperature of the zone"
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={40,-60}),
+     iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-30})));
+protected
+  output BuildingSystems.Interfaces.VolumeOutput V_internal
+    "Air volume of the zone";
   BuildingSystems.Buildings.BaseClasses.RadiationDistribution radiationDistribution(
     nSurfaces=nSurfaces,
     nHeatSources=nHeatSourcesTotal,
@@ -63,27 +79,12 @@ partial model ZoneTemplateGeneral
     ViewFac=ViewFac)
     "Long-wave and short-wave radiation calculation of the zone"
     annotation (Placement(transformation(extent={{-24,-84},{24,-36}})));
-  BuildingSystems.Buildings.Interfaces.SurfaceToConstructionPorts toConstructionPorts[nConstructions](
-      moisturePort(x(each start = 0.005)))
-    "Interfaces of the zone to the constructions"
-    annotation (Placement(transformation(extent={{-8,-8},{8,8}},    rotation=180,origin={0,0}),
-      iconTransformation(extent={{-20,-20},{20,20}})));
-  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpaths](
-    redeclare each final package Medium = Medium) if not prescribedAirchange
-    "Interfaces of the zone to the air paths"
-    annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={-94,-60}, rotation=270),
-      iconTransformation(extent={{-40,-10},{40,10}},rotation=180,origin={-60,110})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces(
     nSurfaces=nConstructions,
     surface(each convectionOnSurface = convectionOnSurfaces,
             each alphaConstant = alphaConstant))
     "surface models of the zone"
     annotation (Placement(transformation(extent={{-24,-26},{24,26}},origin={-80,40})));
-  BuildingSystems.Interfaces.Temp_KOutput TSurfMean
-    "Mean surface temperature of the zone"
-    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={40,-60}),
-      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,-50})));
-protected
   parameter Integer nHeatSourcesTotal = 0
     "Overall number of internal heat sources of the thermal zone";
   // Note, that with following three lines it is assumed, that there is always at least ONE construction!

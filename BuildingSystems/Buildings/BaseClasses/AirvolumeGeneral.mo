@@ -24,13 +24,10 @@ partial model AirvolumeGeneral
     "Number of air elements, which are included in the air volume"
     annotation(Dialog(tab="General"));
   parameter Modelica.SIunits.Temp_K T_start[nAirElements] = fill(293.15,nAirElements)
-    "Start air temperature"
+    "Air temperature (start value)"
     annotation (Dialog(tab="Initialization"));
   parameter Modelica.SIunits.MassFraction x_start[nAirElements] = fill(0.005,nAirElements)
-   "Start air moisture"
-    annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Mass mH2OLiq_start = 0.0
-   "Start liquid water mass"
+   "Absolute air moisture (start value)"
     annotation (Dialog(tab="Initialization"));
   BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toSurfacePorts[nSurfaces]
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=90,origin={0,80})));
@@ -40,13 +37,16 @@ partial model AirvolumeGeneral
   output BuildingSystems.Interfaces.Moisture_absOutput x[nAirElements]
     "Absolute air moisture"
     annotation (Placement(transformation(extent={{70,-30},{90,-10}}), iconTransformation(extent={{70,-30},{90,-10}})));
+  output BuildingSystems.Interfaces.PressureOutput p[nAirElements]
+    "Air pressure"
+    annotation (Placement(transformation(extent={{70,50},{90,70}}), iconTransformation(extent={{70,50},{90,70}})));
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
     V_internal = V;
   else
     connect(V_internal, V_in);
   end if;
-  
+
   annotation (Icon(graphics={Rectangle(extent={{-80,80},{80,-80}},lineColor={85,170,255},fillColor={170,213,255},fillPattern=FillPattern.Sphere),
     Text(extent={{26,-76},{118,-104}},lineColor={0,0,255},fillColor={85,170,255},fillPattern=FillPattern.Solid,textString="%name")}),
 Documentation(info="<html>
