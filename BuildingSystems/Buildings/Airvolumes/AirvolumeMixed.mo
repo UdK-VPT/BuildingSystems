@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes;
-model AirvolumeCompressible0D
-  "Compressible ideal-mixed air volume model for moist air"
+model AirvolumeMixed
+  "Ideal-mixed air volume model for moist air"
   extends BuildingSystems.Buildings.BaseClasses.AirvolumeGeneral(
   redeclare final package Medium = BuildingSystems.Media.Air,
   final nAirElements = 1);
@@ -156,7 +156,7 @@ equation
     Text(extent={{-52,71},{16,5}},lineColor={255,128,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="0")}),
 Documentation(info="<html>
 <p>
-This is a model of a compressible ideal-mixed air volume for moist air.
+This is a model of an ideal-mixed air volume for moist air.
 </p>
 </html>", revisions="<html>
 <ul>
@@ -170,4 +170,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end AirvolumeCompressible0D;
+end AirvolumeMixed;

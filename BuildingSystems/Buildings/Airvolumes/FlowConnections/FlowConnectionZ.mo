@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes.FlowConnections;
 model FlowConnectionZ
-  "Flow connection from center of FV1 to center of FV2 in Z-direction"
+  "Flow connecting element from center of FV1 to center of FV2 in Z-direction"
   extends BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnection;
   Modelica.SIunits.Length deltaz=abs(port_1.pos[3] - port_2.pos[3])
     annotation (HideResult=true);

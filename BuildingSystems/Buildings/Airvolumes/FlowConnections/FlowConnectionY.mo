@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes.FlowConnections;
 model FlowConnectionY
-  "Flow connection from center of FV1 to center of FV2 in Y-direction"
+  "Flow connecting element from center of FV1 to center of FV2 in Y-direction"
   extends BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnection;
   parameter Boolean gravity = true;
   Modelica.Blocks.Sources.Ramp rampe(duration = 60, height = 1);

@@ -37,9 +37,11 @@ model MixingVolumeMoistAirFlexible
   Modelica.Blocks.Sources.Sine fleVol(
     amplitude=0.2,
     freqHz=1.0/3600.0,
-    offset=1.0) "time dependent volume"
+    offset=1.0)
+    "time dependent volume"
     annotation (Placement(transformation(extent={{-14,10},{-6,18}})));
-  Modelica.Blocks.Sources.Constant mWat_flow(k=0.0) "mass flow rate water"
+  Modelica.Blocks.Sources.Constant mWat_flow(k=0.0)
+    "mass flow rate water"
     annotation (Placement(transformation(extent={{-14,30},{-6,38}})));
 equation
   connect(res.port_b, bou.ports[1])
@@ -52,12 +54,11 @@ equation
           {6,18},{18,18}}, color={0,0,127}));
   connect(res.port_a, vol1.ports[1])
     annotation (Line(points={{32,-12},{30,-12},{30,0}}, color={0,127,255}));
-    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-60},
-            {100,60}})),
-experiment(StopTime=7200, Tolerance=1e-06),
-__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/MixingVolumeMoistAirFlexible.mos"
-        "Simulate and plot"),
-    Documentation(info="<html>
+
+    annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-40,-60},{100,60}})),
+      experiment(StopTime=7200, Tolerance=1e-06),
+      __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/MixingVolumeMoistAirFlexible.mos" "Simulate and plot"),
+Documentation(info="<html>
 <p>
 This model tests
 <a href=\"modelica://BuildingSystems.Fluid.MixingVolumes.MixingVolumeMoistAir\">

@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes.FlowConnections;
 model FlowConnectionX
-  "Flow connection from center of FV1 to center of FV2 in X-direction"
+  "Flow connecting element from center of FV1 to center of FV2 in X-direction"
   extends BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnection;
   Modelica.SIunits.Length deltax=abs(port_1.pos[1] - port_2.pos[1])
     annotation (HideResult=true);

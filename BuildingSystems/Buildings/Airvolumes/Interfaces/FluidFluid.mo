@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes.Interfaces;
 connector FluidFluid
-  "Normal Connection FlowElement-VolumeElement or WallElement-VolumeElement"
+  "Normal connection FlowElement-VolumeElement or WallElement-VolumeElement"
   //General variables
   Modelica.SIunits.Length[3] pos
   annotation (HideResult=true);

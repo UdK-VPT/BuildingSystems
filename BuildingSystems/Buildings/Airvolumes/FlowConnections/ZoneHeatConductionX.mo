@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes.FlowConnections;
 model ZoneHeatConductionX
-  "HeatConduction connector-element between two FV elements."
+  "Heat conduction connecting element between two FV elements."
   // Ports
   BuildingSystems.Buildings.Airvolumes.Interfaces.FluidHeatExt port_1
     annotation (Placement(transformation(extent={{-34,-8},{-14,12}}),

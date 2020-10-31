@@ -175,7 +175,7 @@ protected
     k = -1.0) if prescribedAirchange
     "Changes the sign of mass flow"
     annotation (Placement(transformation(extent={{80,24},{72,32}})));
-  BuildingSystems.Buildings.Airvolumes.AirvolumeCompressible0D airvolume(
+  BuildingSystems.Buildings.Airvolumes.AirvolumeMixed airvolume(
     geometryType = geometryType,
     nSurfaces=nSurfaces,
     V = V,

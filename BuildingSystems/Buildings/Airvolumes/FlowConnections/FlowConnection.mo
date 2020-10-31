@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes.FlowConnections;
 partial model FlowConnection
-  "Connector-element between two FV elements calculating the velocity. X, Y and Z - direction"
+  "Flow connecting element between two FV elements calculating the velocity. X, Y and Z - direction"
   // Relative Position in space (near-wall (parallel to wall) or inside)
   parameter Boolean BCwall_north = false
     annotation (HideResult=true);
