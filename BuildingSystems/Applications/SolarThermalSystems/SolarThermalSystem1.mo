@@ -21,7 +21,8 @@ model SolarThermalSystem1
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump(
     redeclare package Medium = Medium1,
     m_flow=0.01,
-    m_flow_nominal=m_flow_nominal)
+    m_flow_nominal=m_flow_nominal,
+    nominalValuesDefineDefaultPressureCurve=true)
     annotation (Placement(transformation(extent={{-40,-70},{-60,-50}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
     redeclare package Medium = Medium1,

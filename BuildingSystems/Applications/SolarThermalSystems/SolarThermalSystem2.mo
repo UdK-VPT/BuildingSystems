@@ -21,7 +21,8 @@ model SolarThermalSystem2
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump1(
     redeclare package Medium = Medium1,
     m_flow=0.01,
-    m_flow_nominal=m_flow_nominal)
+    m_flow_nominal=m_flow_nominal,
+    nominalValuesDefineDefaultPressureCurve=true)
     annotation (Placement(transformation(extent={{-40,-70},{-60,-50}})));
   BuildingSystems.Technologies.SolarThermal.ThermalCollector collector(
     redeclare package Medium = Medium1,
@@ -151,7 +152,8 @@ model SolarThermalSystem2
   BuildingSystems.Fluid.Movers.FlowControlled_m_flow pump2(
     redeclare package Medium = Medium2,
     m_flow=0.01,
-    m_flow_nominal=m_flow_nominal)
+    m_flow_nominal=m_flow_nominal,
+    nominalValuesDefineDefaultPressureCurve=true)
     annotation (Placement(transformation(extent={{28,-70},{8,-50}})));
 equation
   connect(collector.angleDegAzi, radiation.angleDegAzi)

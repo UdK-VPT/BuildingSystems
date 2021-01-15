@@ -38,13 +38,13 @@ partial block WeatherDataFileASCII
     k=deltaTime)
     annotation (Placement(transformation(extent={{-70,20},{-50,40}})));
 equation
-  IrrDirHor=BuildingSystems.Utilities.Math.Functions.smoothMax((datRea.y[1]-datRea.y[2])*scaleFac[1],0.0,0.1);
-  IrrDifHor=BuildingSystems.Utilities.Math.Functions.smoothMax(datRea.y[2]*scaleFac[2],0.0,0.1);
+  IrrDirHor=BuildingSystems.Utilities.Math.Functions.smoothMax((datRea.y[1]-datRea.y[2])*scaleFac[1],0.0,0.02);
+  IrrDifHor=BuildingSystems.Utilities.Math.Functions.smoothMax(datRea.y[2]*scaleFac[2],0.0,0.02);
   tAirRef=datRea.y[3]*scaleFac[3];
-  vWindRef=BuildingSystems.Utilities.Math.Functions.smoothMax(datRea.y[4]*scaleFac[4],0.0,0.1);
+  vWindRef=BuildingSystems.Utilities.Math.Functions.smoothMax(datRea.y[4]*scaleFac[4],0.0,0.02);
   angleDegWindRef=datRea.y[5]*scaleFac[5];
-  phiAir=BuildingSystems.Utilities.Math.Functions.smoothMax(datRea.y[6]*scaleFac[6],0.0,0.1);
-  cloudCover=BuildingSystems.Utilities.Math.Functions.smoothMax(datRea.y[7]*scaleFac[7],0.0,0.1);
+  phiAir=BuildingSystems.Utilities.Math.Functions.smoothMax(datRea.y[6]*scaleFac[6],0.0,0.02);
+  cloudCover=BuildingSystems.Utilities.Math.Functions.smoothMax(datRea.y[7]*scaleFac[7],0.0,0.02);
 
   connect(modTim.y, conTim.modTim)
     annotation (Line(points={{-79,-6},{-72,-6}},color={0,0,127}));
