@@ -72,8 +72,8 @@ model HeatPumpHeatingSystem
     QCon_flow_nominal=5000,
     use_eta_Carnot_nominal=false,
     COP_nominal=3.0,
-    dp1_nominal=10,
-    dp2_nominal=10,
+    dp1_nominal=1000,
+    dp2_nominal=1000,
     TCon_nominal=308.15,
     TEva_nominal=275.15,
     QCon_flow_max=5000)
@@ -83,7 +83,7 @@ model HeatPumpHeatingSystem
     redeclare package Medium = Medium1,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
-    dp_nominal=10.0,
+    dp_nominal=1000.0,
     Q_flow_nominal=12000.0,
     VWat=0.005,
     mDry=0.0001,
@@ -116,19 +116,14 @@ model HeatPumpHeatingSystem
     length=1)
     "Pipe model"
     annotation (Placement(transformation(extent={{-60,-2},{-40,-22}})));
-  BuildingSystems.Fluid.Actuators.Valves.Data.Generic datVal(
-    y={0,0.1667,0.3333,0.5,0.6667,1},
-    phi={0, 0.19, 0.35, 0.45, 0.5, 0.65}/0.65)
-    "Valve characteristics"
-    annotation (Placement(transformation(extent={{-80,22},{-60,42}})));
-  BuildingSystems.Fluid.Actuators.Valves.TwoWayTable val(
+  BuildingSystems.Fluid.Actuators.Valves.TwoWayEqualPercentage val(
     redeclare package Medium = Medium1,
     from_dp=true,
-    flowCharacteristics=datVal,
-    CvData=BuildingSystems.Fluid.Types.CvTypes.Kv,
-    Kv=0.65,
-    m_flow_nominal=m_flow_nominal)
-    "Valve model with opening characteristics based on a table"
+    m_flow_nominal=m_flow_nominal,
+    dpValve_nominal=2000,
+    l=0.01,
+    R=50)
+    "Valve model"
     annotation (Placement(transformation(extent={{-36,-22},{-16,-2}})));
   Modelica.Blocks.Continuous.LimPID thermostat(
     k=0.8,
@@ -271,6 +266,10 @@ for a set temperature of 20 degree Celsius.
 </html>",
 revisions="<html>
 <ul>
+<li>
+January 15, 2021, by Christoph Nytsch-Geusen:<br/>
+Valve model adapted.
+</li>
 <li>
 April 25, 2017, by Christoph Nytsch-Geusen:<br/>
 First implementation.
