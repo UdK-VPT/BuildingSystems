@@ -73,14 +73,14 @@ model SolarHeatingSystem
   BuildingSystems.Fluid.HeatExchangers.Heater_T hea(
     redeclare package Medium = Medium2,
     m_flow_nominal=m_flow_nominal,
-    dp_nominal=10.0)
+    dp_nominal=1000.0)
     "Boiler model"
     annotation (Placement(transformation(extent={{8,-70},{-12,-50}})));
   BuildingSystems.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad(
     redeclare package Medium = Medium2,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
-    dp_nominal=10.0,
+    dp_nominal=1000.0,
     Q_flow_nominal=12000.0,
     VWat=0.005,
     mDry=0.0001,
@@ -101,7 +101,8 @@ model SolarHeatingSystem
     length=1.0)
     "Pipe model"
     annotation (Placement(transformation(extent={{-16,-70},{-36,-50}})));
-  Modelica.Blocks.Sources.Constant TSet(k=273.15 + 60.0)
+  Modelica.Blocks.Sources.Constant TSet(
+    k=273.15 + 60.0)
     annotation (Placement(transformation(extent={{18,-56},{14,-52}})));
   BuildingSystems.Fluid.FixedResistances.Pipe pip3(
     redeclare package Medium = Medium2,
@@ -113,19 +114,14 @@ model SolarHeatingSystem
     length=1.0)
     "Pipe model"
     annotation (Placement(transformation(extent={{-60,-2},{-40,-22}})));
-  BuildingSystems.Fluid.Actuators.Valves.Data.Generic datVal(
-    y={0,0.1667,0.3333,0.5,0.6667,1},
-    phi={0, 0.19, 0.35, 0.45, 0.5, 0.65}/0.65)
-    "Valve characteristics"
-    annotation (Placement(transformation(extent={{-80,22},{-60,42}})));
-  BuildingSystems.Fluid.Actuators.Valves.TwoWayTable val(
-    redeclare package Medium = Medium2,
+  BuildingSystems.Fluid.Actuators.Valves.TwoWayEqualPercentage val(
+    redeclare package Medium = Medium1,
     from_dp=true,
-    flowCharacteristics=datVal,
-    CvData=BuildingSystems.Fluid.Types.CvTypes.Kv,
-    Kv=0.65,
-    m_flow_nominal=m_flow_nominal)
-    "Valve model with opening characteristics based on a table"
+    m_flow_nominal=m_flow_nominal,
+    dpValve_nominal=2000,
+    l=0.01,
+    R=50)
+    "Valve model"
     annotation (Placement(transformation(extent={{-36,-22},{-16,-2}})));
   Modelica.Blocks.Continuous.LimPID thermostat(
     k=0.8,
@@ -376,6 +372,10 @@ solar thermal system with a collector area of 20 m2 and a solar storage with 5 m
 </html>",
 revisions="<html>
 <ul>
+<li>
+January 15, 2021, by Christoph Nytsch-Geusen:<br/>
+Valve model adapted.
+</li>
 <li>
 August 18, 2018, by Christoph Nytsch-Geusen:<br/>
 Adapted to medium BuildingSystems.Media.Anntifreeze.PropyleneGlycolWater in the solar thermal collector loop.

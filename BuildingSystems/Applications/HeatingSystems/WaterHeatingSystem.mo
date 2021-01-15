@@ -68,14 +68,14 @@ model WaterHeatingSystem
   BuildingSystems.Fluid.HeatExchangers.Heater_T hea(
     redeclare package Medium = Medium,
     m_flow_nominal=m_flow_nominal,
-    dp_nominal=10.0)
+    dp_nominal=1000.0)
     "Boiler model"
     annotation (Placement(transformation(extent={{8,-70},{-12,-50}})));
   BuildingSystems.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad(
     redeclare package Medium = Medium,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     m_flow_nominal=m_flow_nominal,
-    dp_nominal=10.0,
+    dp_nominal=1000.0,
     Q_flow_nominal=12000.0,
     VWat=0.005,
     mDry=0.0001,
@@ -108,19 +108,14 @@ model WaterHeatingSystem
     length=1)
     "Pipe model"
     annotation (Placement(transformation(extent={{-60,-2},{-40,-22}})));
-  BuildingSystems.Fluid.Actuators.Valves.Data.Generic datVal(
-    y={0,0.1667,0.3333,0.5,0.6667,1},
-    phi={0, 0.19, 0.35, 0.45, 0.5, 0.65}/0.65)
-    "Valve characteristics"
-    annotation (Placement(transformation(extent={{-80,22},{-60,42}})));
-  BuildingSystems.Fluid.Actuators.Valves.TwoWayTable val(
+  BuildingSystems.Fluid.Actuators.Valves.TwoWayEqualPercentage val(
     redeclare package Medium = Medium,
     from_dp=true,
-    flowCharacteristics=datVal,
-    CvData=BuildingSystems.Fluid.Types.CvTypes.Kv,
-    Kv=0.65,
-    m_flow_nominal=m_flow_nominal)
-    "Valve model with opening characteristics based on a table"
+    m_flow_nominal=m_flow_nominal,
+    dpValve_nominal=2000,
+    l=0.01,
+    R=50)
+    "Valve model"
     annotation (Placement(transformation(extent={{-36,-22},{-16,-2}})));
   Modelica.Blocks.Continuous.LimPID thermostat(
     k=0.8,
@@ -147,19 +142,19 @@ model WaterHeatingSystem
     annotation (Placement(transformation(extent={{-72,-46},{-60,-34}})));
 equation
    connect(ambience.toSurfacePorts, building.toAmbienceSurfacesPorts) annotation (Line(
-    points={{-8,56},{5,56}},
+    points={{-7,56},{5,56}},
     color={0,255,0},
     smooth=Smooth.None));
   connect(ambience.toAirPorts, building.toAmbienceAirPorts) annotation (Line(
-    points={{-8,48},{5,48}},
+    points={{-7,48},{5,48}},
     color={85,170,255},
     smooth=Smooth.None));
   connect(ambience.TAirRef, building.TAirAmb) annotation (Line(
-      points={{-24.2,59},{-26,59},{-26,64},{20.2,64},{20.2,61.8}},
+      points={{-25,59},{-26,59},{-26,64},{20.2,64},{20.2,61.8}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(ambience.xAir, building.xAirAmb) annotation (Line(
-      points={{-24.2,57},{-28,57},{-28,66},{22.4,66},{22.4,61.8}},
+      points={{-25,57},{-28,57},{-28,66},{22.4,66},{22.4,61.8}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(building.airchange[1], airchange.y) annotation (Line(
@@ -175,7 +170,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(hea.TSet,TSet. y) annotation (Line(
-      points={{10,-54},{13.8,-54}},
+      points={{10,-52},{12,-52},{12,-54},{13.8,-54}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(pip3.port_b,val. port_a) annotation (Line(
@@ -195,7 +190,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(dpSet.y,pump. dp_in) annotation (Line(
-      points={{-72.2,8},{-74.2,8},{-74.2,0}},
+      points={{-72.2,8},{-74,8},{-74,0}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(thermostat.y,val. y) annotation (Line(
@@ -215,11 +210,11 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   connect(rad.heatPortCon, building.conHeatSourcesPorts[1]) annotation (Line(
-      points={{-4,-4.8},{-4,68},{16.2,68},{16.2,62}},
+      points={{-4,-4.8},{-4,68},{14,68},{14,62}},
       color={191,0,0},
       smooth=Smooth.None));
   connect(building.TAir[1], thermostat.u_m) annotation (Line(
-      points={{25,45},{40,45},{40,18},{-21.2,18}},
+      points={{33,45},{40,45},{40,18},{-21.2,18}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(TAmb.port, pip3.heatPort)
@@ -229,7 +224,7 @@ equation
   connect(TAmb.port, pip2.heatPort) annotation (Line(points={{-60,-40},{-60,-40},
           {-26,-40},{-26,-55}}, color={191,0,0}));
   connect(rad.heatPortRad, building.radHeatSourcesPorts[1]) annotation (Line(
-     points={{0,-4.8},{0,-4.8},{0,68},{17,68},{17,62}}, color={191,0,0}));
+     points={{0,-4.8},{0,-4.8},{0,68},{16,68},{16,62}}, color={191,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/HeatingSystems/WaterHeatingSystem.mos" "Simulate and plot"),
@@ -247,6 +242,10 @@ for a set temperature of 20 degree Celsius.
 </html>",
 revisions="<html>
 <ul>
+<li>
+January 15, 2021, by Christoph Nytsch-Geusen:<br/>
+Valve model adapted.
+</li>
 <li>
 May 21, 2016, by Christoph Nytsch-Geusen:<br/>
 First implementation.

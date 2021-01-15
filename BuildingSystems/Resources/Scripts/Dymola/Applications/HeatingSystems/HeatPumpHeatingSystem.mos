@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Applications.HeatingSystems.HeatPumpHeatingSystem", stopTime=864000, method="dassl", resultFile="HeatPumpHeatingSystem");
+simulateModel("BuildingSystems.Applications.HeatingSystems.HeatPumpHeatingSystem", stopTime=31536000, method="dassl", resultFile="HeatPumpHeatingSystem");
 removePlots();
 createPlot(
   id = 1,
