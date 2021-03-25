@@ -336,8 +336,7 @@ equation
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/AirConditioningSystems/PhotovoltaicCoolingSystem.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{160,100}}),
     graphics={Text(extent={{-56,-54},{48,-122}}, lineColor={0,0,255},
-    textString="Photovoltaic driven air-conditioning system"),
-    Text(extent={{-76,-98},{114,-130}},lineColor={0,0,255},textString="Example of a simple solar thermal system")}),
+    textString="Photovoltaic driven air-conditioning system")}),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
 Documentation(info="<html>
 <p>
