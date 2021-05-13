@@ -113,7 +113,7 @@ equation
     <ul>
     <li>
     June 1, 2015, by Christoph Nytsch-Geusen:<br/>
-    Adaptation from the Builings to the BuildingSystms library.
+    Adaptation from the Buildings to the BuildingSystms library.
     </li>
     <li>
     February 22, 2012 by Michael Wetter:<br/>

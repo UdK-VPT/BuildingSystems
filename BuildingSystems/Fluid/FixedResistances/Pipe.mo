@@ -9,22 +9,32 @@ model Pipe
     dp_nominal=2*dpStraightPipe_nominal);
   parameter Integer nNodes(min=1) = 1
     "Number of volume segments";
-  parameter Modelica.SIunits.Length thicknessIns
-    "Thickness of insulation";
-  parameter Modelica.SIunits.ThermalConductivity lambdaIns
-    "Heat conductivity of insulation";
-  parameter Modelica.SIunits.Length diameter = sqrt(4*m_flow_nominal/rho_default/v_nominal/Modelica.Constants.pi)
-    "Pipe diameter (without insulation)";
   parameter Modelica.SIunits.Length length
-    "Length of the pipe";
+    "Length of the pipe"
+    annotation(Dialog(group = "Geometry"));
+  parameter Modelica.SIunits.Length diameter = sqrt(4*m_flow_nominal/rho_default/v_nominal/Modelica.Constants.pi)
+    "Pipe diameter (without insulation)"
+    annotation(Dialog(group = "Geometry"));
+  parameter Modelica.SIunits.Length thicknessIns
+    "Thickness of insulation"
+    annotation(Dialog(group = "Geometry"));
+  parameter Modelica.SIunits.ThermalConductivity lambdaIns
+    "Heat conductivity of insulation"
+    annotation(Dialog(group = "Material"));
   parameter Modelica.SIunits.ReynoldsNumber ReC=4000
     "Reynolds number where transition to turbulent starts"
     annotation (Dialog(tab="Flow resistance"));
   parameter Boolean useMultipleHeatPorts=false
     "= true to use one heat port for each segment of the pipe, false to use a single heat port for the entire pipe";
   parameter Boolean useExternalHeatSource=false
-    "= true to transfer the volume temperature to the outter interface (heatPort)"
+    "= true to transfer the volume temperature to the outer interface (heatPort)"
     annotation (Dialog(tab="Advanced"));
+  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha_in = 1000.0
+    "Heat transfer coefficient pipe inside"
+    annotation (Dialog(group="Heat transfer"));
+  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha_out = 3.0
+    "Heat transfer coefficient pipe outside"
+    annotation (Dialog(group="Heat transfer"));
   BuildingSystems.Fluid.FixedResistances.HydraulicDiameter res(
     redeclare final package Medium = Medium,
     final from_dp=from_dp,
@@ -55,9 +65,12 @@ model Pipe
     each final allowFlowReversal=allowFlowReversal) "Volume for pipe fluid"
     annotation (Placement(transformation(extent={{71,-18},{91,-38}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor conPipWal[nNodes](
-    each G=2*Modelica.Constants.pi*lambdaIns*length/nNodes/Modelica.Math.log((
-    diameter/2.0 + thicknessIns)/(diameter/2.0))) if  not useExternalHeatSource
-    "Thermal conductance through pipe wall"
+    each G=2*Modelica.Constants.pi*length/nNodes/
+             (1.0/(alpha_in*0.5*diameter)
+              + Modelica.Math.log((0.5*diameter+thicknessIns)/(0.5*diameter))/lambdaIns
+              + 1.0/(alpha_out*(0.5*diameter+thicknessIns)))
+             ) if not useExternalHeatSource
+    "Thermal heat transfer through pipe wall"
     annotation (Placement(transformation(extent={{-28,-38},{-8,-18}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector colAllToOne(m=nNodes) if not useMultipleHeatPorts
     "Connector to assign multiple heat ports to one heat port"
@@ -173,6 +186,11 @@ BuildingSystems.Fluid.MixingVolumes.MixingVolume</a>.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+May 13, 2021, by Christoph Nytsch-Geusen:<br/>
+Thermal heat transfer calculation through pipe walls extendend
+with internal and external convective heat transfer coefficients.
+</li>
 <li>
 June 1, 2015, by Christoph Nytsch-Geusen:<br/>
 Adaptation from the Builings to the BuildingSystms library.
