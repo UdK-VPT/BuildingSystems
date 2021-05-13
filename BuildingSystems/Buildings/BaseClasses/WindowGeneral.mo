@@ -13,20 +13,6 @@ partial model WindowGeneral
   parameter Real framePortion = 0.2
     "Frame portion of the window"
     annotation(Dialog(tab = "General", group = "Geometry"));
-  final parameter Modelica.SIunits.Length thicknessPane = sum(constructionData.thickness)
-    "Thickness of all panes"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  // Thermal properties
-  constant Modelica.SIunits.Density rhoPane = 2000.0
-    "Density of the panes"
-    annotation(Dialog(tab = "General", group = "Thermal properties"));
-  constant Modelica.SIunits.SpecificHeatCapacity cPane = 1000.0
-    "Specific heat capacity of the panes"
-    annotation(Dialog(tab = "General", group = "Thermal properties"));
-  final parameter Modelica.SIunits.CoefficientOfHeatTransfer UVal
-    = (1.0 - framePortion) * constructionData.UValGla + framePortion * constructionData.UValFra
-    "Mean U-value of the window"
-    annotation(Dialog(tab = "General", group = "Thermal properties"));
   // Optical properties
   final parameter Real tauDir0 = constructionData.g
     "Transmittance of direct radiation for perpendicular irradiation"
@@ -83,10 +69,10 @@ partial model WindowGeneral
     annotation (Dialog(tab="Initialization"));
   BuildingSystems.HAM.HeatConduction.HeatConduction1D heatTransfer(
     material(
-      lambda = UVal*thicknessPane,
-      rho = rhoPane,
-      c = cPane),
-    lengthX=thicknessPane,
+      lambda = UWin*thicknessPan,
+      rho = rhoWin,
+      c = cWin),
+    lengthX=thicknessPan,
     lengthY=width_internal,
     lengthZ=height_internal,
     T_start=T_start)
@@ -151,6 +137,22 @@ partial model WindowGeneral
 protected
   Modelica.Blocks.Interfaces.RealInput GSC_internal
     "Shading coefficient";
+  constant Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaInsDIN4701 = 7.692
+    "Heat transfer coefficient (convection + radiation) inside of the construction";
+     // after German DIN 4701 Teil2 tabular 16"
+  constant Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaAmbDIN4701 = 25.0
+    "Heat transfer coefficient (convection + radiation) outside of the construction";
+    // after german DIN 4701 Teil2 tabular 16"
+  constant Modelica.SIunits.Density rhoWin = 2000.0
+    "Mean Density of the window construction";
+  constant Modelica.SIunits.SpecificHeatCapacity cWin = 1000.0
+    "Specific heat capacity of the window construction";
+  final parameter Modelica.SIunits.Length thicknessPan = sum(constructionData.thickness)
+    "Total thickness of all panes";
+  final parameter Modelica.SIunits.CoefficientOfHeatTransfer UWin =
+    1.0/(-1.0/alphaAmbDIN4701-1.0/alphaInsDIN4701
+    +1.0/((1.0-framePortion)*constructionData.UValGla+framePortion*constructionData.UValFra))
+    "Mean heat transfer coefficient of the window construction without the heat transfer on the surfaces";
 equation
   // Geometry
   ASur = height_internal * width_internal;
@@ -237,6 +239,10 @@ This is partial model description of a win dow.
 </p>
 </html>", revisions="<html>
 <ul>
+li>
+May 13, 2021 by Christoph Nytsch-Geusen:<br/>
+Improvement of the heat transfer calculation.
+</li>
 <li>
 April 24, 2019 by Christoph Nytsch-Geusen:<br/>
 Adaptation to flexible geometries.
