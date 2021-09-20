@@ -1,6 +1,7 @@
 within BuildingSystems.Fluid.Sensors;
 model Pressure "Ideal pressure sensor"
-  extends BuildingSystems.Fluid.Sensors.BaseClasses.PartialAbsoluteSensor;
+  extends BuildingSystems.Fluid.Sensors.BaseClasses.PartialAbsoluteSensor(
+    final warnAboutOnePortConnection = false);
   extends Modelica.Icons.RotationalSensor;
   Modelica.Blocks.Interfaces.RealOutput p(final quantity="AbsolutePressure",
                                           final unit="Pa",

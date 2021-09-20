@@ -2,8 +2,8 @@ Airvolume3D1x1x1
 Airvolume3D3x3x3
 SingleZoneHygroThermal1D
 SingleZoneThermal1D
-SingleZoneThermal1DTriangularWalls
 SingleZoneThermal1DThermalComfort
+SingleZoneThermal1DTriangularWalls
 SingleZoneThermal3D1x1x1
 SingleZoneThermal3D3x3x3
 SingleZoneThermal3D3x3x3ViewFactors

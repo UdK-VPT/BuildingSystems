@@ -3,8 +3,8 @@ model SteamTemperatureEnthalpyInversion
   "Model to check computation of h(T) and its inverse"
   extends Modelica.Icons.Example;
   extends BuildingSystems.Media.Examples.BaseClasses.TestTemperatureEnthalpyInversion(
-     redeclare package Medium = BuildingSystems.Media.Steam,
-     T0 = 273.15 + 200);
+    redeclare package Medium = BuildingSystems.Media.Steam,
+    T0=273.15 + 300);
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Media/Examples/SteamTemperatureEnthalpyInversion.mos"
@@ -16,6 +16,10 @@ is implemented correctly for the steam model.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+March 24, 2020, by Kathryn Hinkelman:<br/>
+Relaxed absolute error tolerance.
+</li>
 <li>
 January 16, 2020, by Kathryn Hinkelman:<br/>
 Change medium to ideal steam to eliminate property discontinuities.
