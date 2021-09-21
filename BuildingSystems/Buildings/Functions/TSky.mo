@@ -30,4 +30,19 @@ algorithm
   epsLwSky := 0.711 + 0.0056 * thetaDp + 7.3e-5 * thetaDp^2
     + 0.013 * Modelica.Math.cos(Modelica.Constants.pi * timeS / (3600.0 * 12.0)) + 0.0012 * (pRef - pGround) / 1000.0;
   value := TAirRef * (epsLwSky + (1.0 - epsLwSky) * bSky)^0.25;
+
+  annotation (Documentation(info="<html>
+<p>
+This function outputs the sky temperature dependent on
+clearness index of the sky, the air moisture and
+the air pressure.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+January 1, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end TSky;
