@@ -42,11 +42,11 @@ model Building1Zone1DCylinder
     annotation(Dialog(tab="Geometry",group="Building"));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall[nSeg](
     each height = height,
-    width = {sqrt((circle.point[if i < nSeg then i+1 else 1].x-circle.point[i].x)^2
-      + (circle.point[if i < nSeg then i+1 else 1].y-circle.point[i].y)^2) for i in 1:nSeg},
+    width = {sqrt((circle.vertex[if i < nSeg then i+1 else 1].x-circle.vertex[i].x)^2
+      + (circle.vertex[if i < nSeg then i+1 else 1].y-circle.vertex[i].y)^2) for i in 1:nSeg},
     each constructionData = constructionWall,
-    angleDegAzi = {acos({-1.0,0.0,0.0}*{circle.point[if i < nSeg then i+1 else 1].x - circle.point[i].x,
-      circle.point[if i < nSeg then i+1 else 1].y - circle.point[i].y,0.0} / (1.0 * wall[i].width))
+    angleDegAzi = {acos({-1.0,0.0,0.0}*{circle.vertex[if i < nSeg then i+1 else 1].x - circle.vertex[i].x,
+      circle.vertex[if i < nSeg then i+1 else 1].y - circle.vertex[i].y,0.0} / (1.0 * wall[i].width))
       * 180.0 / Modelica.Constants.pi * (if i / nSeg > 0.5 then 1.0 else -1.0)
       + angleDegAziBuilding for i in 1:nSeg},
     each angleDegTil = 90.0)
@@ -72,12 +72,12 @@ model Building1Zone1DCylinder
     annotation (Dialog(tab = "Constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-30})));
 protected
-  parameter BuildingSystems.Geometries.BaseClasses.GeometryCircle circle(
+  parameter BuildingSystems.Buildings.Geometries.BaseClasses.GeometryCircle circle(
     nSeg = nSeg,
     zMean = height/2,
     angleDegAzi = 0.0,
     angleDegTil = 0.0,
-    point(
+    vertex(
     x = {sin(2.0*Modelica.Constants.pi/nSeg*(i-1))*diameter/2 for i in 1:nSeg},
     y = {cos(2.0*Modelica.Constants.pi/nSeg*(i-1))*diameter/2 for i in 1:nSeg},
     z = {circle.zMean for i in 1:nSeg}))

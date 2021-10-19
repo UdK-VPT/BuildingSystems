@@ -32,7 +32,6 @@ model BigCollectorInstallationWithStorage
   BuildingSystems.Controls.Continuous.LimPID conPID(
     yMin = 0.01,
     controllerType = Modelica.Blocks.Types.SimpleController.PI,
-    reverseAction = true,
     k = 20.0,
     Ti = 5.0,
     yMax = 4.0)
