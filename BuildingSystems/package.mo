@@ -8,7 +8,7 @@ package BuildingSystems
     versionBuild=0,
     versionDate="2017-04-10",
     dateModified = "2017-04-10",
-    uses(Modelica(version="4.0.0"),NcDataReader2(version="2.5.0")),
+    uses(Modelica(version="3.2.3"),NcDataReader2(version="2.5.0")),
     preferredView="info",
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
     Polygon(points={{-34,62},{0,88},{30,62},{-34,62}},lineColor={0,0,0},fillColor={135,135,135},fillPattern=FillPattern.Solid),
