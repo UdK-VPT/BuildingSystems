@@ -14,13 +14,13 @@ model SurfaceAdapter
     "south, north, west, east, floor, roof"
     annotation (HideResult=false);
   parameter Modelica.SIunits.Length posX
-    "Boudary-FVconnection absolut central position X"
+    "Boundary-FV-connection absolut central position X"
     annotation (HideResult=true);
   parameter Modelica.SIunits.Length posY
-    "Boudary-FVconnection absolut central position Y"
+    "Boundary-FV-connection absolut central position Y"
     annotation (HideResult=true);
   parameter Modelica.SIunits.Length posZ
-    "Boudary-FVconnection absolut central position Z"
+    "Boundary-FV-connection absolut central position Z"
     annotation (HideResult=true);
   final parameter Modelica.SIunits.Velocity[3] vVec = {0,0,0}
     annotation (HideResult=true);
@@ -64,10 +64,20 @@ equation
 
   PortF.rho = rhoAir;
   PortF.h = 0.0;
-  PortF.moist.moistMflow = moistMflow_start;
+  PortF.moist.m_flow = moistMflow_start;
 
   annotation (HideResult=true,HideResult=false,HideResult=true,HideResult=true,
     Diagram(graphics),Icon(graphics={Rectangle(extent={{-10,80},{10,-80}},
     fillColor={215,215,215},fillPattern=FillPattern.Solid,pattern=LinePattern.None)}),
-    Documentation(info=""));
+Documentation(info="<html>
+<p>
+This is a model of a surface adapter of a discretized air volume model.
+</p>
+</html>", revisions="<html>
+<ul>
+February 21, 2017, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SurfaceAdapter;

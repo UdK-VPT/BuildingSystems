@@ -42,8 +42,8 @@ equation
   port_1.h = inStream(port_2.h);
   port_2.h = inStream(port_1.h);
   // flow
-  port_1.moist.moistMflow = port_2.moist.Xi*port_1.m_flow;
-  port_2.moist.moistMflow = port_1.moist.Xi*port_2.m_flow;
+  port_1.moist.m_flow = port_2.moist.Xi*port_1.m_flow;
+  port_2.moist.m_flow = port_1.moist.Xi*port_2.m_flow;
   annotation (Icon(graphics={Ellipse(extent={{-44,44},{44,-44}},fillColor={255,255,170},
     fillPattern=FillPattern.Solid,pattern=LinePattern.None)}),
 Documentation(info=""));

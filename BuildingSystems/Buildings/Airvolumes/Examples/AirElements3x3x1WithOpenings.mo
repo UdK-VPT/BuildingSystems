@@ -1,5 +1,5 @@
 within BuildingSystems.Buildings.Airvolumes.Examples;
-model AirElements3x3x1
+model AirElements3x3x1WithOpenings
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle111(
     BCwall_east=false,
@@ -30,11 +30,13 @@ model AirElements3x3x1
     BCwall_south=true,
     BCwall_floor=true)
     annotation (Placement(transformation(extent={{-40,-70},{-20,-50}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter west11(
+  Interfaces.Opening                                             west11(
     posX=0.0,
     posY=0.5,
     posZ=0.5,
-    location="west")
+    location="west",
+    T=308.15,
+    m_flow=0.1)
     annotation (Placement(transformation(extent={{-90,-70},{-70,-50}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.ZoneHeatConductionX zoneHeatConductionX_111_211
     annotation (Placement(transformation(extent={{-40,-80},{-20,-60}})));
@@ -117,10 +119,6 @@ model AirElements3x3x1
     posZ=0.0,
     location="south")
     annotation (Placement(transformation(extent={{30,-90},{50,-70}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTSouth1(T=294.15)
-    annotation (Placement(transformation(extent={{-98,-70},{-78,-50}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTNorth1(T=292.15)
-    annotation (Placement(transformation(extent={{100,-70},{80,-50}})));
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle121(
     BCwall_east=false,
     BCwall_south=true,
@@ -299,11 +297,14 @@ model AirElements3x3x1
     BCwall_floor=false,
     posY=2.5)
     annotation (Placement(transformation(extent={{50,50},{70,70}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter east13(
+  Interfaces.Opening                                             east13(
     posX=3.0,
     posZ=0.5,
     location="east",
-    posY=2.5) annotation (Placement(transformation(extent={{90,50},{70,70}})));
+    posY=2.5,
+    T=308.15,
+    m_flow=-0.1)
+              annotation (Placement(transformation(extent={{90,50},{70,70}})));
   BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter roof31(
     posX=2.5,
     posZ=0.5,
@@ -367,14 +368,6 @@ model AirElements3x3x1
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={10,28})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.ZoneHeatConductionY zoneHeatConductionY_321_331
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={70,28})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTSouth2(T=294.15)
-    annotation (Placement(transformation(extent={{-98,-10},{-78,10}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTSouth3(T=294.15)
-    annotation (Placement(transformation(extent={{-98,50},{-78,70}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTNorth2(T=292.15)
-    annotation (Placement(transformation(extent={{100,-10},{80,10}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTNorth3(T=292.15)
-    annotation (Placement(transformation(extent={{100,50},{80,70}})));
 equation
   connect(flowConnectionX_111_112.port_2, airEle211.flowPort_X1)
     annotation (Line(points={{-25.4,-60},{-12,-60},{-12,-60.2},{-8,-60.2}}));
@@ -439,10 +432,6 @@ equation
           {47,-80},{47,-68},{52,-68}}, color={0,0,0}));
   connect(south31.PortHeat, airEle311.heatPort_extern) annotation (Line(points={
           {41,-84},{41,-83.55},{60,-83.55},{60,-60}}, color={0,0,0}));
-  connect(bcTSouth1.surfaceToAirPort, west11.surfaceToAirPort)
-    annotation (Line(points={{-84,-60},{-81,-60}}, color={0,0,0}));
-  connect(east11.surfaceToAirPort, bcTNorth1.surfaceToAirPort)
-    annotation (Line(points={{81,-60},{81,-60},{86,-60}}, color={0,0,0}));
 
   connect(flowConnectionX_121_221.port_2, airEle221.flowPort_X1)
     annotation (Line(points={{-25.4,0},{-22,0},{-22,-0.2},{-8,-0.2}}));
@@ -617,69 +606,61 @@ equation
   connect(airEle321.heatPort_intern, zoneHeatConductionY_321_331.port_1)
     annotation (Line(points={{60,-3},{66,-3},{66,-2},{70,-2},{70,23.6}}, color={
           191,0,0}));
-  connect(bcTSouth2.surfaceToAirPort, west21.surfaceToAirPort)
-    annotation (Line(points={{-84,0},{-81,0}}, color={0,0,0}));
-  connect(bcTSouth3.surfaceToAirPort, west31.surfaceToAirPort)
-    annotation (Line(points={{-84,60},{-81,60}}, color={0,0,0}));
-  connect(east12.surfaceToAirPort, bcTNorth2.surfaceToAirPort)
-    annotation (Line(points={{81,0},{83.5,0},{86,0}}, color={0,0,0}));
-  connect(east13.surfaceToAirPort, bcTNorth3.surfaceToAirPort)
-    annotation (Line(points={{81,60},{83.5,60},{86,60}}, color={0,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=180, __Dymola_Algorithm="Cvode"),
-      __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/AirElements3x3x1.mos" "Simulate and plot"),
-      Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
-        graphics={
-        Line(
-          points={{-100,-100},{-90,-100}},
-          color={28,108,200},
-          arrow={Arrow.None,Arrow.Open},
-          thickness=1),
-        Line(
-          points={{-100,-100},{-100,-90}},
-          color={28,108,200},
-          arrow={Arrow.None,Arrow.Open},
-          thickness=1),
-        Line(
-          points={{-100,-100},{-92,-92}},
-          color={28,108,200},
-          arrow={Arrow.None,Arrow.Open},
-          thickness=1),
-        Text(
-          extent={{-90,-96},{-84,-104}},
-          lineColor={28,108,200},
-          lineThickness=1,
-          fillColor={215,215,215},
-          fillPattern=FillPattern.Solid,
-          textString="X"),
-        Text(
-          extent={{-92,-84},{-86,-92}},
-          lineColor={28,108,200},
-          lineThickness=1,
-          fillColor={215,215,215},
-          fillPattern=FillPattern.Solid,
-          textString="Z"),
-        Text(
-          extent={{-104,-82},{-98,-90}},
-          lineColor={28,108,200},
-          lineThickness=1,
-          fillColor={215,215,215},
-          fillPattern=FillPattern.Solid,
-          textString="Y")}),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/AirElements3x3x1WithOpenings.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
+      graphics={
+      Line(
+        points={{-100,-100},{-90,-100}},
+        color={28,108,200},
+        arrow={Arrow.None,Arrow.Open},
+        thickness=1),
+      Line(
+        points={{-100,-100},{-100,-90}},
+        color={28,108,200},
+        arrow={Arrow.None,Arrow.Open},
+        thickness=1),
+      Line(
+        points={{-100,-100},{-92,-92}},
+        color={28,108,200},
+        arrow={Arrow.None,Arrow.Open},
+        thickness=1),
+      Text(
+        extent={{-90,-96},{-84,-104}},
+        lineColor={28,108,200},
+        lineThickness=1,
+        fillColor={215,215,215},
+        fillPattern=FillPattern.Solid,
+        textString="X"),
+      Text(
+        extent={{-92,-84},{-86,-92}},
+        lineColor={28,108,200},
+        lineThickness=1,
+        fillColor={215,215,215},
+        fillPattern=FillPattern.Solid,
+        textString="Z"),
+      Text(
+        extent={{-104,-82},{-98,-90}},
+        lineColor={28,108,200},
+        lineThickness=1,
+        fillColor={215,215,215},
+        fillPattern=FillPattern.Solid,
+        textString="Y")}),
       Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
  Documentation(info="<html>
  <p>
- Example that simulates the air flow between nine two-dimensional connected air elements, where the left
- elements airEle111, airEle121 and airEle131 have a thermal boundary condition of 21 degree Celsius and the
- right elements airEle311, airEle321 and airEle331 a thermal boundary condition of 19 degree Celsius.
+ Example that simulates the air flow between nine two-dimensional connected air elements, where the lower left
+ elements airEle111 is connected with an opening which let warm air in and the upper right airEle331 let the same
+ amount of air out.
  </p>
  </html>",
  revisions="<html>
  <ul>
  <li>
- February 21, 2017, by Christoph Nytsch-Geusen:<br/>
+ November 6, 2021, by Christoph Nytsch-Geusen:<br/>
  First implementation.
  </li>
  </ul>
  </html>"));
-end AirElements3x3x1;
+end AirElements3x3x1WithOpenings;

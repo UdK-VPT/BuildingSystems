@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Airvolumes.Examples.AirElements3x3x1WithOpenings", stopTime=360, method="dassl", tolerance = 1e-5, resultFile="AirElements3x3x1WithOpenings");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"airEle111.fluid.T","airEle121.fluid.T","airEle131.fluid.T","airEle311.fluid.T","airEle321.fluid.T","airEle331.fluid.T"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "AirElements3x3x1WithOpenings.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"airEle111.vVec[1]","airEle121.vVec[1]","airEle131.vVec[1]","airEle311.vVec[1]","airEle321.vVec[1]","airEle331.vVec[1]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "AirElements3x3x1WithOpenings.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
