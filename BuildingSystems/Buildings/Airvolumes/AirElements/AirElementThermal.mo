@@ -31,7 +31,7 @@ equation
     + heatPort_extern.Q_flow+ heatPort_intern.Q_flow);
 
   ////////// dummy values /////////////
-  fluid.Xi = 0.005;
+  fluid.x = 0.005;
   phi = 0.5;
   //
   // T and P: dry air

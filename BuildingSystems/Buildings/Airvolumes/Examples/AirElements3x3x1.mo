@@ -30,49 +30,49 @@ model AirElements3x3x1
     BCwall_south=true,
     BCwall_floor=true)
     annotation (Placement(transformation(extent={{-40,-70},{-20,-50}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter west11(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary west11(
     posX=0.0,
     posY=0.5,
     posZ=0.5,
-    location="west")
+    location=BuildingSystems.Buildings.Types.OrientationType.West)
     annotation (Placement(transformation(extent={{-90,-70},{-70,-50}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.ZoneHeatConductionX zoneHeatConductionX_111_211
     annotation (Placement(transformation(extent={{-40,-80},{-20,-60}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter floor11(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary floor11(
     posX=0.5,
     posY=0,
     posZ=0.5,
-    location="floor")
+    location=BuildingSystems.Buildings.Types.OrientationType.Floor)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-60,-90})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter north11(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north11(
     posX=0.5,
     posY=0.5,
     posZ=1.0,
-    location="north")
+    location=BuildingSystems.Buildings.Types.OrientationType.North)
     annotation (Placement(transformation(extent={{-30,-50},{-50,-30}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter south11(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south11(
     posX=0.5,
     posY=0.5,
     posZ=0.0,
-    location="south")
+    location=BuildingSystems.Buildings.Types.OrientationType.South)
     annotation (Placement(transformation(extent={{-90,-90},{-70,-70}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter floor21(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary floor21(
     posX=1.5,
     posY=0,
     posZ=0.5,
-    location="floor")
+    location=BuildingSystems.Buildings.Types.OrientationType.Floor)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,-88})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter south21(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south21(
     posX=1.5,
     posY=0.5,
     posZ=0.0,
-    location="south")
+    location=BuildingSystems.Buildings.Types.OrientationType.South)
     annotation (Placement(transformation(extent={{-30,-90},{-10,-70}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter north21(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north21(
     posX=1.5,
     posY=0.5,
     posZ=1.0,
-    location="north")
+    location=BuildingSystems.Buildings.Types.OrientationType.North)
     annotation (Placement(transformation(extent={{30,-50},{10,-30}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnectionX flowConnectionX_211_311(
     BCwall_north=true,
@@ -93,33 +93,33 @@ model AirElements3x3x1
     BCwall_floor=true,
     BCwall_roof=false)
     annotation (Placement(transformation(extent={{50,-70},{70,-50}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter east11(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary east11(
     posX=3.0,
     posY=0.5,
     posZ=0.5,
-    location="east")
+    location=BuildingSystems.Buildings.Types.OrientationType.East)
     annotation (Placement(transformation(extent={{90,-70},{70,-50}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter floor31(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary floor31(
     posX=2.5,
     posY=0,
     posZ=0.5,
-    location="floor")
+    location=BuildingSystems.Buildings.Types.OrientationType.Floor)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={60,-88})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter north31(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north31(
     posX=2.5,
     posY=0.5,
     posZ=1.0,
-    location="north")
+    location=BuildingSystems.Buildings.Types.OrientationType.North)
     annotation (Placement(transformation(extent={{90,-50},{70,-30}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter south31(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south31(
     posX=2.5,
     posY=0.5,
     posZ=0.0,
-    location="south")
+    location=BuildingSystems.Buildings.Types.OrientationType.South)
     annotation (Placement(transformation(extent={{30,-90},{50,-70}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTSouth1(T=294.15)
+  BuildingSystems.Buildings.Airvolumes.Examples.BoundaryTemp bcTSouth1(T=294.15)
     annotation (Placement(transformation(extent={{-98,-70},{-78,-50}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTNorth1(T=292.15)
+  BuildingSystems.Buildings.Airvolumes.Examples.BoundaryTemp bcTNorth1(T=292.15)
     annotation (Placement(transformation(extent={{100,-70},{80,-50}})));
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle121(
     BCwall_east=false,
@@ -148,35 +148,35 @@ model AirElements3x3x1
   BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnectionX flowConnectionX_121_221(
       BCwall_north=true, BCwall_south=true)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter west21(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary west21(
     posX=0.0,
     posZ=0.5,
-    location="west",
+    location=BuildingSystems.Buildings.Types.OrientationType.West,
     posY=1.5)
     annotation (Placement(transformation(extent={{-90,-10},{-70,10}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.ZoneHeatConductionX zoneHeatConductionX_121_221
     annotation (Placement(transformation(extent={{-40,-20},{-20,0}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter north12(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north12(
     posX=0.5,
     posZ=1.0,
-    location="north",
+    location=BuildingSystems.Buildings.Types.OrientationType.North,
     posY=1.5) annotation (Placement(transformation(extent={{-30,10},{-50,30}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter south12(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south12(
     posX=0.5,
     posZ=0.0,
-    location="south",
+    location=BuildingSystems.Buildings.Types.OrientationType.South,
     posY=1.5)
     annotation (Placement(transformation(extent={{-90,-30},{-70,-10}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter south22(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south22(
     posX=1.5,
     posZ=0.0,
-    location="south",
+    location=BuildingSystems.Buildings.Types.OrientationType.South,
     posY=1.5)
     annotation (Placement(transformation(extent={{-30,-30},{-10,-10}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter west22(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary west22(
     posX=1.5,
     posZ=1.0,
-    location="west",
+    location=BuildingSystems.Buildings.Types.OrientationType.West,
     posY=1.5)
     annotation (Placement(transformation(extent={{30,10},{10,30}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnectionX flowConnectionX_221_321(
@@ -197,20 +197,20 @@ model AirElements3x3x1
     BCwall_roof=false,
     posY=1.5)
     annotation (Placement(transformation(extent={{50,-10},{70,10}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter east12(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary east12(
     posX=3.0,
     posZ=0.5,
-    location="east",
+    location=BuildingSystems.Buildings.Types.OrientationType.East,
     posY=1.5) annotation (Placement(transformation(extent={{90,-10},{70,10}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter north32(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north32(
     posX=2.5,
     posZ=1.0,
-    location="north",
+    location=BuildingSystems.Buildings.Types.OrientationType.North,
     posY=1.5) annotation (Placement(transformation(extent={{90,10},{70,30}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter south32(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south32(
     posX=2.5,
     posZ=0.0,
-    location="south",
+    location=BuildingSystems.Buildings.Types.OrientationType.South,
     posY=1.5) annotation (Placement(transformation(extent={{30,-30},{50,-10}})));
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle131(
     BCwall_east=false,
@@ -241,44 +241,44 @@ model AirElements3x3x1
     BCwall_south=true,
     BCwall_roof=true)
     annotation (Placement(transformation(extent={{-40,50},{-20,70}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter west31(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary west31(
     posX=0.0,
     posZ=0.5,
-    location="west",
+    location=BuildingSystems.Buildings.Types.OrientationType.West,
     posY=2.5) annotation (Placement(transformation(extent={{-90,50},{-70,70}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.ZoneHeatConductionX zoneHeatConductionX_131_231
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter roof11(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary roof11(
     posX=0.5,
     posZ=0.5,
-    location="roof",
+    location=BuildingSystems.Buildings.Types.OrientationType.Roof,
     posY=3)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-60,90})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter north13(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north13(
     posX=0.5,
     posZ=1.0,
-    location="north",
+    location=BuildingSystems.Buildings.Types.OrientationType.North,
     posY=2.5) annotation (Placement(transformation(extent={{-30,70},{-50,90}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter south13(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south13(
     posX=0.5,
     posZ=0.0,
-    location="south",
+    location=BuildingSystems.Buildings.Types.OrientationType.South,
     posY=2.5) annotation (Placement(transformation(extent={{-90,30},{-70,50}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter south23(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south23(
     posX=1.5,
     posZ=0.0,
-    location="south",
+    location=BuildingSystems.Buildings.Types.OrientationType.South,
     posY=2.5) annotation (Placement(transformation(extent={{-30,30},{-10,50}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter roof21(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary roof21(
     posX=1.5,
     posZ=0.5,
-    location="roof",
+    location=BuildingSystems.Buildings.Types.OrientationType.Roof,
     posY=3)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={0,90})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter north23(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north23(
     posX=1.5,
     posZ=1.0,
-    location="north",
+    location=BuildingSystems.Buildings.Types.OrientationType.North,
     posY=2.5) annotation (Placement(transformation(extent={{30,70},{10,90}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnectionX flowConnectionX_231_331(
     BCwall_north=true,
@@ -299,26 +299,26 @@ model AirElements3x3x1
     BCwall_floor=false,
     posY=2.5)
     annotation (Placement(transformation(extent={{50,50},{70,70}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter east13(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary east13(
     posX=3.0,
     posZ=0.5,
-    location="east",
+    location=BuildingSystems.Buildings.Types.OrientationType.East,
     posY=2.5) annotation (Placement(transformation(extent={{90,50},{70,70}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter roof31(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary roof31(
     posX=2.5,
     posZ=0.5,
-    location="roof",
+    location=BuildingSystems.Buildings.Types.OrientationType.Roof,
     posY=3)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={60,90})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter north33(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north33(
     posX=2.5,
     posZ=1.0,
-    location="north",
+    location=BuildingSystems.Buildings.Types.OrientationType.North,
     posY=2.5) annotation (Placement(transformation(extent={{90,70},{70,90}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.SurfaceAdapter south33(
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south33(
     posX=2.5,
     posZ=0.0,
-    location="south",
+    location=BuildingSystems.Buildings.Types.OrientationType.South,
     posY=2.5) annotation (Placement(transformation(extent={{30,30},{50,50}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnectionY flowConnectionY_111_121(
     BCwall_north=true,
@@ -367,13 +367,13 @@ model AirElements3x3x1
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={10,28})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.ZoneHeatConductionY zoneHeatConductionY_321_331
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={70,28})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTSouth2(T=294.15)
+  BuildingSystems.Buildings.Airvolumes.Examples.BoundaryTemp bcTSouth2(T=294.15)
     annotation (Placement(transformation(extent={{-98,-10},{-78,10}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTSouth3(T=294.15)
+  BuildingSystems.Buildings.Airvolumes.Examples.BoundaryTemp bcTSouth3(T=294.15)
     annotation (Placement(transformation(extent={{-98,50},{-78,70}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTNorth2(T=292.15)
+  BuildingSystems.Buildings.Airvolumes.Examples.BoundaryTemp bcTNorth2(T=292.15)
     annotation (Placement(transformation(extent={{100,-10},{80,10}})));
-  BuildingSystems.Buildings.Airvolumes.Examples.BCT bcTNorth3(T=292.15)
+  BuildingSystems.Buildings.Airvolumes.Examples.BoundaryTemp bcTNorth3(T=292.15)
     annotation (Placement(transformation(extent={{100,50},{80,70}})));
 equation
   connect(flowConnectionX_111_112.port_2, airEle211.flowPort_X1)

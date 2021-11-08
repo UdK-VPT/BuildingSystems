@@ -3,7 +3,7 @@ model Airvolume3D3x3x3
 extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
   nSurfaces = 54,
   nAirElements = 27,
-  surfaceAdapter.posX = {
+  bou.posX = {
     0.5,
     1.5,
     2.5,
@@ -59,7 +59,7 @@ extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     1.5,
     2.5
   },
-  surfaceAdapter.posY = {
+  bou.posY = {
     0.5,
     0.5,
     0.5,
@@ -115,7 +115,7 @@ extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     3.0,
     3.0
   },
-  surfaceAdapter.posZ = {
+  bou.posZ = {
     0.5,
     0.5,
     0.5,
@@ -171,61 +171,61 @@ extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     3.0,
     3.0
   },
-  surfaceAdapter.location = {
-  "south",
-  "south",
-  "south",
-  "south",
-  "south",
-  "south",
-  "south",
-  "south",
-  "south",
-  "east",
-  "east",
-  "east",
-  "east",
-  "east",
-  "east",
-  "east",
-  "east",
-  "east",
-  "north",
-  "north",
-  "north",
-  "north",
-  "north",
-  "north",
-  "north",
-  "north",
-  "north",
-  "west",
-  "west",
-  "west",
-  "west",
-  "west",
-  "west",
-  "west",
-  "west",
-  "west",
-  "floor",
-  "floor",
-  "floor",
-  "floor",
-  "floor",
-  "floor",
-  "floor",
-  "floor",
-  "floor",
-  "roof",
-  "roof",
-  "roof",
-  "roof",
-  "roof",
-  "roof",
-  "roof",
-  "roof",
-  "roof"
+  bou.location = {
+  BuildingSystems.Buildings.Types.OrientationType.South,
+  BuildingSystems.Buildings.Types.OrientationType.South,
+  BuildingSystems.Buildings.Types.OrientationType.South,
+  BuildingSystems.Buildings.Types.OrientationType.South,
+  BuildingSystems.Buildings.Types.OrientationType.South,
+  BuildingSystems.Buildings.Types.OrientationType.South,
+  BuildingSystems.Buildings.Types.OrientationType.South,
+  BuildingSystems.Buildings.Types.OrientationType.South,
+  BuildingSystems.Buildings.Types.OrientationType.South,
+  BuildingSystems.Buildings.Types.OrientationType.East,
+  BuildingSystems.Buildings.Types.OrientationType.East,
+  BuildingSystems.Buildings.Types.OrientationType.East,
+  BuildingSystems.Buildings.Types.OrientationType.East,
+  BuildingSystems.Buildings.Types.OrientationType.East,
+  BuildingSystems.Buildings.Types.OrientationType.East,
+  BuildingSystems.Buildings.Types.OrientationType.East,
+  BuildingSystems.Buildings.Types.OrientationType.East,
+  BuildingSystems.Buildings.Types.OrientationType.East,
+  BuildingSystems.Buildings.Types.OrientationType.North,
+  BuildingSystems.Buildings.Types.OrientationType.North,
+  BuildingSystems.Buildings.Types.OrientationType.North,
+  BuildingSystems.Buildings.Types.OrientationType.North,
+  BuildingSystems.Buildings.Types.OrientationType.North,
+  BuildingSystems.Buildings.Types.OrientationType.North,
+  BuildingSystems.Buildings.Types.OrientationType.North,
+  BuildingSystems.Buildings.Types.OrientationType.North,
+  BuildingSystems.Buildings.Types.OrientationType.North,
+  BuildingSystems.Buildings.Types.OrientationType.West,
+  BuildingSystems.Buildings.Types.OrientationType.West,
+  BuildingSystems.Buildings.Types.OrientationType.West,
+  BuildingSystems.Buildings.Types.OrientationType.West,
+  BuildingSystems.Buildings.Types.OrientationType.West,
+  BuildingSystems.Buildings.Types.OrientationType.West,
+  BuildingSystems.Buildings.Types.OrientationType.West,
+  BuildingSystems.Buildings.Types.OrientationType.West,
+  BuildingSystems.Buildings.Types.OrientationType.West,
+  BuildingSystems.Buildings.Types.OrientationType.Floor,
+  BuildingSystems.Buildings.Types.OrientationType.Floor,
+  BuildingSystems.Buildings.Types.OrientationType.Floor,
+  BuildingSystems.Buildings.Types.OrientationType.Floor,
+  BuildingSystems.Buildings.Types.OrientationType.Floor,
+  BuildingSystems.Buildings.Types.OrientationType.Floor,
+  BuildingSystems.Buildings.Types.OrientationType.Floor,
+  BuildingSystems.Buildings.Types.OrientationType.Floor,
+  BuildingSystems.Buildings.Types.OrientationType.Floor,
+  BuildingSystems.Buildings.Types.OrientationType.Roof,
+  BuildingSystems.Buildings.Types.OrientationType.Roof,
+  BuildingSystems.Buildings.Types.OrientationType.Roof,
+  BuildingSystems.Buildings.Types.OrientationType.Roof,
+  BuildingSystems.Buildings.Types.OrientationType.Roof,
+  BuildingSystems.Buildings.Types.OrientationType.Roof,
+  BuildingSystems.Buildings.Types.OrientationType.Roof,
+  BuildingSystems.Buildings.Types.OrientationType.Roof,
+  BuildingSystems.Buildings.Types.OrientationType.Roof
   }
   );
 
@@ -1074,260 +1074,260 @@ extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
 equation
 // Temperatures, moistures and Air velocity (magnitude) of all air elements
   airEle111.fluid.T = T[1];
-  airEle111.fluid.Xi = x[1];
+  airEle111.fluid.x = x[1];
   airEle111.velMag = v[1];
   airEle111.fluid.p = p[1];
 
   airEle121.fluid.T = T[2];
-  airEle121.fluid.Xi = x[2];
+  airEle121.fluid.x = x[2];
   airEle121.velMag = v[2];
   airEle121.fluid.p = p[2];
 
   airEle131.fluid.T = T[3];
-  airEle131.fluid.Xi = x[3];
+  airEle131.fluid.x = x[3];
   airEle131.velMag = v[3];
   airEle131.fluid.p = p[3];
 
   airEle112.fluid.T = T[4];
-  airEle112.fluid.Xi = x[4];
+  airEle112.fluid.x = x[4];
   airEle112.velMag = v[4];
   airEle112.fluid.p = p[4];
 
   airEle122.fluid.T = T[5];
-  airEle122.fluid.Xi = x[5];
+  airEle122.fluid.x = x[5];
   airEle122.velMag = v[5];
   airEle122.fluid.p = p[5];
 
   airEle132.fluid.T = T[6];
-  airEle132.fluid.Xi = x[6];
+  airEle132.fluid.x = x[6];
   airEle132.velMag = v[6];
   airEle132.fluid.p = p[6];
 
   airEle113.fluid.T = T[7];
-  airEle113.fluid.Xi = x[7];
+  airEle113.fluid.x = x[7];
   airEle113.velMag = v[7];
   airEle113.fluid.p = p[7];
 
   airEle123.fluid.T = T[8];
-  airEle123.fluid.Xi = x[8];
+  airEle123.fluid.x = x[8];
   airEle123.velMag = v[8];
   airEle123.fluid.p = p[8];
 
   airEle133.fluid.T = T[9];
-  airEle133.fluid.Xi = x[9];
+  airEle133.fluid.x = x[9];
   airEle133.velMag = v[9];
   airEle133.fluid.p = p[9];
 
   airEle211.fluid.T = T[10];
-  airEle211.fluid.Xi = x[10];
+  airEle211.fluid.x = x[10];
   airEle211.velMag = v[10];
   airEle211.fluid.p = p[10];
 
   airEle221.fluid.T = T[11];
-  airEle221.fluid.Xi = x[11];
+  airEle221.fluid.x = x[11];
   airEle221.velMag = v[11];
   airEle221.fluid.p = p[11];
 
   airEle231.fluid.T = T[12];
-  airEle231.fluid.Xi = x[12];
+  airEle231.fluid.x = x[12];
   airEle231.velMag = v[12];
   airEle231.fluid.p = p[12];
 
   airEle212.fluid.T = T[13];
-  airEle212.fluid.Xi = x[13];
+  airEle212.fluid.x = x[13];
   airEle212.velMag = v[13];
   airEle212.fluid.p = p[13];
 
   airEle222.fluid.T = T[14];
-  airEle222.fluid.Xi = x[14];
+  airEle222.fluid.x = x[14];
   airEle222.velMag = v[14];
   airEle222.fluid.p = p[14];
 
   airEle232.fluid.T = T[15];
-  airEle232.fluid.Xi = x[15];
+  airEle232.fluid.x = x[15];
   airEle232.velMag = v[15];
   airEle232.fluid.p = p[15];
 
   airEle213.fluid.T = T[16];
-  airEle213.fluid.Xi = x[16];
+  airEle213.fluid.x = x[16];
   airEle213.velMag = v[16];
   airEle213.fluid.p = p[16];
 
   airEle223.fluid.T = T[17];
-  airEle223.fluid.Xi = x[17];
+  airEle223.fluid.x = x[17];
   airEle223.velMag = v[17];
   airEle223.fluid.p = p[17];
 
   airEle233.fluid.T = T[18];
-  airEle233.fluid.Xi = x[18];
+  airEle233.fluid.x = x[18];
   airEle233.velMag = v[18];
   airEle233.fluid.p = p[18];
 
   airEle311.fluid.T = T[19];
-  airEle311.fluid.Xi = x[19];
+  airEle311.fluid.x = x[19];
   airEle311.velMag = v[19];
   airEle311.fluid.p = p[19];
 
   airEle321.fluid.T = T[20];
-  airEle321.fluid.Xi = x[20];
+  airEle321.fluid.x = x[20];
   airEle321.velMag = v[20];
   airEle321.fluid.p = p[20];
 
   airEle331.fluid.T = T[21];
-  airEle331.fluid.Xi = x[21];
+  airEle331.fluid.x = x[21];
   airEle331.velMag = v[21];
   airEle331.fluid.p = p[21];
 
   airEle312.fluid.T = T[22];
-  airEle312.fluid.Xi = x[22];
+  airEle312.fluid.x = x[22];
   airEle312.velMag = v[22];
   airEle312.fluid.p = p[22];
 
   airEle322.fluid.T = T[23];
-  airEle322.fluid.Xi = x[23];
+  airEle322.fluid.x = x[23];
   airEle322.velMag = v[23];
   airEle322.fluid.p = p[23];
 
   airEle332.fluid.T = T[24];
-  airEle332.fluid.Xi = x[24];
+  airEle332.fluid.x = x[24];
   airEle332.velMag = v[24];
   airEle332.fluid.p = p[24];
 
   airEle313.fluid.T = T[25];
-  airEle313.fluid.Xi = x[25];
+  airEle313.fluid.x = x[25];
   airEle313.velMag = v[25];
   airEle313.fluid.p = p[25];
 
   airEle323.fluid.T = T[26];
-  airEle323.fluid.Xi = x[26];
+  airEle323.fluid.x = x[26];
   airEle323.velMag = v[26];
   airEle323.fluid.p = p[26];
 
   airEle333.fluid.T = T[27];
-  airEle333.fluid.Xi = x[27];
+  airEle333.fluid.x = x[27];
   airEle333.velMag = v[27];
   airEle333.fluid.p = p[27];
 
 // Air element <-> surface connections
 // south
-  connect(surfaceAdapter[1].PortF, airEle111.flowPort_Z1);
-  connect(surfaceAdapter[1].PortHeat, airEle111.heatPort_extern);
-  connect(surfaceAdapter[2].PortF, airEle112.flowPort_Z1);
-  connect(surfaceAdapter[2].PortHeat, airEle112.heatPort_extern);
-  connect(surfaceAdapter[3].PortF, airEle113.flowPort_Z1);
-  connect(surfaceAdapter[3].PortHeat, airEle113.heatPort_extern);
-  connect(surfaceAdapter[4].PortF, airEle211.flowPort_Z1);
-  connect(surfaceAdapter[4].PortHeat, airEle211.heatPort_extern);
-  connect(surfaceAdapter[5].PortF, airEle212.flowPort_Z1);
-  connect(surfaceAdapter[5].PortHeat, airEle212.heatPort_extern);
-  connect(surfaceAdapter[6].PortF, airEle213.flowPort_Z1);
-  connect(surfaceAdapter[6].PortHeat, airEle213.heatPort_extern);
-  connect(surfaceAdapter[7].PortF, airEle311.flowPort_Z1);
-  connect(surfaceAdapter[7].PortHeat, airEle311.heatPort_extern);
-  connect(surfaceAdapter[8].PortF, airEle312.flowPort_Z1);
-  connect(surfaceAdapter[8].PortHeat, airEle312.heatPort_extern);
-  connect(surfaceAdapter[9].PortF, airEle313.flowPort_Z1);
-  connect(surfaceAdapter[9].PortHeat, airEle313.heatPort_extern);
+  connect(bou[1].PortF, airEle111.flowPort_Z1);
+  connect(bou[1].PortHeat, airEle111.heatPort_extern);
+  connect(bou[2].PortF, airEle112.flowPort_Z1);
+  connect(bou[2].PortHeat, airEle112.heatPort_extern);
+  connect(bou[3].PortF, airEle113.flowPort_Z1);
+  connect(bou[3].PortHeat, airEle113.heatPort_extern);
+  connect(bou[4].PortF, airEle211.flowPort_Z1);
+  connect(bou[4].PortHeat, airEle211.heatPort_extern);
+  connect(bou[5].PortF, airEle212.flowPort_Z1);
+  connect(bou[5].PortHeat, airEle212.heatPort_extern);
+  connect(bou[6].PortF, airEle213.flowPort_Z1);
+  connect(bou[6].PortHeat, airEle213.heatPort_extern);
+  connect(bou[7].PortF, airEle311.flowPort_Z1);
+  connect(bou[7].PortHeat, airEle311.heatPort_extern);
+  connect(bou[8].PortF, airEle312.flowPort_Z1);
+  connect(bou[8].PortHeat, airEle312.heatPort_extern);
+  connect(bou[9].PortF, airEle313.flowPort_Z1);
+  connect(bou[9].PortHeat, airEle313.heatPort_extern);
 
 // east
-  connect(surfaceAdapter[10].PortF, airEle113.flowPort_X2);
-  connect(surfaceAdapter[10].PortHeat, airEle113.heatPort_extern);
-  connect(surfaceAdapter[11].PortF, airEle123.flowPort_X2);
-  connect(surfaceAdapter[11].PortHeat, airEle123.heatPort_extern);
-  connect(surfaceAdapter[12].PortF, airEle133.flowPort_X2);
-  connect(surfaceAdapter[12].PortHeat, airEle133.heatPort_extern);
-  connect(surfaceAdapter[13].PortF, airEle213.flowPort_X2);
-  connect(surfaceAdapter[13].PortHeat, airEle213.heatPort_extern);
-  connect(surfaceAdapter[14].PortF, airEle223.flowPort_X2);
-  connect(surfaceAdapter[14].PortHeat, airEle223.heatPort_extern);
-  connect(surfaceAdapter[15].PortF, airEle233.flowPort_X2);
-  connect(surfaceAdapter[15].PortHeat, airEle233.heatPort_extern);
-  connect(surfaceAdapter[16].PortF, airEle313.flowPort_X2);
-  connect(surfaceAdapter[16].PortHeat, airEle313.heatPort_extern);
-  connect(surfaceAdapter[17].PortF, airEle323.flowPort_X2);
-  connect(surfaceAdapter[17].PortHeat, airEle323.heatPort_extern);
-  connect(surfaceAdapter[18].PortF, airEle333.flowPort_X2);
-  connect(surfaceAdapter[18].PortHeat, airEle333.heatPort_extern);
+  connect(bou[10].PortF, airEle113.flowPort_X2);
+  connect(bou[10].PortHeat, airEle113.heatPort_extern);
+  connect(bou[11].PortF, airEle123.flowPort_X2);
+  connect(bou[11].PortHeat, airEle123.heatPort_extern);
+  connect(bou[12].PortF, airEle133.flowPort_X2);
+  connect(bou[12].PortHeat, airEle133.heatPort_extern);
+  connect(bou[13].PortF, airEle213.flowPort_X2);
+  connect(bou[13].PortHeat, airEle213.heatPort_extern);
+  connect(bou[14].PortF, airEle223.flowPort_X2);
+  connect(bou[14].PortHeat, airEle223.heatPort_extern);
+  connect(bou[15].PortF, airEle233.flowPort_X2);
+  connect(bou[15].PortHeat, airEle233.heatPort_extern);
+  connect(bou[16].PortF, airEle313.flowPort_X2);
+  connect(bou[16].PortHeat, airEle313.heatPort_extern);
+  connect(bou[17].PortF, airEle323.flowPort_X2);
+  connect(bou[17].PortHeat, airEle323.heatPort_extern);
+  connect(bou[18].PortF, airEle333.flowPort_X2);
+  connect(bou[18].PortHeat, airEle333.heatPort_extern);
 
 // north
-  connect(surfaceAdapter[19].PortF, airEle131.flowPort_Z2);
-  connect(surfaceAdapter[19].PortHeat, airEle131.heatPort_extern);
-  connect(surfaceAdapter[20].PortF, airEle132.flowPort_Z2);
-  connect(surfaceAdapter[20].PortHeat, airEle132.heatPort_extern);
-  connect(surfaceAdapter[21].PortF, airEle133.flowPort_Z2);
-  connect(surfaceAdapter[21].PortHeat, airEle133.heatPort_extern);
-  connect(surfaceAdapter[22].PortF, airEle231.flowPort_Z2);
-  connect(surfaceAdapter[22].PortHeat, airEle231.heatPort_extern);
-  connect(surfaceAdapter[23].PortF, airEle232.flowPort_Z2);
-  connect(surfaceAdapter[23].PortHeat, airEle232.heatPort_extern);
-  connect(surfaceAdapter[24].PortF, airEle233.flowPort_Z2);
-  connect(surfaceAdapter[24].PortHeat, airEle233.heatPort_extern);
-  connect(surfaceAdapter[25].PortF, airEle331.flowPort_Z2);
-  connect(surfaceAdapter[25].PortHeat, airEle331.heatPort_extern);
-  connect(surfaceAdapter[26].PortF, airEle332.flowPort_Z2);
-  connect(surfaceAdapter[26].PortHeat, airEle332.heatPort_extern);
-  connect(surfaceAdapter[27].PortF, airEle333.flowPort_Z2);
-  connect(surfaceAdapter[27].PortHeat, airEle333.heatPort_extern);
+  connect(bou[19].PortF, airEle131.flowPort_Z2);
+  connect(bou[19].PortHeat, airEle131.heatPort_extern);
+  connect(bou[20].PortF, airEle132.flowPort_Z2);
+  connect(bou[20].PortHeat, airEle132.heatPort_extern);
+  connect(bou[21].PortF, airEle133.flowPort_Z2);
+  connect(bou[21].PortHeat, airEle133.heatPort_extern);
+  connect(bou[22].PortF, airEle231.flowPort_Z2);
+  connect(bou[22].PortHeat, airEle231.heatPort_extern);
+  connect(bou[23].PortF, airEle232.flowPort_Z2);
+  connect(bou[23].PortHeat, airEle232.heatPort_extern);
+  connect(bou[24].PortF, airEle233.flowPort_Z2);
+  connect(bou[24].PortHeat, airEle233.heatPort_extern);
+  connect(bou[25].PortF, airEle331.flowPort_Z2);
+  connect(bou[25].PortHeat, airEle331.heatPort_extern);
+  connect(bou[26].PortF, airEle332.flowPort_Z2);
+  connect(bou[26].PortHeat, airEle332.heatPort_extern);
+  connect(bou[27].PortF, airEle333.flowPort_Z2);
+  connect(bou[27].PortHeat, airEle333.heatPort_extern);
 
   // west
-  connect(surfaceAdapter[28].PortF, airEle111.flowPort_X1);
-  connect(surfaceAdapter[28].PortHeat, airEle111.heatPort_extern);
-  connect(surfaceAdapter[29].PortF, airEle121.flowPort_X1);
-  connect(surfaceAdapter[29].PortHeat, airEle121.heatPort_extern);
-  connect(surfaceAdapter[30].PortF, airEle131.flowPort_X1);
-  connect(surfaceAdapter[30].PortHeat, airEle131.heatPort_extern);
-  connect(surfaceAdapter[31].PortF, airEle211.flowPort_X1);
-  connect(surfaceAdapter[31].PortHeat, airEle211.heatPort_extern);
-  connect(surfaceAdapter[32].PortF, airEle221.flowPort_X1);
-  connect(surfaceAdapter[32].PortHeat, airEle221.heatPort_extern);
-  connect(surfaceAdapter[33].PortF, airEle231.flowPort_X1);
-  connect(surfaceAdapter[33].PortHeat, airEle231.heatPort_extern);
-  connect(surfaceAdapter[34].PortF, airEle311.flowPort_X1);
-  connect(surfaceAdapter[34].PortHeat, airEle311.heatPort_extern);
-  connect(surfaceAdapter[35].PortF, airEle321.flowPort_X1);
-  connect(surfaceAdapter[35].PortHeat, airEle321.heatPort_extern);
-  connect(surfaceAdapter[36].PortF, airEle331.flowPort_X1);
-  connect(surfaceAdapter[36].PortHeat, airEle331.heatPort_extern);
+  connect(bou[28].PortF, airEle111.flowPort_X1);
+  connect(bou[28].PortHeat, airEle111.heatPort_extern);
+  connect(bou[29].PortF, airEle121.flowPort_X1);
+  connect(bou[29].PortHeat, airEle121.heatPort_extern);
+  connect(bou[30].PortF, airEle131.flowPort_X1);
+  connect(bou[30].PortHeat, airEle131.heatPort_extern);
+  connect(bou[31].PortF, airEle211.flowPort_X1);
+  connect(bou[31].PortHeat, airEle211.heatPort_extern);
+  connect(bou[32].PortF, airEle221.flowPort_X1);
+  connect(bou[32].PortHeat, airEle221.heatPort_extern);
+  connect(bou[33].PortF, airEle231.flowPort_X1);
+  connect(bou[33].PortHeat, airEle231.heatPort_extern);
+  connect(bou[34].PortF, airEle311.flowPort_X1);
+  connect(bou[34].PortHeat, airEle311.heatPort_extern);
+  connect(bou[35].PortF, airEle321.flowPort_X1);
+  connect(bou[35].PortHeat, airEle321.heatPort_extern);
+  connect(bou[36].PortF, airEle331.flowPort_X1);
+  connect(bou[36].PortHeat, airEle331.heatPort_extern);
 
   // floor
-  connect(surfaceAdapter[37].PortF, airEle111.flowPort_Y1);
-  connect(surfaceAdapter[37].PortHeat, airEle111.heatPort_extern);
-  connect(surfaceAdapter[38].PortF, airEle112.flowPort_Y1);
-  connect(surfaceAdapter[38].PortHeat, airEle112.heatPort_extern);
-  connect(surfaceAdapter[39].PortF, airEle113.flowPort_Y1);
-  connect(surfaceAdapter[39].PortHeat, airEle113.heatPort_extern);
-  connect(surfaceAdapter[40].PortF, airEle121.flowPort_Y1);
-  connect(surfaceAdapter[40].PortHeat, airEle121.heatPort_extern);
-  connect(surfaceAdapter[41].PortF, airEle122.flowPort_Y1);
-  connect(surfaceAdapter[41].PortHeat, airEle122.heatPort_extern);
-  connect(surfaceAdapter[42].PortF, airEle123.flowPort_Y1);
-  connect(surfaceAdapter[42].PortHeat, airEle123.heatPort_extern);
-  connect(surfaceAdapter[43].PortF, airEle131.flowPort_Y1);
-  connect(surfaceAdapter[43].PortHeat, airEle131.heatPort_extern);
-  connect(surfaceAdapter[44].PortF, airEle132.flowPort_Y1);
-  connect(surfaceAdapter[44].PortHeat, airEle132.heatPort_extern);
-  connect(surfaceAdapter[45].PortF, airEle133.flowPort_Y1);
-  connect(surfaceAdapter[45].PortHeat, airEle133.heatPort_extern);
+  connect(bou[37].PortF, airEle111.flowPort_Y1);
+  connect(bou[37].PortHeat, airEle111.heatPort_extern);
+  connect(bou[38].PortF, airEle112.flowPort_Y1);
+  connect(bou[38].PortHeat, airEle112.heatPort_extern);
+  connect(bou[39].PortF, airEle113.flowPort_Y1);
+  connect(bou[39].PortHeat, airEle113.heatPort_extern);
+  connect(bou[40].PortF, airEle121.flowPort_Y1);
+  connect(bou[40].PortHeat, airEle121.heatPort_extern);
+  connect(bou[41].PortF, airEle122.flowPort_Y1);
+  connect(bou[41].PortHeat, airEle122.heatPort_extern);
+  connect(bou[42].PortF, airEle123.flowPort_Y1);
+  connect(bou[42].PortHeat, airEle123.heatPort_extern);
+  connect(bou[43].PortF, airEle131.flowPort_Y1);
+  connect(bou[43].PortHeat, airEle131.heatPort_extern);
+  connect(bou[44].PortF, airEle132.flowPort_Y1);
+  connect(bou[44].PortHeat, airEle132.heatPort_extern);
+  connect(bou[45].PortF, airEle133.flowPort_Y1);
+  connect(bou[45].PortHeat, airEle133.heatPort_extern);
 
 // roof
-  connect(surfaceAdapter[46].PortF, airEle311.flowPort_Y2);
-  connect(surfaceAdapter[46].PortHeat, airEle311.heatPort_extern);
-  connect(surfaceAdapter[47].PortF, airEle312.flowPort_Y2);
-  connect(surfaceAdapter[47].PortHeat, airEle312.heatPort_extern);
-  connect(surfaceAdapter[48].PortF, airEle313.flowPort_Y2);
-  connect(surfaceAdapter[48].PortHeat, airEle313.heatPort_extern);
-  connect(surfaceAdapter[49].PortF, airEle321.flowPort_Y2);
-  connect(surfaceAdapter[49].PortHeat, airEle321.heatPort_extern);
-  connect(surfaceAdapter[50].PortF, airEle322.flowPort_Y2);
-  connect(surfaceAdapter[50].PortHeat, airEle322.heatPort_extern);
-  connect(surfaceAdapter[51].PortF, airEle323.flowPort_Y2);
-  connect(surfaceAdapter[51].PortHeat, airEle323.heatPort_extern);
-  connect(surfaceAdapter[52].PortF, airEle331.flowPort_Y2);
-  connect(surfaceAdapter[52].PortHeat, airEle331.heatPort_extern);
-  connect(surfaceAdapter[53].PortF, airEle332.flowPort_Y2);
-  connect(surfaceAdapter[53].PortHeat, airEle332.heatPort_extern);
-  connect(surfaceAdapter[54].PortF, airEle333.flowPort_Y2);
-  connect(surfaceAdapter[54].PortHeat, airEle333.heatPort_extern);
+  connect(bou[46].PortF, airEle311.flowPort_Y2);
+  connect(bou[46].PortHeat, airEle311.heatPort_extern);
+  connect(bou[47].PortF, airEle312.flowPort_Y2);
+  connect(bou[47].PortHeat, airEle312.heatPort_extern);
+  connect(bou[48].PortF, airEle313.flowPort_Y2);
+  connect(bou[48].PortHeat, airEle313.heatPort_extern);
+  connect(bou[49].PortF, airEle321.flowPort_Y2);
+  connect(bou[49].PortHeat, airEle321.heatPort_extern);
+  connect(bou[50].PortF, airEle322.flowPort_Y2);
+  connect(bou[50].PortHeat, airEle322.heatPort_extern);
+  connect(bou[51].PortF, airEle323.flowPort_Y2);
+  connect(bou[51].PortHeat, airEle323.heatPort_extern);
+  connect(bou[52].PortF, airEle331.flowPort_Y2);
+  connect(bou[52].PortHeat, airEle331.heatPort_extern);
+  connect(bou[53].PortF, airEle332.flowPort_Y2);
+  connect(bou[53].PortHeat, airEle332.heatPort_extern);
+  connect(bou[54].PortF, airEle333.flowPort_Y2);
+  connect(bou[54].PortHeat, airEle333.heatPort_extern);
 
   // inside  Flow-Connections
   // west-east

@@ -13,7 +13,7 @@ connector FluidFluid
   stream Modelica.SIunits.Density rho;
   stream Modelica.SIunits.SpecificEnthalpy h;
   // Hygro-Port
-  FluidMoist moist;
+  BuildingSystems.Interfaces.MoisturePort moist;
   //
   // Gradients/composed Gradients for the viscous force
   Real visgr1;

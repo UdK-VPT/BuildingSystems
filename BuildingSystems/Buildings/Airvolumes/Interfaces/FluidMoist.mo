@@ -3,5 +3,5 @@ connector FluidMoist
   "MoistPort"
   //General variables
   flow Modelica.SIunits.MassFlowRate m_flow;
-  Modelica.SIunits.MassFraction Xi;
+  Modelica.SIunits.MassFraction x;
 end FluidMoist;

@@ -3,7 +3,7 @@ model Airvolume3D1x1x1
   extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     nSurfaces = 6,
     nAirElements = 1,
-    surfaceAdapter.posX = {
+    bou.posX = {
       // Left border
       0.0,
       // Upper border
@@ -16,7 +16,7 @@ model Airvolume3D1x1x1
       0.5,
       // Back side
       0.5},
-    surfaceAdapter.posY = {
+    bou.posY = {
     // Left border
     0.5,
     // Upper border
@@ -29,7 +29,7 @@ model Airvolume3D1x1x1
     0.5,
     // Back side
     0.5},
-    surfaceAdapter.posZ = {
+    bou.posZ = {
     // Left border
     0.5,
     // Upper border
@@ -42,19 +42,19 @@ model Airvolume3D1x1x1
     0.0,
     // Back side
     1.0},
-    surfaceAdapter.location = {
+    bou.location = {
     // Left border
-    "south",
+    BuildingSystems.Buildings.Types.OrientationType.South,
     // Upper border
-    "roof",
+    BuildingSystems.Buildings.Types.OrientationType.Roof,
     // Right border
-    "north",
+    BuildingSystems.Buildings.Types.OrientationType.North,
     // Lower border
-    "floor",
+    BuildingSystems.Buildings.Types.OrientationType.Floor,
     // Front side
-    "east",
+    BuildingSystems.Buildings.Types.OrientationType.East,
     // Back side
-    "west"});
+    BuildingSystems.Buildings.Types.OrientationType.West});
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle111(
     BCwall_east=true,
     BCwall_south=true,
@@ -69,29 +69,29 @@ model Airvolume3D1x1x1
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
 equation
   // left border
-  connect(surfaceAdapter[1].PortHeat, airEle111.heatPort_extern);
-  connect(surfaceAdapter[1].PortF, airEle111.flowPort_X1);
+  connect(bou[1].PortHeat, airEle111.heatPort_extern);
+  connect(bou[1].PortF, airEle111.flowPort_X1);
   // Upper border
-  connect(surfaceAdapter[2].PortHeat, airEle111.heatPort_extern);
-  connect(surfaceAdapter[2].PortF, airEle111.flowPort_Y2);
+  connect(bou[2].PortHeat, airEle111.heatPort_extern);
+  connect(bou[2].PortF, airEle111.flowPort_Y2);
   // Right border
-  connect(surfaceAdapter[3].PortHeat, airEle111.heatPort_extern);
-  connect(surfaceAdapter[3].PortF, airEle111.flowPort_X2);
+  connect(bou[3].PortHeat, airEle111.heatPort_extern);
+  connect(bou[3].PortF, airEle111.flowPort_X2);
   // Lower border
-  connect(surfaceAdapter[4].PortHeat, airEle111.heatPort_extern);
-  connect(surfaceAdapter[4].PortF, airEle111.flowPort_Y1);
+  connect(bou[4].PortHeat, airEle111.heatPort_extern);
+  connect(bou[4].PortF, airEle111.flowPort_Y1);
   // Front side
-  connect(surfaceAdapter[5].PortHeat, airEle111.heatPort_extern);
-  connect(surfaceAdapter[5].PortF, airEle111.flowPort_Z1);
+  connect(bou[5].PortHeat, airEle111.heatPort_extern);
+  connect(bou[5].PortF, airEle111.flowPort_Z1);
   // Back side
-  connect(surfaceAdapter[6].PortHeat, airEle111.heatPort_extern);
-  connect(surfaceAdapter[6].PortF, airEle111.flowPort_Z2);
+  connect(bou[6].PortHeat, airEle111.heatPort_extern);
+  connect(bou[6].PortF, airEle111.flowPort_Z2);
 
   // Temperatures of all air elements
   airEle111.fluid.T = T[1];
 
   // Absolute moisture of all air elements
-  airEle111.fluid.Xi = x[1];
+  airEle111.fluid.x = x[1];
 
   // Air velocity (magnitude) of all air elements
   airEle111.velMag = v[1];

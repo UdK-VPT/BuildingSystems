@@ -46,13 +46,13 @@ equation
   //// h = cAir * T + (cVap * xD + cWat* xF + cE * x)*fluid.T + hv * xD - hs*xD //-> incl. air, vapour, liquid
   fluid.h = cAir * fluid.T + (cH20 * mH2OAir/mAir + cH20Liq * mH2OLiq/mAir)*fluid.T + rH2O * mH2OAir/mAir;
   // Druck: p*V = (0.622 + x) * m * R_v * T;
-  fluid.p * dx*dy*dz = (0.622 + fluid.Xi) * mAir * R_v * fluid.T;
+  fluid.p * dx*dy*dz = (0.622 + fluid.x) * mAir * R_v * fluid.T;
   //////////////////////////////////////////////////////////
   // Humidity calculation <- out of buildingSystems
   //////////////////////////////////////////////////////////
   // Mass of ...
   mAir = fluid.rho*dx*dy*dz;
-  fluid.Xi = mH2OAir/mAir;
+  fluid.x = mH2OAir/mAir;
 
   //Mass balance of water vapor in the air
   der(mH2OAir) =
@@ -73,7 +73,7 @@ equation
     // evaporated water which leaves the liquid reservoir
 
   // relative air humidity
-  phi = BuildingSystems.Utilities.Psychrometrics.Functions.phi_pTX(100000.0,fluid.T,fluid.Xi);
+  phi = BuildingSystems.Utilities.Psychrometrics.Functions.phi_pTX(100000.0,fluid.T,fluid.x);
 
   annotation (defaultComponentName = "airEle",
 Documentation(info="<html>

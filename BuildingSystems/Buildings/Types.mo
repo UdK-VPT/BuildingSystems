@@ -13,6 +13,15 @@ package Types
     Flexible "Flexible")
     "Enumeration to select the geometry type";
 
+  type OrientationType = enumeration(
+    West "West",
+    North "North",
+    East "East",
+    South "South",
+    Floor "Floor",
+    Roof "Roof")
+    "Enumeration to select the orientation of a surface";
+
   type GeometryShape = enumeration(
     Rectangle "Rectangle",
     Triangle "Triangle",
