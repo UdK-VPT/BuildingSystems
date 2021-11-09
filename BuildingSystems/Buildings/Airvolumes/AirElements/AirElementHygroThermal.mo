@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes.AirElements;
 model AirElementHygroThermal
-  "A hygro-thermal finite volume element"
+  "A hygro-thermal finite volume air element"
   extends BuildingSystems.Buildings.BaseClasses.AirElementGeneral;
   /////////////     CONSTANT     ///////////////////////
   /////////////     PARAMETER     //////////////////////

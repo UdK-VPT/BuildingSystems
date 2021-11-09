@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes.AirElements;
 model AirElementThermal
-  "A thermal finite volume element"
+  "A thermal finite volume air element"
   extends BuildingSystems.Buildings.BaseClasses.AirElementGeneral;
   /////////////      CONSTANT      /////////////////////
   /////////////      PARAMETER     /////////////////////

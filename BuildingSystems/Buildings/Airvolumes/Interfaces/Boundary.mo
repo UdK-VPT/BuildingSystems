@@ -1,13 +1,16 @@
 within BuildingSystems.Buildings.Airvolumes.Interfaces;
 model Boundary
-  "Boundary model for discretized air volumes"
+  "Boundary model for finite volume (FV) air element"
   BuildingSystems.Buildings.Airvolumes.Interfaces.FluidFluid PortF
+    "Fluid port to the finite volume air element"
     annotation (Placement(transformation(extent={{0,-10},{20,10}}),
       iconTransformation(extent={{0,-10},{20,10}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a PortHeat
+    "Heat port to the finite volume air element (heat conduction within the air)"
     annotation (Placement(transformation(extent={{0,-50},{20,-30}}),
       iconTransformation(extent={{0,-50},{20,-30}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToAirPort surfaceToAirPort
+    "Interface port to the surface model"
     annotation (Placement(transformation(extent={{-20,-10},{0,10}}),
       iconTransformation(extent={{-20,-10},{0,10}})));
   parameter BuildingSystems.Buildings.Types.OrientationType location = BuildingSystems.Buildings.Types.OrientationType.West
