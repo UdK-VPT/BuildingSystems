@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneThermal3D3x3x3ViewFactors", stopTime=86400, method="cvode", resultFile="SingleZoneThermal3D3x3x3ViewFactors");
+simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneThermal3x3x3ViewFactors", stopTime=86400, method="cvode", resultFile="SingleZoneThermal3x3x3ViewFactors");
 removePlots();
 createPlot(
   id = 1,
@@ -11,7 +11,7 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "SingleZoneThermal3D3x3x3ViewFactors.mat",
+  filename = "SingleZoneThermal3x3x3ViewFactors.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
 createPlot(
@@ -25,6 +25,6 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "SingleZoneThermal3D3x3x3ViewFactors.mat",
+  filename = "SingleZoneThermal3x3x3ViewFactors.mat",
   leftTitleType = 1,
   bottomTitleType = 1);

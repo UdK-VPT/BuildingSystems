@@ -56,9 +56,9 @@ equation
 
   //Mass balance of water vapor in the air
   der(mH2OAir) =
-    flowPort_X1.moist.moistMflow + flowPort_X2.moist.moistMflow +
-    flowPort_Y1.moist.moistMflow + flowPort_Y2.moist.moistMflow +
-    flowPort_Z1.moist.moistMflow + flowPort_Z2.moist.moistMflow
+    flowPort_X1.moist.m_flow + flowPort_X2.moist.m_flow +
+    flowPort_Y1.moist.m_flow + flowPort_Y2.moist.m_flow +
+    flowPort_Z1.moist.m_flow + flowPort_Z2.moist.m_flow
     + (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5) * moistureSourcesMflow
     + BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq;
     // 1. water vaper from moisture transfer of surfaces + water vapor within air mass flows through air paths

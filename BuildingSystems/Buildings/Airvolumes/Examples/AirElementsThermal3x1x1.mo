@@ -1,5 +1,5 @@
 within BuildingSystems.Buildings.Airvolumes.Examples;
-model AirElements3x1x1
+model AirElementsThermal3x1x1
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle111(
     BCwall_east=true,
@@ -45,18 +45,14 @@ model AirElements3x1x1
     posX=0.5,
     posY=1,
     posZ=0.5,
-    location="roof") annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=-90,
-        origin={-70,-20})));
+    location=BuildingSystems.Buildings.Types.OrientationType.Roof)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-70,-20})));
   BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary floor11(
     posX=0.5,
     posY=0,
     posZ=0.5,
-    location="floor") annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=90,
-        origin={-70,-80})));
+    location=BuildingSystems.Buildings.Types.OrientationType.Floor)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-70,-80})));
   BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north11(
     posX=0.5,
     posY=0.5,
@@ -73,10 +69,8 @@ model AirElements3x1x1
     posX=1.5,
     posY=0,
     posZ=0.5,
-    location="floor") annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=90,
-        origin={-10,-78})));
+    location=BuildingSystems.Buildings.Types.OrientationType.Floor)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-10,-78})));
   BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary south21(
     posX=1.5,
     posY=0.5,
@@ -87,10 +81,8 @@ model AirElements3x1x1
     posX=1.5,
     posY=1,
     posZ=0.5,
-    location="roof") annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=-90,
-        origin={-10,-20})));
+    location=BuildingSystems.Buildings.Types.OrientationType.Roof)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-10,-20})));
   BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north21(
     posX=1.5,
     posY=0.5,
@@ -129,18 +121,14 @@ model AirElements3x1x1
     posX=2.5,
     posY=1,
     posZ=0.5,
-    location="roof") annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=-90,
-        origin={50,-20})));
+    location=BuildingSystems.Buildings.Types.OrientationType.Roof)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={50,-20})));
   BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary floor31(
     posX=2.5,
     posY=0,
     posZ=0.5,
-    location="floor") annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=90,
-        origin={50,-78})));
+    location=BuildingSystems.Buildings.Types.OrientationType.Floor)
+    annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={50,-78})));
   BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary north31(
     posX=2.5,
     posY=0.5,
@@ -165,11 +153,9 @@ equation
   connect(west11.PortHeat, airEle111.heatPort_extern) annotation (Line(points={{
           -85,-54},{-78,-54},{-78,-52},{-78,-50},{-70,-50}}, color={0,0,0}));
   connect(airEle111.flowPort_X2, flowConnectionX.port_1)
-    annotation (Line(points={{-62,-50},{-44.8,-50}},
-                                                 color={0,0,0}));
+    annotation (Line(points={{-62,-50},{-44.8,-50}},color={0,0,0}));
   connect(airEle111.heatPort_intern, zoneHeatConductionX.port_1) annotation (Line(
-        points={{-70,-53},{-46.7,-53},{-46.7,-60},{-44.4,-60}},
-                                                              color={0,0,0}));
+        points={{-70,-53},{-46.7,-53},{-46.7,-60},{-44.4,-60}},color={0,0,0}));
   connect(zoneHeatConductionX.port_2, airEle211.heatPort_intern) annotation (Line(
         points={{-35.6,-60},{-28.08,-60},{-28.08,-53},{-10,-53}},
                                                               color={0,0,0}));
@@ -245,7 +231,7 @@ equation
     annotation (Line(points={{81,-50},{81,-50},{86,-50}}, color={0,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=180, __Dymola_Algorithm="Cvode"),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/AirElements3x1x1.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/AirElementsThermal3x1x1.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,0}}), graphics={
         Line(
           points={{-100,-100},{-90,-100}},
@@ -299,4 +285,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end AirElements3x1x1;
+end AirElementsThermal3x1x1;

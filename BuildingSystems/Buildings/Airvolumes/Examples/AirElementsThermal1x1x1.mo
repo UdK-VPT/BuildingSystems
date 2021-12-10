@@ -1,5 +1,5 @@
 within BuildingSystems.Buildings.Airvolumes.Examples;
-model AirElements1x1x1
+model AirElementsThermal1x1x1
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle111(
     BCwall_east=true,
@@ -85,7 +85,7 @@ equation
     annotation (Line(points={{15,-4},{6,-4},{6,0},{0,0}}, color={191,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=180, __Dymola_Algorithm="Cvode"),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/AirElements1x1x1.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/AirElementsThermal1x1x1.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-50,-50},{50,50}}),graphics={
         Line(
           points={{-50,-50},{-40,-50}},
@@ -137,4 +137,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-end AirElements1x1x1;
+end AirElementsThermal1x1x1;

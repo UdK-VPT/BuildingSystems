@@ -1,8 +1,8 @@
-AirElements1x1x1
-AirElements3x1x1
-AirElements3x3x1
-AirElements3x3x1WithOpenings
-Airvolume3D1x1x1
-Airvolume3D3x3x1
+AirElementsThermal1x1x1
+AirElementsThermal3x1x1
+AirElementsThermal3x3x1
+AirElementsThermal3x3x1WithOpenings
+AirvolumeThermal1x1x1
+AirvolumeThermal3x3x1
 BoundaryTemp
 MixingVolumeMoistAirFlexible

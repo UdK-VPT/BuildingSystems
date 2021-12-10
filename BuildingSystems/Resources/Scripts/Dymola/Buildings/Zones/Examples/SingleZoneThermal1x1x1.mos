@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneThermal3D1x1x1", stopTime=864000, method="dassl", resultFile="SingleZoneThermal3D1x1x1");
+simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneThermal1x1x1", stopTime=864000, method="dassl", resultFile="SingleZoneThermal1x1x1");
 removePlots();
 createPlot(
   id = 1,
@@ -11,6 +11,6 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "SingleZoneThermal3D1x1x1.mat",
+  filename = "SingleZoneThermal1x1x1.mat",
   leftTitleType = 1,
   bottomTitleType = 1);

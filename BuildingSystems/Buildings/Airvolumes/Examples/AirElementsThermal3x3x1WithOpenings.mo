@@ -1,6 +1,7 @@
 within BuildingSystems.Buildings.Airvolumes.Examples;
-model AirElements3x3x1WithOpenings
+model AirElementsThermal3x3x1WithOpenings
   extends Modelica.Icons.Example;
+  package Medium = BuildingSystems.Media.Air;
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle111(
     BCwall_east=false,
     BCwall_south=true,
@@ -35,9 +36,7 @@ model AirElements3x3x1WithOpenings
     posY=0.5,
     posZ=0.5,
     location=BuildingSystems.Buildings.Types.OrientationType.West,
-    opening = true,
-    TAmb=308.15,
-    m_flow=0.1)
+    opening = true)
     annotation (Placement(transformation(extent={{-90,-70},{-70,-50}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.ZoneHeatConductionX zoneHeatConductionX_111_211
     annotation (Placement(transformation(extent={{-40,-80},{-20,-60}})));
@@ -145,7 +144,8 @@ model AirElements3x3x1WithOpenings
     posY=1.5)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnectionX flowConnectionX_121_221(
-      BCwall_north=true, BCwall_south=true)
+    BCwall_north=true,
+    BCwall_south=true)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary west21(
     posX=0.0,
@@ -303,9 +303,7 @@ model AirElements3x3x1WithOpenings
     posZ=0.5,
     location=BuildingSystems.Buildings.Types.OrientationType.East,
     posY=2.5,
-    opening = true,
-    TAmb=308.15,
-    m_flow=-0.1)
+    opening = true)
     annotation (Placement(transformation(extent={{90,50},{70,70}})));
   BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary roof31(
     posX=2.5,
@@ -370,6 +368,18 @@ model AirElements3x3x1WithOpenings
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={10,28})));
   BuildingSystems.Buildings.Airvolumes.FlowConnections.ZoneHeatConductionY zoneHeatConductionY_321_331
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={70,28})));
+  BuildingSystems.Fluid.Sources.Boundary_pT bou1(
+    redeclare package Medium = Medium,
+    p=100010,
+    T=273.15+28.0,
+    nPorts=1)
+    annotation (Placement(transformation(extent={{-92,-54},{-84,-46}})));
+  BuildingSystems.Fluid.Sources.Boundary_pT bou2(
+    redeclare package Medium = Medium,
+    p=100000,
+    T=273.15+25.0,
+    nPorts=1)
+    annotation (Placement(transformation(extent={{94,66},{86,74}})));
 equation
   connect(flowConnectionX_111_112.port_2, airEle211.flowPort_X1)
     annotation (Line(points={{-25.4,-60},{-12,-60},{-12,-60.2},{-8,-60.2}}));
@@ -608,9 +618,13 @@ equation
   connect(airEle321.heatPort_intern, zoneHeatConductionY_321_331.port_1)
     annotation (Line(points={{60,-3},{66,-3},{66,-2},{70,-2},{70,23.6}}, color={
           191,0,0}));
+  connect(bou1.ports[1], west11.port_a) annotation (Line(points={{-84,-50},{-82,
+      -50},{-82,-56},{-81,-56}}, color={0,127,255}));
+  connect(east13.port_a, bou2.ports[1]) annotation (Line(points={{81,64},{84,64},
+      {84,70},{86,70}}, color={0,127,255}));
 
   annotation(experiment(StartTime=0, StopTime=180, __Dymola_Algorithm="Cvode"),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/AirElements3x3x1WithOpenings.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Airvolumes/Examples/AirElementsThermal3x3x1WithOpenings.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),
       graphics={
       Line(
@@ -665,4 +679,4 @@ equation
  </li>
  </ul>
  </html>"));
-end AirElements3x3x1WithOpenings;
+end AirElementsThermal3x3x1WithOpenings;

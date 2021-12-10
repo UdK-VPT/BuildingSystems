@@ -1,5 +1,5 @@
 within BuildingSystems.Buildings.Zones.Examples;
-model SingleZoneThermal3D1x1x1
+model SingleZoneThermal1x1x1
   "1x1x1 disretized thermal zone model"
   extends Modelica.Icons.Example;
   parameter Integer nSurfaces = 6;
@@ -42,7 +42,7 @@ model SingleZoneThermal3D1x1x1
     redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
     nSurfaces=nSurfaces)
     annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
-  BuildingSystems.Buildings.Zones.Examples.ZoneAirvolume3D1x1x1 zone(
+  BuildingSystems.Buildings.Zones.Examples.ZoneAirvolumeThermal1x1x1 zone(
     nAirElements = 1,
     V=1.0*1.0*1.0,
     nConstructions=6)
@@ -140,7 +140,7 @@ equation
           -4},{-38,-4},{-38,-16},{-26.6,-16}}, color={85,170,255}));
 
   annotation(experiment(StartTime=0, StopTime=31536000),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal3D1x1x1.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermalThermal1x1x1.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}})),
     Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
  Documentation(info="<html>
@@ -156,4 +156,4 @@ equation
  </li>
  </ul>
  </html>"));
-end SingleZoneThermal3D1x1x1;
+end SingleZoneThermal1x1x1;

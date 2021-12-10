@@ -1,5 +1,5 @@
 within BuildingSystems.Buildings.Zones.Examples;
-model Airvolume3D3x3x3
+model AirvolumeThermal3x3x3
 extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
   nSurfaces = 54,
   nAirElements = 27,
@@ -1627,4 +1627,4 @@ equation
   // west-east
   // south-north
   // front - back
-end Airvolume3D3x3x3;
+end AirvolumeThermal3x3x3;

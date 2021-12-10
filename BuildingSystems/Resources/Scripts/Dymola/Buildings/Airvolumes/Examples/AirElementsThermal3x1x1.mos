@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Airvolumes.Examples.AirElements3x1x1", stopTime=360, method="dassl", tolerance = 1e-5, resultFile="AirElements3x1x1");
+simulateModel("BuildingSystems.Buildings.Airvolumes.Examples.AirElementsThermal3x1x1", stopTime=360, method="dassl", tolerance = 1e-5, resultFile="AirElementsThermal3x1x1");
 removePlots();
 createPlot(
   id = 1,
@@ -11,7 +11,7 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "AirElements3x1x1.mat",
+  filename = "AirElementsThermal3x1x1.mat",
   leftTitleType = 1,
   bottomTitleType = 1);
 createPlot(
@@ -25,6 +25,6 @@ createPlot(
   grid = true,
   color = true,
   online = false,
-  filename = "AirElements3x1x1.mat",
+  filename = "AirElementsThermal3x1x1.mat",
   leftTitleType = 1,
   bottomTitleType = 1);

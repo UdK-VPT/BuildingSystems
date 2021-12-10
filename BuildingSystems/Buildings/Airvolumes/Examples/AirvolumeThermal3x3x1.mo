@@ -1,5 +1,5 @@
 within BuildingSystems.Buildings.Airvolumes.Examples;
-model Airvolume3D3x3x1
+model AirvolumeThermal3x3x1
   extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     nSurfaces = 4*3 + 2*9,
     nAirElements = 9,
@@ -625,4 +625,4 @@ equation
           191,0,0}));
   annotation (Diagram(coordinateSystem(initialScale=0.1)), Icon(
         coordinateSystem(initialScale=0.1)));
-end Airvolume3D3x3x1;
+end AirvolumeThermal3x3x1;
