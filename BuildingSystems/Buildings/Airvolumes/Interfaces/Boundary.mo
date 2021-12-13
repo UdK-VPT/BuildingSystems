@@ -28,7 +28,7 @@ model Boundary
     "Boundary-FV-connection absolut central position Z"
      annotation (Evaluate=true, Dialog(tab = "General", group = "Geometry"));
   final parameter Modelica.SIunits.Density rhoAir = 1.2
-    annotation (HideResult=true);
+    "Constant Air density at the boundary";
   constant Modelica.SIunits.SpecificHeatCapacity cp = 1005.00;
   // water vaper from moisture transfer of surfaces - default/ start value
   constant Modelica.SIunits.MassFraction x_constant = 0.005
@@ -37,22 +37,20 @@ model Boundary
     "Air velocity";
   constant Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAir_constant = 0.0
     "Direction of the air flow";
-  // about the air
-  constant Modelica.SIunits.ThermalConductivity lambdaAir=0.0262;
+  constant Modelica.SIunits.ThermalConductivity lambdaAir=0.0262
+    "Heat conductivity of air ";
   parameter Boolean opening = false
     "Flag for opening: true -> opening and false ->solid surface"
     annotation (Evaluate=true, Dialog(tab = "General", group = "Opening"));
-  parameter Modelica.SIunits.Area A = 1.0
-    "Area opening"
-      annotation (Evaluate=true, Dialog(tab = "General", group = "Opening"));
   parameter Real CD = 0.5
     "Discharge coefficent"
-      annotation (Evaluate=true, Dialog(tab = "General", group = "Opening"));
+    annotation (Evaluate=true, Dialog(tab = "General", group = "Opening"));
   BuildingSystems.Airflow.Multizone.Orifice ori(
     redeclare package Medium = Medium,
     forceErrorControlOnFlow=true,
-    A=A,
+    A(fixed=false),
     CD=CD)
+    "Flow resistant of the opening"
     annotation (Placement(transformation(extent={{0,30},{20,50}})));
   Modelica.Fluid.Interfaces.FluidPort_a port_a(
     redeclare package Medium = Medium)
@@ -75,6 +73,14 @@ model Boundary
     m_flow_nominal=0.1,
     redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{28,30},{48,50}})));
+initial algorithm
+  ori.A:=if (location == BuildingSystems.Buildings.Types.OrientationType.East or
+             location == BuildingSystems.Buildings.Types.OrientationType.West) then PortF.dim[2]*PortF.dim[3]
+         elseif (location == BuildingSystems.Buildings.Types.OrientationType.Roof or
+             location == BuildingSystems.Buildings.Types.OrientationType.Floor) then PortF.dim[1]*PortF.dim[3]
+         elseif (location == BuildingSystems.Buildings.Types.OrientationType.North or
+             location == BuildingSystems.Buildings.Types.OrientationType.South) then PortF.dim[1]*PortF.dim[2]
+         else 1.0;
 equation
   if opening then
     if (location == BuildingSystems.Buildings.Types.OrientationType.East or
@@ -138,14 +144,13 @@ equation
           43},{87.5,43}}, color={0,0,127}));
   connect(bou.p_in, pAir.y) annotation (Line(points={{69.6,46.4},{72.8,46.4},{72.8,
           51},{75.5,51}}, color={0,0,127}));
-
   connect(ori.port_b, senTem.port_a)
     annotation (Line(points={{20,40},{28,40}}, color={0,127,255}));
   connect(bou.ports[1], senTem.port_b)
     annotation (Line(points={{52,40},{48,40}}, color={0,127,255}));
 
   annotation (HideResult=true,HideResult=false,HideResult=true,HideResult=true,
-                      Icon(graphics={
+    Icon(graphics={
     Rectangle(extent={{-10,80},{10,-80}},fillColor={215,215,215},
       fillPattern=FillPattern.Solid,pattern=LinePattern.None),
     Text(extent={{-44,-88},{48,-116}}, lineColor={0,0,255},fillColor={230,230,230},
