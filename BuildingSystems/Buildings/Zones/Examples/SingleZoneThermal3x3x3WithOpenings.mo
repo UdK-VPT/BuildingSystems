@@ -1,8 +1,9 @@
 within BuildingSystems.Buildings.Zones.Examples;
-model SingleZoneThermal3x3x3
+model SingleZoneThermal3x3x3WithOpenings
   "Thermal zone model with 3D discretized air volume"
   extends Modelica.Icons.Example;
   parameter Integer nSurfaces = 54;
+  package Medium = BuildingSystems.Media.Air;
 
   record Construction
     "Construction"
@@ -307,10 +308,8 @@ model SingleZoneThermal3x3x3
     width=1.0,
     angleDegAzi=0.0,
     angleDegTil=0.0,
-    redeclare Construction constructionData)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=270,
-        origin={12,-36})));
+    redeclare Construction constructionData);
+  BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_floor122;
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor123(
     height=1.0,
     width=1.0,
@@ -408,25 +407,36 @@ model SingleZoneThermal3x3x3
   BuildingSystems.Buildings.Ambience ambience(
     redeclare block WeatherData =
         BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
-    nSurfaces=53)
-    annotation (Placement(transformation(extent={{-50,-24},{-30,-4}})));
+    nSurfaces=54,
+    nAirpaths=2,
+    heightAirpath={0.5,2.5})
+    annotation (Placement(transformation(extent={{-36,-12},{-16,8}})));
 
-  BuildingSystems.Buildings.Zones.Examples.ZoneAirvolumeThermal3x3x3 zone(
+  BuildingSystems.Buildings.Zones.Examples.ZoneAirvolumeThermal3x3x3WithOpenings zone(
     nAirElements = 27,
     V=3.0*3.0*3.0,
     nConstructions=54)
-    annotation (Placement(transformation(extent={{2,-24},{22,-4}})));
+    annotation (Placement(transformation(extent={{16,-12},{36,8}})));
 
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid surface2
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}},
-        rotation=-90,
-        origin={12,-44})));
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature tempBC(T=303.15)
-    annotation (Placement(transformation(extent={{2,-2},{-2,2}},
-        rotation=-90,
-        origin={8,-50})));
+  BuildingSystems.Fluid.Actuators.Valves.TwoWayLinear val1(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    dpValve_nominal=4.0,
+    y_start=0.0)
+    annotation (Placement(transformation(extent={{0,2},{10,12}})));
+  BuildingSystems.Fluid.Actuators.Valves.TwoWayLinear val2(
+    redeclare package Medium = Medium,
+    m_flow_nominal=0.1,
+    dpValve_nominal=4.0,
+    y_start=0.0)
+    annotation (Placement(transformation(extent={{-8,-12},{2,-2}})));
+  Modelica.Blocks.Sources.Ramp ramp(
+    height=1.0,
+    duration=2,
+    offset=0.0,
+    startTime=2)
+    annotation (Placement(transformation(extent={{-28,14},{-22,20}})));
 equation
-
   // zone <-> wall connections; wall <-> surface connection; surface <-> ambient connections
   // South walls
   connect(surface_south111.toConstructionPort, wall_south111.toSurfacePort_2);
@@ -633,94 +643,101 @@ equation
   connect(ambience.toSurfacePorts[40], surface_floor121.toSurfacesPort);
   connect(ambience.toAirPorts[40], surface_floor121.toAirPort);
 
-  connect(zone.toConstructionPorts[41], floor122.toSurfacePort_1)
-    annotation (Line(points={{12,-13},{12,-34}},
-                                             color={0,0,0}));
+  connect(surface_floor122.toConstructionPort, floor122.toSurfacePort_2);
+  connect(zone.toConstructionPorts[41], floor122.toSurfacePort_1);
+  connect(ambience.toSurfacePorts[41], surface_floor122.toSurfacesPort);
+  connect(ambience.toAirPorts[41], surface_floor122.toAirPort);
+
   connect(surface_floor123.toConstructionPort, floor123.toSurfacePort_2);
   connect(zone.toConstructionPorts[42], floor123.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[41], surface_floor123.toSurfacesPort);
-  connect(ambience.toAirPorts[41], surface_floor123.toAirPort);
+  connect(ambience.toSurfacePorts[42], surface_floor123.toSurfacesPort);
+  connect(ambience.toAirPorts[42], surface_floor123.toAirPort);
 
   connect(surface_floor131.toConstructionPort, floor131.toSurfacePort_2);
   connect(zone.toConstructionPorts[43], floor131.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[42], surface_floor131.toSurfacesPort);
-  connect(ambience.toAirPorts[42], surface_floor131.toAirPort);
+  connect(ambience.toSurfacePorts[43], surface_floor131.toSurfacesPort);
+  connect(ambience.toAirPorts[43], surface_floor131.toAirPort);
 
   connect(surface_floor132.toConstructionPort, floor132.toSurfacePort_2);
   connect(zone.toConstructionPorts[44], floor132.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[43], surface_floor132.toSurfacesPort);
-  connect(ambience.toAirPorts[43], surface_floor132.toAirPort);
+  connect(ambience.toSurfacePorts[44], surface_floor132.toSurfacesPort);
+  connect(ambience.toAirPorts[44], surface_floor132.toAirPort);
 
   connect(surface_floor133.toConstructionPort, floor133.toSurfacePort_2);
   connect(zone.toConstructionPorts[45], floor133.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[44], surface_floor133.toSurfacesPort);
-  connect(ambience.toAirPorts[44], surface_floor133.toAirPort);
+  connect(ambience.toSurfacePorts[45], surface_floor133.toSurfacesPort);
+  connect(ambience.toAirPorts[45], surface_floor133.toAirPort);
 
   // Roof
   connect(surface_roof311.toConstructionPort, roof311.toSurfacePort_2);
   connect(zone.toConstructionPorts[46], roof311.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[45], surface_roof311.toSurfacesPort);
-  connect(ambience.toAirPorts[45], surface_roof311.toAirPort);
+  connect(ambience.toSurfacePorts[46], surface_roof311.toSurfacesPort);
+  connect(ambience.toAirPorts[46], surface_roof311.toAirPort);
 
   connect(surface_roof312.toConstructionPort, roof312.toSurfacePort_2);
   connect(zone.toConstructionPorts[47], roof312.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[46], surface_roof312.toSurfacesPort);
-  connect(ambience.toAirPorts[46], surface_roof312.toAirPort);
+  connect(ambience.toSurfacePorts[47], surface_roof312.toSurfacesPort);
+  connect(ambience.toAirPorts[47], surface_roof312.toAirPort);
 
   connect(surface_roof313.toConstructionPort, roof313.toSurfacePort_2);
   connect(zone.toConstructionPorts[48], roof313.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[47], surface_roof313.toSurfacesPort);
-  connect(ambience.toAirPorts[47], surface_roof313.toAirPort);
+  connect(ambience.toSurfacePorts[48], surface_roof313.toSurfacesPort);
+  connect(ambience.toAirPorts[48], surface_roof313.toAirPort);
 
   connect(surface_roof321.toConstructionPort, roof321.toSurfacePort_2);
   connect(zone.toConstructionPorts[49], roof321.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[48], surface_roof321.toSurfacesPort);
-  connect(ambience.toAirPorts[48], surface_roof321.toAirPort);
+  connect(ambience.toSurfacePorts[49], surface_roof321.toSurfacesPort);
+  connect(ambience.toAirPorts[49], surface_roof321.toAirPort);
 
   connect(surface_roof322.toConstructionPort, roof322.toSurfacePort_2);
   connect(zone.toConstructionPorts[50], roof322.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[49], surface_roof322.toSurfacesPort);
-  connect(ambience.toAirPorts[49], surface_roof322.toAirPort);
+  connect(ambience.toSurfacePorts[50], surface_roof322.toSurfacesPort);
+  connect(ambience.toAirPorts[50], surface_roof322.toAirPort);
 
   connect(surface_roof323.toConstructionPort, roof323.toSurfacePort_2);
   connect(zone.toConstructionPorts[51], roof323.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[50], surface_roof323.toSurfacesPort);
-  connect(ambience.toAirPorts[50], surface_roof323.toAirPort);
+  connect(ambience.toSurfacePorts[51], surface_roof323.toSurfacesPort);
+  connect(ambience.toAirPorts[51], surface_roof323.toAirPort);
 
   connect(surface_roof331.toConstructionPort, roof331.toSurfacePort_2);
   connect(zone.toConstructionPorts[52], roof331.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[51], surface_roof331.toSurfacesPort);
-  connect(ambience.toAirPorts[51], surface_roof331.toAirPort);
+  connect(ambience.toSurfacePorts[52], surface_roof331.toSurfacesPort);
+  connect(ambience.toAirPorts[52], surface_roof331.toAirPort);
 
   connect(surface_roof332.toConstructionPort, roof332.toSurfacePort_2);
   connect(zone.toConstructionPorts[53], roof332.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[52], surface_roof332.toSurfacesPort);
-  connect(ambience.toAirPorts[52], surface_roof332.toAirPort);
+  connect(ambience.toSurfacePorts[53], surface_roof332.toSurfacesPort);
+  connect(ambience.toAirPorts[53], surface_roof332.toAirPort);
 
   connect(surface_roof333.toConstructionPort, roof333.toSurfacePort_2);
   connect(zone.toConstructionPorts[54], roof333.toSurfacePort_1);
-  connect(ambience.toSurfacePorts[53], surface_roof333.toSurfacesPort);
-  connect(ambience.toAirPorts[53], surface_roof333.toAirPort);
+  connect(ambience.toSurfacePorts[54], surface_roof333.toSurfacesPort);
+  connect(ambience.toAirPorts[54], surface_roof333.toAirPort);
 
-  connect(surface2.toConstructionPort, floor122.toSurfacePort_2)
-    annotation (Line(points={{12,-43.4},{12,-38}},
-                                                 color={0,0,0}));
-  connect(tempBC.port, surface2.heatPort)
-    annotation (Line(points={{8,-48},{8,-44.6}},   color={191,0,0}));
+  connect(ambience.toAirpathPorts[1], val1.port_a)
+    annotation (Line(points={{-18,7},{0,7}}, color={0,127,255}));
+  connect(ambience.toAirpathPorts[2],val2. port_a) annotation (Line(points={{-22,7},
+          {-12,7},{-12,-7},{-8,-7}},     color={0,127,255}));
+  connect(val1.port_b, zone.airpathPorts[1]) annotation (Line(points={{10,7},{12,
+          7},{12,14},{20,14},{20,9}}, color={0,127,255}));
+  connect(val2.port_b, zone.airpathPorts[2]) annotation (Line(points={{2,-7},{10,
+          -7},{10,-6},{14,-6},{14,9},{20,9}},          color={0,127,255}));
+
+  connect(ramp.y, val2.y)
+    annotation (Line(points={{-21.7,17},{-3,17},{-3,-1}}, color={0,0,127}));
+  connect(ramp.y, val1.y)
+    annotation (Line(points={{-21.7,17},{5,17},{5,13}}, color={0,0,127}));
 
   annotation(experiment(StartTime=0, StopTime=86400),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal3x3x3.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}),
-      graphics={Text(extent={{-52,62},{52,-6}},lineColor={0,0,255},
-textString="3D room model with 3 x 3 x 3 = 27 air
-elements, which is surrounded by
-4 discretized (3 x 3) wall models,
-a discretized (3 x 3) roof model and
-a discretized (3 x 3) floor model.
-The surface of the
-centered construction element floor122
-is heated to 30 degree Celsius.")}),
-Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal3x3x3WithOpenings.mos" "Simulate and plot"),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-20},{60,60}}),
+      graphics={Text(extent={{-56,70},{54,8}}, lineColor={0,0,255},
+          textString="3D room model with 3 x 3 x 3 = 27 air elements, which is surrounded by
+4 discretized (3 x 3) wall models, a discretized (3 x 3) roof model and
+a discretized (3 x 3) floor model. The discretized air volume model
+includes two air pathes, one for the lower surface element 2 and
+one for the upper surface element 26.")}),
+Icon(coordinateSystem(preserveAspectRatio=false, extent={{-60,-20},{60,60}})),
 Documentation(info="<html>
 <p>
 Example that simulates a 3x3x3 discretized thermal zone model.
@@ -729,9 +746,9 @@ Example that simulates a 3x3x3 discretized thermal zone model.
 revisions="<html>
 <ul>
 <li>
-August 16, 2020, by Christoph Nytsch-Geusen:<br/>
+December 13, 2021, by Christoph Nytsch-Geusen:<br/>
 First implementation.
 </li>
 </ul>
 </html>"));
-end SingleZoneThermal3x3x3;
+end SingleZoneThermal3x3x3WithOpenings;

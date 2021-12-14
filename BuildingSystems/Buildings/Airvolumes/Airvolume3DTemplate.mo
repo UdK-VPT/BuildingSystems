@@ -1,7 +1,8 @@
 within BuildingSystems.Buildings.Airvolumes;
 model Airvolume3DTemplate
   "Generic air volume model"
-  extends BuildingSystems.Buildings.BaseClasses.AirvolumeGeneral;
+  extends BuildingSystems.Buildings.BaseClasses.AirvolumeGeneral(
+    redeclare final package Medium = BuildingSystems.Media.Air);
   BuildingSystems.Interfaces.VelocityOutput v[nAirElements]
     "Air velocity (magnitude)"
     annotation (Placement(transformation(extent={{70,-70},{90,-50}}), iconTransformation(extent={{70,-70},{90,-50}})));

@@ -141,19 +141,23 @@ equation
 
   annotation(experiment(StartTime=0, StopTime=31536000),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermalThermal1x1x1.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}})),
-    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
- Documentation(info="<html>
- <p>
- Example that simulates a 1x1x1 disretized thermal zone model.
- </p>
- </html>",
- revisions="<html>
- <ul>
- <li>
- August 16, 2020, by Christoph Nytsch-Geusen:<br/>
- First implementation.
- </li>
- </ul>
- </html>"));
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,60}}),graphics={
+    Text(extent={{-48,82},{56,14}},lineColor={0,0,255},
+    textString="3D room model with 1 x 1 x 1 = 1 air
+          element, which is surrounded by
+          4 wall model, a roof model and a floor model.")}),
+    Icon(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,60}})),
+Documentation(info="<html>
+<p>
+Example that simulates a 1x1x1 disretized thermal zone model.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+August 16, 2020, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end SingleZoneThermal1x1x1;

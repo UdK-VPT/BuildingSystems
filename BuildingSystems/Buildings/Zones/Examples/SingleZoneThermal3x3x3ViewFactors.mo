@@ -366,7 +366,7 @@ model SingleZoneThermal3x3x3ViewFactors
     redeclare Construction constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=270,
-        origin={0,-22})));
+        origin={22,-20})));
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes floor123(
     height=1.0,
     width=1.0,
@@ -462,9 +462,10 @@ model SingleZoneThermal3x3x3ViewFactors
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface_roof333;
 
   BuildingSystems.Buildings.Ambience ambience(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
     nSurfaces=53)
-    annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
+    annotation (Placement(transformation(extent={{-40,-8},{-20,12}})));
 
   BuildingSystems.Buildings.Zones.Examples.ZoneAirvolumeThermal3x3x3 zone(
     nAirElements = 27,
@@ -472,16 +473,16 @@ model SingleZoneThermal3x3x3ViewFactors
     nConstructions=54,
     geometricViewFactors=true,
     ViewFac=viewFac)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
+    annotation (Placement(transformation(extent={{12,-8},{32,12}})));
 
   BuildingSystems.Buildings.Surfaces.SurfaceToSolid surface2
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=-90,
-        origin={0,-30})));
+        origin={22,-28})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature tempBC(T=303.15)
     annotation (Placement(transformation(extent={{2,-2},{-2,2}},
         rotation=-90,
-        origin={-4,-36})));
+        origin={18,-34})));
 equation
 
   // zone <-> wall connections; wall <-> surface connection; surface <-> ambient connections
@@ -691,7 +692,8 @@ equation
   connect(ambience.toAirPorts[40], surface_floor121.toAirPort);
 
   connect(zone.toConstructionPorts[41], floor122.toSurfacePort_1)
-    annotation (Line(points={{0,1},{0,-20}}, color={0,0,0}));
+    annotation (Line(points={{22,3},{22,-18}},
+                                             color={0,0,0}));
   connect(surface_floor123.toConstructionPort, floor123.toSurfacePort_2);
   connect(zone.toConstructionPorts[42], floor123.toSurfacePort_1);
   connect(ambience.toSurfacePorts[41], surface_floor123.toSurfacesPort);
@@ -759,20 +761,23 @@ equation
   connect(ambience.toAirPorts[53], surface_roof333.toAirPort);
 
   connect(surface2.toConstructionPort, floor122.toSurfacePort_2)
-    annotation (Line(points={{0,-29.4},{0,-24}}, color={0,0,0}));
+    annotation (Line(points={{22,-27.4},{22,-22}},
+                                                 color={0,0,0}));
   connect(tempBC.port, surface2.heatPort)
-    annotation (Line(points={{-4,-34},{-4,-30.6}}, color={191,0,0}));
+    annotation (Line(points={{18,-32},{18,-28.6}}, color={191,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=86400),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal3x3x3.mos" "Simulate and plot"),
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-60},{60,60}}),
-      graphics={Text(extent={{-50,68},{54,0}},lineColor={0,0,255},
-textString="3D room model with 3 x 3 x 3 = 27 air
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,60}}),
+      graphics={Text(extent={{-52,70},{52,2}},lineColor={0,0,255},
+      textString="3D room model with 3 x 3 x 3 = 27 air
 elements, geometric view factors, which is surrounded by
-real weather data. The surface of the
+4 discretized (3 x 3) wall models,
+a discretized (3 x 3) roof model and
+a discretized (3 x 3) floor model. The surface of the
 centered construction element floor122
 is heated to 30 degree Celsius ")}),
-Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-40},{100,40}})),
+Icon(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,60}})),
 Documentation(info="<html>
 <p>
 Example that simulates a 13x3x3 discretized thermal zone model with geometric view factors.

@@ -4,9 +4,6 @@ model AirvolumeMixed
   extends BuildingSystems.Buildings.BaseClasses.AirvolumeGeneral(
   redeclare final package Medium = BuildingSystems.Media.Air,
   final nAirElements = 1);
-  parameter Integer nAirpaths = 0
-    "Number of air paths"
-    annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
   parameter Integer nHeatSources = 0
     "Number of heat convective sources"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
@@ -21,11 +18,6 @@ model AirvolumeMixed
   parameter Modelica.SIunits.Mass mH2OLiq_start = 0.0
    "Liquid water mass (start value)"
     annotation (Dialog(tab="Initialization"));
-  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpaths](
-    redeclare each final package Medium=Medium)
-    "Flow ports of the air paths"
-    annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={0,-80},rotation=180),
-      iconTransformation(extent={{-40,-90},{40,-70}})));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
     "Heat ports of the convective heat sources"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,40}),

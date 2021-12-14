@@ -29,6 +29,14 @@ partial model AirvolumeGeneral
   parameter Modelica.SIunits.MassFraction x_start[nAirElements] = fill(0.005,nAirElements)
    "Absolute air moisture (start value)"
     annotation (Dialog(tab="Initialization"));
+  parameter Integer nAirpaths = 0
+    "Number of air paths"
+    annotation(Evaluate=true, Dialog(connectorSizing=true));
+  Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b airpathPorts[nAirpaths](
+    redeclare each final package Medium=Medium)
+    "Flow ports of the air paths"
+    annotation (Placement(transformation(extent={{-40,-10},{40,10}},origin={0,-80},rotation=180),
+      iconTransformation(extent={{-40,-90},{40,-70}})));
   BuildingSystems.Buildings.Interfaces.SurfaceToAirPorts toSurfacePorts[nSurfaces]
     annotation (Placement(transformation(extent={{-10,-40},{10,40}},rotation=90,origin={0,80})));
   output BuildingSystems.Interfaces.Temp_KOutput T[nAirElements]
