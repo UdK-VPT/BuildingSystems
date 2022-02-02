@@ -2,7 +2,8 @@ within BuildingSystems.Airflow.Multizone.BaseClasses;
 partial model PowerLawResistance "Flow resistance that uses the power law"
   extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface(
     final allowFlowReversal=true,
-    final m_flow_nominal=rho_default*k*dp_turbulent);
+    final m_flow_nominal=rho_default*k*dp_turbulent,
+    final m_flow_small=1E-4*abs(m_flow_nominal));
   extends BuildingSystems.Airflow.Multizone.BaseClasses.ErrorControl;
 
   constant Boolean homotopyInitialization = true "= true, use homotopy method"
@@ -132,10 +133,16 @@ The model is used as a base for the interzonal air flow models.
 revisions="<html>
 <ul>
 <li>
+May 12, 2020, by Michael Wetter:<br/>
+Changed assignment of <code>m_flow_small</code> to <code>final</code>.
+This quantity are not used in this model and models that extend from it.
+Hence there is no need for the user to change the value.
+</li>
+<li>
 April 14, 2020, by Michael Wetter:<br/>
 Changed <code>homotopyInitialization</code> to a constant.<br/>
 This is for
-<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1341\">BuildingSystems, #1341</a>.
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1341\">IBPSA, #1341</a>.
 </li>
 <li>
 June 24, 2018, by Michael Wetter:<br/>
@@ -149,7 +156,7 @@ the Reynolds number, and the Reynolds number is not used by this model.
 Also removed the variable <code>Re</code> for the Reynolds number.<br/>
 This change is non-backward compatible.<br/>
 This is for
-<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/932\">BuildingSystems, #932</a>.
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/932\">IBPSA, #932</a>.
 </li>
 <li>
 May 1, 2018, by Filip Jorissen:<br/>

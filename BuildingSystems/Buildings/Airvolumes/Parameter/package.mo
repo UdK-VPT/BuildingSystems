@@ -28,8 +28,8 @@ package Parameter
   //
   //
   // To use the zonal model WITHOUT calibration, the paramater set would be
+  // final constant Real f_alp = 1;
   // final constant Real f_lay = 1;
   // final constant Real f_loss = 0;
   // final constant Real f_pv = 2;
-  // final constant Real f_alp = 1;
 end Parameter;

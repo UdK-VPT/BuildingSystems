@@ -33,50 +33,48 @@ partial model AirElementGeneral
     annotation (HideResult=true);
   ///////////////////////////////////////////////////////
   /////////////     PARAMETER     ///////////////////////
-  parameter Real[3] scalF
-    "Dimension of this Finite Volume in [m]"
-    annotation (HideResult=true);
+  parameter Modelica.SIunits.Length[3] scalF
+    "Dimension of this finite volume [edge lengths x,y,z]"
+    annotation (Dialog(tab = "General", group = "Dimension"));
   // Absolut position in space (center)
   parameter Modelica.SIunits.Length posX
     "FV absolute central position X"
-    annotation (HideResult=false);
+    annotation (Dialog(tab = "General", group = "Position"));
   parameter Modelica.SIunits.Length posY
     "FV absolute central position Y"
-    annotation (HideResult=false);
+    annotation (Dialog(tab = "General", group = "Position"));
   parameter Modelica.SIunits.Length posZ
     "FV absolute central position Z"
-    annotation (HideResult=false);
+    annotation (Dialog(tab = "General", group = "Position"));
   // Relative Position in space (near-wall or inside)
   parameter Boolean BCwall_south = false
     "Inner or boundary volume (direction X1)"
-    annotation (HideResult=true);
+    annotation (Dialog(tab = "General", group = "Boundaries"));
   parameter Boolean BCwall_north = false
     "Inner or boundary volume (direction X2)"
-    annotation (HideResult=true);
+    annotation (Dialog(tab = "General", group = "Boundaries"));
   parameter Boolean BCwall_floor = false
     "Inner or boundary volume (direction Y1)"
-    annotation (HideResult=true);
+    annotation (Dialog(tab = "General", group = "Boundaries"));
   parameter Boolean BCwall_roof = false
     "Inner or boundary volume (direction Y2)"
-    annotation (HideResult=true);
+    annotation (Dialog(tab = "General", group = "Boundaries"));
   parameter Boolean BCwall_east = false
     "Inner or boundary volume (direction Z1)"
-    annotation (HideResult=true);
+    annotation (Dialog(tab = "General", group = "Boundaries"));
   parameter Boolean BCwall_west = false
     "Inner or boundary volume (direction Z2)"
-    annotation (HideResult=true);
-  parameter Boolean enabled = true
-    "Flag for visualisation3D"
-    annotation (HideResult=true);
+    annotation (Dialog(tab = "General", group = "Boundaries"));
   //////////////////////////////////////////////////////
   parameter Modelica.SIunits.Temp_K T_start = 293.15
-    "Start value Air Temperature"
-    annotation (HideResult=true);
+    "Start value air temperature"
+    annotation (Dialog(tab = "Initialization"));
   parameter Modelica.SIunits.Density rho_start = 1.2
-    "Start value Density"
-    annotation (HideResult=true);
+    "Start value air density"
+    annotation (Dialog(tab = "Initialization"));
   parameter Modelica.SIunits.MassFraction x_start=0.005
-    "Start value air moisture";
+    "Start value air moisture"
+    annotation (Dialog(tab = "Initialization"));
   final parameter Modelica.SIunits.Mass mAir_start=
     dx*dy*dz * rho_nominal
     "Start value Mass of dry air of the air volume";
@@ -84,7 +82,8 @@ partial model AirElementGeneral
     x_start * dx*dy*dz * rho_nominal
     "Start value Mass of water vapor";
   parameter Modelica.SIunits.Mass mH2OLiq_start = 0.0
-    "Start value Mass of liquid water";
+    "Start value Mass of liquid water"
+    annotation (Dialog(tab = "Initialization"));
   final parameter Modelica.SIunits.InternalEnergy U_start=
     (rho_nominal*(dx*dy*dz)*cAir+rho_nominal*(dx*dy*dz)*x_start*cH20)*T_start
     +rH2O*rho_nominal*(dx*dy*dz)*x_start
@@ -104,9 +103,11 @@ partial model AirElementGeneral
     annotation (HideResult=false);
   /////////////////    SOURCES    ///////////////////////
   parameter Modelica.SIunits.MassFlowRate SourceM_flow=0.0
-    "Source Option" annotation (HideResult=true);
+    "Source Option"
+    annotation (Dialog(tab = "General", group = "Sources"));
   parameter Modelica.SIunits.SpecificEnthalpy Source_h = cAir * T_start
-    "Source Option" annotation (HideResult=true);
+    "Source Option"
+    annotation (Dialog(tab = "General", group = "Sources"));
 
   /////////////     CONSTANTS    //////////////////////
   /////////////     PARAMETER    //////////////////////
@@ -121,11 +122,11 @@ partial model AirElementGeneral
 
   // alternativ:
 
-  // record: {T, p, rho, h, Xi}
+  // record: {T, p, rho, h, x}
   // BuildingSystems.Buildings.Airvolumes.AirElements.FluidProp fluid(
-  //   Xi(start = 0.005, fixed = true));
+  //   x(start = 0.005, fixed = true));
   BuildingSystems.Buildings.Airvolumes.AirElements.FluidProp fluid
-    "Record of fluid properties {T, p, rho, h, Xi}";
+    "Record of fluid properties {T, p, rho, h, x}";
   /////////////////////////////////////////////////////
   /////////////      VARIABLES    /////////////////////
   //
@@ -133,9 +134,15 @@ partial model AirElementGeneral
   Modelica.SIunits.Velocity[3] vVec(start = {0,0,0})
     "Characteristic Velocity";
   // for comparisons
-  Modelica.SIunits.Velocity velMag(start = 0);
+  Modelica.SIunits.Velocity velMag(
+    start = 0.0)
+    "Start value of the air speed (magnitude of the velocity)"
+    annotation (Dialog(tab = "Initialization"));
   // Relative air humidity
-  BuildingSystems.Types.RelativeHumidity  phi(start = 0.5);
+  BuildingSystems.Types.RelativeHumidity phi(
+    start = 0.5)
+    "Start value of the relative humidity"
+    annotation (Dialog(tab = "Initialization"));
   ///////////////////////////////////////////////////////
   ////////////////     PORTS   //////////////////////////
   // 3D-Fluid-Ports
@@ -374,13 +381,13 @@ equation
   flowPort_Y2.h = fluid.h;
   flowPort_Z1.h = fluid.h;
   flowPort_Z2.h = fluid.h;
-  //Xi: ...
-  flowPort_X1.moist.Xi = fluid.Xi;
-  flowPort_X2.moist.Xi = fluid.Xi;
-  flowPort_Y1.moist.Xi = fluid.Xi;
-  flowPort_Y2.moist.Xi = fluid.Xi;
-  flowPort_Z1.moist.Xi = fluid.Xi;
-  flowPort_Z2.moist.Xi = fluid.Xi;
+  //x: absolute moisture
+  flowPort_X1.moist.x = fluid.x;
+  flowPort_X2.moist.x = fluid.x;
+  flowPort_Y1.moist.x = fluid.x;
+  flowPort_Y2.moist.x = fluid.x;
+  flowPort_Z1.moist.x = fluid.x;
+  flowPort_Z2.moist.x = fluid.x;
   //p: ideal gas equation
   flowPort_X1.p = fluid.p;
   flowPort_X2.p = fluid.p;

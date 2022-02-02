@@ -1,6 +1,6 @@
 within BuildingSystems.Buildings.Airvolumes.AirElements;
 model AirElementHygroThermal
-  "A hygro-thermal finite volume element"
+  "A hygro-thermal finite volume air element"
   extends BuildingSystems.Buildings.BaseClasses.AirElementGeneral;
   /////////////     CONSTANT     ///////////////////////
   /////////////     PARAMETER     //////////////////////
@@ -46,19 +46,19 @@ equation
   //// h = cAir * T + (cVap * xD + cWat* xF + cE * x)*fluid.T + hv * xD - hs*xD //-> incl. air, vapour, liquid
   fluid.h = cAir * fluid.T + (cH20 * mH2OAir/mAir + cH20Liq * mH2OLiq/mAir)*fluid.T + rH2O * mH2OAir/mAir;
   // Druck: p*V = (0.622 + x) * m * R_v * T;
-  fluid.p * dx*dy*dz = (0.622 + fluid.Xi) * mAir * R_v * fluid.T;
+  fluid.p * dx*dy*dz = (0.622 + fluid.x) * mAir * R_v * fluid.T;
   //////////////////////////////////////////////////////////
   // Humidity calculation <- out of buildingSystems
   //////////////////////////////////////////////////////////
   // Mass of ...
   mAir = fluid.rho*dx*dy*dz;
-  fluid.Xi = mH2OAir/mAir;
+  fluid.x = mH2OAir/mAir;
 
   //Mass balance of water vapor in the air
   der(mH2OAir) =
-    flowPort_X1.moist.moistMflow + flowPort_X2.moist.moistMflow +
-    flowPort_Y1.moist.moistMflow + flowPort_Y2.moist.moistMflow +
-    flowPort_Z1.moist.moistMflow + flowPort_Z2.moist.moistMflow
+    flowPort_X1.moist.m_flow + flowPort_X2.moist.m_flow +
+    flowPort_Y1.moist.m_flow + flowPort_Y2.moist.m_flow +
+    flowPort_Z1.moist.m_flow + flowPort_Z2.moist.m_flow
     + (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5) * moistureSourcesMflow
     + BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq;
     // 1. water vaper from moisture transfer of surfaces + water vapor within air mass flows through air paths
@@ -73,7 +73,7 @@ equation
     // evaporated water which leaves the liquid reservoir
 
   // relative air humidity
-  phi = BuildingSystems.Utilities.Psychrometrics.Functions.phi_pTX(100000.0,fluid.T,fluid.Xi);
+  phi = BuildingSystems.Utilities.Psychrometrics.Functions.phi_pTX(100000.0,fluid.T,fluid.x);
 
   annotation (defaultComponentName = "airEle",
 Documentation(info="<html>

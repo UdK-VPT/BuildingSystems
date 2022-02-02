@@ -1,14 +1,35 @@
 within BuildingSystems.Media.Examples;
 model SteamProperties
-  "Model that tests the implementation of the steam properties"
+  "Model that tests the implementation of the steam superheated properties"
   extends Modelica.Icons.Example;
-  extends BuildingSystems.Media.Examples.BaseClasses.FluidProperties(
-    redeclare package Medium = BuildingSystems.Media.Steam,
-    TMin=273.16,
-    TMax=647.096);
+  extends BuildingSystems.Media.Examples.BaseClasses.PartialProperties(
+    redeclare package Medium = BuildingSystems.Media.Steam (
+      p_default=200000),
+    TMin=273.15 + 100,
+    TMax=273.15 + 160,
+    p=200000);
 
+  Medium.ThermodynamicState state_phX "Medium state";
+  Medium.ThermodynamicState state_psX "Medium state";
+
+  Modelica.Media.Interfaces.Types.DerDensityByEnthalpy ddhp
+    "Density derivative w.r.t. enthalpy";
+  Modelica.Media.Interfaces.Types.DerDensityByPressure ddph
+    "Density derivative w.r.t. pressure";
 
 equation
+
+  // Check setting the states
+  state_pTX = Medium.setState_pTX(p=p, T=T, X=X);
+  state_phX = Medium.setState_phX(p=p, h=h, X=X);
+  state_psX = Medium.setState_psX(p=p, s=s, X=X);
+  checkState(state_pTX, state_phX, errAbs, "state_phX");
+  checkState(state_pTX, state_psX, errAbs, "state_psX");
+
+  // Check the implementation of the functions
+  ddhp = Medium.density_derh_p(state_pTX);
+  ddph = Medium.density_derp_h(state_pTX);
+
   // Check the implementation of the base properties
   basPro.state.p=p;
   basPro.state.T=T;
@@ -24,8 +45,9 @@ This example checks thermophysical properties of the medium.
 revisions="<html>
 <ul>
 <li>
-March 6, 2020, by Kathryn Hinkelman:<br/>
-Change medium to ideal steam to eliminate discontinuities.
+October 30, 2020, by Kathryn Hinkelman:<br/>
+Rebased steam medium to PartialMedium and improved steam property consistency
+and efficiency.
 </li>
 <li>
 September 12, 2019, by Yangyang Fu:<br/>

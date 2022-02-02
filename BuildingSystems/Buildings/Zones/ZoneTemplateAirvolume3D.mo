@@ -37,6 +37,12 @@ model ZoneTemplateAirvolume3D
     x_start=fill(x_start,nAirElements))
     annotation (Placement(transformation(extent={{-24,64},{24,16}})));
 equation
+  if not prescribedAirchange then
+    for i in 1:nAirpaths loop
+      connect(airpathPorts[i], airvolume.airpathPorts[i])
+        annotation (Line(points={{-94,-60},{-94,78},{0,78},{0,59.2}}, color={0,127,255}));
+    end for;
+  end if;
   for i in 1:nConstructions loop
     connect(surfaces.toAirPorts[i],airvolume.toSurfacePorts[i]);
   end for;

@@ -19,7 +19,7 @@ model Buoyancy
     each V=0.01,
     each T_start=293.15)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={10,-50})));
-  Fluid.Sources.FixedBoundary bou(
+  Fluid.Sources.Boundary_pT bou(
     redeclare package Medium = Medium,
     nPorts=1)
     annotation (Placement(transformation(extent={{-40,-44},{-20,-24}})));
@@ -31,7 +31,7 @@ model Buoyancy
     use_T_in=true,
     T=303.15)
     annotation (Placement(transformation(extent={{-40,-94},{-20,-74}})));
-  Fluid.Sources.FixedBoundary bou1(
+  Fluid.Sources.Boundary_pT bou1(
     redeclare package Medium = Medium,
     nPorts=1)
     annotation (Placement(transformation(extent={{80,40},{60,60}})));

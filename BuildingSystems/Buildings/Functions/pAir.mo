@@ -18,5 +18,18 @@ protected
     "Gas constant dry air in J/(kg.K)";
 algorithm
   // Vertical air pressure profile in the polytrop atmosphere
-  value := pAirRef * (TAir(TAirRef,z,zRefTAir,gamma) / TAirRef)^(Modelica.Constants.g_n / (gamma * RAir));
+  value := pAirRef * (BuildingSystems.Buildings.Functions.TAir(TAirRef,z,zRefTAir,gamma) / TAirRef)^(Modelica.Constants.g_n / (gamma * RAir));
+
+  annotation (Documentation(info="<html>
+<p>
+This function outputs the ambient air pressure dependent on the height.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+January 1, 2016, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end pAir;

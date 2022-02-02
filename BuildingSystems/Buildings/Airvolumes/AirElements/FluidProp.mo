@@ -6,7 +6,7 @@ record FluidProp
   Modelica.SIunits.Density rho;
   Modelica.SIunits.SpecificEnthalpy h;
   // Absolut Moisture
-  Modelica.SIunits.MassFraction Xi;
+  Modelica.SIunits.MassFraction x;
   annotation (
 Documentation(info="<html>
 <p>
