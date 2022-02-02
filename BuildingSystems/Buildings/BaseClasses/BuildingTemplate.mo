@@ -20,6 +20,9 @@ partial model BuildingTemplate
   parameter Integer nZones = 0
     "Number of thermal zones of the building"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
+  parameter Integer nIdealLoads = 0
+    "Number of thermal zones of the building where ideal loads are calculated"
+    annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
   parameter Integer nHeatSources = 0
     "Number of heat sources of the building"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
@@ -71,10 +74,10 @@ partial model BuildingTemplate
   parameter Integer nSurfaces = 0
     "if show_TSur = true: Overall number of building surfaces"
     annotation(Dialog(tab = "Advanced", group = "Optional"), HideResult=true);
-  input BuildingSystems.Interfaces.Temp_KInput T_setHeating[nZones] if calcIdealLoads
+  input BuildingSystems.Interfaces.Temp_KInput T_setHeating[nIdealLoads] if calcIdealLoads
     "Set air temperature for heating of each thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180, origin={180,80}), iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,80})));
-  input BuildingSystems.Interfaces.Temp_KInput T_setCooling[nZones] if calcIdealLoads
+  input BuildingSystems.Interfaces.Temp_KInput T_setCooling[nIdealLoads] if calcIdealLoads
     "Set air temperature for cooling of each thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={180,60}),   iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={98,60})));
   input BuildingSystems.Interfaces.AirchangeRateInput airchange[nZones] if prescribedAirchange
@@ -95,10 +98,10 @@ partial model BuildingTemplate
   output BuildingSystems.Interfaces.Temp_KOutput TSur[nSurfaces] if show_TSur
     "Surface temperatures of the individual building elements"
     annotation (Placement(transformation(extent={{180,-60},{200,-40}}),iconTransformation(extent={{180,-60},{200,-40}})));
-  output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_cooling[nZones] if calcIdealLoads
+  output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_cooling[nIdealLoads] if calcIdealLoads
     "Cooling power of each thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-80,-122}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-90,-110})));
-  output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_heating[nZones] if calcIdealLoads
+  output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_heating[nIdealLoads] if calcIdealLoads
     "Heating power of each thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={80,-122}),  iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={90,-110})));
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b toAmbienceAirpathPorts[nAirpaths](
