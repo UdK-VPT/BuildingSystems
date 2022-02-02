@@ -78,7 +78,11 @@ model ThermalCollector
     "Constant shading coefficient (if use_GSC_in = true)";
   final parameter Modelica.SIunits.Area A = if AColData then collectorData.A else width * height
     "Absorber area of the collector";
-  Real IAM "IncidenceAngleModifier";
+  Real IAM_b "IncidenceAngleModifier beam radiation";
+  Real IAM_d "IncidenceAngleModifier sky diffuse radiation";
+  Real IAM_g "IncidenceAngleModifier ground diffuse radiation";
+  Modelica.SIunits.Angle theta_d "Effective incident angle sky diffuse radiation";
+  Modelica.SIunits.Angle theta_g "Effective incident angle ground diffuse radiation";
   Modelica.SIunits.RadiantEnergyFluenceRate IrrTot
     "Total solar radiation on collector's absorber surfcace";
   Modelica.Blocks.Sources.RealExpression QCon[nEle](y=-A/nEle .* (C_1 .* (vol.T .-
@@ -106,6 +110,7 @@ model ThermalCollector
 protected
   Modelica.Blocks.Interfaces.RealInput GSC_internal
     "Shading coefficient";
+  final parameter Real deg_to_rad = (Modelica.Constants.pi/180);
   parameter Real IAMC = collectorData.IAMC
     "Incidence Angle Modifier Coefficient: Value of IAM at 50 degree";
   parameter Real C_0 = collectorData.C_0
@@ -114,13 +119,20 @@ protected
     "Collector constant in W/(m2.K) using absorber area as a reference";
   parameter Real C_2 = collectorData.C_2
     "Collector constant in W/(m2*K.2) using absorber area as a reference";
+  parameter Real b0 = (1 - IAMC)/0.5557 "Incidence angle modifier coefficient";
 equation
+
+  theta_d = deg_to_rad*(59.68 - 0.1388*(angleDegTil) + 0.001497*(angleDegTil)^2);
+  theta_g = deg_to_rad*(90 - 0.5788*(angleDegTil) + 0.002693*(angleDegTil)^2);
+  IAM_d = max(0,1 - b0*(1/Modelica.Math.cos(theta_d)-1));
+  IAM_g = max(0,1 - b0*(1/Modelica.Math.cos(theta_g)-1));
+
   connect(GSC_internal, GSC_in);
   if not use_GSC_in then
     GSC_internal = GSC_constant;
   end if;
-  IAM = BuildingSystems.Utilities.SmoothFunctions.softcut_lower(1.0 + (IAMC - 1.0)/0.5557 * (1.0 / Modelica.Math.cos((radiationPort.angleDegInc-0.01) * Modelica.Constants.pi / 180.0) - 1.0),0.0,0.01);
-  IrrTot = radiationPort.IrrDir * (1.0 - GSC_internal) * IAM + radiationPort.IrrDif;
+  IAM_b = BuildingSystems.Utilities.SmoothFunctions.softcut_lower(1.0 + (IAMC - 1.0)/0.5557 * (1.0 / Modelica.Math.cos((radiationPort.angleDegInc-0.01) * Modelica.Constants.pi / 180.0) - 1.0),0.0,0.01);
+  IrrTot = radiationPort.IrrDir * (1.0 - GSC_internal) * IAM_b + IAM_d*(radiationPort.IrrDif-radiationPort.IrrDif_g) + IAM_g*radiationPort.IrrDif_g;
   connect(QCon.y, sumConRad.u[1]) annotation (Line(
       points={{-79,-30},{-70,-30},{-70,-21},{-62,-21}},
       color={0,0,127},
