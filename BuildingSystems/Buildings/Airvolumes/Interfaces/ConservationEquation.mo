@@ -127,7 +127,7 @@ model ConservationEquation "Lumped volume with mass and energy balance"
     "Enthalpy flow across boundaries or energy source/sink";
 
   // Parameters that need to be defined by an extending class
-  //parameter Modelica.SIunits.Volume fluidVolume
+  //parameter Modelica.Units.SI.Volume fluidVolume
   //  "Volume (if geometryType == Fixed)"
   //  annotation(Dialog(tab="General",group="Volume geometry"));
   final parameter Modelica.Units.SI.HeatCapacity CSen=(mSenFac - 1)*rho_default

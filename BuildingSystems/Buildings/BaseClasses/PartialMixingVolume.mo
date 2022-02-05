@@ -42,7 +42,7 @@ model PartialMixingVolume
   parameter Boolean allowFlowReversal = true
     "= false to simplify equations, assuming, but not enforcing, no flow reversal. Used only if model has two ports."
     annotation(Dialog(tab="Assumptions"), Evaluate=true);
-  // parameter Modelica.SIunits.Volume V "Volume";
+  // parameter Modelica.Units.SI.Volume V "Volume";
   Modelica.Fluid.Vessels.BaseClasses.VesselFluidPorts_b ports[nPorts](
       redeclare each package Medium = Medium) "Fluid inlets and outlets"
     annotation (Placement(transformation(extent={{-40,-10},{40,10}},
@@ -391,7 +391,7 @@ issue 282</a> for a discussion.
 June 9, 2015 by Michael Wetter:<br/>
 Set start value for <code>heatPort.T</code> and changed
 type of <code>T</code> to <code>Medium.Temperature</code> rather than
-<code>Modelica.SIunits.Temperature</code>
+<code>Modelica.Units.SI.Temperature</code>
 to avoid an
 error because of conflicting start values if
 <code>BuildingSystems.Fluid.Chillers.Carnot_y</code>
