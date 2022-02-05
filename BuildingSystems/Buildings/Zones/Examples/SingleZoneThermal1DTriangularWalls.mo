@@ -3,7 +3,8 @@ model SingleZoneThermal1DTriangularWalls
   "Thermal zone model of a box with triangulated walls"
   extends Modelica.Icons.Example;
   BuildingSystems.Buildings.Ambience ambience(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII,
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII,
     nSurfaces=12)
     annotation (Placement(transformation(extent={{-58,-10},{-38,10}})));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
@@ -192,13 +193,13 @@ equation
           60.6,-16},{62,-16},{62,-44},{-39,-44},{-39,-4}}, color={0,0,0}));
   connect(surface9.toAirPort, ambience.toAirPorts[9]) annotation (Line(points={{
           32,66.6},{32,70},{-32,70},{-32,-4},{-39,-4}}, color={0,0,0}));
-  connect(surface10.toAirPort, ambience.toAirPorts[10]) annotation (Line(points
-        ={{58,66.6},{58,70},{-32,70},{-32,-4},{-39,-4}}, color={0,0,0}));
-  connect(surface11.toAirPort, ambience.toAirPorts[11]) annotation (Line(points
-        ={{-42,-72.6},{-42,-76},{-50,-76},{-50,-40},{-39,-40},{-39,-4}}, color={
+  connect(surface10.toAirPort, ambience.toAirPorts[10]) annotation (Line(points=
+         {{58,66.6},{58,70},{-32,70},{-32,-4},{-39,-4}}, color={0,0,0}));
+  connect(surface11.toAirPort, ambience.toAirPorts[11]) annotation (Line(points=
+         {{-42,-72.6},{-42,-76},{-50,-76},{-50,-40},{-39,-40},{-39,-4}}, color={
           0,0,0}));
-  connect(surface12.toAirPort, ambience.toAirPorts[12]) annotation (Line(points
-        ={{-16,-72.6},{-16,-76},{-50,-76},{-50,-40},{-39,-40},{-39,-4}}, color={
+  connect(surface12.toAirPort, ambience.toAirPorts[12]) annotation (Line(points=
+         {{-16,-72.6},{-16,-76},{-50,-76},{-50,-40},{-39,-40},{-39,-4}}, color={
           0,0,0}));
   connect(surface1.toSurfacesPort, ambience.toSurfacePorts[1]) annotation (Line(
         points={{10,-40.6},{10,-44},{-39,-44},{-39,4}}, color={0,0,0}));

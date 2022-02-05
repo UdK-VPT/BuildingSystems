@@ -203,7 +203,7 @@ model BuildingThermal4Zones1DAirpaths
     redeclare package Medium = Medium,
     A=0.01)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=90,origin={16,12})));
-equation
+  equation
   connect(zone1.T_setHeating, T_setHeating[1]) annotation (Line(
      points={{-51,47},{-51,87.5},{180,87.5}},
      color={255,0,0},
@@ -422,7 +422,8 @@ equation
 
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=building.nSurfacesAmbience,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Building building(
     nZones = 4,

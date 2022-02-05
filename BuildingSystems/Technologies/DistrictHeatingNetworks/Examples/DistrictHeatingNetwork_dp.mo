@@ -57,7 +57,8 @@ model DistrictHeatingNetwork_dp
     annotation (Placement(transformation(extent={{-66,76},{-46,96}})));
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=building.nSurfacesAmbience,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     "Ambience model"
     annotation (Placement(transformation(extent={{-96,76},{-76,96}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
@@ -80,7 +81,8 @@ model DistrictHeatingNetwork_dp
     "Building model"
     annotation (Placement(transformation(extent={{-66,-32},{-46,-12}})));
   BuildingSystems.Buildings.Ambience ambience1(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
     nSurfaces=building1.nSurfacesAmbience)
     "Ambience model"
     annotation (Placement(transformation(extent={{-92,-32},{-72,-12}})));
@@ -155,7 +157,8 @@ model DistrictHeatingNetwork_dp
     "Building model"
     annotation (Placement(transformation(extent={{-178,68},{-158,88}})));
   BuildingSystems.Buildings.Ambience ambience2(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_DWD_ASCII,
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataDWD.Germany_Potsdam2003_DWD_ASCII,
     nSurfaces=building2.nSurfacesAmbience)
     "Ambience model"
     annotation (Placement(transformation(extent={{-208,68},{-188,88}})));

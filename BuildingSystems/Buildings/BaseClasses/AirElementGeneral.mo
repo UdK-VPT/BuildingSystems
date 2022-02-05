@@ -3,28 +3,21 @@ partial model AirElementGeneral
   "An air element for three-dimensional air flow simulation"
   ///////////////////////////////////////////////////////
   /////////////     CONSTANTS     ///////////////////////
-  constant Modelica.SIunits.SpecificHeatCapacity cAir = 1005.00
-    "Specific heat capacity"
-    annotation (HideResult=true);
-  constant Modelica.SIunits.SpecificHeatCapacity cH20 = 1860.0
-    "Specific heat capacity of water vapor"
-    annotation (HideResult=true);
-  constant Modelica.SIunits.SpecificHeatCapacity cH20Liq = 4190.0
-    "Specific heat capacity of liquid water"
-    annotation (HideResult=true);
-  constant Modelica.SIunits.MolarMass n=0.0289644
-    "Molar mass of dry air: 0.0289644 kg / mol"
-    annotation (HideResult=true);
-  constant Modelica.SIunits.DynamicViscosity nu = 18.232*10^(-6)
-    "Dynamic viscosity"
-    annotation (HideResult=true);
+  constant Modelica.Units.SI.SpecificHeatCapacity cAir=1005.00
+    "Specific heat capacity" annotation (HideResult=true);
+  constant Modelica.Units.SI.SpecificHeatCapacity cH20=1860.0
+    "Specific heat capacity of water vapor" annotation (HideResult=true);
+  constant Modelica.Units.SI.SpecificHeatCapacity cH20Liq=4190.0
+    "Specific heat capacity of liquid water" annotation (HideResult=true);
+  constant Modelica.Units.SI.MolarMass n=0.0289644
+    "Molar mass of dry air: 0.0289644 kg / mol" annotation (HideResult=true);
+  constant Modelica.Units.SI.DynamicViscosity nu=18.232*10^(-6)
+    "Dynamic viscosity" annotation (HideResult=true);
   // nominal-values
-  constant Modelica.SIunits.Density rho_nominal = 1.2
-    "Air density under nominal conditions"
-    annotation (HideResult=true);
-  constant Modelica.SIunits.Temp_K T_nominal = 293.15
-    "Air temperature under nominal conditions"
-    annotation (HideResult=true);
+  constant Modelica.Units.SI.Density rho_nominal=1.2
+    "Air density under nominal conditions" annotation (HideResult=true);
+  constant Modelica.Units.SI.Temperature T_nominal=293.15
+    "Air temperature under nominal conditions" annotation (HideResult=true);
   constant Real R_v(unit="J/(kg.K)") = 461.4
     "Gas constant for water vapor to be used in the gas equation"
     annotation (HideResult=true);
@@ -33,19 +26,16 @@ partial model AirElementGeneral
     annotation (HideResult=true);
   ///////////////////////////////////////////////////////
   /////////////     PARAMETER     ///////////////////////
-  parameter Modelica.SIunits.Length[3] scalF
+  parameter Modelica.Units.SI.Length[3] scalF
     "Dimension of this finite volume [edge lengths x,y,z]"
-    annotation (Dialog(tab = "General", group = "Dimension"));
+    annotation (Dialog(tab="General", group="Dimension"));
   // Absolut position in space (center)
-  parameter Modelica.SIunits.Length posX
-    "FV absolute central position X"
-    annotation (Dialog(tab = "General", group = "Position"));
-  parameter Modelica.SIunits.Length posY
-    "FV absolute central position Y"
-    annotation (Dialog(tab = "General", group = "Position"));
-  parameter Modelica.SIunits.Length posZ
-    "FV absolute central position Z"
-    annotation (Dialog(tab = "General", group = "Position"));
+  parameter Modelica.Units.SI.Length posX "FV absolute central position X"
+    annotation (Dialog(tab="General", group="Position"));
+  parameter Modelica.Units.SI.Length posY "FV absolute central position Y"
+    annotation (Dialog(tab="General", group="Position"));
+  parameter Modelica.Units.SI.Length posZ "FV absolute central position Z"
+    annotation (Dialog(tab="General", group="Position"));
   // Relative Position in space (near-wall or inside)
   parameter Boolean BCwall_south = false
     "Inner or boundary volume (direction X1)"
@@ -66,48 +56,40 @@ partial model AirElementGeneral
     "Inner or boundary volume (direction Z2)"
     annotation (Dialog(tab = "General", group = "Boundaries"));
   //////////////////////////////////////////////////////
-  parameter Modelica.SIunits.Temp_K T_start = 293.15
-    "Start value air temperature"
-    annotation (Dialog(tab = "Initialization"));
-  parameter Modelica.SIunits.Density rho_start = 1.2
-    "Start value air density"
-    annotation (Dialog(tab = "Initialization"));
-  parameter Modelica.SIunits.MassFraction x_start=0.005
-    "Start value air moisture"
-    annotation (Dialog(tab = "Initialization"));
-  final parameter Modelica.SIunits.Mass mAir_start=
-    dx*dy*dz * rho_nominal
+  parameter Modelica.Units.SI.Temperature T_start=293.15
+    "Start value air temperature" annotation (Dialog(tab="Initialization"));
+  parameter Modelica.Units.SI.Density rho_start=1.2 "Start value air density"
+    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.Units.SI.MassFraction x_start=0.005
+    "Start value air moisture" annotation (Dialog(tab="Initialization"));
+  final parameter Modelica.Units.SI.Mass mAir_start=dx*dy*dz*rho_nominal
     "Start value Mass of dry air of the air volume";
-  final parameter Modelica.SIunits.Mass mH2OAir_start=
-    x_start * dx*dy*dz * rho_nominal
-    "Start value Mass of water vapor";
-  parameter Modelica.SIunits.Mass mH2OLiq_start = 0.0
-    "Start value Mass of liquid water"
-    annotation (Dialog(tab = "Initialization"));
-  final parameter Modelica.SIunits.InternalEnergy U_start=
-    (rho_nominal*(dx*dy*dz)*cAir+rho_nominal*(dx*dy*dz)*x_start*cH20)*T_start
-    +rH2O*rho_nominal*(dx*dy*dz)*x_start
+  final parameter Modelica.Units.SI.Mass mH2OAir_start=x_start*dx*dy*dz*
+      rho_nominal "Start value Mass of water vapor";
+  parameter Modelica.Units.SI.Mass mH2OLiq_start=0.0
+    "Start value Mass of liquid water" annotation (Dialog(tab="Initialization"));
+  final parameter Modelica.Units.SI.InternalEnergy U_start=(rho_nominal*(dx*dy*
+      dz)*cAir + rho_nominal*(dx*dy*dz)*x_start*cH20)*T_start + rH2O*
+      rho_nominal*(dx*dy*dz)*x_start
     "Start value of the internal energy of the air volume";
   //////////////////  INTERN  //////////////////////////
-  final parameter Modelica.SIunits.Length[3] pos={posX,posY,posZ}
+  final parameter Modelica.Units.SI.Length[3] pos={posX,posY,posZ}
     annotation (HideResult=true);
   // Scaling factor for finite element size
   // 1x1x1-Box - finite volume element
-  final parameter Modelica.SIunits.Length dx=scalF[1]
+  final parameter Modelica.Units.SI.Length dx=scalF[1]
     annotation (HideResult=true);
-  final parameter Modelica.SIunits.Length dy=scalF[2]
+  final parameter Modelica.Units.SI.Length dy=scalF[2]
     annotation (HideResult=true);
-  final parameter Modelica.SIunits.Length dz=scalF[3]
+  final parameter Modelica.Units.SI.Length dz=scalF[3]
     annotation (HideResult=true);
-  final parameter Modelica.SIunits.Length[3] dim={dx,dy,dz}
+  final parameter Modelica.Units.SI.Length[3] dim={dx,dy,dz}
     annotation (HideResult=false);
   /////////////////    SOURCES    ///////////////////////
-  parameter Modelica.SIunits.MassFlowRate SourceM_flow=0.0
-    "Source Option"
-    annotation (Dialog(tab = "General", group = "Sources"));
-  parameter Modelica.SIunits.SpecificEnthalpy Source_h = cAir * T_start
-    "Source Option"
-    annotation (Dialog(tab = "General", group = "Sources"));
+  parameter Modelica.Units.SI.MassFlowRate SourceM_flow=0.0 "Source Option"
+    annotation (Dialog(tab="General", group="Sources"));
+  parameter Modelica.Units.SI.SpecificEnthalpy Source_h=cAir*T_start
+    "Source Option" annotation (Dialog(tab="General", group="Sources"));
 
   /////////////     CONSTANTS    //////////////////////
   /////////////     PARAMETER    //////////////////////
@@ -131,13 +113,11 @@ partial model AirElementGeneral
   /////////////      VARIABLES    /////////////////////
   //
   // Characteristic Velocity of the finite Volume
-  Modelica.SIunits.Velocity[3] vVec(start = {0,0,0})
-    "Characteristic Velocity";
+  Modelica.Units.SI.Velocity[3] vVec(start={0,0,0}) "Characteristic Velocity";
   // for comparisons
-  Modelica.SIunits.Velocity velMag(
-    start = 0.0)
+  Modelica.Units.SI.Velocity velMag(start=0.0)
     "Start value of the air speed (magnitude of the velocity)"
-    annotation (Dialog(tab = "Initialization"));
+    annotation (Dialog(tab="Initialization"));
   // Relative air humidity
   BuildingSystems.Types.RelativeHumidity phi(
     start = 0.5)

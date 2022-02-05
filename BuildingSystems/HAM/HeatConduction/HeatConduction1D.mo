@@ -12,16 +12,16 @@ model HeatConduction1D
   BuildingSystems.Interfaces.HeatPort heatPort_source
     "Optional heat source at the thermal node"
     annotation(Placement(transformation(extent={{-10,-12},{10,8}}), iconTransformation(extent={{-10,-12},{10,8}})));
-  parameter Modelica.SIunits.Temp_K T_start = 293.15
+  parameter Modelica.Units.SI.Temperature T_start=293.15
     "Start temperature of the thermal node"
     annotation (Dialog(tab="Initialization"));
-  Modelica.SIunits.Temp_K T(start = T_start)
+  Modelica.Units.SI.Temperature T(start=T_start)
     "Temperature of the thermal node";
 protected
-  Modelica.SIunits.HeatCapacity C = material.c * material.rho * lengthX * lengthY * lengthZ
-    "Heat capacity of the thermal node";
-  Modelica.SIunits.ThermalConductance kX = 2.0 * material.lambda / lengthX * lengthY * lengthZ
-    "Thermal conductance in the x dimension";
+  Modelica.Units.SI.HeatCapacity C=material.c*material.rho*lengthX*lengthY*
+      lengthZ "Heat capacity of the thermal node";
+  Modelica.Units.SI.ThermalConductance kX=2.0*material.lambda/lengthX*lengthY*
+      lengthZ "Thermal conductance in the x dimension";
 equation
   heatPort_x1.Q_flow = kX * (heatPort_x1.T - T);
   heatPort_x2.Q_flow = kX * (heatPort_x2.T - T);

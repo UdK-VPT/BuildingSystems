@@ -3,13 +3,14 @@ model SolarThermalSystem1
   "Example of a  solar thermal system with an internal heat exchanger"
   extends Modelica.Icons.Example;
   package Medium2 = BuildingSystems.Media.Water;
-  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
+  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater (
     X_a=0.40,
     property_T=293.15);
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.01;
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.01;
   BuildingSystems.Climate.WeatherData.WeatherDataReader weatherData(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_ASCII)
     "time IrrDir IrrDif TAirAmb"
     annotation (Placement(transformation(extent={{-126,80},{-110,96}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
@@ -209,8 +210,8 @@ equation
 
   connect(pipe1.heatPort, prescribedTemperature.port) annotation (Line(points={{
           -85,10},{-108,10},{-108,68},{-72,68},{-72,76}}, color={191,0,0}));
-  connect(weatherData.TAirRef, prescribedTemperature.T) annotation (Line(points
-        ={{-123.6,79.2},{-123.6,76},{-80.8,76}}, color={0,0,127}));
+  connect(weatherData.TAirRef, prescribedTemperature.T) annotation (Line(points=
+         {{-123.6,79.2},{-123.6,76},{-80.8,76}}, color={0,0,127}));
   connect(weatherData.IrrDirHor, radiation.IrrDirHor) annotation (Line(points={{
           -120.4,79.2},{-120.4,62},{-97.6,62}}, color={0,0,127}));
   connect(weatherData.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{

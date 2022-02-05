@@ -18,26 +18,24 @@ model Boundary
   parameter BuildingSystems.Buildings.Types.OrientationType location = BuildingSystems.Buildings.Types.OrientationType.West
     "Orientation of the boundary: south, north, west, east, floor, roof"
     annotation (Evaluate=true, Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length posX
+  parameter Modelica.Units.SI.Length posX
     "Boundary-FV-connection absolut central position X"
-    annotation (Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length posY
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length posY
     "Boundary-FV-connection absolut central position Y"
-     annotation (Evaluate=true, Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length posZ
+    annotation (Evaluate=true, Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length posZ
     "Boundary-FV-connection absolut central position Z"
-     annotation (Evaluate=true, Dialog(tab = "General", group = "Geometry"));
-  final parameter Modelica.SIunits.Density rhoAir = 1.2
+    annotation (Evaluate=true, Dialog(tab="General", group="Geometry"));
+  final parameter Modelica.Units.SI.Density rhoAir=1.2
     "Constant Air density at the boundary";
-  constant Modelica.SIunits.SpecificHeatCapacity cp = 1005.00;
+  constant Modelica.Units.SI.SpecificHeatCapacity cp=1005.00;
   // water vaper from moisture transfer of surfaces - default/ start value
-  constant Modelica.SIunits.MassFraction x_constant = 0.005
-    "Air moisture";
-  constant Modelica.SIunits.Velocity vAir_constant = 0.0
-    "Air velocity";
-  constant Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAir_constant = 0.0
+  constant Modelica.Units.SI.MassFraction x_constant=0.005 "Air moisture";
+  constant Modelica.Units.SI.Velocity vAir_constant=0.0 "Air velocity";
+  constant Modelica.Units.NonSI.Angle_deg angleDegAir_constant=0.0
     "Direction of the air flow";
-  constant Modelica.SIunits.ThermalConductivity lambdaAir=0.0262
+  constant Modelica.Units.SI.ThermalConductivity lambdaAir=0.0262
     "Heat conductivity of air ";
   parameter Boolean opening = false
     "Flag for opening: true -> opening and false ->solid surface"

@@ -4,9 +4,9 @@ model TemperatureControlledHeatFlow
 replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium in the component"
   annotation (choicesAllMatching = true);
-parameter Modelica.SIunits.HeatFlowRate Q_flow_maxHeat
+  parameter Modelica.Units.SI.HeatFlowRate Q_flow_maxHeat
     "Maximum heat flow rate for heating (positive)";
-parameter Modelica.SIunits.HeatFlowRate Q_flow_maxCool
+  parameter Modelica.Units.SI.HeatFlowRate Q_flow_maxCool
     "Maximum heat flow rate for cooling (negative)";
 Modelica.Blocks.Interfaces.RealInput TSet(unit="K")
     "Set temperature of the heater"
@@ -15,8 +15,8 @@ Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port
   annotation (Placement(transformation(extent={{90,-10},{110,10}})));
 input Medium.SpecificEnthalpy h_outflow "Specific thermodynamic enthalpy";
 input Medium.MassFlowRate m_flow "Mass flow rate";
-input Modelica.SIunits.Pressure p "Pressure";
-input Modelica.SIunits.MassFraction Xi[Medium.nXi] "Mass fraction";
+  input Modelica.Units.SI.Pressure p "Pressure";
+  input Modelica.Units.SI.MassFraction Xi[Medium.nXi] "Mass fraction";
 equation
   // fixme: this triggers a state event at m_flow=0 which must be fixed.
   if m_flow > 0 then

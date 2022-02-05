@@ -17,29 +17,25 @@ model FluidStorage
     each nPorts = 3,
     each T_start = T_start)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={32,-10})));
-  parameter Modelica.SIunits.Length height = 1.0
-    "Height of the storage"
-    annotation(Dialog(group="Geometry"));
-  parameter Modelica.SIunits.Volume V = 1.0
-    "Fluid volume of the storage"
-    annotation(Dialog(group="Geometry"));
+  parameter Modelica.Units.SI.Length height=1.0 "Height of the storage"
+    annotation (Dialog(group="Geometry"));
+  parameter Modelica.Units.SI.Volume V=1.0 "Fluid volume of the storage"
+    annotation (Dialog(group="Geometry"));
   parameter Integer nEle(min=3) = 3
     "Number of fluid layers";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer alpha_out = 800.0
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer alpha_out=800.0
     "Coefficient of heat transfer outside of the storage"
-    annotation(Dialog(group="Thermal properties"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer alpha_in = 3000.0
+    annotation (Dialog(group="Thermal properties"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer alpha_in=3000.0
     "Coefficient of heat transfer inside the storage"
-    annotation(Dialog(group="Thermal properties"));
-  parameter Modelica.SIunits.ThermalConductivity lambda_ins = 0.05
+    annotation (Dialog(group="Thermal properties"));
+  parameter Modelica.Units.SI.ThermalConductivity lambda_ins=0.05
     "Thermal heat conductivity of insulation material"
-    annotation(Dialog(group="Thermal properties"));
-  parameter Modelica.SIunits.Thickness thickness_ins = 0.005
-    "Insulation thickness"
-    annotation(Dialog(group="Geometry"));
-  parameter Modelica.SIunits.Thickness thickness_wall = 1
-    "Wall thickness"
-    annotation(Dialog(group="Geometry"));
+    annotation (Dialog(group="Thermal properties"));
+  parameter Modelica.Units.SI.Thickness thickness_ins=0.005
+    "Insulation thickness" annotation (Dialog(group="Geometry"));
+  parameter Modelica.Units.SI.Thickness thickness_wall=1 "Wall thickness"
+    annotation (Dialog(group="Geometry"));
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor HeatThroughTop(
     G = UA_top)
     annotation (Placement(transformation(extent={{-42,74},{-22,94}})));
@@ -84,28 +80,24 @@ model FluidStorage
   parameter Boolean AdditionalFluidPorts = false
     "Set to true to add aditional fluid ports connected to intermediate layers"
     annotation(Dialog(group="Storage configuration"));
-  parameter Modelica.SIunits.ThermalConductance UA_wall =
-    (Modelica.Constants.pi * height) / (1.0 / (alpha_out * diameter_ext)
-    + log(diameter_ext / diameter_int) / (2 * lambda_ins) + 1/(alpha_in * diameter_int))
-    "Thermal conductance walls"
-    annotation(Dialog(group="Thermal properties"));
-  parameter Modelica.SIunits.ThermalConductance UA_top =
-    1.0 / (thickness_ins / (lambda_ins * ASec) + 1.0 / (alpha_in * ASec) + 1.0 / (alpha_out * ASec))
-    "Thermal conductance top"
-    annotation(Dialog(group="Thermal properties"));
-  parameter Modelica.SIunits.ThermalConductance UA_bot = UA_top
-    "Thermal conductance bottom"
-    annotation(Dialog(group="Thermal properties"));
+  parameter Modelica.Units.SI.ThermalConductance UA_wall=(Modelica.Constants.pi
+      *height)/(1.0/(alpha_out*diameter_ext) + log(diameter_ext/diameter_int)/(
+      2*lambda_ins) + 1/(alpha_in*diameter_int)) "Thermal conductance walls"
+    annotation (Dialog(group="Thermal properties"));
+  parameter Modelica.Units.SI.ThermalConductance UA_top=1.0/(thickness_ins/(
+      lambda_ins*ASec) + 1.0/(alpha_in*ASec) + 1.0/(alpha_out*ASec))
+    "Thermal conductance top" annotation (Dialog(group="Thermal properties"));
+  parameter Modelica.Units.SI.ThermalConductance UA_bot=UA_top
+    "Thermal conductance bottom" annotation (Dialog(group="Thermal properties"));
 protected
-  parameter Modelica.SIunits.Diameter diameter_int = sqrt(ASec * 4 / Modelica.Constants.pi)
-    "Inner diameter of the storage"
-    annotation(Dialog(group="Geometry"));
-  parameter Modelica.SIunits.Diameter diameter_ext = diameter_int + 2 * (thickness_wall + thickness_ins)
-    "Exterior diameter of the storage"
-    annotation(Dialog(group="Geometry"));
-  parameter Modelica.SIunits.Area ASec = V / height
+  parameter Modelica.Units.SI.Diameter diameter_int=sqrt(ASec*4/Modelica.Constants.pi)
+    "Inner diameter of the storage" annotation (Dialog(group="Geometry"));
+  parameter Modelica.Units.SI.Diameter diameter_ext=diameter_int + 2*(
+      thickness_wall + thickness_ins) "Exterior diameter of the storage"
+    annotation (Dialog(group="Geometry"));
+  parameter Modelica.Units.SI.Area ASec=V/height
     "Inner cross-section area of the storage";
-  parameter Modelica.SIunits.Length heightLayer = height / nEle
+  parameter Modelica.Units.SI.Length heightLayer=height/nEle
     "Height of tank layer";
   parameter Medium.ThermodynamicState sta_default = Medium.setState_pTX(
     T=Medium.T_default,
@@ -132,7 +124,7 @@ public
     each G = UA_HX_1) if HX_1
     annotation (Placement(transformation(extent={{10,10},{-10,-10}},origin={34,-54})));
   Modelica.Fluid.Interfaces.FluidPort_a port_HX_2_a(
-    redeclare package Medium = Medium_HX_2) if  HX_2
+    redeclare package Medium = Medium_HX_2)  if HX_2
     "Port a to the HX at the top of the storage"
     annotation (Placement(transformation(extent={{80,40},{60,60}}), iconTransformation(extent={{80,40},{60,60}})));
   Modelica.Fluid.Interfaces.FluidPort_b port_HX_2_b(
@@ -149,15 +141,15 @@ public
   Modelica.Thermal.HeatTransfer.Components.ThermalConductor ThermalConductanceHX_2(
     each G = UA_HX_2) if HX_2
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},origin={62,90})));
-  parameter Modelica.SIunits.ThermalConductance UA_HX_2 = 100.0
+  parameter Modelica.Units.SI.ThermalConductance UA_HX_2=100.0
     "Constant thermal conductance of material"
-    annotation(Dialog(enable=HX_2,group="HX definition"));
+    annotation (Dialog(enable=HX_2, group="HX definition"));
   parameter Integer Ele_HX_2 = 2
     "Layer at which HX_2 is connected"
     annotation(Dialog(enable = HX_2,group="HX definition"));
-  parameter Modelica.SIunits.ThermalConductance UA_HX_1 = 100.0
+  parameter Modelica.Units.SI.ThermalConductance UA_HX_1=100.0
     "Constant thermal conductance of material"
-    annotation(Dialog(enable = HX_1,group="HX definition"));
+    annotation (Dialog(enable=HX_1, group="HX definition"));
   parameter Integer Ele_HX_1 = 1
     "Layer at which HX_1 is connected"
     annotation(Dialog(enable = HX_1,group="HX definition"));

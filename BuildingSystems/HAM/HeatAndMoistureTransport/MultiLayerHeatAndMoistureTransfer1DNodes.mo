@@ -33,19 +33,17 @@ model MultiLayerHeatAndMoistureTransfer1DNodes
 
   parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialHygroThermalGeneral material[nLayers]
     annotation (HideResult=true);
-  parameter Modelica.SIunits.Length lengthY
-    "Length in y dimension";
-  parameter Modelica.SIunits.Length lengthZ
-    "Length in z dimension";
+  parameter Modelica.Units.SI.Length lengthY "Length in y dimension";
+  parameter Modelica.Units.SI.Length lengthZ "Length in z dimension";
   parameter Integer nLayers = 1
     "Number of material layers in the x dimension";
   parameter Integer nNodes[nLayers] = {1}
     "Number of numerical nodes of layer i"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
-  parameter Modelica.SIunits.Length thickness[nLayers]
+  parameter Modelica.Units.SI.Length thickness[nLayers]
     "Thickness of each layer";
-  parameter Modelica.SIunits.Temp_K T_start[nLayers]={293.15 for i in 1:nLayers}
-    "Start temperature of each layer"
+  parameter Modelica.Units.SI.Temperature T_start[nLayers]={293.15 for i in 1:
+      nLayers} "Start temperature of each layer"
     annotation (Dialog(tab="Initialization"));
   parameter BuildingSystems.Types.RelativeHumidity phi_start[nLayers]={0.5 for i in 1:nLayers}
     "Start relative humidity of each layer"
@@ -77,5 +75,5 @@ equation
     Rectangle(extent={{40,80},{80,-80}},lineColor={255,85,85},fillColor={255,0,0},fillPattern=FillPattern.Solid),
     Text(extent={{-14,71},{54,5}},lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="D"),
     Text(extent={{-52,71},{16,5}},lineColor={120,0,120},lineThickness=0.5,fillColor={120,0,120},fillPattern=FillPattern.Solid,textString="1"),
-    Text(extent={{-46,-78},{46,-106}},lineColor={0,0,255},fillColor={230,230,230},fillPattern=  FillPattern.Solid,textString="%name")}));
+    Text(extent={{-46,-78},{46,-106}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString="%name")}));
 end MultiLayerHeatAndMoistureTransfer1DNodes;

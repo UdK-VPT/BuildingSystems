@@ -7,9 +7,9 @@ partial model PartialBuoyancy
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_b port_b[nEle - 1]
     "Heat port of the top volume"
     annotation (Placement(transformation(extent={{-10,80},{10,100}}), iconTransformation(extent={{-10,80},{10,100}})));
-  Modelica.SIunits.TemperatureDifference dT[nEle - 1]
+  Modelica.Units.SI.TemperatureDifference dT[nEle - 1]
     "Temperature difference between layers";
-  Modelica.SIunits.HeatFlowRate Q_flow[nEle - 1]
+  Modelica.Units.SI.HeatFlowRate Q_flow[nEle - 1]
     "Heat flow rate from port_a -> port_b";
 equation
   for i in 1:nEle-1 loop

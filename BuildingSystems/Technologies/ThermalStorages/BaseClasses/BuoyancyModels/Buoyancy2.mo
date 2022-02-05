@@ -1,6 +1,6 @@
 within BuildingSystems.Technologies.ThermalStorages.BaseClasses.BuoyancyModels;
 model Buoyancy2 "Semilinear buoyancy model with accesible coefficients"
-  parameter Modelica.SIunits.ThermalConductance G
+  parameter Modelica.Units.SI.ThermalConductance G
     "Equivalent thermal conductance between layers";
   parameter Real exp_nEle
     "Exponent for nEle";

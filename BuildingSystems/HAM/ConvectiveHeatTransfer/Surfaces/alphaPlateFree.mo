@@ -3,15 +3,16 @@ function alphaPlateFree
   "Heat transfer by free convection for plates with any direction and any heatflow"
   // Heat transfer coefficient for free convection on tilted surfaces"
   // Approach afte TAS Version 7.96, for deltaT -> 0.0 modified for numerical reasons"
-  input Modelica.SIunits.TemperatureDifference deltaT;
-  input Modelica.SIunits.Length height;
-  input Modelica.SIunits.Length width;
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg angle;
-  output Modelica.SIunits.SurfaceCoefficientOfHeatTransfer value;
+  input Modelica.Units.SI.TemperatureDifference deltaT;
+  input Modelica.Units.SI.Length height;
+  input Modelica.Units.SI.Length width;
+  input Modelica.Units.NonSI.Angle_deg angle;
+  output Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer value;
 protected
   Real DELTAT_RAD = 0.00000005 "Radius for deltaT->0 used by softpow()";
   Real SWITCH_FAK = 0.0000000001 "Smoothing for softswitch()";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaVer, alphaHor;
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaVer;
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaHor;
 
 algorithm
   if angle == 90.0 then // vertical: e.g. wall

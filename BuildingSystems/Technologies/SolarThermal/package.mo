@@ -1,7 +1,7 @@
 within BuildingSystems.Technologies;
-package SolarThermal
-  "Package with models of solar thermal collectors"
+package SolarThermal "Package with models of solar thermal collectors"
   extends Modelica.Icons.Package;
+
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),                                                                        graphics={
     Polygon(points={{-26,-78},{76,40},{86,32},{-16,-86},{-26,-78}},lineColor={0,0,0}),
     Ellipse(extent={{-90,90},{-38,38}}, lineColor={0,0,0}),

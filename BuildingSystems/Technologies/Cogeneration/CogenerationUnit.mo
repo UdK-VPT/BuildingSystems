@@ -7,9 +7,10 @@ model CogenerationUnit
   replaceable parameter BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral cogenerationUnitData
     "Characteristic data of the Cogeneration unit"
     annotation(Dialog(tab = "General"),Evaluate=true, choicesAllMatching=true);
-  final parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = cogenerationUnitData.Q_flow_nominal
+  final parameter Modelica.Units.SI.HeatFlowRate Q_flow_nominal=
+      cogenerationUnitData.Q_flow_nominal
     "Nominal heat flow rate (at full load)";
-  final parameter Modelica.SIunits.HeatFlowRate P_nominal = cogenerationUnitData.P_nominal
+  final parameter Modelica.Units.SI.HeatFlowRate P_nominal=cogenerationUnitData.P_nominal
     "Nominal electrical power (at full load)";
   Modelica.Blocks.Interfaces.RealInput u(
     min = 0.0,

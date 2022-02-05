@@ -4,10 +4,11 @@ model HeatPumpHeatingSystem
   extends Modelica.Icons.Example;
   package Medium1 = BuildingSystems.Media.Water;
   package Medium2 = BuildingSystems.Media.Air;
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.1;
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.1;
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=building.nSurfacesAmbience,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     "Ambience model"
     annotation (Placement(transformation(extent={{-26,42},{-6,62}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DDistrict building(

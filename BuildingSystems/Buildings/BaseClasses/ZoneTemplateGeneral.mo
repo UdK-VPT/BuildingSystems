@@ -4,21 +4,21 @@ partial model ZoneTemplateGeneral
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium in the air model of the zone"
     annotation (choicesAllMatching = true);
-  parameter BuildingSystems.Buildings.Types.GeometryType geometryType =
+  parameter BuildingSystems.Buildings.Types.GeometryType geometryType=
     BuildingSystems.Buildings.Types.GeometryType.Fixed
     "Fixed (default) or flexible geometry"
     annotation (Evaluate=true, Dialog(tab = "Geometry", group = "Zone geometry"));
-  parameter Modelica.SIunits.Volume V = 1.0
+  parameter Modelica.Units.SI.Volume V=1.0
     "Air volume of the zone (if geometryType == Fixed)"
-    annotation(Dialog(tab="Geometry",group="Zone geometry"));
+    annotation (Dialog(tab="Geometry", group="Zone geometry"));
   input BuildingSystems.Interfaces.VolumeInput V_in(
     min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
     "Air volume of the zone from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-110,0}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,0})));
-  parameter Modelica.SIunits.Length position[3] = {0.0,0.0,0.0}
+  parameter Modelica.Units.SI.Length position[3]={0.0,0.0,0.0}
     "Position (if geometryType == Fixed)"
-    annotation(Dialog(tab = "Geometry", group = "Zone geometry"));
+    annotation (Dialog(tab="Geometry", group="Zone geometry"));
   input BuildingSystems.Interfaces.LengthInput position_in[3]
     if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
     "Position from input"
@@ -28,15 +28,15 @@ partial model ZoneTemplateGeneral
     "Position"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={110,20}),
           iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,50})));
-  parameter Modelica.SIunits.Length height = 1.0
-    "Vertical height of the zone"
-    annotation(Dialog(tab="General",group="Air change"));
+  parameter Modelica.Units.SI.Length height=1.0 "Vertical height of the zone"
+    annotation (Dialog(tab="General", group="Air change"));
   parameter BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection convectionOnSurfaces = BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const
     "Type of convection calculation of the zone surfaces"
     annotation(Dialog(tab="Advanced",group="Convection model on building facades"));
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaConstant = 1.0
-    "Convective heat transfer coefficient for simplified calculations"
-    annotation(Dialog(tab="Advanced",group="Convection model on building facades"));
+  parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaConstant=
+      1.0 "Convective heat transfer coefficient for simplified calculations"
+    annotation (Dialog(tab="Advanced", group=
+          "Convection model on building facades"));
   parameter Integer nMoistureSources = 0
     "Number of internal moisture sources of the thermal zone"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
@@ -92,7 +92,7 @@ protected
     "Overall number of surfaces of the zone";
   parameter Integer nAirpathsInternal = if prescribedAirchange then 2 else + nAirpaths
     "Overall number of air paths of the zone";
-  constant Modelica.SIunits.Density rho_nominal = 1.2
+  constant Modelica.Units.SI.Density rho_nominal=1.2
     "Air density under nominal conditions";
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then

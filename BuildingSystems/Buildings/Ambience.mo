@@ -18,27 +18,30 @@ model Ambience
   parameter Integer nAirpaths = 0
     "Number of airpaths to the building"
     annotation(HideResult=true, Dialog(tab = "General", group = "Airpaths"));
-  parameter Modelica.SIunits.Length heightAirpath[nAirpaths] = fill(0.0,nAirpaths)
-    "Height of the airpaths to the building facades"
-     annotation(Dialog(tab = "General", group = "Airpaths"));
+  parameter Modelica.Units.SI.Length heightAirpath[nAirpaths]=fill(0.0,
+      nAirpaths) "Height of the airpaths to the building facades"
+    annotation (Dialog(tab="General", group="Airpaths"));
   parameter Real rhoAmb(unit = "1") = 0.2
     "Reflection factor for short-wave radiation of the ground"
     annotation(Dialog(tab = "General", group = "Location"));
-  parameter Modelica.SIunits.Length zRefvWind = 10.0 // Standard value of TRY
+  parameter Modelica.Units.SI.Length zRefvWind=10.0
     "Reference height for wind measurement"
-    annotation(Dialog(tab = "General", group = "Location"));
-  parameter Real P(unit = "1") = 0.4 // Typical roughness for city districts
+    annotation (Dialog(tab="General", group="Location"));
+                                                     // Standard value of TRY
+  parameter Real P(unit = "1") = 0.4
     "Roughness exponent for wind profil calculation"
     annotation(Dialog(tab = "General", group = "Location"));
-  parameter Modelica.SIunits.Length zRefTAir = 2.0 // Standard value of TRY
+                                     // Typical roughness for city districts
+  parameter Modelica.Units.SI.Length zRefTAir=2.0
     "Reference height air temperature measurement"
-    annotation(Dialog(tab = "General", group = "Location"));
+    annotation (Dialog(tab="General", group="Location"));
+                                                   // Standard value of TRY
   parameter Real gamma(unit = "K/m") = 0.01
     "Temperature gradient of the planetary boundary layer"
     annotation(Dialog(tab = "General", group = "Location"));
-  parameter Modelica.SIunits.Pressure pAirRef = 100000.0
+  parameter Modelica.Units.SI.Pressure pAirRef=100000.0
     "Static air pressure on reference height"
-    annotation(Dialog(tab = "General", group = "Location"));
+    annotation (Dialog(tab="General", group="Location"));
   BuildingSystems.Climate.WeatherData.WeatherDataReader weatherDataReader(
     redeclare replaceable WeatherData weatherData,
     pAirRef=pAirRef,
@@ -64,7 +67,7 @@ model Ambience
   parameter BuildingSystems.Buildings.Types.DataSource xAirSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for absolute humidity of the ambient air"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.MassFraction xAir_constant = 0.5
+  parameter Modelica.Units.SI.MassFraction xAir_constant=0.5
     "Absolute humidity of the ambient air (used if xAirSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
   output BuildingSystems.Interfaces.Moisture_absOutput xAir
@@ -81,7 +84,7 @@ model Ambience
   parameter BuildingSystems.Buildings.Types.DataSource TAirRefSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for air temperature on reference height"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.Temp_K TAirRef_constant = 293.15
+  parameter Modelica.Units.SI.Temperature TAirRef_constant=293.15
     "Air temperature on reference height (used if TAirRefSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
   output BuildingSystems.Interfaces.Temp_KOutput TAirRef
@@ -98,7 +101,7 @@ model Ambience
   parameter BuildingSystems.Buildings.Types.DataSource IrrDirHorSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for solar beam radiation of horizontal surface"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.RadiantEnergyFluenceRate IrrDirHor_constant = 0.0
+  parameter Modelica.Units.SI.RadiantEnergyFluenceRate IrrDirHor_constant=0.0
     "Solar beam radiation of horizontal surface (used if IrrDirHorSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
   output BuildingSystems.Interfaces.RadiantEnergyFluenceRateOutput IrrDirHor
@@ -115,7 +118,7 @@ model Ambience
   parameter BuildingSystems.Buildings.Types.DataSource IrrDifHorSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for solar diffuse radiation of horizontal surface"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.RadiantEnergyFluenceRate IrrDifHor_constant = 0.0
+  parameter Modelica.Units.SI.RadiantEnergyFluenceRate IrrDifHor_constant=0.0
     "Solar diffuse radiation of horizontal surface (used if IrrDifHorSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
   output BuildingSystems.Interfaces.RadiantEnergyFluenceRateOutput IrrDifHor
@@ -132,7 +135,7 @@ model Ambience
   parameter BuildingSystems.Buildings.Types.DataSource vWindRefSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for solar wind speed on reference height"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.Velocity vWindRef_constant = 0.0
+  parameter Modelica.Units.SI.Velocity vWindRef_constant=0.0
     "Wind speed on reference height (used if vWindRefSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
   output BuildingSystems.Interfaces.VelocityOutput vWindRef
@@ -149,7 +152,7 @@ model Ambience
   parameter BuildingSystems.Buildings.Types.DataSource angleDegWindRefSou = BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for Angle of wind direction on reference height"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegWindRef_constant = 0.0
+  parameter Modelica.Units.NonSI.Angle_deg angleDegWindRef_constant=0.0
     "Angle of wind direction on reference height (used if angleDegWindRefSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegWindRef
@@ -199,12 +202,12 @@ model Ambience
     "Longitude of the local time zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-30,90})));
-  output BuildingSystems.Interfaces.Angle_degOutput angleDegAziSun =
+  output BuildingSystems.Interfaces.Angle_degOutput angleDegAziSun=
     radiation[1].radiationPort.angleDegAziSun
     "Azimuth angle of the sun"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-10,90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=90,origin={-10,90})));
-  output BuildingSystems.Interfaces.Angle_degOutput angleDegHeightSun =
+  output BuildingSystems.Interfaces.Angle_degOutput angleDegHeightSun=
     radiation[1].radiationPort.angleDegHeightSun
     "Height angle of the sun"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={10,90}),

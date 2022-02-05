@@ -3,10 +3,9 @@ model CompressionChiller
   "Example of a compression chiller"
   extends Modelica.Icons.Example;
   package Medium = BuildingSystems.Media.Water;
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 10.0
-    "Nominal mass flow rate"
-    annotation(Dialog(group = "Nominal condition"));
-  parameter Modelica.SIunits.MassFlowRate m_flow = 10.0;
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=10.0
+    "Nominal mass flow rate" annotation (Dialog(group="Nominal condition"));
+  parameter Modelica.Units.SI.MassFlowRate m_flow=10.0;
   BuildingSystems.Fluid.Sources.Boundary_pT bou_con(
     redeclare package Medium = Medium,
     nPorts=1,

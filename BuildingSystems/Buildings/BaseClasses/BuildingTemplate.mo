@@ -6,9 +6,9 @@ partial model BuildingTemplate
   parameter Boolean flexibleOrientation = false
     "False (default) or true: building can dynamically rotate (azimuth angle of the building from input)"
     annotation (Evaluate=true, Dialog(tab = "General", group = "Orientation"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziBuilding = 0.0
+  parameter Modelica.Units.NonSI.Angle_deg angleDegAziBuilding=0.0
     "Fixed azimuth angle of the building: south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg (if flexibleOrientation == false)"
-    annotation(Dialog(tab="General",group="Orientation"));
+    annotation (Dialog(tab="General", group="Orientation"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegAziBuilding_internal
     "Azimuth angle of the building";
   input BuildingSystems.Interfaces.Angle_degInput angleDegAziBuilding_in(
@@ -32,9 +32,10 @@ partial model BuildingTemplate
   parameter BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection convectionOnSurfaces = BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const
     "Type of convection calculation for outside building surfaces"
     annotation(HideResult = true,Dialog(tab="Advanced",group="Convection model on building facades"));
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaConstant= 10.0
-    "Convective heat transfer coefficient for simplified calculations"
-    annotation(Dialog(tab="Advanced",group="Convection model on building facades"));
+  parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaConstant=
+      10.0 "Convective heat transfer coefficient for simplified calculations"
+    annotation (Dialog(tab="Advanced", group=
+          "Convection model on building facades"));
   parameter Integer nSurfacesSolid = 0
     "Number of surfaces (with contact to solids) to the building ambience"
     annotation(Dialog(tab="General",group="Solid building ambience"));
@@ -120,8 +121,8 @@ partial model BuildingTemplate
     "Heat port to the ground under the building"
     annotation (Placement(transformation(extent={{-8,-8},{8,8}},rotation=180,origin={-42,-118}),iconTransformation(extent={{-80,-100},{0,-80}})));
   BuildingSystems.Interfaces.HeatPorts conHeatSourcesPorts[nHeatSources] if heatSources
-    "Heat port to internal convective heat sources of the building" annotation
-    (Placement(transformation(extent={{-54,110},{-34,130}}), iconTransformation(extent={{-10,90},{10,110}})));
+    "Heat port to internal convective heat sources of the building" annotation (
+     Placement(transformation(extent={{-54,110},{-34,130}}), iconTransformation(extent={{-10,90},{10,110}})));
   BuildingSystems.Interfaces.HeatPorts radHeatSourcesPorts[nHeatSources] if heatSources
     "Heat port to internal long-wave radiation heat sources of the building"
     annotation (Placement(transformation(extent={{-10,110},{10,130}}),iconTransformation(extent={{10,90},{30,110}})));

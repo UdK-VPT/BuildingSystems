@@ -2,7 +2,7 @@ within BuildingSystems.HAM.HeatAndMoistureTransport.Sources;
 model FixedAbsoluteMoisture
   "Boundary condition of a constant absolute moisture"
   extends MoistureSourceGeneral(moisturePort(x = x_constant));
-  parameter Modelica.SIunits.MassFraction x_constant = 0.05
+  parameter Modelica.Units.SI.MassFraction x_constant=0.05
     "Constant absolute moisture";
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={

@@ -3,43 +3,39 @@ model AirvolumeThermal1x1x1
 extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
   nSurfaces = 6,
   nAirElements = 1,
-  bou.posX = {
+    bou(
+  posX =     {
     1.5,
     3.0,
     1.5,
     0.0,
     1.5,
-    1.5
-  },
-  bou.posY = {
+    1.5},
+  posY =     {
     1.5,
     1.5,
     1.5,
     1.5,
     0.0,
-    3.0
-  },
-  bou.posZ = {
+    3.0},
+  posZ =     {
     1.5,
     1.5,
     1.5,
     1.5,
     0.0,
-    3.0
-  },
-  bou.location = {
+    3.0},
+  location =     {
     BuildingSystems.Buildings.Types.OrientationType.South,
     BuildingSystems.Buildings.Types.OrientationType.East,
     BuildingSystems.Buildings.Types.OrientationType.North,
     BuildingSystems.Buildings.Types.OrientationType.West,
     BuildingSystems.Buildings.Types.OrientationType.Floor,
-    BuildingSystems.Buildings.Types.OrientationType.Roof
-  }
-  );
+    BuildingSystems.Buildings.Types.OrientationType.Roof}));
 
-  parameter Modelica.SIunits.Length length = 3.0;
-  parameter Modelica.SIunits.Length width = 3.0;
-  parameter Modelica.SIunits.Length height = 3.0;
+  parameter Modelica.Units.SI.Length length=3.0;
+  parameter Modelica.Units.SI.Length width=3.0;
+  parameter Modelica.Units.SI.Length height=3.0;
 
 
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle111(

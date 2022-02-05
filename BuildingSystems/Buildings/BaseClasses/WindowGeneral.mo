@@ -39,9 +39,9 @@ partial model WindowGeneral
   parameter Boolean calcEmbrasure = false
     "true: shadowing effect of embrasure is considered"
     annotation(Dialog(tab = "Shadowing", group = "Shadowing embrasure"));
-  parameter Modelica.SIunits.Length depthEmbrasure = 0.0
+  parameter Modelica.Units.SI.Length depthEmbrasure=0.0
     "Depth of the embrasure (if calcEmbrasure == true)"
-    annotation(Dialog(tab = "Shadowing", group = "Shadowing embrasure"));
+    annotation (Dialog(tab="Shadowing", group="Shadowing embrasure"));
   // Ventilation
   parameter Boolean calcAirchange = false
     "true: calculation of air exchange through the window, false: no air exchange"
@@ -49,9 +49,9 @@ partial model WindowGeneral
   parameter Integer nCom=10
     "Number of compartments for the discretization"
     annotation(Dialog(tab = "Air change", group = "Air change calculation"));
-  parameter Modelica.SIunits.Area LClo(min=0)=0.001
+  parameter Modelica.Units.SI.Area LClo(min=0) = 0.001
     "Effective leakage area of closed window"
-    annotation(Dialog(tab = "Air change", group = "Air change calculation"));
+    annotation (Dialog(tab="Air change", group="Air change calculation"));
   // Advanced parameters
   parameter Boolean show_TSur = false
     "Show surface temperatures on both sides"
@@ -64,9 +64,8 @@ partial model WindowGeneral
     "Temperature on surface side 2"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={46,10}),
       iconTransformation(extent={{10,30},{30,50}})));
-  parameter Modelica.SIunits.Temp_K T_start=293.15
-    "Start temperature of the window"
-    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.Units.SI.Temperature T_start=293.15
+    "Start temperature of the window" annotation (Dialog(tab="Initialization"));
   BuildingSystems.HAM.HeatConduction.HeatConduction1D heatTransfer(
     material(
       lambda = UWin*thicknessPan,
@@ -137,21 +136,23 @@ partial model WindowGeneral
 protected
   Modelica.Blocks.Interfaces.RealInput GSC_internal
     "Shading coefficient";
-  constant Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaInsDIN4701 = 7.692
+  constant Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaInsDIN4701=
+      7.692
     "Heat transfer coefficient (convection + radiation) inside of the construction";
      // after German DIN 4701 Teil2 tabular 16"
-  constant Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaAmbDIN4701 = 25.0
+  constant Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaAmbDIN4701=
+      25.0
     "Heat transfer coefficient (convection + radiation) outside of the construction";
     // after german DIN 4701 Teil2 tabular 16"
-  constant Modelica.SIunits.Density rhoWin = 2000.0
+  constant Modelica.Units.SI.Density rhoWin=2000.0
     "Mean Density of the window construction";
-  constant Modelica.SIunits.SpecificHeatCapacity cWin = 1000.0
+  constant Modelica.Units.SI.SpecificHeatCapacity cWin=1000.0
     "Specific heat capacity of the window construction";
-  final parameter Modelica.SIunits.Length thicknessPan = sum(constructionData.thickness)
+  final parameter Modelica.Units.SI.Length thicknessPan=sum(constructionData.thickness)
     "Total thickness of all panes";
-  final parameter Modelica.SIunits.CoefficientOfHeatTransfer UWin =
-    1.0/(-1.0/alphaAmbDIN4701-1.0/alphaInsDIN4701
-    +1.0/((1.0-framePortion)*constructionData.UValGla+framePortion*constructionData.UValFra))
+  final parameter Modelica.Units.SI.CoefficientOfHeatTransfer UWin=1.0/(-1.0/
+      alphaAmbDIN4701 - 1.0/alphaInsDIN4701 + 1.0/((1.0 - framePortion)*
+      constructionData.UValGla + framePortion*constructionData.UValFra))
     "Mean heat transfer coefficient of the window construction without the heat transfer on the surfaces";
 equation
   // Geometry

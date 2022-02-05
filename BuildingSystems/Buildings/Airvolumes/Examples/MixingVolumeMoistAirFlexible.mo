@@ -5,7 +5,7 @@ model MixingVolumeMoistAirFlexible
 
   package Medium = BuildingSystems.Media.Air;
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.001
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.001
     "Nominal mass flow rate";
 
   BuildingSystems.Buildings.Airvolumes.MixingVolumeMoistAir vol1(
@@ -36,9 +36,8 @@ model MixingVolumeMoistAirFlexible
     annotation (Placement(transformation(extent={{32,-22},{52,-2}})));
   Modelica.Blocks.Sources.Sine fleVol(
     amplitude=0.2,
-    freqHz=1.0/3600.0,
-    offset=1.0)
-    "time dependent volume"
+    f=1.0/3600.0,
+    offset=1.0) "time dependent volume"
     annotation (Placement(transformation(extent={{-14,10},{-6,18}})));
   Modelica.Blocks.Sources.Constant mWat_flow(k=0.0)
     "mass flow rate water"

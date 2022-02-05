@@ -3,10 +3,8 @@ function lambda
   "Thermal conductivity of gases as function of the temperature"
   input Integer gas
     "Gas: 1:air, 2:argon, 3:krypton, 4:xenon, 5:SF6";
-  input Modelica.SIunits.Temp_K T
-    "TGas temperature";
-  output Modelica.SIunits.ThermalConductivity value
-    "Thermal conductivity";
+  input Modelica.Units.SI.Temperature T "TGas temperature";
+  output Modelica.Units.SI.ThermalConductivity value "Thermal conductivity";
 algorithm
   if gas == 1 then // air
     value := 4.377e-4 + 9.696e-5 * T - 3.728e-8 * T^2; // interpolation between 173.15 K and 523.15 K after VDI Waermeatlas Db 16-28

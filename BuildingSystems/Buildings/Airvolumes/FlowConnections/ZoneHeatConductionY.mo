@@ -8,7 +8,7 @@ model ZoneHeatConductionY
   BuildingSystems.Buildings.Airvolumes.Interfaces.FluidHeatExt port_2
     annotation (Placement(transformation(extent={{12,-8},{32,12}}),
       iconTransformation(extent={{40,-4},{48,4}})));
-  constant Modelica.SIunits.ThermalConductivity lambdaAir=0.0262;
+  constant Modelica.Units.SI.ThermalConductivity lambdaAir=0.0262;
 equation
   // Q_flow = lambda*A/l*(T2-T1);
   port_2.Q_flow = lambdaAir *((0.5 *(port_1.dim[1] + port_2.dim[1]))

@@ -51,8 +51,8 @@ model Buoyancy
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector(m=
         buoyancyModel.nEle - 1)
     annotation (Placement(transformation(extent={{20,-32},{0,-10}})));
-  Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector1(m
-      =buoyancyModel.nEle - 1)
+  Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector1(m=
+       buoyancyModel.nEle - 1)
     annotation (Placement(transformation(extent={{20,44},{0,22}})));
 equation
   connect(boundary.ports[1], vol_BOTTOM.ports[1]) annotation (Line(

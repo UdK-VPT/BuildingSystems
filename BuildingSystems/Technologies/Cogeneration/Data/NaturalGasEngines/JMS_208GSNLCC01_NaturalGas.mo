@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.Cogeneration.Data.NaturalGasEngines;
-record JMS_208GSNLCC01_NaturalGas = BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral(
+record JMS_208GSNLCC01_NaturalGas =
+    BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral
+    (
   Q_flow_nominal = 400000.0,
   QCon_flow_nominal = 785000.0,
   P_nominal = 300000.0,

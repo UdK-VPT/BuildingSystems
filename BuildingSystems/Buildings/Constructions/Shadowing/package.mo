@@ -1,6 +1,5 @@
 within BuildingSystems.Buildings.Constructions;
-package Shadowing
-  "Package with shadowing models"
+package Shadowing "Package with shadowing models"
   extends Modelica.Icons.Package;
 
   annotation (preferredView="info",Icon(graphics={

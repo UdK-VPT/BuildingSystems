@@ -4,22 +4,17 @@ model HeatConduction3DWithTube
   extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface;
   parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialThermalGeneral material
     "Material around the tube";
-  parameter Modelica.SIunits.Length lengthX
-    "Length in x dimension"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length lengthY
-    "Length in y dimension"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length lengthZ
-    "Length in z dimension"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length diameterTube
-    "Inside tube diameter"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length thicknessTube
-    "Thickness of tube wall"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.ThermalConductivity lambdaTube
+  parameter Modelica.Units.SI.Length lengthX "Length in x dimension"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length lengthY "Length in y dimension"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length lengthZ "Length in z dimension"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length diameterTube "Inside tube diameter"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length thicknessTube "Thickness of tube wall"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.ThermalConductivity lambdaTube
     "Heat conductivity of tube wall";
   parameter Integer nNodesTube(min=1) = 1
     "Number of volume nodes of the integrated tube";
@@ -55,7 +50,9 @@ model HeatConduction3DWithTube
     annotation(Placement(transformation(extent={{-10,-10},{10,10}},origin={-60,-40}),iconTransformation(extent={{-10,-10},{10,10}}, origin={-60,-40})));
   BuildingSystems.Interfaces.HeatPort heatPort_z2
     annotation(Placement(transformation(extent={{-10,-10},{10,10}},origin={60,80}), iconTransformation(extent={{-10,-10},{10,10}}, origin={60,80})));
-  protected parameter Modelica.SIunits.Length edgeTube = sqrt(Modelica.Constants.pi*(diameterTube+thicknessTube)^2/4);
+protected
+  parameter Modelica.Units.SI.Length edgeTube=sqrt(Modelica.Constants.pi*(
+      diameterTube + thicknessTube)^2/4);
 equation
   connect(heaCon.heatPort_x2, heatPort_x2) annotation (Line(
       points={{8,20},{60,20}},

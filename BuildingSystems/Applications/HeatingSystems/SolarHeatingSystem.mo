@@ -2,17 +2,18 @@ within BuildingSystems.Applications.HeatingSystems;
 model SolarHeatingSystem
   "Solar heating system"
   extends Modelica.Icons.Example;
-  package Medium2 = BuildingSystems.Media.Water(
+  package Medium2 = BuildingSystems.Media.Water (
     T_max = 273.15+150.0);
-  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
+  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater (
     X_a=0.40,
     property_T=293.15,
     T_max = 273.15+200.0);
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal= 0.1;
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.1;
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=building.nSurfacesAmbience,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     "Ambience model"
     annotation (Placement(transformation(extent={{-26,42},{-6,62}})));
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone1DDistrict building(
@@ -349,8 +350,8 @@ equation
       points={{0,-4.8},{0,-4.8},{0,68},{17,68},{17,62}}, color={191,0,0}));
   connect(ambience.latitudeDeg, radiation.latitudeDeg) annotation (Line(points={{
           -23,61},{-23,84},{76.2,84},{76.2,25.6}}, color={0,0,127}));
-  connect(ambience.longitudeDeg, radiation.longitudeDeg) annotation (Line(points
-        ={{-21,61},{-21,84},{80,84},{80,25.6}}, color={0,0,127}));
+  connect(ambience.longitudeDeg, radiation.longitudeDeg) annotation (Line(points=
+         {{-21,61},{-21,84},{80,84},{80,25.6}}, color={0,0,127}));
   connect(ambience.longitudeDeg0, radiation.longitudeDeg0) annotation (Line(
         points={{-19,61},{-19,84},{84,84},{84,25.6}}, color={0,0,127}));
   connect(booleanToReal.u, control.y)

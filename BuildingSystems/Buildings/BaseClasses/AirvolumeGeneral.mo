@@ -7,9 +7,9 @@ partial model AirvolumeGeneral
   parameter BuildingSystems.Buildings.Types.GeometryType geometryType = BuildingSystems.Buildings.Types.GeometryType.Fixed
     "Fixed (default) or flexible geometry"
     annotation (Evaluate=true, Dialog(tab = "General", group = "Air volume geometry"));
-  parameter Modelica.SIunits.Volume V = 1.0
+  parameter Modelica.Units.SI.Volume V=1.0
     "Air volume (if geometryType == Fixed)"
-    annotation(Dialog(tab="General",group="Air volume geometry"));
+    annotation (Dialog(tab="General", group="Air volume geometry"));
   output BuildingSystems.Interfaces.VolumeOutput V_internal
     "Air volume";
   input BuildingSystems.Interfaces.VolumeInput V_in(
@@ -23,11 +23,11 @@ partial model AirvolumeGeneral
   parameter Integer nAirElements(min=1) = 1
     "Number of air elements, which are included in the air volume"
     annotation(Dialog(tab="General"));
-  parameter Modelica.SIunits.Temp_K T_start[nAirElements] = fill(293.15,nAirElements)
-    "Air temperature (start value)"
+  parameter Modelica.Units.SI.Temperature T_start[nAirElements]=fill(293.15,
+      nAirElements) "Air temperature (start value)"
     annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.MassFraction x_start[nAirElements] = fill(0.005,nAirElements)
-   "Absolute air moisture (start value)"
+  parameter Modelica.Units.SI.MassFraction x_start[nAirElements]=fill(0.005,
+      nAirElements) "Absolute air moisture (start value)"
     annotation (Dialog(tab="Initialization"));
   parameter Integer nAirpaths = 0
     "Number of air paths"

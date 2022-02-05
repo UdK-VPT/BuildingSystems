@@ -15,20 +15,20 @@ model RadiationDistribution
   parameter Boolean geometricViewFactors= false
     "true: use of geometric view factors, false: use of surface area weighted view factors"
      annotation(HideResult = true);
-  Modelica.SIunits.Area ATotal
-    "Total surface area of the thermal zone";
+  Modelica.Units.SI.Area ATotal "Total surface area of the thermal zone";
   BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacePorts[nSurfaces]
     "Interface to the surfaces of the thermal zone"
     annotation (Placement(transformation(extent={{-90,-42},{-70,38}})));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
     "Interface to the internal heat sources of the thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={0,58}), iconTransformation(extent={{-40,68},{40,88}})));
-  Modelica.SIunits.HeatFlowRate Q_flow_Sw
+  Modelica.Units.SI.HeatFlowRate Q_flow_Sw
     "Total short radiation gains of the thermal zone";
   BuildingSystems.Interfaces.Temp_KOutput TSurfMean
     "Mean temperatures of all surfaces"
     annotation (Placement(transformation(extent={{70,-10},{90,10}}), iconTransformation(extent={{70,-10},{90,10}})));
-  protected Modelica.SIunits.HeatFlux J[nSurfaces](each start = 0.0)
+protected
+  Modelica.Units.SI.HeatFlux J[nSurfaces](each start=0.0)
     "Radiosity of each surface";
 initial equation
   if not geometricViewFactors then

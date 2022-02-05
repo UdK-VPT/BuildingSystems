@@ -2,15 +2,15 @@ within BuildingSystems.Buildings.Airvolumes.FlowConnections;
 model FlowConnectionZ
   "Flow connecting element from center of FV1 to center of FV2 in Z-direction"
   extends BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnection;
-  Modelica.SIunits.Length deltaz=abs(port_1.pos[3] - port_2.pos[3])
+  Modelica.Units.SI.Length deltaz=abs(port_1.pos[3] - port_2.pos[3])
     annotation (HideResult=true);
   // joint area between two zones, depends on the size (parameterization) of the FV
-  Modelica.SIunits.Length dx= 0.5 * (port_1.dim[1] + port_2.dim[1])
+  Modelica.Units.SI.Length dx=0.5*(port_1.dim[1] + port_2.dim[1])
     annotation (HideResult=true);
-  Modelica.SIunits.Length dy= 0.5 * (port_1.dim[2] + port_2.dim[2])
+  Modelica.Units.SI.Length dy=0.5*(port_1.dim[2] + port_2.dim[2])
     annotation (HideResult=true);
   final parameter Real LayFacBC = (if BCwall_east or BCwall_west then LayFac else 1)*(if BCwall_roof or BCwall_floor then LayFac else 1);
-  Modelica.SIunits.Length dist=sqrt((port_2.pos[3] - port_1.pos[3])^2);
+  Modelica.Units.SI.Length dist=sqrt((port_2.pos[3] - port_1.pos[3])^2);
   Real Fm_tmp(start = 0);
 
 equation
@@ -39,8 +39,7 @@ equation
     Ellipse(extent={{34,38},{-34,-30}},lineColor={0,0,255},fillColor={255,255,170},
             fillPattern =                                                                      FillPattern.Solid),
     Text(extent={{12,20},{26,24}},lineColor={0,0,255},textString="Port 2",fontSize=16),
-    Text(extent={{-22,-18},{-8,-14}},lineColor={0,0,255},fontSize=16,textString
-            =                                                                   "Port 1")}),
+    Text(extent={{-22,-18},{-8,-14}},lineColor={0,0,255},fontSize=16,textString="Port 1")}),
     Icon(graphics={Line(points={{-20,-26},{20,26}},color={255,170,85},arrow={Arrow.Filled,Arrow.Filled},thickness=1)}),
 Documentation(info=""));
 end FlowConnectionZ;

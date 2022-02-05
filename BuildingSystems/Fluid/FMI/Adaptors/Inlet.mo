@@ -26,8 +26,8 @@ model Inlet "Adaptor for connecting a fluid inlet to the FMI interface"
                 annotation (Placement(
         transformation(extent={{90,-10},{110,10}}), iconTransformation(extent={{90,-10},
             {110,10}})));
-  BuildingSystems.Fluid.FMI.Interfaces.PressureOutput p if
-     use_p_in "Pressure"
+  BuildingSystems.Fluid.FMI.Interfaces.PressureOutput p
+  if use_p_in "Pressure"
   annotation (
       Placement(
       transformation(

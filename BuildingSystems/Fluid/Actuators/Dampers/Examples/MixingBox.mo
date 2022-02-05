@@ -20,17 +20,20 @@ model MixingBox
     dpFixRec_nominal=20)
              "mixing box"
     annotation (Placement(transformation(extent={{14,-22},{34,-2}})));
-    BuildingSystems.Fluid.Sources.Boundary_pT bouIn(             redeclare package
+    BuildingSystems.Fluid.Sources.Boundary_pT bouIn(             redeclare
+      package
       Medium = Medium, T=273.15 + 10,
     use_p_in=true,
     nPorts=2)                                             annotation (Placement(
         transformation(extent={{-60,2},{-40,22}})));
-    BuildingSystems.Fluid.Sources.Boundary_pT bouSup(             redeclare package
+    BuildingSystems.Fluid.Sources.Boundary_pT bouSup(             redeclare
+      package
       Medium = Medium, T=273.15 + 26,
     use_p_in=true,
     nPorts=1)                                                                       annotation (Placement(
         transformation(extent={{68,-10},{48,10}})));
-    BuildingSystems.Fluid.Sources.Boundary_pT bouRet(             redeclare package
+    BuildingSystems.Fluid.Sources.Boundary_pT bouRet(             redeclare
+      package
       Medium = Medium, T=273.15 + 20,
     use_p_in=true,
     nPorts=1)                                                         annotation (Placement(

@@ -6,13 +6,12 @@ model AirElementThermal
   /////////////      PARAMETER     /////////////////////
 
   /////////////      VARIABLES     ///////////////////
-  Modelica.SIunits.Mass mAir = mAir_start
-    "Mass of dry air of the air volume";
-  Modelica.SIunits.Mass mH2OAir = mH2OAir_start
+  Modelica.Units.SI.Mass mAir=mAir_start "Mass of dry air of the air volume";
+  Modelica.Units.SI.Mass mH2OAir=mH2OAir_start
     "Mass of water vapor in the air of the air volume";
-  Modelica.SIunits.Mass mH2OLiq = mH2OLiq_start
+  Modelica.Units.SI.Mass mH2OLiq=mH2OLiq_start
     "Mass of liquid water of the air volume";
-  Modelica.SIunits.InternalEnergy U=U_start
+  Modelica.Units.SI.InternalEnergy U=U_start
     "Internal energy of the air volume";
   ///*****************************************************************///
 equation

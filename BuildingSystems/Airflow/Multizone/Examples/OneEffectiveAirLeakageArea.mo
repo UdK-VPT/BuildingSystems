@@ -22,13 +22,14 @@ model OneEffectiveAirLeakageArea "Model with an effective air leakage area"
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow preHeaFlo
     "Prescribed heat flow rate boundary condition"
     annotation (Placement(transformation(extent={{0,20},{20,40}})));
-  Modelica.Blocks.Sources.Sine heaFloBou(freqHz=1/3600)
+  Modelica.Blocks.Sources.Sine heaFloBou(f=1/3600)
     "Signal for heat flow rate boundary condition"
     annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
   Modelica.Blocks.Math.Gain gai(k=100)
     "Gain for heat flow rate boundary condition"
     annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
-  BuildingSystems.Airflow.Multizone.EffectiveAirLeakageArea cra(redeclare package
+  BuildingSystems.Airflow.Multizone.EffectiveAirLeakageArea cra(redeclare
+      package
       Medium = Medium, L=20E-4)
     "Crack model, parameterized with effective leakage area"
     annotation (Placement(transformation(extent={{50,-40},{70,-20}})));

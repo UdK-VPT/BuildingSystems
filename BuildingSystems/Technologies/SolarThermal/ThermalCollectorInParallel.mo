@@ -9,9 +9,9 @@ model ThermalCollectorInParallel
     "Number of solar thermal collectors in serie";
   parameter Integer nArr(min = 1) = 1
     "Number of parallel blocks of solar thermal collectors";
-  parameter Modelica.SIunits.Pressure dp_nominal
+  parameter Modelica.Units.SI.Pressure dp_nominal
     "Pressure drop at nominal conditions total installation"
-    annotation(Dialog(group = "Nominal condition"));
+    annotation (Dialog(group="Nominal condition"));
   BuildingSystems.Interfaces.Angle_degOutput angleDegAzi
     annotation (Dialog(group="Geometry"),Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-10,-90}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-10,-90})));
   BuildingSystems.Interfaces.Angle_degOutput angleDegTil
@@ -47,7 +47,7 @@ model ThermalCollectorInParallel
       C_A=collectorData.C_A),
     each dp_nominal=dp_nominal)
     annotation (Placement(transformation(extent={{-14,-10},{6,10}})));
-  equation
+equation
     for i in 1:nArr loop
       connect(thermalCollectorInSerie[i].radiationPort, radiationPort) annotation (
         Line(

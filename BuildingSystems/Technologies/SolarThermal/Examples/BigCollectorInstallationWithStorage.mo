@@ -3,12 +3,13 @@ model BigCollectorInstallationWithStorage
   "Six solar thermal collectors connected to a thermal fluid storage via an external heat exchanger"
   extends Modelica.Icons.Example;
   package Medium2 = BuildingSystems.Media.Water;
-  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
+  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater (
     X_a=0.40,
     property_T=293.15);
 
   BuildingSystems.Climate.WeatherData.WeatherDataReader weatherData(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     "time Gdot_beam Gdot_diffuse T_air_env"
     annotation (Placement(transformation(extent={{24,52},{8,68}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation2(

@@ -9,7 +9,7 @@ model FreeFloatingTemperature
       nAirpaths=building.nAirpaths)
       annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
     BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building(
-      AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0, // building shape: 4 m x 6 m x 2.8 m
+      AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0,
       AInn=3.3*2.8*2.0,
       AGro=4.0*6.0,
       nWindows=1,
@@ -24,6 +24,7 @@ model FreeFloatingTemperature
       UValWin={2.0},
       calcIdealLoads=false)
       annotation (Placement(transformation(extent={{-10,-28},{10,-8}})));
+                                            // building shape: 4 m x 6 m x 2.8 m
 
     Modelica.Blocks.Sources.Constant airchange(
       k=0.5)
@@ -58,32 +59,40 @@ model FreeFloatingTemperature
     annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-50,-50},{50,50}})), Icon(coordinateSystem(preserveAspectRatio=false, extent={{-50,-50},{50,50}}), graphics={
       Rectangle(extent={{-20,20},{20,-20}},lineColor={255,0,0},fillColor={255,0,0},fillPattern=FillPattern.Solid),
       Polygon(points={{-20,20},{0,40},{20,20},{-20,20}},lineColor={255,0,0},smooth=Smooth.None,fillColor={255,0,0},fillPattern=FillPattern.Solid),
-      Text(extent={{-42,-16},{42,-38}},lineColor={0,0,255},fillColor={230,230,230},fillPattern=  FillPattern.Solid,textString= "%name")}));
+      Text(extent={{-42,-16},{42,-38}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString= "%name")}));
   end Location;
 
   Location AmundsenScott(
-    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.SouthPole_AmundsenScott_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData =
+          BuildingSystems.Climate.WeatherDataMeteonorm.SouthPole_AmundsenScott_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{-5,-84},{5,-74}})));
   Location SanFrancisco(
-    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData =
+          BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{-91,44},{-81,54}})));
   Location ElGouna(
-    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData =
+          BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{19,30},{29,40}})));
   Location Berlin(
-    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData =
+          BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{3,52},{13,62}})));
   Location NewYork(
-    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_NewYork_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData =
+          BuildingSystems.Climate.WeatherDataMeteonorm.USA_NewYork_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{-61,38},{-51,48}})));
   Location Tokyo(
-    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Japan_Tokyo_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData =
+          BuildingSystems.Climate.WeatherDataMeteonorm.Japan_Tokyo_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{95,42},{105,52}})));
   Location Moscow(
-    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Russia_Moscow_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData =
+          BuildingSystems.Climate.WeatherDataMeteonorm.Russia_Moscow_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{15,56},{25,66}})));
   Location Bombay(
-    ambience(redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.India_Bombay_Meteonorm_ASCII))
+    ambience(redeclare block WeatherData =
+          BuildingSystems.Climate.WeatherDataMeteonorm.India_Bombay_Meteonorm_ASCII))
     annotation (Placement(transformation(extent={{53,20},{63,30}})));
 
     annotation(experiment(StartTime=0, StopTime=31536000),

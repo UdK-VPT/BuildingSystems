@@ -1,13 +1,11 @@
-within BuildingSystems.BoundaryConditions.Validation.BESTEST;
+﻿within BuildingSystems.BoundaryConditions.Validation.BESTEST;
 model WD100
   "Test model for BESTEST weather data: base case"
   extends Modelica.Icons.Example;
-  parameter Modelica.SIunits.Angle lat=0.6952170009469
-    "Latitude angle";
+  parameter Modelica.Units.SI.Angle lat=0.6952170009469 "Latitude angle";
   parameter Real rho=0
     "Ground reflectance";
-  parameter Modelica.SIunits.Length alt=1650
-    "Altitude";
+  parameter Modelica.Units.SI.Length alt=1650 "Altitude";
   WeatherData.ReaderTMY3 weaDatHHorIR(
     pAtmSou=BuildingSystems.BoundaryConditions.Types.DataSource.File,
     ceiHeiSou=BuildingSystems.BoundaryConditions.Types.DataSource.Parameter,

@@ -12,12 +12,9 @@ model AirvolumeMixed
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
   BuildingSystems.Types.RelativeHumidity phi
     "Relative humidity of the air";
-  Modelica.SIunits.Mass mH2OLiq(
-    start = mH2OLiq_start)
-    "Liquid water mass";
-  parameter Modelica.SIunits.Mass mH2OLiq_start = 0.0
-   "Liquid water mass (start value)"
-    annotation (Dialog(tab="Initialization"));
+  Modelica.Units.SI.Mass mH2OLiq(start=mH2OLiq_start) "Liquid water mass";
+  parameter Modelica.Units.SI.Mass mH2OLiq_start=0.0
+    "Liquid water mass (start value)" annotation (Dialog(tab="Initialization"));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
     "Heat ports of the convective heat sources"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-80,40}),
@@ -26,11 +23,11 @@ model AirvolumeMixed
     "Moisture ports of the moisture sources"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-80,-40}),
       iconTransformation(extent={{-40,-10},{40,10}},rotation=90,origin={-80,-40})));
-  parameter BuildingSystems.Buildings.Types.DataSource TSou =
+  parameter BuildingSystems.Buildings.Types.DataSource TSou=
    BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for air temperature"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.Temp_K T_constant = 293.15
+  parameter Modelica.Units.SI.Temperature T_constant=293.15
     "Constant air temperature (used if TSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
   BuildingSystems.Interfaces.Temp_KInput T_in
@@ -38,11 +35,11 @@ model AirvolumeMixed
     "Prediscribed external air temperature (used if TSou=Input)"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={80,40}),
       iconTransformation(extent={{90,30},{70,50}})));
-  parameter BuildingSystems.Buildings.Types.DataSource xSou =
+  parameter BuildingSystems.Buildings.Types.DataSource xSou=
    BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for air moisture"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.MassFraction x_constant = 0.005
+  parameter Modelica.Units.SI.MassFraction x_constant=0.005
     "Vonstant air moisture (used if xSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
   BuildingSystems.Interfaces.Moisture_absInput x_in
@@ -50,9 +47,8 @@ model AirvolumeMixed
     "Prediscribed external air moisture (used if xSou=Input)"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={80,0}),
       iconTransformation(extent={{90,-10},{70,10}})));
-  constant Modelica.SIunits.Velocity vAir_constant = 0.0
-    "Air velocity";
-  constant Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAir_constant = 0.0
+  constant Modelica.Units.SI.Velocity vAir_constant=0.0 "Air velocity";
+  constant Modelica.Units.NonSI.Angle_deg angleDegAir_constant=0.0
     "Direction of the air flow";
   BuildingSystems.Buildings.Airvolumes.MixingVolumeMoistAir air(
     redeclare package Medium = Medium,
@@ -79,10 +75,13 @@ model AirvolumeMixed
     y=sum(toSurfacePorts.heatPort.Q_flow)+sum(heatSourcesPorts.Q_flow))
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
   Modelica.Blocks.Sources.RealExpression mWatSum_flow(
-    y=sum(toSurfacePorts.moisturePort.m_flow) // water vaper from moisture transfer of surfaces
-      + (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5) * sum(moistureSourcesPorts.m_flow) // water vapor from moisture sources
-      + BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq) // evaporated water from liquid reservoir
+    y=sum(toSurfacePorts.moisturePort.m_flow)
+      + (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5) * sum(moistureSourcesPorts.m_flow)
+      + BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq)
     annotation (Placement(transformation(extent={{-40,10},{-20,30}})));
+                                              // water vaper from moisture transfer of surfaces
+                                                                                              // water vapor from moisture sources
+                                                                                            // evaporated water from liquid reservoir
 equation
   // Select source for air temperature
   if TSou == BuildingSystems.Buildings.Types.DataSource.Parameter then
@@ -125,8 +124,9 @@ equation
   phi = BuildingSystems.Utilities.Psychrometrics.Functions.phi_pTX(100000,T[1],x[1]);
 
   // Mass balance of liquid water
-   der(mH2OLiq) = (1.0 - (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5)) * sum(moistureSourcesPorts.m_flow) // water vapor surplus from moisture sources if relative moisture becomes close to 1
-    - BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq; // evaporated water which leaves the liquid reservoir
+   der(mH2OLiq) = (1.0 - (-0.5 * Modelica.Math.tanh(100.0*(phi-1.0)) + 0.5)) * sum(moistureSourcesPorts.m_flow)
+    - BuildingSystems.Utilities.SmoothFunctions.softcut(1.0-phi,0.0,1.0,0.001) * mH2OLiq;                       // water vapor surplus from moisture sources if relative moisture becomes close to 1
+                                                                                          // evaporated water which leaves the liquid reservoir
 
   connect(V_in, air.V_in)
     annotation (Line(points={{-80,0},{-64,0},{-64,10},{-20,10},{-20,4},{-12,4}},color={0,0,127}));

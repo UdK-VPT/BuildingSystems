@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.SolarThermal.Data.Collectors;
-record FlatSolarCollector1 = BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial(
+record FlatSolarCollector1 =
+    BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial
+    (
   final IAMC=0.88,
   final V_A=1.5/1.8/980,
   final C_0=0.775,

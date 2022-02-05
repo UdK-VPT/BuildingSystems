@@ -19,8 +19,7 @@ partial model ElectricalModelGeneral
   output Modelica.Blocks.Interfaces.RealOutput I(unit="A", start = 0.0)
     "Module current"
     annotation (Placement(transformation(extent={{60,-50},{80,-30}}), iconTransformation(extent={{60,-50},{80,-30}})));
-  Modelica.SIunits.Voltage Ut
-    "Temperature voltage";
+  Modelica.Units.SI.Voltage Ut "Temperature voltage";
 protected
   final constant Real e(unit = "A.s") = Modelica.Constants.F/Modelica.Constants.N_A
     "Elementary charge";

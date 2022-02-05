@@ -10,19 +10,20 @@ model PVModuleControlledTiltAngle
     angleDegAzi_constant=0.0)
     annotation (Placement(transformation(extent={{-56,34},{-36,54}})));
   BuildingSystems.Climate.WeatherData.WeatherDataReader weatherData(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation(Placement(transformation(extent={{-96,84},{-84,96}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
     rhoAmb = 0.2,
     angleDegL = 0.0)
     annotation (Placement(transformation(extent={{-74,62},{-54,82}})));
   Modelica.Blocks.Sources.Sine sine(
-   amplitude=45,
-   freqHz=1/86400,
-   phase=0,
-   offset=45,
-   startTime=0)
-   annotation (Placement(transformation(extent={{-22,60},{-34,72}})));
+    amplitude=45,
+    f=1/86400,
+    phase=0,
+    offset=45,
+    startTime=0)
+    annotation (Placement(transformation(extent={{-22,60},{-34,72}})));
 equation
   connect(radiation.radiationPort, pvField.radiationPort)
     annotation (Line(

@@ -3,7 +3,7 @@ model WallThermalTriangular1DNodes
   "1D thermal triangular wall model"
   extends Modelica.Icons.Example;
   record Construction
-    extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction (
+    extends BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
       nLayers=2,
       thickness={0.1,0.1},
       material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Concrete(),
@@ -23,7 +23,8 @@ model WallThermalTriangular1DNodes
     annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=2,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
 equation
   connect(surface1.toConstructionPort, wall.toSurfacePort_1) annotation (Line(
