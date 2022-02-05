@@ -34,7 +34,7 @@ model PVModuleSimpleMPP
   output Modelica.Blocks.Interfaces.RealOutput UField(unit="V")
     "Voltage of the PV field"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}}, origin={60,60}),iconTransformation(extent={{-10,-10},{10,10}}, origin={60,60})));
-  equation
+equation
     if use_GSC_in then
        connect(opticalModel.GSC,GSC_in);
      else

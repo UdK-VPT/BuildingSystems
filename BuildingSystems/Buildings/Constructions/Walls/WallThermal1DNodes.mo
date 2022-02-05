@@ -33,9 +33,9 @@ model WallThermal1DNodes
     "Temperature on surface side 2"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,40}),
       iconTransformation(extent={{20,30},{40,50}})));
-  parameter Modelica.SIunits.Area AInnSur = 0.0
+  parameter Modelica.Units.SI.Area AInnSur=0.0
     "Area of all enclosed surfaces (if geometryType == Fixed)"
-    annotation(Dialog(tab = "Geometry", group = "General"));
+    annotation (Dialog(tab="Geometry", group="General"));
   output BuildingSystems.Interfaces.AreaOutput AInnSur_internal
     "Area of all enclosed surfaces";
   input BuildingSystems.Interfaces.AreaInput AInnSur_in(

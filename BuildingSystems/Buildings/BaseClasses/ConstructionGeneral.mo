@@ -51,9 +51,9 @@ partial model ConstructionGeneral
   parameter BuildingSystems.Buildings.Types.GeometryType geometryType = BuildingSystems.Buildings.Types.GeometryType.Fixed
     "Fixed (default) or flexible geometry"
     annotation (Evaluate=true, Dialog(tab = "Geometry", group = "General"));
-  parameter Modelica.SIunits.Length width = 1.0
+  parameter Modelica.Units.SI.Length width=1.0
     "Width (if geometryType == Fixed)"
-    annotation(Dialog(tab = "Geometry", group = "Dimension"));
+    annotation (Dialog(tab="Geometry", group="Dimension"));
   output BuildingSystems.Interfaces.LengthOutput width_internal
     "Width";
   input BuildingSystems.Interfaces.LengthInput width_in(
@@ -61,9 +61,9 @@ partial model ConstructionGeneral
     "Width from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-36}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-20})));
-  parameter Modelica.SIunits.Length height = 1.0
+  parameter Modelica.Units.SI.Length height=1.0
     "Height (if geometryType == Fixed)"
-    annotation(Dialog(tab = "Geometry", group = "Dimension"));
+    annotation (Dialog(tab="Geometry", group="Dimension"));
   output BuildingSystems.Interfaces.LengthOutput height_internal
     "Height";
   input BuildingSystems.Interfaces.LengthInput height_in(
@@ -71,9 +71,9 @@ partial model ConstructionGeneral
     "Height from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-46}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-40})));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi = 0.0
+  parameter Modelica.Units.NonSI.Angle_deg angleDegAzi=0.0
     "Azimuth angle (if geometryType == Fixed) -> south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg"
-    annotation(Dialog(tab = "Geometry", group = "Orientation"));
+    annotation (Dialog(tab="Geometry", group="Orientation"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegAzi_internal
     "Azimuth angle";
   input BuildingSystems.Interfaces.Angle_degInput angleDegAzi_in(
@@ -82,9 +82,9 @@ partial model ConstructionGeneral
     "Azimuth angle from input"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,  origin={30,-46}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={22,-40})));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil = 90.0
+  parameter Modelica.Units.NonSI.Angle_deg angleDegTil=90.0
     "Tilt angle (if geometryType == Fixed) -> bottom: 0 deg, perpendicular: 90 deg, ceiling: 180 deg"
-    annotation(Dialog(tab = "Geometry", group = "Orientation"));
+    annotation (Dialog(tab="Geometry", group="Orientation"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegTil_internal
     "Tilt angle";
   input BuildingSystems.Interfaces.Angle_degInput angleDegTil_in(
@@ -93,9 +93,9 @@ partial model ConstructionGeneral
     "Tilt angle from input"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,  origin={30,-36}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={22,-20})));
-  parameter Modelica.SIunits.Length position[3] = {0.0,0.0,0.0}
+  parameter Modelica.Units.SI.Length position[3]={0.0,0.0,0.0}
     "Position (if geometryType == Fixed)"
-    annotation(Dialog(tab = "Geometry", group = "General"));
+    annotation (Dialog(tab="Geometry", group="General"));
   output BuildingSystems.Interfaces.LengthOutput position_internal[3]
     "Position";
   input BuildingSystems.Interfaces.LengthInput position_in[3]
@@ -109,16 +109,15 @@ partial model ConstructionGeneral
   parameter BuildingSystems.Types.Absorptance abs_2 = 0.5
     "Short-wave absorptance side 2"
     annotation(Dialog(tab = "General", group = "Surfaces"));
-  parameter Modelica.SIunits.Emissivity epsilon_1 = 0.9
+  parameter Modelica.Units.SI.Emissivity epsilon_1=0.9
     "Long-wave emittance side 1"
-    annotation(Dialog(tab = "General", group = "Surfaces"));
-  parameter Modelica.SIunits.Emissivity epsilon_2 = 0.9
+    annotation (Dialog(tab="General", group="Surfaces"));
+  parameter Modelica.Units.SI.Emissivity epsilon_2=0.9
     "Long-wave emittance side 2"
-    annotation(Dialog(tab = "General", group = "Surfaces"));
-  Modelica.SIunits.Area ASur
-    "Surface area";
+    annotation (Dialog(tab="General", group="Surfaces"));
+  Modelica.Units.SI.Area ASur "Surface area";
 protected
-  parameter Modelica.SIunits.Length thickness
+  parameter Modelica.Units.SI.Length thickness
     "Total thickness of the construction";
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then

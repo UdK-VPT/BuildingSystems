@@ -12,7 +12,7 @@ partial model SolarRadiationTransformerGeneral
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=270,origin={30,88}),iconTransformation(extent={{-14,-14},{14,14}},rotation=270,origin={40,76})));
   parameter Real rhoAmb = 0.2
     "Reflection factor of the ambience";
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegL = 0
+  parameter Modelica.Units.NonSI.Angle_deg angleDegL=0
     "Grad correction winter-/summer time";
   parameter Boolean OneAxisTracking = false
     "True: tilt angle is tracked to the sun position; false: no axis tracking";
@@ -25,9 +25,9 @@ partial model SolarRadiationTransformerGeneral
   BuildingSystems.Interfaces.RadiationPort radiationPort
     "Radiation port to the tilted surface"
     annotation (Placement(transformation(extent={{70,-10},{90,10}}),iconTransformation(extent={{70,-10},{90,10}})));
-  Modelica.SIunits.RadiantEnergyFluenceRate IrrTotHor
+  Modelica.Units.SI.RadiantEnergyFluenceRate IrrTotHor
     "Solar total radiation of horizontal surface";
-  Modelica.SIunits.RadiantEnergyFluenceRate IrrTotTil
+  Modelica.Units.SI.RadiantEnergyFluenceRate IrrTotTil
     "Solar total radiation of tilted surface";
   input BuildingSystems.Interfaces.Angle_degInput angleDegAzi
     "Azimuth angle of the surface"
@@ -37,7 +37,7 @@ partial model SolarRadiationTransformerGeneral
     "Tilt angle of the surface"
     annotation (Placement(transformation(extent={{-102,-46},{-62,-6}}),
       iconTransformation(extent={{-90,-34},{-62,-6}})));
-  output BuildingSystems.Interfaces.Angle_degOutput angleDegTilTracked =
+  output BuildingSystems.Interfaces.Angle_degOutput angleDegTilTracked=
     180.0 / Modelica.Constants.pi * atan(-sin((radiationPort.angleDegAziSun + angleDegAzi - 90.0)*Modelica.Constants.pi/180.0) * tan(angleZen)) if OneAxisTracking
     "Tilt angle of the surface"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=180,origin={-82,-26}),
@@ -45,8 +45,7 @@ partial model SolarRadiationTransformerGeneral
 protected
   BuildingSystems.Interfaces.Angle_degOutput angleDegTil_internal
     "Tilt angle of the surface";
-  Modelica.SIunits.Angle angleZen
-    "Zenith angle";
+  Modelica.Units.SI.Angle angleZen "Zenith angle";
   Real cosAngleAzi
     "Cosinus of the azimuth angle";
   Real cosAngleInc
@@ -55,11 +54,9 @@ protected
     "Cosinus of the tilt angle";
   Real cosAngleZen
     "Cosinus of the zenith angle";
-  Modelica.SIunits.Angle angleDec
-    "Declination angle of the sun";
-  Modelica.SIunits.Angle angleHr
-    "Hour angle of the sun";
-  Modelica.SIunits.RadiantEnergyFluenceRate IrrDirNor
+  Modelica.Units.SI.Angle angleDec "Declination angle of the sun";
+  Modelica.Units.SI.Angle angleHr "Hour angle of the sun";
+  Modelica.Units.SI.RadiantEnergyFluenceRate IrrDirNor
     "Direct normal solar irradiance";
   Real sinAngleAzi
     "Sinus of the azimuth angle";
@@ -87,7 +84,7 @@ protected
     "Transformation factor deg to rad";
   constant Real radDeg = 180.0/Modelica.Constants.pi
     "Transformation factor rad to deg";
-  constant Modelica.SIunits.Angle polarCircle = 1.1617
+  constant Modelica.Units.SI.Angle polarCircle=1.1617
     "Latitude of polar circle (66 degree 33 min 44 sec)";
   Boolean outsidePolarCircle = latitudeDeg*degRad < polarCircle and latitudeDeg*degRad > -polarCircle
     "Flag, true if latitude is outside polar region";

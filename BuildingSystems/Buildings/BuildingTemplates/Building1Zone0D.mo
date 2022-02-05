@@ -13,53 +13,54 @@ model Building1Zone0D
     surfacesToAmbience(nSurfaces=nWindows+1),
     surfacesToSolids(nSurfaces=nSurfacesSolid));
 
-  parameter Modelica.SIunits.Length height = 3.0
-    "Height of the building"
-    annotation (Evaluate=false, Dialog(tab = "General", group = "Geometry building"));
+  parameter Modelica.Units.SI.Length height=3.0 "Height of the building"
+    annotation (Evaluate=false, Dialog(tab="General", group="Geometry building"));
   parameter Integer nWindows = 1
     "Number of windows"
     annotation(Dialog(tab="Constructions",group="Windows"));
-  parameter Modelica.SIunits.Area AAmb = 1.0
+  parameter Modelica.Units.SI.Area AAmb=1.0
     "Surface area of the building constructions with air contact to the environment"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambience constructions"));
-  parameter Modelica.SIunits.Area AInn = 1.0
+    annotation (Evaluate=false, Dialog(tab="Constructions", group=
+          "Ambience constructions"));
+  parameter Modelica.Units.SI.Area AInn=1.0
     "Surface area of both sides of the internal building constructions"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));
-  parameter Modelica.SIunits.Area AGro = 1.0
+    annotation (Evaluate=false, Dialog(tab="Constructions", group=
+          "Inner constructions"));
+  parameter Modelica.Units.SI.Area AGro=1.0
     "Surface area of the building constructions with contact to the ground"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ground constructions"));
-  parameter Modelica.SIunits.Area AWin[nWindows] = {1.0}
-    "Area of each window"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Windows"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin[nWindows] = fill(0.0,nWindows)
-    "Azimuth angle of each window"
-    annotation(Evaluate=false, Dialog(tab = "General", group = "Geometry windows"));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTilWin[nWindows] = fill(90.0,nWindows)
-    "Tilt angle of each window"
-    annotation(Evaluate=false, Dialog(tab = "General", group = "Geometry windows"));
-  parameter Modelica.SIunits.Volume VAir = 1.0
+    annotation (Evaluate=false, Dialog(tab="Constructions", group=
+          "Ground constructions"));
+  parameter Modelica.Units.SI.Area AWin[nWindows]={1.0} "Area of each window"
+    annotation (Evaluate=false, Dialog(tab="Constructions", group="Windows"));
+  parameter Modelica.Units.NonSI.Angle_deg angleDegAziWin[nWindows]=fill(0.0,
+      nWindows) "Azimuth angle of each window" annotation (Evaluate=false,
+      Dialog(tab="General", group="Geometry windows"));
+  parameter Modelica.Units.NonSI.Angle_deg angleDegTilWin[nWindows]=fill(90.0,
+      nWindows) "Tilt angle of each window" annotation (Evaluate=false, Dialog(
+        tab="General", group="Geometry windows"));
+  parameter Modelica.Units.SI.Volume VAir=1.0
     "Inner (Air) volume of the building";
-  parameter Modelica.SIunits.HeatCapacity CAmb = 1.0
-    "Total heat capacity of the building envelope"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambience constructions"));
-  parameter Modelica.SIunits.HeatCapacity CInn = 1.0
-    "Total heat capacity of the internal building construction"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));
-  parameter Modelica.SIunits.HeatCapacity CGro = 1.0
-    "Total heat capacity of the building groundplate"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ground constructions"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValAmb = 1.0
-    "Mean heat loss coefficient of the building envelope"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ambience constructions"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValGro = 1.0
-    "Mean heat loss coefficient of the building groundplate"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Ground constructions"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValInn = 1.0
-    "Mean heat loss coefficient of internal building construction"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Inner constructions"));
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValWin[nWindows] = fill(1.0,nWindows)
-    "Heat loss coefficient of each window"
-    annotation(Evaluate=false, Dialog(tab="Constructions",group="Windows"));
+  parameter Modelica.Units.SI.HeatCapacity CAmb=1.0
+    "Total heat capacity of the building envelope" annotation (Evaluate=false,
+      Dialog(tab="Constructions", group="Ambience constructions"));
+  parameter Modelica.Units.SI.HeatCapacity CInn=1.0
+    "Total heat capacity of the internal building construction" annotation (
+      Evaluate=false, Dialog(tab="Constructions", group="Inner constructions"));
+  parameter Modelica.Units.SI.HeatCapacity CGro=1.0
+    "Total heat capacity of the building groundplate" annotation (Evaluate=
+        false, Dialog(tab="Constructions", group="Ground constructions"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer UValAmb=1.0
+    "Mean heat loss coefficient of the building envelope" annotation (Evaluate=
+        false, Dialog(tab="Constructions", group="Ambience constructions"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer UValGro=1.0
+    "Mean heat loss coefficient of the building groundplate" annotation (
+      Evaluate=false, Dialog(tab="Constructions", group="Ground constructions"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer UValInn=1.0
+    "Mean heat loss coefficient of internal building construction" annotation (
+      Evaluate=false, Dialog(tab="Constructions", group="Inner constructions"));
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer UValWin[nWindows]=fill(
+      1.0, nWindows) "Heat loss coefficient of each window"
+    annotation (Evaluate=false, Dialog(tab="Constructions", group="Windows"));
   parameter Real gWin[nWindows](each unit = "1") = fill(0.6,nWindows)
     "g-value of the window"
     annotation(Evaluate=false, Dialog(tab = "Constructions", group = "Windows"));
@@ -141,12 +142,14 @@ model Building1Zone0D
     "Transparent constructions in contact to the ambience"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-40,20})));
 
-  final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaIns = 7.692
+  final parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaIns=
+      7.692
     "Heat transfer coefficient (convection + radiation) inside of the building"; // after German DIN 4701 Teil2 tabular 16"
-  final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaAmb = 25.0
+  final parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaAmb=
+      25.0
     "Heat transfer coefficient (convection + radiation) outside of the building"; // after german DIN 4701 Teil2 tabular 16"
-  final parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaGro = 100.0
-    "Heat transfer coefficient (conduction) to the ground";
+  final parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaGro=
+      100.0 "Heat transfer coefficient (conduction) to the ground";
 
 equation
   connect(zone.TAir, TAir[1]) annotation (Line(

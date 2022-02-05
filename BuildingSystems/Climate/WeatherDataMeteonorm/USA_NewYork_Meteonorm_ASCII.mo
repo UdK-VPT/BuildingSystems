@@ -7,17 +7,23 @@ block USA_NewYork_Meteonorm_ASCII
   final timeFac = 1.0/3600.0,
   final deltaTime = 1800.0,
   final columns={
-    5, // beam horizontal radiation
-    6, // diffuse horizontal radiation
-    3, // air temperature
-    8, // wind speed
-    9, // wind direction
-    4, // relative humidity
-    7  // cloud cover
-    },
+    5,
+    6,
+    3,
+    8,
+    9,
+    4,
+    7},
   final scaleFac = {1.0,1.0,1.0,1.0,1.0,0.01,1.0},
   final latitudeDeg = 40.767,
   final longitudeDeg = -73.9,
   final longitudeDeg_0 = -5.0);
+       // beam horizontal radiation
+       // diffuse horizontal radiation
+       // air temperature
+       // wind speed
+       // wind direction
+       // relative humidity
+       // cloud cover
   annotation(Documentation(info="<html>source: Meteonorm 7.0</html>"));
 end USA_NewYork_Meteonorm_ASCII;

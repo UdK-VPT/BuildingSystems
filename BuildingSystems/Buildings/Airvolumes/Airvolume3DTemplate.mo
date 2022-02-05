@@ -6,8 +6,8 @@ model Airvolume3DTemplate
   BuildingSystems.Interfaces.VelocityOutput v[nAirElements]
     "Air velocity (magnitude)"
     annotation (Placement(transformation(extent={{70,-70},{90,-50}}), iconTransformation(extent={{70,-70},{90,-50}})));
-  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary bou[nSurfaces]
-  (each posX = 0.0,
+  BuildingSystems.Buildings.Airvolumes.Interfaces.Boundary bou[nSurfaces](
+   each posX = 0.0,
    each posY = 0.0,
    each posZ = 0.0)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={0,60})));

@@ -2,17 +2,14 @@ within BuildingSystems.Buildings.Constructions.Shadowing.Functions;
 function overhang
   "Calculates the shadowing coefficent of an overhang"
   extends Modelica.Icons.Function;
-  input Modelica.SIunits.Length height
-    "Height of the opening";
-  input Modelica.SIunits.Length heightOH
-    "Height of the overhang";
-  input Modelica.SIunits.Length depthOH
-    "Depth of the overhang";
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi
+  input Modelica.Units.SI.Length height "Height of the opening";
+  input Modelica.Units.SI.Length heightOH "Height of the overhang";
+  input Modelica.Units.SI.Length depthOH "Depth of the overhang";
+  input Modelica.Units.NonSI.Angle_deg angleDegAzi
     "Azimuth angle of the embrasure: south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg";
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziSun
+  input Modelica.Units.NonSI.Angle_deg angleDegAziSun
     "Azimuth angle of the sun: south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg";
-  input Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegHeightSun
+  input Modelica.Units.NonSI.Angle_deg angleDegHeightSun
     "Height angle of the sun";
   output Real SC
     "Shading coefficient";

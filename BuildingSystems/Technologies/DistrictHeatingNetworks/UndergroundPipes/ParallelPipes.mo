@@ -45,11 +45,10 @@ model ParallelPipes
     annotation (Placement(transformation(extent={{10,-50},{-10,-70}})));
   parameter Integer nNodes = integer(ceil(length/100))
     "Number of volume segments";
-  parameter Modelica.SIunits.Length length( min=Modelica.Constants.eps)
+  parameter Modelica.Units.SI.Length length(min=Modelica.Constants.eps)
     "Length of the pipe";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal
-    "Nominal mass flow rate"
-    annotation(Dialog(group = "Nominal condition"));
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal
+    "Nominal mass flow rate" annotation (Dialog(group="Nominal condition"));
   parameter Modelica.Media.Interfaces.Types.AbsolutePressure p_start=Medium.p_default
     "Start value of pressure"
     annotation(Dialog(tab = "Initialitzation"));
@@ -70,8 +69,9 @@ model ParallelPipes
   parameter Real deltaM=0.1
     "Fraction of nominal flow rate where flow transitions to laminar"
     annotation (Dialog(tab="Flow resistance"));
-  parameter Modelica.SIunits.ReynoldsNumber ReC=4000
-    "Reynolds number where transition to turbulent starts"                                                                                                     annotation (Dialog(tab="Flow resistance"));
+  parameter Modelica.Units.SI.ReynoldsNumber ReC=4000
+    "Reynolds number where transition to turbulent starts"
+    annotation (Dialog(tab="Flow resistance"));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_a
     annotation (Placement(transformation(extent={{-10,88},{10,108}})));
   BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.Qmodel qmodel(

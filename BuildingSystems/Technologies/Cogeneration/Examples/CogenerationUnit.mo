@@ -3,11 +3,9 @@ model CogenerationUnit
   "Example of a cogeneration unit"
   extends Modelica.Icons.Example;
   package Medium = BuildingSystems.Media.Water;
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.1
-    "Nominal mass flow rate"
-    annotation(Dialog(group = "Nominal condition"));
-  parameter Modelica.SIunits.MassFlowRate m_flow = 0.1
-    "Current mass flow rate";
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.1
+    "Nominal mass flow rate" annotation (Dialog(group="Nominal condition"));
+  parameter Modelica.Units.SI.MassFlowRate m_flow=0.1 "Current mass flow rate";
   BuildingSystems.Fluid.Sources.Boundary_pT bou_con(
     redeclare package Medium = Medium,
     nPorts=1,

@@ -2,12 +2,12 @@ within BuildingSystems.Technologies.DistrictHeatingNetworks.BoundaryConditions;
 model GroundTemperature0D
   "Model that computes the ground temperature at a choosen depth "
 
-  parameter Modelica.SIunits.Temperature Tmean "Mean annual temperature";
-  parameter Modelica.SIunits.TemperatureDifference A
+  parameter Modelica.Units.SI.Temperature Tmean "Mean annual temperature";
+  parameter Modelica.Units.SI.TemperatureDifference A
     "Annual temperature amplitude";
-  parameter Modelica.SIunits.Length z "Depth";
-  parameter Modelica.SIunits.Time t0 "Time shift";
-  parameter Modelica.SIunits.ThermalDiffusivity alpha = 8.2e-7
+  parameter Modelica.Units.SI.Length z "Depth";
+  parameter Modelica.Units.SI.Time t0 "Time shift";
+  parameter Modelica.Units.SI.ThermalDiffusivity alpha=8.2e-7
     "Ground thermal diffusivity";
   parameter Boolean use_geo = false "Set to true to use geothermal grade, false geo = 0";
   parameter Real geo( unit="K/m") = 0.03 "Geothermal grade" annotation(Dialog(enable=use_geo));

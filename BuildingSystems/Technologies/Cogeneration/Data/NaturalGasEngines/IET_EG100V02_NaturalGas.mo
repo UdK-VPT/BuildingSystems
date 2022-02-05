@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.Cogeneration.Data.NaturalGasEngines;
-record IET_EG100V02_NaturalGas = BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral(
+record IET_EG100V02_NaturalGas =
+    BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral
+    (
   Q_flow_nominal = 135000.0,
   QCon_flow_nominal = 270000.0,
   P_nominal = 100000.0,

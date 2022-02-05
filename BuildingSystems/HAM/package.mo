@@ -1,6 +1,7 @@
 within BuildingSystems;
 package HAM "Package with heat, air and moisture transport models"
   extends Modelica.Icons.Package;
+
    annotation (preferredView="info",Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Line(
     origin={-51.5,9.6667},

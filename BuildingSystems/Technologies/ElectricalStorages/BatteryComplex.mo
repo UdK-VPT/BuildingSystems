@@ -3,19 +3,19 @@ model BatteryComplex
   extends BaseClasses.Battery;
   final parameter Real p(unit="1") = batteryData.p
     "Peukert coefficient";
-  Modelica.SIunits.Power PLoadAva
+  Modelica.Units.SI.Power PLoadAva
     "Discharging power using available electrons in EAva";
-  Modelica.SIunits.Power PLoadBou
+  Modelica.Units.SI.Power PLoadBou
     "Discharging power forcing electro-chemical reaction in EBou";
-  Modelica.SIunits.Energy E_current(displayUnit="kWh")
+  Modelica.Units.SI.Energy E_current(displayUnit="kWh")
     "Current energy content at actual discharge rate";
-  Modelica.SIunits.Energy E_max(displayUnit="kWh")=
-    t_loadMax/t_loadNominal * (t_loadMax/t_loadNominal)^p * E_nominal
+  Modelica.Units.SI.Energy E_max(displayUnit="kWh") = t_loadMax/t_loadNominal*(
+    t_loadMax/t_loadNominal)^p*E_nominal
     "Maximum energy content at 100hr discharge rate";
 
-  constant Modelica.SIunits.Time t_loadNominal = 20.0 * 3600.0
+  constant Modelica.Units.SI.Time t_loadNominal=20.0*3600.0
     "Nominal discharge time at rated capacity";
-  constant Modelica.SIunits.Time t_loadMax = 100.0 * 3600.0
+  constant Modelica.Units.SI.Time t_loadMax=100.0*3600.0
     "Nominal discharge time at rated capacity";
 
 equation
@@ -43,7 +43,7 @@ equation
                0.0,
                PLoad_max,
                0.001);
-  
+
     annotation (Documentation(info="<html>
   <p>
   Extended model for an eletrical battery based on the Kinetic Battery Model (KiBaM) of Manwell and McGowan

@@ -24,7 +24,7 @@ equation
 
   P = I * U;
 
-  annotation(
+  annotation (
 Documentation(info="<html>
 <p>
 This is a MPP controlled electrical two diodes model of a PV module.

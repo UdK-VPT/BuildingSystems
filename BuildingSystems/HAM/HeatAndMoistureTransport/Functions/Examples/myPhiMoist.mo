@@ -18,7 +18,7 @@ equation
   phi = ramp.y;
   myPhiMoist = BuildingSystems.HAM.HeatAndMoistureTransport.Functions.myPhiMoist(material.myTabX, material.myTabY, material.myDry, phi);
 
-  annotation(    experiment(StopTime=1.1),
+  annotation (   experiment(StopTime=1.1),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/HeatAndMoistureTransport/Functions/Examples/myPhiMoist.mos"
         "Simulate and plot"),
     Documentation(info="<html>

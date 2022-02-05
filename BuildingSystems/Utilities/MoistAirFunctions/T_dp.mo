@@ -6,11 +6,11 @@ function T_dp "Dew point temperature dependent on air pressure"
      Unit steam pressure: Pa,
      - based on "Reinmuth Lufttechnische Prozesse"
      - logarithmic fitted in segments: -40 - -20C; -20 - 0C; 0 - 20C; 20 - 40 C and 40 - 70C */
-  input Modelica.SIunits.Pressure p;
-  output Modelica.SIunits.Temp_K value;
+  input Modelica.Units.SI.Pressure p;
+  output Modelica.Units.SI.Temperature value;
 protected
-  Modelica.SIunits.Pressure p_min = 12.4;
-  Modelica.SIunits.Pressure p_max[5] = {102.9, 610.7, 2337.0, 7375.0, 31160.0};
+  Modelica.Units.SI.Pressure p_min=12.4;
+  Modelica.Units.SI.Pressure p_max[5]={102.9,610.7,2337.0,7375.0,31160.0};
 algorithm
   if p < p_max[1] then
     value :=  (9.531 * Modelica.Math.log(p) - 64.414) + 273.15;

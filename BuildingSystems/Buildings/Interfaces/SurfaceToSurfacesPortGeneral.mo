@@ -9,15 +9,11 @@ connector SurfaceToSurfacesPortGeneral
     "Radiation port for outgoing short wave radiation";
   BuildingSystems.Interfaces.RadiationPort radiationPort_in
     "Radiation port for incoming short wave radiation";
-  Modelica.SIunits.Area A "Surface area";
-  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi
-    "Azimuth angle of the surface";
-  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil
-    "Tilt angle of the surface";
-  Modelica.SIunits.Length zMean
-    "Mean vertical position of the surface";
-  Modelica.SIunits.Emissivity epsilon
-    "Long-wave emittance of the surface";
+  Modelica.Units.SI.Area A "Surface area";
+  Modelica.Units.NonSI.Angle_deg angleDegAzi "Azimuth angle of the surface";
+  Modelica.Units.NonSI.Angle_deg angleDegTil "Tilt angle of the surface";
+  Modelica.Units.SI.Length zMean "Mean vertical position of the surface";
+  Modelica.Units.SI.Emissivity epsilon "Long-wave emittance of the surface";
   BuildingSystems.Types.Absorptance abs
     "Short-wave absorptance of the surface";
 

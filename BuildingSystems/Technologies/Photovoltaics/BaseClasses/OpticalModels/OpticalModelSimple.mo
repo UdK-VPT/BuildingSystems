@@ -5,7 +5,7 @@ model OpticalModelSimple
 equation
   ITotRed = radiationPort.IrrDir * (1.0 - GSC) + radiationPort.IrrDif;
 
-  annotation(
+  annotation (
 Documentation(info="<html>
 <p>
 Optical model that calculates the reduction of the solar irradiation between the surface

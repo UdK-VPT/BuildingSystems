@@ -1,6 +1,5 @@
 within BuildingSystems.Buildings.Airvolumes;
-package Parameter
-  "Parameter to calibrate the zonal model"
+package Parameter "Parameter to calibrate the zonal model"
 
   // this parameter set:
   final constant Real f_alp = 2.9;

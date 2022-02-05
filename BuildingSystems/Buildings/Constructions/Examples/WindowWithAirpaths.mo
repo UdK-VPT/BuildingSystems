@@ -15,7 +15,8 @@ model WindowWithAirpaths
     nSurfaces=1,
     nAirpaths=2,
     heightAirpath={0.5,1.5},
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Zones.ZoneTemplateAirvolumeMixed zone(
     V=4*4*2.8,
@@ -39,7 +40,7 @@ model WindowWithAirpaths
     width=1800,
     period=3600)
     annotation (Placement(transformation(extent={{-8,-20},{-2,-14}})));
-  equation
+equation
   connect(surface1.toConstructionPort, window.toSurfacePort_1) annotation (Line(
       points={{-15.4,0},{-2,0}},
       color={0,0,0},

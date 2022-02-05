@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.SolarThermal.Data.Collectors;
-record VacuumSolarCollector = BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial(
+record VacuumSolarCollector =
+    BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial
+    (
   final IAMC=1,
   final V_A=1/1.3/980,
   final C_0=0.675,

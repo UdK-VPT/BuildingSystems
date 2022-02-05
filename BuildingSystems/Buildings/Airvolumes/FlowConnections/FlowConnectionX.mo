@@ -2,15 +2,15 @@ within BuildingSystems.Buildings.Airvolumes.FlowConnections;
 model FlowConnectionX
   "Flow connecting element from center of FV1 to center of FV2 in X-direction"
   extends BuildingSystems.Buildings.Airvolumes.FlowConnections.FlowConnection;
-  Modelica.SIunits.Length deltax=abs(port_1.pos[1] - port_2.pos[1])
+  Modelica.Units.SI.Length deltax=abs(port_1.pos[1] - port_2.pos[1])
     annotation (HideResult=true);
   // joint area between two zones, depends on the size (parameterization) of the FV
-  Modelica.SIunits.Length dy= 0.5 * (port_1.dim[2] + port_2.dim[2])
+  Modelica.Units.SI.Length dy=0.5*(port_1.dim[2] + port_2.dim[2])
     annotation (HideResult=true);
-  Modelica.SIunits.Length dz= 0.5 * (port_1.dim[3] + port_2.dim[3])
+  Modelica.Units.SI.Length dz=0.5*(port_1.dim[3] + port_2.dim[3])
     annotation (HideResult=true);
   final parameter Real LayFacBC = (if BCwall_floor or BCwall_roof then LayFac else 1)*(if BCwall_north or BCwall_south then LayFac else 1);
-  Modelica.SIunits.Length dist=sqrt((port_2.pos[1] - port_1.pos[1])^2);
+  Modelica.Units.SI.Length dist=sqrt((port_2.pos[1] - port_1.pos[1])^2);
   Real Fm_tmp(start = 0);
 
 equation

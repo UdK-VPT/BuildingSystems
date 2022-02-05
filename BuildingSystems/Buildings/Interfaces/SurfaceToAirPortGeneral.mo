@@ -5,9 +5,8 @@ connector SurfaceToAirPortGeneral
     "Port for heat transfer";
   BuildingSystems.Interfaces.MoisturePort moisturePort
     "Port for moisture transfer";
-  Modelica.SIunits.Velocity vAir
-    "Air velocity";
-  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAir
+  Modelica.Units.SI.Velocity vAir "Air velocity";
+  Modelica.Units.NonSI.Angle_deg angleDegAir
     "Direction of air motion (0 to 360 deg)";
 
   annotation (

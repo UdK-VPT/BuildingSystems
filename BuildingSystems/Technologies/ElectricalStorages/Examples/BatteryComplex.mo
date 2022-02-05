@@ -46,7 +46,8 @@ equation
       Text(extent={{-60,52},{-60,48}},lineColor={0,0,255},fontSize=22,
         textString="Battery discharging at C20-rate (load == capacity/20hrs in A)")}),
       experiment(StartTime=0.0, StopTime=3.1536e+007),
-      __Dymola_Commands(file="Resources/Scripts/Dymola/Technologies/ElectricalStorages/Examples/BatteryComplex.mos""Simulate and plot"),
+      __Dymola_Commands(file="Resources/Scripts/Dymola/Technologies/ElectricalStorages/Examples/BatteryComplex.mos"
+                                                                                                                   "Simulate and plot"),
 Documentation(info="<html>
 <p> This example tests the implementation of
 <a href=\"modelica://BuildingSystems.Technologies.ElectricalStorages.BatteryComplex\">

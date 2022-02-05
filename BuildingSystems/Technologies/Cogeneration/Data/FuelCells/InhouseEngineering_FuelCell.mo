@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.Cogeneration.Data.FuelCells;
-record  InhouseEngineering_FuelCell = BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral(
+record InhouseEngineering_FuelCell =
+    BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral
+    (
   Q_flow_nominal = 7500.0,
   QCon_flow_nominal = 7500.0,
   P_nominal = 4200.0,
@@ -10,4 +12,4 @@ record  InhouseEngineering_FuelCell = BuildingSystems.Technologies.Cogeneration.
   height = 1.159,
   m = 380.0)
   "Inhouse Engineering (fuel cell stack): 4.5 kW el/7.5 kW th"
-  annotation(Documentation(info ="<html>Source: Datenblatt Brennstoffzellen-Heizgeraet inhouse5000+<br/></html>"));
+  annotation(Documentation(info= "<html>Source: Datenblatt Brennstoffzellen-Heizgeraet inhouse5000+<br/></html>"));

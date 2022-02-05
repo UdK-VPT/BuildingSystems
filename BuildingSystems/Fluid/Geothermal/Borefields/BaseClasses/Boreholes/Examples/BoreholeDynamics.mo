@@ -5,7 +5,7 @@ model BoreholeDynamics "Example model for different borehole models and dynamics
 
   parameter Integer nSeg(min=1) = 10
     "Number of segments to use in vertical discretization of the boreholes";
-  parameter Modelica.SIunits.Temperature T_start = 273.15 + 22
+  parameter Modelica.Units.SI.Temperature T_start=273.15 + 22
     "Initial soil temperature";
 
   BuildingSystems.Fluid.Geothermal.Borefields.BaseClasses.Boreholes.OneUTube
@@ -157,7 +157,8 @@ model BoreholeDynamics "Example model for different borehole models and dynamics
     tau=0)
     "Inlet borehole temperature"
     annotation (Placement(transformation(extent={{-40,-70},{-20,-50}})));
-  BuildingSystems.Fluid.Sensors.TemperatureTwoPort TBor2UTubDyn(redeclare package Medium =
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort TBor2UTubDyn(redeclare
+      package                                                                     Medium =
         Medium, m_flow_nominal=borFie2UTubDat.conDat.mBor_flow_nominal,
     tau=0)
     "Outlet borehole temperature"

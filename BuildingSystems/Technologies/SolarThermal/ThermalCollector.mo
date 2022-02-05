@@ -25,22 +25,22 @@ model ThermalCollector
     annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
   parameter Integer nEle(min=1) = 10
     "Number of elements used in the discretization";
-  parameter Modelica.SIunits.Length width = 1.0 "Width of the collector"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length height = 1.0 "Height of the collector"
-    annotation(Dialog(tab = "General", group = "Geometry"));
+  parameter Modelica.Units.SI.Length width=1.0 "Width of the collector"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length height=1.0 "Height of the collector"
+    annotation (Dialog(tab="General", group="Geometry"));
   BuildingSystems.Interfaces.Angle_degOutput angleDegTil
     "Tilt angle of the solar collector"
     annotation (Dialog(group="Geometry"), Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-50,-90}),iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-50,-90})));
   BuildingSystems.Interfaces.Angle_degOutput angleDegAzi
     "Azimuth angle of the solar collector: South=0 deg West=90 deg East=-90 deg"
     annotation (Dialog(group="Geometry"), Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-70,-90}), iconTransformation(extent={{-10,-10},{10,10}},rotation=270,origin={-70,-90})));
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal
     "Nominal mass flow rate at nominal conditions"
-    annotation(Dialog(group = "Nominal condition"));
-  parameter Modelica.SIunits.Pressure dp_nominal(displayUnit="Pa")
+    annotation (Dialog(group="Nominal condition"));
+  parameter Modelica.Units.SI.Pressure dp_nominal(displayUnit="Pa")
     "Pressure drop at nominal mass flow rate"
-    annotation(Dialog(group = "Nominal condition"));
+    annotation (Dialog(group="Nominal condition"));
   BuildingSystems.Interfaces.RadiationPort radiationPort
     annotation (Placement(transformation(extent={{-20,80},{0,100}}), iconTransformation(extent={{-20,80},{0,100}})));
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a heatPortCon
@@ -68,18 +68,18 @@ model ThermalCollector
     "= true, use linear relation between m_flow and dp for any flow rate";
   parameter Boolean AColData = true
     "= true, use A from collector data; false A = height * width";
-  final parameter Modelica.SIunits.Volume V = collectorData.V_A * A
+  final parameter Modelica.Units.SI.Volume V=collectorData.V_A*A
     "Volume of the fluid";
-  final parameter Modelica.SIunits.HeatCapacity C = collectorData.C_A*A;
+  final parameter Modelica.Units.SI.HeatCapacity C=collectorData.C_A*A;
   parameter Boolean use_GSC_in = false
     "= true, use input for geometric shading coefficient GSC"
     annotation(Dialog(tab="Advanced"));
   parameter Real GSC_constant = 0.0
     "Constant shading coefficient (if use_GSC_in = true)";
-  final parameter Modelica.SIunits.Area A = if AColData then collectorData.A else width * height
-    "Absorber area of the collector";
+  final parameter Modelica.Units.SI.Area A=if AColData then collectorData.A
+       else width*height "Absorber area of the collector";
   Real IAM "IncidenceAngleModifier";
-  Modelica.SIunits.RadiantEnergyFluenceRate IrrTot
+  Modelica.Units.SI.RadiantEnergyFluenceRate IrrTot
     "Total solar radiation on collector's absorber surfcace";
   Modelica.Blocks.Sources.RealExpression QCon[nEle](y=-A/nEle .* (C_1 .* (vol.T .-
     preSumCon.port.T) .+ C_2 .* (vol.T .- preSumCon.port.T) .* (vol.T .-

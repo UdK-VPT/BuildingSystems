@@ -2,19 +2,17 @@ within BuildingSystems.HAM.ConvectiveHeatTransfer.Examples;
 model AlphaPlateFree
   "Test problem for free convection on plate surfaces"
   extends Modelica.Icons.Example;
-  parameter Modelica.SIunits.Length height = 2.8
-    "Height of the surface";
-  parameter Modelica.SIunits.Length width = 1.0
-    "Width of the surface";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha0
+  parameter Modelica.Units.SI.Length height=2.8 "Height of the surface";
+  parameter Modelica.Units.SI.Length width=1.0 "Width of the surface";
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alpha0
     "Coefficient of heat transfer for convection (surface with an tilt angle of 0 degree)";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha90
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alpha90
     "Coefficient of heat transfer for convection (surface with an tilt angle of 90 degree)";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha180
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alpha180
     "Coefficient of heat transfer for convection (surface with an tilt angle of 180 degree)";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha45
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alpha45
     "Coefficient of heat transfer for convection (surface with an tilt angle of 45 degree)";
-  Modelica.SIunits.TemperatureDifference deltaT "Temperature difference";
+  Modelica.Units.SI.TemperatureDifference deltaT "Temperature difference";
 
 equation
   deltaT = 2.0 * Modelica.Math.sin(2.0*Modelica.Constants.pi*time/3600);
@@ -22,7 +20,7 @@ equation
   alpha90 = BuildingSystems.HAM.ConvectiveHeatTransfer.Surfaces.alphaPlateFree(deltaT,height,width, 90.0);
   alpha180 = BuildingSystems.HAM.ConvectiveHeatTransfer.Surfaces.alphaPlateFree(deltaT,height,width, 180.0);
   alpha45 = BuildingSystems.HAM.ConvectiveHeatTransfer.Surfaces.alphaPlateFree(deltaT,height,width, 45.0);
-  annotation(    experiment(StopTime=3600.0),
+  annotation (   experiment(StopTime=3600.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/ConvectiveHeatTransfer/Examples/AlphaPlateFree.mos" "Simulate and plot"),
     Documentation(info="<html>
     <p> This example tests the implementation of

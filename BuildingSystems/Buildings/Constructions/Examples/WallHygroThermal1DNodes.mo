@@ -22,7 +22,8 @@ model WallHygroThermal1DNodes
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface1
     annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
   BuildingSystems.Buildings.Ambience ambience(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII,
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII,
     nSurfaces=1)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToSolid surface2(calcHygroThermal=true)
@@ -30,7 +31,7 @@ model WallHygroThermal1DNodes
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature tempBC(T=293.15)
     annotation (Placement(transformation(extent={{26,-10},{18,-2}})));
   BuildingSystems.HAM.HeatAndMoistureTransport.Sources.FixedAbsoluteMoisture moistBC(
-    x_constant =0.008)
+    x_constant= 0.008)
     annotation (Placement(transformation(extent={{28,0},{16,12}})));
 equation
   connect(surface1.toConstructionPort, wall.toSurfacePort_1) annotation (Line(
@@ -80,4 +81,4 @@ First implementation.
 </li>
 </ul>
 </html>"));
-  end WallHygroThermal1DNodes;
+end WallHygroThermal1DNodes;

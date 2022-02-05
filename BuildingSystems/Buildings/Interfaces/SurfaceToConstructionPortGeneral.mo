@@ -11,10 +11,8 @@ connector SurfaceToConstructionPortGeneral
     "Radiation port for outgoing short wave radiation";
   BuildingSystems.Interfaces.RadiationPort radiationPort_in
     "Radiation port for incoming short wave radiation";
-  Modelica.SIunits.Area A
-    "Surface area";
-  Modelica.SIunits.Emissivity epsilon
-    "Long-wave emittance of the surface";
+  Modelica.Units.SI.Area A "Surface area";
+  Modelica.Units.SI.Emissivity epsilon "Long-wave emittance of the surface";
   BuildingSystems.Types.Absorptance abs
     "Short-wave absorptance of the surface";
 

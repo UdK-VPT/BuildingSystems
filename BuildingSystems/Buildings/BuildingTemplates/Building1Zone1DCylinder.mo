@@ -34,12 +34,12 @@ model Building1Zone1DCylinder
   parameter Integer nSeg(min=3) = 3
     "Number of wall segments of the cylinder"
     annotation(Dialog(tab="Geometry",group="Building"));
-  parameter Modelica.SIunits.Length diameter = 1.0
+  parameter Modelica.Units.SI.Length diameter=1.0
     "Diameter of the building (inner space)"
-    annotation(Dialog(tab="Geometry",group="Building"));
-  parameter Modelica.SIunits.Length height = 2.8
+    annotation (Dialog(tab="Geometry", group="Building"));
+  parameter Modelica.Units.SI.Length height=2.8
     "Height of the building (inner space)"
-    annotation(Dialog(tab="Geometry",group="Building"));
+    annotation (Dialog(tab="Geometry", group="Building"));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall[nSeg](
     each height = height,
     width = {sqrt((circle.vertex[if i < nSeg then i+1 else 1].x-circle.vertex[i].x)^2

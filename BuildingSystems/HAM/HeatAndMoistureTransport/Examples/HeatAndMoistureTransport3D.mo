@@ -21,7 +21,7 @@ model HeatAndMoistureTransport3D
     annotation (Placement(transformation(extent={{-10,-4},{10,16}})));
   Modelica.Blocks.Sources.Sine climate1(
     amplitude=10.0,
-    freqHz=1.0/86400.0,
+    f=1.0/86400.0,
     offset=273.15 + 20.0,
     phase=6.2831853071796)
     annotation (Placement(transformation(extent={{-68,-10},{-56,2}})));
@@ -40,7 +40,7 @@ model HeatAndMoistureTransport3D
     k=0.008)
     annotation (Placement(transformation(extent={{70,10},{58,22}})));
   Modelica.Blocks.Sources.Sine climate2(
-    freqHz=1.0/86400.0,
+    f=1.0/86400.0,
     amplitude=0.004,
     phase=6.2831853071796,
     offset=0.008)

@@ -117,9 +117,9 @@ model HCBC_DHN
     st5(m_flow_nominal=st5.m_flow_nominalHeating,Q_nominal=parameterMap5.Q_flowHea),
     st14(m_flow_nominal=st14.m_flow_nominalHeating,Q_nominal=parameterMap14.Q_flowHea),
     st8(m_flow_nominal=st8.m_flow_nominalHeating,Q_nominal=parameterMap8.Q_flowHea));
-  Modelica.SIunits.Heat Q_buildings(displayUnit="kWh")
+  Modelica.Units.SI.Heat Q_buildings(displayUnit="kWh")
     "Heat extracted from the DHN and delivered to the buildings";
-  Modelica.SIunits.Heat Q_buildings_effective(displayUnit="kWh")
+  Modelica.Units.SI.Heat Q_buildings_effective(displayUnit="kWh")
     "Effective heat that warm up the building (Q_buildings*efficiency)";
   BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyProductionUnits.Central central(
     redeclare package Medium = Medium,

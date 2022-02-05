@@ -52,7 +52,8 @@ model SingleZoneThermal1DThermalComfort
     redeclare BuildingSystems.Buildings.Data.Constructions.Transparent.DoubleGlazing constructionData)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,18})));
   BuildingSystems.Buildings.Ambience ambience(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII,
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII,
     nSurfaces=nSurfaces)
     annotation (Placement(transformation(extent={{-58,-10},{-38,10}})));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(

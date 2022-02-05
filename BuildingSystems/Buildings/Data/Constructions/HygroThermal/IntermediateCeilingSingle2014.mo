@@ -1,5 +1,7 @@
 within BuildingSystems.Buildings.Data.Constructions.HygroThermal;
-record IntermediateCeilingSingle2014 = BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
+record IntermediateCeilingSingle2014 =
+    BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction
+    (
   final nLayers=1,
   thickness={0.16},
   material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Masea.Concrete()})

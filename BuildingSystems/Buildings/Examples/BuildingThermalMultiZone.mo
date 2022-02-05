@@ -57,8 +57,7 @@ model BuildingThermalMultiZone
     useAirPaths = false,
     heatSources = true,
     nHeatSources = 13);
-    parameter Modelica.SIunits.Length heightRooms = 3.0
-    "Height of all rooms";
+    parameter Modelica.Units.SI.Length heightRooms=3.0 "Height of all rooms";
 
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed office1(
       V=bottom1.width*bottom1.height*heightRooms,
@@ -1284,7 +1283,8 @@ model BuildingThermalMultiZone
 
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=building.nSurfacesAmbience,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeatingOffice1(k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{46,40},{42,44}})));

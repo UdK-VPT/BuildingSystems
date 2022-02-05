@@ -10,8 +10,7 @@ extends BuildingSystems.Fluid.Interfaces.PartialTwoPortInterface;
     redeclare package Medium2 = Medium,
     eps=eps)
     annotation (Placement(transformation(extent={{-40,-80},{-20,-100}})));
-  parameter Modelica.SIunits.Efficiency eps=0.9
-    "Heat exchanger effectiveness";
+  parameter Modelica.Units.SI.Efficiency eps=0.9 "Heat exchanger effectiveness";
   Modelica.Blocks.Interfaces.RealInput Tset
     "Heating set temperature"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=-90,origin={30,100})));

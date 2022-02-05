@@ -20,8 +20,8 @@ partial model FlowConnection
   final parameter Real LosFac = BuildingSystems.Buildings.Airvolumes.Parameter.f_loss annotation (HideResult=true);
 
   // Ports
-  Modelica.SIunits.Velocity v(start = 0, fixed = true);
-  Modelica.SIunits.Pressure dP(start=0);
+  Modelica.Units.SI.Velocity v(start=0, fixed=true);
+  Modelica.Units.SI.Pressure dP(start=0);
 
   Real Fp(start = 0);
   Real Fm(start = 0);

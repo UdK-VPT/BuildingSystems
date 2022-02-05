@@ -1,38 +1,33 @@
 within BuildingSystems.HAM.Data.MaterialProperties.BaseClasses;
 record MaterialHygroThermalGeneral
   extends MaterialGeneral;
-  parameter Modelica.SIunits.Density rho
-    "Density";
-  parameter Modelica.SIunits.SpecificHeatCapacity c
-    "Specific heat capacity";
+  parameter Modelica.Units.SI.Density rho "Density";
+  parameter Modelica.Units.SI.SpecificHeatCapacity c "Specific heat capacity";
   parameter BuildingSystems.Types.RelativeHumidity sorTabX[:]
     "Relative humidity of the porous material(table)";
-  parameter Modelica.SIunits.MassConcentration sorTabY[:]
+  parameter Modelica.Units.SI.MassConcentration sorTabY[:]
     "Water content of the porous material (table)";
   parameter BuildingSystems.Types.RelativeHumidity myTabX[:]
     "Relative humdity of the porous material (table)";
   parameter BuildingSystems.Types.WaterVapourDiffusionResistance myTabY[:]
     "Water vapour diffusion of the porous material (table)";
-  parameter Modelica.SIunits.MassConcentration lambdaTabX[:]
+  parameter Modelica.Units.SI.MassConcentration lambdaTabX[:]
     "Water content of the porous material (table)";
-  parameter Modelica.SIunits.ThermalConductivity lambdaTabY[:]
+  parameter Modelica.Units.SI.ThermalConductivity lambdaTabY[:]
     "Heat conductivity of the porous material (table)";
-  parameter Modelica.SIunits.MassConcentration dwwTabX[:]
+  parameter Modelica.Units.SI.MassConcentration dwwTabX[:]
     "Water content of the porous material (table)";
   parameter BuildingSystems.Types.CoefficientOfLiquidTransport dwwTabY[:]
     "Liquid transport coefficient for redistribution of the porous material (table)";
-  parameter Modelica.SIunits.MassConcentration dwsTabX[:]
+  parameter Modelica.Units.SI.MassConcentration dwsTabX[:]
     "Water content of the porous material (table)";
   parameter BuildingSystems.Types.CoefficientOfLiquidTransport dwsTabY[:]
     "Liquid transport coefficient for suction of the porous material (table)";
-  parameter Modelica.SIunits.ThermalConductivity lambdaDry
+  parameter Modelica.Units.SI.ThermalConductivity lambdaDry
     "Heat conductivity of the dry porous material";
-  parameter Modelica.SIunits.MassConcentration w80
-    "Water content by 80 %";
-  parameter Modelica.SIunits.MassConcentration w95
-    "Water content by 95 %";
-  parameter Modelica.SIunits.MassConcentration wF
-    "Free water saturation";
+  parameter Modelica.Units.SI.MassConcentration w80 "Water content by 80 %";
+  parameter Modelica.Units.SI.MassConcentration w95 "Water content by 95 %";
+  parameter Modelica.Units.SI.MassConcentration wF "Free water saturation";
   parameter BuildingSystems.Types.Porosity porosity
     "Porosity of the layer [-]";
   parameter Real A

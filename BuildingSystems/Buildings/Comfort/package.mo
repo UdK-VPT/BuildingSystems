@@ -1,6 +1,5 @@
 within BuildingSystems.Buildings;
-package Comfort
-  "Package with models to assess the thermal comport in indoor spaces"
+package Comfort "Package with models to assess the thermal comport in indoor spaces"
   extends Modelica.Icons.VariantsPackage;
 
   annotation (preferredView="info",Icon(graphics={

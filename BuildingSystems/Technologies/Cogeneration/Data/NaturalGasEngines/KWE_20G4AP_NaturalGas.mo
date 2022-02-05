@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.Cogeneration.Data.NaturalGasEngines;
-record KWE_20G4AP_NaturalGas = BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral(
+record KWE_20G4AP_NaturalGas =
+    BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral
+    (
   Q_flow_nominal = 42000.0,
   QCon_flow_nominal = 68000.0,
   P_nominal = 20000.0,

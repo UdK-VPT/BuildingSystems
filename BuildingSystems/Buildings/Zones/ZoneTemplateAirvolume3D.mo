@@ -6,12 +6,11 @@ model ZoneTemplateAirvolume3D
   parameter Integer nAirElements(min=1) = 1
     "Number of air elements, which are included in the air volume"
     annotation(Dialog(tab="General"));
-  parameter Modelica.SIunits.Temp_K T_start = 293.15
+  parameter Modelica.Units.SI.Temperature T_start=293.15
     "Start air temperature of the zone"
     annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.MassFraction x_start = 0.005
-    "Start air moisture of the zone"
-    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.Units.SI.MassFraction x_start=0.005
+    "Start air moisture of the zone" annotation (Dialog(tab="Initialization"));
   output BuildingSystems.Interfaces.Temp_KOutput TAir[nAirElements]
     "Air temperature"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,36}),

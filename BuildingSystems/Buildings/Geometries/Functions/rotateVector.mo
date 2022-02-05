@@ -1,14 +1,10 @@
 within BuildingSystems.Buildings.Geometries.Functions;
 function rotateVector
   "Calculates the coordinates of a rotated 3D vector"
-  input Modelica.SIunits.Length v[3]
-    "Original vector";
-  input Modelica.SIunits.Length axis[3]
-    "Vector of the rotation axis";
-  input Modelica.SIunits.Angle theta
-    "Rotation angle";
-  output Modelica.SIunits.Length vr[3]
-    "Rotated vector";
+  input Modelica.Units.SI.Length v[3] "Original vector";
+  input Modelica.Units.SI.Length axis[3] "Vector of the rotation axis";
+  input Modelica.Units.SI.Angle theta "Rotation angle";
+  output Modelica.Units.SI.Length vr[3] "Rotated vector";
 protected
   Real x, a, b, c, d;
   Real mat[3,3]

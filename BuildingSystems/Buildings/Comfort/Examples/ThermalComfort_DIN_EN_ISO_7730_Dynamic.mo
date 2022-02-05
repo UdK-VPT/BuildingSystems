@@ -7,16 +7,14 @@ model ThermalComfort_DIN_EN_ISO_7730_Dynamic
   Modelica.Blocks.Sources.Sine TAir(
     offset=293.15,
     amplitude=12.0,
-    freqHz=1.0/3600.0,
-    startTime=0.0)
-    "Air temperature"
+    f=1.0/3600.0,
+    startTime=0.0) "Air temperature"
     annotation (Placement(transformation(extent={{-74,68},{-66,76}})));
   Modelica.Blocks.Sources.Sine Tr(
     offset=293.15,
-    freqHz=1.0/3600.0,
+    f=1.0/3600.0,
     startTime=0.0,
-    amplitude=14.0)
-    "Mean radiant temperature"
+    amplitude=14.0) "Mean radiant temperature"
     annotation (Placement(transformation(extent={{-74,54},{-66,62}})));
   Modelica.Blocks.Sources.Constant xAir(
     k=0.008)

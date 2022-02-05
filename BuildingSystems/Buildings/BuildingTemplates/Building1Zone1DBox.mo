@@ -25,40 +25,40 @@ model Building1Zone1DBox
     final show_TAir = true,
     final show_xAir = true);   // dummy value
 
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall1 if
-       (BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall1
+    if (BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall1";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall1(T=TWall1_constant) if
-       BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall1(T=TWall1_constant)
+    if BCWall1 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall1";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall2 if
-       (BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall2
+    if (BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall2";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall2(T=TWall2_constant) if
-       BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall2(T=TWall2_constant)
+    if BCWall2 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall2";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall3 if
-       (BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall3
+    if (BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall3";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall3(T=TWall3_constant) if
-       BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall3(T=TWall3_constant)
+    if BCWall3 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall3";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall4 if
-       (BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceWall4
+    if (BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of wall4";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall4(T=TWall4_constant) if
-       BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempWall4(T=TWall4_constant)
+    if BCWall4 == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of wall4";
-  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceCeiling if
-       (BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
+  BuildingSystems.Buildings.Surfaces.SurfaceToSolid outerSurfaceCeiling
+    if (BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Adiabatic
     or BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant)
     "Surface for outer thermal boundary condition of ceiling";
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempCeiling(T=TCeiling_constant) if
-       BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature ConstTempCeiling(T=TCeiling_constant)
+    if BCCeiling == BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Constant
     "Constant temperature on the outer surface of ceiling";
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWall1
     "Data of the thermal construction"
@@ -81,18 +81,18 @@ model Building1Zone1DBox
   parameter Boolean InteriorWalls = true
     "True: Interior walls are present, false: Interior walls are  absent"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"));
-  parameter Modelica.SIunits.Area AInteriorWalls = 1.0
-    "Surface area of one side of the interior walls"
-    annotation(Dialog(tab="Opaque constructions",group="Interior constructions"));
+  parameter Modelica.Units.SI.Area AInteriorWalls=1.0
+    "Surface area of one side of the interior walls" annotation (Dialog(tab=
+          "Opaque constructions", group="Interior constructions"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionWallsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
   parameter Boolean InteriorCeilings = true
     "True: Interior ceilings are present, false: Interior ceilings are absent"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"));
-  parameter Modelica.SIunits.Area AInteriorCeilings = 1.0
-    "Surface area of one side of the interior ceilings"
-    annotation(Dialog(tab="Opaque constructions",group="Interior constructions"));
+  parameter Modelica.Units.SI.Area AInteriorCeilings=1.0
+    "Surface area of one side of the interior ceilings" annotation (Dialog(tab=
+          "Opaque constructions", group="Interior constructions"));
   replaceable parameter BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction constructionCeilingsInterior
     "Data of the thermal construction"
     annotation(Dialog(tab = "Opaque constructions", group = "Interior constructions"), choicesAllMatching=true);
@@ -100,52 +100,57 @@ model Building1Zone1DBox
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition wall1"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Modelica.SIunits.Temp_K TWall1_constant = 293.15
+  parameter Modelica.Units.SI.Temperature TWall1_constant=293.15
     "Constant temperature on the outer surface of wall1 (used if BCWall1=Constant)"
-    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+    annotation (Dialog(tab="Opaque constructions", group=
+          "Thermal boundary conditions"));
   parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall2=
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition wall2"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Modelica.SIunits.Temp_K TWall2_constant = 293.15
+  parameter Modelica.Units.SI.Temperature TWall2_constant=293.15
     "Constant temperature on the outer surface of wall2 (used if BCWall2=Constant)"
-    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+    annotation (Dialog(tab="Opaque constructions", group=
+          "Thermal boundary conditions"));
   parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall3=
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition wall3"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Modelica.SIunits.Temp_K TWall3_constant = 293.15
+  parameter Modelica.Units.SI.Temperature TWall3_constant=293.15
     "Constant temperature on the outer surface of wall3 (used if BCWall3=Constant)"
-    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+    annotation (Dialog(tab="Opaque constructions", group=
+          "Thermal boundary conditions"));
   parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCWall4=
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition wall4"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Modelica.SIunits.Temp_K TWall4_constant = 293.15
+  parameter Modelica.Units.SI.Temperature TWall4_constant=293.15
     "Constant temperature on the outer surface of wall4 (used if BCWall4=Constant)"
-    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
+    annotation (Dialog(tab="Opaque constructions", group=
+          "Thermal boundary conditions"));
   parameter BuildingSystems.Buildings.Types.ThermalBoundaryCondition BCCeiling=
     BuildingSystems.Buildings.Types.ThermalBoundaryCondition.Ambience
     "Thermal boundary condition ceiling"
     annotation(Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Modelica.SIunits.Temp_K TCeiling_constant = 293.15
+  parameter Modelica.Units.SI.Temperature TCeiling_constant=293.15
     "Constant temperature on the outer surface of ceiling (used if BCCeiling=Constant)"
-    annotation (Dialog(tab = "Opaque constructions", group = "Thermal boundary conditions"));
-  parameter Modelica.SIunits.Length width = 10.0
+    annotation (Dialog(tab="Opaque constructions", group=
+          "Thermal boundary conditions"));
+  parameter Modelica.Units.SI.Length width=10.0
     "Width of the building (inner space)"
-     annotation(Dialog(tab="General",group="Geometry"));
-  parameter Modelica.SIunits.Length length = 10.0
-   "Length of the building (inner space)"
-    annotation(Dialog(tab="General",group="Geometry"));
-  parameter Modelica.SIunits.Length height = 2.8
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length length=10.0
+    "Length of the building (inner space)"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length height=2.8
     "Height of the building (inner space)"
-    annotation(Dialog(tab="General",group="Geometry"));
-  parameter Modelica.SIunits.Length widthWindow1 = 0.0
-    "Width of window1"
-    annotation(Dialog(tab= "Transparent constructions",group = "window1 (included in constructionWall1)"));
-  parameter Modelica.SIunits.Length heightWindow1 = 0.0
-    "Height of window1"
-    annotation(Dialog(tab= "Transparent constructions",group = "window1 (included in constructionWall1)"));
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length widthWindow1=0.0 "Width of window1"
+    annotation (Dialog(tab="Transparent constructions", group=
+          "window1 (included in constructionWall1)"));
+  parameter Modelica.Units.SI.Length heightWindow1=0.0 "Height of window1"
+    annotation (Dialog(tab="Transparent constructions", group=
+          "window1 (included in constructionWall1)"));
   parameter Real framePortionWindow1 = 0.2
     "Frame portion of window1"
     annotation(Dialog(tab= "Transparent constructions",group = "window1 (included in constructionWall1)"));
@@ -164,12 +169,12 @@ model Building1Zone1DBox
     "Shading coefficient window1"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={-98,-12}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-60,54})));
-  parameter Modelica.SIunits.Length widthWindow2 = 0.0
-    "Width of window2"
-    annotation(Dialog(tab= "Transparent constructions",group = "window2 (included in constructionWall2)"));
-  parameter Modelica.SIunits.Length heightWindow2 = 0.0
-    "Height of window2"
-    annotation(Dialog(tab= "Transparent constructions",group = "window2 (included in constructionWall2)"));
+  parameter Modelica.Units.SI.Length widthWindow2=0.0 "Width of window2"
+    annotation (Dialog(tab="Transparent constructions", group=
+          "window2 (included in constructionWall2)"));
+  parameter Modelica.Units.SI.Length heightWindow2=0.0 "Height of window2"
+    annotation (Dialog(tab="Transparent constructions", group=
+          "window2 (included in constructionWall2)"));
   parameter Real framePortionWindow2 = 0.2
     "Frame portion of window2"
     annotation(Dialog(tab= "Transparent constructions",group = "window2 (included in constructionWall2)"));
@@ -189,12 +194,12 @@ model Building1Zone1DBox
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={8,52},
         rotation=-90),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-30,54})));
-  parameter Modelica.SIunits.Length widthWindow3 = 0.0
-    "Width of window3"
-    annotation(Dialog(tab= "Transparent constructions",group = "window3 (included in constructionWall3)"));
-  parameter Modelica.SIunits.Length heightWindow3 = 0.0
-    "Height of window3"
-    annotation(Dialog(tab= "Transparent constructions",group = "window3 (included in constructionWall3)"));
+  parameter Modelica.Units.SI.Length widthWindow3=0.0 "Width of window3"
+    annotation (Dialog(tab="Transparent constructions", group=
+          "window3 (included in constructionWall3)"));
+  parameter Modelica.Units.SI.Length heightWindow3=0.0 "Height of window3"
+    annotation (Dialog(tab="Transparent constructions", group=
+          "window3 (included in constructionWall3)"));
   parameter Real framePortionWindow3 = 0.2
     "Frame portion of window3"
     annotation(Dialog(tab= "Transparent constructions",group = "window3 (included in constructionWall3)"));
@@ -213,12 +218,12 @@ model Building1Zone1DBox
     "Shading coefficient window3"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},origin={76,10}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={0,54})));
-  parameter Modelica.SIunits.Length widthWindow4 = 0.0
-    "Width of window4"
-    annotation(Dialog(tab= "Transparent constructions",group = "window4 (included in constructionWall4)"));
-  parameter Modelica.SIunits.Length heightWindow4 = 0.0
-    "Height of window4"
-    annotation(Dialog(tab= "Transparent constructions",group = "window4 (included in constructionWall4)"));
+  parameter Modelica.Units.SI.Length widthWindow4=0.0 "Width of window4"
+    annotation (Dialog(tab="Transparent constructions", group=
+          "window4 (included in constructionWall4)"));
+  parameter Modelica.Units.SI.Length heightWindow4=0.0 "Height of window4"
+    annotation (Dialog(tab="Transparent constructions", group=
+          "window4 (included in constructionWall4)"));
   parameter Real framePortionWindow4 = 0.2
     "Frame portion of window4"
     annotation(Dialog(tab= "Transparent constructions",group = "window4 (included in constructionWall4)"));
@@ -237,43 +242,43 @@ model Building1Zone1DBox
     "Shading coefficient window4"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={0,-64}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={30,54})));
-  parameter Modelica.SIunits.Temp_K TWall1_start = 293.15
+  parameter Modelica.Units.SI.Temperature TWall1_start=293.15
     "Start temperature of each layer of wall1"
-    annotation (Dialog(tab="Initialization",group = "Opaque constructions"));
-  parameter Modelica.SIunits.Temp_K TWall2_start = 293.15
+    annotation (Dialog(tab="Initialization", group="Opaque constructions"));
+  parameter Modelica.Units.SI.Temperature TWall2_start=293.15
     "Start temperature of each layer of wall2"
-    annotation (Dialog(tab="Initialization",group = "Opaque constructions"));
-  parameter Modelica.SIunits.Temp_K TWall3_start = 293.15
+    annotation (Dialog(tab="Initialization", group="Opaque constructions"));
+  parameter Modelica.Units.SI.Temperature TWall3_start=293.15
     "Start temperature of each layer of wall3"
-    annotation (Dialog(tab="Initialization",group = "Opaque constructions"));
-  parameter Modelica.SIunits.Temp_K TWall4_start = 293.15
+    annotation (Dialog(tab="Initialization", group="Opaque constructions"));
+  parameter Modelica.Units.SI.Temperature TWall4_start=293.15
     "Start temperature of each layer of wall4"
-    annotation (Dialog(tab="Initialization",group = "Opaque constructions"));
-  parameter Modelica.SIunits.Temp_K TCeiling_start = 293.15
+    annotation (Dialog(tab="Initialization", group="Opaque constructions"));
+  parameter Modelica.Units.SI.Temperature TCeiling_start=293.15
     "Start temperature of each layer of ceiling"
-    annotation (Dialog(tab="Initialization",group = "Opaque constructions"));
-  parameter Modelica.SIunits.Temp_K TBottom_start = 293.15
+    annotation (Dialog(tab="Initialization", group="Opaque constructions"));
+  parameter Modelica.Units.SI.Temperature TBottom_start=293.15
     "Start temperature of each layer of bottom"
-    annotation (Dialog(tab="Initialization",group = "Opaque constructions"));
-  parameter Modelica.SIunits.Temp_K TWallsInterior_start = 293.15
+    annotation (Dialog(tab="Initialization", group="Opaque constructions"));
+  parameter Modelica.Units.SI.Temperature TWallsInterior_start=293.15
     "Start temperature of each layer of interior walls"
-    annotation (Dialog(tab="Initialization",group = "Opaque constructions"));
-  parameter Modelica.SIunits.Temp_K TCeilingsInterior_start = 293.15
+    annotation (Dialog(tab="Initialization", group="Opaque constructions"));
+  parameter Modelica.Units.SI.Temperature TCeilingsInterior_start=293.15
     "Start temperature of each layer of interior ceilings"
-    annotation (Dialog(tab="Initialization",group = "Opaque constructions"));
-  parameter Modelica.SIunits.Temp_K TWindow1_start = 293.15
-    "Start temperature of each layer of window1"
-    annotation (Dialog(tab="Initialization",group = "Transparent constructions"));
-  parameter Modelica.SIunits.Temp_K TWindow2_start = 293.15
-    "Start temperature of each layer of window2"
-    annotation (Dialog(tab="Initialization",group = "Transparent constructions"));
-  parameter Modelica.SIunits.Temp_K TWindow3_start = 293.15
-    "Start temperature of each layer of window3"
-    annotation (Dialog(tab="Initialization",group = "Transparent constructions"));
-  parameter Modelica.SIunits.Temp_K TWindow4_start = 293.15
-    "Start temperature of each layer of window4"
-    annotation (Dialog(tab="Initialization",group = "Transparent constructions"));
-  parameter Modelica.SIunits.Temp_K TAir_start = 293.15
+    annotation (Dialog(tab="Initialization", group="Opaque constructions"));
+  parameter Modelica.Units.SI.Temperature TWindow1_start=293.15
+    "Start temperature of each layer of window1" annotation (Dialog(tab=
+          "Initialization", group="Transparent constructions"));
+  parameter Modelica.Units.SI.Temperature TWindow2_start=293.15
+    "Start temperature of each layer of window2" annotation (Dialog(tab=
+          "Initialization", group="Transparent constructions"));
+  parameter Modelica.Units.SI.Temperature TWindow3_start=293.15
+    "Start temperature of each layer of window3" annotation (Dialog(tab=
+          "Initialization", group="Transparent constructions"));
+  parameter Modelica.Units.SI.Temperature TWindow4_start=293.15
+    "Start temperature of each layer of window4" annotation (Dialog(tab=
+          "Initialization", group="Transparent constructions"));
+  parameter Modelica.Units.SI.Temperature TAir_start=293.15
     "Start temperature of indoor air temperature"
     annotation (Dialog(tab="Initialization"));
   parameter Real clo = 0.5
@@ -285,9 +290,10 @@ model Building1Zone1DBox
   Modelica.Blocks.Interfaces.RealInput wme = 0.0
     "External work"
     annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort (PMV and PPD calculation)"));
-  parameter Modelica.SIunits.Velocity vAir = 0.1
-     "Mean relative air velocity in the area of user presence"
-     annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort (PMV and PPD calculation)"));
+  parameter Modelica.Units.SI.Velocity vAir=0.1
+    "Mean relative air velocity in the area of user presence" annotation (
+      HideResult=true, Dialog(tab="Advanced", group=
+          "Thermal comfort (PMV and PPD calculation)"));
   parameter BuildingSystems.Buildings.Types.NumericalResolution numResWall1=
     BuildingSystems.Buildings.Types.NumericalResolution.Low
     "Numerical resolution wall1"

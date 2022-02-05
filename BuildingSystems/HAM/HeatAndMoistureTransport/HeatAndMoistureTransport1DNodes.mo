@@ -13,38 +13,40 @@ model HeatAndMoistureTransport1DNodes
   BuildingSystems.Interfaces.HeatPort heatPort_source[nNodesX]
     "Optional heat source at the numerical node"
     annotation(Placement(transformation(extent={{-10,-12},{10,8}}), iconTransformation(extent={{-10,-12},{10,8}})));
-  Modelica.SIunits.Temp_K T[nNodesX](each start = T_start)
+  Modelica.Units.SI.Temperature T[nNodesX](each start=T_start)
     "Temperature of the numerical node";
   BuildingSystems.Types.RelativeHumidity phi[nNodesX]
     "Relative humidity of numerical node";
-  Modelica.SIunits.MassConcentration w[nNodesX](
-    each start = BuildingSystems.HAM.HeatAndMoistureTransport.Functions.wSor(material.sorTabX,material.sorTabY,phi_start,material.wF,material.porosity))
-    "Water content of the numerical node";
-  Modelica.SIunits.MassConcentration wDerPhi1[nNodesX]
+  Modelica.Units.SI.MassConcentration w[nNodesX](each start=
+        BuildingSystems.HAM.HeatAndMoistureTransport.Functions.wSor(
+        material.sorTabX,
+        material.sorTabY,
+        phi_start,
+        material.wF,
+        material.porosity)) "Water content of the numerical node";
+  Modelica.Units.SI.MassConcentration wDerPhi1[nNodesX]
     "Derivative of the water content by phi of the numerical node";
   BuildingSystems.Types.RelativeHumidity phi_x1
     "Relative humidity on the surface at side x1";
   BuildingSystems.Types.RelativeHumidity phi_x2
     "Relative humidity on the surface at side x2";
-  Modelica.SIunits.ThermalConductance CTh[nNodesX+1](each fixed=false)
+  Modelica.Units.SI.ThermalConductance CTh[nNodesX + 1](each fixed=false)
     "Thermal conductance of the numerical node";
   BuildingSystems.Types.CoefficientOfMoistureDiffusion CMd[nNodesX+1]
     "Moisture diffusion coefficient of the numerical node";
   BuildingSystems.Types.CoefficientOfLiquidTransport CLt[nNodesX+1]
     "Liquid transport coefficient of the numerical node";
-  Modelica.SIunits.MassFlowRate m_flow_wdr = 0.0
-    "Wind driven rain";
+  Modelica.Units.SI.MassFlowRate m_flow_wdr=0.0 "Wind driven rain";
   parameter Integer nNodesX = 1
     "Number of numerical nodes in the x dimension";
-  parameter Modelica.SIunits.Temp_K T_start = 293.15
+  parameter Modelica.Units.SI.Temperature T_start=293.15
     "Start temperature of the numerical nodes"
     annotation (Dialog(tab="Initialization"));
   parameter BuildingSystems.Types.RelativeHumidity phi_start = 0.5
     "Start relative humidity of the numerical nodes"
     annotation (Dialog(tab="Initialization"));
 protected
-  parameter Modelica.SIunits.Length dx[nNodesX](
-    each fixed = false);
+  parameter Modelica.Units.SI.Length dx[nNodesX](each fixed=false);
   parameter BuildingSystems.Types.VolumeHeatCapacity C = material.c * material.rho
     "Volume related heat capacity";
 initial algorithm

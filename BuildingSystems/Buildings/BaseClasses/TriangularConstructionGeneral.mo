@@ -40,9 +40,10 @@ partial model TriangularConstructionGeneral
   parameter BuildingSystems.Buildings.Types.CoordinateType coordinateType = BuildingSystems.Buildings.Types.CoordinateType.Local
     "Local (default) or global"
     annotation (Evaluate=true, Dialog(tab = "Geometry", group = "Coordinates"));
-  parameter Modelica.SIunits.Length verticesLocal[3,2] = {{0.0,0.0},{0.0,1.0},{0.5,1.0}}
+  parameter Modelica.Units.SI.Length verticesLocal[3,2]={{0.0,0.0},{0.0,1.0},{
+      0.5,1.0}}
     "Local 2D vertices (if geometryType == Fixed and coordinateType == Local)"
-    annotation(Dialog(tab = "Geometry", group = "Coordinates"));
+    annotation (Dialog(tab="Geometry", group="Coordinates"));
   output BuildingSystems.Interfaces.LengthOutput verticesLocal_internal[3,2]
     "Local 2D vertices";
   input BuildingSystems.Interfaces.LengthInput verticesLocal_in[3,2]
@@ -51,9 +52,10 @@ partial model TriangularConstructionGeneral
     "Local 2D vertices from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-36}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-20})));
-  parameter Modelica.SIunits.Length verticesGlobal[3,3] = {{0.0,0.0,0.0},{0.0,1.0,0.0},{0.5,1.0,0.0}}
+  parameter Modelica.Units.SI.Length verticesGlobal[3,3]={{0.0,0.0,0.0},{0.0,
+      1.0,0.0},{0.5,1.0,0.0}}
     "Global 3D vertices (if geometryType == Fixed and coordinateType == Global)"
-    annotation(Dialog(tab = "Geometry", group = "Coordinates"));
+    annotation (Dialog(tab="Geometry", group="Coordinates"));
   output BuildingSystems.Interfaces.LengthOutput verticesGlobal_internal[3,3]
     "Global 3D vertices";
   input BuildingSystems.Interfaces.LengthInput verticesGlobal_in[3,3]
@@ -62,9 +64,9 @@ partial model TriangularConstructionGeneral
       "Global 3D vertices from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-46}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-40})));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi = 0.0
+  parameter Modelica.Units.NonSI.Angle_deg angleDegAzi=0.0
     "Azimuth angle (if geometryType == Fixed and coordinateType = Local) -> south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg"
-    annotation(Dialog(tab = "Geometry", group = "Orientation"));
+    annotation (Dialog(tab="Geometry", group="Orientation"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegAzi_internal
     "Azimuth angle";
   input BuildingSystems.Interfaces.Angle_degInput angleDegAzi_in(
@@ -74,9 +76,9 @@ partial model TriangularConstructionGeneral
     "Azimuth angle from input"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,  origin={30,-46}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={22,-40})));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil = 90.0
+  parameter Modelica.Units.NonSI.Angle_deg angleDegTil=90.0
     "Tilt angle (if geometryType == Fixed and coordinateType = Local) -> bottom: 0 deg, perpendicular: 90 deg, ceiling: 180 deg"
-    annotation(Dialog(tab = "Geometry", group = "Orientation"));
+    annotation (Dialog(tab="Geometry", group="Orientation"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegTil_internal
     "Tilt angle";
   input BuildingSystems.Interfaces.Angle_degInput angleDegTil_in(
@@ -86,9 +88,9 @@ partial model TriangularConstructionGeneral
     "Tilt angle from input"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,  origin={30,-36}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={22,-20})));
-  parameter Modelica.SIunits.Length position[3] = {0.0,0.0,0.0}
+  parameter Modelica.Units.SI.Length position[3]={0.0,0.0,0.0}
     "Position (if geometryType == Fixed and coordinateType == Local)"
-    annotation(Dialog(tab = "Geometry", group = "General"));
+    annotation (Dialog(tab="Geometry", group="General"));
   output BuildingSystems.Interfaces.LengthOutput position_internal[3]
     "Position";
   input BuildingSystems.Interfaces.LengthInput position_in[3]
@@ -102,16 +104,15 @@ partial model TriangularConstructionGeneral
   parameter BuildingSystems.Types.Absorptance abs_2 = 0.5
     "Short-wave absorptance side 2"
     annotation(Dialog(tab = "General", group = "Surfaces"));
-  parameter Modelica.SIunits.Emissivity epsilon_1 = 0.9
+  parameter Modelica.Units.SI.Emissivity epsilon_1=0.9
     "Long-wave emittance side 1"
-    annotation(Dialog(tab = "General", group = "Surfaces"));
-  parameter Modelica.SIunits.Emissivity epsilon_2 = 0.9
+    annotation (Dialog(tab="General", group="Surfaces"));
+  parameter Modelica.Units.SI.Emissivity epsilon_2=0.9
     "Long-wave emittance side 2"
-    annotation(Dialog(tab = "General", group = "Surfaces"));
-  Modelica.SIunits.Area ASur
-    "Surface area";
+    annotation (Dialog(tab="General", group="Surfaces"));
+  Modelica.Units.SI.Area ASur "Surface area";
 protected
-  parameter Modelica.SIunits.Length thickness
+  parameter Modelica.Units.SI.Length thickness
     "Total thickness of the construction";
 equation
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then

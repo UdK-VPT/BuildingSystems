@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate;
-record AgenaAZUR8plus_AC28H = BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial(
+record AgenaAZUR8plus_AC28H =
+    BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial
+    (
   final IAMC=0.94,
   final C_A = 6800/2.441,
   final A = 2.441,

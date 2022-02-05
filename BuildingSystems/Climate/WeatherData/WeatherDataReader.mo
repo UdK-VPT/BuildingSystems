@@ -61,18 +61,19 @@ block WeatherDataReader
     "Cloud cover of the sky"
     annotation (Placement(transformation(extent={{-86,-80},{-66,-60}}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=90,origin={70,-110})));
-  Modelica.SIunits.Pressure pGround=
-    pAirRef * ((TAirRef - gamma * (0.0 - zRefTAir)) / TAirRef)^(Modelica.Constants.g_n / (gamma * RAir))
+  Modelica.Units.SI.Pressure pGround=pAirRef*((TAirRef - gamma*(0.0 - zRefTAir))
+      /TAirRef)^(Modelica.Constants.g_n/(gamma*RAir))
     "Air pressure on ground level";
-  parameter Modelica.SIunits.Pressure pAirRef = 100000.0
+  parameter Modelica.Units.SI.Pressure pAirRef=100000.0
     "Static air pressure on reference height"
-    annotation(Dialog(tab = "General", group = "Location"));
+    annotation (Dialog(tab="General", group="Location"));
   parameter Real gamma(unit = "K/m") = 0.01
     "Temperature gradient of the planetary boundary layer"
     annotation(Dialog(tab = "General", group = "Location"));
-  parameter Modelica.SIunits.Length zRefTAir = 2.0 // Standard value of TRY
+  parameter Modelica.Units.SI.Length zRefTAir=2.0
     "Reference height air temperature measurement"
-    annotation(Dialog(tab = "General", group = "Location"));
+    annotation (Dialog(tab="General", group="Location"));
+                                                   // Standard value of TRY
   constant Real RAir(unit="J/(kg.K)") = 288.0
     "Gas constant dry air";
 

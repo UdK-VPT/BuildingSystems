@@ -39,7 +39,8 @@ model SingleZoneThermal1x1x1
     nNodes={2,2})
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-28})));
   BuildingSystems.Buildings.Ambience ambience(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII,
     nSurfaces=nSurfaces)
     annotation (Placement(transformation(extent={{-62,-10},{-42,10}})));
   BuildingSystems.Buildings.Zones.Examples.ZoneAirvolumeThermal1x1x1 zone(

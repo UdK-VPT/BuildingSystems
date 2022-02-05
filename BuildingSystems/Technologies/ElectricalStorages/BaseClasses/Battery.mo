@@ -18,17 +18,17 @@ partial model Battery "partial model of a battery"
   parameter Integer nBat(min = 1) = 1
     "Number of batteries"
     annotation(Dialog(tab = "General"));
-  final parameter Modelica.SIunits.Energy E_nominal(displayUnit="kWh") = nBat*batteryData.E_nominal
-    "Nominal capacity of all batteries";
-  final parameter Modelica.SIunits.Efficiency etaCharge = batteryData.etaCharge
+  final parameter Modelica.Units.SI.Energy E_nominal(displayUnit="kWh") = nBat*
+    batteryData.E_nominal "Nominal capacity of all batteries";
+  final parameter Modelica.Units.SI.Efficiency etaCharge=batteryData.etaCharge
     "Charge efficiency";
-  final parameter Modelica.SIunits.Efficiency etaLoad = batteryData.etaLoad
+  final parameter Modelica.Units.SI.Efficiency etaLoad=batteryData.etaLoad
     "Load efficiency";
   final parameter Real SOC_min = batteryData.SOC_min
     "Minimal accepted charge level";
-  final parameter Modelica.SIunits.Power PLoad_max = nBat*batteryData.PLoad_max
+  final parameter Modelica.Units.SI.Power PLoad_max=nBat*batteryData.PLoad_max
     "Maximal discharging power of battery";
-  final parameter Modelica.SIunits.Power PCharge_max = nBat*batteryData.PCharge_max
+  final parameter Modelica.Units.SI.Power PCharge_max=nBat*batteryData.PCharge_max
     "Maximal charging power of battery";
   final parameter Real fDis(unit="1/s") = batteryData.fDis
     "Loss factor of the battery";
@@ -41,37 +41,23 @@ partial model Battery "partial model of a battery"
     "Battery rate";
   final parameter Real a_mcr(unit="W/J") = batteryData.a_mcr
     "Maximum charge rate parameter";
-  Modelica.SIunits.Power PChargeEff
-    "Effective power of the electrical source";
-  Modelica.SIunits.Power PLoadEff
-    "Effective power of the electrical load";
-  Modelica.SIunits.Energy EAva(
-    displayUnit="kWh",
-    start = c*SOC_start*E_nominal)
+  Modelica.Units.SI.Power PChargeEff "Effective power of the electrical source";
+  Modelica.Units.SI.Power PLoadEff "Effective power of the electrical load";
+  Modelica.Units.SI.Energy EAva(displayUnit="kWh", start=c*SOC_start*E_nominal)
     "Available charge of the battery";
-  Modelica.SIunits.Energy EBou(
-    displayUnit="kWh",
-    start = (1.0-c)*SOC_start*E_nominal)
-    "Bound charge of the battery";
-  Modelica.SIunits.Energy E(
-    displayUnit="kWh",
-    start = E_nominal * SOC_start)
+  Modelica.Units.SI.Energy EBou(displayUnit="kWh", start=(1.0 - c)*SOC_start*
+        E_nominal) "Bound charge of the battery";
+  Modelica.Units.SI.Energy E(displayUnit="kWh", start=E_nominal*SOC_start)
     "Total charge of the battery";
-  Modelica.SIunits.Energy h1
-    "Helping variable 1";
-  Modelica.SIunits.Energy h2
-    "Helping variable 2";
-  Modelica.SIunits.Power PNet
+  Modelica.Units.SI.Energy h1 "Helping variable 1";
+  Modelica.Units.SI.Energy h2 "Helping variable 2";
+  Modelica.Units.SI.Power PNet
     "Net power for charging (> 0.0 W) or discharging (< 0.0 W)";
-  Modelica.SIunits.Energy E_charged(
-    start = E_start,
-    displayUnit="kWh")
+  Modelica.Units.SI.Energy E_charged(start=E_start, displayUnit="kWh")
     "Total energy charged to the battery";
-  Modelica.SIunits.Energy E_discharged(
-    start = E_start,
-    displayUnit="kWh")
+  Modelica.Units.SI.Energy E_discharged(start=E_start, displayUnit="kWh")
     "Total energy taken from the battery";
-  constant Modelica.SIunits.Energy E_start = 0;
+  constant Modelica.Units.SI.Energy E_start=0;
 
 equation
   EAva = h1*c;
@@ -95,7 +81,7 @@ equation
                0.001);
 
   PGrid = 0.5*(1.0-Modelica.Math.tanh(100000.0*(PNet)))*(PNet + PLoadEff*etaLoad)+
-          0.5*(1.0+Modelica.Math.tanh(100000.0*(PNet)))*(PNet - PChargeEff/etaCharge);               
+          0.5*(1.0+Modelica.Math.tanh(100000.0*(PNet)))*(PNet - PChargeEff/etaCharge);
 
     annotation (defaultComponentName="battery", Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}),graphics={
       Rectangle(extent={{-60,60},{60,-60}},

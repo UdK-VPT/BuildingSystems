@@ -4,21 +4,21 @@ model ZoneTemplateAirvolumeMixed
   extends BuildingSystems.Buildings.BaseClasses.ZoneTemplateGeneral(
     redeclare final package Medium = BuildingSystems.Media.Air,
     nHeatSourcesTotal = if calcIdealLoads then nHeatSources + 2 else nHeatSources);
-  parameter Modelica.SIunits.HeatFlowRate Q_flow_heatingMax = Modelica.Constants.inf
+  parameter Modelica.Units.SI.HeatFlowRate Q_flow_heatingMax=Modelica.Constants.inf
     "Maximal power for ideal heating"
-    annotation(Dialog(tab="General",group="Ideal heating and cooling"));
-  parameter Modelica.SIunits.HeatFlowRate Q_flow_coolingMax = -Modelica.Constants.inf
+    annotation (Dialog(tab="General", group="Ideal heating and cooling"));
+  parameter Modelica.Units.SI.HeatFlowRate Q_flow_coolingMax=-Modelica.Constants.inf
     "Maximal power for ideal cooling"
-    annotation(Dialog(tab="General",group="Ideal heating and cooling"));
+    annotation (Dialog(tab="General", group="Ideal heating and cooling"));
   parameter Real radiationportionIdealHeating = 0.5
     "Radiation portion of the ideal heating"
     annotation(Dialog(tab="General",group="Ideal heating and cooling"));
   parameter Real radiationportionIdealCooling = 0.5
     "Radiation portion of the ideal cooling"
     annotation(Dialog(tab="General",group="Ideal heating and cooling"));
-  parameter Modelica.SIunits.Length heightAirpath[nAirpathsInternal]=fill(0.0,nAirpathsInternal)
-    "Vertical height of each air path in the zone"
-    annotation(Dialog(tab="General",group="Air change"));
+  parameter Modelica.Units.SI.Length heightAirpath[nAirpathsInternal]=fill(0.0,
+      nAirpathsInternal) "Vertical height of each air path in the zone"
+    annotation (Dialog(tab="General", group="Air change"));
   parameter Boolean heatSources = false
     "True: heat sources present; false: no heat sources present"
     annotation(Dialog(tab="General",group="Heat and moisture sources"));
@@ -51,15 +51,14 @@ model ZoneTemplateAirvolumeMixed
   Modelica.Blocks.Interfaces.RealInput wme = 0.0
     "External work"
     annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort"));
-  parameter Modelica.SIunits.Velocity vAir = 0.1
-     "Mean relative air velocity in the area of user presence"
-     annotation(HideResult = true, Dialog(tab="Advanced",group="Thermal comfort"));
-  parameter Modelica.SIunits.Temp_K T_start = 293.15
+  parameter Modelica.Units.SI.Velocity vAir=0.1
+    "Mean relative air velocity in the area of user presence" annotation (
+      HideResult=true, Dialog(tab="Advanced", group="Thermal comfort"));
+  parameter Modelica.Units.SI.Temperature T_start=293.15
     "Start air temperature of the zone"
     annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.MassFraction x_start = 0.005
-    "Start air moisture of the zone"
-    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.Units.SI.MassFraction x_start=0.005
+    "Start air moisture of the zone" annotation (Dialog(tab="Initialization"));
   output BuildingSystems.Interfaces.HeatFlowRateOutput Q_flow_heating if calcIdealLoads
     annotation (Placement(transformation(extent={{-52,28},{-32,48}}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=0,  origin={110,90})));
@@ -113,11 +112,11 @@ model ZoneTemplateAirvolumeMixed
    BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for air temperature"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.Temp_K TAir_constant = 293.15
+  parameter Modelica.Units.SI.Temperature TAir_constant=293.15
     "Constant air temperature (used if TAirSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
-  BuildingSystems.Interfaces.Temp_KInput TAir_in if
-    TAirSou == BuildingSystems.Buildings.Types.DataSource.Input
+  BuildingSystems.Interfaces.Temp_KInput TAir_in
+ if TAirSou == BuildingSystems.Buildings.Types.DataSource.Input
     "Prediscribed external air temperature (used if TAirSou=Input)"
     annotation(Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={110,54}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,-60})));
@@ -125,11 +124,11 @@ model ZoneTemplateAirvolumeMixed
    BuildingSystems.Buildings.Types.DataSource.Calculation
     "Data source for air moisture"
     annotation (Evaluate=true, Dialog(tab="Advanced", group="Data source"));
-  parameter Modelica.SIunits.MassFraction xAir_constant = 0.005
+  parameter Modelica.Units.SI.MassFraction xAir_constant=0.005
     "Constant air moisture (used if xAirSou=Parameter)"
     annotation (Dialog(tab="Advanced", group="Data source"));
-  BuildingSystems.Interfaces.Moisture_absInput xAir_in if
-    xAirSou == BuildingSystems.Buildings.Types.DataSource.Input
+  BuildingSystems.Interfaces.Moisture_absInput xAir_in
+ if xAirSou == BuildingSystems.Buildings.Types.DataSource.Input
     "Prediscribed external air moisture (used if xAirSou=Input)"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={110,38}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,-100})));

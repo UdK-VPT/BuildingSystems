@@ -14,7 +14,7 @@ model HeatAndMoistureTransport1DNodes
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Sine climate1(
     amplitude=10.0,
-    freqHz=1.0/86400.0,
+    f=1.0/86400.0,
     offset=273.15 + 20.0,
     phase=6.2831853071796)
     annotation (Placement(transformation(extent={{-58,-16},{-46,-4}})));
@@ -33,7 +33,7 @@ model HeatAndMoistureTransport1DNodes
     k=0.008)
     annotation (Placement(transformation(extent={{58,4},{46,16}})));
   Modelica.Blocks.Sources.Sine climate2(
-    freqHz=1.0/86400.0,
+    f=1.0/86400.0,
     amplitude=0.004,
     phase=6.2831853071796,
     offset=0.008)
@@ -66,8 +66,8 @@ equation
   connect(body.moisturePort_x2, absMoistBC2.moisturePort) annotation (Line(
       points={{8,2},{18,2},{18,10},{28,10}},
       color={120,0,120}));
-  connect(body.heatPort_x2, TConstant.port) annotation (Line
-      (points={{8,0},{18,0},
+  connect(body.heatPort_x2, TConstant.port) annotation (Line(
+       points={{8,0},{18,0},
       {18,-10},{28,-10}},
       color={191,0,0}));
 

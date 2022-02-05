@@ -1,7 +1,7 @@
 within BuildingSystems.Fluid.Sensors;
 model TraceSubstancesTwoPort "Ideal two port sensor for trace substance"
   extends BuildingSystems.Fluid.Sensors.BaseClasses.PartialDynamicFlowSensor;
-  extends Modelica.Icons.RotationalSensor;
+  extends Modelica.Icons.RoundSensor;
   Modelica.Blocks.Interfaces.RealOutput C(min=0,
                                           start=C_start)
     "Trace substance of the passing fluid"

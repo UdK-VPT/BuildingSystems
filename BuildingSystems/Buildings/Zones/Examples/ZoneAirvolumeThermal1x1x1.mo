@@ -6,5 +6,5 @@ model ZoneAirvolumeThermal1x1x1
   nAirElements = 1,
   redeclare BuildingSystems.Buildings.Airvolumes.Examples.AirvolumeThermal1x1x1 airvolume);
 
-  annotation();
+  annotation ();
 end ZoneAirvolumeThermal1x1x1;
