@@ -88,8 +88,8 @@ block LimPID
   Modelica.Blocks.Math.Gain P(k=1) "Proportional term"
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
   Utilities.Math.IntegratorWithReset I(
-    final reset=if reset == BuildingSystems.Types.Reset.Disabled then reset
-         else BuildingSystems.Types.Reset.Input,
+    final reset=if reset == BuildingSystems.Types.Reset.Disabled then reset else BuildingSystems.Types.Reset.Input,
+
     final y_reset=y_reset,
     final k=unitTime/Ti,
     final y_start=xi_start,
@@ -252,19 +252,19 @@ equation
     Line(points={{-50,-40},{-30,-40},{30,40},{50,40}}),
     Text(
       extent={{46,-6},{68,-18}},
-      lineColor={128,128,128},
+      textColor={128,128,128},
       textString="u"),
     Text(
       extent={{-30,70},{-5,50}},
-      lineColor={128,128,128},
+      textColor={128,128,128},
       textString="y"),
     Text(
       extent={{-58,-54},{-28,-42}},
-      lineColor={128,128,128},
+      textColor={128,128,128},
       textString="uMin"),
     Text(
       extent={{26,40},{66,56}},
-      lineColor={128,128,128},
+      textColor={128,128,128},
       textString="uMax")}));
 end Limiter;
 

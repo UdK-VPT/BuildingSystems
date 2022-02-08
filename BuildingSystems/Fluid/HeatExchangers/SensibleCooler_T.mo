@@ -144,7 +144,7 @@ BuildingSystems, #763</a>.
           fillPattern=FillPattern.Solid),
                    Text(
           extent={{20,-10},{64,-56}},
-          lineColor={255,255,255},
+          textColor={255,255,255},
           textString="-"),
         Rectangle(
           extent={{-64,34},{-34,54}},
@@ -154,7 +154,7 @@ BuildingSystems, #763</a>.
         Line(points={{-64,34},{-52,44},{-64,54}}, color={0,0,0}),
         Text(
           extent={{26,108},{94,84}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="Q_flow"),
         Rectangle(
           extent={{70,82},{100,78}},
@@ -182,6 +182,6 @@ BuildingSystems, #763</a>.
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-110,102},{-74,84}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="T")}));
 end SensibleCooler_T;

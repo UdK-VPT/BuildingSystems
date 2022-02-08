@@ -26,11 +26,9 @@ partial model ValveParameters "Model with parameters for valves"
   parameter Modelica.Units.SI.PressureDifference dpValve_nominal(
     displayUnit="Pa",
     min=0,
-    fixed=if CvData == BuildingSystems.Fluid.Types.CvTypes.OpPoint then true
-         else false)
+    fixed=if CvData == BuildingSystems.Fluid.Types.CvTypes.OpPoint then true else false)
     "Nominal pressure drop of fully open valve, used if CvData=BuildingSystems.Fluid.Types.CvTypes.OpPoint"
-    annotation (Dialog(group="Nominal condition", enable=(CvData ==
-          BuildingSystems.Fluid.Types.CvTypes.OpPoint)));
+    annotation (Dialog(group="Nominal condition", enable=(CvData == BuildingSystems.Fluid.Types.CvTypes.OpPoint)));
 
   parameter Modelica.Units.SI.Density rhoStd
     "Inlet density for which valve coefficients are defined"

@@ -63,8 +63,6 @@ partial model PartialFlowMachine
   parameter Modelica.Blocks.Types.Init init=Modelica.Blocks.Types.Init.InitialOutput
     "Type of initialization (no init/steady state/initial state/initial output)"
     annotation(Dialog(tab="Dynamics", group="Filtered speed",enable=use_inputFilter));
-  parameter Real y_start(min=0, max=1, unit="1")=0 "Initial value of speed"
-    annotation(Dialog(tab="Dynamics", group="Filtered speed",enable=use_inputFilter));
 
   // Connectors and ports
     Modelica.Blocks.Interfaces.IntegerInput stage
@@ -146,6 +144,9 @@ protected
   final parameter Modelica.Units.SI.SpecificEnthalpy h_outflow_start=
       Medium.specificEnthalpy(sta_start) "Start value for outflowing enthalpy";
 
+  final parameter Modelica.Units.SI.Frequency fCut=5/(2*Modelica.Constants.pi*
+      riseTime) "Cut-off frequency of filter";
+
   Modelica.Blocks.Sources.Constant[size(stageInputs, 1)] stageValues(
     final k=stageInputs)
    if inputType == BuildingSystems.Fluid.Types.InputType.Stages "Stage input values"
@@ -183,16 +184,13 @@ protected
     nPorts=2) "Fluid volume for dynamic model"
     annotation (Placement(transformation(extent={{-70,0},{-90,20}})));
 
-  Modelica.Blocks.Continuous.Filter filter(
-     order=2,
-     f_cut=5/(2*Modelica.Constants.pi*riseTime),
-     final init=init,
-     x(each stateSelect=StateSelect.always),
-     final analogFilter=Modelica.Blocks.Types.AnalogFilter.CriticalDamping,
-     final filterType=Modelica.Blocks.Types.FilterType.LowPass)
-     if use_inputFilter
-    "Second order filter to approximate valve opening time, and to improve numerics"
-    annotation (Placement(transformation(extent={{20,81},{34,95}})));
+  BuildingSystems.Fluid.BaseClasses.ActuatorFilter filter(
+    final n=2,
+    final f=fCut,
+    final normalized=true,
+    final initType=init) if use_inputFilter
+    "Second order filter to approximate dynamics of pump speed, and to improve numerics"
+    annotation (Placement(transformation(extent={{20,61},{40,80}})));
 
   Modelica.Blocks.Math.Gain gaiSpe(y(final unit="1"))
  if inputType == BuildingSystems.Fluid.Types.InputType.Continuous and
@@ -256,7 +254,6 @@ protected
     final computePowerUsingSimilarityLaws=computePowerUsingSimilarityLaws,
     final haveVMax=haveVMax,
     final V_flow_max=V_flow_max,
-    r_N(start=y_start),
     r_V(start=m_flow_nominal/rho_default),
     final preVar=preVar) "Flow machine"
     annotation (Placement(transformation(extent={{-32,-68},{-12,-48}})));
@@ -440,8 +437,8 @@ equation
                              color={0,0,127}));
   connect(eff.WFlo, PToMed.u2) annotation (Line(points={{-11,-56},{-8,-56},{-8,-86},
           {48,-86}},      color={0,0,127}));
-  connect(inputSwitch.y, filter.u) annotation (Line(points={{1,50},{16,50},{16,88},
-          {18.6,88}},     color={0,0,127}));
+  connect(inputSwitch.y, filter.u) annotation (Line(points={{1,50},{12,50},{12,70.5},
+          {18,70.5}},     color={0,0,127}));
 
   connect(senRelPre.p_rel, eff.dp_in) annotation (Line(points={{50.5,-26.35},{50.5,
           -38},{-18,-38},{-18,-46}},               color={0,0,127}));
@@ -491,10 +488,10 @@ equation
           visible=energyDynamics <> Modelica.Fluid.Types.Dynamics.SteadyState,
           fillColor={0,100,199}),
         Text(extent={{64,106},{114,92}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="P"),
         Text(extent={{42,86},{92,72}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="y_actual"),
         Line(
           points={{0,100},{0,50}},
@@ -515,7 +512,7 @@ equation
         Text(
           visible=use_inputFilter,
           extent={{-20,92},{22,46}},
-          lineColor={0,0,0},
+          textColor={0,0,0},
           fillColor={135,135,135},
           fillPattern=FillPattern.Solid,
           textString="M",
@@ -545,6 +542,12 @@ and more robust simulation, in particular if the mass flow is equal to zero.
 </html>",
 revisions="<html>
 <ul>
+<li>
+June 17, 2021, by Michael Wetter:<br/>
+Changed implementation of the filter.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1498\">#1498</a>.
+</li>
 <li>
 October 25, 2019, by Jianjun Hu:<br/>
 Improved icon graphics annotation. This is for

@@ -22,14 +22,12 @@ model EvaporatorCondenser
     annotation (Placement(transformation(extent={{-5,-55},{5,-65}}),
         iconTransformation(extent={{-5,-55},{5,-65}})));
 
-  Modelica.Units.SI.Efficiency NTU=UA/(
-      BuildingSystems.Utilities.Math.Functions.smoothMax(
+  Modelica.Units.SI.Efficiency NTU=UA/(BuildingSystems.Utilities.Math.Functions.smoothMax(
       abs(port_a.m_flow),
       m_flow_small,
       m_flow_small)*cp_default) "Number of transfer units of heat exchanger";
 
-  Modelica.Units.SI.Efficiency eps=
-      BuildingSystems.Utilities.Math.Functions.smoothMin(
+  Modelica.Units.SI.Efficiency eps=BuildingSystems.Utilities.Math.Functions.smoothMin(
       BuildingSystems.Fluid.HeatExchangers.BaseClasses.epsilon_ntuZ(
         NTU,
         0,
@@ -91,7 +89,7 @@ equation
           fillPattern=FillPattern.Solid),
         Text(
           extent={{72,94},{116,66}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           textString="Q_flow")}),
 defaultComponentName="evaCon",
 Documentation(info="<html>

@@ -159,7 +159,7 @@ equation
     annotation (Line(points={{10,-60},{40,-60}},          color={0,127,255}));
   connect(TUTubOut.port_b, sin.ports[1])
     annotation (Line(points={{60,-60},{70,-60}},          color={0,127,255}));
-  annotation (__Dymola_Commands(file="Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/Examples/Borefields.mos"
+  annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/Examples/Borefields.mos"
         "Simulate and plot"),
   Documentation(info="<html>
 <p>

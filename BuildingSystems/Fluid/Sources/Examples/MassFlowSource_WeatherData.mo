@@ -16,13 +16,11 @@ model MassFlowSource_WeatherData
   BuildingSystems.Fluid.Sources.Outside bou(redeclare package Medium = Medium, nPorts=1)
     "Model with outside conditions"
     annotation (Placement(transformation(extent={{-64,-10},{-44,10}})));
-  BuildingSystems.Fluid.Sensors.RelativeHumidityTwoPort senRelHum(redeclare
-      package
+  BuildingSystems.Fluid.Sensors.RelativeHumidityTwoPort senRelHum(redeclare package
       Medium = Medium, m_flow_nominal=1,
     tau=0)                               "Sensor for relative humidity"
     annotation (Placement(transformation(extent={{-30,-10},{-10,10}})));
-  BuildingSystems.Fluid.Sensors.MassFractionTwoPort senMasFra(redeclare package
-                                                                                Medium =
+  BuildingSystems.Fluid.Sensors.MassFractionTwoPort senMasFra(redeclare package Medium =
         Medium, m_flow_nominal=1,
     tau=0)                        "Sensor for mass fraction of water"
     annotation (Placement(transformation(extent={{10,-10},{30,10}})));
