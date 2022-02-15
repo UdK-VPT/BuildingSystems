@@ -23,12 +23,13 @@ model PlugFlowTransportDelay "Delay time for given normalized velocity"
       m_flow_start) > 1E-10*m_flow_nominal) then min(-length/m_flow_start*(rho*
       dh^2/4*Modelica.Constants.pi), 0) else 0
     "Initial value of input time at outlet";
-
+  final parameter Real conUM(unit="1/kg") = 4/rho/dh/dh/Modelica.Constants.pi/length
+    "Constant to convert mass flow rate into velocity normalized by the pipe length";
   Modelica.Units.SI.Time time_out_rev "Reverse flow direction output time";
   Modelica.Units.SI.Time time_out_des "Design flow direction output time";
 
   Real x(start=0) "Spatial coordinate for spatialDistribution operator";
-  Modelica.Units.SI.Frequency u "Normalized fluid velocity (1/s)";
+  Real u(unit="1/s") "Normalized fluid velocity (1/s)";
 
   Modelica.Blocks.Interfaces.RealInput m_flow "Mass flow of fluid" annotation (
       Placement(transformation(extent={{-140,-20},{-100,20}}),
@@ -49,8 +50,7 @@ initial equation
   t0 = time;
 
 equation
-  u = m_flow/(rho*(dh^2)/4*Modelica.Constants.pi)/length;
-
+  u = m_flow * conUM;
   der(x) = u;
   (time_out_rev, time_out_des) = spatialDistribution(
     time,
@@ -88,15 +88,15 @@ equation
               -47.2},{88,-24.8},{96,0}}, smooth=Smooth.Bezier),
         Text(
           extent={{20,100},{82,30}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="PDE"),
         Text(
           extent={{-82,-30},{-20,-100}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="tau"),
         Text(
           extent={{-100,140},{100,100}},
-          lineColor={0,0,255},
+          textColor={0,0,255},
           textString="%name")}),
     Documentation(info="<html>
 <p>
@@ -120,17 +120,14 @@ function. This components requires the mass flow through the pipe and the pipe
 dimensions in order to derive information about the fluid propagation.
 </p>
 <p>
-The component calculates the delay time at both in/outlet ports of the pipe
-and therefore has two outlets. During forward flow, only the forward
-<a href=\"modelica://BuildingSystems.Fluid.FixedResistances.BaseClasses.PlugFlowTransportDelay\">
-BuildingSystems.Fluid.FixedResistances.BaseClasses.PlugFlowTransportDelay</a> component in
-<a href=\"modelica://BuildingSystems.Fluid.FixedResistances.BaseClasses.PlugFlowCore\">
-BuildingSystems.Fluid.FixedResistances.BaseClasses.PlugFlowCore</a>
-will be active and uses the forward output of PlugFlowTransportDelay.
-During reverse, the opposite is true and only the reverse output is used.
+The component calculates the delay time at the inlet and the outlet port of the pipe.
+For the forward flow, the time delay is exposed at the output <code>tau</code>,
+and for the backward flow, the time delay is exposed at the output <code>tauRev</code>.
 </p>
 <h4>Assumption</h4>
-<p>It is assumed that no axial mixing takes place in the pipe. </p>
+<p>
+No axial mixing takes place in the pipe.
+</p>
 </html>", revisions="<html>
 <ul>
 <li>

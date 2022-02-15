@@ -9,9 +9,10 @@ model FlowControlled_dp
     final constInput(final unit="Pa") = constantHead,
     filter(
       final y_start=dp_start,
-      u_nominal=abs(dp_nominal),
       u(final unit="Pa"),
-      y(final unit="Pa")),
+      y(final unit="Pa"),
+      x(each nominal=dp_nominal),
+      u_nominal=dp_nominal),
     eff(
       per(
         final pressure = if per.havePressureCurve then
@@ -20,7 +21,8 @@ model FlowControlled_dp
           BuildingSystems.Fluid.Movers.BaseClasses.Characteristics.flowParameters(
             V_flow = {i/(nOri-1)*2.0*m_flow_nominal/rho_default for i in 0:(nOri-1)},
             dp =     {i/(nOri-1)*2.0*dp_nominal for i in (nOri-1):-1:0}),
-      final use_powerCharacteristic = if per.havePressureCurve then per.use_powerCharacteristic else false)));
+      final use_powerCharacteristic = if per.havePressureCurve then per.use_powerCharacteristic else false),
+      r_N(start=if abs(dp_nominal) > 1E-8 then dp_start/dp_nominal else 0)));
 
   parameter Modelica.Units.SI.PressureDifference dp_start(
     min=0,
@@ -46,8 +48,8 @@ model FlowControlled_dp
     each min=0,
     each displayUnit="Pa") = dp_nominal*{(per.speeds[i]/per.speeds[end])^2 for
     i in 1:size(per.speeds, 1)}
-    "Vector of head set points, used when inputType=Stages" annotation (Dialog(
-        enable=inputType == BuildingSystems.Fluid.Types.InputType.Stages));
+    "Vector of head set points, used when inputType=Stages"
+    annotation (Dialog(enable=inputType == BuildingSystems.Fluid.Types.InputType.Stages));
   parameter Boolean prescribeSystemPressure = false
     "=true, to control mover such that pressure difference is obtained across two remote points in system"
     annotation(Evaluate=true, Dialog(tab="Advanced"));
@@ -82,19 +84,19 @@ protected
   Modelica.Blocks.Math.Gain gain(final k=-1)
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=90,
-        origin={36,30})));
+        origin={44,30})));
 equation
   assert(inputSwitch.u >= -1E-3,
     "Pressure set point for mover cannot be negative. Obtained dp = " + String(inputSwitch.u));
 
   if use_inputFilter then
     connect(filter.y, gain.u) annotation (Line(
-      points={{34.7,88},{36,88},{36,42}},
+      points={{41,70.5},{44,70.5},{44,42}},
       color={0,0,127},
       smooth=Smooth.None));
   else
     connect(inputSwitch.y, gain.u) annotation (Line(
-      points={{1,50},{36,50},{36,42}},
+      points={{1,50},{44,50},{44,42}},
       color={0,0,127},
       smooth=Smooth.None));
   end if;
@@ -104,7 +106,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   connect(preSou.dp_in, gain.y) annotation (Line(
-      points={{56,8},{56,14},{36,14},{36,19}},
+      points={{56,8},{56,14},{44,14},{44,19}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(senRelPre.p_rel, dp_actual) annotation (Line(points={{50.5,-26.35},{
@@ -114,7 +116,7 @@ equation
     Icon(graphics={
         Text(
           extent={{-40,126},{-160,76}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           visible=inputType == BuildingSystems.Fluid.Types.InputType.Continuous or inputType == BuildingSystems.Fluid.Types.InputType.Stages,
           textString=DynamicSelect("dp", if inputType == BuildingSystems.Fluid.Types.InputType.Continuous then String(dp_in, format=".0f") else String(stage)))}),
   defaultComponentName="fan",
@@ -162,6 +164,13 @@ BuildingSystems.Fluid.Movers.Validation.FlowControlled_dpSystem</a>.
 </html>",
       revisions="<html>
 <ul>
+<li>
+June 17, 2021, by Michael Wetter:<br/>
+Changed implementation of the filter.<br/>
+Removed parameter <code>y_start</code> which is not used because <code>dp_start</code> is used.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1498\">#1498</a>.
+</li>
 <li>
 February 21, 2020, by Michael Wetter:<br/>
 Changed icon to display its operating stage.<br/>

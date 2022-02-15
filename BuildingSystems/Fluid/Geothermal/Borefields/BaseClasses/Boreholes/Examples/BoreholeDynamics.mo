@@ -157,8 +157,7 @@ model BoreholeDynamics "Example model for different borehole models and dynamics
     tau=0)
     "Inlet borehole temperature"
     annotation (Placement(transformation(extent={{-40,-70},{-20,-50}})));
-  BuildingSystems.Fluid.Sensors.TemperatureTwoPort TBor2UTubDyn(redeclare
-      package                                                                     Medium =
+  BuildingSystems.Fluid.Sensors.TemperatureTwoPort TBor2UTubDyn(redeclare package Medium =
         Medium, m_flow_nominal=borFie2UTubDat.conDat.mBor_flow_nominal,
     tau=0)
     "Outlet borehole temperature"
@@ -292,8 +291,7 @@ equation
   annotation (experiment(Tolerance=1e-6, StopTime=15000),
   Diagram(
         coordinateSystem(preserveAspectRatio=false, extent={{-120,-160},{120,120}})),
-    __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/Examples/BoreholeDynamics.mos"
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Fluid/Geothermal/Borefields/BaseClasses/Boreholes/Examples/BoreholeDynamics.mos"
         "Simulate and Plot"),
         Documentation(info="<html>
 <p>

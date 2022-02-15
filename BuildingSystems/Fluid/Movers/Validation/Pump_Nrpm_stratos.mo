@@ -54,32 +54,27 @@ model Pump_Nrpm_stratos "Model validation using a Wilo Stratos 80/1-12 pump"
     per=per) "Wilo Stratos pump"
     annotation (Placement(transformation(extent={{-60,-130},{-40,-110}})));
 
-  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump1(redeclare
-      package
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump1(redeclare package
       Medium = Medium, m_flow_nominal=3,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     "Pump for forcing a certain mass flow rate"
     annotation (Placement(transformation(extent={{38,60},{58,80}})));
-  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump2(redeclare
-      package
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump2(redeclare package
       Medium = Medium, m_flow_nominal=3,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     "Pump for forcing a certain mass flow rate"
     annotation (Placement(transformation(extent={{38,10},{58,30}})));
-  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump3(redeclare
-      package
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump3(redeclare package
       Medium = Medium, m_flow_nominal=3,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     "Pump for forcing a certain mass flow rate"
     annotation (Placement(transformation(extent={{38,-36},{58,-16}})));
-  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump4(redeclare
-      package
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump4(redeclare package
       Medium = Medium, m_flow_nominal=3,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     "Pump for forcing a certain mass flow rate"
     annotation (Placement(transformation(extent={{38,-80},{58,-60}})));
-  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump5(redeclare
-      package
+  BuildingSystems.Fluid.Movers.FlowControlled_m_flow forcedPump5(redeclare package
       Medium = Medium, m_flow_nominal=3,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     "Pump for forcing a certain mass flow rate"

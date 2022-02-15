@@ -20,6 +20,26 @@ package Air
   constant Integer Air=2
     "Index of air (in substanceNames, massFractions X, etc.)";
 
+  // In the assignments below, we compute cv as OpenModelica
+  // cannot evaluate cv=cp-R as defined in GasProperties.
+  constant GasProperties dryair(
+    R=Modelica.Media.IdealGases.Common.SingleGasesData.Air.R_s,
+    MM=Modelica.Media.IdealGases.Common.SingleGasesData.Air.MM,
+    cp=BuildingSystems.Utilities.Psychrometrics.Constants.cpAir,
+    cv=BuildingSystems.Utilities.Psychrometrics.Constants.cpAir - Modelica.Media.IdealGases.Common.SingleGasesData.Air.R_s)
+    "Dry air properties";
+  constant GasProperties steam(
+    R=Modelica.Media.IdealGases.Common.SingleGasesData.H2O.R_s,
+    MM=Modelica.Media.IdealGases.Common.SingleGasesData.H2O.MM,
+    cp=BuildingSystems.Utilities.Psychrometrics.Constants.cpSte,
+    cv=BuildingSystems.Utilities.Psychrometrics.Constants.cpSte - Modelica.Media.IdealGases.Common.SingleGasesData.H2O.R_s)
+    "Steam properties";
+
+  constant Real k_mair =  steam.MM/dryair.MM "Ratio of molar weights";
+
+  constant Modelica.Units.SI.MolarMass[2] MMX={steam.MM,dryair.MM}
+    "Molar masses of components";
+
   constant AbsolutePressure pStp = reference_p
     "Pressure for which fluid density is defined";
   constant Density dStp = 1.2 "Fluid density at pressure pStp";
@@ -45,7 +65,7 @@ package Air
   // Therefore, the statement
   //   p(stateSelect=if preferredMediumStates then StateSelect.prefer else StateSelect.default)
   // has been removed.
-  redeclare model BaseProperties "Base properties (p, d, T, h, u, R, MM and X and Xi) of a medium"
+  redeclare replaceable model BaseProperties "Base properties (p, d, T, h, u, R, MM and X and Xi) of a medium"
 
   parameter Boolean preferredMediumStates=false
     "= true if StateSelect.prefer shall be used for the independent property variables of the medium"
@@ -136,7 +156,7 @@ as required from medium model \"BuildingSystems.Media.Air\".");
           lineColor={0,0,255}), Text(
           extent={{-152,164},{152,102}},
           textString="%name",
-          lineColor={0,0,255})}), Documentation(info="<html>
+          textColor={0,0,255})}), Documentation(info="<html>
 <p>
 Model with basic thermodynamic properties.
 </p>
@@ -872,25 +892,6 @@ First implementation.
 </ul>
 </html>"));
   end GasProperties;
-  // In the assignments below, we compute cv as OpenModelica
-  // cannot evaluate cv=cp-R as defined in GasProperties.
-  constant GasProperties dryair(
-    R=Modelica.Media.IdealGases.Common.SingleGasesData.Air.R_s,
-    MM=Modelica.Media.IdealGases.Common.SingleGasesData.Air.MM,
-    cp=BuildingSystems.Utilities.Psychrometrics.Constants.cpAir,
-    cv=BuildingSystems.Utilities.Psychrometrics.Constants.cpAir - Modelica.Media.IdealGases.Common.SingleGasesData.Air.R_s)
-    "Dry air properties";
-  constant GasProperties steam(
-    R=Modelica.Media.IdealGases.Common.SingleGasesData.H2O.R_s,
-    MM=Modelica.Media.IdealGases.Common.SingleGasesData.H2O.MM,
-    cp=BuildingSystems.Utilities.Psychrometrics.Constants.cpSte,
-    cv=BuildingSystems.Utilities.Psychrometrics.Constants.cpSte - Modelica.Media.IdealGases.Common.SingleGasesData.H2O.R_s)
-    "Steam properties";
-
-  constant Real k_mair =  steam.MM/dryair.MM "Ratio of molar weights";
-
-  constant Modelica.Units.SI.MolarMass[2] MMX={steam.MM,dryair.MM}
-    "Molar masses of components";
 
   constant Modelica.Units.SI.SpecificEnergy h_fg=BuildingSystems.Utilities.Psychrometrics.Constants.h_fg
     "Latent heat of evaporation of water";

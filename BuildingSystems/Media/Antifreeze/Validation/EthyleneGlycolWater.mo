@@ -4,8 +4,8 @@ model EthyleneGlycolWater
   extends Modelica.Icons.Example;
   extends BuildingSystems.Media.Antifreeze.Validation.BaseClasses.FluidProperties(
     redeclare package Medium =
-        BuildingSystems.Media.Antifreeze.Validation.BaseClasses.EthyleneGlycolWater
-        ( property_T=300,
+        BuildingSystems.Media.Antifreeze.Validation.BaseClasses.EthyleneGlycolWater (
+          property_T=300,
           X_a=0.05),
     nX_a=7,
     X_a={0.05,0.10,0.20,0.30,0.40,0.50,0.60},
