@@ -767,7 +767,7 @@ equation
     annotation (Line(points={{18,-32},{18,-28.6}}, color={191,0,0}));
 
   annotation(experiment(StartTime=0, StopTime=86400),
-    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal3x3x3.mos" "Simulate and plot"),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal3x3x3ViewFactors.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-60,-40},{60,60}}),
       graphics={Text(extent={{-52,70},{52,2}},lineColor={0,0,255},
       textString="3D room model with 3 x 3 x 3 = 27 air
