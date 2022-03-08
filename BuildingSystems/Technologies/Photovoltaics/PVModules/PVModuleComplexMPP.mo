@@ -61,8 +61,11 @@ equation
     connect(opticalModel.ITotRed, thermalModel.ITot)
       annotation (Line(points={{-1,0},{20,0},{20,18},{23,18}}, color={0,0,127}));
 
-  annotation (defaultComponentName="pvmodule", Icon(graphics={Text(extent={{-12,58},{14,34}},
-    lineColor={255,255,255},fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="MPP")}),
+      annotation (defaultComponentName="pvmodule", Icon(graphics={
+        Text(extent={{-12,58},{14,34}},lineColor={255,255,255},fillColor={0,0,255},
+          fillPattern=FillPattern.Solid,textString="MPP"),
+        Text(extent={{-48,60},{-16,30}},lineColor={255,255,255},
+          fillColor={0,0,255},fillPattern=FillPattern.Solid,textString="C")}),
 Documentation(info="<html>
 <p>
 This is a MPP controlled two diodes model of a PV module.
