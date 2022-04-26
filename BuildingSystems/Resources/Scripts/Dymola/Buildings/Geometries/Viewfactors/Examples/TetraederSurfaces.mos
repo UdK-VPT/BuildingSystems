@@ -1,0 +1,58 @@
+simulateModel("BuildingSystems.Buildings.Geometries.Viewfactors.Examples.TetraederSurfaces", stopTime=1.0, method="dassl", resultFile="TetraederSurfaces");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1000, 600},
+  y = {"A","B","C"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "TetraederSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 2,
+  position = {0, 620, 1000, 600},
+  y = {"viewFacUncompensated[1, 2]","viewFac[1, 2]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "TetraederSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 3,
+  position = {1020, 0, 1000, 600},
+  y = {"viewFacUncompensated[1, 3]","viewFac[1, 3]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "TetraederSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 4,
+  position = {1020, 620, 1000, 600},
+  y = {"viewFacUncompensated[1, 4]","viewFac[1, 4]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "TetraederSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

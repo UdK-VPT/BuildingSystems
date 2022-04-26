@@ -50,7 +50,7 @@ model Building1Zone1DCylinder
       * 180.0 / Modelica.Constants.pi * (if i / nSeg > 0.5 then 1.0 else -1.0)
       + angleDegAziBuilding for i in 1:nSeg},
     each angleDegTil = 90.0)
-    "Wall segments of tzhe cylinder"
+    "Wall segments of the cylinder"
     annotation (Dialog(tab = "Constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-60,0})));
   replaceable BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes ceiling(
@@ -72,7 +72,7 @@ model Building1Zone1DCylinder
     annotation (Dialog(tab = "Constructions", group = "model type"),
       Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={0,-30})));
 protected
-  parameter BuildingSystems.Buildings.Geometries.BaseClasses.GeometryCircle circle(
+  parameter BuildingSystems.Buildings.Geometries.BaseClasses.Circle circle(
     nSeg = nSeg,
     zMean = height/2,
     angleDegAzi = 0.0,
