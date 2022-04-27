@@ -31,14 +31,14 @@ model ParallelRectangularEqualSurfaces
   parameter Integer r[nRect] = {1,1};
   parameter Integer z[nRect]={10 for i in 1:nRect};
   Real viewFac[nRect,nRect] = BuildingSystems.Buildings.Geometries.Viewfactors.Functions.PhiRect(nRect,a1,a2,a3,b1,b2,b3,c1,c2,c3,d1,d2,d3,r,z,false);
-  // Analycital solution
+  // Analytical solution
   Real x = W1/H;
   Real y = W2/H;
   Real x1 = sqrt(1.0+x^2);
   Real y1 = sqrt(1.0+y^2);
   Real F12 = 1.0/(Modelica.Constants.pi*x*y)*(Modelica.Math.log((x1^2*y1^2)/(x1^2+y1^2-1.0))
              +2.0*x*(y1*Modelica.Math.atan(x/y1)-Modelica.Math.atan(x))
-            +2.0*y*(x1*Modelica.Math.atan(y/x1)-Modelica.Math.atan(y)));
+             +2.0*y*(x1*Modelica.Math.atan(y/x1)-Modelica.Math.atan(y)));
 equation
   W1 = 0.00001 + time;
 end ParallelRectangularEqualSurfaces;

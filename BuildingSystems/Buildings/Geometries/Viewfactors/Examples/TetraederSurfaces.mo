@@ -34,6 +34,7 @@ algorithm
   end for;
 equation
   C = 0.000001 + time;
+  
   annotation(experiment(StartTime=0, StopTime=1),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Geometries/Viewfactors/Examples/TetraederSurfaces.mos" "Simulate and plot"),
     Diagram(coordinateSystem(preserveAspectRatio=false), graphics={
