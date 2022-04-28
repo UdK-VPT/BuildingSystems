@@ -1,0 +1,30 @@
+simulateModel("BuildingSystems.Buildings.Geometries.Viewfactors.Examples.ParallelRectangularEqualSurfaces", stopTime=1.0, method="dassl", resultFile="ParallelRectangularEqualSurfaces");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1000, 600},
+  y = {"W1","W2","H"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ParallelRectangularEqualSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 2,
+  position = {0, 620, 1000, 600},
+  y = {"F12","viewFac[1, 2]","viewFac[2, 1]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "ParallelRectangularEqualSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

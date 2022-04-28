@@ -41,4 +41,162 @@ model ParallelRectangularEqualSurfaces
              +2.0*y*(x1*Modelica.Math.atan(y/x1)-Modelica.Math.atan(y)));
 equation
   W1 = 0.00001 + time;
+
+  annotation(experiment(StartTime=0, StopTime=1),
+        __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Geometries/Viewfactors/Examples/ParallelRectangularEqualSurfaces.mos" "Simulate and plot"),
+        Diagram(coordinateSystem(preserveAspectRatio=false), graphics={
+        Text(
+          extent={{-6,-46},{6,-58}},
+          textColor={0,0,0},
+          textString="1"),
+        Ellipse(
+          extent={{-82,62},{-78,58}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+        Ellipse(
+          extent={{-22,62},{-18,58}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+        Ellipse(
+          extent={{58,-38},{62,-42}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+        Ellipse(
+          extent={{58,82},{62,78}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+        Ellipse(
+          extent={{-22,-58},{-18,-62}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+        Ellipse(
+          extent={{-82,-58},{-78,-62}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+        Text(
+          extent={{54,-46},{66,-58}},
+          textColor={0,0,0},
+          textString="2"),
+        Text(
+          extent={{54,96},{66,84}},
+          textColor={0,0,0},
+          textString="3"),
+        Text(
+          extent={{-86,76},{-74,64}},
+          textColor={0,0,0},
+          textString="5"),
+        Text(
+          extent={{-6,96},{6,84}},
+          textColor={0,0,0},
+          textString="4"),
+        Text(
+          extent={{92,-46},{-96,-130}},
+          textColor={0,0,0},
+            textString="View factor calculation of two parallel equal rectangular surfaces
+  with the edge lengths W1 and W2 and the distance H.
+  W1 varies with the time from 0 to 1."),
+        Text(
+          extent={{18,72},{42,54}},
+          textColor={0,0,0},
+          textString="surface1"),
+        Text(
+          extent={{-64,52},{-40,34}},
+          textColor={0,0,0},
+          textString="surface2"),
+        Rectangle(
+          extent={{0,80},{60,-40}},
+          lineColor={0,0,0},
+          lineThickness=0.5),
+        Rectangle(
+          extent={{-80,60},{-20,-60}},
+          lineColor={0,0,0},
+          lineThickness=0.5),
+        Text(
+          extent={{-26,76},{-14,64}},
+          textColor={0,0,0},
+          textString="6"),
+        Text(
+          extent={{-96,10},{-84,-2}},
+          textColor={0,0,0},
+            textString="W2"),
+        Text(
+          extent={{-56,-64},{-44,-76}},
+          textColor={0,0,0},
+            textString="W1"),
+        Text(
+          extent={{-16,24},{-4,12}},
+          textColor={28,108,200},
+            textString="H"),
+        Ellipse(
+          extent={{-2,82},{2,78}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+        Ellipse(
+          extent={{-2,-38},{2,-42}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+        Text(
+          extent={{-86,-64},{-74,-76}},
+          textColor={0,0,0},
+            textString="7"),
+        Text(
+          extent={{-26,-64},{-14,-76}},
+          textColor={0,0,0},
+            textString="8"),
+        Text(
+          extent={{26,-44},{38,-56}},
+          textColor={0,0,0},
+            textString="W1"),
+        Text(
+          extent={{62,30},{74,18}},
+          textColor={0,0,0},
+            textString="W2"),
+        Ellipse(
+          extent={{-52,2},{-48,-2}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+        Ellipse(
+          extent={{28,22},{32,18}},
+          lineThickness=0.5,
+          fillColor={238,46,47},
+          fillPattern=FillPattern.Solid,
+          pattern=LinePattern.None),
+          Line(
+            points={{-50,0},{30,20}},
+            color={28,108,200},
+            thickness=0.5,
+            pattern=LinePattern.Dash)}),
+Documentation(info="<html>
+<p>
+Example that calculates the view factors of two parallel
+equal rectangular surfaces with the edge lengths W1 and W2 and the distance H.
+W1 varies with the time from 0 to 1.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+April 28, 2022, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end ParallelRectangularEqualSurfaces;

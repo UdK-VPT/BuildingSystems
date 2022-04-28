@@ -101,8 +101,8 @@ equation
         extent={{94,-62},{-102,-114}},
         textColor={0,0,0},
         textString="  View factor calculation from a square with an edge length of W
-to a perpendicular rectangular surfaces with the common edge
-length W and the edge length H."),
+to a perpendicular rectangular surface with the common edge
+length W and the edge length H. H varies with the time from 0 to 1."),
       Text(
         extent={{8,10},{32,-8}},
         textColor={0,0,0},
@@ -139,6 +139,7 @@ Documentation(info="<html>
 <p>
 Example that calculates the view factors of two perpendicular rectangular
 surfaces with the common edge length L and the individual edge lengths W and H.
+H varies with the time from 0 to 1.
 </p>
 </html>",
 revisions="<html>
