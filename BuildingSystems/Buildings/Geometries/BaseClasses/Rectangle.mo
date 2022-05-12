@@ -1,6 +1,7 @@
 within BuildingSystems.Buildings.Geometries.BaseClasses;
 record Rectangle
   "3D representation of a rectangle"
+  extends Modelica.Icons.Record;
   Modelica.Units.SI.Length vertex1[3];
   Modelica.Units.SI.Length vertex2[3];
   Modelica.Units.SI.Length vertex3[3];
