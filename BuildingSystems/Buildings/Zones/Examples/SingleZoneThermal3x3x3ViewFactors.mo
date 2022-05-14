@@ -471,7 +471,7 @@ model SingleZoneThermal3x3x3ViewFactors
     nAirElements = 27,
     V=3.0*3.0*3.0,
     nConstructions=54,
-    geometricViewFactors=true,
+    viewFacCalcType=BuildingSystems.Buildings.Types.ViewFactorCalculationType.Geometrical,
     ViewFac=viewFac)
     annotation (Placement(transformation(extent={{12,-8},{32,12}})));
 

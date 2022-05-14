@@ -5,6 +5,8 @@ SingleZoneHygroThermal1D
 SingleZoneThermal1D
 SingleZoneThermal1DThermalComfort
 SingleZoneThermal1DTriangularWalls
+SingleZoneThermal1DViewFactors
+SingleZoneThermal1DViewFactorsFlexGeo
 SingleZoneThermal1x1x1
 SingleZoneThermal3x3x3
 SingleZoneThermal3x3x3ViewFactors

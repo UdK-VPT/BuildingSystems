@@ -1,0 +1,58 @@
+simulateModel("BuildingSystems.Buildings.Zones.Examples.SingleZoneThermal1DViewFactorsFlexGeo", stopTime=86400, method="dassl", resultFile="SingleZoneThermal1DViewFactorsFlexGeo");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 600, 500},
+  y = {"ambience.TAirRef","zone.TAir","zone.TOperative"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneThermal1DViewFactorsFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {610, 0, 600, 500},
+  y = {"zone.Q_flow_heating"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneThermal1DViewFactorsFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 3,
+  position = {0, 510, 600, 500},
+  y = {"viewFac[1, 2].y","viewFac[1, 3].y","viewFac[1, 4].y","viewFac[1, 5].y","viewFac[1, 6].y"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneThermal1DViewFactorsFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 4,
+  position = {610, 510, 600, 500},
+  y = {"flexibleHeight.y"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "SingleZoneThermal1DViewFactorsFlexGeo.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

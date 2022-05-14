@@ -2,11 +2,20 @@ within BuildingSystems.Buildings;
 package Types
   "Package with new types for building models"
   extends Modelica.Icons.TypesPackage;
+  type ViewFactorCalculationType = enumeration(
+      AreaWeighted
+          "Area weighted",
+      Geometrical
+          "Given view factor matrix",
+      Input
+          "External view factor matrix")
+    "Enumeration to select the type of view factor calculation";
+
   type DataSource = enumeration(
       Calculation
-                "Calculated value",
+          "Calculated value",
       Parameter
-              "Constant value",
+          "Constant value",
       Input
           "External input")
     "Enumeration to select data sources";
@@ -15,27 +24,27 @@ package Types
       Fixed
           "Fixed",
       Flexible
-             "Flexible")
+          "Flexible")
     "Enumeration to select the geometry type";
 
   type OrientationType = enumeration(
       West
-         "West",
+        "West",
       North
-          "North",
+        "North",
       East
-         "East",
+        "East",
       South
-          "South",
+        "South",
       Floor
-          "Floor",
+        "Floor",
       Roof
-         "Roof")
+        "Roof")
     "Enumeration to select the orientation of a surface";
 
   type GeometryShape = enumeration(
       Rectangle
-              "Rectangle",
+            "Rectangle",
       Triangle
              "Triangle",
       Circle
@@ -62,17 +71,17 @@ package Types
       Low
         "Low resolution: 1 node per layer",
       Medium
-           "Medium resolution: 2 nodes per layer",
+        "Medium resolution: 2 nodes per layer",
       High
-         "High resolution: 4 nodes per layer")
+        "High resolution: 4 nodes per layer")
     "Enumeration of numerical resolution";
 
   type ThermalBuildingCapacity = enumeration(
       Low
         "Light construction: 25 kJ/(m2.K)",
       Medium
-           "Medium construction: 65 kJ/(m2.K)",
+        "Medium construction: 65 kJ/(m2.K)",
       High
-         "Heavy construction: 105 kJ/(m2.K)")
+        "Heavy construction: 105 kJ/(m2.K)")
     "Enumeration of thermal capacity";
 end Types;
