@@ -31,7 +31,7 @@ createPlot(
 createPlot(
   id = 3,
   position = {0, 510, 600, 500},
-  y = {"viewFac[1, 2].y","viewFac[1, 3].y","viewFac[1, 4].y","viewFac[1, 5].y","viewFac[1, 6].y"},
+  y = {"viewFac[1, 2]","viewFac[1, 3]","viewFac[1, 4]","viewFac[1, 5]","viewFac[1, 6]"},
   autoscale = true,
   autoerase = true,
   autoreplot = true,

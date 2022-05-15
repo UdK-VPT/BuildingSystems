@@ -34,9 +34,7 @@ model SingleZoneThermal1DViewFactors
   parameter Real d3[nRect] = {vertex4[3],vertex8[3],vertex7[3],vertex1[3],vertex5[3],vertex4[3]};
   parameter Integer r[nRect] = {1,1,1,1,1,1};
   parameter Integer z[nRect]={10 for i in 1:nRect};
-  Modelica.Blocks.Sources.RealExpression viewFac[nRect,nRect](
-    y = BuildingSystems.Buildings.Geometries.Viewfactors.Functions.PhiRect(nRect,a1,a2,a3,b1,b2,b3,c1,c2,c3,d1,d2,d3,r,z,true))
-    annotation (Placement(transformation(extent={{-54,6},{-46,14}})));
+  parameter Real viewFac[nRect,nRect] = BuildingSystems.Buildings.Geometries.Viewfactors.Functions.PhiRect(nRect,a1,a2,a3,b1,b2,b3,c1,c2,c3,d1,d2,d3,r,z,true);
 
   // wall1: west orientation
   BuildingSystems.Buildings.Constructions.Walls.WallThermal1DNodes wall1(
@@ -86,7 +84,8 @@ model SingleZoneThermal1DViewFactors
     V=3.0*3.0*3.0,
     height=3.0,
     calcIdealLoads=true,
-    viewFacCalcType=BuildingSystems.Buildings.Types.ViewFactorCalculationType.Input,
+    viewFacCalcType=BuildingSystems.Buildings.Types.ViewFactorCalculationType.Geometrical,
+    ViewFac=viewFac,
     nConstructions=6)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   BuildingSystems.Buildings.Surfaces.SurfaceToAir surface2 annotation (
@@ -195,8 +194,8 @@ equation
       color={0,0,0},
       pattern=LinePattern.Solid,
       smooth=Smooth.None));
- connect(surface5.toSurfacesPort, ambience.toSurfacePorts[5])
-   annotation (Line(points={{24,-28.6},{24,-32},{-43,-32},{-43,-3}}, color={0,0,0}));
+  connect(surface5.toSurfacesPort, ambience.toSurfacePorts[5])
+     annotation (Line(points={{24,-28.6},{24,-32},{-43,-32},{-43,-3}}, color={0,0,0}));
   connect(surface3.toConstructionPort, wall3.toSurfacePort_2)
     annotation (Line(
       points={{41.4,0},{36,0}},
@@ -265,8 +264,6 @@ equation
         color={0,0,0}));
   connect(floor.toSurfacePort_1, zone.toConstructionPorts[5]) annotation (Line(
         points={{20,-18},{20,-12},{0,-12},{0,0.5}}, color={0,0,0}));
-  connect(viewFac.y, zone.ViewFac_in) annotation (Line(points={{-45.6,10},{-12,10},
-          {-12,9},{-11,9}}, color={0,0,127}));
 
   annotation(experiment(StartTime=0, StopTime=31536000),
   __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Zones/Examples/SingleZoneThermal1DViewFactors.mos" "Simulate and plot"),
