@@ -4,7 +4,7 @@ partial model ZoneTemplateGeneral
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium in the air model of the zone"
     annotation (choicesAllMatching = true);
-  Modelica.Blocks.Interfaces.RealInput ViewFac_in[nSurfaces,nSurfaces]
+  input BuildingSystems.Interfaces.ViewFactorInput ViewFac_in[nSurfaces,nSurfaces]
     if viewFacCalcType==BuildingSystems.Buildings.Types.ViewFactorCalculationType.Input
     annotation (Placement(transformation(extent={{-120,80},{-100,100}}),
       iconTransformation(extent={{-120,80},{-100,100}})));
