@@ -9,6 +9,8 @@ User guide BuildingSystems
    introduction
    simpleBuildingModel
    multiZoneModelling
+   buildingComponentModels
+
    energySystemsSimulation
 
 .. rubric:: References
