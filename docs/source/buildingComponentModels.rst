@@ -3,8 +3,8 @@
 Building component models
 =========================
 
-In this chapter describes the component models and their exemplary allpication of the building
-model of the BuildingSystems library.
+This chapter describes the component models of the building
+model of the BuildingSystems library and their exemplary application.
 
 Ambience model
 --------------
@@ -24,6 +24,7 @@ tbd
 
 Air volume models
 -----------------
+tbd
 
 Zone models
 -----------
