@@ -32,6 +32,7 @@
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.mathjax', 'sphinxcontrib.bibtex']
+bibtex_bibfiles = ['references.bib']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -159,7 +160,7 @@ User guide\\
 \today
 \vfill{}
 \hrule
-\small{Copyright \textcopyright{} 2014 -- 2018 Berlin University of the Arts. All rights reserved.}
+\small{Copyright \textcopyright{} 2014 -- 2022 Berlin University of the Arts. All rights reserved.}
 \end{center}
 ''',
 }
@@ -198,6 +199,3 @@ texinfo_documents = [
      author, 'BuildingSystems', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-
