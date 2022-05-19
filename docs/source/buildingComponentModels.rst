@@ -63,7 +63,7 @@ Air volume models
 Zone models
 -----------
 1. *ZoneTemplateAirvolume3D*
-2, *ZoneTemplateAirvolumeMixed*
+2. *ZoneTemplateAirvolumeMixed*
 
 Comfort model
 -------------
