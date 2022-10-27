@@ -8,10 +8,10 @@ extends Modelica.Icons.BasesPackage;
    parameter Modelica.Media.Interfaces.Types.Temperature T_start = 273.15 + 90.0 "Initial conditions of the supply side";
 
     // Different Variables uses to facilitate results check
-    Modelica.SIunits.Heat Q_DHN_I "Energy loss in DHN part I";
-    Modelica.SIunits.Heat Q_DHN_II "Energy loss in DHN part II";
-    Modelica.SIunits.Heat Q_DHN_III "Energy loss in DHN part III";
-    Modelica.SIunits.Heat Q_DHN "Total energy loss in DHN";
+    Modelica.Units.SI.Heat Q_DHN_I "Energy loss in DHN part I";
+    Modelica.Units.SI.Heat Q_DHN_II "Energy loss in DHN part II";
+    Modelica.Units.SI.Heat Q_DHN_III "Energy loss in DHN part III";
+    Modelica.Units.SI.Heat Q_DHN "Total energy loss in DHN";
 
   //Boundary:
     Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollectorDHN(m=71)
@@ -909,28 +909,22 @@ extends Modelica.Icons.BasesPackage;
           rotation=-90,
           origin={-80,79})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st13(redeclare package Medium
-        =                                                                                Medium)
+                                                  st13(redeclare package Medium =        Medium)
       annotation (Placement(transformation(extent={{-6,-122},{12,-112}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st7(redeclare package Medium
-        =                                                                               Medium)
+                                                  st7(redeclare package Medium =        Medium)
       annotation (Placement(transformation(extent={{56,-76},{74,-66}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st29(redeclare package Medium
-        =                                                                                Medium)
+                                                  st29(redeclare package Medium =        Medium)
       annotation (Placement(transformation(extent={{84,-108},{102,-98}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st52(redeclare package Medium
-        =                                                                                Medium)
+                                                  st52(redeclare package Medium =        Medium)
       annotation (Placement(transformation(extent={{132,-138},{150,-128}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st39(redeclare package Medium
-        =                                                                                Medium)
+                                                  st39(redeclare package Medium =        Medium)
       annotation (Placement(transformation(extent={{360,-94},{342,-84}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st51(redeclare package Medium
-        =                                                                                Medium)
+                                                  st51(redeclare package Medium =        Medium)
       annotation (Placement(transformation(extent={{202,-200},{220,-190}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
                                                   st48(    redeclare package
@@ -938,8 +932,7 @@ extends Modelica.Icons.BasesPackage;
       annotation (Placement(transformation(extent={{224,-254},{206,-244}})));
 
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st23(redeclare package Medium
-        =                                                                                Medium)
+                                                  st23(redeclare package Medium =        Medium)
       annotation (Placement(transformation(extent={{296,-158},{278,-148}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
                                                   st45(    redeclare package
@@ -951,118 +944,118 @@ extends Modelica.Icons.BasesPackage;
       annotation (Placement(transformation(extent={{88,-300},{70,-290}})));
 
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st54(redeclare package Medium
-        = Medium)
+                                                  st54(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{80,-190},{62,-180}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st53(redeclare package Medium
-        = Medium)
+                                                  st53(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{10,-182},{28,-172}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st50(redeclare package Medium
-        = Medium)
+                                                  st50(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-88,-176},{-70,-166}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st30(redeclare package Medium
-        = Medium)
+                                                  st30(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-94,-198},{-112,-188}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st46(redeclare package Medium
-        = Medium)
+                                                  st46(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-176,-156},{-158,-146}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st6(redeclare package Medium
-        = Medium)
+                                                  st6(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-186,-114},{-168,-104}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st2(redeclare package Medium
-        = Medium)
+                                                  st2(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-124,-174},{-106,-164}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st3(redeclare package Medium
-        = Medium)
+                                                  st3(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-86,-152},{-104,-142}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st9(redeclare package Medium
-        = Medium)
+                                                  st9(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-130,-92},{-112,-82}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st55(redeclare package Medium
-        = Medium)
+                                                  st55(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-260,64},{-242,74}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st35(redeclare package Medium
-        = Medium)
+                                                  st35(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-310,0},{-292,10}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st1(redeclare package Medium
-        = Medium)
+                                                  st1(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-218,42},{-200,52}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st40(redeclare package Medium
-        = Medium)
+                                                  st40(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-224,74},{-206,84}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st43(redeclare package Medium
-        = Medium)
+                                                  st43(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-252,264},{-234,274}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st47(redeclare package Medium
-        = Medium)
+                                                  st47(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{96,20},{78,30}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st27(redeclare package Medium
-        = Medium)
+                                                  st27(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{98,58},{80,68}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st10(redeclare package Medium
-        = Medium)
+                                                  st10(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{30,78},{12,88}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st34(redeclare package Medium
-        = Medium)
+                                                  st34(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{54,24},{36,34}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st25(redeclare package Medium
-        = Medium)
+                                                  st25(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-58,52},{-40,62}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st11(redeclare package Medium
-        = Medium)
+                                                  st11(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-6,140},{-24,150}})));
 
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st33(redeclare package Medium
-        = Medium)
+                                                  st33(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-58,224},{-76,234}})));
 
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st21(redeclare package Medium
-        = Medium)
+                                                  st21(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-158,212},{-140,222}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st16(redeclare package Medium
-        = Medium)
+                                                  st16(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-50,178},{-68,188}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st12(redeclare package Medium
-        = Medium)
+                                                  st12(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-182,184},{-164,194}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st17(redeclare package Medium
-        = Medium)
+                                                  st17(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-192,116},{-174,126}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st5(redeclare package Medium
-        = Medium)
+                                                  st5(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-104,154},{-86,164}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st14(redeclare package Medium
-        = Medium)
+                                                  st14(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-100,52},{-82,62}})));
      BuildingSystems.Technologies.DistrictHeatingNetworks.EnergyTransferStations.Station_m_flow
-                                                  st8(redeclare package Medium
-        = Medium)
+                                                  st8(redeclare package Medium =
+          Medium)
       annotation (Placement(transformation(extent={{-68,130},{-50,140}})));
     Technologies.DistrictHeatingNetworks.BoundaryConditions.GroundTemperature0D
       groundTemperature0D(

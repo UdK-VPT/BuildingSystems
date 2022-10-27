@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.Cogeneration.Data.GenericCHPs;
-record  StandardCHP = BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral(
+record StandardCHP =
+    BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral
+    (
   Q_flow_nominal = 8000.0,
   QCon_flow_nominal = 8500.0,
   P_nominal = 4000.0,
@@ -10,4 +12,4 @@ record  StandardCHP = BuildingSystems.Technologies.Cogeneration.Data.BaseClasses
   height = 1.0,
   m = 1.0)
   "Standard cogeneration unit"
-  annotation(Documentation(info ="<html>Typical small CHP<br/></html>"));
+  annotation(Documentation(info= "<html>Typical small CHP<br/></html>"));

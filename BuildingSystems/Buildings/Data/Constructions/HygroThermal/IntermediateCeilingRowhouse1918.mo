@@ -1,5 +1,7 @@
 within BuildingSystems.Buildings.Data.Constructions.HygroThermal;
-record IntermediateCeilingRowhouse1918 = BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
+record IntermediateCeilingRowhouse1918 =
+    BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction
+    (
   final nLayers=3,
   thickness={0.02,0.06,0.02},
   material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Masea.OakWood(),

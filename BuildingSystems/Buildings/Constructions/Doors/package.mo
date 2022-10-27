@@ -1,7 +1,7 @@
 within BuildingSystems.Buildings.Constructions;
-package Doors
-  "Package with door models"
+package Doors "Package with door models"
   extends Modelica.Icons.Package;
+
   annotation (preferredView="info",Icon(graphics={
     Rectangle(extent={{-26,88},{26,60}},lineColor={175,175,175},fillColor={135,135,135},fillPattern =                                                                           FillPattern.Solid),
     Rectangle(extent={{-26,-60},{26,-88}},lineColor={175,175,175},fillColor={135,135,135},fillPattern = FillPattern.Solid),

@@ -37,8 +37,7 @@ model ThermalComfort_DIN_EN_ISO_7730
     "Predicted percentage dissatisfied"
     annotation (Placement(transformation(extent={{80,20},{100,40}}),
       iconTransformation(extent={{80,20},{100,40}})));
-  Modelica.SIunits.Temp_K Tcl = tcl + 273.15
-    "Clothing surface temperature";
+  Modelica.Units.SI.Temperature Tcl=tcl + 273.15 "Clothing surface temperature";
   Real M(unit="W/m2")
     "Metabolic rate";
   Real W(unit="W/m2")
@@ -46,13 +45,11 @@ model ThermalComfort_DIN_EN_ISO_7730
 protected
   Real fcl
     "Clothing surface area factor";
-  Modelica.SIunits.CoefficientOfHeatTransfer hc
+  Modelica.Units.SI.CoefficientOfHeatTransfer hc
     "Convective heat transfer coefficient";
-  Modelica.SIunits.ThermalInsulance Icl
-    "Thermal insulation for clothing";
+  Modelica.Units.SI.ThermalInsulance Icl "Thermal insulation for clothing";
   Real hcf, hcn;
-  Modelica.SIunits.Temp_C tcl
-    "Clothing surface temperature";
+  Modelica.Units.NonSI.Temperature_degC tcl "Clothing surface temperature";
 equation
   M = met * 58.15;
   W = wme * 58.15;

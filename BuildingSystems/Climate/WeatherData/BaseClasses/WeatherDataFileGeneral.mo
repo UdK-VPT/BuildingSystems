@@ -2,21 +2,16 @@ within BuildingSystems.Climate.WeatherData.BaseClasses;
 partial block WeatherDataFileGeneral
   "Template for weather data files"
   parameter String info="";
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg latitudeDeg
-    "Latitude";
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg
-    "Longitude";
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg longitudeDeg_0
-    "longitude_0";
-  Modelica.SIunits.RadiantEnergyFluenceRate IrrDirHor
+  parameter Modelica.Units.NonSI.Angle_deg latitudeDeg "Latitude";
+  parameter Modelica.Units.NonSI.Angle_deg longitudeDeg "Longitude";
+  parameter Modelica.Units.NonSI.Angle_deg longitudeDeg_0 "longitude_0";
+  Modelica.Units.SI.RadiantEnergyFluenceRate IrrDirHor
     "Solar beam radiation of horizontal surface";
-  Modelica.SIunits.RadiantEnergyFluenceRate IrrDifHor
+  Modelica.Units.SI.RadiantEnergyFluenceRate IrrDifHor
     "Solar diffuse radiation of horizontal surface";
-  Modelica.SIunits.Temp_C tAirRef
-    "Air temperature";
-  Modelica.SIunits.Velocity vWindRef
-    "Wind speed on reference height";
-  Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegWindRef
+  Modelica.Units.NonSI.Temperature_degC tAirRef "Air temperature";
+  Modelica.Units.SI.Velocity vWindRef "Wind speed on reference height";
+  Modelica.Units.NonSI.Angle_deg angleDegWindRef
     "Angle of wind direction on reference height";
   BuildingSystems.Types.RelativeHumidity phiAir
     "Relative humidity";

@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.Cogeneration.Data.NaturalGasEngines;
-record  SenertecDachs_NaturalGas = BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral(
+record SenertecDachs_NaturalGas =
+    BuildingSystems.Technologies.Cogeneration.Data.BaseClasses.CogenerationUnitGeneral
+    (
   Q_flow_nominal = 12500.0,
   QCon_flow_nominal = 21000.0,
   P_nominal = 6000.0,

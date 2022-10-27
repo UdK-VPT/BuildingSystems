@@ -1,32 +1,25 @@
 within BuildingSystems.HAM.ConvectiveHeatTransfer.Gaps;
 function alphaGap
   "Empirical equation for convective heat transfer coefficient for a parallel gap"
-  input Modelica.SIunits.Temp_K T1
-    "Surface temperature 1";
-  input Modelica.SIunits.Temp_K T2
-    "Surface temperature 2";
-  input Modelica.SIunits.Length d
-    "Gap distance";
-  input Modelica.SIunits.Length h
-    "Gap height";
+  input Modelica.Units.SI.Temperature T1 "Surface temperature 1";
+  input Modelica.Units.SI.Temperature T2 "Surface temperature 2";
+  input Modelica.Units.SI.Length d "Gap distance";
+  input Modelica.Units.SI.Length h "Gap height";
   input Integer gas
     "Gas within the gap: 1:air, 2:argon or 3:krypton, 4:xenon, 5:SF6";
-  output Modelica.SIunits.CoefficientOfHeatTransfer value;
+  output Modelica.Units.SI.CoefficientOfHeatTransfer value;
 protected
-  Modelica.SIunits.Temp_K TMean
-    "mean temperature";
-  Modelica.SIunits.TemperatureDifference deltaT
+  Modelica.Units.SI.Temperature TMean "mean temperature";
+  Modelica.Units.SI.TemperatureDifference deltaT
     "positive temperature difference";
-  Modelica.SIunits.PrandtlNumber Pr
-    "Prandtl number of the gas";
-  Modelica.SIunits.GrashofNumber Gr
-    "Grashof number of the gas";
-  Modelica.SIunits.RayleighNumber Ra
-    "Rayleigh number of the gas";
-  Modelica.SIunits.CoefficientOfHeatTransfer alpha1, alpha2, alpha3, alpha12
-    "Helping variables";
-  Modelica.SIunits.Acceleration g = 9.81
-    "accelaration of gravity";
+  Modelica.Units.SI.PrandtlNumber Pr "Prandtl number of the gas";
+  Modelica.Units.SI.GrashofNumber Gr "Grashof number of the gas";
+  Modelica.Units.SI.RayleighNumber Ra "Rayleigh number of the gas";
+  Modelica.Units.SI.CoefficientOfHeatTransfer alpha1;
+  Modelica.Units.SI.CoefficientOfHeatTransfer alpha2;
+  Modelica.Units.SI.CoefficientOfHeatTransfer alpha3;
+  Modelica.Units.SI.CoefficientOfHeatTransfer alpha12 "Helping variables";
+  Modelica.Units.SI.Acceleration g=9.81 "accelaration of gravity";
 
 algorithm
   TMean := abs((T1 + T2)/2.0);

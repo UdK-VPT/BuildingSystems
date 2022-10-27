@@ -1,6 +1,7 @@
 within BuildingSystems;
 package Climate "Package with climate data and radiation calculation models"
   extends Modelica.Icons.Package;
+
   annotation (preferredView="info",Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Ellipse(extent={{-40,40},{40,-40}}, lineColor={0,0,0}),
     Line(points={{0,40},{0,70},{0,72}}, color={0,0,0}),

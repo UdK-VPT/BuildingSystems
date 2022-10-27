@@ -6,11 +6,12 @@ model Building1Zone0D
   // building1 with ideal load calculation
   BuildingSystems.Buildings.Ambience ambience1(
     nSurfaces=building1.nSurfacesAmbience,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
       annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
 
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building1(
-    AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0, // building shape: 4 m x 6 m x 2.8 m
+    AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0,
     AInn=3.3*2.8*2.0,
     AGro=4.0*6.0,
     nWindows=1,
@@ -25,6 +26,7 @@ model Building1Zone0D
     UValWin={1.0},
     calcIdealLoads=true)
     annotation (Placement(transformation(extent={{-10,20},{10,40}})));
+                                          // building shape: 4 m x 6 m x 2.8 m
 
   Modelica.Blocks.Sources.Constant TSetCooling(
     k=273.15 + 24.0)
@@ -39,11 +41,12 @@ model Building1Zone0D
   // building2 with free floating temperature calculation
   BuildingSystems.Buildings.Ambience ambience2(
     nSurfaces=building2.nSurfacesAmbience,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-28},{-20,-8}})));
 
   BuildingSystems.Buildings.BuildingTemplates.Building1Zone0D building2(
-    AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0, // building shape: 4 m x 6 m x 2.8 m
+    AAmb=2.8*(4.0+4.0+6.0+6.0) + 4.0*6.0,
     AInn=3.3*2.8*2.0,
     AGro=4.0*6.0,
     nWindows=1,
@@ -58,6 +61,7 @@ model Building1Zone0D
     UValWin={1.0},
     calcIdealLoads=false)
     annotation (Placement(transformation(extent={{-10,-28},{10,-8}})));
+                                          // building shape: 4 m x 6 m x 2.8 m
 
   Modelica.Blocks.Sources.Constant airchange2(
     k=0.5)

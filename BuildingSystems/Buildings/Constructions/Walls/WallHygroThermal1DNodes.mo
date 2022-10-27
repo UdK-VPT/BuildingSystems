@@ -19,7 +19,7 @@ model WallHygroThermal1DNodes
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   parameter Integer nNodes[constructionData.nLayers] = fill(1,constructionData.nLayers)
     "Number of numerical nodes of each layer"
-    annotation(Dialog(tab ="Advanced",group="Heat sources"));
+    annotation(Dialog(tab= "Advanced",group="Heat sources"));
   parameter Integer nodeWithHeatSource = 1
     "Numerical node of the specified layer with internal heat source"
     annotation(Dialog(tab = "Advanced", group = "Heat sources"));
@@ -45,9 +45,9 @@ model WallHygroThermal1DNodes
     "Absolute moisture on surface side 2"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,40}),
         iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={30,60})));
-  parameter Modelica.SIunits.Area AInnSur = 0.0
+  parameter Modelica.Units.SI.Area AInnSur=0.0
     "Area of all enclosed surfaces (if geometryType == Fixed)"
-    annotation(Dialog(tab = "General", group = "Geometry"));
+    annotation (Dialog(tab="General", group="Geometry"));
   output BuildingSystems.Interfaces.AreaOutput AInnSur_internal
     "Area of all enclosed surfaces";
   input BuildingSystems.Interfaces.AreaInput AInnSur_in(

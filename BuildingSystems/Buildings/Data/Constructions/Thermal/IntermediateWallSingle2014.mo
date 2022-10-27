@@ -1,5 +1,6 @@
 within BuildingSystems.Buildings.Data.Constructions.Thermal;
-record IntermediateWallSingle2014 = BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
+record IntermediateWallSingle2014 =
+    BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction (
   final nLayers=3,
   thickness={0.015,0.1,0.015},
   material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Masea.Plasterboard(),

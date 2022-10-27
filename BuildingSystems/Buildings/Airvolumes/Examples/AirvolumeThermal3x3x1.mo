@@ -3,24 +3,20 @@ model AirvolumeThermal3x3x1
   extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     nSurfaces = 4*3 + 2*9,
     nAirElements = 9,
-    bou.posX = {
-      // Left border
+    bou(
+    posX =     {
       0.0,
       0.0,
       0.0,
-      // Upper border
       0.5,
       1.5,
       2.5,
-      // Right border
       3.0,
       3.0,
       3.0,
-      // Lower border
       2.5,
       1.5,
       0.5,
-      // Front side
       0.5,
       1.5,
       2.5,
@@ -30,7 +26,6 @@ model AirvolumeThermal3x3x1
       0.5,
       1.5,
       2.5,
-      // Back side
       0.5,
       1.5,
       2.5,
@@ -40,24 +35,19 @@ model AirvolumeThermal3x3x1
       0.5,
       1.5,
       2.5},
-    bou.posY = {
-    // Left border
+    posY =     {
     0.5,
     1.5,
     2.5,
-    // Upper border
     3.0,
     3.0,
     3.0,
-    // Right border
     2.5,
     1.5,
     0.5,
-    // Lower border
     0.0,
     0.0,
     0.0,
-    // Front side
     0.5,
     0.5,
     0.5,
@@ -67,7 +57,6 @@ model AirvolumeThermal3x3x1
     2.5,
     2.5,
     2.5,
-    // Back side
     0.5,
     0.5,
     0.5,
@@ -77,24 +66,19 @@ model AirvolumeThermal3x3x1
     2.5,
     2.5,
     2.5},
-    bou.posZ = {
-    // Left border
+    posZ =     {
     0.5,
     0.5,
     0.5,
-    // Upper border
     0.5,
     0.5,
     0.5,
-    // Right border
     0.5,
     0.5,
     0.5,
-    // Lower border
     0.5,
     0.5,
     0.5,
-    // Front side
     0.0,
     0.0,
     0.0,
@@ -104,7 +88,6 @@ model AirvolumeThermal3x3x1
     0.0,
     0.0,
     0.0,
-    // Back side
     1.0,
     1.0,
     1.0,
@@ -114,43 +97,61 @@ model AirvolumeThermal3x3x1
     1.0,
     1.0,
     1.0},
-    bou.location = {
+    location =     {
+    BuildingSystems.Buildings.Types.OrientationType.South,
+    BuildingSystems.Buildings.Types.OrientationType.South,
+    BuildingSystems.Buildings.Types.OrientationType.South,
+    BuildingSystems.Buildings.Types.OrientationType.Roof,
+    BuildingSystems.Buildings.Types.OrientationType.Roof,
+    BuildingSystems.Buildings.Types.OrientationType.Roof,
+    BuildingSystems.Buildings.Types.OrientationType.North,
+    BuildingSystems.Buildings.Types.OrientationType.North,
+    BuildingSystems.Buildings.Types.OrientationType.North,
+    BuildingSystems.Buildings.Types.OrientationType.Floor,
+    BuildingSystems.Buildings.Types.OrientationType.Floor,
+    BuildingSystems.Buildings.Types.OrientationType.Floor,
+    BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.West,
+    BuildingSystems.Buildings.Types.OrientationType.West,
+    BuildingSystems.Buildings.Types.OrientationType.West,
+    BuildingSystems.Buildings.Types.OrientationType.West,
+    BuildingSystems.Buildings.Types.OrientationType.West,
+    BuildingSystems.Buildings.Types.OrientationType.West,
+    BuildingSystems.Buildings.Types.OrientationType.West,
+    BuildingSystems.Buildings.Types.OrientationType.West,
+    BuildingSystems.Buildings.Types.OrientationType.West}));
+      // Left border
+      // Upper border
+      // Right border
+      // Lower border
+      // Front side
+      // Back side
     // Left border
-    BuildingSystems.Buildings.Types.OrientationType.South,
-    BuildingSystems.Buildings.Types.OrientationType.South,
-    BuildingSystems.Buildings.Types.OrientationType.South,
     // Upper border
-    BuildingSystems.Buildings.Types.OrientationType.Roof,
-    BuildingSystems.Buildings.Types.OrientationType.Roof,
-    BuildingSystems.Buildings.Types.OrientationType.Roof,
     // Right border
-    BuildingSystems.Buildings.Types.OrientationType.North,
-    BuildingSystems.Buildings.Types.OrientationType.North,
-    BuildingSystems.Buildings.Types.OrientationType.North,
     // Lower border
-    BuildingSystems.Buildings.Types.OrientationType.Floor,
-    BuildingSystems.Buildings.Types.OrientationType.Floor,
-    BuildingSystems.Buildings.Types.OrientationType.Floor,
     // Front side
-    BuildingSystems.Buildings.Types.OrientationType.East,
-    BuildingSystems.Buildings.Types.OrientationType.East,
-    BuildingSystems.Buildings.Types.OrientationType.East,
-    BuildingSystems.Buildings.Types.OrientationType.East,
-    BuildingSystems.Buildings.Types.OrientationType.East,
-    BuildingSystems.Buildings.Types.OrientationType.East,
-    BuildingSystems.Buildings.Types.OrientationType.East,
-    BuildingSystems.Buildings.Types.OrientationType.East,
-    BuildingSystems.Buildings.Types.OrientationType.East,
     // Back side
-    BuildingSystems.Buildings.Types.OrientationType.West,
-    BuildingSystems.Buildings.Types.OrientationType.West,
-    BuildingSystems.Buildings.Types.OrientationType.West,
-    BuildingSystems.Buildings.Types.OrientationType.West,
-    BuildingSystems.Buildings.Types.OrientationType.West,
-    BuildingSystems.Buildings.Types.OrientationType.West,
-    BuildingSystems.Buildings.Types.OrientationType.West,
-    BuildingSystems.Buildings.Types.OrientationType.West,
-    BuildingSystems.Buildings.Types.OrientationType.West});
+    // Left border
+    // Upper border
+    // Right border
+    // Lower border
+    // Front side
+    // Back side
+    // Left border
+    // Upper border
+    // Right border
+    // Lower border
+    // Front side
+    // Back side
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle111(
     BCwall_east=true,
     BCwall_south=true,

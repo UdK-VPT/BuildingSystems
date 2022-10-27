@@ -1,15 +1,14 @@
 within BuildingSystems.HAM.HeatAndMoistureTransport.Functions;
-
 function dPhi
   "Calculates the liquid conduction coefficient"
-  input Modelica.SIunits.MassConcentration dwsTabX[:];
+  input Modelica.Units.SI.MassConcentration dwsTabX[:];
   input BuildingSystems.Types.CoefficientOfLiquidTransport dwsTabY[:];
-  input Modelica.SIunits.MassConcentration dwwTabX[:];
+  input Modelica.Units.SI.MassConcentration dwwTabX[:];
   input BuildingSystems.Types.CoefficientOfLiquidTransport dwwTabY[:];
-  input Modelica.SIunits.MassConcentration wF;
-  input Modelica.SIunits.MassConcentration w;
-  input Modelica.SIunits.MassFlowRate m_flow_wdr;
-  input Modelica.SIunits.MassConcentration wDerPhi;
+  input Modelica.Units.SI.MassConcentration wF;
+  input Modelica.Units.SI.MassConcentration w;
+  input Modelica.Units.SI.MassFlowRate m_flow_wdr;
+  input Modelica.Units.SI.MassConcentration wDerPhi;
   output Real value
   "[kg/ms]";
 

@@ -4,25 +4,22 @@ model AirElementHygroThermal
   extends BuildingSystems.Buildings.BaseClasses.AirElementGeneral;
   /////////////     CONSTANT     ///////////////////////
   /////////////     PARAMETER     //////////////////////
-  parameter Modelica.SIunits.MassFraction x_start=0.005
-    "Start air moisture"
+  parameter Modelica.Units.SI.MassFraction x_start=0.005 "Start air moisture"
     annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.Mass mH2OLiq_start = 0.0
-    "Start liquid water mass";
+  parameter Modelica.Units.SI.Mass mH2OLiq_start=0.0 "Start liquid water mass";
   //
   /////////////////    SOURCES    ///////////////////////
   // Source, Heatsource, moisture source
-  parameter Modelica.SIunits.MassFlowRate moistureSourcesMflow = 0;
-  parameter Modelica.SIunits.SpecificEnthalpy moistureSource_h = cAir * T_start;
+  parameter Modelica.Units.SI.MassFlowRate moistureSourcesMflow=0;
+  parameter Modelica.Units.SI.SpecificEnthalpy moistureSource_h=cAir*T_start;
   ///////////////////////////////////////////////////////
   /////////////      VARIABLES    //////////////////////
-  Modelica.SIunits.Mass mAir(start = dx*dy*dz * rho_nominal)
-    "Mass of dry air";
-  Modelica.SIunits.Mass mH2OAir(start = x_start * dx*dy*dz * rho_nominal, fixed = true)
+  Modelica.Units.SI.Mass mAir(start=dx*dy*dz*rho_nominal) "Mass of dry air";
+  Modelica.Units.SI.Mass mH2OAir(start=x_start*dx*dy*dz*rho_nominal, fixed=true)
     "Mass of water vapor in the air";
-  Modelica.SIunits.Mass mH2OLiq(start = mH2OLiq_start, fixed = true)
+  Modelica.Units.SI.Mass mH2OLiq(start=mH2OLiq_start, fixed=true)
     "Mass of liquid water";
-  Modelica.SIunits.InternalEnergy U=U_start
+  Modelica.Units.SI.InternalEnergy U=U_start
     "Internal energy of the air volume";
   ///*****************************************************************///
 equation

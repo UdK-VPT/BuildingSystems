@@ -24,7 +24,8 @@ model WallThermalTriangular1DNodesFlexGeo
     annotation (Placement(transformation(extent={{-2,-10},{-22,10}})));
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=2,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Modelica.Blocks.Sources.Constant angleDegTil(
     k=90.0)
@@ -32,7 +33,7 @@ model WallThermalTriangular1DNodesFlexGeo
   Modelica.Blocks.Sources.Constant angleDegAzi(
     k=0.0)
     annotation (Placement(transformation(extent={{16,28},{10,34}})));
-  Modelica.Blocks.Sources.Sine x1(amplitude=0.25, freqHz=1/3600)
+  Modelica.Blocks.Sources.Sine x1(amplitude=0.25, f=1/3600)
     annotation (Placement(transformation(extent={{-34,32},{-28,38}})));
   Modelica.Blocks.Sources.Constant x2(k=1.0) annotation (Placement(
         transformation(

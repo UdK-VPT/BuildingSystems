@@ -10,24 +10,19 @@ model SurfaceToAir
     abs=abs)
     "Port to other surfaces"
     annotation (Placement(transformation(extent={{-4,30},{16,50}}), iconTransformation(extent={{-4,30},{16,50}})));
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alpha
     "Convective heat transfer coefficient";
   BuildingSystems.Types.MoistureTransferCoefficient beta
     "Convective moisture transfer coefficient";
-  Modelica.SIunits.Temp_K T(
-    start=293.15)
-    "Temperature";
-  Modelica.SIunits.MassFraction x(
-    start = 0.005)
-    "Absolute moisture";
-  Modelica.SIunits.Emissivity epsilon
-    "Long-wave emittance";
+  Modelica.Units.SI.Temperature T(start=293.15) "Temperature";
+  Modelica.Units.SI.MassFraction x(start=0.005) "Absolute moisture";
+  Modelica.Units.SI.Emissivity epsilon "Long-wave emittance";
   BuildingSystems.Types.Absorptance abs
     "Short-wave absorptance";
   parameter BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection convectionOnSurface = BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const
     "Type of convection calculation of the surface";
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaConstant = 3.0
-    "Convective heat transfer coefficient for simplified calculations";
+  parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaConstant=
+      3.0 "Convective heat transfer coefficient for simplified calculations";
 equation
   toConstructionPort.abs = toSurfacesPort.abs;
   toConstructionPort.epsilon = toSurfacesPort.epsilon;

@@ -30,18 +30,16 @@ model MultiLayerHeatConduction1DNodes
     "Thermal properties for each material layer"
     annotation (HideResult=true);
 
-  Modelica.SIunits.Length lengthY = 1.0
-    "Length in y dimension";
-  Modelica.SIunits.Length lengthZ = 1.0
-    "Length in z dimension";
+  Modelica.Units.SI.Length lengthY=1.0 "Length in y dimension";
+  Modelica.Units.SI.Length lengthZ=1.0 "Length in z dimension";
   parameter Integer nLayers = 1
     "Number of material layers in the x dimension";
   parameter Integer nNodes[nLayers] = {1}
     "Number of numerical nodes of layer i";
-  parameter Modelica.SIunits.Length thickness[nLayers] = {1.0}
+  parameter Modelica.Units.SI.Length thickness[nLayers]={1.0}
     "Thickness of layer i";
-  parameter Modelica.SIunits.Temp_K T_start[nLayers]={293.15 for i in 1:nLayers}
-    "Start temperature of the layer i"
+  parameter Modelica.Units.SI.Temperature T_start[nLayers]={293.15 for i in 1:
+      nLayers} "Start temperature of the layer i"
     annotation (Dialog(tab="Initialization"));
   parameter Integer layerWithHeatSource = 1
     "Material layer with internal heat source";
@@ -65,7 +63,7 @@ equation
     Rectangle(extent={{40,80},{80,-80}},lineColor={255,85,85},fillColor={255,0,0},fillPattern=FillPattern.Solid),
     Text(extent={{-14,71},{54,5}},lineColor={255,0,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="D"),
     Text(extent={{-52,71},{16,5}},lineColor={255,128,0},lineThickness=0.5,fillColor={255,128,0},fillPattern=FillPattern.Solid,textString="1"),
-    Text(extent={{-46,-78},{46,-106}},lineColor={0,0,255},fillColor={230,230,230},fillPattern=  FillPattern.Solid,textString="%name")}),
+    Text(extent={{-46,-78},{46,-106}},lineColor={0,0,255},fillColor={230,230,230},fillPattern = FillPattern.Solid,textString="%name")}),
 Documentation(info="<html>
 <p>
 This model describes the one-dimensional heat conduction of a

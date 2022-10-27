@@ -2,8 +2,7 @@ within BuildingSystems.Buildings.Constructions.Shadowing;
 model Embrasure
   "Model of an embrasure"
   extends BuildingSystems.Buildings.BaseClasses.ShadowingElementGeneral;
-  parameter Modelica.SIunits.Length depth = 0.0
-    "Depth of the embrasure";
+  parameter Modelica.Units.SI.Length depth=0.0 "Depth of the embrasure";
 equation
   SC = BuildingSystems.Buildings.Constructions.Shadowing.Functions.embrasure(
     height_internal,

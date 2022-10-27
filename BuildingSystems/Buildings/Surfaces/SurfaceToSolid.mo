@@ -23,7 +23,7 @@ equation
   connect(toConstructionPort.moisturePort,moisturePort);
   connect(toConstructionPort.heatPort,heatPort);
 
-  annotation(
+  annotation (
 Documentation(info="<html>
 <p>
 This is model describes a surface model between a construction and a solid material.

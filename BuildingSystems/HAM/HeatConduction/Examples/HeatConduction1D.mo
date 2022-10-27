@@ -41,9 +41,10 @@ model HeatConduction1D
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature TAmb
     annotation (Placement(transformation(extent={{-68,-8},{-52,8}})));
   Modelica.Blocks.Sources.Sine climate(
-    amplitude=10.0,freqHz=1.0/86400.0,
+    amplitude=10.0,
+    f=1.0/86400.0,
     phase=6.2831853071796,
-    offset=273.15+20.0)
+    offset=273.15 + 20.0)
     annotation (Placement(transformation(extent={{-92,-8},{-76,8}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedTemperature TConstant
     annotation (Placement(transformation(extent={{68,-8},{52,8}})));

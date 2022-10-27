@@ -3,58 +3,59 @@ model AirvolumeThermal1x1x1
   extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     nSurfaces = 6,
     nAirElements = 1,
-    bou.posX = {
-      // Left border
+    bou(
+    posX =     {
       0.0,
-      // Upper border
       0.5,
-      // Right border
       1.0,
-      // Lower border
       0.5,
-      // Front side
       0.5,
-      // Back side
       0.5},
-    bou.posY = {
-    // Left border
+    posY =     {
     0.5,
-    // Upper border
     1.0,
-    // Right border
     0.5,
-    // Lower border
     0.0,
-    // Front side
     0.5,
-    // Back side
     0.5},
-    bou.posZ = {
-    // Left border
+    posZ =     {
     0.5,
-    // Upper border
     0.5,
-    // Right border
     0.5,
-    // Lower border
     0.5,
-    // Front side
     0.0,
-    // Back side
     1.0},
-    bou.location = {
-    // Left border
+    location =     {
     BuildingSystems.Buildings.Types.OrientationType.South,
-    // Upper border
     BuildingSystems.Buildings.Types.OrientationType.Roof,
-    // Right border
     BuildingSystems.Buildings.Types.OrientationType.North,
-    // Lower border
     BuildingSystems.Buildings.Types.OrientationType.Floor,
-    // Front side
     BuildingSystems.Buildings.Types.OrientationType.East,
+    BuildingSystems.Buildings.Types.OrientationType.West}));
+      // Left border
+      // Upper border
+      // Right border
+      // Lower border
+      // Front side
+      // Back side
+    // Left border
+    // Upper border
+    // Right border
+    // Lower border
+    // Front side
     // Back side
-    BuildingSystems.Buildings.Types.OrientationType.West});
+    // Left border
+    // Upper border
+    // Right border
+    // Lower border
+    // Front side
+    // Back side
+    // Left border
+    // Upper border
+    // Right border
+    // Lower border
+    // Front side
+    // Back side
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle111(
     BCwall_east=true,
     BCwall_south=true,

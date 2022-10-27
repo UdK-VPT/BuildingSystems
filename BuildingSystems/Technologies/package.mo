@@ -1,6 +1,7 @@
 within BuildingSystems;
 package Technologies "Package with models of building technologies"
   extends Modelica.Icons.Package;
+
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},{100,100}}), graphics={
     Rectangle(
       extent={{-80,66},{-10,-56}},

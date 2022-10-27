@@ -5,37 +5,37 @@ model GasGapClosed
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={-20,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-20,0})));
   BuildingSystems.Interfaces.HeatPort heatPort_x2
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,0}), iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={20,0})));
-  parameter Modelica.SIunits.Length width
-    "Width of the gap"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length height
-    "Height of the gap"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length distance
-    "Distance of the gap"
-    annotation(Dialog(tab = "General", group = "Geometry"));
+  parameter Modelica.Units.SI.Length width "Width of the gap"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length height "Height of the gap"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Length distance "Distance of the gap"
+    annotation (Dialog(tab="General", group="Geometry"));
   parameter Integer gas = 1
     "Gas within the gap: 1:air, 2:argon, 3:krypton, 4:xenon, 5:SF6"
     annotation(Dialog(tab = "General", group = "Convection"));
-  parameter Modelica.SIunits.Area A = width * height
-    "Area of one side of the gap"
-    annotation(Dialog(enable = false, tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Emissivity eps1 = 0.9
+  parameter Modelica.Units.SI.Area A=width*height "Area of one side of the gap"
+    annotation (Dialog(
+      enable=false,
+      tab="General",
+      group="Geometry"));
+  parameter Modelica.Units.SI.Emissivity eps1=0.9
     "Long-wave emission coefficient of surface 1"
-    annotation(Dialog(tab = "General", group = "Heat Radiation"));
-  parameter Modelica.SIunits.Emissivity eps2 = 0.9
+    annotation (Dialog(tab="General", group="Heat Radiation"));
+  parameter Modelica.Units.SI.Emissivity eps2=0.9
     "Long-wave emission coefficient of surface 2"
-    annotation(Dialog(tab = "General", group = "Heat Radiation"));
+    annotation (Dialog(tab="General", group="Heat Radiation"));
   parameter Boolean calcNominal = false
     "True: heat transfer calculation under nominal conditions";
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha_nominal = 1.0
+  parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alpha_nominal=
+      1.0
     "Convective heat transfer coefficient of the air gap under nominal conditions"
-    annotation(Dialog(tab = "General", group = "Convection"));
-  parameter Modelica.SIunits.Temp_K T1_nominal = 283.15 - 5.0
+    annotation (Dialog(tab="General", group="Convection"));
+  parameter Modelica.Units.SI.Temperature T1_nominal=283.15 - 5.0
     "Temperature on surface 1 under nominal conditions";
-  parameter Modelica.SIunits.Temp_K T2_nominal = 283.15 + 5.0
+  parameter Modelica.Units.SI.Temperature T2_nominal=283.15 + 5.0
     "Temperature on surface 2 under nominal conditions";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alpha
     "Convective heat transfer coefficient of the air gap";
 equation
   if calcNominal then

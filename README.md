@@ -1,7 +1,7 @@
 BuildingSystems
 ===============
 
-This is the development site for the Modelica BuildingSystems library and its user guide.
+This is the development site for the Modelica [BuildingSystems](https://www.modelica-buildingsystems.de) library and its user guide.
 Instructions for developers are available on the [wiki](https://github.com/UdK-VPT/BuildingSystems/wiki).
 
 ## Library description

@@ -2,7 +2,7 @@ within BuildingSystems.HAM.HeatAndMoistureTransport.Functions.Examples;
 model phiSor "Test function phiSor"
   extends Modelica.Icons.Example;
   BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton material;
-  Modelica.SIunits.MassConcentration w "Water content of the material";
+  Modelica.Units.SI.MassConcentration w "Water content of the material";
   BuildingSystems.Types.RelativeHumidity phiSor
     "Relative Humidity of the material";
 
@@ -16,7 +16,7 @@ model phiSor "Test function phiSor"
 equation
   w = ramp.y;
   phiSor = BuildingSystems.HAM.HeatAndMoistureTransport.Functions.phiSor(material.sorTabX,material.sorTabY,w, material.wF,material.porosity);
-  annotation(    experiment(StopTime=200.0),
+  annotation (   experiment(StopTime=200.0),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/HeatAndMoistureTransport/Functions/Examples/phiSor.mos"
         "Simulate and plot"),
     Documentation(info="<html>

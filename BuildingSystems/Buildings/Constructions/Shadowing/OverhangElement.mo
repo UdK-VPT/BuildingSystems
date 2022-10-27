@@ -12,12 +12,9 @@ model OverhangElement
   Modelica.Blocks.Interfaces.RealOutput SC
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={0,-90}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=-90,origin={0,-90})));
-  parameter Modelica.SIunits.Length depthOH = 0.0
-    "Depth of the overhang";
-  parameter Modelica.SIunits.Length heightOH = 0.0
-    "Height of the overhang";
-  parameter Modelica.SIunits.Length heightWin = 0.0
-    "Height of the window";
+  parameter Modelica.Units.SI.Length depthOH=0.0 "Depth of the overhang";
+  parameter Modelica.Units.SI.Length heightOH=0.0 "Height of the overhang";
+  parameter Modelica.Units.SI.Length heightWin=0.0 "Height of the window";
 equation
   connect(radiationPort_in, overhang.radiationPort_in)
     annotation (Line(points={{-40,0},{-4,0}}, color={0,0,0}));

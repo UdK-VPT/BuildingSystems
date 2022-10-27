@@ -6,16 +6,9 @@ model RadiationDistribution
   parameter Integer nHeatSources = 0
     "Number of internal heat sources of the thermal zone"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
-  parameter BuildingSystems.Types.ViewFactor F[nSurfaces,nSurfaces](
-    each fixed=false)
-    "View factor matrix of the thermal zone"
-    annotation(HideResult = true);
-  parameter BuildingSystems.Types.ViewFactor ViewFac[nSurfaces,nSurfaces]=fill(fill(0.0,nSurfaces),nSurfaces)
-    "Geometric view factor matrix of the thermal zone";
-  parameter Boolean geometricViewFactors= false
-    "true: use of geometric view factors, false: use of surface area weighted view factors"
-     annotation(HideResult = true);
-  Modelica.SIunits.Area ATotal
+  BuildingSystems.Types.ViewFactor F[nSurfaces,nSurfaces]
+    "View factor matrix of the thermal zone";
+  Modelica.Units.SI.Area ATotal
     "Total surface area of the thermal zone";
   BuildingSystems.Buildings.Interfaces.SurfaceToSurfacesPorts toSurfacePorts[nSurfaces]
     "Interface to the surfaces of the thermal zone"
@@ -23,23 +16,14 @@ model RadiationDistribution
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
     "Interface to the internal heat sources of the thermal zone"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={0,58}), iconTransformation(extent={{-40,68},{40,88}})));
-  Modelica.SIunits.HeatFlowRate Q_flow_Sw
+  Modelica.Units.SI.HeatFlowRate Q_flow_Sw
     "Total short radiation gains of the thermal zone";
   BuildingSystems.Interfaces.Temp_KOutput TSurfMean
     "Mean temperatures of all surfaces"
     annotation (Placement(transformation(extent={{70,-10},{90,10}}), iconTransformation(extent={{70,-10},{90,10}})));
-  protected Modelica.SIunits.HeatFlux J[nSurfaces](each start = 0.0)
+protected
+  Modelica.Units.SI.HeatFlux J[nSurfaces](each start=0.0)
     "Radiosity of each surface";
-initial equation
-  if not geometricViewFactors then
-    for i in 1:nSurfaces loop
-      for j in 1:nSurfaces loop
-        F[i,j] = toSurfacePorts[j].A/sum(toSurfacePorts[k].A for k in 1:nSurfaces);
-      end for;
-    end for;
-  else
-    F=ViewFac;
-  end if;
 equation
   ATotal = sum(toSurfacePorts[:].A);
   // Total short-wave radiation gains of the zone

@@ -1,12 +1,12 @@
 within BuildingSystems.Buildings.Airvolumes.AirElements;
 record FluidProp
   "Fluid properties for the air element"
-  Modelica.SIunits.Temp_K T;
-  Modelica.SIunits.Pressure p;
-  Modelica.SIunits.Density rho;
-  Modelica.SIunits.SpecificEnthalpy h;
+  Modelica.Units.SI.Temperature T;
+  Modelica.Units.SI.Pressure p;
+  Modelica.Units.SI.Density rho;
+  Modelica.Units.SI.SpecificEnthalpy h;
   // Absolut Moisture
-  Modelica.SIunits.MassFraction x;
+  Modelica.Units.SI.MassFraction x;
   annotation (
 Documentation(info="<html>
 <p>

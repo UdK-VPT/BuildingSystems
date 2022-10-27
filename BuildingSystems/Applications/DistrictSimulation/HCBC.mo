@@ -2,7 +2,7 @@ within BuildingSystems.Applications.DistrictSimulation;
 model HCBC
   "Model including buildings of the university campus Berlin-Charlottenburg (HCBC) without DHN"
   extends Modelica.Icons.Example;
-  Modelica.SIunits.Heat Q_district(displayUnit="kWh")
+  Modelica.Units.SI.Heat Q_district(displayUnit="kWh")
     "Heating load of all buildings";
   model Building
     "Building model with four capacities used in conjunction with parameter maps for campus simulations"
@@ -37,37 +37,41 @@ model HCBC
     width=parameterMap.widthWin1,
     height=parameterMap.heightWin1,
     angleDegAzi=parameterMap.angleDegAziWin1,
-    constructionData.UValGla=parameterMap.windowU,
-    constructionData.UValFra=parameterMap.windowU,
-    constructionData.g = 0.6,
-    constructionData.b0 = 0.7)
+      constructionData(
+    UValGla =                parameterMap.windowU,
+    UValFra =                parameterMap.windowU,
+    g =                  0.6,
+    b0 =                  0.7))
     annotation (Placement(transformation(extent={{-40,-60},{-20,-40}})));
   BuildingSystems.Buildings.Constructions.Windows.Window rightWindow(
     width=parameterMap.widthWin2,
     height=parameterMap.heightWin2,
     angleDegAzi=parameterMap.angleDegAziWin2,
-    constructionData.UValGla=parameterMap.windowU,
-    constructionData.UValFra=parameterMap.windowU,
-    constructionData.g = 0.6,
-    constructionData.b0 = 0.7)
+      constructionData(
+    UValGla =                parameterMap.windowU,
+    UValFra =                parameterMap.windowU,
+    g =                  0.6,
+    b0 =                  0.7))
     annotation (Placement(transformation(extent={{-20,-60},{0,-40}})));
   BuildingSystems.Buildings.Constructions.Windows.Window frontWindow(
     width=parameterMap.widthWin3,
     height=parameterMap.heightWin3,
     angleDegAzi=parameterMap.angleDegAziWin3,
-    constructionData.UValGla=parameterMap.windowU,
-    constructionData.UValFra=parameterMap.windowU,
-    constructionData.g = 0.6,
-    constructionData.b0 = 0.7)
+      constructionData(
+    UValGla =                parameterMap.windowU,
+    UValFra =                parameterMap.windowU,
+    g =                  0.6,
+    b0 =                  0.7))
     annotation (Placement(transformation(extent={{0,-60},{20,-40}})));
   BuildingSystems.Buildings.Constructions.Windows.Window backWindow(
     width=parameterMap.widthWin4,
     height=parameterMap.heightWin4,
     angleDegAzi=parameterMap.angleDegAziWin4,
-    constructionData.UValGla=parameterMap.windowU,
-    constructionData.UValFra=parameterMap.windowU,
-    constructionData.g = 0.6,
-    constructionData.b0 = 0.7)
+      constructionData(
+    UValGla =                parameterMap.windowU,
+    UValFra =                parameterMap.windowU,
+    g =                  0.6,
+    b0 =                  0.7))
     annotation (Placement(transformation(extent={{20,-60},{40,-40}})));
   BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction
     outerConstruction(
@@ -176,42 +180,42 @@ model HCBC
     parameter String name = ""
       annotation (Dialog(group = "General information"));
     // Geometry related input parameters
-    parameter Modelica.SIunits.Length thickness = 1
-      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.Units.SI.Length thickness=1
+      annotation (Dialog(group="Geometry related input"));
     parameter Integer nFloors = 1
       annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Length heightBui = 1
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Volume VBui = 1
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Area ABuiGro = 1
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Area AWal1 = 1
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Area AWal2 = 1
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Area AWal3 = 1
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Area AWal4 = 1
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin1 = 0
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin2 = 0
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin3 = 0
-      annotation (Dialog(group = "Geometry related input"));
-    parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAziWin4 = 0
-      annotation (Dialog(group = "Geometry related input"));
+    parameter Modelica.Units.SI.Length heightBui=1
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.SI.Volume VBui=1
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.SI.Area ABuiGro=1
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.SI.Area AWal1=1
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.SI.Area AWal2=1
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.SI.Area AWal3=1
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.SI.Area AWal4=1
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.NonSI.Angle_deg angleDegAziWin1=0
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.NonSI.Angle_deg angleDegAziWin2=0
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.NonSI.Angle_deg angleDegAziWin3=0
+      annotation (Dialog(group="Geometry related input"));
+    parameter Modelica.Units.NonSI.Angle_deg angleDegAziWin4=0
+      annotation (Dialog(group="Geometry related input"));
     // Heat flow rate heating/cooling
-    parameter Modelica.SIunits.HeatFlowRate Q_flowHea = 100000
-      annotation (Dialog(group = "Heat flow rate heating/cooling"));
-    parameter Modelica.SIunits.HeatFlowRate Q_flowCoo = -100000
-      annotation (Dialog(group = "Heat flow rate heating/cooling"));
+    parameter Modelica.Units.SI.HeatFlowRate Q_flowHea=100000
+      annotation (Dialog(group="Heat flow rate heating/cooling"));
+    parameter Modelica.Units.SI.HeatFlowRate Q_flowCoo=-100000
+      annotation (Dialog(group="Heat flow rate heating/cooling"));
     // Optimization input parameters
-    parameter Modelica.SIunits.Temp_K TSetHea = 273.15+20
-      annotation (Dialog(group = "Optimization parameters"));
-    parameter Modelica.SIunits.Temp_K TSetCoo = 273.15+24
-      annotation (Dialog(group = "Optimization parameters"));
+    parameter Modelica.Units.SI.Temperature TSetHea=273.15 + 20
+      annotation (Dialog(group="Optimization parameters"));
+    parameter Modelica.Units.SI.Temperature TSetCoo=273.15 + 24
+      annotation (Dialog(group="Optimization parameters"));
     parameter BuildingSystems.Types.AirchangeRate airchange = 0.5
       annotation (Dialog(group = "Optimization parameters"));
     parameter BuildingSystems.Types.VolumeHeatCapacity VHCOut = 1000000
@@ -220,69 +224,69 @@ model HCBC
       annotation (Dialog(group = "Optimization parameters"));
     parameter BuildingSystems.Types.VolumeHeatCapacity VHCBas = 1000000
       annotation (Dialog(group = "Optimization parameters"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer envelopeU = 1.2
-      annotation (Dialog(group = "Optimization parameters"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer innerU = 1.2
-      annotation (Dialog(group = "Optimization parameters"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer baseU = 1.2
-      annotation (Dialog(group = "Optimization parameters"));
-    parameter Modelica.SIunits.CoefficientOfHeatTransfer windowU = 3.0
-      annotation (Dialog(group = "Optimization parameters"));
+    parameter Modelica.Units.SI.CoefficientOfHeatTransfer envelopeU=1.2
+      annotation (Dialog(group="Optimization parameters"));
+    parameter Modelica.Units.SI.CoefficientOfHeatTransfer innerU=1.2
+      annotation (Dialog(group="Optimization parameters"));
+    parameter Modelica.Units.SI.CoefficientOfHeatTransfer baseU=1.2
+      annotation (Dialog(group="Optimization parameters"));
+    parameter Modelica.Units.SI.CoefficientOfHeatTransfer windowU=3.0
+      annotation (Dialog(group="Optimization parameters"));
     parameter Real ratio = 0.3
       annotation (Dialog(group = "Optimization parameters"));
     // Derived from previous parameters
-    parameter Modelica.SIunits.SpecificHeatCapacity cOut = sqrt(VHCOut)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Density rhoOut = sqrt(VHCOut)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.SpecificHeatCapacity cInn = sqrt(VHCInn)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Density rhoInn = sqrt(VHCInn)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.SpecificHeatCapacity cBas = sqrt(VHCBas)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Density rhoBas = sqrt(VHCBas)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.ThermalConductivity lambdaOut = envelopeU * thickness
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.ThermalConductivity lambdaInn = innerU * thickness
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.ThermalConductivity lambdaBas = baseU * thickness
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length heightWin1 = sqrt(ratio) * heightBui
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length widthWin1 = sqrt(ratio) * AWal1 / heightBui
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length heightWin2 = sqrt(ratio) * heightBui
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length widthWin2 = sqrt(ratio) * AWal2 / heightBui
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length heightWin3 = sqrt(ratio) * heightBui
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length widthWin3 = sqrt(ratio) * AWal3 / heightBui
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length heightWin4 = sqrt(ratio) * heightBui
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length widthWin4 = sqrt(ratio) * AWal4 / heightBui
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Area AHul = ratio * (AWal1 + AWal2 + AWal3 + AWal4) + ABuiGro
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length heightOutCap = sqrt(AHul)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length widthOutCap = sqrt(AHul)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length heightInnCap = lengthBasCap * sqrt(nFloors)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length widthInnCap = widthBasCap * sqrt(nFloors)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length lengthBasCap = sqrt(ABuiGro)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length widthBasCap = sqrt(ABuiGro)
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Volume VZon = VBui
-      annotation (Dialog(group = "Derived model parametrization"));
-    parameter Modelica.SIunits.Length heightZon = heightBui
-      annotation (Dialog(group = "Derived model parametrization"));
+    parameter Modelica.Units.SI.SpecificHeatCapacity cOut=sqrt(VHCOut)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Density rhoOut=sqrt(VHCOut)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.SpecificHeatCapacity cInn=sqrt(VHCInn)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Density rhoInn=sqrt(VHCInn)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.SpecificHeatCapacity cBas=sqrt(VHCBas)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Density rhoBas=sqrt(VHCBas)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.ThermalConductivity lambdaOut=envelopeU*
+        thickness annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.ThermalConductivity lambdaInn=innerU*thickness
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.ThermalConductivity lambdaBas=baseU*thickness
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length heightWin1=sqrt(ratio)*heightBui
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length widthWin1=sqrt(ratio)*AWal1/heightBui
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length heightWin2=sqrt(ratio)*heightBui
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length widthWin2=sqrt(ratio)*AWal2/heightBui
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length heightWin3=sqrt(ratio)*heightBui
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length widthWin3=sqrt(ratio)*AWal3/heightBui
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length heightWin4=sqrt(ratio)*heightBui
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length widthWin4=sqrt(ratio)*AWal4/heightBui
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Area AHul=ratio*(AWal1 + AWal2 + AWal3 + AWal4)
+         + ABuiGro annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length heightOutCap=sqrt(AHul)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length widthOutCap=sqrt(AHul)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length heightInnCap=lengthBasCap*sqrt(nFloors)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length widthInnCap=widthBasCap*sqrt(nFloors)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length lengthBasCap=sqrt(ABuiGro)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length widthBasCap=sqrt(ABuiGro)
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Volume VZon=VBui
+      annotation (Dialog(group="Derived model parametrization"));
+    parameter Modelica.Units.SI.Length heightZon=heightBui
+      annotation (Dialog(group="Derived model parametrization"));
   end ParameterMap;
 
   ParameterMap parameterMap1(
@@ -1302,7 +1306,8 @@ model HCBC
 
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=190,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{162,194},{262,294}})));
   Building building1(nZones=1, parameterMap = parameterMap1)
     annotation (Placement(transformation(extent={{-182,30},{-162,50}})));
@@ -1413,8 +1418,8 @@ model HCBC
   Modelica.Blocks.Sources.Constant t_set_heating3(
     k=building16.parameterMap.TSetHea)
     annotation (Placement(transformation(extent={{-24,202},{-32,210}})));
-  Modelica.Blocks.Sources.Constant set_airchange3
-    (k=building16.parameterMap.airchange)
+  Modelica.Blocks.Sources.Constant set_airchange3(
+     k=building16.parameterMap.airchange)
     annotation (Placement(transformation(extent={{-24,178},{-32,186}})));
   Modelica.Blocks.Sources.Constant t_set_cooling4(
     k=building11.parameterMap.TSetCoo)
@@ -1722,8 +1727,8 @@ model HCBC
   Modelica.Blocks.Sources.Constant set_airchange37(
     k=building44.parameterMap.airchange)
     annotation (Placement(transformation(extent={{94,-314},{86,-306}})));
-  Modelica.SIunits.HeatFlowRate Q_flowHea;
-  Modelica.SIunits.HeatFlowRate Q_flowCoo;
+  Modelica.Units.SI.HeatFlowRate Q_flowHea;
+  Modelica.Units.SI.HeatFlowRate Q_flowCoo;
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding45(T=283.15)
     annotation (Placement(transformation(extent={{-10,-320},{-2,-312}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding44(T=283.15)

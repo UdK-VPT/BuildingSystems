@@ -2,11 +2,11 @@ within BuildingSystems.HAM.HeatAndMoistureTransport.Functions.Examples;
 model wDerPhi "Test function wDerPhi"
   extends Modelica.Icons.Example;
   BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton material;
-  parameter Modelica.SIunits.MassConcentration w = 50.0
+  parameter Modelica.Units.SI.MassConcentration w=50.0
     "Water content of the material";
   BuildingSystems.Types.RelativeHumidity phi
     "Relative Humidity of the material";
-  Modelica.SIunits.MassConcentration wDerPhi "Derivative of the water content";
+  Modelica.Units.SI.MassConcentration wDerPhi "Derivative of the water content";
 
   Modelica.Blocks.Sources.Ramp ramp(
     height=1.1,
@@ -19,7 +19,7 @@ equation
   phi = ramp.y;
   wDerPhi = BuildingSystems.HAM.HeatAndMoistureTransport.Functions.wDerPhi(w, material.sorTabX, material.sorTabY, material.wF, phi, material.porosity);
 
-  annotation(    experiment(StopTime=1.1),
+  annotation (   experiment(StopTime=1.1),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/HeatAndMoistureTransport/Functions/Examples/wDerPhi.mos"
         "Simulate and plot"),
     Documentation(info="<html>

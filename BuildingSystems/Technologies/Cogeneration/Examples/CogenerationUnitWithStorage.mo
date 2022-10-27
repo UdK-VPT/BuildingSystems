@@ -3,10 +3,9 @@ model CogenerationUnitWithStorage
   "Example of a cogeneration unit with warm water storage"
   extends Modelica.Icons.Example;
   package Medium = BuildingSystems.Media.Water;
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal = 0.1
-    "Nominal mass flow rate"
-    annotation(Dialog(group = "Nominal condition"));
-  parameter Modelica.SIunits.MassFlowRate m_flow = 0.1;
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.1
+    "Nominal mass flow rate" annotation (Dialog(group="Nominal condition"));
+  parameter Modelica.Units.SI.MassFlowRate m_flow=0.1;
   BuildingSystems.Fluid.Sensors.TemperatureTwoPort senTemIn(
     redeclare package Medium = Medium, m_flow_nominal=m_flow_nominal)
     annotation (Placement(transformation(extent={{18,-24},{38,-4}})));

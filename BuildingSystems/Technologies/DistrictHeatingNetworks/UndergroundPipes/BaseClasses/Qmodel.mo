@@ -2,16 +2,15 @@ within BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.Bas
 model Qmodel
   parameter Boolean InteractionBetweenPipes = true
     "Set false to avoid modelling interaction between pipes";
-  Modelica.SIunits.ThermalConductivity U1
+  Modelica.Units.SI.ThermalConductivity U1
     "Thermal conductivity specific to length";
-  Modelica.SIunits.ThermalConductivity U2
+  Modelica.Units.SI.ThermalConductivity U2
     "Thermal conductivity specific to length";
   final parameter Integer nPipes=2
     "Number of pipes";
   parameter Integer nEle= 2
     "Number of elements used in the discretization";
-  parameter Modelica.SIunits.Length len
-    "Pipe's length";
+  parameter Modelica.Units.SI.Length len "Pipe's length";
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow[nEle] ThermalCollectorQ1S
     "Heat input into radiator from convective heat transfer"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-40,60})));

@@ -13,7 +13,8 @@ model WindowWithAirpathsFlexGeo
     nSurfaces=1,
     nAirpaths=2,
     heightAirpath={0.5,1.5},
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   Zones.ZoneTemplateAirvolumeMixed zone(
     geometryType=BuildingSystems.Buildings.Types.GeometryType.Flexible,
@@ -41,7 +42,7 @@ model WindowWithAirpathsFlexGeo
     annotation (Placement(transformation(extent={{-8,-20},{-2,-14}})));
   Modelica.Blocks.Sources.Sine height(
     amplitude=0.5,
-    freqHz=1/86400,
+    f=1/86400,
     offset=1,
     startTime=0)
     annotation (Placement(transformation(extent={{-16,32},{-10,38}})));
@@ -53,10 +54,9 @@ model WindowWithAirpathsFlexGeo
     annotation (Placement(transformation(extent={{16,22},{10,28}})));
   Modelica.Blocks.Sources.Sine width(
     amplitude=0.5,
-    freqHz=1/86400,
+    f=1/86400,
     startTime=0,
-    offset=2)
-    annotation (Placement(transformation(extent={{-16,22},{-10,28}})));
+    offset=2) annotation (Placement(transformation(extent={{-16,22},{-10,28}})));
   Modelica.Blocks.Sources.RealExpression positionWindow[3](
     y={zone.position_internal[1] + 0.0,zone.position_internal[2] + 0.0,zone.position_internal[3] + 0.0})
     annotation (Placement(transformation(extent={{18,-8},{12,-2}})));

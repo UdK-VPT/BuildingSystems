@@ -12,7 +12,8 @@ model Embrasure
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radEast
     annotation (Placement(transformation(extent={{0,30},{20,50}})));
   BuildingSystems.Climate.WeatherData.WeatherDataReader weaDat(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Egypt_ElGouna_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-56,38},{-36,58}})));
   Modelica.Blocks.Sources.Constant angTilSouth(k=90)
     annotation (Placement(transformation(extent={{-18,10},{-10,18}})));
@@ -45,8 +46,8 @@ model Embrasure
   Modelica.Blocks.Sources.Constant angAziEast(
     k=-90.0)
     annotation (Placement(transformation(extent={{-28,30},{-20,38}})));
-  Modelica.Blocks.Sources.Constant angTilEast
-    (k=90.0)
+  Modelica.Blocks.Sources.Constant angTilEast(
+     k=90.0)
     annotation (Placement(transformation(extent={{-18,38},{-10,46}})));
 equation
   connect(weaDat.longitudeDeg0, radEast.longitudeDeg0)
@@ -83,8 +84,8 @@ equation
   connect(weaDat.longitudeDeg, radWest.longitudeDeg) annotation (Line(points={{-35,
           55},{-36,55},{-36,54},{-32,54},{-32,-2},{10,-2},{10,-6.4}}, color={0,0,
           127}));
-  connect(weaDat.longitudeDeg0, radSouth.longitudeDeg0) annotation (Line(points
-        ={{-35,53},{-35,54},{-32,54},{-32,24},{14,24},{14,19.6}}, color={0,0,127}));
+  connect(weaDat.longitudeDeg0, radSouth.longitudeDeg0) annotation (Line(points=
+         {{-35,53},{-35,54},{-32,54},{-32,24},{14,24},{14,19.6}}, color={0,0,127}));
   connect(weaDat.longitudeDeg0, radWest.longitudeDeg0) annotation (Line(points={
           {-35,53},{-32,53},{-32,-2},{14,-2},{14,-6.4}}, color={0,0,127}));
   connect(weaDat.IrrDirHor, radEast.IrrDirHor) annotation (Line(points={{-49,37},

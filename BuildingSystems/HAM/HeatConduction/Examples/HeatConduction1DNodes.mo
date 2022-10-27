@@ -18,7 +18,7 @@ model HeatConduction1DNodes
     annotation (Placement(transformation(extent={{-30,-8},{-14,8}})));
   Modelica.Blocks.Sources.Sine climate(
     amplitude=10.0,
-    freqHz=1/86400.0,
+    f=1/86400.0,
     phase=6.2831853071796,
     offset=293.15)
     annotation (Placement(transformation(extent={{-54,-8},{-38,8}})));

@@ -3,12 +3,13 @@ model SingleCollectorWithStorageTest
   "Test of the single collector model with a thermal fluid storage"
   extends Modelica.Icons.Example;
   package Medium2 = BuildingSystems.Media.Water;
-  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater(
+  package Medium1 = BuildingSystems.Media.Antifreeze.PropyleneGlycolWater (
     X_a=0.40,
     property_T=293.15);
 
   BuildingSystems.Climate.WeatherData.WeatherDataReader weatherData(
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     "time Gdot_beam Gdot_diffuse T_air_env"
     annotation (Placement(transformation(extent={{-8,58},{-26,76}})));
   BuildingSystems.Climate.SolarRadiationTransformers.SolarRadiationTransformerIsotropicSky radiation(
@@ -149,8 +150,8 @@ equation
   connect(weatherData.longitudeDeg0, radiation.longitudeDeg0)
     annotation (Line(points={{-26.9,71.5},{-42,71.5},{-42,45.6}},
                                                             color={0,0,127}));
-  connect(weatherData.TAirRef, prescribedTemperature.T) annotation (Line(points
-        ={{-10.7,57.1},{-10.7,5},{-19,5}}, color={0,0,127}));
+  connect(weatherData.TAirRef, prescribedTemperature.T) annotation (Line(points=
+         {{-10.7,57.1},{-10.7,5},{-19,5}}, color={0,0,127}));
   connect(weatherData.IrrDirHor, radiation.IrrDirHor) annotation (Line(points={{
           -14.3,57.1},{-14.3,50},{-56,50},{-56,44},{-53.6,44}}, color={0,0,127}));
   connect(weatherData.IrrDifHor, radiation.IrrDifHor) annotation (Line(points={{

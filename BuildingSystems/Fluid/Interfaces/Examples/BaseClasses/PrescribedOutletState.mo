@@ -4,7 +4,7 @@ partial model PrescribedOutletState "Test model for prescribed outlet state"
   replaceable package Medium = BuildingSystems.Media.Air
      constrainedby Modelica.Media.Interfaces.PartialMedium  "Medium model";
 
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal=0.1
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominal=0.1
     "Nominal mass flow rate";
 
   BuildingSystems.Fluid.Sources.Boundary_pT sin(

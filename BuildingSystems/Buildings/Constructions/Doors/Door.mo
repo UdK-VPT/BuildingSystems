@@ -35,9 +35,9 @@ model Door
   parameter Integer nCom=10
     "Number of compartments for the discretization"
     annotation(Dialog(tab = "General", group = "Air change calculation"));
-  parameter Modelica.SIunits.Area LClo(min=0)=0.001
+  parameter Modelica.Units.SI.Area LClo(min=0) = 0.001
     "Effective leakage area of closed door"
-    annotation(Dialog(tab = "General", group = "Air change calculation"));
+    annotation (Dialog(tab="General", group="Air change calculation"));
   BuildingSystems.Airflow.Multizone.DoorDiscretizedOperable ope(
     redeclare package Medium = Medium,
     LClo=LClo,

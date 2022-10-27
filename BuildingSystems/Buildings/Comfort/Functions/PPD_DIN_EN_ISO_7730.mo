@@ -8,7 +8,7 @@ function PPD_DIN_EN_ISO_7730
 algorithm
   PPD := 1 - 0.95 * exp(-0.03353 * PMV^4 - 0.2179 * PMV^2);
 
-annotation(
+annotation (
   Documentation(info="<html>
   <p>Function that calculates the PPD index regarding DIN EN ISO 7730.</p>
   </html>", revisions="<html>

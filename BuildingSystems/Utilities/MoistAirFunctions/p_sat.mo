@@ -1,7 +1,7 @@
 within BuildingSystems.Utilities.MoistAirFunctions;
 function p_sat "Saturation vapor pressure dependent on temperature"
-  input Modelica.SIunits.Temp_K T;
-  output Modelica.SIunits.Pressure value;
+  input Modelica.Units.SI.Temperature T;
+  output Modelica.Units.SI.Pressure value;
 protected
   Real a;
   Real theta;

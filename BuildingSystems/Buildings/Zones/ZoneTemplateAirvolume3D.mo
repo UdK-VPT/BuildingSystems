@@ -6,12 +6,11 @@ model ZoneTemplateAirvolume3D
   parameter Integer nAirElements(min=1) = 1
     "Number of air elements, which are included in the air volume"
     annotation(Dialog(tab="General"));
-  parameter Modelica.SIunits.Temp_K T_start = 293.15
+  parameter Modelica.Units.SI.Temperature T_start=293.15
     "Start air temperature of the zone"
     annotation (Dialog(tab="Initialization"));
-  parameter Modelica.SIunits.MassFraction x_start = 0.005
-    "Start air moisture of the zone"
-    annotation (Dialog(tab="Initialization"));
+  parameter Modelica.Units.SI.MassFraction x_start=0.005
+    "Start air moisture of the zone" annotation (Dialog(tab="Initialization"));
   output BuildingSystems.Interfaces.Temp_KOutput TAir[nAirElements]
     "Air temperature"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,36}),
@@ -28,15 +27,20 @@ model ZoneTemplateAirvolume3D
     "Air pressure"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={34,26}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,-90})));
-
   replaceable BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate airvolume(
     nSurfaces=nSurfaces,
     nAirElements=nAirElements,
     V=V,
     T_start=fill(T_start,nAirElements),
     x_start=fill(x_start,nAirElements))
+    "Discretized air volume of the zone"
     annotation (Placement(transformation(extent={{-24,64},{24,16}})));
+  BuildingSystems.Interfaces.Temp_KOutput TAirMean
+    "Mean air temperature of the zone"
+    annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={110,0}),
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,10})));
 equation
+  TAirMean = sum(TAir)/nAirElements;
   if not prescribedAirchange then
     for i in 1:nAirpaths loop
       connect(airpathPorts[i], airvolume.airpathPorts[i])
@@ -62,6 +66,10 @@ Documentation(info="<html>
   </p>
   </html>", revisions="<html>
   <ul>
+  <li>
+  February 19, 2022 by Christoph Nytsch-Geusen:<br/>
+  Mean air temperature output added.
+  </li>
   <li>
   October 29, 2020 by Christoph Nytsch-Geusen:<br/>
   Pressure output added.

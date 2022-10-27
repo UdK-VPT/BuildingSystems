@@ -1,5 +1,7 @@
 within BuildingSystems.Buildings.Data.Constructions.HygroThermal;
-record RoofRowhouse1918 = BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
+record RoofRowhouse1918 =
+    BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction
+    (
   final nLayers=2,
   thickness={0.02,0.011},
   material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Masea.ReinforcementPlaster(),

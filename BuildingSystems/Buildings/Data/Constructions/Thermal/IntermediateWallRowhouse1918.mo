@@ -1,5 +1,6 @@
 within BuildingSystems.Buildings.Data.Constructions.Thermal;
-record IntermediateWallRowhouse1918 = BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
+record IntermediateWallRowhouse1918 =
+    BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction (
   final nLayers=3,
   thickness={0.015,0.2,0.02},
   material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Masea.ReinforcementPlaster(),

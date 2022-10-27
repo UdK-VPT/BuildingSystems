@@ -3,7 +3,8 @@ model AirvolumeThermal3x3x3
 extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
   nSurfaces = 54,
   nAirElements = 27,
-  bou.posX = {
+    bou(
+  posX =     {
     0.5,
     1.5,
     2.5,
@@ -57,9 +58,8 @@ extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     2.5,
     0.5,
     1.5,
-    2.5
-  },
-  bou.posY = {
+    2.5},
+  posY =     {
     0.5,
     0.5,
     0.5,
@@ -113,9 +113,8 @@ extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     3.0,
     3.0,
     3.0,
-    3.0
-  },
-  bou.posZ = {
+    3.0},
+  posZ =     {
     0.5,
     0.5,
     0.5,
@@ -169,9 +168,8 @@ extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
     3.0,
     3.0,
     3.0,
-    3.0
-  },
-  bou.location = {
+    3.0},
+  location =     {
   BuildingSystems.Buildings.Types.OrientationType.South,
   BuildingSystems.Buildings.Types.OrientationType.South,
   BuildingSystems.Buildings.Types.OrientationType.South,
@@ -225,13 +223,11 @@ extends BuildingSystems.Buildings.Airvolumes.Airvolume3DTemplate(
   BuildingSystems.Buildings.Types.OrientationType.Roof,
   BuildingSystems.Buildings.Types.OrientationType.Roof,
   BuildingSystems.Buildings.Types.OrientationType.Roof,
-  BuildingSystems.Buildings.Types.OrientationType.Roof
-  }
-  );
+  BuildingSystems.Buildings.Types.OrientationType.Roof}));
 
-  parameter Modelica.SIunits.Length length = 3.0;
-  parameter Modelica.SIunits.Length width = 3.0;
-  parameter Modelica.SIunits.Length height = 3.0;
+  parameter Modelica.Units.SI.Length length=3.0;
+  parameter Modelica.Units.SI.Length width=3.0;
+  parameter Modelica.Units.SI.Length height=3.0;
 
 
   BuildingSystems.Buildings.Airvolumes.AirElements.AirElementThermal airEle111(

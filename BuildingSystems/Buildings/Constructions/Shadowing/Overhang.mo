@@ -2,10 +2,8 @@ within BuildingSystems.Buildings.Constructions.Shadowing;
 model Overhang
   "Model of a horizontal overhang"
   extends BuildingSystems.Buildings.BaseClasses.ShadowingElementGeneral;
-  parameter Modelica.SIunits.Length depthOH = 0.0
-    "Depth of the overhang";
-  parameter Modelica.SIunits.Length heightOH = 0.0
-    "Height of the overhang";
+  parameter Modelica.Units.SI.Length depthOH=0.0 "Depth of the overhang";
+  parameter Modelica.Units.SI.Length heightOH=0.0 "Height of the overhang";
 equation
   SC = BuildingSystems.Buildings.Constructions.Shadowing.Functions.overhang(
     height_internal,

@@ -1,7 +1,7 @@
 within BuildingSystems.Buildings.Airvolumes.Interfaces;
 connector EnvironmentPort
   "Outside - Window/Wall"
-  Modelica.SIunits.Temp_K T;
+  Modelica.Units.SI.Temperature T;
   Real HumRel;
-  Modelica.SIunits.RadiantEnergyFluenceRate I;
+  Modelica.Units.SI.RadiantEnergyFluenceRate I;
 end EnvironmentPort;

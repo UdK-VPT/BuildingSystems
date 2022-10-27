@@ -4,9 +4,9 @@ partial model BuildingElement
   parameter BuildingSystems.Buildings.Types.GeometryType geometryType = BuildingSystems.Buildings.Types.GeometryType.Fixed
     "Fixed (default) or flexible geometry"
     annotation (Evaluate=true, Dialog(tab = "General", group = "Geometry"));
-  parameter Modelica.SIunits.Length width = 1.0
+  parameter Modelica.Units.SI.Length width=1.0
     "Width (if geometryType == Fixed)"
-    annotation(Dialog(tab = "General", group = "Geometry"));
+    annotation (Dialog(tab="General", group="Geometry"));
   output BuildingSystems.Interfaces.LengthOutput width_internal
     "Width";
   input BuildingSystems.Interfaces.LengthInput width_in(
@@ -14,9 +14,9 @@ partial model BuildingElement
     "Width from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-36}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-30,-20})));
-  parameter Modelica.SIunits.Length height = 1.0
+  parameter Modelica.Units.SI.Length height=1.0
     "Height (if geometryType == Fixed)"
-    annotation(Dialog(tab = "General", group = "Geometry"));
+    annotation (Dialog(tab="General", group="Geometry"));
   output BuildingSystems.Interfaces.LengthOutput height_internal
     "Height";
   input BuildingSystems.Interfaces.LengthInput height_in(
@@ -24,9 +24,9 @@ partial model BuildingElement
     "Height from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-46}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-30,-40})));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegAzi = 0.0
+  parameter Modelica.Units.NonSI.Angle_deg angleDegAzi=0.0
     "Azimuth angle (if geometryType == Fixed) -> south: 0 deg, east: -90 deg, west +90 deg, north: 180 deg"
-    annotation(Dialog(tab = "General", group = "Geometry"));
+    annotation (Dialog(tab="General", group="Geometry"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegAzi_internal
     "Azimuth angle";
   input BuildingSystems.Interfaces.Angle_degInput angleDegAzi_in(
@@ -35,9 +35,9 @@ partial model BuildingElement
     "Azimuth angle from input"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=0,  origin={30,-46}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=180,origin={30,-40})));
-  parameter Modelica.SIunits.Conversions.NonSIunits.Angle_deg angleDegTil = 90.0
+  parameter Modelica.Units.NonSI.Angle_deg angleDegTil=90.0
     "Tilt angle (if geometryType == Fixed) -> bottom: 0 deg, perpendicular: 90 deg, ceiling: 180 deg"
-    annotation(Dialog(tab = "General", group = "Geometry"));
+    annotation (Dialog(tab="General", group="Geometry"));
   output BuildingSystems.Interfaces.Angle_degOutput angleDegTil_internal
     "Tilt angle";
   input BuildingSystems.Interfaces.Angle_degInput angleDegTil_in(

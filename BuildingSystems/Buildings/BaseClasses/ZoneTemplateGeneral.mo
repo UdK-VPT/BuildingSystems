@@ -5,21 +5,25 @@ partial model ZoneTemplateGeneral
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium in the air model of the zone"
     annotation (choicesAllMatching = true);
-  parameter BuildingSystems.Buildings.Types.GeometryType geometryType =
+  input BuildingSystems.Interfaces.ViewFactorInput ViewFac_in[nSurfaces,nSurfaces]
+    if viewFacCalcType==BuildingSystems.Buildings.Types.ViewFactorCalculationType.Input
+    annotation (Placement(transformation(extent={{-120,80},{-100,100}}),
+      iconTransformation(extent={{-120,80},{-100,100}})));
+  parameter BuildingSystems.Buildings.Types.GeometryType geometryType=
     BuildingSystems.Buildings.Types.GeometryType.Fixed
     "Fixed (default) or flexible geometry"
     annotation (Evaluate=true, Dialog(tab = "Geometry", group = "Zone geometry"));
-  parameter Modelica.SIunits.Volume V = 1.0
+  parameter Modelica.Units.SI.Volume V=1.0
     "Air volume of the zone (if geometryType == Fixed)"
-    annotation(Dialog(tab="Geometry",group="Zone geometry"));
+    annotation (Dialog(tab="Geometry", group="Zone geometry"));
   input BuildingSystems.Interfaces.VolumeInput V_in(
     min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
     "Air volume of the zone from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-110,0}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-110,0})));
-  parameter Modelica.SIunits.Length position[3] = {0.0,0.0,0.0}
+  parameter Modelica.Units.SI.Length position[3]={0.0,0.0,0.0}
     "Position (if geometryType == Fixed)"
-    annotation(Dialog(tab = "Geometry", group = "Zone geometry"));
+    annotation (Dialog(tab="Geometry", group="Zone geometry"));
   input BuildingSystems.Interfaces.LengthInput position_in[3]
     if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
     "Position from input"
@@ -28,16 +32,16 @@ partial model ZoneTemplateGeneral
   output BuildingSystems.Interfaces.LengthOutput position_internal[3]
     "Position"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},rotation=180,origin={110,20}),
-          iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,50})));
-  parameter Modelica.SIunits.Length height = 1.0
-    "Vertical height of the zone"
-    annotation(Dialog(tab="General",group="Air change"));
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={110,50})));
+  parameter Modelica.Units.SI.Length height=1.0 "Vertical height of the zone"
+    annotation (Dialog(tab="General", group="Air change"));
   parameter BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection convectionOnSurfaces = BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.const
     "Type of convection calculation of the zone surfaces"
     annotation(Dialog(tab="Advanced",group="Convection model on building facades"));
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaConstant = 1.0
-    "Convective heat transfer coefficient for simplified calculations"
-    annotation(Dialog(tab="Advanced",group="Convection model on building facades"));
+  parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaConstant=
+      1.0 "Convective heat transfer coefficient for simplified calculations"
+    annotation (Dialog(tab="Advanced", group=
+          "Convection model on building facades"));
   parameter Integer nMoistureSources = 0
     "Number of internal moisture sources of the thermal zone"
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
@@ -50,9 +54,10 @@ partial model ZoneTemplateGeneral
   parameter Boolean prescribedAirchange = true
     "True: zone air change rate is prescribed by zone ambience; false: air path calculation"
     annotation(HideResult = true, Dialog(tab="General",group="Air change"));
-  parameter Boolean geometricViewFactors = false
-    "true: use of geometric view factors, false: use of surface area weighted view factors"
-    annotation(HideResult = true, Dialog(tab="Geometry",group="View Factors"));
+  parameter BuildingSystems.Buildings.Types.ViewFactorCalculationType viewFacCalcType=
+      BuildingSystems.Buildings.Types.ViewFactorCalculationType.AreaWeighted
+      "Surface area weighted (default), geometric view factors or external calculated view factors"
+      annotation (Evaluate=true, Dialog(tab = "Geometry", group = "View Factors"));
   parameter BuildingSystems.Types.ViewFactor ViewFac[nSurfaces,nSurfaces]=fill(fill(0.0,nSurfaces),nSurfaces)
     "Geometric view factor matrix of the thermal zone"
     annotation(HideResult = true,Dialog(tab="Geometry",group="View Factors"));
@@ -73,11 +78,11 @@ partial model ZoneTemplateGeneral
 protected
   output BuildingSystems.Interfaces.VolumeOutput V_internal
     "Air volume of the zone";
+  output BuildingSystems.Interfaces.ViewFactorOutput ViewFac_internal[nSurfaces,nSurfaces]
+    "View factors of the zone";
   BuildingSystems.Buildings.BaseClasses.RadiationDistribution radiationDistribution(
     nSurfaces=nSurfaces,
-    nHeatSources=nHeatSourcesTotal,
-    geometricViewFactors=geometricViewFactors,
-    ViewFac=ViewFac)
+    nHeatSources=nHeatSourcesTotal)
     "Long-wave and short-wave radiation calculation of the zone"
     annotation (Placement(transformation(extent={{-24,-84},{24,-36}})));
   BuildingSystems.Buildings.Surfaces.SurfacesToAir surfaces(
@@ -93,9 +98,22 @@ protected
     "Overall number of surfaces of the zone";
   parameter Integer nAirpathsInternal = if prescribedAirchange then 2 else + nAirpaths
     "Overall number of air paths of the zone";
-  constant Modelica.SIunits.Density rho_nominal = 1.2
+  constant Modelica.Units.SI.Density rho_nominal=1.2
     "Air density under nominal conditions";
 equation
+  if viewFacCalcType == BuildingSystems.Buildings.Types.ViewFactorCalculationType.AreaWeighted then
+    for i in 1:nSurfaces loop
+      for j in 1:nSurfaces loop
+        ViewFac_internal[i,j] = surfaces.toSurfacesPorts[j].A/sum(surfaces.toSurfacesPorts[k].A for k in 1:nSurfaces);
+      end for;
+    end for;
+  elseif viewFacCalcType == BuildingSystems.Buildings.Types.ViewFactorCalculationType.Geometrical then
+    ViewFac_internal = ViewFac;
+  else
+    connect(ViewFac_internal, ViewFac_in);
+  end if;
+  radiationDistribution.F = ViewFac_internal;
+
   if geometryType == BuildingSystems.Buildings.Types.GeometryType.Fixed then
     V_internal = V;
     position_internal = position;
@@ -124,6 +142,11 @@ This is a template model of a thermal zone.
 </p>
 </html>", revisions="<html>
 <ul>
+<li>
+May 14, 2022 by Christoph Nytsch-Geusen:<br/>
+Extension for an optional input for external view factor calculation.
+</li>
+<li>
 <li>
 April 24, 2019 by Christoph Nytsch-Geusen:<br/>
 Adaptation to flexible geometries.

@@ -6,17 +6,17 @@ model FlowConnectionY
   Modelica.Blocks.Sources.Ramp rampe(duration = 60, height = 1);
   //rampe.y
   // flowConnection "from center of FV1 to center of FV2"
-  Modelica.SIunits.Length deltay=abs(port_1.pos[2] - port_2.pos[2])
+  Modelica.Units.SI.Length deltay=abs(port_1.pos[2] - port_2.pos[2])
     annotation (HideResult=true);
-  Modelica.SIunits.Length deltayy = 0.5* (port_1.pos[2] + port_2.pos[2])
+  Modelica.Units.SI.Length deltayy=0.5*(port_1.pos[2] + port_2.pos[2])
     annotation (HideResult=true);
   // joint area between two zones, depends on the size (parameterization) of the FV
-  Modelica.SIunits.Length dx= 0.5 * (port_1.dim[1] + port_2.dim[1])
+  Modelica.Units.SI.Length dx=0.5*(port_1.dim[1] + port_2.dim[1])
     annotation (HideResult=true);
-  Modelica.SIunits.Length dz= 0.5 * (port_1.dim[3] + port_2.dim[3])
+  Modelica.Units.SI.Length dz=0.5*(port_1.dim[3] + port_2.dim[3])
     annotation (HideResult=true);
   final parameter Real LayFacBC = (if BCwall_east or BCwall_west then LayFac else 1)*(if BCwall_north or BCwall_south then LayFac else 1);
-  Modelica.SIunits.Length dist=sqrt((port_2.pos[2] - port_1.pos[2])^2);
+  Modelica.Units.SI.Length dist=sqrt((port_2.pos[2] - port_1.pos[2])^2);
   Real Fm_tmp(start = 0);
 
 equation

@@ -1,15 +1,16 @@
 within BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.DHN_Umodels;
 partial model UPartialClass
-  parameter Modelica.SIunits.Area SPip = (Modelica.Constants.pi*d_o*d_o/4) - SWat
-    "Cross-sectional wall area of the pipe (area of piping material)"                                                                                  annotation(Dialog(tab="General", group="Geometry"));
-  parameter Modelica.SIunits.Area SWat = (Modelica.Constants.pi*d_i*d_i/4)
-    "Cross-sectional inside area of the pipe"                                                                            annotation(Dialog(tab="General", group="Geometry"));
-  parameter Modelica.SIunits.Density den_p = 8
-    "Density of the pipe material"
-    annotation(Dialog(tab="General", group="Thermal properties"));
-  parameter Modelica.SIunits.SpecificHeatCapacity cp_p = 0.49
+  parameter Modelica.Units.SI.Area SPip=(Modelica.Constants.pi*d_o*d_o/4) -
+      SWat "Cross-sectional wall area of the pipe (area of piping material)"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Area SWat=(Modelica.Constants.pi*d_i*d_i/4)
+    "Cross-sectional inside area of the pipe"
+    annotation (Dialog(tab="General", group="Geometry"));
+  parameter Modelica.Units.SI.Density den_p=8 "Density of the pipe material"
+    annotation (Dialog(tab="General", group="Thermal properties"));
+  parameter Modelica.Units.SI.SpecificHeatCapacity cp_p=0.49
     "Specific heat capacity of the pipe material"
-    annotation(Dialog(tab="General", group="Thermal properties"));
+    annotation (Dialog(tab="General", group="Thermal properties"));
   extends
     BuildingSystems.Technologies.DistrictHeatingNetworks.UndergroundPipes.BaseClasses.PipeInfo(d_i = 0.1);
   parameter Integer nPipes( min=2)

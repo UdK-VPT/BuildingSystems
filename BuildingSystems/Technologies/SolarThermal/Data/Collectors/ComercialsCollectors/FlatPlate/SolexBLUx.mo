@@ -1,5 +1,7 @@
 within BuildingSystems.Technologies.SolarThermal.Data.Collectors.ComercialsCollectors.FlatPlate;
-record SolexBLUx = BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial(
+record SolexBLUx =
+    BuildingSystems.Technologies.SolarThermal.Data.Collectors.CollectorPartial
+    (
   final IAMC=0.87,
   final C_A = 6600/2.305,
   final A = 2.305,

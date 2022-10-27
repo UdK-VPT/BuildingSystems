@@ -4,11 +4,11 @@ record TransparentConstruction
   extends Modelica.Icons.Record;
   parameter Integer nPanes(min=1)=1
     "Number of panes of the construction";
-  parameter Modelica.SIunits.Length thickness[nPanes]={0.003}
+  parameter Modelica.Units.SI.Length thickness[nPanes]={0.003}
     "Thickness of each pane";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValGla
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer UValGla
     "U-value of the glass construction";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer UValFra
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer UValFra
     "U-value of the frame";
   parameter Real g(unit = "1")
     "g-value of the transparent construction";

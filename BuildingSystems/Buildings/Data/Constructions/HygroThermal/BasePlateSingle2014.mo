@@ -1,5 +1,7 @@
 within BuildingSystems.Buildings.Data.Constructions.HygroThermal;
-record BasePlateSingle2014 = BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
+record BasePlateSingle2014 =
+    BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction
+    (
   final nLayers=4,
   thickness={0.04,0.02,0.16,0.119},
   material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Masea.Concrete(),

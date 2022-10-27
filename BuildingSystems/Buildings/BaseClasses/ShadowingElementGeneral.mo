@@ -19,7 +19,7 @@ equation
   radiationPort_out.angleDegAziSun = radiationPort_in.angleDegAziSun;
   radiationPort_out.angleDegHeightSun = radiationPort_in.angleDegHeightSun;
 
-annotation(
+annotation (
   Icon(graphics={Rectangle(extent={{-40,80},{40,-80}}, lineColor={0,0,0})}),
 Documentation(info="<html>
 <p>

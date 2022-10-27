@@ -2,12 +2,9 @@ within BuildingSystems.Utilities.Psychrometrics.Functions;
 function partialPressure
   "Partial pressure of water vapor"
   extends Modelica.Icons.Function;
-  input Modelica.SIunits.MassFraction x
-    "Absolute moisture";
-  input Modelica.SIunits.Pressure pAir
-    "Saturation temperature";
-  output Modelica.SIunits.AbsolutePressure pVap
-     "Saturation pressure";
+  input Modelica.Units.SI.MassFraction x "Absolute moisture";
+  input Modelica.Units.SI.Pressure pAir "Saturation temperature";
+  output Modelica.Units.SI.AbsolutePressure pVap "Saturation pressure";
 
 algorithm
   pVap := pAir / (0.622 / x + 1.0);

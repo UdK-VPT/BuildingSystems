@@ -3,10 +3,8 @@ function ny
   "Kinematic viscosity of gases as function of the temperature"
   input Integer gas
     "Gas: 1:air, 2:argon, 3:krypton, 4:xenon, 5:SF6";
-  input Modelica.SIunits.Temp_K T
-    "Gas temperature";
-  output Modelica.SIunits.KinematicViscosity value
-    "Kinematic viscosity";
+  input Modelica.Units.SI.Temperature T "Gas temperature";
+  output Modelica.Units.SI.KinematicViscosity value "Kinematic viscosity";
 algorithm
   if gas == 1 then // air
     value := - 2.968e-6 + 3.226e-8 * T + 1.034e-10 * T^2; // interpolation between 173.15 K and 523.15 K after VDI Waermeatlas Db 16-28

@@ -29,14 +29,18 @@ model HeatAndMoistureTransport3D
   BuildingSystems.Interfaces.HeatPort heatPort_source
     "Optional heat source at the hygro-thermal node"
     annotation(Placement(transformation(extent={{-10,-12},{10,8}}), iconTransformation(extent={{-10,-12},{10,8}})));
-  Modelica.SIunits.Temp_K T(start = T_start)
+  Modelica.Units.SI.Temperature T(start=T_start)
     "Temperature of the hygro-thermal node";
   BuildingSystems.Types.RelativeHumidity phi
     "Relative humidity of numerical node";
-  Modelica.SIunits.MassConcentration w(
-    start=BuildingSystems.HAM.HeatAndMoistureTransport.Functions.wSor(material.sorTabX,material.sorTabY,phi_start,material.wF,material.porosity))
-    "Water content of the hygro-thermal node";
-  Modelica.SIunits.MassConcentration wDerPhi1
+  Modelica.Units.SI.MassConcentration w(start=
+        BuildingSystems.HAM.HeatAndMoistureTransport.Functions.wSor(
+        material.sorTabX,
+        material.sorTabY,
+        phi_start,
+        material.wF,
+        material.porosity)) "Water content of the hygro-thermal node";
+  Modelica.Units.SI.MassConcentration wDerPhi1
     "Derivative of the water content by phi of the hygro-thermal node";
   BuildingSystems.Types.RelativeHumidity phi_x1
     "Relative humidity on the surface at side x1";
@@ -50,15 +54,14 @@ model HeatAndMoistureTransport3D
     "Relative humidity on the surface at side z1";
   BuildingSystems.Types.RelativeHumidity phi_z2
     "Relative humidity on the surface at side z2";
-  Modelica.SIunits.ThermalConductance CTh(fixed=false)
+  Modelica.Units.SI.ThermalConductance CTh(fixed=false)
     "Thermal conductance of the hygro-thermal node";
   BuildingSystems.Types.CoefficientOfMoistureDiffusion CMd
     "Moisture diffusion coefficient of the hygro-thermal node";
   BuildingSystems.Types.CoefficientOfLiquidTransport CLt
     "Liquid transport coefficient of the hygro-thermal node";
-  Modelica.SIunits.MassFlowRate m_flow_wdr
-    "Wind driven rain";
-  parameter Modelica.SIunits.Temp_K T_start = 293.15
+  Modelica.Units.SI.MassFlowRate m_flow_wdr "Wind driven rain";
+  parameter Modelica.Units.SI.Temperature T_start=293.15
     "Start temperature of the hygro-thermal node"
     annotation (Dialog(tab="Initialization"));
   parameter BuildingSystems.Types.RelativeHumidity phi_start = 0.5

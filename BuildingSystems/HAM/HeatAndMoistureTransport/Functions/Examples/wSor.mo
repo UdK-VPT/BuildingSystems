@@ -2,7 +2,7 @@ within BuildingSystems.HAM.HeatAndMoistureTransport.Functions.Examples;
 model wSor "Test function wSor"
   extends Modelica.Icons.Example;
   BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton material;
-  Modelica.SIunits.MassConcentration wSor "Water content of the material";
+  Modelica.Units.SI.MassConcentration wSor "Water content of the material";
   BuildingSystems.Types.RelativeHumidity phi
     "Relative Humidity of the material";
 
@@ -17,7 +17,7 @@ equation
   phi = ramp.y;
   wSor = BuildingSystems.HAM.HeatAndMoistureTransport.Functions.wSor(material.sorTabX,material.sorTabY,phi,material.wF,material.porosity);
 
-  annotation(    experiment(StopTime=1.1),
+  annotation (   experiment(StopTime=1.1),
     __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/HAM/HeatAndMoistureTransport/Functions/Examples/wSor.mos"
         "Simulate and plot"),
     Documentation(info="<html>

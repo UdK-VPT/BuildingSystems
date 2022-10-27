@@ -24,18 +24,18 @@ model HeatConduction3D
   BuildingSystems.Interfaces.HeatPort heatPort_source
     "Optional heat source at the thermal node"
     annotation(Placement(transformation(extent={{-10,-12},{10,8}}), iconTransformation(extent={{-10,-12},{10,8}})));
-  parameter Modelica.SIunits.Area ARedXY = 0.0
+  parameter Modelica.Units.SI.Area ARedXY=0.0
     "Reduction area for heat conduction caused by inner hollow spaces in the xy plane"
-    annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
-  parameter Modelica.SIunits.Area ARedXZ = 0.0
+    annotation (Dialog(tab="Advanced", group="Inner hollow spaces"));
+  parameter Modelica.Units.SI.Area ARedXZ=0.0
     "Reduction area for heat conduction caused by inner hollow spaces in the xz plane"
-    annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
-  parameter Modelica.SIunits.Area ARedYZ = 0.0
+    annotation (Dialog(tab="Advanced", group="Inner hollow spaces"));
+  parameter Modelica.Units.SI.Area ARedYZ=0.0
     "Reduction area for heat conduction caused by  inner hollow spaces in the yz plane"
-    annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
-  parameter Modelica.SIunits.Volume VRed = 0.0
+    annotation (Dialog(tab="Advanced", group="Inner hollow spaces"));
+  parameter Modelica.Units.SI.Volume VRed=0.0
     "Reduction volume for the thermal heat capacity caused by inner hollow spaces"
-    annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
+    annotation (Dialog(tab="Advanced", group="Inner hollow spaces"));
   parameter Real geoFacX(unit = "1", min = 0.0, max = 1.0) = 1.0
     "Geometry factor for heat conduction caused by inner hollow spaces in x dimension"
     annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
@@ -45,18 +45,22 @@ model HeatConduction3D
   parameter Real geoFacZ(unit = "1", min = 0.0, max = 1.0) = 1.0
     "Geometry factor for heat conduction caused by inner spaces in z dimension"
    annotation(Dialog(tab = "Advanced", group = "Inner hollow spaces"));
-  parameter Modelica.SIunits.Temp_K T_start = 293.15
+  parameter Modelica.Units.SI.Temperature T_start=293.15
     "Start temperature of the thermal node"
     annotation (Dialog(tab="Initialization"));
-  Modelica.SIunits.Temp_K T(start = T_start) "Temperature of the thermal node";
+  Modelica.Units.SI.Temperature T(start=T_start)
+    "Temperature of the thermal node";
 protected
-  Modelica.SIunits.HeatCapacity C = material.c * material.rho * (lengthX * lengthY * lengthZ - VRed)
-    "Heat capacity of the thermal node";
-  Modelica.SIunits.ThermalConductance CThX = 2.0 * material.lambda / (lengthX * geoFacX) * (lengthY * lengthZ - ARedYZ)
+  Modelica.Units.SI.HeatCapacity C=material.c*material.rho*(lengthX*lengthY*
+      lengthZ - VRed) "Heat capacity of the thermal node";
+  Modelica.Units.SI.ThermalConductance CThX=2.0*material.lambda/(lengthX*
+      geoFacX)*(lengthY*lengthZ - ARedYZ)
     "Thermal conductance in the x dimension";
-  Modelica.SIunits.ThermalConductance CThY = 2.0 * material.lambda / (lengthY* geoFacY) * (lengthX * lengthZ - ARedXZ)
+  Modelica.Units.SI.ThermalConductance CThY=2.0*material.lambda/(lengthY*
+      geoFacY)*(lengthX*lengthZ - ARedXZ)
     "Thermal conductance in the y dimension";
-  Modelica.SIunits.ThermalConductance CThZ = 2.0 * material.lambda / (lengthZ* geoFacZ) * (lengthY * lengthX - ARedXY)
+  Modelica.Units.SI.ThermalConductance CThZ=2.0*material.lambda/(lengthZ*
+      geoFacZ)*(lengthY*lengthX - ARedXY)
     "Thermal conductance in the z dimension";
 
 equation

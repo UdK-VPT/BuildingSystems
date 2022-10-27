@@ -9,19 +9,16 @@ model Pipe
     dp_nominal=2*dpStraightPipe_nominal);
   parameter Integer nNodes(min=1) = 1
     "Number of volume segments";
-  parameter Modelica.SIunits.Length length
-    "Length of the pipe"
-    annotation(Dialog(group = "Geometry"));
-  parameter Modelica.SIunits.Length diameter = sqrt(4*m_flow_nominal/rho_default/v_nominal/Modelica.Constants.pi)
-    "Pipe diameter (without insulation)"
-    annotation(Dialog(group = "Geometry"));
-  parameter Modelica.SIunits.Length thicknessIns
-    "Thickness of insulation"
-    annotation(Dialog(group = "Geometry"));
-  parameter Modelica.SIunits.ThermalConductivity lambdaIns
-    "Heat conductivity of insulation"
-    annotation(Dialog(group = "Material"));
-  parameter Modelica.SIunits.ReynoldsNumber ReC=4000
+  parameter Modelica.Units.SI.Length length "Length of the pipe"
+    annotation (Dialog(group="Geometry"));
+  parameter Modelica.Units.SI.Length diameter=sqrt(4*m_flow_nominal/rho_default
+      /v_nominal/Modelica.Constants.pi) "Pipe diameter (without insulation)"
+    annotation (Dialog(group="Geometry"));
+  parameter Modelica.Units.SI.Length thicknessIns "Thickness of insulation"
+    annotation (Dialog(group="Geometry"));
+  parameter Modelica.Units.SI.ThermalConductivity lambdaIns
+    "Heat conductivity of insulation" annotation (Dialog(group="Material"));
+  parameter Modelica.Units.SI.ReynoldsNumber ReC=4000
     "Reynolds number where transition to turbulent starts"
     annotation (Dialog(tab="Flow resistance"));
   parameter Boolean useMultipleHeatPorts=false
@@ -29,10 +26,10 @@ model Pipe
   parameter Boolean useExternalHeatSource=false
     "= true to transfer the volume temperature to the outer interface (heatPort)"
     annotation (Dialog(tab="Advanced"));
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha_in = 1000.0
+  parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alpha_in=1000.0
     "Heat transfer coefficient pipe inside"
     annotation (Dialog(group="Heat transfer"));
-  parameter Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alpha_out = 3.0
+  parameter Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alpha_out=3.0
     "Heat transfer coefficient pipe outside"
     annotation (Dialog(group="Heat transfer"));
   BuildingSystems.Fluid.FixedResistances.HydraulicDiameter res(
@@ -68,8 +65,8 @@ model Pipe
     each G=2*Modelica.Constants.pi*length/nNodes/
              (1.0/(alpha_in*0.5*diameter)
               + Modelica.Math.log((0.5*diameter+thicknessIns)/(0.5*diameter))/lambdaIns
-              + 1.0/(alpha_out*(0.5*diameter+thicknessIns)))
-             ) if not useExternalHeatSource
+              + 1.0/(alpha_out*(0.5*diameter+thicknessIns))))
+               if not useExternalHeatSource
     "Thermal heat transfer through pipe wall"
     annotation (Placement(transformation(extent={{-28,-38},{-8,-18}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector colAllToOne(m=nNodes) if not useMultipleHeatPorts
@@ -82,31 +79,32 @@ model Pipe
     "Multiple heat ports that connect to outside of pipe wall (enabled if useMultipleHeatPorts=true)"
     annotation (Placement(transformation(extent={{-10,-70},{11,-50}}), iconTransformation(extent={{-30,-60},{30,-40}})));
 protected
-  parameter Modelica.SIunits.Volume VPipe=Modelica.Constants.pi*(diameter/2.0)^2*length
-    "Pipe volume";
+  parameter Modelica.Units.SI.Volume VPipe=Modelica.Constants.pi*(diameter/2.0)
+      ^2*length "Pipe volume";
   parameter Medium.ThermodynamicState state_default = Medium.setState_pTX(
     T=Medium.T_default,
     p=Medium.p_default,
     X=Medium.X_default[1:Medium.nXi])
     "Default state";
-  parameter Modelica.SIunits.Density rho_default = Medium.density(state_default);
-  parameter Modelica.SIunits.DynamicViscosity mu_default = Medium.dynamicViscosity(state_default)
+  parameter Modelica.Units.SI.Density rho_default=Medium.density(state_default);
+  parameter Modelica.Units.SI.DynamicViscosity mu_default=
+      Medium.dynamicViscosity(state_default)
     "Dynamic viscosity at nominal condition";
-  parameter Modelica.SIunits.Velocity v_nominal = 0.15
+  parameter Modelica.Units.SI.Velocity v_nominal=0.15
     "Velocity at m_flow_nominal (used to compute default diameter)";
-  parameter Modelica.SIunits.Length roughness(min=0) = 2.5e-5
+  parameter Modelica.Units.SI.Length roughness(min=0) = 2.5e-5
     "Absolute roughness of pipe, with a default for a smooth steel pipe (dummy if use_roughness = false)";
-  final parameter Modelica.SIunits.Pressure dpStraightPipe_nominal=
-    Modelica.Fluid.Pipes.BaseClasses.WallFriction.Detailed.pressureLoss_m_flow(
-    m_flow=m_flow_nominal,
-    rho_a=rho_default,
-    rho_b=rho_default,
-    mu_a=mu_default,
-    mu_b=mu_default,
-    length=length,
-    diameter=diameter,
-    roughness=roughness,
-    m_flow_small=m_flow_small)
+  final parameter Modelica.Units.SI.Pressure dpStraightPipe_nominal=
+      Modelica.Fluid.Pipes.BaseClasses.WallFriction.Detailed.pressureLoss_m_flow(
+      m_flow=m_flow_nominal,
+      rho_a=rho_default,
+      rho_b=rho_default,
+      mu_a=mu_default,
+      mu_b=mu_default,
+      length=length,
+      diameter=diameter,
+      roughness=roughness,
+      m_flow_small=m_flow_small)
     "Pressure loss of a straight pipe at m_flow_nominal";
 public
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollector1[nNodes](

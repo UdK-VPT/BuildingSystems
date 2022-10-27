@@ -8,9 +8,9 @@ model SlidingWindow
     final hOpe = height),
   radTra1to2(areaRatioUnglazed = widthOpen/width*y_internal),
   radTra2to1(areaRatioUnglazed = widthOpen/width*y_internal));
-  parameter Modelica.SIunits.Length widthOpen = 0.5
+  parameter Modelica.Units.SI.Length widthOpen=0.5
     "Max. width of the open part (full opened postion)"
-    annotation(Dialog(tab = "General", group = "Geometry"));
+    annotation (Dialog(tab="General", group="Geometry"));
   output Modelica.Blocks.Interfaces.RealOutput y_internal
     "Percentage of the openable part of the opening (1.0 = 100 % open, 0.0 = 100 % closed)";
 equation

@@ -12,41 +12,35 @@ package PhotovoltaicModules
       "2nd coefficient ISat2";
     parameter Real Eg(unit = "eV")
       "Band gap";
-    parameter Modelica.SIunits.Length height
-      "PV module height";
-    parameter Modelica.SIunits.ElectricCurrent Ik0
+    parameter Modelica.Units.SI.Length height "PV module height";
+    parameter Modelica.Units.SI.ElectricCurrent Ik0
       "Short circuit current under standard conditions";
     parameter Integer nCelSer
       "Number of serial connected cells within the PV module";
     parameter Integer nCelPar
       "Number of parallel connected cells within the PV module";
-    parameter Modelica.SIunits.Power PEl_nominal
+    parameter Modelica.Units.SI.Power PEl_nominal
       "Module power under standard conditions";
-    parameter Modelica.SIunits.Resistance RSer
-      "Serial resistance";
-    parameter Modelica.SIunits.Resistance RPar
-      "Parallel resistance";
+    parameter Modelica.Units.SI.Resistance RSer "Serial resistance";
+    parameter Modelica.Units.SI.Resistance RPar "Parallel resistance";
     parameter Real tIk0
       "Temperature coefficient for the short circuit current in mA/C";
     parameter Real tUl0
       "Temperature coefficient for the open circuit voltage in V/C";
-    parameter Modelica.SIunits.Voltage Ul0
+    parameter Modelica.Units.SI.Voltage Ul0
       "Open circuit voltage under standard conditions";
-    parameter Modelica.SIunits.Length width
-      "Module width";
+    parameter Modelica.Units.SI.Length width "Module width";
   end DataSetPhotovoltaicModule;
 
   /* Parameter SiemensSolar M75S */
-  record SiemensSolarM75S = DataSetPhotovoltaicModule(
+  record SiemensSolarM75S = DataSetPhotovoltaicModule (
     PEl_nominal = 75.0,
-    // With IU-Values based on two characteristic curves (standard)
     RPar = 76.3444785373,
     RSer = 0.00787755654257,
     c1 = 0.00413324897091,
     c2 = 0.00230107942898,
     cs1 = 0.570403402527,
     cs2 = 0.053547441883,
-    /*************************************************/
     nCelSer = 36,
     nCelPar = 1,
     height = 1.2,
@@ -56,9 +50,11 @@ package PhotovoltaicModules
     tIk0 = 1.92,
     tUl0 = -0.0748,
     Eg = 1.107);
+    // With IU-Values based on two characteristic curves (standard)
+    /*************************************************/
 
   /* Parameter Siemens Solar SR90 12V */
-  record SiemensSolarSR9012V = DataSetPhotovoltaicModule(
+  record SiemensSolarSR9012V = DataSetPhotovoltaicModule (
     PEl_nominal = 90.0,
     RPar = 12.529373276,
     RSer = 0.0102582274069,
@@ -77,7 +73,7 @@ package PhotovoltaicModules
     Eg = 1.107);
 
   /* Parameter SNI SR90 6V*/
-  record SiemensSolarSR906V = DataSetPhotovoltaicModule(
+  record SiemensSolarSR906V = DataSetPhotovoltaicModule (
     PEl_nominal = 90.0,
     RPar = 12.529373276,
     RSer = 0.0102582274069,
@@ -96,8 +92,8 @@ package PhotovoltaicModules
     Eg = 1.107);
 
   /* Parameter Siemens Solar SR100 12V */
-  record SiemensSolarSR10012V = DataSetPhotovoltaicModule(
-    PEl_nominal  = 100.0,
+  record SiemensSolarSR10012V = DataSetPhotovoltaicModule (
+    PEl_nominal =  100.0,
     RPar = 12.529373276,
     RSer = 0.0102582274069,
     c1 = 0.00646373172774,
@@ -115,7 +111,7 @@ package PhotovoltaicModules
     Eg = 1.107);
 
     /* Parameter SNI SR100 6V */
-  record SiemensSolarSR1006V = DataSetPhotovoltaicModule(
+  record SiemensSolarSR1006V = DataSetPhotovoltaicModule (
     PEl_nominal = 100.0,
     RPar = 12.529373276,
     RSer = 0.0102582274069,
@@ -134,8 +130,8 @@ package PhotovoltaicModules
     Eg = 1.107);
 
   /* Parameter ASE-100-DG-UR poly cristalline */
-  record ASE100DGURpolycrystal = DataSetPhotovoltaicModule(
-    PEl_nominal  = 90.0,
+  record ASE100DGURpolycrystal = DataSetPhotovoltaicModule (
+    PEl_nominal =  90.0,
     RPar = 110.256018001,
     RSer = 0.0231468161337,
     c1 = 0.00263267309454,
@@ -153,7 +149,7 @@ package PhotovoltaicModules
     Eg = 1.107);
 
   /* Parameter ASE-100-DG-UR mono cristalline */
-  record ASE100DGURmonocrystal = DataSetPhotovoltaicModule(
+  record ASE100DGURmonocrystal = DataSetPhotovoltaicModule (
     PEl_nominal = 100.0,
     RPar = 7.96499798497,
     RSer = 0.0163310293784,
@@ -172,7 +168,7 @@ package PhotovoltaicModules
     Eg = 1.107);
 
   /* Parameter ASE-300-DG-FT, 315 Wpeak  */
-  record ASE300DGFT315Wp = DataSetPhotovoltaicModule(
+  record ASE300DGFT315Wp = DataSetPhotovoltaicModule (
     PEl_nominal = 315.0,
     RPar = 40.0379433895,
     RSer = 0.00741247450671,
@@ -191,7 +187,7 @@ package PhotovoltaicModules
     Eg = 1.107);
 
   /* Parameter BP585f */
-  record BPSolar585f = DataSetPhotovoltaicModule(
+  record BPSolar585f = DataSetPhotovoltaicModule (
     PEl_nominal = 85.0,
     RPar = 7.85288688794,
     RSer = 0.0137310098788,
@@ -205,12 +201,13 @@ package PhotovoltaicModules
     width = 0.53,
     Ik0 = 5.0,
     Ul0 = 22.03,
-    tIk0 = 1.846,           /*based on 151.29 cm2 */
-    tUl0 = -0.0756,          /*based on 36 cells  */
-    Eg = 1.107);
+    tIk0 = 1.846,
+    tUl0 = -0.0756,
+    Eg = 1.107);            /*based on 151.29 cm2 */
+                             /*based on 36 cells  */
 
   /* Parameter BP275f */
-  record BPSolar275f = DataSetPhotovoltaicModule(
+  record BPSolar275f = DataSetPhotovoltaicModule (
     PEl_nominal = 75.0,
     RPar = 4.86398038285,
     RSer = 0.0192997740359,
@@ -224,12 +221,12 @@ package PhotovoltaicModules
     width = 0.53,
     Ik0 = 4.75,
     Ul0 = 21.4,
-    tIk0  = 1.3906,           /*based on 156.25 cm2 each cell */
+    tIk0 =  1.3906,
     tUl0 = -0.0792,
-    Eg = 1.107);
+    Eg = 1.107);              /*based on 156.25 cm2 each cell */
 
   /* Parameter ASE-50-ALF/17 */
-  record ASE50ALF17 = DataSetPhotovoltaicModule(
+  record ASE50ALF17 = DataSetPhotovoltaicModule (
     PEl_nominal = 50.0,
     RPar = 5.36699696703,
     RSer = 0.0222485933971,
@@ -248,7 +245,7 @@ package PhotovoltaicModules
     Eg = 1.107);
 
   /* Parameter Siemens ST10 */
-  record SiemensSolarST10CIS = DataSetPhotovoltaicModule(
+  record SiemensSolarST10CIS = DataSetPhotovoltaicModule (
     PEl_nominal = 10.0,
     RPar = 9.21908843302,
     RSer = 0.0309282623867,
@@ -267,26 +264,34 @@ package PhotovoltaicModules
     Eg=1.02);
 
   /* Parameter TSM 230 PC05 */
-  record TSM230PC05 = DataSetPhotovoltaicModule(
+  record TSM230PC05 = DataSetPhotovoltaicModule (
     PEl_nominal = 230.0,
-    RPar = 9.21908843302, // dummy value
-    RSer = 0.0309282623867, // dummy value
-    c1 = 0.000613641954555, // dummy value
-    c2 = 0.000139642340029, // dummy value
-    cs1 = 0.113159968903, // dummy value
-    cs2 = 0.000640010305878, // dummy value
+    RPar = 9.21908843302,
+    RSer = 0.0309282623867,
+    c1 = 0.000613641954555,
+    c2 = 0.000139642340029,
+    cs1 = 0.113159968903,
+    cs2 = 0.000640010305878,
     nCelSer = 60,
     nCelPar= 1,
     height = 1.650,
     width = 0.992,
     Ik0 = 8.26,
     Ul0 = 37.0,
-    tIk0 = 4.13, // 0.0005 * 8.26 * 1000.0
-    tUl0 = -0.1295, // -0.0035 * 37.0
-    Eg = 1.02); // dummy value
+    tIk0 = 4.13,
+    tUl0 = -0.1295,
+    Eg = 1.02);           // dummy value
+                            // dummy value
+                            // dummy value
+                            // dummy value
+                          // dummy value
+                             // dummy value
+                 // 0.0005 * 8.26 * 1000.0
+                    // -0.0035 * 37.0
+                // dummy value
 
     /* Parameter Solibro SL2 CIGS 110 */
-    record SolibroSL2CIGS110 = DataSetPhotovoltaicModule(
+    record SolibroSL2CIGS110 = DataSetPhotovoltaicModule (
       PEl_nominal = 110.0,
       RPar = 500.0,
       RSer = 0.027484527,

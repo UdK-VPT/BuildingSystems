@@ -1,5 +1,6 @@
 within BuildingSystems.Buildings.Data.Constructions.Thermal;
-record BasePlateRowhouse1918 = BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction(
+record BasePlateRowhouse1918 =
+    BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction (
   final nLayers=3,
   thickness={0.05,0.06,0.18},
   material={BuildingSystems.HAM.Data.MaterialProperties.Thermal.Masea.Concrete(),

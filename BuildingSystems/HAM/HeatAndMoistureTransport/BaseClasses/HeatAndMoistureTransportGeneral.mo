@@ -10,23 +10,19 @@ partial model HeatAndMoistureTransportGeneral
   Real sorTabY[nRowsSor+1]
     "Sorption isotherm of the physical layer (table)"
     annotation(HideResult=true);
-  parameter Modelica.SIunits.Length lengthX
-    "Length in x dimension";
-  parameter Modelica.SIunits.Length lengthY
-    "Length in y dimension";
-  parameter Modelica.SIunits.Length lengthZ
-    "Length in z dimension";
+  parameter Modelica.Units.SI.Length lengthX "Length in x dimension";
+  parameter Modelica.Units.SI.Length lengthY "Length in y dimension";
+  parameter Modelica.Units.SI.Length lengthZ "Length in z dimension";
 protected
   parameter Integer nRowsSor = size(material.sorTabX,1);
-  parameter Modelica.SIunits.MassConcentration wMax = rhoH2O * material.porosity
+  parameter Modelica.Units.SI.MassConcentration wMax=rhoH2O*material.porosity
     "Maximum value of water content of the material";
-  constant Modelica.SIunits.Density rhoH2O = 1000.0
-    "Density of water";
+  constant Modelica.Units.SI.Density rhoH2O=1000.0 "Density of water";
   constant BuildingSystems.Types.RelativeHumidity phiMax = 1.01
     "Maximum value of relative humidity";
-  constant Modelica.SIunits.SpecificEnergy Hv = 2.47e6
+  constant Modelica.Units.SI.SpecificEnergy Hv=2.47e6
     "Evaporation heat of water";
-  constant Modelica.SIunits.SpecificHeatCapacity cH2O = 4185.0
+  constant Modelica.Units.SI.SpecificHeatCapacity cH2O=4185.0
     "Specific heat capacity of water";
 equation
   for i in 1:size(material.sorTabX,1) loop

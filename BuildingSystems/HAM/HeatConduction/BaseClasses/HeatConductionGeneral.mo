@@ -6,15 +6,12 @@ partial model HeatConductionGeneral
    "Material of the body"
    annotation(Dialog(tab = "General"),Evaluate=true, choicesAllMatching=true);
 
-  parameter Modelica.SIunits.Length lengthX = 1.0
-    "Length in x dimension"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  Modelica.SIunits.Length lengthY = 1.0
-    "Length in y dimension"
-    annotation(Dialog(tab = "General", group = "Geometry"));
-  Modelica.SIunits.Length lengthZ = 1.0
-    "Length in z dimension"
-    annotation(Dialog(tab = "General", group = "Geometry"));
+  parameter Modelica.Units.SI.Length lengthX=1.0 "Length in x dimension"
+    annotation (Dialog(tab="General", group="Geometry"));
+  Modelica.Units.SI.Length lengthY=1.0 "Length in y dimension"
+    annotation (Dialog(tab="General", group="Geometry"));
+  Modelica.Units.SI.Length lengthZ=1.0 "Length in z dimension"
+    annotation (Dialog(tab="General", group="Geometry"));
 
   annotation (Icon(graphics={Rectangle(extent={{-80,80},{80,-80}},lineColor={230,230,230},
     fillColor={230,230,230},fillPattern=FillPattern.Solid),

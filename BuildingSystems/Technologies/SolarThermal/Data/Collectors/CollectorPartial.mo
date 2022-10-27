@@ -10,9 +10,8 @@ record CollectorPartial
   parameter Real V_A(unit="m3/m2")
     "(fluid Volume)/(absorber area) rate"
     annotation(Dialog(group="Geometry"));
-  parameter Modelica.SIunits.Area A
-    "Absorber area of the collector"
-    annotation(Dialog(group="Geometry"));
+  parameter Modelica.Units.SI.Area A "Absorber area of the collector"
+    annotation (Dialog(group="Geometry"));
   parameter Real IAMC
     "Incidence Angle Modifier Coefficient = IncidenceAngleModifier at 50 degree";
   parameter Real C_A(unit="J/(m2.K)") = 500*10

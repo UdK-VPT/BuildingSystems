@@ -53,8 +53,8 @@ partial model PVModuleGeneral
   output Modelica.Blocks.Interfaces.RealOutput IField(unit="A")
     "Current of the PV field"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}}, origin={60,40}), iconTransformation(extent={{-10,-10},{10,10}}, origin={60,40})));
-  final Modelica.SIunits.Area AField = pvModuleData.height * pvModuleData.width * nModSer * nModPar
-    "Area of the PV field";
+  final Modelica.Units.SI.Area AField=pvModuleData.height*pvModuleData.width*
+      nModSer*nModPar "Area of the PV field";
   input Interfaces.Angle_degInput angleDegTil_in if use_AngleDegTil_in
     "Controlled tilt angle of the PV module"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-12,84}),
@@ -63,7 +63,7 @@ partial model PVModuleGeneral
     "Controlled azimuth angle of the PV module"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-30,84}),
       iconTransformation(extent={{-10,-10},{10,10}},rotation=-90,origin={-40,80})));
-  protected
+protected
     Modelica.Blocks.Interfaces.RealInput GSC_internal
       "Shading coefficient";
     Modelica.Blocks.Interfaces.RealInput angleDegAzi_internal

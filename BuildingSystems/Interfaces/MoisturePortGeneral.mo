@@ -1,9 +1,9 @@
 within BuildingSystems.Interfaces;
 connector MoisturePortGeneral
   "Port for moisture transfer (base connector type)"
-  Modelica.SIunits.MassFraction x(start = 0.01) "Absolute moisture";
+  Modelica.Units.SI.MassFraction x(start=0.01) "Absolute moisture";
                                                 // start value is necessary for numerical reasons
-  flow Modelica.SIunits.MassFlowRate m_flow "Mass flow rate water vapor";
+  flow Modelica.Units.SI.MassFlowRate m_flow "Mass flow rate water vapor";
     annotation(Documentation(info="<HTML>
     <p>This connector is used for the moisture flow between components.
     The variables in the connector are:</p>

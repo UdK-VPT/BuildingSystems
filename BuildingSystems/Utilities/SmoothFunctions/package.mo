@@ -2,6 +2,7 @@ within BuildingSystems.Utilities;
 package SmoothFunctions "Functions for numerical smoothing"
   extends Modelica.Icons.VariantsPackage;
 
+ //version="0.1",versionDate="12.09.2008"
   annotation(Documentation(info="<html>
     <p>
     This package contains functions for the numerica smoothing of equations:
@@ -18,5 +19,4 @@ package SmoothFunctions "Functions for numerical smoothing"
        <b>safereciprocal</b> calculates 1/x without zeros between a user defined intervall from -delta to +delta.
     </pre>
       </html>"));
- //version="0.1",versionDate="12.09.2008"
 end SmoothFunctions;

@@ -5,10 +5,10 @@ partial model DHN_Detailed "partial model of a DHN"
  parameter Modelica.Media.Interfaces.Types.Temperature T_start = 273.15 + 90.0 "Initial conditions of the supply side";
 
   // Different Variables uses to facilitate results check
-  Modelica.SIunits.Heat Q_DHN_I "Energy loss in DHN part I";
-  Modelica.SIunits.Heat Q_DHN_II "Energy loss in DHN part II";
-  Modelica.SIunits.Heat Q_DHN_III "Energy loss in DHN part III";
-  Modelica.SIunits.Heat Q_DHN "Total energy loss in DHN";
+  Modelica.Units.SI.Heat Q_DHN_I "Energy loss in DHN part I";
+  Modelica.Units.SI.Heat Q_DHN_II "Energy loss in DHN part II";
+  Modelica.Units.SI.Heat Q_DHN_III "Energy loss in DHN part III";
+  Modelica.Units.SI.Heat Q_DHN "Total energy loss in DHN";
 
 //Boundary:
   Modelica.Thermal.HeatTransfer.Components.ThermalCollector thermalCollectorDHN(m=71)

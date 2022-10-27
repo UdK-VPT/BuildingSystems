@@ -2,9 +2,9 @@ within BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels;
 partial model ElectricalModelOneDiodeGeneral
   "Basic electrical one diode model of a PV module"
   extends BuildingSystems.Technologies.Photovoltaics.BaseClasses.ElectricalModels.ElectricalModelGeneral;
-  parameter Modelica.SIunits.ElectricCurrent Ik0
+  parameter Modelica.Units.SI.ElectricCurrent Ik0
     "Short circuit current under standard conditions";
-  parameter Modelica.SIunits.Voltage Ul0
+  parameter Modelica.Units.SI.Voltage Ul0
     "Open circuit voltage under standard conditions";
   parameter Real tIk0(unit = "mA/K")
     "Temperature coefficient for the short circuit current";
@@ -12,20 +12,18 @@ partial model ElectricalModelOneDiodeGeneral
     "Temperature coefficient for the open circuit voltage";
   parameter Real factor
     "Scaling factor adaptation to the complex PV cell model";
-  parameter Modelica.SIunits.LinearTemperatureCoefficient alphaIk = 0.001 * tIk0 / Ik0
-    "Specific temperature coefficient for the short circuit";
-  parameter Modelica.SIunits.LinearTemperatureCoefficient alphaUl = tUl0 / Ul0
+  parameter Modelica.Units.SI.LinearTemperatureCoefficient alphaIk=0.001*tIk0/
+      Ik0 "Specific temperature coefficient for the short circuit";
+  parameter Modelica.Units.SI.LinearTemperatureCoefficient alphaUl=tUl0/Ul0
     "Specific temperature coefficient for the open circuit";
   parameter Real c0(unit = "m2/V") = (Ik0 / nCelPar) / 1000.0
     "Coefficient for the photo current";
   parameter Real m1 = 1.0
     "Diode factor";
-  Modelica.SIunits.ElectricCurrent IPho
-    "Photo current";
+  Modelica.Units.SI.ElectricCurrent IPho "Photo current";
   Real ISat1
     "Saturation current nA";
-  Modelica.SIunits.Voltage Ul
-    "Open circuit voltage";
+  Modelica.Units.SI.Voltage Ul "Open circuit voltage";
   constant Real NANO = 1.0e-9;
 equation
   IPho = ITot * c0 * (1.0 + alphaIk * (T - 298.15));

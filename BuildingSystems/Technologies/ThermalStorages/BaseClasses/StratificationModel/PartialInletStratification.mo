@@ -36,10 +36,10 @@ model PartialInletStratification
     displayUnit = "degC")
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=-90,origin={0,100})));
 protected
-  Modelica.SIunits.MassFlowRate m_flow_eq[nEle];
-  Modelica.SIunits.TemperatureDifference dT1(start=0);
-  Modelica.SIunits.TemperatureDifference dT2(start=0);
-  Modelica.SIunits.TemperatureDifference dTn(start=1);
+  Modelica.Units.SI.MassFlowRate m_flow_eq[nEle];
+  Modelica.Units.SI.TemperatureDifference dT1(start=0);
+  Modelica.Units.SI.TemperatureDifference dT2(start=0);
+  Modelica.Units.SI.TemperatureDifference dTn(start=1);
   Real factor[nEle];
 algorithm
   position := 1;

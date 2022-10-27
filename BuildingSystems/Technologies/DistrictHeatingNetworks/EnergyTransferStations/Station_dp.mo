@@ -10,9 +10,9 @@ model Station_dp
       allowFlowReversal2=false,
       show_T=show_T,
       from_dp1=from_dp));
-  parameter Modelica.SIunits.Temperature TminDHN = 273.15 + 30
+  parameter Modelica.Units.SI.Temperature TminDHN=273.15 + 30
     "Minimum return temperature in building's installation";
-  parameter Modelica.SIunits.TemperatureDifference Tdrop = 25
+  parameter Modelica.Units.SI.TemperatureDifference Tdrop=25
     "Desired Temperature drop in building's installation";
 
   BuildingSystems.Technologies.DistrictHeatingNetworks.Utilities.Tanh tanhAmbience(
@@ -53,20 +53,20 @@ model Station_dp
     p_start=300000,
     V_start=1)
     annotation (Placement(transformation(extent={{-36,6},{-16,26}})));
-  parameter Modelica.SIunits.HeatFlowRate Q_nominal
+  parameter Modelica.Units.SI.HeatFlowRate Q_nominal
     "Nominal Heat power in the Heat Transfer Station"
-    annotation(Dialog(group = "Nominal condition"));
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominalDHN = 1.05*m_flow_nominalHeating
-    "Nominal mass flow rate"
-    annotation(Dialog(group = "Nominal condition"));
-  parameter Modelica.SIunits.Pressure dp_nominalDHN = 40000
+    annotation (Dialog(group="Nominal condition"));
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominalDHN=1.05*
+      m_flow_nominalHeating "Nominal mass flow rate"
+    annotation (Dialog(group="Nominal condition"));
+  parameter Modelica.Units.SI.Pressure dp_nominalDHN=40000
     "Nominal pressure drop at the Heat Exchanger DHN loop";
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominalHeating = Q_nominal/4182/Tdrop
-    "Nominal mass flow rate"
-    annotation(Dialog(group = "Nominal condition"));
-  parameter Modelica.SIunits.Pressure dp_nominalHeating = 40000
+  parameter Modelica.Units.SI.MassFlowRate m_flow_nominalHeating=Q_nominal/4182
+      /Tdrop "Nominal mass flow rate"
+    annotation (Dialog(group="Nominal condition"));
+  parameter Modelica.Units.SI.Pressure dp_nominalHeating=40000
     "Nominal pressure drop at the Heat Exchanger heating installation loop"
-    annotation(Dialog(group = "Nominal condition"));
+    annotation (Dialog(group="Nominal condition"));
   Modelica.Blocks.Sources.RealExpression m_flow_signal(
     y=m_flow_nominalHeating*tanhZone.y)
     annotation (Placement(transformation(extent={{-60,20},{0,40}})));
@@ -81,9 +81,9 @@ model Station_dp
   Modelica.Blocks.Sources.RealExpression Tmin(
     y=TminDHN)
     annotation (Placement(transformation(extent={{-52,-50},{28,-30}})));
-  parameter Modelica.SIunits.Temperature Tsupply_max
+  parameter Modelica.Units.SI.Temperature Tsupply_max
     "Maximum supply temperature in building";
-  parameter Modelica.SIunits.Temperature Tsupply_min
+  parameter Modelica.Units.SI.Temperature Tsupply_min
     "Minimum supply temperature in building";
   parameter Real factor_Tsupply = 7
     "Un- or smooth changes of the supply set temperature. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
@@ -91,10 +91,10 @@ model Station_dp
     "Un- or smooth changes of mass flow rate of the heating system. tanh((InSignal-SetValue)/factor) (notice, tanh(1)=0.7616 tanh(3)=0.9951)";
   parameter Boolean addPowerToMedium=false
     "Set to false to avoid any power in the pump model (=heat and flow work) being added to medium (may give simpler equations)";
-  parameter Modelica.SIunits.Pressure dpValve_nominal
-    annotation(Dialog(group = "Nominal condition"));
-  parameter Modelica.SIunits.Pressure dpFixed_nominal=0
-    annotation(Dialog(group = "Nominal condition"));
+  parameter Modelica.Units.SI.Pressure dpValve_nominal
+    annotation (Dialog(group="Nominal condition"));
+  parameter Modelica.Units.SI.Pressure dpFixed_nominal=0
+    annotation (Dialog(group="Nominal condition"));
   Buildings.BaseClasses.RelationRadiationConvection
     relationRadiationConvection(radiationportion=0.5)
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},

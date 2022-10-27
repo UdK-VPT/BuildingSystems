@@ -12,12 +12,12 @@ partial model PartialCentral
     allowFlowReversal1=false,
     allowFlowReversal2=false)
     annotation (Placement(transformation(extent={{10,-4},{-10,16}})));
-  parameter Modelica.SIunits.MassFlowRate mProduction_flow_nominal
+  parameter Modelica.Units.SI.MassFlowRate mProduction_flow_nominal
     "Nominal mass flow rate";
-  parameter Modelica.SIunits.MassFlowRate mDHN_flow_nominal
+  parameter Modelica.Units.SI.MassFlowRate mDHN_flow_nominal
     "Nominal mass flow rate";
-  parameter Modelica.SIunits.Pressure dpProduction_nominal;
-  parameter Modelica.SIunits.Pressure dpDHN_nominal;
+  parameter Modelica.Units.SI.Pressure dpProduction_nominal;
+  parameter Modelica.Units.SI.Pressure dpDHN_nominal;
   parameter Real eps=0.8
     "Heat exchanger effectiveness";
 equation

@@ -1,5 +1,7 @@
 within BuildingSystems.Buildings.Data.Constructions.HygroThermal;
-record IntermediateWallSingle2014 = BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction(
+record IntermediateWallSingle2014 =
+    BuildingSystems.Buildings.Data.Constructions.OpaqueHygroThermalConstruction
+    (
   final nLayers=3,
   thickness={0.015,0.1,0.015},
   material={BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Masea.Plasterboard(),

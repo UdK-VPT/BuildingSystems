@@ -2,19 +2,17 @@ within BuildingSystems.HAM.ConvectiveHeatTransfer.Examples;
 model AlphaGap
   "Test problem for free convection within a gap"
   extends Modelica.Icons.Example;
-  parameter Modelica.SIunits.Length width = 0.02
-    "Width of the gap";
-  parameter Modelica.SIunits.Length height = 1.0
-    "Height of the gap";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaAir
+  parameter Modelica.Units.SI.Length width=0.02 "Width of the gap";
+  parameter Modelica.Units.SI.Length height=1.0 "Height of the gap";
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaAir
     "Coefficient of heat transfer for convection within a gap filled with air";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaArgon
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaArgon
     "Coefficient of heat transfer for convection within a gap filled with argon";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaKrypton
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaKrypton
     "Coefficient of heat transfer for convection within a gap filled with krypton";
-  Modelica.SIunits.SurfaceCoefficientOfHeatTransfer alphaXenon
+  Modelica.Units.SI.SurfaceCoefficientOfHeatTransfer alphaXenon
     "Coefficient of heat transfer for convection within a gap filled with xenon";
-  Modelica.SIunits.TemperatureDifference deltaT "Temperature difference";
+  Modelica.Units.SI.TemperatureDifference deltaT "Temperature difference";
 equation
   deltaT = 2.0 * Modelica.Math.sin(2.0*Modelica.Constants.pi*time/3600);
   alphaAir = BuildingSystems.HAM.ConvectiveHeatTransfer.Gaps.alphaGap(293.15,293.15-deltaT,width,height,1);

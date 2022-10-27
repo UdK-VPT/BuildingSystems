@@ -14,7 +14,8 @@ model WindowWithOverhang
     annotation (Placement(transformation(extent={{-6,-10},{-26,10}})));
   BuildingSystems.Buildings.Ambience ambience(
     nSurfaces=1,
-    redeclare block WeatherData = BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
+    redeclare block WeatherData =
+        BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-50,-10},{-30,10}})));
   BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
     V=4*4*2.8,

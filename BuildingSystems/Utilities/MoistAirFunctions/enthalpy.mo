@@ -5,10 +5,10 @@ function enthalpy
      Zero position at 0 C > Usage of temperature in computations in C  > - 273.15
      Enthalpy in [kJ/kg dry air], temperature in [K], x in [kg/kg]
      x_satt in [kg/kg] for phi = 1.0 */
-  input Modelica.SIunits.Temp_K T;
-  input Modelica.SIunits.MassFraction x;
-  input Modelica.SIunits.MassFraction x_sat;
-  output Modelica.SIunits.SpecificEnthalpy value;
+  input Modelica.Units.SI.Temperature T;
+  input Modelica.Units.SI.MassFraction x;
+  input Modelica.Units.SI.MassFraction x_sat;
+  output Modelica.Units.SI.SpecificEnthalpy value;
 protected
             Real theta, y1, y2, y3, y4;
 algorithm

@@ -1,0 +1,58 @@
+simulateModel("BuildingSystems.Buildings.Geometries.Examples.RotateRectangle", stopTime=10.0, method="dassl", resultFile="RotateRectangle");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1000, 600},
+  y = {"rectRotXAxis.vertex1[1]","rectRotYAxis.vertex1[1]","rectRotZAxis.vertex1[1]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "RotateRectangle.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 2,
+  position = {0, 620, 1000, 600},
+  y = {"rectRotXAxis.vertex1[2]","rectRotYAxis.vertex1[2]","rectRotZAxis.vertex1[2]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "RotateRectangle.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 3,
+  position = {1020, 0, 1000, 600},
+  y = {"rectRotXAxis.vertex1[3]","rectRotYAxis.vertex1[3]","rectRotZAxis.vertex1[3]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "RotateRectangle.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+createPlot(
+  id = 4,
+  position = {1020, 620, 1000, 600},
+  y = {"rectRotXAxis.angleDegTil","rectRotYAxis.angleDegTil","rectRotZAxis.angleDegTil"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "RotateRectangle.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);

@@ -50,8 +50,8 @@ model Pipe "Test of a pipe with multiple segments"
   BuildingSystems.Utilities.Diagnostics.AssertEquality assEqu
     annotation (Placement(transformation(extent={{80,60},{100,80}})));
 equation
-  connect(P.y, sou.p_in) annotation (Line
-    (points={{-59,8},{-50.5,8},{-50.5,8},{-42,8}},
+  connect(P.y, sou.p_in) annotation (Line(
+     points={{-59,8},{-50.5,8},{-50.5,8},{-42,8}},
     color={0,0,127}));
   connect(sou.ports[1], pip1.port_a) annotation (Line(
       points={{-20,2},{-10,2},{-10,30},{-5.55112e-16,30}},

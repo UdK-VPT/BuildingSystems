@@ -15,7 +15,7 @@ model GasGapClosed "Test problem for free convection on plate surfaces"
   Modelica.Blocks.Sources.Sine sine(
     offset=273.15 + 20.0,
     amplitude=20.0,
-    freqHz=1/3600,
+    f=1/3600,
     phase=62.831853071796)
     annotation (Placement(transformation(extent={{-26,-4},{-18,4}})));
 equation
