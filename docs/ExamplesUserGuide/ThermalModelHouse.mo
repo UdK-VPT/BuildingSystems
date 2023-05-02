@@ -4,7 +4,7 @@ package ThermalModelHouse
   extends Modelica.Icons.ExamplesPackage;
   model Building
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
-        surfacesToAmbience(nSurfaces=12), nZones=2);
+        nIdealLoads = 2, surfacesToAmbience(nSurfaces=12), nZones=2);
     BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone1(
       nConstructions=7,
       V=0.5*0.5*0.5,
@@ -243,6 +243,7 @@ package ThermalModelHouse
   model SystemModel
     extends Modelica.Icons.Example;
     Building building(
+      nIdealLoads = 2,
       nZones=2,
       convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
       prescribedAirchange=true,

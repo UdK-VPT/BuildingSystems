@@ -7,6 +7,7 @@ model HCBC
   model Building
     "Building model with four capacities used in conjunction with parameter maps for campus simulations"
   extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
+    nIdealLoads = 1,
     nSurfacesSolid=1,
     surfacesToAmbience(nSurfaces=5),
     nZones=1);
@@ -1309,81 +1310,81 @@ model HCBC
     redeclare block WeatherData =
         BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{162,194},{262,294}})));
-  Building building1(nZones=1, parameterMap = parameterMap1)
+  Building building1(nZones=1, parameterMap = parameterMap1, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-182,30},{-162,50}})));
-  Building building2(nZones=1, parameterMap = parameterMap2)
+  Building building2(nZones=1, parameterMap = parameterMap2, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-156,-162},{-136,-142}})));
-  Building building3(nZones=1, parameterMap = parameterMap3)
+  Building building3(nZones=1, parameterMap = parameterMap3, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-142,-142},{-122,-122}})));
-  Building building5(nZones=1, parameterMap = parameterMap5)
+  Building building5(nZones=1, parameterMap = parameterMap5, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-102,88},{-82,108}})));
-  Building building6(nZones=1, parameterMap = parameterMap6)
+  Building building6(nZones=1, parameterMap = parameterMap6, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-204,-122},{-184,-102}})));
-  Building building7(nZones=1, parameterMap = parameterMap7)
+  Building building7(nZones=1, parameterMap = parameterMap7, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{104,-86},{124,-66}})));
-  Building building8(nZones=1, parameterMap = parameterMap8)
+  Building building8(nZones=1, parameterMap = parameterMap8, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-60,116},{-40,136}})));
-  Building building9(nZones=1, parameterMap = parameterMap9)
+  Building building9(nZones=1, parameterMap = parameterMap9, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-138,-96},{-118,-76}})));
-  Building building10(nZones=1, parameterMap = parameterMap10)
+  Building building10(nZones=1, parameterMap = parameterMap10, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-16,58},{4,78}})));
-  Building building11(nZones=1, parameterMap = parameterMap11)
+  Building building11(nZones=1, parameterMap = parameterMap11, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-24,128},{-4,148}})));
-  Building building12(nZones=1, parameterMap = parameterMap12)
+  Building building12(nZones=1, parameterMap = parameterMap12, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-182,122},{-162,142}})));
-  Building building13(nZones=1, parameterMap = parameterMap13)
+  Building building13(nZones=1, parameterMap = parameterMap13, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-14,-104},{6,-84}})));
-  Building building14(nZones=1, parameterMap = parameterMap14)
+  Building building14(nZones=1, parameterMap = parameterMap14, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-72,74},{-52,94}})));
-  Building building16(nZones=1, parameterMap = parameterMap16)
+  Building building16(nZones=1, parameterMap = parameterMap16, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-64,178},{-44,198}})));
-  Building building17(nZones=1, parameterMap = parameterMap17)
+  Building building17(nZones=1, parameterMap = parameterMap17, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-166,78},{-146,98}})));
-  Building building21(nZones=1, parameterMap = parameterMap21)
+  Building building21(nZones=1, parameterMap = parameterMap21, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-142,188},{-122,208}})));
-  Building building23(nZones=1, parameterMap = parameterMap23)
+  Building building23(nZones=1, parameterMap = parameterMap23, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{280,-152},{300,-132}})));
-  Building building25(nZones=1, parameterMap = parameterMap25)
+  Building building25(nZones=1, parameterMap = parameterMap25, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-62,34},{-42,54}})));
-  Building building27(nZones=1, parameterMap = parameterMap27)
+  Building building27(nZones=1, parameterMap = parameterMap27, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{46,58},{66,78}})));
-  Building building29(nZones=1, parameterMap = parameterMap29)
+  Building building29(nZones=1, parameterMap = parameterMap29, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{98,-134},{118,-114}})));
-  Building building30(nZones=1, parameterMap = parameterMap30)
+  Building building30(nZones=1, parameterMap = parameterMap30, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-120,-216},{-100,-196}})));
-  Building building33(nZones=1, parameterMap = parameterMap33)
+  Building building33(nZones=1, parameterMap = parameterMap33, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-86,208},{-66,228}})));
-  Building building34(nZones=1, parameterMap = parameterMap34)
+  Building building34(nZones=1, parameterMap = parameterMap34, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{18,20},{38,40}})));
-  Building building35(nZones=1, parameterMap = parameterMap35)
+  Building building35(nZones=1, parameterMap = parameterMap35, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-346,-36},{-326,-16}})));
-  Building building39(nZones=1, parameterMap = parameterMap39)
+  Building building39(nZones=1, parameterMap = parameterMap39, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{288,-80},{308,-60}})));
-  Building building40(nZones=1, parameterMap = parameterMap40)
+  Building building40(nZones=1, parameterMap = parameterMap40, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-130,16},{-110,36}})));
-  Building building43(nZones=1, parameterMap = parameterMap43)
+  Building building43(nZones=1, parameterMap = parameterMap43, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-240,292},{-220,312}})));
-  Building building44(nZones=1, parameterMap = parameterMap44)
+  Building building44(nZones=1, parameterMap = parameterMap44, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{54,-314},{74,-294}})));
-  Building building45(nZones=1, parameterMap = parameterMap45)
+  Building building45(nZones=1, parameterMap = parameterMap45, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-12,-310},{8,-290}})));
-  Building building46(nZones=1, parameterMap = parameterMap46)
+  Building building46(nZones=1, parameterMap = parameterMap46, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-186,-164},{-166,-144}})));
-  Building building47(nZones=1, parameterMap = parameterMap47)
+  Building building47(nZones=1, parameterMap = parameterMap47, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{78,28},{98,48}})));
-  Building building48(nZones=1, parameterMap = parameterMap48)
+  Building building48(nZones=1, parameterMap = parameterMap48, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{158,-230},{178,-210}})));
-  Building building50(nZones=1, parameterMap = parameterMap50)
+  Building building50(nZones=1, parameterMap = parameterMap50, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-116,-170},{-96,-150}})));
-  Building building51(nZones=1, parameterMap = parameterMap51)
+  Building building51(nZones=1, parameterMap = parameterMap51, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{236,-140},{256,-120}})));
-  Building building52(nZones=1, parameterMap = parameterMap52)
+  Building building52(nZones=1, parameterMap = parameterMap52, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{128,-160},{148,-140}})));
-  Building building53(nZones=1, parameterMap = parameterMap53)
+  Building building53(nZones=1, parameterMap = parameterMap53, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{58,-210},{78,-190}})));
-  Building building54(nZones=1, parameterMap = parameterMap54)
+  Building building54(nZones=1, parameterMap = parameterMap54, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{82,-174},{102,-154}})));
-  Building building55(nZones=1, parameterMap = parameterMap55)
+  Building building55(nZones=1, parameterMap = parameterMap55, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-286,84},{-266,104}})));
   Modelica.Blocks.Sources.Constant set_airchange(
     k=building43.parameterMap.airchange)

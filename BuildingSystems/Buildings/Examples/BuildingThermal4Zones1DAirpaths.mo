@@ -7,6 +7,7 @@ model BuildingThermal4Zones1DAirpaths
 
   model Building
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
+    nIdealLoads = 4,
     nZones = 4,
     surfacesToAmbience(nSurfaces=12),
     convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
@@ -426,6 +427,7 @@ model BuildingThermal4Zones1DAirpaths
         BuildingSystems.Climate.WeatherDataMeteonorm.USA_SanFrancisco_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Building building(
+    nIdealLoads = 4,
     nZones = 4,
     prescribedAirchange= false)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
