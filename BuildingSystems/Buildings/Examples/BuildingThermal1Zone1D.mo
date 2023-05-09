@@ -5,6 +5,7 @@ model BuildingThermal1Zone1D
 
   model Building
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
+    nIdealLoads = 1,
     nZones=1,
     surfacesToAmbience(nSurfaces=8),
     convectionOnSurfaces=BuildingSystems.HAM.ConvectiveHeatTransfer.Types.Convection.forced,
@@ -176,7 +177,7 @@ model BuildingThermal1Zone1D
     redeclare block WeatherData =
         BuildingSystems.Climate.WeatherDataMeteonorm.Germany_Berlin_Meteonorm_ASCII)
     annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
-  Building building(nZones=1)
+  Building building(nZones=1, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
   Modelica.Blocks.Sources.Constant TSetHeating(k=273.15 + 20.0)
     annotation (Placement(transformation(extent={{-2,-2},{2,2}},rotation=180,origin={18,14})));

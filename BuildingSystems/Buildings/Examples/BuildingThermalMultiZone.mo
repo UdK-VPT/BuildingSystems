@@ -49,6 +49,7 @@ model BuildingThermalMultiZone
   model Building
     "Building model of storey of an office building"
     extends BuildingSystems.Buildings.BaseClasses.BuildingTemplate(
+    nIdealLoads = 13,
     nZones = 13,
     surfacesToAmbience(nSurfaces=28),
     nSurfacesSolid=13,
@@ -1278,6 +1279,7 @@ model BuildingThermalMultiZone
   end Building;
 
   Building building(
+    nIdealLoads = 13,
     nZones=13)
     annotation (Placement(transformation(extent={{10,-10},{30,10}})));
 
