@@ -10,8 +10,9 @@ model HCBC_Comfort
     nIdealLoads = 1,
     nSurfacesSolid=1,
     surfacesToAmbience(nSurfaces=9),
-    nZones=1);
-  BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixed zone(
+    nZones=1,
+    useAirPaths = false);
+  BuildingSystems.Buildings.Zones.ZoneTemplateAirvolumeMixedCO2 zone(
     calcThermalComfort = true,
     nConstructions=10,
     V=parameterMap.VZon,
@@ -163,7 +164,7 @@ model HCBC_Comfort
       lambda=parameterMap.lambdaOut,
       c=parameterMap.cOut,
       rho=parameterMap.rhoOut)})
-    annotation (Placement(transformation(extent={{140,94},{160,114}})));
+    annotation (Placement(transformation(extent={{142,90},{162,110}})));
 
   BuildingSystems.Buildings.Data.Constructions.OpaqueThermalConstruction bottomConstruction(
     nLayers=1,
@@ -178,6 +179,15 @@ model HCBC_Comfort
   replaceable parameter ParameterMap parameterMap
     annotation (choicesAllMatching=true, Placement(transformation(extent={{-118,70},
               {-98,90}})));
+  Modelica.Blocks.Interfaces.RealInput C_in[nZones]
+      "CO2 connexion port to the building zones" annotation (Placement(
+          transformation(
+          extent={{10,-10},{-10,10}},
+          rotation=0,
+          origin={98,98}),  iconTransformation(
+          extent={{10,-10},{-10,10}},
+          rotation=0,
+          origin={98,98})));
   equation
 
   connect(surfacesToAmbience.toConstructionPorts[1], wall1.toSurfacePort_2)
@@ -268,6 +278,8 @@ model HCBC_Comfort
       annotation (Line(points={{0,120},{0,-10.7},{4.9,-10.7}},
                                                              color={127,0,0}));
 
+    connect(zone.C_in, C_in[1]) annotation (Line(points={{15,-7},{14,-7},{14,22},
+            {72,22},{72,98},{98,98}},            color={0,0,127}));
   end Building;
 
   record ParameterMap
@@ -1413,14 +1425,14 @@ model HCBC_Comfort
   Building building2(nZones=1, parameterMap = parameterMap2, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-156,-162},{-136,-142}})));
   Building building3(nZones=1, parameterMap = parameterMap3, nIdealLoads = 1)
-    annotation (Placement(transformation(extent={{-142,-142},{-122,-122}})));
+    annotation (Placement(transformation(extent={{-142,-132},{-122,-112}})));
   Building building5(nZones=1, parameterMap = parameterMap5, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-102,88},{-82,108}})));
   Building building6(nZones=1, parameterMap = parameterMap6, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-204,-122},{-184,-102}})));
   Building building7(nZones=1, parameterMap = parameterMap7, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{104,-86},{124,-66}})));
-  Building building8(nZones=1, parameterMap = parameterMap8, nIdealLoads = 1)
+  Building building8(          parameterMap = parameterMap8, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-60,116},{-40,136}})));
   Building building9(nZones=1, parameterMap = parameterMap9, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-138,-96},{-118,-76}})));
@@ -1467,8 +1479,8 @@ model HCBC_Comfort
   Building building45(nZones=1, parameterMap = parameterMap45, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{-12,-310},{8,-290}})));
   Building building46(nZones=1, parameterMap = parameterMap46, nIdealLoads = 1)
-    annotation (Placement(transformation(extent={{-186,-164},{-166,-144}})));
-  Building building47(nZones=1, parameterMap = parameterMap47, nIdealLoads = 1)
+    annotation (Placement(transformation(extent={{-200,-164},{-180,-144}})));
+  Building building47(          parameterMap = parameterMap47, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{78,28},{98,48}})));
   Building building48(nZones=1, parameterMap = parameterMap48, nIdealLoads = 1)
     annotation (Placement(transformation(extent={{158,-230},{178,-210}})));
@@ -1702,13 +1714,13 @@ model HCBC_Comfort
     annotation (Placement(transformation(extent={{26,-104},{18,-96}})));
   Modelica.Blocks.Sources.Constant t_set_cooling24(
     k=building6.parameterMap.TSetCoo)
-    annotation (Placement(transformation(extent={{-160,-110},{-168,-102}})));
+    annotation (Placement(transformation(extent={{-168,-110},{-176,-102}})));
   Modelica.Blocks.Sources.Constant t_set_heating24(
     k=building6.parameterMap.TSetHea)
-    annotation (Placement(transformation(extent={{-160,-98},{-168,-90}})));
+    annotation (Placement(transformation(extent={{-168,-98},{-176,-90}})));
   Modelica.Blocks.Sources.Constant set_airchange24(
     k=building6.parameterMap.airchange)
-    annotation (Placement(transformation(extent={{-160,-122},{-168,-114}})));
+    annotation (Placement(transformation(extent={{-168,-122},{-176,-114}})));
   Modelica.Blocks.Sources.Constant t_set_cooling25(
     k=building46.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{-156,-148},{-164,-140}})));
@@ -1747,13 +1759,13 @@ model HCBC_Comfort
     annotation (Placement(transformation(extent={{-118,-180},{-126,-172}})));
   Modelica.Blocks.Sources.Constant t_set_cooling29(
     k=building30.parameterMap.TSetCoo)
-    annotation (Placement(transformation(extent={{-80,-204},{-88,-196}})));
+    annotation (Placement(transformation(extent={{-80,-210},{-88,-202}})));
   Modelica.Blocks.Sources.Constant t_set_heating29(
     k=building30.parameterMap.TSetHea)
-    annotation (Placement(transformation(extent={{-80,-192},{-88,-184}})));
+    annotation (Placement(transformation(extent={{-80,-198},{-88,-190}})));
   Modelica.Blocks.Sources.Constant set_airchange29(
     k=building30.parameterMap.airchange)
-    annotation (Placement(transformation(extent={{-80,-216},{-88,-208}})));
+    annotation (Placement(transformation(extent={{-80,-222},{-88,-214}})));
   Modelica.Blocks.Sources.Constant t_set_cooling30(
     k=building7.parameterMap.TSetCoo)
     annotation (Placement(transformation(extent={{144,-74},{136,-66}})));
@@ -1853,17 +1865,17 @@ model HCBC_Comfort
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding9(T=283.15)
     annotation (Placement(transformation(extent={{-136,-106},{-128,-98}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding6(T=283.15)
-    annotation (Placement(transformation(extent={{-202,-132},{-194,-124}})));
+    annotation (Placement(transformation(extent={{-206,-134},{-198,-126}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding2(T=283.15)
     annotation (Placement(transformation(extent={{-154,-172},{-146,-164}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding46(T=283.15)
-    annotation (Placement(transformation(extent={{-184,-174},{-176,-166}})));
+    annotation (Placement(transformation(extent={{-186,-176},{-178,-168}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding50(T=283.15)
     annotation (Placement(transformation(extent={{-114,-180},{-106,-172}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding30(T=283.15)
     annotation (Placement(transformation(extent={{-118,-226},{-110,-218}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding3(T=283.15)
-    annotation (Placement(transformation(extent={{-142,-174},{-134,-166}})));
+    annotation (Placement(transformation(extent={{-152,-136},{-144,-128}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding35(T=283.15)
     annotation (Placement(transformation(extent={{-344,-46},{-336,-38}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding55(T=283.15)
@@ -1902,6 +1914,83 @@ model HCBC_Comfort
     annotation (Placement(transformation(extent={{34,48},{42,56}})));
   Modelica.Thermal.HeatTransfer.Sources.FixedTemperature groundBuilding47(T=283.15)
     annotation (Placement(transformation(extent={{80,18},{88,26}})));
+
+  Modelica.Blocks.Sources.Constant CO2_in1(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-142,68},{-150,76}})));
+  Modelica.Blocks.Sources.Constant CO2_in2(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-118,-144},{-126,-136}})));
+  Modelica.Blocks.Sources.Constant CO2_in3(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-102,-108},{-110,-100}})));
+  Modelica.Blocks.Sources.Constant CO2_in5(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-70,134},{-78,142}})));
+  Modelica.Blocks.Sources.Constant CO2_in6(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-168,-86},{-176,-78}})));
+  Modelica.Blocks.Sources.Constant CO2_in7(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{144,-46},{136,-38}})));
+  Modelica.Blocks.Sources.Constant CO2_in11(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{16,170},{8,178}})));
+  Modelica.Blocks.Sources.Constant CO2_in9(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-98,-58},{-106,-50}})));
+  Modelica.Blocks.Sources.Constant CO2_in10(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{24,96},{16,104}})));
+  Modelica.Blocks.Sources.Constant CO2_in46(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-156,-126},{-164,-118}})));
+  Modelica.Blocks.Sources.Constant CO2_in12(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-144,162},{-152,170}})));
+  Modelica.Blocks.Sources.Constant CO2_in13(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{26,-66},{18,-58}})));
+  Modelica.Blocks.Sources.Constant CO2_in14(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-32,108},{-40,116}})));
+  Modelica.Blocks.Sources.Constant CO2_in16(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-24,218},{-32,226}})));
+  Modelica.Blocks.Sources.Constant CO2_in17(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-126,118},{-134,126}})));
+  Modelica.Blocks.Sources.Constant CO2_in21(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-102,224},{-110,232}})));
+  Modelica.Blocks.Sources.Constant CO2_in23(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{320,-114},{312,-106}})));
+  Modelica.Blocks.Sources.Constant CO2_in25(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-22,72},{-30,80}})));
+  Modelica.Blocks.Sources.Constant CO2_in27(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{86,94},{78,102}})));
+  Modelica.Blocks.Sources.Constant CO2_in29(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{138,-98},{130,-90}})));
+  Modelica.Blocks.Sources.Constant CO2_in30(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-80,-186},{-88,-178}})));
+  Modelica.Blocks.Sources.Constant CO2_in33(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-46,246},{-54,254}})));
+  Modelica.Blocks.Sources.Constant CO2_in34(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{58,4},{50,12}})));
+  Modelica.Blocks.Sources.Constant CO2_in35(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-306,6},{-314,14}})));
+  Modelica.Blocks.Sources.Constant CO2_in39(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{328,-40},{320,-32}})));
+  Modelica.Blocks.Sources.Constant CO2_in40(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-90,54},{-98,62}})));
+  Modelica.Blocks.Sources.Constant CO2_in43(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-200,332},{-208,340}})));
+  Modelica.Blocks.Sources.Constant CO2_in44(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{94,-278},{86,-270}})));
+  Modelica.Blocks.Sources.Constant CO2_in45(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{28,-272},{20,-264}})));
+  Modelica.Blocks.Sources.Constant CO2_in48(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{198,-190},{190,-182}})));
+  Modelica.Blocks.Sources.Constant CO2_in47(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{118,66},{110,74}})));
+  Modelica.Blocks.Sources.Constant CO2_in50(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-76,-132},{-84,-124}})));
+  Modelica.Blocks.Sources.Constant CO2_in51(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{276,-102},{268,-94}})));
+  Modelica.Blocks.Sources.Constant CO2_in52(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{168,-120},{160,-112}})));
+  Modelica.Blocks.Sources.Constant CO2_in53(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{96,-224},{88,-216}})));
+  Modelica.Blocks.Sources.Constant CO2_in54(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{122,-186},{114,-178}})));
+  Modelica.Blocks.Sources.Constant CO2_in55(k=3500) "CO2 source"
+    annotation (Placement(transformation(extent={{-246,122},{-254,130}})));
+  Modelica.Blocks.Sources.Constant CO2_in8(k=3500)  "CO2 source"
+    annotation (Placement(transformation(extent={{-26,158},{-34,166}})));
 equation
 
   der(Q_district) = Q_flowHea;
@@ -2265,18 +2354,19 @@ equation
     annotation (Line(points={{-106.4,-80},{-118.2,-80}}, color={0,0,127}));
   connect(set_airchange22.y, building9.airchange[1]) annotation (Line(points={{-106.4,
           -92},{-112,-92},{-112,-82},{-118.2,-82}}, color={0,0,127}));
-  connect(t_set_heating24.y, building6.T_setHeating[1]) annotation (Line(points={{-168.4,
-          -94},{-174,-94},{-174,-104},{-184.2,-104}},        color={0,0,127}));
+  connect(t_set_heating24.y, building6.T_setHeating[1]) annotation (Line(points={{-176.4,
+          -94},{-176.4,-100},{-184.2,-100},{-184.2,-104}},   color={0,0,127}));
   connect(t_set_cooling24.y, building6.T_setCooling[1])
-    annotation (Line(points={{-168.4,-106},{-184.2,-106}}, color={0,0,127}));
-  connect(set_airchange24.y, building6.airchange[1]) annotation (Line(points={{-168.4,
-          -118},{-174,-118},{-174,-108},{-184.2,-108}}, color={0,0,127}));
+    annotation (Line(points={{-176.4,-106},{-184.2,-106}}, color={0,0,127}));
+  connect(set_airchange24.y, building6.airchange[1]) annotation (Line(points={{-176.4,
+          -118},{-184.2,-118},{-184.2,-108}},           color={0,0,127}));
   connect(t_set_heating26.y, building3.T_setHeating[1]) annotation (Line(points={{-110.4,
-          -114},{-116,-114},{-116,-124},{-122.2,-124}}, color={0,0,127}));
+          -114},{-122.2,-114}},                         color={0,0,127}));
   connect(t_set_cooling26.y, building3.T_setCooling[1])
-    annotation (Line(points={{-110.4,-126},{-122.2,-126}}, color={0,0,127}));
+    annotation (Line(points={{-110.4,-126},{-120,-126},{-120,-116},{-122.2,-116}},
+                                                           color={0,0,127}));
   connect(set_airchange26.y, building3.airchange[1]) annotation (Line(points={{-110.4,
-          -138},{-116,-138},{-116,-128},{-122.2,-128}}, color={0,0,127}));
+          -138},{-122.2,-138},{-122.2,-118}},           color={0,0,127}));
   connect(t_set_heating27.y, building50.T_setHeating[1]) annotation (Line(
         points={{-84.4,-144},{-90,-144},{-90,-152},{-96.2,-152}}, color={0,0,127}));
   connect(t_set_cooling27.y, building50.T_setCooling[1]) annotation (Line(
@@ -2290,17 +2380,19 @@ equation
   connect(set_airchange28.y, building2.airchange[1]) annotation (Line(points={{-126.4,
           -176},{-132,-176},{-132,-148},{-136.2,-148}}, color={0,0,127}));
   connect(t_set_heating25.y, building46.T_setHeating[1]) annotation (Line(
-        points={{-164.4,-132},{-166.2,-132},{-166.2,-146}}, color={0,0,127}));
+        points={{-164.4,-132},{-172,-132},{-172,-146},{-180.2,-146}},
+                                                            color={0,0,127}));
   connect(t_set_cooling25.y, building46.T_setCooling[1]) annotation (Line(
-        points={{-164.4,-144},{-166.2,-144},{-166.2,-148}}, color={0,0,127}));
-  connect(set_airchange25.y, building46.airchange[1]) annotation (Line(points={{
-          -164.4,-156},{-166.2,-156},{-166.2,-150}}, color={0,0,127}));
-  connect(t_set_heating29.y, building30.T_setHeating[1]) annotation (Line(points={
-          {-88.4,-188},{-94,-188},{-94,-198},{-100.2,-198}}, color={0,0,127}));
+        points={{-164.4,-144},{-164.4,-148},{-180.2,-148}}, color={0,0,127}));
+  connect(set_airchange25.y, building46.airchange[1]) annotation (Line(points={{-164.4,
+          -156},{-180.2,-156},{-180.2,-150}},        color={0,0,127}));
+  connect(t_set_heating29.y, building30.T_setHeating[1]) annotation (Line(points={{-88.4,
+          -194},{-94,-194},{-94,-198},{-100.2,-198}},        color={0,0,127}));
   connect(t_set_cooling29.y, building30.T_setCooling[1])
-    annotation (Line(points={{-88.4,-200},{-100.2,-200}}, color={0,0,127}));
+    annotation (Line(points={{-88.4,-206},{-94,-206},{-94,-200},{-100.2,-200}},
+                                                          color={0,0,127}));
   connect(set_airchange29.y, building30.airchange[1]) annotation (Line(points={{-88.4,
-          -212},{-94,-212},{-94,-202},{-100.2,-202}}, color={0,0,127}));
+          -218},{-94,-218},{-94,-202},{-100.2,-202}}, color={0,0,127}));
   connect(groundBuilding45.port, building45.toSolidHeatPorts[1])
     annotation (Line(points={{-2,-316},{-2,-312},{-6,-312},{-6,-309}},
                                                      color={191,0,0}));
@@ -2336,16 +2428,16 @@ equation
     annotation (Line(points={{-128,-102},{-128,-98},{-132,-98},{-132,-95}},
                                                        color={191,0,0}));
   connect(groundBuilding6.port, building6.toSolidHeatPorts[1])
-    annotation (Line(points={{-194,-128},{-194,-124},{-198,-124},{-198,-121}},
-                                                         color={191,0,0}));
+    annotation (Line(points={{-198,-130},{-198,-121}},   color={191,0,0}));
   connect(groundBuilding46.port, building46.toSolidHeatPorts[1])
-    annotation (Line(points={{-176,-170},{-176,-166},{-180,-166},{-180,-163}},
+    annotation (Line(points={{-178,-172},{-194,-172},{-194,-163}},
                                                          color={191,0,0}));
   connect(groundBuilding2.port, building2.toSolidHeatPorts[1])
     annotation (Line(points={{-146,-168},{-146,-164},{-150,-164},{-150,-161}},
                                                          color={191,0,0}));
   connect(groundBuilding3.port, building3.toSolidHeatPorts[1]) annotation (Line(
-        points={{-134,-170},{-136,-170},{-136,-141}},     color={191,0,0}));
+        points={{-144,-132},{-140,-132},{-140,-131},{-136,-131}},
+                                                          color={191,0,0}));
   connect(groundBuilding50.port, building50.toSolidHeatPorts[1])
     annotation (Line(points={{-106,-176},{-106,-172},{-110,-172},{-110,-169}},
                                                          color={191,0,0}));
@@ -2409,11 +2501,93 @@ equation
     annotation (Line(points={{-132,182},{-132,186},{-136,186},{-136,189}},
                                                        color={191,0,0}));
 
+  connect(CO2_in11.y, building11.C_in[1]) annotation (Line(points={{7.6,174},{
+          7.6,164},{-4.2,164},{-4.2,147.8}}, color={0,0,127}));
+  connect(CO2_in47.y, building47.C_in[1]) annotation (Line(points={{109.6,70},{
+          109.6,60},{97.8,60},{97.8,47.8}}, color={0,0,127}));
+  connect(CO2_in27.y, building27.C_in[1]) annotation (Line(points={{77.6,98},{
+          65.8,98},{65.8,77.8}}, color={0,0,127}));
+  connect(CO2_in34.y, building34.C_in[1]) annotation (Line(points={{49.6,8},{42,
+          8},{42,39.8},{37.8,39.8}}, color={0,0,127}));
+  connect(CO2_in10.y, building10.C_in[1]) annotation (Line(points={{15.6,100},{
+          15.6,88},{3.8,88},{3.8,77.8}}, color={0,0,127}));
+  connect(CO2_in25.y, building25.C_in[1]) annotation (Line(points={{-30.4,76},{
+          -30.4,64},{-42.2,64},{-42.2,53.8}}, color={0,0,127}));
+  connect(CO2_in14.y, building14.C_in[1]) annotation (Line(points={{-40.4,112},
+          {-52.2,112},{-52.2,93.8}}, color={0,0,127}));
+  connect(building5.C_in[1], CO2_in5.y) annotation (Line(points={{-82.2,107.8},
+          {-82.2,124},{-78.4,124},{-78.4,138}}, color={0,0,127}));
+  connect(CO2_in17.y, building17.C_in[1]) annotation (Line(points={{-134.4,122},
+          {-134.4,112},{-146.2,112},{-146.2,97.8}}, color={0,0,127}));
+  connect(CO2_in40.y, building40.C_in[1]) annotation (Line(points={{-98.4,58},{
+          -98.4,48},{-110.2,48},{-110.2,35.8}}, color={0,0,127}));
+  connect(CO2_in1.y, building1.C_in[1]) annotation (Line(points={{-150.4,72},{
+          -150.4,60},{-162.2,60},{-162.2,49.8}}, color={0,0,127}));
+  connect(CO2_in12.y, building12.C_in[1]) annotation (Line(points={{-152.4,166},
+          {-152.4,156},{-162.2,156},{-162.2,141.8}}, color={0,0,127}));
+  connect(CO2_in16.y, building16.C_in[1]) annotation (Line(points={{-32.4,222},
+          {-32.4,212},{-44.2,212},{-44.2,197.8}}, color={0,0,127}));
+  connect(CO2_in33.y, building33.C_in[1]) annotation (Line(points={{-54.4,250},
+          {-62,250},{-62,228},{-66,228},{-66,227.8},{-66.2,227.8}}, color={0,0,
+          127}));
+  connect(CO2_in21.y, building21.C_in[1]) annotation (Line(points={{-110.4,228},
+          {-122.2,228},{-122.2,207.8}}, color={0,0,127}));
+  connect(CO2_in54.y, building54.C_in[1]) annotation (Line(points={{113.6,-182},
+          {101.8,-182},{101.8,-154.2}}, color={0,0,127}));
+  connect(CO2_in53.y, building53.C_in[1]) annotation (Line(points={{87.6,-220},
+          {77.8,-220},{77.8,-190.2}}, color={0,0,127}));
+  connect(CO2_in29.y, building29.C_in[1]) annotation (Line(points={{129.6,-94},
+          {129.6,-104},{117.8,-104},{117.8,-114.2}}, color={0,0,127}));
+  connect(CO2_in7.y, building7.C_in[1]) annotation (Line(points={{135.6,-42},{
+          135.6,-52},{123.8,-52},{123.8,-66.2}}, color={0,0,127}));
+  connect(CO2_in51.y, building51.C_in[1]) annotation (Line(points={{267.6,-98},
+          {267.6,-108},{255.8,-108},{255.8,-120.2}}, color={0,0,127}));
+  connect(CO2_in39.y, building39.C_in[1]) annotation (Line(points={{319.6,-36},
+          {319.6,-48},{307.8,-48},{307.8,-60.2}}, color={0,0,127}));
+  connect(CO2_in23.y, building23.C_in[1]) annotation (Line(points={{311.6,-110},
+          {311.6,-120},{299.8,-120},{299.8,-132.2}}, color={0,0,127}));
+  connect(CO2_in13.y, building13.C_in[1]) annotation (Line(points={{17.6,-62},{
+          17.6,-72},{5.8,-72},{5.8,-84.2}}, color={0,0,127}));
+  connect(CO2_in9.y, building9.C_in[1]) annotation (Line(points={{-106.4,-54},{
+          -106.4,-64},{-118.2,-64},{-118.2,-76.2}}, color={0,0,127}));
+  connect(CO2_in3.y, building3.C_in[1]) annotation (Line(points={{-110.4,-104},
+          {-120,-104},{-120,-112.2},{-122.2,-112.2}}, color={0,0,127}));
+  connect(CO2_in50.y, building50.C_in[1]) annotation (Line(points={{-84.4,-128},
+          {-92,-128},{-92,-150},{-96,-150},{-96,-150.2},{-96.2,-150.2}}, color=
+          {0,0,127}));
+  connect(CO2_in2.y, building2.C_in[1]) annotation (Line(points={{-126.4,-140},
+          {-126.4,-142.2},{-136.2,-142.2}}, color={0,0,127}));
+  connect(CO2_in6.y, building6.C_in[1]) annotation (Line(points={{-176.4,-82},{
+          -176.4,-92},{-184.2,-92},{-184.2,-102.2}}, color={0,0,127}));
+  connect(CO2_in30.y, building30.C_in[1]) annotation (Line(points={{-88.4,-182},
+          {-96,-182},{-96,-196.2},{-100.2,-196.2}}, color={0,0,127}));
+  connect(CO2_in45.y, building45.C_in[1]) annotation (Line(points={{19.6,-268},
+          {19.6,-280},{7.8,-280},{7.8,-290.2}}, color={0,0,127}));
+  connect(CO2_in48.y, building48.C_in[1]) annotation (Line(points={{189.6,-186},
+          {189.6,-196},{177.8,-196},{177.8,-210.2}}, color={0,0,127}));
+  connect(CO2_in44.y, building44.C_in[1]) annotation (Line(points={{85.6,-274},
+          {85.6,-284},{73.8,-284},{73.8,-294.2}}, color={0,0,127}));
+  connect(CO2_in35.y, building35.C_in[1]) annotation (Line(points={{-314.4,10},
+          {-314.4,0},{-326.2,0},{-326.2,-16.2}}, color={0,0,127}));
+  connect(CO2_in55.y, building55.C_in[1]) annotation (Line(points={{-254.4,126},
+          {-254.4,116},{-266.2,116},{-266.2,103.8}}, color={0,0,127}));
+  connect(CO2_in52.y, building52.C_in[1]) annotation (Line(points={{159.6,-116},
+          {159.6,-128},{147.8,-128},{147.8,-140.2}}, color={0,0,127}));
+  connect(CO2_in43.y, building43.C_in[1]) annotation (Line(points={{-208.4,336},
+          {-208.4,324},{-220.2,324},{-220.2,311.8}}, color={0,0,127}));
+  connect(CO2_in46.y, building46.C_in[1]) annotation (Line(points={{-164.4,-122},
+          {-164,-122},{-164,-132},{-180.2,-132},{-180.2,-144.2}}, color={0,0,
+          127}));
+  connect(CO2_in8.y, building8.C_in[1]) annotation (Line(points={{-34.4,162},{
+          -40.2,162},{-40.2,135.8}}, color={0,0,127}));
   annotation (__Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Applications/DistrictSimulation/HCBC.mos" "Simulate and plot"),
     Diagram(coordinateSystem(extent={{-400,-400},{400,400}},preserveAspectRatio=false),
-    graphics={Bitmap(extent={{-398,-402},{396,400}},
+    graphics={Bitmap(extent={{-398,-404},{396,398}},
     fileName="modelica://BuildingSystems/Resources/Images/Applications/DistrictSimulation/HCBCBackground.png")}),
-    experiment(StopTime=864000),
+    experiment(
+      StopTime=31536000,
+      Interval=3600,
+      __Dymola_Algorithm="Dassl"),
     __Dymola_experimentSetupOutput(events=false),
 Documentation(info="<html>
 <p>
