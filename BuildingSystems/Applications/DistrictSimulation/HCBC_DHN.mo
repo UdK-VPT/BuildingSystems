@@ -135,8 +135,7 @@ model HCBC_DHN
   BuildingSystems.Fluid.Storage.ExpansionVessel exp(
     redeclare package Medium = Medium,
     V_start=10,
-    p_start=600000,
-    p=400000)
+    p_start=600000)
     annotation (Placement(transformation(extent={{200,-82},{220,-62}})));
 equation
   der(Q_buildings) =
