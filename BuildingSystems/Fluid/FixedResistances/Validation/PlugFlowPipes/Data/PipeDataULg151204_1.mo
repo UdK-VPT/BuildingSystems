@@ -35,7 +35,7 @@ First implementation.
 <p>
 This data record contains the experimental data from the
 long test bench carried out at the University of Liège.
-See <a href=\"BuildingSystems.Fluid.FixedResistances.Validation.PlugFlowPipes.Data.BaseClasses.PipeDataULg\">
+See <a href=\"modelica://BuildingSystems.Fluid.FixedResistances.Validation.PlugFlowPipes.Data.BaseClasses.PipeDataULg\">
 BuildingSystems.Fluid.FixedResistances.Validation.PlugFlowPipes.Data.BaseClasses.PipeDataULg</a>
 for more information.
 </p>

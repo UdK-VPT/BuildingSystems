@@ -232,13 +232,13 @@ equation
     0,127}));
   annotation ( Documentation(info="<html>
   <p>This example shows the application of
-  <a href=\"BuildingSystems.ThermalZones.ReducedOrder.RC.TwoElements\">
+  <a href=\"modelica://BuildingSystems.ThermalZones.ReducedOrder.RC.TwoElements\">
   BuildingSystems.ThermalZones.ReducedOrder.RC.TwoElements</a>
   in combination with
-  <a href=\"BuildingSystems.ThermalZones.ReducedOrder.EquivalentAirTemperature.VDI6007WithWindow\">
+  <a href=\"modelica://BuildingSystems.ThermalZones.ReducedOrder.EquivalentAirTemperature.VDI6007WithWindow\">
  BuildingSystems.ThermalZones.ReducedOrder.EquivalentAirTemperature.VDI6007WithWindow</a>
   and
-  <a href=\"BuildingSystems.ThermalZones.ReducedOrder.SolarGain.CorrectionGDoublePane\">
+  <a href=\"modelica://BuildingSystems.ThermalZones.ReducedOrder.SolarGain.CorrectionGDoublePane\">
   BuildingSystems.ThermalZones.ReducedOrder.SolarGain.CorrectionGDoublePane</a>.
   Solar radiation on tilted surface is calculated using models of
   BuildingSystems. The thermal zone is a simple room defined in Guideline
