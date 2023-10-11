@@ -15,6 +15,9 @@ model Ambience
   parameter Boolean calcLwRad = true
     "True: long-wave radiation exchange on building surfaces is considered; false: no long-wave radiation exchange"
     annotation(HideResult = true,Dialog(tab = "General", group = "Surfaces"));
+  parameter Boolean useSolarMask = false
+    "True: attenuation of direct solar radiation by the building's environment is considered; false: solar radiation is not attenuated"
+    annotation(HideResult = true,Dialog(tab = "General", group = "Surfaces"));
   parameter Integer nAirpaths = 0
     "Number of airpaths to the building"
     annotation(HideResult=true, Dialog(tab = "General", group = "Airpaths"));
@@ -113,6 +116,11 @@ model Ambience
     "Solar beam radiation of horizontal surface from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-28,-74}),
       iconTransformation(extent={{10,-10},{-10,10}},rotation=270,origin={-30,-90})));
+
+  // Solar masks
+  BuildingSystems.Buildings.BaseClasses.ShadowingElementEnvironmentGeneral solarmask[nSurfaces]
+    "Radiation modified by solar masks in the environment surrounding the building"
+    annotation(Placement(transformation(extent={{60,32.5},{75,47.5}})));
 
   // Solar diffuse radiation of horizontal surface
   parameter BuildingSystems.Buildings.Types.DataSource IrrDifHorSou = BuildingSystems.Buildings.Types.DataSource.Calculation
@@ -243,10 +251,25 @@ equation
     else
       toSurfacePorts[i].heatPortLw.Q_flow = 0.0;
     end if;
-    toSurfacePorts[i].heatPortSw.Q_flow = - toSurfacePorts[i].abs *
-      (radiation[i].radiationPort.IrrDir + radiation[i].radiationPort.IrrDif) * toSurfacePorts[i].A;
-    connect(radiation[i].radiationPort, toSurfacePorts[i].radiationPort_in)
-      annotation (Line(points={{52,11.8},{52,40},{80,40}},color={0,0,0},pattern=LinePattern.Solid,smooth=Smooth.None));
+    if useSolarMask then
+      toSurfacePorts[i].heatPortSw.Q_flow = - toSurfacePorts[i].abs *
+        (solarmask[i].radiationPort_out.IrrDir + solarmask[i].radiationPort_out.IrrDif) * toSurfacePorts[i].A;
+      connect(radiation[i].radiationPort, solarmask[i].radiationPort_in)
+        annotation (Line(points={{52,11.8},{52,40},{62.5,40}},color={0,0,0},pattern=LinePattern.Solid,smooth=Smooth.None));
+      connect(solarmask[i].radiationPort_out, toSurfacePorts[i].radiationPort_in)
+        annotation (Line(points={{75,40},{80,40}},color={0,0,0},pattern=LinePattern.Solid,smooth=Smooth.None));
+    else
+      solarmask[i].SC = 1.0;
+      solarmask[i].radiationPort_in.IrrDir = 0.0;
+      solarmask[i].radiationPort_in.IrrDif = 0.0;
+      solarmask[i].radiationPort_in.angleDegInc = 0.0;
+      solarmask[i].radiationPort_in.angleDegAziSun = 0.0;
+      solarmask[i].radiationPort_in.angleDegHeightSun = 0.0;
+      toSurfacePorts[i].heatPortSw.Q_flow = - toSurfacePorts[i].abs *
+        (radiation[i].radiationPort.IrrDir + radiation[i].radiationPort.IrrDif) * toSurfacePorts[i].A;
+      connect(radiation[i].radiationPort, toSurfacePorts[i].radiationPort_in)
+        annotation (Line(points={{52,11.8},{52,40},{80,40}},color={0,0,0},pattern=LinePattern.Solid,smooth=Smooth.None));
+    end if;
   end for;
   // Air path calculation
   for i in 1:nAirpaths loop
