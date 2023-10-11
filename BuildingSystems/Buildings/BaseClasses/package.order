@@ -7,6 +7,7 @@ HeatConduction3DWithTube
 PartialMixingVolume
 RadiationDistribution
 RelationRadiationConvection
+ShadowingElementEnvironmentGeneral
 ShadowingElementGeneral
 SurfaceGeneral
 TriangularConstructionGeneral
