@@ -7,6 +7,7 @@ HeatConduction3DWithTube
 PartialMixingVolume
 RadiationDistribution
 RelationRadiationConvection
+ShadowingElementEnvironmentGeneral
 ShadowingElementGeneral
 SurfaceGeneral
 TriangularConstructionGeneral
@@ -17,4 +18,5 @@ WallThermalTriangularGeneral
 WallTriangularGeneral
 WindowGeneral
 ZoneTemplateGeneral
+ZoneTemplateGeneralCO2
 OpaqueConstruction
