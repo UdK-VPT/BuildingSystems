@@ -47,7 +47,7 @@ algorithm
 annotation (
 Documentation(info="<html>
 <p>
-Integrand of the cylindrical heat source solution for use in
+Integrand of the finite line source solution for use in
 <a href=\"modelica://BuildingSystems.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.ThermalResponseFactors.finiteLineSource\">
 BuildingSystems.Fluid.Geothermal.Borefields.BaseClasses.HeatTransfer.ThermalResponseFactors.finiteLineSource</a>.
 </p>

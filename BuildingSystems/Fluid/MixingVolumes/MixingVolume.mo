@@ -197,7 +197,7 @@ as a state. See ticket Dynasim #13596.
 <li>
 July 26, 2011 by Michael Wetter:<br/>
 Revised model to use new declarations from
-<a href=\"BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations\">
+<a href=\"modelica://BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations\">
 BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations</a>.
 </li>
 <li>

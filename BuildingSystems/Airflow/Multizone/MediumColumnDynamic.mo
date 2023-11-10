@@ -1,7 +1,8 @@
 within BuildingSystems.Airflow.Multizone;
 model MediumColumnDynamic
   "Vertical shaft with no friction and storage of heat and mass"
-  extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations;
+  extends BuildingSystems.Fluid.Interfaces.LumpedVolumeDeclarations(
+    final massDynamics=energyDynamics);
 
   replaceable package Medium =
     Modelica.Media.Interfaces.PartialMedium "Medium in the component"
@@ -117,7 +118,7 @@ equation
           lineColor={0,0,0}),
         Text(
           extent={{-50.5,20.5},{50.5,-20.5}},
-          lineColor={0,0,127},
+          textColor={0,0,127},
           origin={-72.5,-12.5},
           rotation=90,
           textString="%name"),
@@ -180,6 +181,12 @@ at the top of the column.
 </html>",
 revisions="<html>
 <ul>
+<li>
+March 7, 2022, by Michael Wetter:<br/>
+Set <code>final massDynamics=energyDynamics</code>.<br/>
+This is for
+<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/1542\">#1542</a>.
+</li>
 <li>
 January 18, 2019, by Jianjun Hu:<br/>
 Limited the media choice to moist air only.
