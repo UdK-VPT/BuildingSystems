@@ -1,4 +1,4 @@
-within BuildingsSystems.Buildings.Comfort;
+within BuildingSystems.Buildings.Comfort;
 model ThermalComfortConnector
   "Model for dynamically connecting comfort input variables with a Thermal Comfort model."
   Modelica.Blocks.Interfaces.RealInput clo_in(min = 0.0, max = 2.0)
