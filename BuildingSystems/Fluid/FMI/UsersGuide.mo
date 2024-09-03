@@ -249,7 +249,7 @@ The model
 <a href=\"modelica://BuildingSystems.Fluid.Movers.FlowControlled_m_flow\">
 BuildingSystems.Fluid.Movers.FlowControlled_m_flow</a>
 cannot be exported as an FMU.
-This is because it assignes the mass flow rate.
+This is because it assigns the mass flow rate.
 However, the input connector
 <a href=\"modelica://BuildingSystems.Fluid.FMI.Interfaces.Inlet\">
 BuildingSystems.Fluid.FMI.Interfaces.Inlet</a>
