@@ -9,14 +9,22 @@ function dPhi
   input Modelica.Units.SI.MassConcentration w;
   input Modelica.Units.SI.MassFlowRate m_flow_wdr;
   input Modelica.Units.SI.MassConcentration wDerPhi;
-  output Real value
-  "[kg/ms]";
+  output Real value "[kg/ms]";
 
 protected
   Real temp_wDerPhi;
   Real dws;
   Real dww;
-
+  Real[size(dwsTabX,1)] d1(each fixed=false) =
+    BuildingSystems.Utilities.Math.Functions.splineDerivatives(
+      x=dwsTabX,
+      y=dwsTabY,
+      ensureMonotonicity=true);
+  Real[size(dwwTabX,1)] d2(each fixed=false) =
+    BuildingSystems.Utilities.Math.Functions.splineDerivatives(
+      x=dwwTabX,
+      y=dwwTabY,
+      ensureMonotonicity=true);
 algorithm
   if w < 0.0 then
     dww := Modelica.Constants.small;
@@ -30,15 +38,13 @@ algorithm
     elseif wF <> -1 then
       if m_flow_wdr > 0 then
         if w <= wF then
-          // Tabular interpolation (exponential mode)
-          dws := BuildingSystems.HAM.HeatAndMoistureTransport.Functions.interpol(w,dwsTabX,dwsTabY,2);
+          dws := BuildingSystems.Utilities.Math.Functions.interpolate(u=w,xd=dwsTabX,yd=dwsTabY,d=d1);
         elseif w > wF then
           dws := dwsTabY[size(dwsTabY,1)];
         end if;
       else
         if w <= wF then
-          // Tabular interpolation (exponential mode)
-          dww := BuildingSystems.HAM.HeatAndMoistureTransport.Functions.interpol(w,dwwTabX,dwwTabY,2);
+          dww := BuildingSystems.Utilities.Math.Functions.interpolate(u=w,xd=dwwTabX,yd=dwwTabY,d=d2);
         elseif w > wF then
           dww := dwwTabY[size(dwwTabY,1)];
         end if;

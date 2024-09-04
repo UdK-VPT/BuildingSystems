@@ -1,5 +1,5 @@
 within BuildingSystems.HAM.HeatAndMoistureTransport.Functions.Examples;
-model dPhi "Test function wDerPhi"
+model dPhi "Test function dPhi"
   extends Modelica.Icons.Example;
   BuildingSystems.HAM.Data.MaterialProperties.HygroThermal.Beton material;
   parameter Modelica.Units.SI.MassConcentration w=50.0

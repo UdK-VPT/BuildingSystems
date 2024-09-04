@@ -8,12 +8,16 @@ function myPhiMoist
   output BuildingSystems.Types.WaterVapourDiffusionResistance value;
 protected
   Integer n=size(myTabX,1);
-
+  Real[size(myTabX,1)] d(each fixed=false) =
+    BuildingSystems.Utilities.Math.Functions.splineDerivatives(
+      x=myTabX,
+      y=myTabY,
+      ensureMonotonicity=true);
 algorithm
   if phi < 0.0 then
     value := myDry;
   elseif phi >= 0.0 and phi <= 1.0 then
-    value := BuildingSystems.HAM.HeatAndMoistureTransport.Functions.interpol(phi,myTabX,myTabY,2);
+    value := BuildingSystems.Utilities.Math.Functions.interpolate(u=phi,xd=myTabX,yd=myTabY,d=d);
   else
     value := myTabY[n];
   end if;

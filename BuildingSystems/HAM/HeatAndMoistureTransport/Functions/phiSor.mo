@@ -12,13 +12,16 @@ protected
   Modelica.Units.SI.Density rhoH2O=1000.0;
   BuildingSystems.Types.RelativeHumidity phiMax = 1.01;
   Modelica.Units.SI.MassConcentration wMax=por*rhoH2O;
-
+  Real[size(sorTabX,1)] d(each fixed=false) =
+    BuildingSystems.Utilities.Math.Functions.splineDerivatives(
+      x=sorTabY,
+      y=sorTabX,
+      ensureMonotonicity=true);
 algorithm
   if w < 0.0 then
     value := 0.0;
   elseif w >= 0.0 and w <= wMax then
-    //value := Modelica.Math.Vectors.interpolate(sorTabY,sorTabX,w);
-    value := BuildingSystems.HAM.HeatAndMoistureTransport.Functions.interpol(w,sorTabY,sorTabX,1);
+    value := BuildingSystems.Utilities.Math.Functions.interpolate(u=w,xd=sorTabY,yd=sorTabX,d=d);
   else
     value := phiMax;
   end if;
