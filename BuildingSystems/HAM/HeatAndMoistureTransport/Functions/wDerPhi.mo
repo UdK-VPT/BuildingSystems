@@ -30,4 +30,14 @@ algorithm
   else
     value := Modelica.Constants.small;
   end if;
+
+  annotation (Documentation(info="<html>
+<p>This function outputs the derivative of the water content of a porous material.</p>
+</html>", revisions="<html>
+<ul>
+<li>March 3, 2015, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end wDerPhi;

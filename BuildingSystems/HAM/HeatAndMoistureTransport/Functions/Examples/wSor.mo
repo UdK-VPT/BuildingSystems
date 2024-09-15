@@ -7,10 +7,10 @@ model wSor "Test function wSor"
     "Relative Humidity of the material";
 
   Modelica.Blocks.Sources.Ramp ramp(
-    height=1.1,
+    height=1.0,
     duration=0.75,
     offset=0,
-    startTime=0.25)
+    startTime=0.0)
     annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
 
 equation

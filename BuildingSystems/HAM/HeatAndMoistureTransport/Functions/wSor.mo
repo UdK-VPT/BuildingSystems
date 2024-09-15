@@ -15,7 +15,7 @@ protected
     BuildingSystems.Utilities.Math.Functions.splineDerivatives(
       x=sorTabX,
       y=sorTabY,
-      ensureMonotonicity=true);
+      ensureMonotonicity=false);
 algorithm
   if phi < 0.0 then
     value := 0.0;
@@ -24,4 +24,17 @@ algorithm
   else
     value := wMax;
   end if;
+
+  annotation (Documentation(info="<html>
+<p>This function outputs the water content of a porous material.</p>
+</html>", revisions="<html>
+<ul>
+<li>March 3, 2015, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+<li>September 15, 2024, by Christoph Nytsch-Geusen:<br/>
+Use of the function BuildingSystems.Utilities.Math.Functions.interpolate.
+</li>
+</ul>
+</html>"));
 end wSor;

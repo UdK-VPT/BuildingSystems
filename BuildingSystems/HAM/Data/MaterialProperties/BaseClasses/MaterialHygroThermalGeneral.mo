@@ -25,9 +25,12 @@ record MaterialHygroThermalGeneral
     "Liquid transport coefficient for suction of the porous material (table)";
   parameter Modelica.Units.SI.ThermalConductivity lambdaDry
     "Heat conductivity of the dry porous material";
-  parameter Modelica.Units.SI.MassConcentration w80 "Water content by 80 %";
-  parameter Modelica.Units.SI.MassConcentration w95 "Water content by 95 %";
-  parameter Modelica.Units.SI.MassConcentration wF "Free water saturation";
+  parameter Modelica.Units.SI.MassConcentration w80
+    "Water content by 80 %";
+  parameter Modelica.Units.SI.MassConcentration w95
+    "Water content by 95 %";
+  parameter Modelica.Units.SI.MassConcentration wF
+    "Free water saturation";
   parameter BuildingSystems.Types.Porosity porosity
     "Porosity of the layer [-]";
   parameter Real A

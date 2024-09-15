@@ -9,10 +9,10 @@ model wDerPhi "Test function wDerPhi"
   Modelica.Units.SI.MassConcentration wDerPhi "Derivative of the water content";
 
   Modelica.Blocks.Sources.Ramp ramp(
-    height=1.1,
-    duration=0.75,
+    height=1.0,
+    duration=1.0,
     offset=0,
-    startTime=0.25)
+    startTime=0.0)
     annotation (Placement(transformation(extent={{-80,20},{-60,40}})));
 
 equation
