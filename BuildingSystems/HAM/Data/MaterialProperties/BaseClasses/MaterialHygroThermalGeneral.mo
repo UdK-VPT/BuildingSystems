@@ -1,8 +1,10 @@
 within BuildingSystems.HAM.Data.MaterialProperties.BaseClasses;
 record MaterialHygroThermalGeneral
   extends MaterialGeneral;
-  parameter Modelica.Units.SI.Density rho "Density";
-  parameter Modelica.Units.SI.SpecificHeatCapacity c "Specific heat capacity";
+  parameter Modelica.Units.SI.Density rho
+    "Density";
+  parameter Modelica.Units.SI.SpecificHeatCapacity c
+    "Specific heat capacity";
   parameter BuildingSystems.Types.RelativeHumidity sorTabX[:]
     "Relative humidity of the porous material(table)";
   parameter Modelica.Units.SI.MassConcentration sorTabY[:]

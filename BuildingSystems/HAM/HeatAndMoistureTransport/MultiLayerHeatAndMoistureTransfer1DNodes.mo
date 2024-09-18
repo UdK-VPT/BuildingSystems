@@ -9,7 +9,6 @@ model MultiLayerHeatAndMoistureTransfer1DNodes
     T_start=T_start,
     phi_start=phi_start)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-
   BuildingSystems.Interfaces.HeatPort heatPort_x1
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={-80,0}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={-80,0})));
@@ -30,7 +29,6 @@ model MultiLayerHeatAndMoistureTransfer1DNodes
   BuildingSystems.Interfaces.MoisturePort moisturePort_x2
     annotation(Placement(transformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,20}),
       iconTransformation(extent={{-8,-8},{8,8}},rotation=270,origin={80,20})));
-
   parameter BuildingSystems.HAM.Data.MaterialProperties.BaseClasses.MaterialHygroThermalGeneral material[nLayers]
     annotation (HideResult=true);
   parameter Modelica.Units.SI.Length lengthY "Length in y dimension";

@@ -44,7 +44,7 @@ model WallHygroThermal1DNodes
   BuildingSystems.Interfaces.Moisture_absOutput xSur_2 = toSurfacePort_2.moisturePort.x if show_xSur
     "Absolute moisture on surface side 2"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},origin={50,40}),
-        iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={30,60})));
+      iconTransformation(extent={{-10,-10},{10,10}},rotation=0,origin={30,60})));
   parameter Modelica.Units.SI.Area AInnSur=0.0
     "Area of all enclosed surfaces (if geometryType == Fixed)"
     annotation (Dialog(tab="General", group="Geometry"));
@@ -54,7 +54,7 @@ model WallHygroThermal1DNodes
     min=0) if geometryType == BuildingSystems.Buildings.Types.GeometryType.Flexible
     "Area of all enclosed surfaces from input"
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=0,  origin={-30,-56}),
-          iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-60})));
+      iconTransformation(extent={{10,-10},{-10,10}},rotation=180,origin={-20,-60})));
 equation
   // Geometry
   ASur = height_internal * width_internal - AInnSur_internal;

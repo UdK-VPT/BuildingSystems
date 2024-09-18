@@ -1,4 +1,4 @@
-simulateModel("BuildingSystems.Buildings.Examples.BuildingHygroThermal1Zone1D", stopTime=31536000, method="cvode", resultFile="BuildingHygroThermal1Zone1D");
+simulateModel("BuildingSystems.Buildings.Examples.BuildingHygroThermal1Zone1D", stopTime=31536000, method="dassl", resultFile="BuildingHygroThermal1Zone1D");
 removePlots();
 createPlot(
   id = 1,

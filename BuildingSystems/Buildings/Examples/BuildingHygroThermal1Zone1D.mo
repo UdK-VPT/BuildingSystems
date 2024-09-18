@@ -21,7 +21,7 @@ model BuildingHygroThermal1Zone1D
       angleDegAzi=90.0,
       angleDegTil=90.0,
       position={-2.0,0.0,1.25},
-      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionStandard constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=180,origin={-24,0})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall3(
       height=2.5,
@@ -29,7 +29,7 @@ model BuildingHygroThermal1Zone1D
       angleDegAzi=-90.0,
       angleDegTil=90.0,
       position={2.0,0.0,1.25},
-      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionStandard constructionData)
       annotation (Placement(transformation(extent={{16,-10},{36,10}})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall2(
       height=2.5,
@@ -38,7 +38,7 @@ model BuildingHygroThermal1Zone1D
       angleDegTil=90.0,
       position={0.0,1.5,1.25},
       AInnSur=window2.width*window2.height,
-      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionStandard constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={-12,20})));
     BuildingSystems.Buildings.Constructions.Walls.WallHygroThermal1DNodes wall4(
       height=2.5,
@@ -47,7 +47,7 @@ model BuildingHygroThermal1Zone1D
       angleDegTil=90.0,
       position={0.0,-1.5,1.25},
       AInnSur=window4.width*window4.height,
-      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionConcrete constructionData)
+      redeclare BuildingSystems.Buildings.Data.Constructions.HygroThermal.ConstructionStandard constructionData)
       annotation (Placement(transformation(extent={{-10,-10},{10,10}},rotation=270,origin={-12,-20})));
     BuildingSystems.Buildings.Constructions.Windows.Window window2(
       height=1.0,
