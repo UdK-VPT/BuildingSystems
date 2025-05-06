@@ -1,0 +1,50 @@
+simulateModel("BuildingSystems.Buildings.Geometries.Viewfactors.Examples.RectangularCuboidSurfaces", stopTime=1.0, method="dassl", resultFile="RectangularCuboidSurfaces");
+removePlots();
+createPlot(
+  id = 1,
+  position = {0, 0, 1000, 600},
+  y = {"A","B","C"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "RectangularCuboidSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 2,
+  position = {0, 620, 1000, 600},
+  y = {"viewFac[1, 1]","viewFac[1, 2]","viewFac[1, 3]","viewFac[1, 4]","viewFac[1, 5]","viewFac[1, 6]"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "RectangularCuboidSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 3,
+  position = {1020, 0, 1000, 600},
+
+  position = {0, 620, 1000, 600},
+  y = {"viewFacSum1","viewFacSum2","viewFacSum3","viewFacSum4","viewFacSum5","viewFacSum6"},
+  autoscale = true,
+  autoerase = true,
+  autoreplot = true,
+  description = false,
+  grid = true,
+  color = true,
+  online = false,
+  filename = "RectangularCuboidSurfaces.mat",
+  leftTitleType = 1,
+  bottomTitleType = 1);
+  createPlot(
+  id = 3,
+  position = {1020, 0, 1000, 600},
+  

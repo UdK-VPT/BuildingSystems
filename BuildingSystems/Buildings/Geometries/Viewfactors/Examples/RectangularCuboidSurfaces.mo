@@ -35,11 +35,40 @@ model RectangularCuboidSurfaces
   parameter Integer r[nRect] = {1,1,1,1,1,1};
   parameter Integer z[nRect]={10 for i in 1:nRect};
   Real viewFac[nRect,nRect] = BuildingSystems.Buildings.Geometries.Viewfactors.Functions.PhiRect(nRect,a1,a2,a3,b1,b2,b3,c1,c2,c3,d1,d2,d3,r,z,true);
-  Real viewFacSum(start=0);
+  Real viewFacSum1(start=0);
+  Real viewFacSum2(start=0);
+  Real viewFacSum3(start=0);
+  Real viewFacSum4(start=0);
+  Real viewFacSum5(start=0);
+  Real viewFacSum6(start=0);
+
 algorithm
   for i in 1:nRect loop
-    viewFacSum := viewFacSum + viewFac[nRect,i];
+    viewFacSum1 := viewFacSum1 + viewFac[1,i];
+    viewFacSum2 := viewFacSum2 + viewFac[2,i];
+    viewFacSum3 := viewFacSum3 + viewFac[3,i];
+    viewFacSum4 := viewFacSum4 + viewFac[4,i];
+    viewFacSum5 := viewFacSum5 + viewFac[5,i];
+    viewFacSum6 := viewFacSum6 + viewFac[6,i];
   end for;
 equation
   C = 3.0 + time;
+
+  annotation(experiment(StartTime=0, StopTime=1),
+    __Dymola_Commands(file="modelica://BuildingSystems/Resources/Scripts/Dymola/Buildings/Geometries/Viewfactors/Examples/RectangularCuboidSurfaces.mos" "Simulate and plot"),
+Documentation(info="<html>
+<p>
+Example that calculates the view factors of the six surfaces of a rectangular cuboid
+surfaces with the different edge lengths A, B and C.
+C varies with the time from 3 to 4.
+</p>
+</html>",
+revisions="<html>
+<ul>
+<li>
+April 26, 2022, by Christoph Nytsch-Geusen:<br/>
+First implementation.
+</li>
+</ul>
+</html>"));
 end RectangularCuboidSurfaces;
