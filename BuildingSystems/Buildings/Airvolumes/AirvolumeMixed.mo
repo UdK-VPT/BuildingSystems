@@ -12,7 +12,7 @@ model AirvolumeMixed
     annotation(Evaluate=true, Dialog(connectorSizing=true, tab="General",group="Ports"));
   BuildingSystems.Types.RelativeHumidity phi
     "Relative humidity of the air";
-  Modelica.Units.SI.Mass mH2OLiq(start=mH2OLiq_start) "Liquid water mass";
+  Modelica.Units.SI.Mass mH2OLiq(fixed = true, start=mH2OLiq_start) "Liquid water mass";
   parameter Modelica.Units.SI.Mass mH2OLiq_start=0.0
     "Liquid water mass (start value)" annotation (Dialog(tab="Initialization"));
   BuildingSystems.Interfaces.HeatPorts heatSourcesPorts[nHeatSources]
@@ -88,7 +88,7 @@ equation
     T[1] = T_constant;
   elseif TSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     connect(T[1], senTem.T)
-    annotation (Line(points={{-30,-20},{-40,-20},{-40,-40},{60,-40},{60,20},{80,20}}, color={0,0,127}));
+    annotation (Line(points={{80,20},{-40,20},{-40,-40},{60,-40},{60,-20},{-31,-20}}, color={0,0,127}));
   else
     connect(T[1], T_in);
   end if;
@@ -98,7 +98,7 @@ equation
     x[1] = x_constant;
   elseif TSou == BuildingSystems.Buildings.Types.DataSource.Calculation then
     connect(x[1], air.X_w)
-      annotation (Line(points={{12,-4},{50,-4},{50,-20},{80,-20}},color={0,0,127}));
+      annotation (Line(points={{80,-20},{50,-20},{50,-4},{12,-4}},color={0,0,127}));
   else
     connect(x[1], x_in);
   end if;
